@@ -1,0 +1,12 @@
+def first():
+    form = SQLFORM.factory(
+        Field('text_to_adapt', 'text', requires=IS_NOT_EMPTY()),
+        )
+    if form.process().accepted:
+        name = form.vars.text_to_adapt
+        redirect(URL('second',vars=dict(name=text_to_adapt)))
+    return dict(form=form)
+
+def second():
+    name = request.vars.text_to_adapt or redirect(URL('first'))
+    return dict(name=name)
