@@ -1,3 +1,0 @@
-{{extend 'layout.html'}}
-<h1>Text adaptat</h1>
-{{=adapted_text}}
