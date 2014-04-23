@@ -107,7 +107,9 @@
   <h3 id="text_h3" style="display:none">Text adaptat</h3>	
   
   <div id="text_adaptat">
-  	{{=adapted_text}}
+  	<?php if (isset($adapted_text)): ?>
+  		<?php echo $adapted_text ?>
+  	<?php endif; ?>
   </div>
 
 </div>

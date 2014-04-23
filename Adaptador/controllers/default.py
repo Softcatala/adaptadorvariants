@@ -16,7 +16,7 @@ import re
 import xml.etree.ElementTree as ET
 
 def first():
-    form = SQLFORM.factory(Field('text_to_adapt', requires=IS_NOT_EMPTY()))
+    form = SQLFORM.factory(Field('text_to_adapt','text', requires=IS_NOT_EMPTY()))
     if form.process().accepted:
         original_text = form.vars.text_to_adapt
         redirect(URL('second',vars=dict(original_text=original_text)))
@@ -24,6 +24,10 @@ def first():
 
 def second():
     import os
+    form = SQLFORM.factory(Field('text_to_adapt','text', requires=IS_NOT_EMPTY()))
+    if form.process().accepted:
+        original_text = form.vars.text_to_adapt
+        redirect(URL('second',vars=dict(original_text=original_text)))
     original_text = request.vars.original_text or redirect(URL('first'))
     adapted_text_utf8 = original_text.decode('utf-8')
     filepath = os.path.join(request.folder,'static','xml','replacements.xml')
