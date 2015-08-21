@@ -1,0 +1,11 @@
+#!/bin/bash -ex
+
+test -d "$1"
+
+tmp=`mktemp`
+
+find $1 -name \*.po \
+  | while read ca ; do
+      ./src2valencia-moz.sed < $ca > $tmp
+      mv $tmp $ca
+    done

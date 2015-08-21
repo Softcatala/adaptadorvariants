@@ -3,12 +3,12 @@ adaptadorvariants
 
 Adaptador a variant dialectal valenciana
 
-== Mòdul Web2py ==
+## Mòdul Web2py
 
 /Adaptador conté el mòdul d'adaptació per a web2py
 
 
-== Tools ==
+## Tools
 
 Conté les eines utilitzades per a l'adaptació mitjançant la línia de comandes.
 
