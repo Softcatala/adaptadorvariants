@@ -5,8 +5,8 @@
 # Si teniu cap idea...
 
 # Si no existeix aquest fitxer es copiarà tot el repositori (format: 20151108)
+DATAF="data_ca-valencia.log"
 if [ -f $DATAF ]; then
-    DATAF="data_ca-valencia.log"
     DATA=$(cat $DATAF)
   else
     DATA="Sense data d'inici."
