@@ -12,7 +12,7 @@ if [ -f $DATAF ]; then
     DATA="Sense data d'inici."
 fi
 # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
-USUARIS_SVN="aacid\|bellaperez\|jferrer"
+USUARIS_SVN="aacid\|bellaperez\|jferrer\|omas"
 # Quan se solicita un interval al registre, cal demanar un dia més
 DEMA=$(date +%Y%m%d -d "+1 days")
 #
@@ -29,14 +29,16 @@ error_comprova_data() {
       exit 0
   fi
 }
+
+# Establim la capçalera
+capçalera() { echo -e "\n** $BRANCA_S/$BRANCA_K ** -> {$DATA}:{$DEMA}\n  ******************\n$1"
+}
+
 cerca_po() {
   cd ca
   FITXERPO=`find messages/* -type f -name "*.po"`
   cd ..
 }
-
-# Per a proves (descomentar -també comentar l'ordre «date»- i afegir un sufix «_0» a l'altra)
-# genera_copia() { PO=$1; echo " * $PO $1"; }
 
 genera_copia() {
   PO=$1
@@ -55,6 +57,9 @@ genera_copia() {
   msgmerge --silent --previous --width=80 missatges_2-$FITX templates/${PO}t -o ca@valencia/$PO && \
   rm -f missatges_2-$FITX
 
+  # Es realitza un avís per si la nova traducció conté missatges sense fer
+  msgfmt --statistics ca@valencia/$PO
+
   if [ $(which posieve) ]; then
       # Si es tracta de la branca «stable» esborrem els missatges obsolets (en silenci)
       if [ $BRANCA_S = "stable" ]; then
@@ -68,6 +73,7 @@ genera_copia() {
           # No es tradueixen les notícies del web 
           if [ $FITX = "www_www.po" ];then
               test -f ca@valencia/$PO && rm -f ca@valencia/$PO
+              echo "Aquesta ha estat eliminada!"
           fi
        fi
     else
@@ -101,9 +107,9 @@ case $1 in
     if [ -f ca/$2 ]; then
         FITX=$(basename $2)
         if   [ $(file ca/$2 | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,UTF-8" ]; then
-            genera_copia $2 && exit 0
+            capçalera && genera_copia $2 && exit 0
         elif [ $(file ca/$2 | awk '{print $2$3$4$5$6}') = "HTMLdocument,UTF-8Unicodetext" ]; then
-            genera_copia $2 && exit 0
+            capçalera && genera_copia $2 && exit 0
           else
             echo -e "\nError: «$FITX» no és un fitxer PO.\n"
             exit 0
@@ -126,7 +132,7 @@ case $1 in
     exit 0
   ;;
   *)
-    echo "$0 [ usuari | hora (4 dígits) | recursiu ]"
+    echo "$0 [ usuari | hora (4 dígits) | recursiu | fitxer (po) | arranja_po ]"
     echo
     echo    " usuari       : Mode SVN: mira l'última data de canvi pels usuaris seguits."
     echo -e "                Empra la data al fitxer $DATAF i processa les\n\t\tiguals o posteriors."
@@ -142,8 +148,9 @@ case $1 in
     echo    " arranja_po   : Mode local: S'arranjen les cadenes amb l'estil de la plantilla."
     echo -e "                No actualiza la data al fitxer $DATAF.\n"
     echo "Recomanació:"
-    echo "Cal haber creat el fitxer ~/.config/autostart/ssh-add.sh i tenir instal·lada" 
-    echo "l'ordre «ksshaskpass»:"
+    echo "Cal haber creat l'script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
+    echo "KDE4: ~/.kde/Autostart/ssh-add.sh"
+    echo "KF5:  ~/.config/autostart/ssh-add.sh"
     echo
     echo "#!/bin/sh"
     echo "ssh-add \$HOME/.ssh/id_dsa </dev/null"
@@ -168,13 +175,7 @@ if [ $(which ksshaskpass) ];then
     exit 0
 fi
 
-capçalera() {
-echo -e "
-** $BRANCA_S/$BRANCA_K ** -> {$DATA}:{$DEMA}
-  ******************
-Llegenda: * s'ha modificat, - no cal actualitzar\n"
-}
-test -z $ANULA && capçalera && ANULA="1"
+test -z $ANULA && capçalera "Llegenda: * s'ha modificat, - no cal actualitzar\n" && ANULA="1"
 
 cerca_po
 
@@ -222,7 +223,7 @@ for PO in $FITXERPO
   done
 
 # El fitxer conté la data de l'última còpia
-date +%Y%m%d > $DATAF   # (per a proves cal comentar)
+date +%Y%m%d > $DATAF
 
 test -z $MISSATGEPOS || echo -e "\nError: $MISSATGEPOS\n"
 
