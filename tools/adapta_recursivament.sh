@@ -3,6 +3,9 @@
 # TODO:
 # Més proves i polir el codi.
 # Si teniu cap idea...
+#
+# NOTE:
+# Quan es passa l'script que corregeix les capçaleres (ca) cal esperar al dia següent.
 
 # Si no existeix aquest fitxer es copiarà tot el repositori (format: 20151108)
 DATAF="data_ca-valencia.log"
@@ -35,8 +38,9 @@ capçalera() { echo -e "\n** $BRANCA_S/$BRANCA_K ** -> {$DATA}:{$DEMA}\n  ******
 }
 
 cerca_po() {
+  # Cerca les plantilles de traducció i les ordena
   cd ca
-  FITXERPO=`find messages/* -type f -name "*.po"`
+  FITXERPO=$(find messages/* -type f -name "*.po" | sort)
   cd ..
 }
 
@@ -45,6 +49,7 @@ genera_copia() {
   # Si no existeix el directori, el creem
   mkdir -p ca@valencia/$DIR
 
+  # El caràcter «*» indica que aquest fitxer ha estat modificat
   echo " * ca@valencia/$PO"
 
   # Fem que les frases/paràgrafs siguin d'una sola línia:
