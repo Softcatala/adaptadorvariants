@@ -173,8 +173,8 @@ if [ $(which ksshaskpass) ];then
         echo "Cal crear el fitxer ~/.config/autostart/ssh-add.sh"
         exit 0
     fi
-    # Aquí s'afegeix la clau. El qual llançarà el «ksshaskpass» si escau.
-    ~/.config/autostart/ssh-add.sh
+    # Si no hi és, s'afegeix la clau. El qual llançarà el «ksshaskpass», si escau.
+    [ $(ssh-add -l | awk '{print $3}' | sed -e s,$HOME/,,) != ".ssh/id_dsa" ] && ~/.config/autostart/ssh-add.sh
   else
     echo -e "\nError: Heu d'instal·lar l'ordre «ksshaskpass».\n"
     exit 0
