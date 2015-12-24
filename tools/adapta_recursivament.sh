@@ -155,7 +155,7 @@ case $1 in
     echo "Recomanació:"
     echo "Cal haber creat l'script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
     echo "KDE4: ~/.kde/Autostart/ssh-add.sh"
-    echo "KF5:  ~/.config/autostart/ssh-add.sh"
+    echo "KF5:  ~/.config/autostart-scripts/ssh-add.sh"
     echo
     echo "#!/bin/sh"
     echo "ssh-add \$HOME/.ssh/id_dsa </dev/null"
@@ -169,12 +169,12 @@ esac
 # - Per a revocar l'autorització cal anar al «kwalletmanager»
 #   (si es vol automatitzar penso que cal crear un usuari nou per aquesta tasca)
 if [ $(which ksshaskpass) ];then
-    if [ ! -f ~/.config/autostart/ssh-add.sh ]; then
-        echo "Cal crear el fitxer ~/.config/autostart/ssh-add.sh"
+    if [ ! -f ~/.config/autostart-scripts/ssh-add.sh ]; then
+        echo "Cal crear el fitxer ~/.config/autostart-scripts/ssh-add.sh"
         exit 0
     fi
     # Si no hi és, s'afegeix la clau. El qual llançarà el «ksshaskpass», si escau.
-    [ $(ssh-add -l | awk '{print $3}' | sed -e s,$HOME/,,) != ".ssh/id_dsa" ] && ~/.config/autostart/ssh-add.sh
+    [ $(ssh-add -l | awk '{print $3}' | sed -e s,$HOME/,,) != ".ssh/id_dsa" ] && ~/.config/autostart-scripts/ssh-add.sh
   else
     echo -e "\nError: Heu d'instal·lar l'ordre «ksshaskpass».\n"
     exit 0
