@@ -11,7 +11,7 @@ if [ -f $DATAF ]; then
     DATA=$(cat $DATAF | awk '{print $1}')
     # Ens cal uns valors inicials
     DATA_CANVI_SVN=$DATA
-    [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='000000'
+    [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='0'
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
     USUARIS_SVN="aacid\|bellaperez\|jferrer\|omas"
     # Quan se solicita un interval al registre, cal demanar un dia més
@@ -112,19 +112,19 @@ case $1 in
     fi
   ;;
   fitxer)
-    if [ -f ca/$2 ]; then
-        FITX=$(basename $2)
-        PO=$FITX
-        if   [ $(file ca/$2 | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,UTF-8" ]; then
+    PO="$2"
+    if [ -f ca/$PO ]; then
+        FITX=$(basename $PO)
+        if   [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,UTF-8" ]; then
             capçalera && genera_copia && exit 0
-        elif [ $(file ca/$2 | awk '{print $2$3$4$5$6}') = "HTMLdocument,UTF-8Unicodetext" ]; then
+        elif [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "HTMLdocument,UTF-8Unicodetext" ]; then
             capçalera && genera_copia && exit 0
           else
             echo -e "\nError: «$FITX» no és un fitxer PO.\n"
             exit 0
         fi
       else
-        echo -e "\nError: «$2» no existeix. Heu d'indicar un fitxer PO existent."
+        echo -e "\nError: «$PO» no existeix. Heu d'indicar un fitxer PO existent."
         echo -e "messages/carpeta/fitxer.po\n"
         exit 0
     fi
