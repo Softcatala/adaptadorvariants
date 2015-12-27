@@ -12,7 +12,6 @@ if [ -f $DATAF ]; then
     # Ens cal uns valors inicials
     DATA_CANVI_SVN=$DATA
     [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='000000'
-    HORA_CANVI_SVN=$HORA
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
     USUARIS_SVN="aacid\|bellaperez\|jferrer\|omas"
     # Quan se solicita un interval al registre, cal demanar un dia més
