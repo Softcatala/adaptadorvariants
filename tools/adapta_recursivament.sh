@@ -47,7 +47,7 @@ cerca_po() {
 }
 
 genera_copia() {
-  # No cal processar (segons antigitat)
+  # No cal processar (segons antiguitat)
   [ $CANVIA -eq 0 ] && echo " - $PO -> $DATA_CANVI $HORA_CANVI" && return 0
 
   # Si no existeix el directori, el creem
@@ -213,7 +213,7 @@ for PO in $FITXERPO
           # Si són buides, s'estableixen amb el primer positiu
           [ -z $DATA_CANVI_SVN ] && DATA_CANVI_SVN=$DATA_CANVI || data_major
           [ -z $HORA_CANVI_SVN ] && HORA_CANVI_SVN=$HORA_CANVI
-          # Si la data de canvi és igual que l'última al cau del SVN, es comprova l'hora major
+          # Si la data de canvi és igual que l'última al cau del SVN, es comprova hora_major
           [ $DATA_CANVI -eq $DATA_CANVI_SVN ] && hora_major
           # Si la data de canvi és la mateixa que la inicial, es comprova si l'hora és major
           if [ $DATA_CANVI -eq $DATA ]; then
@@ -227,18 +227,22 @@ for PO in $FITXERPO
     }
 
     if [ -f $DATAF ]; then
-        # En el cas que es proporcioni una hora de canvi (quatre dígits)
-        # - Per a un ajustament fi, modifiqueu la data al fitxer
-        if [ $1 = "hora" ]; then
+        case $1 in
+          hora)
+            # En el cas que es proporcioni una hora de canvi (quatre dígits)
+            # - Per a un ajustament fi, modifiqueu la data al fitxer
             comprova_data && comprova_hora   && genera_copia
-        elif [ $1 = "usuari" ]; then
+          ;;
+          usuari)
             CANVIA='0'
             comprova_data && comprova_usuari && genera_copia
             DATA_CANVI=
             [ -f data_ca-valencia.tmp ] && rm -f data_ca-valencia.tmp
-          else
+          ;;
+          *)
             comprova_data && genera_copia
-        fi
+          ;;
+        esac
       else
         # S'actualitza tota la branca
         genera_copia
@@ -246,7 +250,7 @@ for PO in $FITXERPO
   done
 
 # El fitxer conté la data (i hora?) de l'última còpia
-[ $HORA_CANVI_SVN -gt '000000' ] && echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF || date +%Y%m%d > $DATAF
+[ ${#HORA_CANVI_SVN} = '6' ] && echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF || date +%Y%m%d > $DATAF
 
 [ -z $MISSATGEPOS ] && \
   echo -e "\nDATA_CANVI_SVN=$DATA_CANVI_SVN\nHORA_CANVI_SVN=$HORA_CANVI_SVN\n"|| \
