@@ -255,5 +255,8 @@ for PO in $FITXERPO
   echo -e "\nDATA_CANVI_SVN=$DATA_CANVI_SVN\nHORA_CANVI_SVN=$HORA_CANVI_SVN\n"|| \
   echo -e "\nError: $MISSATGEPOS\n"
 
+# Suprimeixo el fitxer creat per l'ordre msgfmt --statistics
+[ -f messages.mo ] && rm -f messages.mo
+
 exit 0
 
