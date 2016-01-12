@@ -194,13 +194,20 @@ for PO in $FITXERPO
     DIR=$(dirname $PO)
     FITX=$(basename $PO)
 
+    canvia_anonim() {
+      [ $SVN_URL ] && return 0
+      # Es modifica l'URL svn+ssh per a que les connexions siguin al SVN anònim
+      cd ca
+      SVN_URL=$(svn info | grep "^URL" | awk '{print $2}' | sed -e s,+ssh,, -e s,svn@,anon,)
+      cd ..
+    }
     # Es comprova si cal actualitzar (es redueix la càrrega)
     comprova_data() { [ $(ls -l --time-style=+%Y%m%d ca/$PO | awk '{print $6}') -ge $DATA ]; }
-    comprova_hora() { [ $(svn --verbose list ca/$PO | awk '{print $6}' | tr -d ":") -ge $HORA ]; }
+    comprova_hora() { [ $(svn --verbose list $SVN_URL/$PO | awk '{print $6}' | tr -d ":") -ge $HORA ]; }
     comprova_usuari() {
       # Mira al registre si cap usuari seguit ha realitzat canvis al fitxer
       # Es desen les dades a un fitxer temporal per no fer múltiples crides al repositori
-      svn log ca/$PO -r {$DATA}:{$DEMA} | grep $USUARIS_SVN | awk '{print $5,$6}' | sort | tail -1 > data_ca-valencia.tmp
+      svn log -r {$DATA}:{$DEMA} $SVN_URL/$PO | grep $USUARIS_SVN | awk '{print $5,$6}' | sort | tail -1 > data_ca-valencia.tmp
       DATA_CANVI=$(cat data_ca-valencia.tmp | awk '{print $1}' | tr -d "-") # 2015-12-11 -> 20151211
       HORA_CANVI=$(cat data_ca-valencia.tmp | awk '{print $2}' | tr -d ":") # 18:47:47   -> 184747
       if [ $DATA_CANVI ]; then
@@ -230,11 +237,11 @@ for PO in $FITXERPO
           hora)
             # En el cas que es proporcioni una hora de canvi (quatre dígits)
             # - Per a un ajustament fi, modifiqueu la data al fitxer
-            comprova_data && comprova_hora   && genera_copia
+            comprova_data && canvia_anonim && comprova_hora   && genera_copia
           ;;
           usuari)
             CANVIA='0'
-            comprova_data && comprova_usuari && genera_copia
+            comprova_data && canvia_anonim && comprova_usuari && genera_copia
             DATA_CANVI=
             [ -f data_ca-valencia.tmp ] && rm -f data_ca-valencia.tmp
           ;;
