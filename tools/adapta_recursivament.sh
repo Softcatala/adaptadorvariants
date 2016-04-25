@@ -156,14 +156,14 @@ case $1 in
     echo -e "                po = messages/carpeta/fitxer.po\n"
     echo    " arranja_po   : Mode local: S'arranjen les cadenes amb l'estil de la plantilla."
     echo -e "                No actualiza la data al fitxer $DATAF.\n"
-    echo "Recomanació:"
-    echo "Cal haber creat l'script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
-    echo "KDE4: ~/.kde/Autostart/ssh-add.sh"
-    echo "KF5:  ~/.config/autostart-scripts/ssh-add.sh"
-    echo
-    echo "#!/bin/sh"
-    echo "ssh-add \$HOME/.ssh/id_dsa </dev/null"
-    echo
+#     echo "Recomanació:"
+#     echo "Cal haber creat l'script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
+#     echo "KDE4: ~/.kde/Autostart/ssh-add.sh"
+#     echo "KF5:  ~/.config/autostart-scripts/ssh-add.sh"
+#     echo
+#     echo "#!/bin/sh"
+#     echo "ssh-add \$HOME/.ssh/id_dsa </dev/null"
+#     echo
     exit 0
   ;;
 esac
@@ -172,17 +172,17 @@ esac
 # - Se suposa que hi ha establerta una configuració local
 # - Per a revocar l'autorització cal anar al «kwalletmanager»
 #   (si es vol automatitzar penso que cal crear un usuari nou per aquesta tasca)
-if [ $(which ksshaskpass) ];then
-    if [ ! -f ~/.config/autostart-scripts/ssh-add.sh ]; then
-        echo "Cal crear el fitxer ~/.config/autostart-scripts/ssh-add.sh"
-        exit 0
-    fi
-    # Si no hi és, s'afegeix la clau. El qual llançarà el «ksshaskpass», si escau.
-    [ $(ssh-add -l | awk '{print $3}' | sed -e s,$HOME/,,) != ".ssh/id_dsa" ] && ~/.config/autostart-scripts/ssh-add.sh
-  else
-    echo -e "\nError: Heu d'instal·lar l'ordre «ksshaskpass».\n"
-    exit 0
-fi
+# if [ $(which ksshaskpass) ];then
+#     if [ ! -f ~/.config/autostart-scripts/ssh-add.sh ]; then
+#         echo "Cal crear el fitxer ~/.config/autostart-scripts/ssh-add.sh"
+#         exit 0
+#     fi
+#     # Si no hi és, s'afegeix la clau. El qual llançarà el «ksshaskpass», si escau.
+#     [ $(ssh-add -l | awk '{print $3}' | sed -e s,$HOME/,,) != ".ssh/id_dsa" ] && ~/.config/autostart-scripts/ssh-add.sh
+#   else
+#     echo -e "\nError: Heu d'instal·lar l'ordre «ksshaskpass».\n"
+#     exit 0
+# fi
 
 test -z $ANULA && capçalera "Llegenda: * s'ha modificat, - no cal actualitzar\n" && ANULA="1"
 
