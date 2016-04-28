@@ -3,8 +3,8 @@
 # "tradueix" la capçalera
 #1,/^msgid / s/\([^[:alnum:]]\)catalan/\1Catalan (Valencian)/g
 #1,/^msgid / s/\([^[:alnum:]]\)Catalan/\1Catalan (Valencian)/g
-#1,/^msgid / s/\([^[:alnum:]]\)català/\1català (valencià)/g
-#1,/^msgid / s/\([^[:alnum:]]\)Català/\1Català (valencià)/g
+#1,/^msgid / s/\([^[:alnum:]]\)català/\1valencià/g
+#1,/^msgid / s/\([^[:alnum:]]\)Català/\1Valencià/g
 
 s/\([^[:alnum:]]\)Language: ca/\1Language: ca-XV/g
 
