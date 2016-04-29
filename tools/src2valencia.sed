@@ -6,8 +6,8 @@
 #1,/^msgid / s/\([^[:alnum:]]\)català/\1valencià/g
 #1,/^msgid / s/\([^[:alnum:]]\)Català/\1Valencià/g
 
-s/\([^[:alnum:]]\)Language: ca/\1Language: ca-XV/g
-
+s/\([^[:alnum:]]\)Language: ca/\1Language: ca-valencia/g
+s/\([^[:alnum:]]\)X-Pootle-Path: \/ca/\1X-Pootle-Path: \/ca-valencia/g
 
 # Treure per a eMule. No tradueixis linies que no pertanyin a un msgstr
 /^msgstr/,/^#/ {
