@@ -1,20 +1,26 @@
 #!/bin/bash
+#Usage: $1 is absolute path to ca base dir translations
 
-cd ca
-FITXERPO=`find * -type f -name "*.po"`
-cd ..
+ca_path_dir="$1"
+script_sed="$2"
+va_dir="ca-valencia"
+
+FITXERPO=`find $ca_path_dir -type f -name "*.po"`
 
 for PO in $FITXERPO
 do
    # Extraiem el nom de directori i el nom de fitxer
    DIR=`dirname $PO`
    FITX=`basename $PO`
+   FINAL_VA_PATH=${DIR/\/ca\//\/$va_dir\/}
 
-   # Si no existeix el directori, el creem
-  if [ ! -d ca@valencia/$DIR ]; then
-      mkdir -p ca@valencia/$DIR
+   echo $FINAL_VA_PATH
+
+  # Si no existeix el directori, el creem
+  if [ ! -d $FINAL_VA_PATH ]; then
+      mkdir -p $FINAL_VA_PATH
   fi
 
   # Executem la conversió del fitxer PO
-  ./src2valencia.sed < ca/$DIR/$FITX > ca@valencia/$DIR/$FITX
+  $script_sed < $DIR/$FITX > $FINAL_VA_PATH/$FITX
 done
