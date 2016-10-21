@@ -194,6 +194,9 @@ for PO in $FITXERPO
     DIR=$(dirname $PO)
     FITX=$(basename $PO)
 
+    # Es desactiva la traducció de WikiToLearn
+    [ $DIR = 'messages/wikitolearn' ] && continue
+
     canvia_anonim() {
       [ $SVN_URL ] && return 0
       # Es modifica l'URL svn+ssh per a que les connexions siguin al SVN anònim
