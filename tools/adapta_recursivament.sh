@@ -77,13 +77,6 @@ genera_copia() {
           fi
           posieve --quiet remove-obsolete ca@valencia/$PO
       fi
-      if [ $BRANCA_S = "trunk" ]; then
-          # No es tradueixen les notícies del web 
-          if [ $FITX = "www_www.po" ];then
-              test -f ca@valencia/$PO && rm -f ca@valencia/$PO
-              echo "Aquesta ha estat eliminada!"
-          fi
-       fi
     else
       MISSATGEPOS="Penseu a instal·lar les eines del Pology."
   fi
@@ -194,8 +187,10 @@ for PO in $FITXERPO
     DIR=$(dirname $PO)
     FITX=$(basename $PO)
 
-    # Es desactiva la traducció de WikiToLearn
-    [ $DIR = 'messages/wikitolearn' ] && continue
+    message_removed() { echo "$1: Aquesta ha estat eliminada!"; }
+    # Es desactiven les traduccions següents:
+    [ $DIR  = 'messages/wikitolearn' ] && message_removed $DIR  && continue # WikiToLearn - ca.wikitolearn.org
+    [ $FITX = 'www_www.po' ]           && message_removed $FITX && continue # Notícies del KDE - https://www.kde.org/announcements
 
     canvia_anonim() {
       [ $SVN_URL ] && return 0
