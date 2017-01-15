@@ -68,13 +68,15 @@ genera_copia() {
   # Es realitza un avís per si la nova traducció conté missatges sense fer
   msgfmt --statistics ca@valencia/$PO
 
+  # Es convida algun col·laborador/a de Valencia
+  if [ $FITX = "gcompris_qt.po" ]; then
+      echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper convidar a traductors valencians.\n"
+      sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta sigui correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" ca@valencia/$PO
+  fi
+
   if [ $(which posieve) ]; then
       # Si es tracta de la branca «stable» esborrem els missatges obsolets (en silenci)
       if [ $BRANCA_S = "stable" ]; then
-          # Es convida algun col·laborador/a
-          if [ $FITX = "gcompris_qt.po" ];then
-              echo -e "\n Avís: El fitxer «$FITX» conté una millora addicional.\n Torneu a afegir aquesta modificació a mà.\n"
-          fi
           posieve --quiet remove-obsolete ca@valencia/$PO
       fi
     else
