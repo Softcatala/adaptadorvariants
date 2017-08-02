@@ -4,24 +4,27 @@
 # Més proves i polir el codi.
 # Si teniu cap idea...
 
+# Mira si es treballa sobre «stable» o «trunk» (stable/l10n-kf5)
+BRANCA_S=$(dirname $PWD | xargs basename)
+BRANCA_K=$(basename $PWD)
+
 # Si no existeix aquest fitxer es copiarà tot el repositori (format: 20151211 184747)
 DATAF="data_ca-valencia.log"
 CANVIA='1'
 if [ -f $DATAF ]; then
     DATA=$(cat $DATAF | awk '{print $1}')
-    # Ens cal uns valors inicials
+    # Ens calen uns valors inicials
     DATA_CANVI_SVN=$DATA
     [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='0'
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
     USUARIS_SVN="aacid\|bellaperez\|jferrer\|omas"
+    # Establir els coordinadors de les traduccions (només s'aplica sobre «stable»)
+    test $BRANCA_S = "stable" && USUARIS_SVN="$USUARIS_SVN\|lueck"
     # Quan se solicita un interval al registre, cal demanar un dia més
     DEMA=$(date +%Y%m%d -d "+1 days")
   else
     DATA="Sense data d'inici."
 fi
-#
-BRANCA_S=$(dirname $PWD | xargs basename)
-BRANCA_K=$(basename $PWD)
 
 error_comprova_data() {
   if [ ! -f $DATAF ]; then
