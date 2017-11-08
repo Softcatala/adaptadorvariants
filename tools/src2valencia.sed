@@ -255,7 +255,7 @@ s/\([^[:alnum:]]\|^\)us\([^[:alnum:]]\|$\)/\1vos\2/g
 s/\([^[:alnum:]]\|^\)Us\([^[:alnum:]]\|$\)/\1Vos\2/g
 s/\([^_[:alnum:]]\|^\)en-vos\([^[:alnum:]]\|$\)/\1en-us\2/g
 #s/\([^[:alnum:]]\|^\)\(D\|d\)ispositi&vos\([^[:alnum:]]\|$\)/\1\2ispositi\&us\3/g
-s/\([:alnum:]\)&vos\([^[:alnum:]]\|$\)/\1\&us\2/g
+s/\([[:alnum:]]\)&vos\([^[:alnum:]]\|$\)/\1\&us\2/g
 
 #emplenar -> omplir
 s/\([^[:alnum:]]\|^\)Emplenar\([^[:alnum:]]\|$\)/\1Omplir\2/g
@@ -425,7 +425,7 @@ s/\([^_&[:alnum:]]\)s'\([g]\)/\1es \2/g
 s/\([^_&[:alnum:]]\)S'\([g]\)/\1Es \2/g
 
 
-s/\([^[-\|·]_&[:alnum:]]\)\([lL]\)a \([aeoAEO]\)/\1\2'\3/g
+s/\([^-\|·_&[:alnum:]]\)\([lL]\)a \([aeoAEO]\)/\1\2'\3/g
 	# L'apostrofament de "la [iu]" depèn de si la primera síŀlaba
 	# és àtona i per tant no es pot generalitzar.
 	# El "-" és per evitar pífies de l'estil "convertiu-la en -> convertiu-l'en"
