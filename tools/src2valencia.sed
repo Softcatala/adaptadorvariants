@@ -136,15 +136,8 @@ s/\([^[:alnum:]]\)\([lL]\)legeixi\(n\|s\)\([^[:alnum:]]\|$\)/\1\2lige\3\4/g
 s/\([^[:alnum:]]\)\([aA]_\?\)fegeixi\([^[:alnum:]]\|$\)/\1\2fija\3/g
 s/\([^[:alnum:]]\)\([aA]_\?\)fegeixi\(n\|s\)\([^[:alnum:]]\|$\)/\1\2fige\3\4/g
 
-#Aquest/Aqueix » Este/Eixe
-s/\([^[:alnum:]]\|^\)aqueix\([^[:alnum:]]\|$\)/\1eixe\2/g
-s/\([^[:alnum:]]\|^\)Aqueix\([^[:alnum:]]\|$\)/\1Eixe\2/g
-s/\([^[:alnum:]]\|^\)aqueixes\([^[:alnum:]]\|$\)/\1eixes\2/g
-s/\([^[:alnum:]]\|^\)Aqueixes\([^[:alnum:]]\|$\)/\1Eixes\2/g
-s/\([^[:alnum:]]\|^\)aqueixos\([^[:alnum:]]\|$\)/\1eixos\2/g
-s/\([^[:alnum:]]\|^\)Aqueixos\([^[:alnum:]]\|$\)/\1Eixos\2/g
-s/\([^[:alnum:]]\|^\)aqueixa\([^[:alnum:]]\|$\)/\1eixa\2/g
-s/\([^[:alnum:]]\|^\)Aqueixa\([^[:alnum:]]\|$\)/\1Eixa\2/g
+#Crisca -> Cresca
+s/\([^[:alnum:]]\)\([cC]\)risca\([^[:alnum:]]\|$\)/\1\2resca\3/g
 
 #General d'uï i iï
 s/\([[:alnum:]]\)quï\([^[:alnum:]]\|$\)/\1qüe\2/g
