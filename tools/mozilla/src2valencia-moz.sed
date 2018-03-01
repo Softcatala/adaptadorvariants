@@ -338,13 +338,13 @@ s/\([^[:alnum:]]\|^\)\(T\|t\)orno\([^[:alnum:]]\|$\)/\1\2orne\3/g
 s/\([^[:alnum:]]\|^\)us\([^[:alnum:]]\|$\)/\1vos\2/g
 s/\([^[:alnum:]]\|^\)Us\([^[:alnum:]]\|$\)/\1Vos\2/g
 s/\([^_[:alnum:]]\|^\)en-vos\([^[:alnum:]]\|$\)/\1en-us\2/g
-s/\([:alnum:]\)&vos\([^[:alnum:]]\|$\)/\1\&us\2/g
+s/\([[:alnum:]]\)&vos\([^[:alnum:]]\|$\)/\1\&us\2/g
 
 #Correccions LibreOffice
 s/\([^_[:alnum:]]\|^\)About-vos\([^[:alnum:]]\|$\)/\1About-us\2/g
 s/\([^_[:alnum:]]\|^\)about-vos\([^[:alnum:]]\|$\)/\1about-us\2/g
 s/\([^[:alnum:]]\|^\)Tip\([^[:alnum:]]\|^\)vos\([^[:alnum:]]\|$\)/\1Tip\2us\3/g
-s/\([:alnum:]\)Tip\([^[:alnum:]]\|^\)vos\([^[:alnum:]]\|$\)/\1\Tip\2us\3/g
+s/\([[:alnum:]]\)Tip\([^[:alnum:]]\|^\)vos\([^[:alnum:]]\|$\)/\1\Tip\2us\3/g
 #Correccions Mozilla
 s/\([^[:alnum:]]\|^\)\(D\|d\)ispositi&vos\([^[:alnum:]]\|$\)/\1\2ispositi\&us\3/g
 
@@ -358,7 +358,7 @@ s/\([^[:alnum:]]\|^\)\(C\|c\)aber\([^[:alnum:]]\|$\)/\1\2abre\3/g
 #s/\([^[:alnum:]]\|^\)\(V\|v\)eure\([^[:alnum:]]\|$\)/\1\2ore\3/g
 
 #Xerrar -> Xarrar
-s/\([^[:alnum:]]\)\(X\|x\)err\([:alnum:]\)\([^[:alnum:]]\|$\)/\1\2arr\3\4/g
+s/\([^[:alnum:]]\)\(X\|x\)err\([[:alnum:]]\)\([^[:alnum:]]\|$\)/\1\2arr\3\4/g
 s/\([^[:alnum:]]\)\(X\|x\)errant\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2arrant\3\4/g
 
 #Treure -> Traure
@@ -541,7 +541,7 @@ s/ÇI/CI/g
 s/\([^_&[:alnum:]]\)\([dD]\)e \([aeiouAEIOU]\)/\1\2'\3/g
 s/\([^_&[:alnum:]]\)es \([aeiouAEIOU]\)/\1s'\2/g
 s/\([^_&[:alnum:]]\)Es \([aeiouAEIOU]\)/\1s'\2/g
-s/\([^[-\|·]_&[:alnum:]]\)\([lL]\)a \([aeoAEO]\)/\1\2'\3/g
+s/\([^-\|·_&[:alnum:]]\)\([lL]\)a \([aeoAEO]\)/\1\2'\3/g
 	# L'apostrofament de "la [iu]" depèn de si la primera síŀlaba
 	# és àtona i per tant no es pot generalitzar.
 	# El "-" és per evitar pífies de l'estil "convertiu-la en -> convertiu-l'en"
