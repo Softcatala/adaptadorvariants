@@ -259,7 +259,19 @@ for PO in $FITXERPO
   done
 
 # El fitxer conté la data (i hora?) de l'última còpia
-[ ${#HORA_CANVI_SVN} = '6' ] && echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF || date +%Y%m%d > $DATAF
+# Només s'execua si el fitxer existeix!
+if [ -f $DATAF ]; then
+    # Si la data de canvi recollida del SVN és anterior o igual a la del fitxer, 
+    # llavors s'actualitzarà al moment actual descomptant una hora (la propera 
+    # vegada es comprobaran molts menys fitxers -el codi canvia però les traduccions
+    # són les mateixes-).
+    if [ $DATA_CANVI_SVN -le $DATA ]; then
+        DATA_CANVI_SVN=$(date +%Y%m%d)
+        HORA_CANVI_SVN=$(date +%H%M%S -d "-1 hours")
+    fi
+fi
+# Actualització normal
+echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
 
 [ -z $MISSATGEPOS ] && \
   echo -e "\nDATA_CANVI_SVN=$DATA_CANVI_SVN\nHORA_CANVI_SVN=$HORA_CANVI_SVN\n"|| \
