@@ -24,6 +24,8 @@ if [ -f $DATAF ]; then
     # Ens calen uns valors inicials
     DATA_CANVI_SVN=$DATA
     [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='0'
+    # Si l'hora conté 6 dígits, s'ometran els últims fitxers ja revisats (afegint-hi 1 segon)
+    [ ${#HORA} = '6' ] && HORA=$(($HORA + 1 ))
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
     USUARIS_SVN="aacid\|bellaperez\|jferrer\|omas"
     # Establir els coordinadors de les traduccions (només s'aplica sobre «stable»)
