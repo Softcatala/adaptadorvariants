@@ -4,6 +4,14 @@
 # Més proves i polir el codi.
 # Si teniu cap idea...
 
+# Comprova la disponibilitat del servidor
+if [ $(ping -c 1 -4 anonsvn.kde.org &> /dev/null) ]; then
+    echo "No es pot fer ping amb el servidor «anonsvn.kde.org»! Es finalitza."
+    exit 1
+  else
+    echo "ping -c 1 -4 anonsvn.kde.org: Molt bé!"
+fi
+
 # Mira si es treballa sobre «stable» o «trunk» (stable/l10n-kf5)
 BRANCA_S=$(dirname $PWD | xargs basename)
 BRANCA_K=$(basename $PWD)
