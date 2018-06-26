@@ -19,11 +19,13 @@ BRANCA_K=$(basename $PWD)
 # Si no existeix aquest fitxer es copiarà tot el repositori (format: 20151211 184747)
 DATAF="data_ca-valencia.log"
 CANVIA='1'
+IDM=
 if [ -f $DATAF ]; then
     DATA=$(cat $DATAF | awk '{print $1}')
+    [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='0'
     # Ens calen uns valors inicials
     DATA_CANVI_SVN=$DATA
-    [ $(cat $DATAF | awk '{print $2}') ] && HORA=$(cat $DATAF | awk '{print $2}') || HORA='0'
+    HORA_CANVI_SVN=$HORA
     # Si l'hora conté 6 dígits, s'ometran els últims fitxers ja revisats (afegint-hi 1 segon)
     [ ${#HORA} = '6' ] && HORA=$(($HORA + 1 ))
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
@@ -36,7 +38,7 @@ if [ -f $DATAF ]; then
     DATA="Sense data d'inici."
 fi
 
-error_comprova_data() {
+error_obten_data() {
   if [ ! -f $DATAF ]; then
       echo -e "\nError «$1»: No existeix el fitxer $DATAF."
       echo "  Creeu-lo manualment o empreu primer l'opció «recursiu»."
@@ -61,6 +63,9 @@ cerca_po() {
 genera_copia() {
   # No cal processar (segons antiguitat)
   [ $CANVIA -eq 0 ] && echo " - $PO -> $DATA_CANVI $HORA_CANVI" && return 0
+
+  # Sí s'ha processat algun fitxer
+  IDM='1'
 
   # Si no existeix el directori, el creem
   mkdir -p ca@valencia/$DIR
@@ -99,11 +104,11 @@ genera_copia() {
 
 case $1 in
   usuari)
-    error_comprova_data $1
+    error_obten_data $1
     [ "$USUARIS_SVN" ] || $(echo -e "\nError: no heu establert cap usuari seguit!\n"; exit 0)
   ;;
   hora)
-    error_comprova_data $1
+    error_obten_data $1
     # Si s'ha indicat una hora, es comprova que és correcta
     HORA=$2
     error_hora() { echo -e "\nError: el paràmetre ha de ser una hora, p. ex: $1$2"; exit 0; }
@@ -156,22 +161,20 @@ case $1 in
     echo -e "                Usuaris seguits = $(echo $USUARIS_SVN | sed -e s,.\|,\ , -e s,.\|,\ , -e s,.\|,\ ,)\n"
     echo -e " hora [0000]  : Mode SVN: mira i actualitza a partir de l'última hora de\n\t\tcanvi establerta."
     echo -e "                Empra la data al fitxer $DATAF.\n"
-    echo -e " recursiu     : Mode local: actualitza els fitxers en base a la data\n\t\testablerta al fitxer $DATAF."
+    echo    " recursiu     : Mode local: actualitza els fitxers en base a la data\n\t\testablerta al fitxer $DATAF."
     echo -e "                Si aquest no existeix, ho actualitza tot.\n"
     echo    " fitxer [po]  : Mode local: actualitza el fitxer sense emprar cap data."
-    echo -e "                Útil si observem alguna desactualització puntual."
+    echo    "                Útil si observem alguna desactualització puntual."
     echo    "                No actualiza la data al fitxer $DATAF."
     echo -e "                po = messages/carpeta/fitxer.po\n"
     echo    " arranja_po   : Mode local: S'arranjen les cadenes amb l'estil de la plantilla."
     echo -e "                No actualiza la data al fitxer $DATAF.\n"
-#     echo "Recomanació:"
-#     echo "Cal haber creat l'script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
-#     echo "KDE4: ~/.kde/Autostart/ssh-add.sh"
-#     echo "KF5:  ~/.config/autostart-scripts/ssh-add.sh"
-#     echo
-#     echo "#!/bin/sh"
-#     echo "ssh-add \$HOME/.ssh/id_dsa </dev/null"
-#     echo
+    echo    "Recomanació:"
+    echo    "Per automatitzar, cal haber creat l'script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
+    echo    "KDE4: ~/.kde/Autostart/ssh-add.sh"
+    echo -e "KF5 : ~/.config/autostart-scripts/ssh-add.sh\n"
+    echo    "#!/bin/sh"
+    echo -e "ssh-add \$HOME/.ssh/id_dsa </dev/null\n"
     exit 0
   ;;
 esac
@@ -215,11 +218,11 @@ for PO in $FITXERPO
       cd ..
     }
     # Es comprova si cal actualitzar (es redueix la càrrega)
-    comprova_data() { [ $(ls -l --time-style=+%Y%m%d ca/$PO | awk '{print $6}') -ge $DATA ]; }
-    comprova_hora() { [ $(svn --verbose list $SVN_URL/$PO | awk '{print $6}' | tr -d ":") -ge $HORA ]; }
-    comprova_usuari() {
+    obten_data() { [ $(svn info ca/$PO | grep "^Text Last Updated:" | awk '{print $4}' | tr -d "-") -ge $DATA ]; }
+    obten_hora() { [ $(svn info ca/$PO | grep "^Text Last Updated:" | awk '{print $5}' | tr -d ":") -ge $HORA ]; }
+    comprova_temps() {
       # Mira al registre si cap usuari seguit ha realitzat canvis al fitxer
-      # Es desen les dades a un fitxer temporal per no fer múltiples crides al repositori
+      # Es desen les dades a un fitxer temporal per a no fer múltiples crides al repositori
       svn log -r {$DATA}:{$DEMA} $SVN_URL/$PO | grep $USUARIS_SVN | awk '{print $5,$6}' | sort | tail -1 > data_ca-valencia.tmp
       DATA_CANVI=$(cat data_ca-valencia.tmp | awk '{print $1}' | tr -d "-") # 2015-12-11 -> 20151211
       HORA_CANVI=$(cat data_ca-valencia.tmp | awk '{print $2}' | tr -d ":") # 18:47:47   -> 184747
@@ -235,7 +238,7 @@ for PO in $FITXERPO
           # Si la data de canvi és igual que l'última al cau del SVN, es comprova hora_major
           [ $DATA_CANVI -eq $DATA_CANVI_SVN ] && hora_major
           # Si la data de canvi és la mateixa que la inicial, es comprova si l'hora és major
-          if [ $DATA_CANVI -eq $DATA ]; then
+          if  [ $DATA_CANVI -eq $DATA ]; then
               [ $HORA_CANVI -gt $HORA ] || CANVIA='0'
           fi
         else
@@ -250,16 +253,15 @@ for PO in $FITXERPO
           hora)
             # En el cas que es proporcioni una hora de canvi (quatre dígits)
             # - Per a un ajustament fi, modifiqueu la data al fitxer
-            comprova_data && canvia_anonim && comprova_hora   && genera_copia
+            obten_data && canvia_anonim && obten_hora && genera_copia
           ;;
           usuari)
             CANVIA='0'
-            comprova_data && canvia_anonim && comprova_usuari && genera_copia
-            DATA_CANVI=
+            obten_data && canvia_anonim && obten_hora && comprova_temps && genera_copia
             [ -f data_ca-valencia.tmp ] && rm -f data_ca-valencia.tmp
           ;;
           *)
-            comprova_data && genera_copia
+            obten_data && genera_copia
           ;;
         esac
       else
@@ -267,24 +269,27 @@ for PO in $FITXERPO
         genera_copia
     fi
   done
-
 # El fitxer conté la data (i hora?) de l'última còpia
-# Només s'execua si el fitxer existeix!
+# Només s'executa si el fitxer existeix!
 if [ -f $DATAF ]; then
     # Si la data de canvi recollida del SVN és anterior o igual a la del fitxer, 
     # llavors s'actualitzarà al moment actual descomptant una hora (la propera 
     # vegada es comprobaran molts menys fitxers -el codi canvia però les traduccions
     # són les mateixes-).
     if [ $DATA_CANVI_SVN -le $DATA ]; then
-        DATA_CANVI_SVN=$(date +%Y%m%d)
-        HORA_CANVI_SVN=$(date +%H%M%S -d "-1 hours")
+        # Si s'ha realitzat algun canvi no ho farà
+        if [ -z "$IDM" ]; then
+            DATA_CANVI_SVN=$(date +%Y%m%d)
+            HORA_CANVI_SVN=$(date +%H%M%S -d "-1 hours")
+            [ $HORA_CANVI_SVN -ge '230000' ] && DATA_CANVI_SVN=$(date +%Y%m%d -d "-1 days")
+        fi
     fi
 fi
 # Actualització normal
 echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
 
 [ -z $MISSATGEPOS ] && \
-  echo -e "\nDATA_CANVI_SVN=$DATA_CANVI_SVN\nHORA_CANVI_SVN=$HORA_CANVI_SVN\n"|| \
+  echo -e "\nDATA_CANVI_SVN=$DATA_CANVI_SVN\nHORA_CANVI_SVN=$HORA_CANVI_SVN\n" || \
   echo -e "\nError: $MISSATGEPOS\n"
 
 # Suprimeixo el fitxer creat per l'ordre msgfmt --statistics
