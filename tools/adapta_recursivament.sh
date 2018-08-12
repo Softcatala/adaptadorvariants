@@ -30,12 +30,13 @@ if [ -f $DATAF ]; then
     DATA=$(cat $DATAF | awk '{print $1}')
     # Ens calen uns valors inicials
     [ $DATA ] && HORA=$(cat $DATAF | awk '{print $2}')
-    [ $HORA ] || HORA='0'
-    # Si l'hora conté 6 dígits, afegint-hi 1 segon s'ometran els últims fitxers ja revisats
+    [ $HORA ] || HORA='000000'
+    # S'afegeix 1 segon per ometre els últims fitxers ja revisats
+    HORA=$(($HORA + 1))
     DATA_CANVI_SVN=$DATA
     HORA_CANVI_SVN=$HORA
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
-    USUARIS_SVN="aacid\|bellaperez\|jferrer\|omas"
+    USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
     # Establir els coordinadors de les traduccions (només s'aplica sobre «stable»)
     [ $BRANCA = "stable" ] && USUARIS_SVN="$USUARIS_SVN\|lueck\|ltoscano"
     # Quan se sol·licita un interval al registre, cal demanar un dia més
@@ -262,7 +263,7 @@ if [ -f $DATAF ]; then
 fi
 
 # Actualització normal 
-echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF || date +%Y%m%d > $DATAF
+echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
 
 # Amb aquesta informació es pot seguir com queda establert el temps per a la propera vegada
 echo -e "\nDATA_CANVI_SVN=\"$DATA_CANVI_SVN\"\nHORA_CANVI_SVN=\"$HORA_CANVI_SVN\"\n"
