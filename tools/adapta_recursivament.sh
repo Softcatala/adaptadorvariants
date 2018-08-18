@@ -250,17 +250,23 @@ for PO in $FITXERPO
     fi
   done
 
+hora_de_canvi() {
+    # Per a respectar un possible canvi de dia
+    TEMPS="$(date +%Y%m%d\ %H%M%S -d "$1")"
+    DATA_CANVI_SVN=$(echo $TEMPS | awk '{print $1}')
+    HORA_CANVI_SVN=$(echo $TEMPS | awk '{print $2}')
+}
+
 if [ -f $DATAF ]; then
     # Si no s'ha realitzat cap canvi, llavors s'actualitzarà al moment actual descomptant 
     # una hora (la propera vegada es comprovaran molts menys fitxers -cas d'ús: el codi 
     # canvia però les traduccions són les mateixes-).
     if [ $CANVIAT -eq '0' ]; then
-        # Per a respectar un possible canvi de dia
-        TEMPS="$(date +%Y%m%d\ %H%M%S -d "-1 hours")"
-        DATA_CANVI_SVN=$(echo $TEMPS | awk '{print $1}')
-        HORA_CANVI_SVN=$(echo $TEMPS | awk '{print $2}')
+        hora_de_canvi "-1 hours"
     fi
 fi
+
+[ $1 = recursiu ] && hora_de_canvi "-5 minutes"
 
 # Actualització normal 
 echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
