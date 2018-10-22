@@ -84,7 +84,7 @@ genera_copia() {
   ./src2valencia.sed < missatges-$FITX > missatges_2-$FITX && rm -f missatges-$FITX
 
   # Es torna a donar el format amb 78 files (es respecta la cadena msgid de la plantilla).
-  msgmerge --silent --previous --width=80 missatges_2-$FITX templates/${PO}t --output-file=ca@valencia/$PO && \
+  msgmerge --silent --previous --width=80 --lang=ca@valencia missatges_2-$FITX templates/${PO}t --output-file=ca@valencia/$PO && \
   rm -f missatges_2-$FITX
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
@@ -222,16 +222,18 @@ for PO in $FITXERPO
     [ $DIR  = 'messages/wikitolearn' ] && message_removed $DIR  && continue # WikiToLearn - ca.wikitolearn.org
     [ $FITX = 'www_www.po' ]           && message_removed $FITX && continue # Notícies del KDE - https://www.kde.org/announcements
 
-    # S'obté l'hora de modificació local
-    DATA_CANVI=$(svn info ca/$PO | grep "^Text Last Updated:" | awk '{print $4}' | tr -d "-") # 2015-12-11 -> 20151211
-    HORA_CANVI=$(svn info ca/$PO | grep "^Text Last Updated:" | awk '{print $5}' | tr -d ":") # 18:47:47   -> 184747
-    # Es comprova si cal comprovar segons DATA i HORA originals (es redueix la càrrega)
-    if [ $DATA_CANVI -ge $DATA ]; then
-        if [ $DATA_CANVI -eq $DATA ];then
-            [ $HORA_CANVI -ge $HORA ] || continue
+    if [ -f $DATAF ]; then
+        # S'obté l'hora de modificació local
+        DATA_CANVI=$(svn info ca/$PO | grep "^Text Last Updated:" | awk '{print $4}' | tr -d "-") # 2015-12-11 -> 20151211
+        HORA_CANVI=$(svn info ca/$PO | grep "^Text Last Updated:" | awk '{print $5}' | tr -d ":") # 18:47:47   -> 184747
+        # Es comprova si cal comprovar segons DATA i HORA originals (es redueix la càrrega)
+        if [ $DATA_CANVI -ge $DATA ]; then
+            if [ $DATA_CANVI -eq $DATA ];then
+                [ $HORA_CANVI -ge $HORA ] || continue
+            fi
+        else
+            continue
         fi
-      else
-        continue
     fi
 
     if [ -f $DATAF ]; then
