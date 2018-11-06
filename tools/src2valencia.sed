@@ -26,6 +26,7 @@ s/\([^[:alnum:]]\)\(c\|C\)liqui\(n\?[^[:alnum:]]\|$\)/\1\2lique\3/g
 s/\([^[:alnum:]]\)\(a\|A\)propi\(n\?[^[:alnum:]]\|$\)/\1\2prope\3/g
 s/\([^[:alnum:]]\)\(a\|A\)justi\(n\?[^[:alnum:]]\|$\)/\1\2juste\3/g
 s/\([^[:alnum:]]\)\(c\|C\)onfirmi\(n\?[^[:alnum:]]\|$\)/\1\2onfirme\3/g
+s/\([^[:alnum:]]\)\(c\|C\)onfirmo\(n\?[^[:alnum:]]\|$\)/\1\2onfirme\3/g
 s/\([^[:alnum:]]\)\(v\|V\)isiti\(n\?[^[:alnum:]]\|$\)/\1\2isite\3/g
 s/\([^[:alnum:]]\)\(b\|B\)uidi\(n\?[^[:alnum:]]\|$\)/\1\2uide\3/g
 s/\([^[:alnum:]]\)\(p\|P\)regunti\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2regunte\3\4/g
@@ -52,6 +53,7 @@ s/\([^[:alnum:]]\)\(P\|p\)osi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2ose\3\4/g
 s/\([^[:alnum:]]\)\(E\|e\)mmagatzemi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2mmagatzeme\3\4/g
 s/\([^[:alnum:]]\)\(G\|g\)estioni\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2estione\3\4/g
 s/\([^[:alnum:]]\)\(A\|a\)nalitzi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2nalitze\3\4/g
+s/\([^[:alnum:]]\)\(F\|f\)inalitzi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2inalitze\3\4/g
 s/\([^[:alnum:]]\)\(I\|i\)nstal·li\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2nstal·le\3\4/g
 s/\([^[:alnum:]]\)\(I\|i\)nstaŀli\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2nstaŀle\3\4/g
 s/\([^[:alnum:]]\)\(P\|p\)arpellegi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2arpellege\3\4/g
