@@ -25,7 +25,6 @@ fi
 
 # Si no existeix aquest fitxer es copiarà tot el repositori (format: 20151211 184747)
 DATAF='data_ca-valencia.log'
-CANVIA='1'
 if [ -f $DATAF ]; then
     DATA=$(cat $DATAF | awk '{print $1}')
     # Ens calen uns valors inicials
@@ -110,8 +109,6 @@ case $1 in
   usuari)
     error_obten_data $1
     [ "$USUARIS_SVN" ] || $(echo -e "\nError: no heu establert cap usuari seguit!\n"; exit 0)
-  ;;
-  recursiu)
     if [ -f $DATAF ]; then
         if [ $(date +%Y%m%d) -eq $DATA_CANVI_SVN ]; then
             echo -e "\n - Ja es troba actualitzada. Data: $DATA_CANVI_SVN\n"
@@ -119,7 +116,11 @@ case $1 in
         fi
     fi
   ;;
+  recursiu)
+    CANVIA='1'
+  ;;
   fitxer)
+    CANVIA='1'
     PO="$2"
     if [ -f ca/$PO ]; then
         FITX=$(basename $PO)
@@ -194,7 +195,7 @@ cerca_po
 
 comprova_usuari() {
   # Mira al registre si cap usuari seguit ha realitzat canvis al fitxer
-  if [ "$(svn log -r {$DATA}:{$DEMA} $SVN_URL/$PO | grep "$USUARIS_SVN" | awk '{print $3}' | tail -1)" ]; then
+  if [ "$(LANG=C; svn log -r {$DATA}:{$DEMA} $SVN_URL/$PO | grep "$USUARIS_SVN" | awk '{print $3}' | tail -1)" ]; then
       # S'actualitzen DATA_CANVI_SVN i HORA_CANVI_SVN per a desar-les al final
       # Si es canvia a una data major, es pren l'hora d'aquest últim
       [ $DATA_CANVI -gt $DATA_CANVI_SVN ] && DATA_CANVI_SVN=$DATA_CANVI && HORA_CANVI_SVN=$HORA_CANVI
@@ -222,17 +223,19 @@ for PO in $FITXERPO
     [ $DIR  = 'messages/wikitolearn' ] && message_removed $DIR  && continue # WikiToLearn - ca.wikitolearn.org
     [ $FITX = 'www_www.po' ]           && message_removed $FITX && continue # Notícies del KDE - https://www.kde.org/announcements
 
-    if [ -f $DATAF ]; then
-        # S'obté l'hora de modificació local
-        DATA_CANVI=$(svn info ca/$PO | grep "^Last Changed Date:" | awk '{print $4}' | tr -d "-") # 2015-12-11 -> 20151211
-        HORA_CANVI=$(svn info ca/$PO | grep "^Last Changed Date:" | awk '{print $5}' | tr -d ":") # 18:47:47   -> 184747
-        # Es comprova si cal comprovar segons DATA i HORA originals (es redueix la càrrega)
-        if [ $DATA_CANVI -ge $DATA ]; then
-            if [ $DATA_CANVI -eq $DATA ];then
-                [ $HORA_CANVI -ge $HORA ] || continue
+    if [ $1 = 'usuari' ]; then
+        if [ -f $DATAF ]; then
+            # S'obté l'hora de modificació local
+            DATA_CANVI=$(LANG=C; svn info ca/$PO | grep "^Last Changed Date:" | awk '{print $4}' | tr -d "-") # 2015-12-11 -> 20151211
+            HORA_CANVI=$(LANG=C; svn info ca/$PO | grep "^Last Changed Date:" | awk '{print $5}' | tr -d ":") # 18:47:47   -> 184747
+            # Es comprova si cal comprovar segons DATA i HORA originals (es redueix la càrrega)
+            if [ $DATA_CANVI -ge $DATA ]; then
+                if [ $DATA_CANVI -eq $DATA ];then
+                    [ $HORA_CANVI -ge $HORA ] || continue
+                fi
+              else
+                continue
             fi
-        else
-            continue
         fi
     fi
 
