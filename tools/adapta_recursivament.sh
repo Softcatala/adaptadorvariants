@@ -31,7 +31,7 @@ if [ -f $DATAF ]; then
     [ $DATA ] && HORA=$(cat $DATAF | awk '{print $2}')
     [ $HORA ] || HORA='000000'
     # S'afegeix 1 segon per ometre els últims fitxers ja revisats
-    HORA=$(($HORA + 1))
+    HORA="$(printf %06d $[10#$HORA + 1])"
     DATA_CANVI_SVN=$DATA
     HORA_CANVI_SVN=$HORA
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
