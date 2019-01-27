@@ -86,6 +86,9 @@ genera_copia() {
   msgmerge --silent --previous --width=80 --lang=ca@valencia missatges_2-$FITX templates/${PO}t --output-file=ca@valencia/$PO && \
   rm -f missatges_2-$FITX
 
+  # S'ha de corregir la capçalera
+  posieve set-header -sfield:"Report-Msgid-Bugs-To:https://bugs.kde.org" -screate -safter:'Project-Id-Version' -sreorder ca@valencia/$PO
+
   # Es realitza un avís per si la nova traducció conté missatges sense fer
   msgfmt --statistics ca@valencia/$PO
 
