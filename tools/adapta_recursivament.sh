@@ -87,7 +87,7 @@ genera_copia() {
   rm -f missatges_2-$FITX
 
   # S'ha de corregir la capçalera
-  posieve set-header -sfield:"Report-Msgid-Bugs-To:https://bugs.kde.org" -screate -safter:'Project-Id-Version' -sreorder ca@valencia/$PO
+#   posieve set-header -sfield:"Report-Msgid-Bugs-To:https://bugs.kde.org" -screate -safter:'Project-Id-Version' -sreorder ca@valencia/$PO
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
   msgfmt --statistics ca@valencia/$PO
