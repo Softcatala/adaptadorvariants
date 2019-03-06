@@ -223,8 +223,9 @@ for PO in $FITXERPO
       echo "$REPETIT: Aquesta traducció ha estat eliminada!"
     }
     # Es desactiven les traduccions següents:
-    [ $DIR  = 'messages/wikitolearn' ] && message_removed $DIR  && continue # WikiToLearn - ca.wikitolearn.org
-    [ $FITX = 'www_www.po' ]           && message_removed $FITX && continue # Notícies del KDE - https://www.kde.org/announcements
+    [  "$DIR"  = "messages/wikitolearn" ] && message_removed $DIR             && continue # WikiToLearn - ca.wikitolearn.org
+    [  "$FITX" = "www_www.po" ]           && message_removed $FITX            && continue # Notícies del KDE - https://www.kde.org/announcements
+    [[ "$FITX" = "docs_krita_org"* ]]     && message_removed "docs_krita_org" && continue # Documentació per al Krita - https://docs.krita.org/
 
     if [ $1 = 'usuari' ]; then
         if [ -f $DATAF ]; then
