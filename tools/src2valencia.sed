@@ -141,6 +141,10 @@ s/\([^[:alnum:]]\)\([aA]_\?\)fegeixi\(n\|s\)\([^[:alnum:]]\|$\)/\1\2fige\3\4/g
 #Crisca -> Cresca
 s/\([^[:alnum:]]\)\([cC]\)risca\([^[:alnum:]]\|$\)/\1\2resca\3/g
 
+#Ho sento -> Ho sentim
+#L'accepció de Ho sentim és més impersonal que la primera persona, l'altra opció en valencià és Ho sent.
+s/\([^[:alnum:]]\)\([hH]\)o sento\([^[:alnum:]]\|$\)/\1\2o sentim\3/g
+
 #General d'uï i iï
 s/\([[:alnum:]]\)quï\([^[:alnum:]]\|$\)/\1qüe\2/g
 s/\([[:alnum:]]\)quïs\([^[:alnum:]]\|$\)/\1qües\2/g
