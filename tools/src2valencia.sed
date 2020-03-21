@@ -173,6 +173,7 @@ s/\([^[:alnum:]]\|^\)disques\([^[:alnum:]]\|$\)/\1deixis\2/g
 s/\([^[:alnum:]]\|^\)disquen\([^[:alnum:]]\|$\)/\1deixin\2/g
 
 # s/sortir/eixir/g i derivats
+s/\([^[:alnum:]]\)sortints\([^[:alnum:]]\|$\)/\1ixents\2/g
 s/\([^[:alnum:]]\)quan sortiu\([^[:alnum:]]\|$\)/\1quan isqueu\2/g		# hi ha cap manera millor de capturar el subjuntiu?
 s/\([^_&[:alnum:]]\|^\)surt\([^[:alnum:]]\|$\)/\1ix\2/g
 s/\([^_&[:alnum:]]\|^\)la sortida\([[:alnum:]]\)/\1l'eixida\2/g
