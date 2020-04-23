@@ -386,6 +386,9 @@ s/\([[:alnum:]]\)ún /\1un /g
 	# pròpies regles (tot i que, de moment, no conec cap lloc on ho fem)
 	# "ón" no es toca per evitar problemes amb el monosíŀlab "són"
 
+# Correcció ad hoc per a LibreOffice
+s/\(libreoffice\.org\/\)about-vos/\1about-us/
+
 # Per reemplaçar Last-Translator si s'escau.
 # Ha de ser al final!!  No volem que se'ns "valencianitzi" el nom o l'adreça.
 #s/^\(\"Last-Translator\): .*\\n/\1: Jo Mateix <jo@jo.cat>\\n/g
