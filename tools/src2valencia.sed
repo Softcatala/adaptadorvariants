@@ -220,6 +220,7 @@ s/\([^[:alnum:]]\|^\)\([Ee]\)stablerta\([^[:alnum:]]\|$\)/\1\2stablida\3/g
 s/\([^[:alnum:]]\|^\)vermells\([^[:alnum:]]\|$\)/\1rojos\2/g
 s/\([^[:alnum:]]\|^\)vermell\([^[:alnum:]]\|$\)/\1roig\2/g
 s/\([^[:alnum:]]\|^\)Vermell\([^[:alnum:]]\|$\)/\1Roig\2/g
+s/\([^[:alnum:]]\|^\)Ve_rmell\([^[:alnum:]]\|$\)/\1_Roig\2/g
 s/\([^[:alnum:]]\|^\)\(A\|a\)ccepto\([^[:alnum:]]\|$\)/\1\2ccepte\3/g
 s/\([^[:alnum:]]\|^\)\(P\|p\)rometo\([^[:alnum:]]\|$\)/\1\2romet\3/g
 s/\([^[:alnum:]]\|^\)\(T\|t\)orno\([^[:alnum:]]\|$\)/\1\2orne\3/g
@@ -258,11 +259,15 @@ s/\([^[:alnum:]]\|^\)manqueu\([^[:alnum:]]\|$\)/\1falteu\2/g
 s/\([^[:alnum:]]\|^\)quelcom\([^[:alnum:]]\|$\)/\1alguna cosa\2/g
 s/\([^[:alnum:]]\|^\)Quelcom\([^[:alnum:]]\|$\)/\1Alguna cosa\2/g
 
-#alçada/alçada -> alçària/amplària (excepte amplada de banda)
+#alçada/amplada -> alçària/amplària (excepte amplada de banda)
 s/\([^[:alnum:]]\|^\)Alçada\([^[:alnum:]]\|$\)/\1Alçària\2/g
+s/\([^[:alnum:]]\|^\)A_lçada\([^[:alnum:]]\|$\)/\1A_lçària\2/g
 s/\([^[:alnum:]]\|^\)alçada\([^[:alnum:]]\|$\)/\1alçària\2/g
 s/\([^[:alnum:]]\|^\)Amplada\([^[:alnum:]]\|$\)/\1Amplària\2/g
 s/\([^[:alnum:]]\|^\)amplada\([^[:alnum:]]\|$\)/\1amplària\2/g
+s/\([^[:alnum:]]\|^\)ampla_da\([^[:alnum:]]\|$\)/\1amplà_ria\2/g
+s/\([^[:alnum:]]\|^\)Am_plada\([^[:alnum:]]\|$\)/\1Am_plària\2/g
+s/\([^[:alnum:]]\|^\)Ampla_da\([^[:alnum:]]\|$\)/\1Amplà_ria\2/g
 s/\([^[:alnum:]]\|^\)Amplària de banda\([^[:alnum:]]\|$\)/\1Amplada de banda\2/g
 s/\([^[:alnum:]]\|^\)amplària de banda\([^[:alnum:]]\|$\)/\1amplada de banda\2/g
 
@@ -295,16 +300,18 @@ s/\([^[:alnum:]]\|^\)\(i\|I\)nterès\([^[:alnum:]]\|$\)/\1\2nterés\3/g
 #Accents tipus anglès o emès
 s/\([[:alnum:]]\|^\)\(m\|n\|d\|l\|gu\|c\|b\|r\|o\|t\)ès\([^[:alnum:]]\|$\)/\1\2és\3/g
 
-#Correcions on hi ha &
+#Correcions on hi ha & o _
 
 s/\([^[:alnum:]]\|^\)S&urt\([^[:alnum:]]\|$\)/\1I\&x\2/g
 s/\([^[:alnum:]]\|^\)s&urt\([^[:alnum:]]\|$\)/\1i\&x\2/g
 s/\([^[:alnum:]]\|^\)&Desa\([^[:alnum:]]\|$\)/\1Guar\&da\2/g
 s/\([^[:alnum:]]\|^\)&desa\([^[:alnum:]]\|$\)/\1guar\&da\2/g
 s/\([^[:alnum:]]\|^\)_Desa\([^[:alnum:]]\|$\)/\1Guar_da\2/g
+s/\([^[:alnum:]]\|^\)D_esa\([^[:alnum:]]\|$\)/\1Guar_da\2/g
 s/\([^[:alnum:]]\|^\)_desa\([^[:alnum:]]\|$\)/\1guar_da\2/g
 s/\([^[:alnum:]]\|^\)De_sa\([^[:alnum:]]\|$\)/\1Guar_da\2/g
 s/\([^[:alnum:]]\|^\)de_sa\([^[:alnum:]]\|$\)/\1guar_da\2/g
+s/\([^[:alnum:]]\|^\)de_sar\([^[:alnum:]]\|$\)/\1guar_dar\2/g
 s/\([^[:alnum:]]\|^\)De&sa\([^[:alnum:]]\|$\)/\1Guar\&da\2/g
 s/\([^[:alnum:]]\|^\)de&sa\([^[:alnum:]]\|$\)/\1guar\&da\2/g
 s/\([^[:alnum:]]\|^\)Des&a\([^[:alnum:]]\|$\)/\1Guar\&da\2/g
@@ -316,8 +323,11 @@ s/\([^[:alnum:]]\|^\)A&fegeix\([^[:alnum:]]\|$\)/\1A\&fig\2/g
 s/\([^[:alnum:]]\|^\)Obr&e\([^[:alnum:]]\|$\)/\1Obr\&i\2/g
 s/\([^[:alnum:]]\|^\)&Reprèn\([^[:alnum:]]\|$\)/\1\&Reprén\2/g
 s/\([^[:alnum:]]\|^\)&Enrere\([^[:alnum:]]\|$\)/\1A\&rrere\2/g
+s/\([^[:alnum:]]\|^\)_Enrere\([^[:alnum:]]\|$\)/\1A_rrere\2/g
+s/\([^[:alnum:]]\|^\)_enrere\([^[:alnum:]]\|$\)/\1a_rrere\2/g
 s/\([^[:alnum:]]\|^\)En&rere\([^[:alnum:]]\|$\)/\1A\&rrere\2/g
 s/\([^[:alnum:]]\|^\)En&davant\([^[:alnum:]]\|$\)/\1Avan\&t\2/g
+s/\([^[:alnum:]]\|^\)En_davant\([^[:alnum:]]\|$\)/\1Avan_t\2/g
 s/\([^[:alnum:]]\|^\)Enda&vant\([^[:alnum:]]\|$\)/\1Avan\&t\2/g
 s/\([^[:alnum:]]\|^\)Endavan&t\([^[:alnum:]]\|$\)/\1Avan\&t\2/g
 s/\([^[:alnum:]]\|^\)Dese&u\([^[:alnum:]]\|$\)/\1Guarde\&u\2/g
@@ -335,6 +345,7 @@ s/\([^[:alnum:]]\|^\)A&fegix\([^[:alnum:]]\|$\)/\1\A\&fig\2/g
 ##A sobre -> damunt
 s/\([^_&[:alnum:]]\|^\)A sobre\([^[:alnum:]]\|$\)/\1Damunt\2/g
 s/\([^_&[:alnum:]]\|^\)a sobre\([^[:alnum:]]\|$\)/\1damunt\2/g
+s/\([^_&[:alnum:]]\|^\)a ~sobre\([^[:alnum:]]\|$\)/\1da~munt\2/g
 ##Préssec -> bresquilla
 s/\([^_&[:alnum:]]\|^\)Préssec\([^[:alnum:]]\|$\)/\1Bresquilla\2/g
 s/\([^_&[:alnum:]]\|^\)préssec\([^[:alnum:]]\|$\)/\1bresquilla\2/g
