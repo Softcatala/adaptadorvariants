@@ -7,7 +7,6 @@ ca_file="ca.po"
 va_file="ca-valencia.po"
 
 # Ens movem al directori de treball
-pushd .
 pushd $wd
 
 # Copiem els scripts d'adaptació
