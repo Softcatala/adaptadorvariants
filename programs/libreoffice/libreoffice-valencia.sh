@@ -1,4 +1,3 @@
-
 #/bin/bash
 
 wd="programs/libreoffice"
@@ -6,7 +5,7 @@ translator="Artur V. <artur@softcatala.org>"
 team="Catalan (Valencian) <adaptacions@softvalencia.org>"
 
 # Ens movem al directori de treball
-cd $wd
+pushd $wd
 
 # Copiem els scripts d'adaptació
 cp -R ../../tools .
@@ -39,11 +38,10 @@ rm -R "translations/source/ca-valencia"
 # git add source/ca-valencia/*
 # git commit -m "Update Catalan (Valencian) ca-valencia files"
 # git pull origin master
-# git push
+# ./logerrit submit master
 # cd ..
 
 # Neteja
 rm -R tools
 # Tornem al directori inicial
-cd ../../
-
+popd
