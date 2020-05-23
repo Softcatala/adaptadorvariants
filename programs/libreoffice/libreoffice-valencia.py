@@ -89,7 +89,7 @@ def get_file(project_slug, translation):
   file_name = translation['filename']
   file_name=os.path.splitext(file_name)[0]+ ".po"
 
-  myTranslation = requests.get(target_url, headers=API_HEADERS, timeout=60)
+  myTranslation = requests.get(target_url, headers=API_HEADERS, timeout=90)
   global NUM_QRIES
   NUM_QRIES = NUM_QRIES + 1
   if myTranslation.ok:
@@ -143,7 +143,7 @@ def upload_file(project_slug, translation):
   print("="+target_url)
   print("="+va_filename)
   va_translation = {'file': open(va_filename ,'rb')}
-  myTranslation = requests.post(target_url, files =va_translation, headers=API_HEADERS, timeout=60)
+  myTranslation = requests.post(target_url, files = va_translation, headers=API_HEADERS, timeout=90)
   global NUM_QRIES
   NUM_QRIES = NUM_QRIES + 1
 
@@ -161,8 +161,8 @@ API_HEADERS = {'Accept': 'application/json, text/javascript',
                'Authorization': ('Token '+API_KEY)}
 LANG_CODE = 'ca'
 
-#PROJECTS = ['libo_ui-master', 'libo_help-master', 'libo_online', 'impress_remote']
-PROJECTS = ['libo_ui-master']
+PROJECTS = ['libo_ui-master', 'libo_help-master', 'libo_online']
+#PROJECTS = ['libo_help-master']
 
 for project_item in get_projects():
   project_slug = project_item['slug']
