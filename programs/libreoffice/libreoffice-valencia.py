@@ -142,8 +142,9 @@ def upload_file(project_slug, translation):
 
   print("="+target_url)
   print("="+va_filename)
+  params = { 'method': 'replace', 'overwrite': 'true'}
   va_translation = {'file': open(va_filename ,'rb')}
-  myTranslation = requests.post(target_url, files = va_translation, headers=API_HEADERS, timeout=90)
+  myTranslation = requests.post(target_url, params=params, files = va_translation, headers=API_HEADERS, timeout=90)
   global NUM_QRIES
   NUM_QRIES = NUM_QRIES + 1
 
