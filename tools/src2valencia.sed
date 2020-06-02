@@ -112,14 +112,14 @@ s/\([^[:alnum:]]\)\(p\|P\)remi\(n\|s\)\([^[:alnum:]]\|$\)/\1\2reme\3\4/g
 
 
 
-s/\([^[:alnum:]]\)\Ompli\(n\|s\)\([^[:alnum:]]\|$\)/\1Òmpligue\2\3/g
-s/\([^[:alnum:]]\)\Ompli\([^[:alnum:]]\|$\)/\1Òmpliga\2/g
-s/\([^[:alnum:]]\)\ompli\(n\|s\)\([^[:alnum:]]\|$\)/\1òmpligue\2\3/g
-s/\([^[:alnum:]]\)\ompli\([^[:alnum:]]\|$\)/\1òmpliga\2/g
-s/\([^[:alnum:]]\)\Obri\(n\|s\)\([^[:alnum:]]\|$\)/\1Òbrigue\2\3/g
-s/\([^[:alnum:]]\)\Obri\([^[:alnum:]]\|$\)/\1Òbriga\2/g
-s/\([^[:alnum:]]\)\obri\(n\|s\)\([^[:alnum:]]\|$\)/\1òbrigue\2\3/g
-s/\([^[:alnum:]]\)\obri\([^[:alnum:]]\|$\)/\1òbriga\2/g
+s/\([^[:alnum:]]\)Ompli\(n\|s\)\([^[:alnum:]]\|$\)/\1Òmpligue\2\3/g
+s/\([^[:alnum:]]\)Ompli\([^[:alnum:]]\|$\)/\1Òmpliga\2/g
+s/\([^[:alnum:]]\)ompli\(n\|s\)\([^[:alnum:]]\|$\)/\1òmpligue\2\3/g
+s/\([^[:alnum:]]\)ompli\([^[:alnum:]]\|$\)/\1òmpliga\2/g
+s/\([^[:alnum:]]\)Obri\(n\|s\)\([^[:alnum:]]\|$\)/\1Òbrigue\2\3/g
+s/\([^[:alnum:]]\)Obri\([^[:alnum:]]\|$\)/\1Òbriga\2/g
+s/\([^[:alnum:]]\)obri\(n\|s\)\([^[:alnum:]]\|$\)/\1òbrigue\2\3/g
+s/\([^[:alnum:]]\)obri\([^[:alnum:]]\|$\)/\1òbriga\2/g
 
 
 s/\([^[:alnum:]]\)\(ret\|Ret\|t\|T\)orni\(n\|s\|\)\([^[:alnum:]]\|$\)/\1\2orne\3\4/g
@@ -333,7 +333,7 @@ s/\([^[:alnum:]]\|^\)Endavan&t\([^[:alnum:]]\|$\)/\1Avan\&t\2/g
 s/\([^[:alnum:]]\|^\)Dese&u\([^[:alnum:]]\|$\)/\1Guarde\&u\2/g
 s/\([^[:alnum:]]\|^\)c&ontinguin\([^[:alnum:]]\|$\)/\1c\&ontinguen\2/g
 s/\([^[:alnum:]]\|^\)&marquis\([^[:alnum:]]\|$\)/\1\&marques\2/g
-s/\([^[:alnum:]]\|^\)A&fegix\([^[:alnum:]]\|$\)/\1\A\&fig\2/g
+s/\([^[:alnum:]]\|^\)A&fegix\([^[:alnum:]]\|$\)/\1A\&fig\2/g
 
 
 # errada->error NO es toca per que porta problemes amb el canvi de gènere
