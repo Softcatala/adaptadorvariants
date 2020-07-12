@@ -223,10 +223,10 @@ for PO in $FITXERPO
       echo "$REPETIT: Aquesta traducció ha estat eliminada!"
     }
     # Es desactiven les traduccions següents:
-    [  "$DIR" = "messages/wikitolearn-translation" ]                 && message_removed $DIR && continue # WikiToLearn - ca.wikitole>
-    [  "$DIR" = "messages/websites-kde-org" ]                        && message_removed $DIR && continue # Notícies del KDE - https:>
+    [  "$DIR" = "messages/wikitolearn-translation" ]                 && message_removed $DIR && continue # WikiToLearn - ca.wikitolearn.org
+    [  "$DIR" = "messages/websites-kde-org" ]                        && message_removed $DIR && continue # Notícies del KDE - https://www.kde.org/announcements
     [  "$DIR" = "messages/websites-kde-org-announcements-releases" ] && message_removed $DIR && continue # Notícies del KDE
-    [  "$DIR" = "messages/websites-docs-krita-org" ]                 && message_removed $DIR && continue # Documentació per al Krita>
+    [  "$DIR" = "messages/websites-docs-krita-org" ]                 && message_removed $DIR && continue # Documentació per al Krita - https://docs.krita.org/
     # Es desactiven les traduccions revisades per l'equip valencià:
     # frameworks
     [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && message_removed $DIR && continue
