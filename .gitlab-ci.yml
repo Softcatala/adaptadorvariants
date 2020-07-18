@@ -1,0 +1,11 @@
+stages:
+  - programs
+
+libreoffice:
+  image: python:3.8
+  services:
+    - docker:dind
+  stage: programs
+  script: ./programs/libreoffice/libreoffice-valencia.sh
+  rules:
+    - if: '$PROGRAM == "LIBREOFFICE"'

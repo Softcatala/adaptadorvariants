@@ -153,9 +153,7 @@ def upload_file(project_slug, translation):
 TARGET_PATH = 'translations'
 
 # Llegim la clau d'usuari del Weblate (límit 1.000 consultes diàries)
-KEY_FILE = open('key.txt', 'r')
-API_KEY = KEY_FILE.readline().rstrip()
-KEY_FILE.close()
+API_KEY = os.environ["LIBO_WEBLATE_API_KEY"]
 
 API_URL = "https://translations.documentfoundation.org/api/"
 API_HEADERS = {'Accept': 'application/json, text/javascript',

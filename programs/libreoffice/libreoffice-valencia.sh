@@ -19,7 +19,9 @@ sed -i -e "s|^:END$|s\/^\\\(\\\\\"Language-Team\\\): .*\\\\\\\n/\\\\1: $team\\\\
 rm -R "translations/*"
 
 # Cridem l'script de Python que fa la feina
-./libreoffice-valencia.py
+pip3 install pipenv
+pipenv install requests
+pipenv run python ./libreoffice-valencia.py
 
 
 # Neteja
