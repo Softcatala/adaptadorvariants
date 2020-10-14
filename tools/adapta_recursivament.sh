@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 # TODO:
 # Més proves i polir el codi.
 # Si teniu cap idea...
@@ -8,8 +8,6 @@
 BRANCA=$(dirname $PWD | xargs basename)
 # Mira si es treballa sobre la versió «kde4» o «kf5» (stable/l10n-kf5-plasma-lts)
 ESCRIPTORI=$(basename $PWD)
-# Se segueix si s'ha fet cap canvi
-CANVIAT='0'
 
 # Comprova la disponibilitat del servidor
 if [ $(ping -c 1 -4 anonsvn.kde.org &> /dev/null) ]; then
@@ -23,7 +21,7 @@ if [ $(ping -c 1 -4 anonsvn.kde.org &> /dev/null) ]; then
     cd ..
 fi
 
-# Si no existeix aquest fitxer es copiarà tot el repositori (format: 20151211 184747)
+# En aquest fitxer es desa el temps del darrer commit (format: 20151211 184747)
 DATAF='data_ca-valencia.log'
 if [ -f $DATAF ]; then
     DATA=$(cat $DATAF | awk '{print $1}')
@@ -32,49 +30,39 @@ if [ -f $DATAF ]; then
     [ $HORA ] || HORA='000000'
     # S'afegeix 1 segon per ometre els últims fitxers ja revisats
     HORA="$(printf %06d $[10#$HORA + 1])"
-    DATA_CANVI_SVN=$DATA
-    HORA_CANVI_SVN=$HORA
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
     USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
     # Establir els coordinadors de les traduccions (només s'aplica sobre «stable»)
     [ $BRANCA = "stable" ] && USUARIS_SVN="$USUARIS_SVN\|lueck\|ltoscano"
+    # S'obté el temps de modificació SVN des de la carpeta
+    DATA_CANVI=$(LANG=C; svn info ca/messages | grep "^Last Changed Date:" | awk '{print $4}' | tr -d "-")
+    HORA_CANVI=$(LANG=C; svn info ca/messages | grep "^Last Changed Date:" | awk '{print $5}' | tr -d ":")
+    # I ja s'estableixen com a valors finals
+    DATA_CANVI_SVN=$DATA_CANVI
+    HORA_CANVI_SVN=$HORA_CANVI
     # Quan se sol·licita un interval al registre, cal demanar un dia més
     DEMA=$(date +%Y%m%d -d "+1 days")
   else
-    DATA="Sense data d'inici."
+    echo -e "\nError «$1»: No existeix el fitxer $DATAF."
+    echo    "  Creeu-lo manualment o empreu primer l'opció «recursiu»."
+    echo    "  Es tracta de no permetre executar aquesta opció"
+    echo    "  sobre tots els elements en el repositori."
+    echo -e "  Format: 20151211 184747\n"
+    exit 0
 fi
 
-error_obten_data() {
-  if [ ! -f $DATAF ]; then
-      echo -e "\nError «$1»: No existeix el fitxer $DATAF."
-      echo    "  Creeu-lo manualment o empreu primer l'opció «recursiu»."
-      echo    "  Es tracta de no permetre executar aquesta opció"
-      echo -e "  sobre tots els elements en el repositori.\n"
-      exit 0
-  fi
-}
-
 # Establim la capçalera
-capçalera() { echo -e "\n** $BRANCA/$ESCRIPTORI ** -> {$DATA_CANVI_SVN}:{$DEMA} $HORA_CANVI_SVN\n  ******************\n$1"; }
-
-cerca_po() {
-  # Cerca les plantilles de traducció i les ordena
-  cd ca
-  FITXERPO=$(find messages/* -type f -name "*.po" | sort)
-  cd ..
-}
+capçalera() { echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m {$DATA}:{$DEMA} \e[1mHORA=\e[0m$HORA\n  ****************$([ $ESCRIPTORI = "l10n-kf5-plasma-lts" ] && echo "************")\n$1"; }
 
 genera_copia() {
   # No cal processar (segons antiguitat)
-  [ $CANVIA -eq 0 ] && echo " - $PO -> $DATA_CANVI $HORA_CANVI" && return 0
-  # Sí que s'ha canviat ;-)
-  CANVIAT='1'
+  [ $CANVIA -eq 0 ] && echo -e " \e[38;5;82m-\e[0m $PO \e[1m->\e[0m $DATA_CANVI $HORA_CANVI" && return 0
 
   # Si no existeix el directori, el creem
   mkdir -p ca@valencia/$DIR
 
   # El caràcter «*» indica que aquest fitxer ha estat modificat
-  echo " * ca@valencia/$PO -> $DATA_CANVI $HORA_CANVI"
+  echo -e " \e[44m*\e[0m ca@valencia/$PO \e[1m->\e[0m $DATA_CANVI $HORA_CANVI"
 
   # Fem que les frases/paràgrafs siguin d'una sola línia:
   msgmerge --silent --previous --no-wrap ca/$PO templates/${PO}t --output-file=missatges-$FITX
@@ -82,7 +70,7 @@ genera_copia() {
   # Executem la conversió del fitxer PO
   ./src2valencia.sed < missatges-$FITX > missatges_2-$FITX && rm -f missatges-$FITX
 
-  # Es torna a donar el format amb 78 files (es respecta la cadena msgid de la plantilla).
+  # Es torna a donar el format amb 78 files
   msgmerge --silent --previous --width=80 --lang=ca@valencia missatges_2-$FITX templates/${PO}t --output-file=ca@valencia/$PO && \
   rm -f missatges_2-$FITX
 
@@ -94,7 +82,7 @@ genera_copia() {
 
   # Es convida algun col·laborador/a de València
   if [ $FITX = "gcompris_qt.po" ]; then
-      echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper convidar a traductors valencians.\n"
+      echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper a convidar a traductors valencians.\n"
       sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta sigui correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" ca@valencia/$PO
   fi
 
@@ -108,26 +96,56 @@ genera_copia() {
   fi
 }
 
+[ -z $ANULA ] && capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar \e[38;5;46mo\e[0m mantingut per l'equip valencià\n" && ANULA="1"
+
+comprova_usuari() {
+  # Mira al registre si cap usuari seguit ha realitzat canvis en el fitxer
+  if [ "$(LANG=C; svn log -r {$DATA}:{$DEMA} $SVN_URL/$PO | grep "$USUARIS_SVN" | awk '{print $3}' | tail -1)" ]; then
+      # Si la data de canvi SVN del fitxer és més gran que l'última al cau, es modifica
+      if [ $DATA_CANVI -gt $DATA ]; then
+          CANVIA='1'
+      elif [ $DATA_CANVI -eq $DATA ]; then
+          # Si la data de canvi SVN del fitxer és igual que l'última al cau, es comprova hora major i es modifica
+          [ $HORA_CANVI -gt $HORA ] && CANVIA='1'
+        else
+          CANVIA='0'
+      fi
+    else
+      CANVIA='0'
+  fi
+}
+
+cerca_po() {
+  # Cerca les plantilles de traducció i les ordena
+  cd ca
+  FITXERPO=$(find messages/* -type f -name "*.po" | sort)
+  cd ..
+}
+
 case $1 in
   usuari)
-    error_obten_data $1
     [ "$USUARIS_SVN" ] || $(echo -e "\nError: no heu establert cap usuari seguit!\n"; exit 0)
-    if [ -f $DATAF ]; then
-        if [ $(date +%Y%m%d) -eq $DATA_CANVI_SVN ]; then
-            echo -e "\n - Ja es troba actualitzada. Data: $DATA_CANVI_SVN\n"
+    if [ $(date +%Y%m%d -d "-1 hour") -eq $DATA_CANVI ]; then
+        if [ $(date +%H%M%S -d "-1 hour") -le $HORA_CANVI ]; then
+            capçalera
+            echo -e " \e[38;5;82m-\e[0m Ja es troba actualitzada, almenys fa una hora. Data: $DATA_CANVI_SVN $HORA_CANVI_SVN\n"
             exit 0
-        fi
+      fi
     fi
+    cerca_po
   ;;
   recursiu)
     CANVIA='1'
+    cerca_po
   ;;
   fitxer)
     CANVIA='1'
     PO="$2"
     if [ -f ca/$PO ]; then
         FITX=$(basename $PO)
-        if   [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,UTF-8" ]; then
+        if   [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,ASCII" ]; then
+            capçalera && genera_copia && exit 0
+        elif [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,UTF-8" ]; then
             capçalera && genera_copia && exit 0
         elif [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "HTMLdocument,UTF-8Unicodetext" ]; then
             capçalera && genera_copia && exit 0
@@ -155,61 +173,20 @@ case $1 in
   *)
     echo "$0 [ usuari | recursiu | fitxer (po) | arranja_po ]"
     echo
-    echo    " usuari       : Mode SVN: mira l'última data i hora de canvi pels usuaris seguits."
+    echo    " usuari       : Mode SVN: mira l'última data i hora de canvi per als usuaris seguits."
     echo    "                Empra la data al fitxer $DATAF i processa les\n\t\tiguals o posteriors."
     echo -e "                Usuaris seguits = $(echo $USUARIS_SVN | sed -e s,.\|,\ , -e s,.\|,\ , -e s,.\|,\ ,)\n"
     echo    " recursiu     : Mode local: actualitza els fitxers en base a la data\n\t\testablerta al fitxer $DATAF."
     echo -e "                Si aquest no existeix, ho actualitza tot.\n"
     echo    " fitxer [po]  : Mode local: actualitza el fitxer sense emprar cap data."
     echo    "                Útil si observem alguna desactualització puntual."
-    echo    "                No actualitza la data al fitxer $DATAF."
+    echo    "                Nota: No actualitza la data al fitxer $DATAF."
     echo -e "                po = messages/carpeta/fitxer.po\n"
     echo    " arranja_po   : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
     echo -e "                No actualitza la data al fitxer $DATAF.\n"
-    echo    "Recomanació:"
-    echo    "Cal haver creat el script ssh-add.sh i tenir instal·lada l'ordre «ksshaskpass»:"
-    echo    "KDE4: $HOME/.kde/Autostart/ssh-add.sh"
-    echo -e "KF5 : $HOME/.config/autostart-scripts/ssh-add.sh\n"
-    echo    "#!/bin/sh"
-    echo -e "ssh-add \$HOME/.ssh/id_dsa </dev/null\n"
     exit 0
   ;;
 esac
-
-# Aquest és el millor lloc doncs només demanarà la contrasenya una vegada
-# - Se suposa que hi ha establerta una configuració local
-# - Per a revocar l'autorització cal anar al «kwalletmanager»
-#   (si es vol automatitzar penso que cal crear un usuari nou per aquesta tasca)
-# if [ $(which ksshaskpass) ];then
-#     if [ ! -f $HOME/.config/autostart-scripts/ssh-add.sh ]; then
-#         echo "Cal crear el fitxer $HOME/.config/autostart-scripts/ssh-add.sh"
-#         exit 0
-#     fi
-#     # Si no hi és, s'afegeix la clau. El qual llançarà el «ksshaskpass», si escau.
-#     [ $(ssh-add -l | awk '{print $3}' | sed -e s,$HOME/,,) != ".ssh/id_dsa" ] && $HOME/.config/autostart-scripts/ssh-add.sh
-#   else
-#     echo -e "\nError: Heu d'instal·lar l'ordre «ksshaskpass».\n"
-#     exit 0
-# fi
-
-test -z $ANULA && capçalera "Llegenda: * s'ha modificat, - no cal actualitzar\n" && ANULA="1"
-
-cerca_po
-
-comprova_usuari() {
-  # Mira al registre si cap usuari seguit ha realitzat canvis al fitxer
-  if [ "$(LANG=C; svn log -r {$DATA}:{$DEMA} $SVN_URL/$PO | grep "$USUARIS_SVN" | awk '{print $3}' | tail -1)" ]; then
-      # S'actualitzen DATA_CANVI_SVN i HORA_CANVI_SVN per a desar-les al final
-      # Si es canvia a una data major, es pren l'hora d'aquest últim
-      [ $DATA_CANVI -gt $DATA_CANVI_SVN ] && DATA_CANVI_SVN=$DATA_CANVI && HORA_CANVI_SVN=$HORA_CANVI
-      hora_major() { [ $HORA_CANVI -gt $HORA_CANVI_SVN ] && HORA_CANVI_SVN=$HORA_CANVI; }
-      # Si la data de canvi local és igual que l'última al cau, es comprova hora_major
-      [ $DATA_CANVI -eq $DATA_CANVI_SVN ] && hora_major
-      CANVIA='1'
-    else
-      CANVIA='0'
-  fi
-}
 
 for PO in $FITXERPO
   do
@@ -220,8 +197,9 @@ for PO in $FITXERPO
     message_removed() {
       [ $REPETIT ] && [ $REPETIT = $1 ] && return
       REPETIT=$1
-      echo "$REPETIT: Aquesta traducció ha estat eliminada!"
+      echo -e " \e[38;5;46mo\e[0m $1"
     }
+
     # Es desactiven les traduccions següents:
     [  "$DIR" = "messages/wikitolearn-translation" ]                 && message_removed $DIR && continue # WikiToLearn - ca.wikitolearn.org
     [  "$DIR" = "messages/websites-kde-org" ]                        && message_removed $DIR && continue # Notícies del KDE - https://www.kde.org/announcements
@@ -231,7 +209,7 @@ for PO in $FITXERPO
     # frameworks
     [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && message_removed $DIR && continue
     # kde-workspace
-    [[ "$DIR" = "messages/"+(bluedevil|breeze|discover|drkonqi|kactivitymanagerd|kde-cli-tools|kdecoration|kde-gtk-config|kdeplasma-addons|kgamma5|khotkeys|kinfocenter|kmenuedit|kscreen|kscreenlocker|ksshaskpass|ksysguard|kwallet-pam|kwin|kwrited|libksysguard|milou|oxygen|plasma-browser-integration|plasma-desktop|plasma-integration|plasma-nano|plasma-nm|plasma-pa|plasma-phone-components|plasma-sdk|plasma-thunderbolt|plasma-vault|plasma-workspace|plasma-workspace-wallpapers|plymouth-kcm|polkit-kde-agent-1|powerdevil|sddm-kcm|systemsettings|xdg-desktop-portal-kde) ]] && message_removed $DIR && continue
+    [[ "$DIR" = "messages/"+(bluedevil|breeze|discover|drkonqi|kactivitymanagerd|kde-cli-tools|kdecoration|kde-gtk-config|kdeplasma-addons|kgamma5|khotkeys|kinfocenter|kmenuedit|kscreen|kscreenlocker|ksshaskpass|ksysguard|kwallet-pam|kwin|kwrited|libksysguard|milou|oxygen|plasma-browser-integration|plasma-desktop|plasma-integration|plasma-nano|plasma-nm|plasma-pa|plasma-phone-components|plasma-sdk|plasma-thunderbolt|plasma-vault|plasma-workspace|plasma-workspace-wallpapers|plymouth-kcm|polkit-kde-agent-1|powerdevil|sddm-kcm|systemsettings|user-manager|xdg-desktop-portal-kde) ]] && message_removed $DIR && continue
     # kdeutils
     [[ "$DIR" = "messages/"+(ark|filelight|kbackup|kcalc|kcharselect|kdebugsettings|kdf|kfloppy|kgpg|kteatime|ktimer|kwalletmanager|print-manager|sweeper) ]] && message_removed $DIR && continue
     # dolphin
@@ -239,7 +217,7 @@ for PO in $FITXERPO
 
     if [ $1 = 'usuari' ]; then
         if [ -f $DATAF ]; then
-            # S'obté l'hora de modificació local
+            # S'obté l'hora de modificació SVN des del fitxer
             DATA_CANVI=$(LANG=C; svn info ca/$PO | grep "^Last Changed Date:" | awk '{print $4}' | tr -d "-") # 2015-12-11 -> 20151211
             HORA_CANVI=$(LANG=C; svn info ca/$PO | grep "^Last Changed Date:" | awk '{print $5}' | tr -d ":") # 18:47:47   -> 184747
             # Es comprova si cal comprovar segons DATA i HORA originals (es redueix la càrrega)
@@ -268,24 +246,6 @@ for PO in $FITXERPO
         genera_copia
     fi
   done
-
-hora_de_canvi() {
-    # Per a respectar un possible canvi de dia
-    TEMPS="$(date +%Y%m%d\ %H%M%S -d "$1")"
-    DATA_CANVI_SVN=$(echo $TEMPS | awk '{print $1}')
-    HORA_CANVI_SVN=$(echo $TEMPS | awk '{print $2}')
-}
-
-if [ -f $DATAF ]; then
-    # Si no s'ha realitzat cap canvi, llavors s'actualitzarà al moment actual descomptant 
-    # una hora (la propera vegada es comprovaran molts menys fitxers -cas d'ús: el codi 
-    # canvia però les traduccions són les mateixes-).
-    if [ $CANVIAT -eq '0' ]; then
-        hora_de_canvi "-1 hours"
-    fi
-fi
-
-[ $1 = recursiu ] && hora_de_canvi "-5 minutes"
 
 # Actualització normal 
 echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
