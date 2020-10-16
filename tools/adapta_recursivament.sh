@@ -21,6 +21,9 @@ if [ $(ping -c 1 -4 anonsvn.kde.org &> /dev/null) ]; then
     cd ..
 fi
 
+# Establim la capçalera
+capçalera() { echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m {$DATA}:{$DEMA} \e[1mHORA=\e[0m$HORA\n  ****************$([ $ESCRIPTORI = "l10n-kf5-plasma-lts" ] && echo "************")\n$1"; }
+
 # En aquest fitxer es desa el temps del darrer commit (format: 20151211 184747)
 DATAF='data_ca-valencia.log'
 if [ -f $DATAF ]; then
@@ -30,18 +33,34 @@ if [ -f $DATAF ]; then
     [ $HORA ] || HORA='000000'
     # S'afegeix 1 segon per ometre els últims fitxers ja revisats
     HORA="$(printf %06d $[10#$HORA + 1])"
+    # Quan se sol·licita un interval al registre, cal demanar un dia més
+    DEMA=$(date +%Y%m%d -d "+1 days")
     # Establir els usuaris seguits (els caràcters «\|» són per a l'ordre «grep»)
     USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
     # Establir els coordinadors de les traduccions (només s'aplica sobre «stable»)
     [ $BRANCA = "stable" ] && USUARIS_SVN="$USUARIS_SVN\|lueck\|ltoscano"
+    # Primer es comprova si cal actualitzar
+    # TODO: Amb el canvi a Git es podrà emprar la hora de canvi
+    if [ $(date +%Y%m%d) -eq $DATA ]; then
+#         if [ ! $(LANG=C; svn log -r {$(date +%Y%m%d)}:{$DEMA} ca/messages | grep "$USUARIS_SVN" | head -1 | awk '{print $5}' | tr -d '-') ]; then
+            capçalera
+            echo -e " \e[38;5;82m-\e[0m Aquestes traduccions ja estan actualitzades (Data: $DATA)\n"
+            exit 0
+#         fi
+    fi
     # S'obté el temps de modificació SVN des de la carpeta
     DATA_CANVI=$(LANG=C; svn info ca/messages | grep "^Last Changed Date:" | awk '{print $4}' | tr -d "-")
     HORA_CANVI=$(LANG=C; svn info ca/messages | grep "^Last Changed Date:" | awk '{print $5}' | tr -d ":")
     # I ja s'estableixen com a valors finals
     DATA_CANVI_SVN=$DATA_CANVI
     HORA_CANVI_SVN=$HORA_CANVI
-    # Quan se sol·licita un interval al registre, cal demanar un dia més
-    DEMA=$(date +%Y%m%d -d "+1 days")
+    if [ $ESCRIPTORI = "l10n-kf5-plasma-lts" ]; then
+        capçalera
+        echo -e " \e[38;5;82m-\e[0m Aquestes traduccions són mantingudes per l'equip de valencià (Data: $DATA)\n"
+        # Actualització normal
+        echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
+        exit 0
+    fi
   else
     echo -e "\nError «$1»: No existeix el fitxer $DATAF."
     echo    "  Creeu-lo manualment o empreu primer l'opció «recursiu»."
@@ -50,9 +69,6 @@ if [ -f $DATAF ]; then
     echo -e "  Format: 20151211 184747\n"
     exit 0
 fi
-
-# Establim la capçalera
-capçalera() { echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m {$DATA}:{$DEMA} \e[1mHORA=\e[0m$HORA\n  ****************$([ $ESCRIPTORI = "l10n-kf5-plasma-lts" ] && echo "************")\n$1"; }
 
 genera_copia() {
   # No cal processar (segons antiguitat)
@@ -125,13 +141,6 @@ cerca_po() {
 case $1 in
   usuari)
     [ "$USUARIS_SVN" ] || $(echo -e "\nError: no heu establert cap usuari seguit!\n"; exit 0)
-    if [ $(date +%Y%m%d -d "-1 hour") -eq $DATA_CANVI ]; then
-        if [ $(date +%H%M%S -d "-1 hour") -le $HORA_CANVI ]; then
-            capçalera
-            echo -e " \e[38;5;82m-\e[0m Ja es troba actualitzada, almenys fa una hora. Data: $DATA_CANVI_SVN $HORA_CANVI_SVN\n"
-            exit 0
-      fi
-    fi
     cerca_po
   ;;
   recursiu)
@@ -247,7 +256,7 @@ for PO in $FITXERPO
     fi
   done
 
-# Actualització normal 
+# Actualització normal
 echo "$DATA_CANVI_SVN $HORA_CANVI_SVN" > $DATAF
 
 # Amb aquesta informació es pot seguir com queda establert el temps per a la propera vegada
