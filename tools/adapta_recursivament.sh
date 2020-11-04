@@ -40,13 +40,12 @@ if [ -f $DATAF ]; then
     # Establir els coordinadors de les traduccions (només s'aplica sobre «stable»)
     [ $BRANCA = "stable" ] && USUARIS_SVN="$USUARIS_SVN\|lueck\|ltoscano"
     # Primer es comprova si cal actualitzar
-    # TODO: Amb el canvi a Git es podrà emprar la hora de canvi
-    if [ $(date +%Y%m%d) -eq $DATA ]; then
-#         if [ ! $(LANG=C; svn log -r {$(date +%Y%m%d)}:{$DEMA} ca/messages | grep "$USUARIS_SVN" | head -1 | awk '{print $5}' | tr -d '-') ]; then
+    if [ $(date +%Y%m%d -d "+1 hours") -eq $DATA ]; then
+        if [ $(date +%H%M%S -d "+1 hours") -gt $HORA ]; then
             capçalera
             echo -e " \e[38;5;82m-\e[0m Aquestes traduccions ja estan actualitzades (Data: $DATA)\n"
             exit 0
-#         fi
+        fi
     fi
     # S'obté el temps de modificació SVN des de la carpeta
     DATA_CANVI=$(LANG=C; svn info ca/messages | grep "^Last Changed Date:" | awk '{print $4}' | tr -d "-")
@@ -212,7 +211,7 @@ for PO in $FITXERPO
     # Es desactiven les traduccions següents:
     [  "$DIR" = "messages/wikitolearn-translation" ]                 && message_removed $DIR && continue # WikiToLearn - ca.wikitolearn.org
     [  "$DIR" = "messages/websites-kde-org" ]                        && message_removed $DIR && continue # Notícies del KDE - https://www.kde.org/announcements
-    [  "$DIR" = "messages/websites-kde-org-announcements-releases" ] && message_removed $DIR && continue # Notícies del KDE
+    [  "$DIR" = "messages/websites-timeline-kde-org" ]               && message_removed $DIR && continue
     [  "$DIR" = "messages/websites-docs-krita-org" ]                 && message_removed $DIR && continue # Documentació per al Krita - https://docs.krita.org/
     # Es desactiven les traduccions revisades per l'equip valencià:
     # frameworks
