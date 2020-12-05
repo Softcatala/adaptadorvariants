@@ -346,7 +346,7 @@
    </replacement>
    <replacement>
       <input><![CDATA[(\b|_)Ompli\b]]></input>
-      <output><![CDATA[\1Òmpliga\2]]></output>
+      <output><![CDATA[\1Òmpliga]]></output>
    </replacement>
    <replacement>
       <input><![CDATA[(\b|_)ompli(n|s)\b]]></input>
@@ -802,11 +802,11 @@
    </replacement>
    <replacement>
       <input><![CDATA[\bTip&vos\b]]></input>
-      <output><![CDATA[\1Tip&us]]></output>
+      <output><![CDATA[Tip&us]]></output>
    </replacement>
    <replacement>
       <input><![CDATA[\btip&vos\b]]></input>
-      <output><![CDATA[\1tip&us]]></output>
+      <output><![CDATA[tip&us]]></output>
    </replacement>
    <replacement>
       <input><![CDATA[(\b|_)(D|d)ispositi&vos\b]]></input>
@@ -850,7 +850,7 @@
    </replacement>
    <replacement>
       <input><![CDATA[([a-z&])(T|t)reure\b]]></input>
-      <output><![CDATA[\1\2\3raure]]></output>
+      <output><![CDATA[\1\2raure]]></output>
    </replacement>
    <replacement>
       <input><![CDATA[(\b|_)(E|e)xtreu\b]]></input>
@@ -978,6 +978,6 @@
    </replacement>
    <replacement>
       <input><![CDATA[(\b|_)es desarà\b]]></input>
-      <output><![CDATA[\1\s'alçarà]]></output>
+      <output><![CDATA[\1s'alçarà]]></output>
    </replacement>
 </replacements>

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) 2014 Pau Iranzo
 #
@@ -12,8 +12,7 @@
 
 import re
 
-examples = "pugui desar es desarà sortida"
-examples_utf8 = examples.decode('utf-8')
+examples_utf8 = u"pugui desar es desarà sortida"
 
 
 import xml.etree.ElementTree as ET
@@ -24,4 +23,4 @@ for replacement in root.findall('replacement'):
     outputregex = replacement.find('output').text
     examples_utf8 = re.sub(r'%s' % inputregex, r'%s' % outputregex, examples_utf8)
     
-print examples_utf8
+print(examples_utf8)
