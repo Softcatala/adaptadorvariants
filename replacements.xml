@@ -978,6 +978,6 @@
    </replacement>
    <replacement>
       <input><![CDATA[(\b|_)es desarà\b]]></input>
-      <output><![CDATA[\1\s'alçarà]]></output>
+      <output><![CDATA[\1s'alçarà]]></output>
    </replacement>
 </replacements>
