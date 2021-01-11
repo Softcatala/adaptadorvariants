@@ -7,8 +7,6 @@ Creat: 21/5/2020
 """
 
 import requests
-#from requests.auth import HTTPDigestAuth
-#import json
 import os
 import re
 
@@ -160,8 +158,7 @@ API_HEADERS = {'Accept': 'application/json, text/javascript',
                'Authorization': ('Token '+API_KEY)}
 LANG_CODE = 'ca'
 
-PROJECTS = ['libo_ui-master', 'libo_help-master', 'libo_online']
-#PROJECTS = ['libo_help-master']
+PROJECTS = ['libo_ui-master', 'libo_help-master']
 
 for project_item in get_projects():
   project_slug = project_item['slug']
