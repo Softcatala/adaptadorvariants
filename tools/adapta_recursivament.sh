@@ -101,7 +101,7 @@ genera_copia() {
       sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta sigui correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" ca@valencia/$PO
   fi
 
-  if [ $(which posieve) ]; then
+  if [ $(command -v posieve) ]; then
       # Si es tracta de la branca «stable» esborrem els missatges obsolets (en silenci)
       if [ $BRANCA = "stable" ]; then
           posieve --quiet remove-obsolete ca@valencia/$PO
@@ -209,17 +209,18 @@ for PO in $FITXERPO
     }
 
     # Es desactiven les traduccions següents:
-    [  "$DIR" = "messages/documentation-develop-kde-org" ]  && message_removed $DIR && continue # https://develop.kde.org/ca/docs/
-    [  "$DIR" = "messages/websites-docs-krita-org" ]        && message_removed $DIR && continue # https://docs.krita.org/ca/
-    [  "$DIR" = "messages/wikitolearn-translation" ]        && message_removed $DIR && continue # https://ca.wikitolearn.org/
-    [  "$DIR" = "messages/websites-aether-sass" ]           && message_removed $DIR && continue # La base per a tots els llocs web
-    [  "$DIR" = "messages/websites-kde-org" ]               && message_removed $DIR && continue # https://kde.org/ca/
-                                                                                                # https://kde.org/ca/announcements/
-    [  "$DIR" = "messages/websites-planet-kde-org" ]        && message_removed $DIR && continue # https://planet.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-mobile-org" ]     && message_removed $DIR && continue # https://www.plasma-mobile.org/ca/
-    [  "$DIR" = "messages/websites-timeline-kde-org" ]      && message_removed $DIR && continue # https://timeline.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]  && message_removed $DIR && continue # https://plasma-bigscreen.org/ca/
-    [  "$DIR" = "messages/websites-25years-kde-org" ]       && message_removed $DIR && continue # https://25years.kde.org/ca/
+    [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed $DIR && continue # https://develop.kde.org/ca/docs/
+    [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed $DIR && continue # https://docs.kdenlive.org/ca/
+    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed $DIR && continue # https://docs.krita.org/ca/
+    [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed $DIR && continue # https://ca.wikitolearn.org/
+    [  "$DIR" = "messages/websites-aether-sass" ]             && message_removed $DIR && continue # La base per a tots els llocs web
+    [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed $DIR && continue # https://kde.org/ca/
+                                                                                                  # https://kde.org/ca/announcements/
+    [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed $DIR && continue # https://planet.kde.org/ca/
+    [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed $DIR && continue # https://www.plasma-mobile.org/ca/
+    [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed $DIR && continue # https://timeline.kde.org/ca/
+    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed $DIR && continue # https://plasma-bigscreen.org/ca/
+    [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed $DIR && continue # https://25years.kde.org/ca/
     # Es desactiven les traduccions revisades per l'equip valencià:
     # frameworks
     [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && message_removed $DIR && continue
