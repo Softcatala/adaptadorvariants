@@ -206,30 +206,32 @@ for PO in $FITXERPO
       [ $REPETIT ] && [ $REPETIT = $1 ] && return
       REPETIT=$1
       echo -e " \e[38;5;46mo\e[0m $1"
+      continue
     }
 
     # Es desactiven les traduccions següents:
-    [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed $DIR && continue # https://develop.kde.org/ca/docs/
-    [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed $DIR && continue # https://docs.kdenlive.org/ca/
-    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed $DIR && continue # https://docs.krita.org/ca/
-    [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed $DIR && continue # https://ca.wikitolearn.org/
-    [  "$DIR" = "messages/websites-aether-sass" ]             && message_removed $DIR && continue # La base per a tots els llocs web
-    [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed $DIR && continue # https://kde.org/ca/
-                                                                                                  # https://kde.org/ca/announcements/
-    [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed $DIR && continue # https://planet.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed $DIR && continue # https://www.plasma-mobile.org/ca/
-    [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed $DIR && continue # https://timeline.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed $DIR && continue # https://plasma-bigscreen.org/ca/
-    [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed $DIR && continue # https://25years.kde.org/ca/
+    [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed $DIR # https://develop.kde.org/ca/docs/
+    [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed $DIR # https://docs.kdenlive.org/ca/
+    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed $DIR # https://docs.krita.org/ca/
+    [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed $DIR # https://ca.wikitolearn.org/
+    [  "$DIR" = "messages/websites-aether-sass" ]             && message_removed $DIR # La base per a tots els llocs web
+    [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed $DIR # https://kde.org/ca/
+                                                                                      # https://kde.org/ca/announcements/
+    [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed $DIR # https://planet.kde.org/ca/
+    [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed $DIR # https://www.plasma-mobile.org/ca/
+    [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed $DIR # https://timeline.kde.org/ca/
+    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed $DIR # https://plasma-bigscreen.org/ca/
+    [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed $DIR # https://25years.kde.org/ca/
+    [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed $DIR # https://eco.kde.org/ca/
     # Es desactiven les traduccions revisades per l'equip valencià:
     # frameworks
-    [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && message_removed $DIR && continue
+    [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && message_removed $DIR
     # kde-workspace
-    [[ "$DIR" = "messages/"+(bluedevil|breeze|discover|drkonqi|kactivitymanagerd|kde-cli-tools|kdecoration|kde-gtk-config|kdeplasma-addons|kgamma5|khotkeys|kinfocenter|kmenuedit|kscreen|kscreenlocker|ksshaskpass|ksysguard|kwallet-pam|kwin|kwrited|libksysguard|milou|oxygen|plasma-browser-integration|plasma-desktop|plasma-integration|plasma-nano|plasma-nm|plasma-pa|plasma-phone-components|plasma-sdk|plasma-thunderbolt|plasma-vault|plasma-workspace|plasma-workspace-wallpapers|plymouth-kcm|polkit-kde-agent-1|powerdevil|sddm-kcm|systemsettings|user-manager|xdg-desktop-portal-kde) ]] && message_removed $DIR && continue
+    [[ "$DIR" = "messages/"+(bluedevil|breeze|discover|drkonqi|kactivitymanagerd|kde-cli-tools|kdecoration|kde-gtk-config|kdeplasma-addons|kgamma5|khotkeys|kinfocenter|kmenuedit|kscreen|kscreenlocker|ksshaskpass|ksysguard|kwallet-pam|kwin|kwrited|libksysguard|milou|oxygen|plasma-browser-integration|plasma-desktop|plasma-integration|plasma-nano|plasma-nm|plasma-pa|plasma-phone-components|plasma-sdk|plasma-thunderbolt|plasma-vault|plasma-workspace|plasma-workspace-wallpapers|plymouth-kcm|polkit-kde-agent-1|powerdevil|sddm-kcm|systemsettings|user-manager|xdg-desktop-portal-kde) ]] && message_removed $DIR
     # kdeutils
-    [[ "$DIR" = "messages/"+(ark|filelight|kbackup|kcalc|kcharselect|kdebugsettings|kdf|kfloppy|kgpg|kteatime|ktimer|kwalletmanager|print-manager|sweeper) ]] && message_removed $DIR && continue
+    [[ "$DIR" = "messages/"+(ark|filelight|kbackup|kcalc|kcharselect|kdebugsettings|kdf|kfloppy|kgpg|kteatime|ktimer|kwalletmanager|print-manager|sweeper) ]] && message_removed $DIR
     # dolphin
-    [  "$DIR" = "messages/dolphin" ]                                 && message_removed $DIR && continue
+    [  "$DIR" = "messages/dolphin" ]                          && message_removed $DIR
 
     if [ $1 = 'usuari' ]; then
         if [ -f $DATAF ]; then
