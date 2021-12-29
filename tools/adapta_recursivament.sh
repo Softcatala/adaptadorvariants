@@ -8,6 +8,7 @@
 BRANCA=$(dirname $PWD | xargs basename)
 # Mira si es treballa sobre la versió «kde4» o «kf5» (stable/l10n-kf5-plasma-lts)
 ESCRIPTORI=$(basename $PWD)
+REPETIT=
 
 # Comprova la disponibilitat del servidor
 if [ $(ping -c 1 -4 anonsvn.kde.org &> /dev/null) ]; then
@@ -41,7 +42,7 @@ if [ -f $DATAF ]; then
     [ $BRANCA = "stable" ] && USUARIS_SVN="$USUARIS_SVN\|lueck\|ltoscano"
     # Primer es comprova si cal actualitzar
     if [ $(date +%Y%m%d -d "+1 hours") -eq $DATA ]; then
-        if [ $(date +%H%M%S -d "+1 hours") -gt $HORA ]; then
+        if [ $(date +%H%M%S -d "-1 hours") -le $HORA ]; then
             capçalera
             echo -e " \e[38;5;82m-\e[0m Aquestes traduccions ja estan actualitzades (Data: $DATA)\n"
             exit 0
@@ -89,9 +90,6 @@ genera_copia() {
   msgmerge --silent --previous --width=80 --lang=ca@valencia missatges_2-$FITX templates/${PO}t --output-file=ca@valencia/$PO && \
   rm -f missatges_2-$FITX
 
-  # S'ha de corregir la capçalera
-#   posieve set-header -sfield:"Report-Msgid-Bugs-To:https://bugs.kde.org" -screate -safter:'Project-Id-Version' -sreorder ca@valencia/$PO
-
   # Es realitza un avís per si la nova traducció conté missatges sense fer
   msgfmt --statistics ca@valencia/$PO
 
@@ -111,7 +109,7 @@ genera_copia() {
   fi
 }
 
-[ -z $ANULA ] && capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar \e[38;5;46mo\e[0m mantingut per l'equip valencià\n" && ANULA="1"
+[ -z $ANULA ] && capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n" && ANULA="1"
 
 comprova_usuari() {
   # Mira al registre si cap usuari seguit ha realitzat canvis en el fitxer
@@ -151,9 +149,7 @@ case $1 in
     PO="$2"
     if [ -f ca/$PO ]; then
         FITX=$(basename $PO)
-        if   [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,ASCII" ]; then
-            capçalera && genera_copia && exit 0
-        elif [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,UTF-8" ]; then
+        if   [[ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "GNUgettextmessagecatalogue,"+(ASCII|Unicode|UTF-8) ]]; then
             capçalera && genera_copia && exit 0
         elif [ $(file ca/$PO | awk '{print $2$3$4$5$6}') = "HTMLdocument,UTF-8Unicodetext" ]; then
             capçalera && genera_copia && exit 0
@@ -202,36 +198,60 @@ for PO in $FITXERPO
     DIR=$(dirname $PO)
     FITX=$(basename $PO)
 
+    VAL='0'
     message_removed() {
-      [ $REPETIT ] && [ $REPETIT = $1 ] && return
-      REPETIT=$1
-      echo -e " \e[38;5;46mo\e[0m $1"
-      continue
+      if [ "$REPETIT" = "$DIR" ]; then
+          return
+        else
+          if [ "$VAL" -eq '1' ]; then
+              echo -e " \e[38;5;46mo\e[0m $DIR"
+
+              USUARIS_VAL="montoro_mde@gva.es\|alviboi@gmail.com"
+              echo -e "\e[38;1;33m-- S'ha forçat actualitzar aquells fitxers que no s'han tocat! \e[0m"
+              cd ca
+              FITXERSPO=$(find $DIR/* -type f -name "*.po")
+              cd ..
+              for PO in $FITXERSPO
+                do
+                  FITX=$(basename $PO)
+                  TOCAT=$(head -20 ca@valencia/$PO | grep "$USUARIS_VAL")
+                  CANVIA=1
+                  if [ "$TOCAT" ]; then
+                      comprova_usuari && genera_copia
+                  fi
+                done
+              echo -e "\e[38;1;33m--\e[0m"
+              CANVIA='0'
+            else
+              echo -e " \e[44mo\e[0m $DIR"
+          fi
+      fi
+      REPETIT="$DIR"
     }
 
     # Es desactiven les traduccions següents:
-    [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed $DIR # https://develop.kde.org/ca/docs/
-    [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed $DIR # https://docs.kdenlive.org/ca/
-    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed $DIR # https://docs.krita.org/ca/
-    [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed $DIR # https://ca.wikitolearn.org/
-    [  "$DIR" = "messages/websites-aether-sass" ]             && message_removed $DIR # La base per a tots els llocs web
-    [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed $DIR # https://kde.org/ca/
-                                                                                      # https://kde.org/ca/announcements/
-    [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed $DIR # https://planet.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed $DIR # https://www.plasma-mobile.org/ca/
-    [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed $DIR # https://timeline.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed $DIR # https://plasma-bigscreen.org/ca/
-    [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed $DIR # https://25years.kde.org/ca/
-    [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed $DIR # https://eco.kde.org/ca/
+    [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
+    [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
+    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
+    [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed && continue # https://ca.wikitolearn.org/
+    [  "$DIR" = "messages/websites-aether-sass" ]             && message_removed && continue # La base per a tots els llocs web
+    [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed && continue # https://kde.org/ca/
+                                                                                             # https://kde.org/ca/announcements/
+    [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
+    [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed && continue # https://www.plasma-mobile.org/ca/
+    [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed && continue # https://timeline.kde.org/ca/
+    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed && continue # https://plasma-bigscreen.org/ca/
+    [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed && continue # https://25years.kde.org/ca/
+    [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed && continue # https://eco.kde.org/ca/
     # Es desactiven les traduccions revisades per l'equip valencià:
     # frameworks
-    [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && message_removed $DIR
+    [[ "$DIR" = "messages/"+(baloo|breeze-icons|frameworkintegration|kauth|kbookmarks|kcmutils|kcodecs|kcompletion|kconfig|kconfigwidgets|kcontacts|kcoreaddons|kdbusaddons|kdeclarative|kded|kdelibs4support|kdesignerplugin|kdesu|kdnssd|kdoctools|kemoticons|kfilemetadata|kglobalaccel|kholidays|khtml|ki18n|kiconthemes|kinit|kio|kirigami|kitemviews|kjobwidgets|kjsembed|knewstuff|knotifications|knotifyconfig|kpackage|kparts|kpeople|kpty|kross|krunner|kservice|ktexteditor|ktextwidgets|kunitconversion|kwallet|kwidgetsaddons|kwindowsystem|kxmlgui|kxmlrpcclient|oxygen-icons5|plasma-framework|purpose|solid|sonnet|syntax-highlighting) ]] && VAL='1' && message_removed && continue
     # kde-workspace
-    [[ "$DIR" = "messages/"+(bluedevil|breeze|discover|drkonqi|kactivitymanagerd|kde-cli-tools|kdecoration|kde-gtk-config|kdeplasma-addons|kgamma5|khotkeys|kinfocenter|kmenuedit|kscreen|kscreenlocker|ksshaskpass|ksysguard|kwallet-pam|kwin|kwrited|libksysguard|milou|oxygen|plasma-browser-integration|plasma-desktop|plasma-integration|plasma-nano|plasma-nm|plasma-pa|plasma-phone-components|plasma-sdk|plasma-thunderbolt|plasma-vault|plasma-workspace|plasma-workspace-wallpapers|plymouth-kcm|polkit-kde-agent-1|powerdevil|sddm-kcm|systemsettings|user-manager|xdg-desktop-portal-kde) ]] && message_removed $DIR
+    [[ "$DIR" = "messages/"+(bluedevil|breeze|discover|drkonqi|kactivitymanagerd|kde-cli-tools|kdecoration|kde-gtk-config|kdeplasma-addons|kgamma5|khotkeys|kinfocenter|kmenuedit|kscreen|kscreenlocker|ksshaskpass|ksysguard|kwallet-pam|kwin|kwrited|libksysguard|milou|oxygen|plasma-browser-integration|plasma-desktop|plasma-integration|plasma-nano|plasma-nm|plasma-pa|plasma-phone-components|plasma-sdk|plasma-thunderbolt|plasma-vault|plasma-workspace|plasma-workspace-wallpapers|plymouth-kcm|polkit-kde-agent-1|powerdevil|sddm-kcm|systemsettings|user-manager|xdg-desktop-portal-kde) ]] && VAL='1' && message_removed && continue
     # kdeutils
-    [[ "$DIR" = "messages/"+(ark|filelight|kbackup|kcalc|kcharselect|kdebugsettings|kdf|kfloppy|kgpg|kteatime|ktimer|kwalletmanager|print-manager|sweeper) ]] && message_removed $DIR
+    [[ "$DIR" = "messages/"+(ark|filelight|kbackup|kcalc|kcharselect|kdebugsettings|kdf|kfloppy|kgpg|kteatime|ktimer|kwalletmanager|print-manager|sweeper) ]] && VAL='1' && message_removed && continue
     # dolphin
-    [  "$DIR" = "messages/dolphin" ]                          && message_removed $DIR
+    [  "$DIR" = "messages/dolphin" ]                          && VAL='1' && message_removed && continue
 
     if [ $1 = 'usuari' ]; then
         if [ -f $DATAF ]; then
