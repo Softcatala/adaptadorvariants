@@ -5592,7 +5592,7 @@ s/\b\([Tt]\)reien\([^[:alnum:]]\)/\1ragueren\2/g
 	# extreure -> extraure
 	s/\b\([Ee]\)xtraie\(m\|nt\|u\)\([^[:alnum:]]\)/\1xtrae\2\3/g
 	s/\b\([Ee]\)xtre\(c\|u\|uen\|ure\|us\)\([^[:alnum:]]\)/\1xtra\2\3/g
-		s/\bd'extraure\([^[:alnum:]]\)/extraure\1/g
+		s/\bescollit d'extraure\([^[:alnum:]]\)/escollit extraure\1/g
 	s/\b\([Ee]\)xtregui\([^[:alnum:]]\)/\1xtraga\2/g
 	s/\b\([Ee]\)xtregui\([ns]\)\([^[:alnum:]]\)/\1xtrague\2\3/g
 	s/\b\([Ee]\)xtreia\([^[:alnum:]]\)/\1xtragué\2/g
