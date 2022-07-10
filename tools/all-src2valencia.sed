@@ -4039,10 +4039,10 @@ s/\b\([Nn]\)eerlandès\([^[:alnum:]]\)/\1eerlandés\2/g
 s/\b\([Nn]\)eda\(da\|des\|nt\|r\|rà\|ran\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/\1ada\2\3/g
 s/\b\([Nn]\)ede\([mnsu]\)\([^[:alnum:]]\)/\1ade\2\3/g
 s/\b\([Nn]\)edés\([^[:alnum:]]\)/\1adara\2/g
-s/\b\([Nn]\)edéssi\([mu]\)\([^[:alnum:]]\)/\1adàre\3\4/g
-s/\b\([Nn]\)edessi\([ns]\)\([^[:alnum:]]\)/\1adare\3\4/g
+s/\b\([Nn]\)edéssi\([mu]\)\([^[:alnum:]]\)/\1adàre\2\3/g
+s/\b\([Nn]\)edessi\([ns]\)\([^[:alnum:]]\)/\1adare\2\3/g
 s/\b\([Nn]\)ed\([io]\)\([^[:alnum:]]\)/\1ade\3/g
-s/\b\([Nn]\)edi\([ns]\)\([^[:alnum:]]\)/\1ade\3\4/g
+s/\b\([Nn]\)edi\([ns]\)\([^[:alnum:]]\)/\1ade\2\3/g
 # néixer -> nàixer
 s/\b\([Nn]\)éixer\([^[:alnum:]]\)/\1àixer\2/g
 s/\b\([Nn]\)\([ae]\)ix\(en\|es\|\)\([^[:alnum:]]\)/\1aix\3\4/g
