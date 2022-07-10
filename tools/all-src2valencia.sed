@@ -282,6 +282,7 @@ s/\bEstable&ix\([^[:alnum:]]\)/Es\&tablix\1/g
 s/\bEstablei&x\([^[:alnum:]]\)/Es\&tablix\1/g
 s/\bEs&vaeix\([^[:alnum:]]\)/Es\&vaïx\1/g
 s/\bEx&pandeix\([^[:alnum:]]\)/Ex\&pandix\1/g
+s/\bE&xtreu\([^[:alnum:]]\)/E\&xtrau\1/g
 s/\bf&itxer\([^[:alnum:]]\)/fi\&txer\1/g
 s/\bfit&xer\([^[:alnum:]]\)/fi\&txer\1/g
 s/\bf&itxers\([^[:alnum:]]\)/fi\&txers\1/g
