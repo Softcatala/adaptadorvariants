@@ -3,6 +3,7 @@
 # "tradueix" la capçalera
 1,/^msgid / s/\bCatalan/Catalan (Valencian)/g
 
+s/\bLanguage-Team: kde-i18n-ca/Language-Team: Catalan <kde-i18n-ca@kde.org>/g
 s/\bLanguage: ca/Language: ca-valencia/g
 s/\bX-Pootle-Path: \/ca/X-Pootle-Path: \/ca-valencia/g
 
@@ -15,9 +16,13 @@ s/\bX-Pootle-Path: \/ca/X-Pootle-Path: \/ca-valencia/g
 # -> es protegeix (\n i \t: les paraules enganxades)
 s/\\\([nt]\)/\\\1- /g
 
+s/\bKDE al català a\([^[:alnum:]]\)/KDE al valencià a\1/g
+s/\bteamcode=ca\([^[:alnum:]]\)/teamcode=ca@valencia\1/g
+
 # ser <-> estar / trobar
 s/\bés \(actiu\|activa\|activada\|activat\|buida\|buit\|disponible\|en curs\|en un estat\|operatiu\|present\)\([^[:alnum:]]\)/està \1\2/g
 s/\bsón \(actius\|actives\|activades\|activats\|buides\|buits\|disponibles\|en curs\|en un estat\|operatius\|presents\)\([^[:alnum:]]\)/estan \1\2/g
+
 	s/\bperò es pot instal·lar a partir dels repositoris de desenvolupament\([^[:alnum:]]\)/però es poden instal·lar a partir dels repositoris de desenvolupament\1/g
 s/\bsón a la safata del projecte\([^[:alnum:]]\)/es troben a la safata del projecte\1/g
 	s/\b\([Nn]\)omés està \(actiu\|activa\|activada\|activat\|disponible\)\([^[:alnum:]]\)/\1omés estarà \2\3/g
@@ -72,28 +77,37 @@ s/\bautocomprovacions fallades\([^[:alnum:]]\)/autocomprovacions fallides\1/g
 # manlleva les etiquetes i després es posen tal qual
 # # <[^<]\{1,\}>
 # -> es protegeixen
+s/%1 comença el %2\([^[:alnum:]]\)/%1 comença el -%2\1/g
+s/%1 ha començat el %2\([^[:alnum:]]\)/%1 ha començat el -%2\1/g
+s/\"el %1\"/\"el -%1\"/g
+s/\bEl %1 està \(desconnectat\|en línia\)\([^[:alnum:]]\)/El -%1 està \1\2/g
 s/\bFita finalitzada el %1\([^[:alnum:]]\)/Fita finalitzada el -%1\1/g
 s/\bTasca \(finalitzada\|vençuda\) el %1\([^[:alnum:]]\)/Tasca \1 el -%1\2/g
-s/\b%1 comença el %2\([^[:alnum:]]\)/%1 comença el -%2\1/g
-s/\b%1 ha començat el %2\([^[:alnum:]]\)/%1 ha començat el -%2\1/g
-s/\"el %1\"/\"el -%1\"/g
+s/\bVàlid fins el %1\([^[:alnum:]]\)/Vàlid fins el -%1\1/g
 #
 s/\bDigiKam\([^[:alnum:]]\)/digiKam\1/g
+s/\bFFMpeg\([^[:alnum:]]\)/FFmpeg\1/g
+s/\bFFProbe\([^[:alnum:]]\)/FFprobe\1/g
+s/\bKAddressbook\([^[:alnum:]]\)/KAddressBook\1/g
+s/\bKCachgrind\([^[:alnum:]]\)/KCachegrind\1/g
 s/\bKnights\([^[:alnum:]]\)/KNights\1/g
+s/\bKrunner\([^[:alnum:]]\)/KRunner\1/g
+s/\bKSysguard\([^[:alnum:]]\)/KSysGuard\1/g
+s/\bLytebox\([^[:alnum:]]\)/LyteBox\1/g
 s/\bXwayland\([^[:alnum:]]\)/XWayland\1/g
-s/\b\([Aa]\)l \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Basket\|BasKet\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bitbucket\|Blackbox\|Blender\|Blinken\|Blowfish\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Calligra\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|clang\|Clang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|cmake\|CMake\|commander\|CompteEnrere\|Comunicador\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|cppcheck\|Cppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|dataEngine\|DataEngine\|data.frame\|D-Bus\|DarkTable\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|designer\|Designer\|dev2bitmap\|dev.print\|diff\|digiKam\|Digital\|dirmngr\|Discover\|div\|Django\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|Fielding\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|flatpak\|Flatpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|git\|Git\|Glaxnimate\|\.GlobalEnv\|GnuPG\|GNU\|GnuPG\|Gnuplot\|gnuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|gop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|graphviz\|Graphviz\|Gravatar\|GreaseMonkey\|grep\|growisofs\|Grub\|GStreamer\|Gtk\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|heaptrack\|Heaptrack\|Helgrind\|hg\|High\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Javascript\|JavaScript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|JuK\|Juk\|julia\|Julia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|kompare\|Kompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|krazy2\|Krazy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|Krfb\|KRfb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|kst\|Kst\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lilo\|lin_guider\|Linux\|Little\|LLDB\|lldb-mi\|locale\|locate\|lock\|lockd\|logger\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|make\|Make\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|marlin\|Marlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|meinproc5\|Memcheck\|memcpy\|mencoder\|Mercurial\|merge\|Meson\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Netscape\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|panorama\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|perforce\|Perforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Portable\|PostgreSQL\|postscript\|PostScript\|PowerDevil\|preparetips5\|Progressive\|psselect\|pstops\|PTY\|PulseAudio\|pvfViewer\|python\|Python\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|Qt Quick\|QtChart\|QtComponents\|QtCurve\|QtWebEngine\|QtQuick\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|Rocs\|Rocket\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|sendmail\|Sendmail\|sesameResolver\|shader\|Sheets\|Shelf\|shell\|Showfoto\|sieve\|Sieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Spacebar\|Spectacle\|src\|ssh-add\|sshfs\|Step\|Stopmotion\|Strike\|Subtitle Composer\|subversion\|Subversion\|SVN\|SymbolEditor\|Symmy\|syslog\|systemd\|Systemd\|Tagged\|Tangram\|teamd\|telepathy\|Telepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|trixel\|Trojitá\|tun\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|vera++\|Vera++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|webhook\|WebKit\|weboob\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|Yakuake\|XVideo\|XWayland\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1 \2\3\4/g
-s/\b\([Ee]\)l \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Basket\|BasKet\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bitbucket\|Blackbox\|Blender\|Blinken\|Blowfish\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Calligra\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|clang\|Clang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|cmake\|CMake\|commander\|CompteEnrere\|Comunicador\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|cppcheck\|Cppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|dataEngine\|DataEngine\|data.frame\|D-Bus\|DarkTable\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|designer\|Designer\|dev2bitmap\|dev.print\|diff\|digiKam\|Digital\|dirmngr\|Discover\|div\|Django\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|Fielding\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|flatpak\|Flatpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|git\|Git\|Glaxnimate\|\.GlobalEnv\|GnuPG\|GNU\|GnuPG\|Gnuplot\|gnuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|gop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|graphviz\|Graphviz\|Gravatar\|GreaseMonkey\|grep\|growisofs\|Grub\|GStreamer\|Gtk\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|heaptrack\|Heaptrack\|Helgrind\|hg\|High\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Javascript\|JavaScript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|JuK\|Juk\|julia\|Julia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|kompare\|Kompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|krazy2\|Krazy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|Krfb\|KRfb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|kst\|Kst\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lilo\|lin_guider\|Linux\|Little\|LLDB\|lldb-mi\|locale\|locate\|lock\|lockd\|logger\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|make\|Make\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|marlin\|Marlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|meinproc5\|Memcheck\|memcpy\|mencoder\|Mercurial\|merge\|Meson\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Netscape\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|panorama\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|perforce\|Perforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Portable\|PostgreSQL\|postscript\|PostScript\|PowerDevil\|preparetips5\|Progressive\|psselect\|pstops\|PTY\|PulseAudio\|pvfViewer\|python\|Python\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|Qt Quick\|QtChart\|QtComponents\|QtCurve\|QtWebEngine\|QtQuick\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|Rocs\|Rocket\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|sendmail\|Sendmail\|sesameResolver\|shader\|Sheets\|Shelf\|shell\|Showfoto\|sieve\|Sieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Spacebar\|Spectacle\|src\|ssh-add\|sshfs\|Step\|Stopmotion\|Strike\|Subtitle Composer\|subversion\|Subversion\|SVN\|SymbolEditor\|Symmy\|syslog\|systemd\|Systemd\|Tagged\|Tangram\|teamd\|telepathy\|Telepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|trixel\|Trojitá\|tun\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|vera++\|Vera++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|webhook\|WebKit\|weboob\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|Yakuake\|XVideo\|XWayland\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\2\3\4/g
-s/\b\([Dd]\)el\(s\|\) \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Basket\|BasKet\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bitbucket\|Blackbox\|Blender\|Blinken\|Blowfish\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Calligra\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|clang\|Clang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|cmake\|CMake\|commander\|CompteEnrere\|Comunicador\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|cppcheck\|Cppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|dataEngine\|DataEngine\|data.frame\|D-Bus\|DarkTable\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|designer\|Designer\|dev2bitmap\|dev.print\|diff\|digiKam\|Digital\|dirmngr\|Discover\|div\|Django\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|Fielding\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|flatpak\|Flatpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|git\|Git\|Glaxnimate\|\.GlobalEnv\|GNU\|GnuPG\|GnuPG\|Gnuplot\|gnuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|gop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|graphviz\|Graphviz\|Gravatar\|GreaseMonkey\|grep\|growisofs\|Grub\|GStreamer\|Gtk\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|heaptrack\|Heaptrack\|Helgrind\|hg\|High\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Javascript\|JavaScript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|JuK\|Juk\|julia\|Julia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|kompare\|Kompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|krazy2\|Krazy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|Krfb\|KRfb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|kst\|Kst\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lilo\|lin_guider\|Linux\|Little\|LLDB\|lldb-mi\|locale\|locate\|lock\|lockd\|logger\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|make\|Make\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|marlin\|Marlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|meinproc5\|Memcheck\|memcpy\|mencoder\|Mercurial\|merge\|Meson\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Netscape\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|panorama\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|perforce\|Perforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Portable\|PostgreSQL\|postscript\|PostScript\|PowerDevil\|preparetips5\|Progressive\|psselect\|pstops\|PTY\|PulseAudio\|pvfViewer\|python\|Python\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|Qt Quick\|QtChart\|QtComponents\|QtCurve\|QtQuick\|QtWebEngine\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|Rocs\|Rocket\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|sendmail\|Sendmail\|sesameResolver\|shader\|Sheets\|Shelf\|shell\|Showfoto\|sieve\|Sieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Spacebar\|src\|ssh-add\|sshfs\|Step\|Stopmotion\|Strike\|Subtitle Composer\|subversion\|Subversion\|SVN\|SymbolEditor\|Symmy\|syslog\|systemd\|Systemd\|Tagged\|Tangram\|teamd\|telepathy\|Telepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|trixel\|Trojitá\|tun\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|vera++\|Vera++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|webhook\|WebKit\|weboob\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|XVideo\|XWayland\|Yakuake\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1e \3\4\5/g
-s/\b\([Pp]\)el \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Basket\|BasKet\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bitbucket\|Blackbox\|Blender\|Blinken\|Blowfish\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Calligra\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|clang\|Clang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|cmake\|CMake\|commander\|CompteEnrere\|Comunicador\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|cppcheck\|Cppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|dataEngine\|DataEngine\|data.frame\|D-Bus\|DarkTable\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|designer\|Designer\|dev2bitmap\|dev.print\|diff\|digiKam\|Digital\|dirmngr\|Discover\|div\|Django\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|Fielding\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|flatpak\|Flatpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|git\|Git\|Glaxnimate\|\.GlobalEnv\|GNU\|GnuPG\|GnuPG\|Gnuplot\|gnuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|hgop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|graphviz\|Graphviz\|Gravatar\|GreaseMonkey\|grep\|growisofs\|Grub\|GStreamer\|Gtk\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|heaptrack\|Heaptrack\|Helgrind\|hg\|High\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Javascript\|JavaScript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|JuK\|Juk\|julia\|Julia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|kompare\|Kompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|krazy2\|Krazy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|Krfb\|KRfb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|kst\|Kst\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lilo\|lin_guider\|Linux\|Little\|LLDB\|lldb-mi\|locale\|locate\|lock\|lockd\|logger\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|make\|Make\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|marlin\|Marlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|meinproc5\|memcpy\|Memcheck\|mencoder\|Mercurial\|merge\|Meson\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Netscape\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|panorama\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|perforce\|Perforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Portable\|PostgreSQL\|postscript\|PostScript\|PowerDevil\|preparetips5\|Progressive\|psselect\|pstops\|PTY\|PulseAudio\|pvfViewer\|python\|Python\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|Qt Quick\|QtChart\|QtComponents\|QtCurve\|QtQuick\|QtWebEngine\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|Rocs\|Rocket\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|sendmail\|Sendmail\|sesameResolver\|shader\|Sheets\|Shelf\|shell\|Showfoto\|sieve\|Sieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Spacebar\|Spectacle\|src\|ssh-add\|sshfs\|Step\|Stopmotion\|Strike\|Subtitle Composer\|subversion\|Subversion\|SVN\|SymbolEditor\|Symmy\|syslog\|systemd\|Systemd\|Tagged\|Tangram\|teamd\|telepathy\|Telepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|trixel\|Trojitá\|tun\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|vera++\|Vera++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|webhook\|WebKit\|weboob\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|XVideo\|XWayland\|Yakuake\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1er \2\3\4/g
+s/\b\([Aa]\)l \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bittorrent\|Bitbucket\|Blackbox\|Blender\|Blinken\|Blowfish\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Callgrind\|Calligra\|Calltree\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|[Cc][Mm]ake\|CoCreateInstance\|commander\|CompteEnrere\|Comunicador\|ConnectServer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|[Cc]ppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|[Dd]ataEngine\|data.frame\|D-Bus\|DarkTable\|DavDroid\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|diff\|digiKam\|Digital\|dirmngr\|Discover\|DiSEqC\|div\|Django\|DjVuLibre\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|[Ff]latpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|German\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|[Gg]it\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GNU\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|gop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|Helgrind\|hg\|High\|Hunspell\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KeePassXC\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|[Kk]razy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lightroom\|Lilo\|lin_guider\|LinGuider\|Linux\|Little\|LLDB\|lldb-mi\|loca[lt]e\|lock\|lockd\|logcat\|logger\|LoginD\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|[Mm]ake\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|[Mm]arlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|Mediawiki\|meinproc5\|Memcheck\|memcpy\|mencoder\|Mercurial\|merge\|Meson\|MesonManager\|Messenger\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Nepomuk\|Netscape\|NextCloud\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|[Pp]anorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|[Pp]erforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|Photoshop\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|PostgreSQL\|[Pp]ost[Ss]cript\|PowerDevil\|preparetips5\|Progressive\|ProPhotoRGB\|psselect\|pstops\|PTY\|PulseAudio\|Purpose\|pvfViewer\|[Pp]ython\|Python[23]\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|QtChart\|QtComponents\|QtCurve\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocket\|Roliserver\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|[Ss]endmail\|sesameResolver\|Sextractor\|shader\|Sheets\|Shelf\|shell\|Showfoto\|[Ss]ieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|Sqlite\|SQLite\|src\|ssh-add\|sshfs\|Stellarium\|Step\|Stopmotion\|Strike\|Subtitle Composer\|[Ss]ubversion\|SVN\|SymbolEditor\|Symmy\|syslog\|[Ss]ystemd\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|[Tt]elepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|tun\|TurtleScript\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|[Vv]era++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|WebEngine\|webhook\|WebKit\|weboob\|WebRTC\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1 \2\3\4/g
+s/\b\([Ee]\)l \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bittorrent\|Bitbucket\|Blackbox\|Blender\|Blinken\|Blowfish\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Callgrind\|Calligra\|Calltree\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|[Cc][Mm]ake\|CoCreateInstance\|commander\|CompteEnrere\|Comunicador\|ConnectServer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|[Cc]ppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|[Dd]ataEngine\|data.frame\|D-Bus\|DarkTable\|DavDroid\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|diff\|digiKam\|Digital\|dirmngr\|Discover\|DiSEqC\|div\|Django\|DjVuLibre\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|[Ff]latpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|German\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|[Gg]it\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GNU\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|gop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|Helgrind\|hg\|High\|Hunspell\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KeePassXC\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|[Kk]razy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lightroom\|Lilo\|lin_guider\|LinGuider\|Linux\|Little\|LLDB\|lldb-mi\|loca[lt]e\|lock\|lockd\|logcat\|logger\|LoginD\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|[Mm]ake\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|[Mm]arlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|Mediawiki\|meinproc5\|Memcheck\|memcpy\|mencoder\|Mercurial\|merge\|Meson\|MesonManager\|Messenger\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Nepomuk\|Netscape\|NextCloud\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|[Pp]anorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|[Pp]erforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|Photoshop\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|PostgreSQL\|[Pp]ost[Ss]cript\|PowerDevil\|preparetips5\|Progressive\|ProPhotoRGB\|psselect\|pstops\|PTY\|PulseAudio\|Purpose\|pvfViewer\|[Pp]ython\|Python[23]\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|QtChart\|QtComponents\|QtCurve\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocket\|Roliserver\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|[Ss]endmail\|sesameResolver\|Sextractor\|shader\|Sheets\|Shelf\|shell\|Showfoto\|[Ss]ieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|Sqlite\|SQLite\|src\|ssh-add\|sshfs\|Stellarium\|Step\|Stopmotion\|Strike\|Subtitle Composer\|[Ss]ubversion\|SVN\|SymbolEditor\|Symmy\|syslog\|[Ss]ystemd\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|[Tt]elepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|tun\|TurtleScript\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|[Vv]era++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|WebEngine\|webhook\|WebKit\|weboob\|WebRTC\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\2\3\4/g
+s/\b\([Dd]\)el\(s\|\) \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Callgrind\|Calligra\|Calltree\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|[Cc][Mm]ake\|CoCreateInstance\|commander\|CompteEnrere\|Comunicador\|ConnectServer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|[Cc]ppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|[Dd]ataEngine\|data.frame\|D-Bus\|DarkTable\|DavDroid\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|diff\|digiKam\|Digital\|dirmngr\|Discover\|DiSEqC\|div\|Django\|DjVuLibre\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|[Ff]latpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|German\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|[Gg]it\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GNU\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|gop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|Helgrind\|hg\|High\|Hunspell\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KeePassXC\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|[Kk]razy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lightroom\|Lilo\|lin_guider\|LinGuider\|Linux\|Little\|LLDB\|lldb-mi\|loca[lt]e\|lock\|lockd\|logcat\|logger\|LoginD\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|[Mm]ake\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|[Mm]arlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|Mediawiki\|meinproc5\|Memcheck\|memcpy\|mencoder\|Mercurial\|merge\|Meson\|MesonManager\|Messenger\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Nepomuk\|Netscape\|NextCloud\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|[Pp]anorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|[Pp]erforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|Photoshop\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|PostgreSQL\|[Pp]ost[Ss]cript\|PowerDevil\|preparetips5\|Progressive\|ProPhotoRGB\|psselect\|pstops\|PTY\|PulseAudio\|Purpose\|pvfViewer\|[Pp]ython\|Python[23]\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|QtChart\|QtComponents\|QtCurve\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocket\|Roliserver\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|[Ss]endmail\|sesameResolver\|Sextractor\|shader\|Sheets\|Shelf\|shell\|Showfoto\|[Ss]ieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Sqlite\|SQLite\|src\|ssh-add\|sshfs\|Stellarium\|Step\|Stopmotion\|Strike\|Subtitle Composer\|[Ss]ubversion\|SVN\|SymbolEditor\|Symmy\|syslog\|[Ss]ystemd\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|[Tt]elepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|tun\|TurtleScript\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|[Vv]era++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|WebEngine\|webhook\|WebKit\|weboob\|WebRTC\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1e \3\4\5/g
+s/\b\([Pp]\)el \(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|7z\|Apport\|Baloo\|Banner\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bespin\|BibSearch\|BibTeX\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bonsai\|Booth\|Bovo\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|Bzip2\|C++\|Cachegrind\|Calindori\|Callgrind\|Calligra\|Calltree\|Cantor\|Catfish\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CDV\|Centre d'informació\|Cervisia\|check-config\|checkXML5\|Chessbase\|Choqok\|Chrome\|Chromium\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|Clang-Tidy\|ClayRGB\|Clazy\|clazy-standalone\|Clip\|clipboard\|[Cc][Mm]ake\|CoCreateInstance\|commander\|CompteEnrere\|Comunicador\|ConnectServer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Cpp\|CPP\|[Cc]ppcheck\|CRAN\|crontab\|cryfs\|CTags\|CSound\|csv\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|cvs\|CVS\|D3D9\|[Dd]ataEngine\|data.frame\|D-Bus\|DarkTable\|DavDroid\|DBus\|dbus\|dcraw\|Debconf\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|diff\|digiKam\|Digital\|dirmngr\|Discover\|DiSEqC\|div\|Django\|DjVuLibre\|dkim\|dmesg\|DNS\|Docbook\|Dolphin\|dot\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|DrKonqi\|Dropbox\|DuckDuckGo\|dvd+rw-format\|DVI\|dvips\|en_US\|Eloquens\|Estació\|Facebook\|Falkon\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Firefox\|firewalld\|fish\|FITS\|FLAC\|[Ff]latpak\|Flickr\|Flow\|FluidSynth\|Frameworks\|Francis\|freedesktop.org\|frei0r\|FreeType\|fwhm\|Gadu-Gadu\|Galeon\|GALR\|GCC\|gcompris\|GCompris\|gdb\|GDB\|Gemini\|German\|get\|getAuditLog\|GetHotNewStuff\|gettext\|Gettext\|Ghostscript\|Gimp\|GIMP\|[Gg]it\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GNU\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|hgop\|GOP\|goto\|gpasm\|GPG\|Gpg4win\|gpg-agent\|GpgConf\|gpgsm\|GpgSM\|Grammalecte\|grammalected\|Granatier\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|Helgrind\|hg\|High\|Hunspell\|IFrame\|Ikona\|Imgur\|input\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|Jitsi\|jitter\|journald\|Jovie\|JSON\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalzium\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Karbon\|Kartographer\|Kasts\|Kate\|KAtomic\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca5\|KBuildSycoca\|KCachegrind\|KCalc\|KCharSelect\|KClock\|KColorChooser\|KConfig\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog5\|KDebugSettings\|kdeconnectd\|kded\|kded5\|KDED\|kdegraphics\|kdeinit\|kdeinit5\|Kdenlive\|kdesrc-build\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDiskFree\|keditbookmarks\|KeePassXC\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf5-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|KHelpCenter\|Khipu\|khotkeys\|KHotkeys\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KIO\|Kio-Extras\|kiod\|KIPI\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|Konsole\|Kontact\|Kontrast\|Konversation\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KPackage\|KPatience\|KPhotoAlbum\|KPlato\|KPresenter\|[Kk]razy2\|KRDC\|KRegExpEditor\|KRename\|KReport\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KwikDisk\|KWin\|KWordQuiz\|KWrite\|KXStitch\|Netscreen\|LabPlot\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|LDAP\|Libarchive\|LibreOffice\|Licentia\|LDAP\|Lightroom\|Lilo\|lin_guider\|LinGuider\|Linux\|Little\|LLDB\|lldb-mi\|loca[lt]e\|lock\|lockd\|logcat\|logger\|LoginD\|Lokalize\|Lottie\|Lotus\|LSkat\|Lua\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magnatune\|mailfilteragent\|[Mm]ake\|man\|Mangonel\|Maniphest\|Marble\|Markdown\|[Mm]arlin\|Massif\|Material\|Matlab\|Matrix\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|Mediawiki\|meinproc5\|memcpy\|Memcheck\|mencoder\|Mercurial\|merge\|Meson\|MesonManager\|Messenger\|Metalink\|microbe\|Microsoft\|Milou\|MinGW\|Minuet\|mkdir\|mkisofs\|mmap\|Mobipocket\|monopd\|move\|Moving\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|msgfmt\|msgmerge\|ms_print\|MUD\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|mysql\|MySQL\|ncdump\|NeoChat\|Nepomuk\|Netscape\|NextCloud\|Ninja\|NKS\|noatun\|normalize\|Nota\|OCR\|Office\|Okteta\|Okular\|output\|outputVectorPeriodogram\|p7zip\|PackageKit\|Palapeli\|pandoc\|[Pp]anorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Pascale\|Patreon\|pdf\|PDF\|pdflatex\|pdfpages\|pdftk\|PeerTube\|[Pp]erforce\|Peruse\|Phabricator\|phd2logview\|Phonon\|Photoshop\|PhotoSwipe\|PHP\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|ping\|pip3\|PipeWire\|Pix\|Plan\|Planck\|PLANCK\|Planner\|Plasma\|plasmapkg2\|plasmashell\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|PostgreSQL\|[Pp]ost[Ss]cript\|PowerDevil\|preparetips5\|Progressive\|ProPhotoRGB\|psselect\|pstops\|PTY\|PulseAudio\|Purpose\|pvfViewer\|[Pp]ython\|Python[23]\|pyuic5\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QFileDialog\|QGuiApplication\|QImageWriter\|QMake\|QML\|qmljs\|QObject\|Qrca\|Qt\|QtChart\|QtComponents\|QtCurve\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|RAR\|Raw\|raw\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|replicode\|RepRap\|REUSE\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocket\|Roliserver\|Rolisteam\|RPG\|RSIBreak\|rsync\|Ruby\|Ruqola\|Rust\|Sage\|Samba\|Scilab\|scour\|SDDM\|[Ss]endmail\|sesameResolver\|Sextractor\|shader\|Sheets\|Shelf\|shell\|Showfoto\|[Ss]ieve\|sieveeditor\|SigG\|Sink\|Skanlite\|Skanpage\|Skrooge\|smb\|Smb4K\|Snore\|SnoreNotify\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|Sqlite\|SQLite\|src\|ssh-add\|sshfs\|Stellarium\|Step\|Stopmotion\|Strike\|Subtitle Composer\|[Ss]ubversion\|SVN\|SymbolEditor\|Symmy\|syslog\|[Ss]ystemd\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|[Tt]elepathy\|Tellico\|Template\|Tesseract\|TeX\|The\|Thunderbird\|Thunderbolt\|TLS\|TNamed\|Tok\|Tokodon\|top\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|tun\|TurtleScript\|UFRaw\|Umbrello\|unarchiver\|UNIX\|unpack\|unrar\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|[Vv]era++\|Vi\|VLC\|VmSize\|VNC\|vsync\|Vvave\|Wacom\|Wake\|WashiPad\|Wayland\|WebEngine\|webhook\|WebKit\|weboob\|WebRTC\|Will\|Windows\|winid\|WinPT\|Wolfram\|woob\|Word\|WordPerfect\|Words\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XML\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|Youtube\|Zanshin\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1er \2\3\4/g
 #
 s/\b\([Ll]\)a \(&\|«\|<[^<]\{1,\}>\|\)\(Debian\|Kadmos\|KPart\|KPluginFactory\|Kubuntu\|QApplication\|Ubuntu\|WebEnginePart\)\([^[:alnum:]]\)/\2\3\4/g
 s/\b\([Ll]\)es \(&\|«\|<[^<]\{1,\}>\|\)\(KPart\|KParts\)\([^[:alnum:]]\)/\2\3\4/g
 s/\bels \(&\|«\|<[^<]\{1,\}>\|\)XSudoku\([^[:alnum:]]\)/\1XSudoku\2/g
 #
-s/\b\([Dd]\)e l'\(&\|«\|<[^<]\{1,\}>\|\)\(mplayer\|Scilab\|Scratchpad\|SDDM\|sflphone-client-kde\|Skrooge\|Skype\|SMART\|Smoothie\|SQLite\|Stage\|Stellarium\|Step\|Stockfish\|SVN\)\([^[:alnum:]]\)/\1e \2\3\4/g
-s/\b\([Dd]\)e l'\(&\|«\|<[^<]\{1,\}>\|\)\(Adium\|Akonadi\|akonadictl\|Akregator\|Alligator\|alphagrad\|Amarok\|amarokcollectionscanner\|Amor\|Ampache\|Android\|Angelfish\|Apper\|Apple\|appstream\|Arch\|Ark\|Arkade\|Configuració del sistema\|Artikulate\|ask\|Astrometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|Aura\|AV1\|AVPlayer\|Ekiga\|Ekos\|ELF\|Elisa\|Eloquens\|eMovix\|Enfuse\|EnigMail\|etesyncItem\|Evolution\|exiftool\|ExifTool\|extragear\|GPG\|Haruna\|High\|ICQ\|IFrame\|Ikona\|Imgur\|ImportWizard\|INDI\|INDIHub\|Info-zip\|initramfs\|inotify\|inputVectorData\|inputVectorTime\|Internet\|iPad\|iPod\|iPhone\|iptables\|iTip\|iTunes\|OCRA\|Octave\|Ogg\|okular\|Okular\|OpenCL\|OpenColorIO\|OpenGL\|OpenGLES\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|Opera\|Orca\|OSD\|OSX\|OTR\|Outlook\|outputVectorPeriodogram\|oxdvi\|Oxygen\|R\|r2\|Spectacle\|U-Boot\|Ubuntu\|UFRaw\|Unarchiver\|UNIX\|Unrar\|updatedb\|xBase\|XDebug\|XFig\|XMMS\|XMPP\|Xplanet\|XPlanet\)\([^[:alnum:]]\)/\1'\2\3\4/g
+s/\b\([Dd]\)e l'\(&\|«\|<[^<]\{1,\}>\|\)\(mplayer\|Scilab\|Scratchpad\|SDDM\|sflphone-client-kde\|Skrooge\|Skype\|SMART\|Smoothie\|Spacebar\|SQLite\|Stage\|Stellarium\|Step\|Stockfish\|Stopmotion\|SVN\)\([^[:alnum:]]\)/\1e \2\3\4/g
+s/\b\([Dd]\)e l'\(&\|«\|<[^<]\{1,\}>\|\)\(Ad[Bb]lock\|Academy\|AccountWizard\|ACDSee\|Acrobat\|Active\|Adium\|Agrovoc\|Akonadi\|akonadictl\|Akregator\|Alligator\|Almanac\|alphagrad\|Amarok\|amarokcollectionscanner\|Amazon\|Amor\|Ampache\|Analitza\|Analyze\|Android\|Angelfish\|Apache\|AppData\|Apper\|AppImage\|Apple\|Apport\|[Aa]ppstream\|AqBanking\|Arch\|Arduino\|Ark\|Arkade\|Associated\|Audioscrobbler\|Configuració del sistema\|Artikulate\|ask\|Astrometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|Aura\|AV1\|AVPlayer\|EEPROM\|EFFECT\|Ekiga\|Ekos\|EkosLive\|ELF\|Elisa\|Eloquens\|eMovix\|Enfuse\|EnigMail\|etesyncItem\|Evolution\|Evolution[123]\|Exchange\|[Ee]xif[Tt]ool\|extragear\|GPG\|Haruna\|Hessiana\|High\|Icedove\|ICQ\|IFrame\|Ikona\|ImageMagick\|Image[Ss]hack\|Imgur\|ImportWizard\|INDI\|INDIHub\|Info-zip\|initramfs\|Inkscape\|inotify\|InputMethod\|inputVectorData\|inputVectorTime\|Internet\|Invidious\|iPad\|iPod\|iPhone\|iptables\|IRIDIUM\|Itinerary\|iTip\|iTunes\|OAuth2\|OCRA\|Octave\|Office\|Ogg\|Okteta\|okular\|Okular\|Onedrive\|OpenBabel\|OpenCL\|OpenColorIO\|OpenConnect\|OpenDivX\|OpenDocument\|OpenGL\|OpenGLES\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|OpenTimelineIO\|OpenVPN\|Opera\|Operational\|OProfile\|Orca\|Origin\|OriginLab\|OscarSocket\|OSD\|OSX\|OTR\|Outlook\|outputVectorPeriodogram\|oxdvi\|Oxygen\|R\|r2\|SDDM\|Skanlite\|SkySafari\|Scilab\|Scratchpad\|Scribus\|ScriptEngine\|SDDM\|sketchbook\|Skrooge\|Skype\|Smoothie\|Snap\|Spacebar\|Spectacle\|SPHINX\|Stargate\|StellarMate\|U-Boot\|Ubuntu\|UFRaw\|Unarchiver\|Unicode\|UnifiedPush\|UNIX\|Unrar\|updatedb\|UserFeedback\|xBase\|XDebug\|XFig\|XMMS\|XMPP\|Xplanet\|XPlanet\|XWayland\)\([^[:alnum:]]\)/\1'\2\3\4/g
 #
-s/\b\([Ll]\)'\(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|Adium\|Akonadi\|akonadictl\|Akregator\|Alligator\|alphagrad\|Amarok\|amarokcollectionscanner\|Amor\|Ampache\|Android\|Angelfish\|Apper\|Apple\|appstream\|Arch\|Ark\|Arkade\|Configuració del sistema\|Artikulate\|ask\|Astrometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|Aura\|AV1\|AVPlayer\|Ekiga\|Ekos\|ELF\|Elisa\|Eloquens\|eMovix\|Enfuse\|EnigMail\|etesyncItem\|Evolution\|exiftool\|ExifTool\|extragear\|GPG\|Haruna\|High\|ICQ\|IFrame\|Ikona\|Imgur\|ImportWizard\|INDI\|INDIHub\|Info-zip\|initramfs\|inotify\|inputVectorData\|inputVectorTime\|Internet\|iPad\|iPod\|iPhone\|iptables\|iTip\|iTunes\|OCRA\|Octave\|Ogg\|okular\|Okular\|OpenCL\|OpenColorIO\|OpenGL\|OpenGLES\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|Opera\|Orca\|OSD\|OSX\|OTR\|Outlook\|outputVectorPeriodogram\|oxdvi\|Oxygen\|R\|r2\|Spectacle\|Scilab\|Scratchpad\|ScriptEngine\|SDDM\|sketchbook\|Skrooge\|Skype\|Smoothie\|Snap\|Spectacle\|SQLite\|Stage\|Stellarium\|StellarSolver\|Step\|Stockfish\|U-Boot\|Ubuntu\|UFRaw\|ufw\|Unarchiver\|Unrar\|update-alternatives\|xBase\|XDebug\|XFig\|XMMS\|XMPP\|xplanet\|Xplanet\|XPlanet\)\([^[:alnum:]]\)/\2\3\4/g
+s/\b\([Ll]\)'\(&\|«\|<[^<]\{1,\}>\|\)\(%1\|%2\|Ad[Bb]lock\|Academy\|AccountWizard\|ACDSee\|Acrobat\|Active\|Adium\|Agrovoc\|Akonadi\|akonadictl\|Akregator\|Alligator\|Almanac\|alphagrad\|Amarok\|amarokcollectionscanner\|Amazon\|Amor\|Ampache\|Analitza\|Analyze\|Android\|Angelfish\|Apache\|AppData\|Apper\|AppImage\|Apple\|Apport\|[Aa]ppstream\|AqBanking\|Arch\|Arduino\|Ark\|Arkade\|Associated\|Audioscrobbler\|Configuració del sistema\|Artikulate\|ask\|Astrometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|Aura\|AV1\|AVPlayer\|EEPROM\|EFFECT\|Ekiga\|Ekos\|EkosLive\|ELF\|Elisa\|Eloquens\|eMovix\|Enfuse\|EnigMail\|etesyncItem\|Evolution\|Evolution[123]\|Exchange\|[Ee]xif[Tt]ool\|extragear\|GPG\|Haruna\|Hessiana\|High\|Icedove\|ICQ\|IFrame\|Ikona\|ImageMagick\|Image[Ss]hack\|Imgur\|ImportWizard\|INDI\|INDIHub\|Info-zip\|initramfs\|Inkscape\|inotify\|InputMethod\|inputVectorData\|inputVectorTime\|Internet\|Invidious\|iPad\|iPod\|iPhone\|iptables\|IRIDIUM\|Itinerary\|iTip\|iTunes\|OAuth2\|OCRA\|Octave\|Office\|Ogg\|Okteta\|okular\|Okular\|Onedrive\|OpenBabel\|OpenCL\|OpenColorIO\|OpenConnect\|OpenDivX\|OpenDocument\|OpenGL\|OpenGLES\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|OpenTimelineIO\|OpenVPN\|Opera\|Operational\|OProfile\|Orca\|Origin\|OriginLab\|OscarSocket\|OSD\|OSX\|OTR\|Outlook\|outputVectorPeriodogram\|oxdvi\|Oxygen\|R\|r2\|SDDM\|Skanlite\|SkySafari\|Scilab\|Scratchpad\|Scribus\|ScriptEngine\|SDDM\|sketchbook\|Skrooge\|Skype\|Smoothie\|Snap\|Spacebar\|Spectacle\|SPHINX\|SQLite\|Stage\|Stargate\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stockfish\|Stopmotion\|U-Boot\|Ubuntu\|UFRaw\|ufw\|Umbrello\|Unarchiver\|Unicode\|UnifiedPush\|Unrar\|update-alternatives\|UserFeedback\|xBase\|XDebug\|XFig\|XMMS\|XMPP\|xplanet\|Xplanet\|XPlanet\|XWayland\)\([^[:alnum:]]\)/\2\3\4/g
 # entitats
 s/\b\([Ee]\)l &\(blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|CIFS\|cmake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|documentation.index\|dolphin\|DOT\|dragon\|drkonqi\|DVD\|DVI\|ELF\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|frameworks\|FTP\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|JSON\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog5\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|krunner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet5\|kwalletmanager5\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|MacOS\|Mandrake\|marble\|Markdown\|MathML\|mdn\|megami\|Microsoft\|MIDI\|MIME\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|SVG\|sweeper\|symboleditor\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|XSL\|X-Window\|zui\);\([^[:alnum:]]\)/\&\2;\3/g
 s/\b\([Dd]\)el\(s\|\) &\(blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|CIFS\|cmake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|documentation.index\|dolphin\|DOT\|dragon\|drkonqi\|DVD\|DVI\|ELF\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|frameworks\|FTP\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|JSON\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog5\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|krunner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet5\|kwalletmanager5\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|MacOS\|Mandrake\|marble\|Markdown\|MathML\|mdn\|megami\|Microsoft\|MIDI\|MIME\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|SVG\|sweeper\|symboleditor\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|XSL\|X-Window\|zui\);\([^[:alnum:]]\)/\1e \&\3;\4/g
@@ -103,11 +117,13 @@ s/\b\([Dd]\)e l'&\(acl\|AIX\|akonadi\|akregator\|aktion\|amarok\|amor\|ark\|arti
 s/\b\([Ll]\)'&\(acl\|AIX\|akonadi\|akregator\|aktion\|amarok\|amor\|ark\|artikulate\|arts\|arts-builder\|artscontrol\|artsd\|artsdsp\|artsserver\|artsshell\|artswrapper\|ASCII\|ATAPI\|astrometry.net\|atlantik\|FTP\)\([^[:alnum:]]\)/\2\3/g
 s/\b\([Ll]\)'&IGU;\([^[:alnum:]]\)/\1a \&IGU;\2/g
 # -> ja es poden desprotegir
+s/\"el -%1\"/\"el %1\"/g
+s/%1 comença el -%2\([^[:alnum:]]\)/%1 comença el %2\1/g
+s/%1 ha començat el -%2\([^[:alnum:]]\)/%1 ha començat el %2\1/g
+s/\bEl -%1 està \(desconnectat\|en línia\)\([^[:alnum:]]\)/El %1 està \1\2/g
 s/\bFita finalitzada el -%1\([^[:alnum:]]\)/Fita finalitzada el %1\1/g
 s/\bTasca \(finalitzada\|vençuda\) el -%1\([^[:alnum:]]\)/Tasca \1 el %1\2/g
-s/\b%1 comença el -%2\([^[:alnum:]]\)/%1 comença el %2\1/g
-s/\b%1 ha començat el -%2\([^[:alnum:]]\)/%1 ha començat el %2\1/g
-s/\"el -%1\"/\"el %1\"/g
+s/\bVàlid fins el -%1\([^[:alnum:]]\)/Vàlid fins el %1\1/g
 # #
 s/\bEl «%1\([^[:alnum:]]\)/«%1\1/g
 s/voluntaris que tradueix el KDE al català a\([^[:alnum:]]\)/voluntaris que tradueix KDE al català i l'adapta a la variant valenciana a\1/g
@@ -323,6 +339,7 @@ s/\bI&nverteix\([^[:alnum:]]\)/I\&nvertix\1/g
 s/\bIn&verteix\([^[:alnum:]]\)/I\&nvertix\1/g
 s/\bInve&rteix\([^[:alnum:]]\)/I\&nvertix\1/g
 s/\bInver&teix\([^[:alnum:]]\)/I\&nvertix\1/g
+	s/\bel JavaScri&pt\([^[:alnum:]]\)/JavaScri\&pt\1/g
 s/\bLl&egeix\([^[:alnum:]]\)/Lli\&g\1/g
 s/\bLle&geix\([^[:alnum:]]\)/Lli\&g\1/g
 	s/&Rellegeix\([^[:alnum:]]\)/\&Rellig\1/g
@@ -490,6 +507,12 @@ s/\b\([Aa]\)bandonéssi\([mu]\)\([^[:alnum:]]\)/\1bandonàre\2\3/g
 s/\b\([Aa]\)bandonessi\([ns]\)\([^[:alnum:]]\)/\1bandonare\2\3/g
 s/\b\([Aa]\)bandon\([io]\)\([^[:alnum:]]\)/\1bandone\3/g
 s/\b\([Aa]\)bandoni\([ns]\)\([^[:alnum:]]\)/\1bandone\2\3/g
+# abarrotar
+s/\b\([Aa]\)barrotés\([^[:alnum:]]\)/\1barrotara\2/g
+s/\b\([Aa]\)barrotéssi\([mu]\)\([^[:alnum:]]\)/\1barrotàre\2\3/g
+s/\b\([Aa]\)barrotessi\([ns]\)\([^[:alnum:]]\)/\1barrotare\2\3/g
+s/\b\([Aa]\)barrot\([io]\)\([^[:alnum:]]\)/\1barrote\3/g
+s/\b\([Aa]\)barroti\([ns]\)\([^[:alnum:]]\)/\1barrote\2\3/g
 # abastar
 s/\b\([Aa]\)bastés\([^[:alnum:]]\)/\1bastara\2/g
 s/\b\([Aa]\)bastéssi\([mu]\)\([^[:alnum:]]\)/\1bastàre\2\3/g
@@ -510,6 +533,12 @@ s/\b\([Aa]\)ccedeixo\([^[:alnum:]]\)/\1ccedisc\2/g
 s/\b\([Aa]\)ccedís\([^[:alnum:]]\)/\1ccedira\2/g
 s/\b\([Aa]\)ccedíssi\([mu]\)\([^[:alnum:]]\)/\1ccedíre\2\3/g
 s/\b\([Aa]\)ccedissi\([ns]\)\([^[:alnum:]]\)/\1ccedire\2\3/g
+# accelerar
+s/\b\([Aa]\)ccelerés\([^[:alnum:]]\)/\1ccelerara\2/g
+s/\b\([Aa]\)cceleréssi\([mu]\)\([^[:alnum:]]\)/\1cceleràre\2\3/g
+s/\b\([Aa]\)cceleressi\([ns]\)\([^[:alnum:]]\)/\1ccelerare\2\3/g
+s/\b\([Aa]\)cceler\([io]\)\([^[:alnum:]]\)/\1ccelere\3/g
+s/\b\([Aa]\)cceleri\([ns]\)\([^[:alnum:]]\)/\1ccelere\2\3/g
 # acceptar
 s/\b\([Aa]\)cceptés\([^[:alnum:]]\)/\1cceptara\2/g
 s/\b\([Aa]\)cceptéssi\([mu]\)\([^[:alnum:]]\)/\1cceptàre\2\3/g
@@ -568,12 +597,6 @@ s/\b\([Aa]\)conselléssi\([mu]\)\([^[:alnum:]]\)/\1consellàre\2\3/g
 s/\b\([Aa]\)consellessi\([ns]\)\([^[:alnum:]]\)/\1consellare\2\3/g
 s/\b\([Aa]\)consell\([io]\)\([^[:alnum:]]\)/\1conselle\3/g
 s/\b\([Aa]\)conselli\([ns]\)\([^[:alnum:]]\)/\1conselle\2\3/g
-# acostar
-s/\b\([Aa]\)costés\([^[:alnum:]]\)/\1costara\2/g
-s/\b\([Aa]\)costéssi\([mu]\)\([^[:alnum:]]\)/\1costàre\2\3/g
-s/\b\([Aa]\)costessi\([ns]\)\([^[:alnum:]]\)/\1costare\2\3/g
-s/\b\([Aa]\)cost\([io]\)\([^[:alnum:]]\)/\1coste\3/g
-s/\b\([Aa]\)costi\([ns]\)\([^[:alnum:]]\)/\1coste\2\3/g
 # activar
 s/\b\([Aa]\)ctivés\([^[:alnum:]]\)/\1ctivara\2/g
 s/\b\([Aa]\)ctivéssi\([mu]\)\([^[:alnum:]]\)/\1ctivàre\2\3/g
@@ -593,6 +616,12 @@ s/\b\([Aa]\)ctivi\([ns]\)\([^[:alnum:]]\)/\1ctive\2\3/g
 	s/\b\([Ii]\)nactivessi\([ns]\)\([^[:alnum:]]\)/\1nactivare\2\3/g
 	s/\b\([Ii]\)nactiv\([io]\)\([^[:alnum:]]\)/\1nactive\3/g
 	s/\b\([Ii]\)nactivi\([ns]\)\([^[:alnum:]]\)/\1nactive\2\3/g
+	# reactivar
+	s/\b\([Rr]\)eactivés\([^[:alnum:]]\)/\1eactivara\2/g
+	s/\b\([Rr]\)eactivéssi\([mu]\)\([^[:alnum:]]\)/\1eactivàre\2\3/g
+	s/\b\([Rr]\)eactivessi\([ns]\)\([^[:alnum:]]\)/\1eactivare\2\3/g
+	s/\b\([Rr]\)eactiv\([io]\)\([^[:alnum:]]\)/\1eactive\3/g
+	s/\b\([Rr]\)eactivi\([ns]\)\([^[:alnum:]]\)/\1eactive\2\3/g
 # actuar
 s/\b\([Aa]\)ctués\([^[:alnum:]]\)/\1ctuara\2/g
 s/\b\([Aa]\)ctuéssi\([mu]\)\([^[:alnum:]]\)/\1ctuàre\2\3/g
@@ -624,12 +653,6 @@ s/\b\([Aa]\)ddicionéssi\([mu]\)\([^[:alnum:]]\)/\1ddicionàre\2\3/g
 s/\b\([Aa]\)ddicionessi\([ns]\)\([^[:alnum:]]\)/\1ddicionare\2\3/g
 s/\b\([Aa]\)ddicion\([io]\)\([^[:alnum:]]\)/\1ddicione\3/g
 s/\b\([Aa]\)ddicioni\([ns]\)\([^[:alnum:]]\)/\1ddicione\2\3/g
-# adjuntar
-s/\b\([Aa]\)djuntés\([^[:alnum:]]\)/\1djuntara\2/g
-s/\b\([Aa]\)djuntéssi\([mu]\)\([^[:alnum:]]\)/\1djuntàre\2\3/g
-s/\b\([Aa]\)djuntessi\([ns]\)\([^[:alnum:]]\)/\1djuntare\2\3/g
-s/\b\([Aa]\)djunt\([io]\)\([^[:alnum:]]\)/\1djunte\3/g
-s/\b\([Aa]\)djunti\([ns]\)\([^[:alnum:]]\)/\1djunte\2\3/g
 # admetre
 s/\b\([Aa]\)dmès\([^[:alnum:]]\)/\1dmés\2/g
 s/\b\([Aa]\)dmetés\([^[:alnum:]]\)/\1dmetera\2/g
@@ -668,12 +691,33 @@ s/\b\([Aa]\)fegeixo\([^[:alnum:]]\)/\1fig\2/g
 s/\b\([Aa]\)fegís\([^[:alnum:]]\)/\1fegira\2/g
 s/\b\([Aa]\)fegíssi\([mu]\)\([^[:alnum:]]\)/\1fegíre\2\3/g
 s/\b\([Aa]\)fegissi\([ns]\)\([^[:alnum:]]\)/\1fegire\2\3/g
+# afinar
+s/\b\([Aa]\)finés\([^[:alnum:]]\)/\1finara\2/g
+s/\b\([Aa]\)finéssi\([mu]\)\([^[:alnum:]]\)/\1finàre\2\3/g
+s/\b\([Aa]\)finessi\([ns]\)\([^[:alnum:]]\)/\1finare\2\3/g
+s/\b\([Aa]\)fin\([io]\)\([^[:alnum:]]\)/\1fine\3/g
+s/\b\([Aa]\)fini\([ns]\)\([^[:alnum:]]\)/\1fine\2\3/g
 # agafar
 s/\b\([Aa]\)gafés\([^[:alnum:]]\)/\1gafara\2/g
 s/\b\([Aa]\)gaféssi\([mu]\)\([^[:alnum:]]\)/\1gafàre\2\3/g
 s/\b\([Aa]\)gafessi\([ns]\)\([^[:alnum:]]\)/\1gafare\2\3/g
 s/\b\([Aa]\)gaf\([io]\)\([^[:alnum:]]\)/\1gafe\3/g
 s/\b\([Aa]\)gafi\([ns]\)\([^[:alnum:]]\)/\1gafe\2\3/g
+# agarrotar -> engarrotar
+s/\bAgarrota\(da\|des\|nt\|nts\|r\|rà\|ran\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Engarrota\1\2/g
+s/\bagarrota\(da\|des\|nt\|nts\|r\|rà\|ran\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/engarrota\1\2/g
+s/\bAgarrotés\([^[:alnum:]]\)/Engarrotara\1/g
+s/\bagarrotés\([^[:alnum:]]\)/engarrotara\1/g
+s/\bAgarrotéssi\([mu]\)\([^[:alnum:]]\)/Engarrotàre\1\2/g
+s/\bagarrotéssi\([mu]\)\([^[:alnum:]]\)/engarrotàre\1\2/g
+s/\bAgarrotessi\([ns]\)\([^[:alnum:]]\)/Engarrotare\1\2/g
+s/\bagarrotessi\([ns]\)\([^[:alnum:]]\)/engarrotare\1\2/g
+s/\bAgarrot\([eio]\)\([mnsu]\)\([^[:alnum:]]\)/Engarrote\2\3/g
+s/\bagarrot\([eio]\)\([mnsu]\)\([^[:alnum:]]\)/engarrote\2\3/g
+s/\bAgarrot\([io]\)\([^[:alnum:]]\)/Engarrote\2/g
+s/\bagarrot\([io]\)\([^[:alnum:]]\)/engarrote\2/g
+s/\bAgarroti\([ns]\)\([^[:alnum:]]\)/Engarrote\1\2/g
+s/\bagarroti\([ns]\)\([^[:alnum:]]\)/engarrote\1\2/g
 # TODO: agilitar *
 # agilitzar
 s/\b\([Aa]\)gilitzés\([^[:alnum:]]\)/\1gilitara\2/g
@@ -727,12 +771,31 @@ s/\b\([Aa]\)justi\([ns]\)\([^[:alnum:]]\)/\1juste\2\3/g
 	s/\b\([Dd]\)esajust\([io]\)\([^[:alnum:]]\)/\1esajuste\3/g
 	s/\b\([Dd]\)esajusti\([ns]\)\([^[:alnum:]]\)/\1esajuste\2\3/g
 s/\b\([Aa]\)lbanès\([^[:alnum:]]\)/\1lbanés\2/g
+# alimentar
+s/\b\([Aa]\)limentés\([^[:alnum:]]\)/\1limentara\2/g
+s/\b\([Aa]\)limentéssi\([mu]\)\([^[:alnum:]]\)/\1limentàre\2\3/g
+s/\b\([Aa]\)limentessi\([ns]\)\([^[:alnum:]]\)/\1limentare\2\3/g
+s/\b\([Aa]\)liment\([io]\)\([^[:alnum:]]\)/\1limente\3/g
+s/\b\([Aa]\)limenti\([ns]\)\([^[:alnum:]]\)/\1limente\2\3/g
+	# sobrealimentar
+	s/\b\([Ss]\)obrealimentés\([^[:alnum:]]\)/\1obrealimentara\2/g
+	s/\b\([Ss]\)obrealimentéssi\([mu]\)\([^[:alnum:]]\)/\1obrealimentàre\2\3/g
+	s/\b\([Ss]\)obrealimentessi\([ns]\)\([^[:alnum:]]\)/\1obrealimentare\2\3/g
+	s/\b\([Ss]\)obrealiment\([io]\)\([^[:alnum:]]\)/\1obrealimente\3/g
+	s/\b\([Ss]\)obrealimenti\([ns]\)\([^[:alnum:]]\)/\1obrealimente\2\3/g
 # alinear
 s/\b\([Aa]\)lineés\([^[:alnum:]]\)/\1lineara\2/g
 s/\b\([Aa]\)lineéssi\([mu]\)\([^[:alnum:]]\)/\1lineàre\2\3/g
 s/\b\([Aa]\)lineessi\([ns]\)\([^[:alnum:]]\)/\1lineare\2\3/g
 s/\b\([Aa]\)line\([ïo]\)\([^[:alnum:]]\)/\1linee\3/g
 s/\b\([Aa]\)lineï\([ns]\)\([^[:alnum:]]\)/\1linee\2\3/g
+	# realinear
+	# TODO: no
+	s/\b\([Rr]\)ealineés\([^[:alnum:]]\)/\1ealineara\2/g
+	s/\b\([Rr]\)ealineéssi\([mu]\)\([^[:alnum:]]\)/\1ealineàre\2\3/g
+	s/\b\([Rr]\)ealineessi\([ns]\)\([^[:alnum:]]\)/\1ealineare\2\3/g
+	s/\b\([Rr]\)ealine\([ïo]\)\([^[:alnum:]]\)/\1ealinee\3/g
+	s/\b\([Rr]\)ealineï\([ns]\)\([^[:alnum:]]\)/\1ealinee\2\3/g
 # alliberar
 s/\b\([Aa]\)lliberés\([^[:alnum:]]\)/\1lliberara\2/g
 s/\b\([Aa]\)lliberéssi\([mu]\)\([^[:alnum:]]\)/\1lliberàre\2\3/g
@@ -837,12 +900,6 @@ s/\b\([Aa]\)nomeni\([ns]\)\([^[:alnum:]]\)/\1nomene\2\3/g
 	s/\breanomenessi\([ns]\)\([^[:alnum:]]\)/canviare\1 de nom\2/g
 	s/\bReanomeni\([^[:alnum:]]\)/Canviï de nom\1/g
 	s/\breanomeni\([^[:alnum:]]\)/canviï de nom\1/g
-# anotar
-s/\b\([Aa]\)notés\([^[:alnum:]]\)/\1notara\2/g
-s/\b\([Aa]\)notéssi\([mu]\)\([^[:alnum:]]\)/\1notàre\2\3/g
-s/\b\([Aa]\)notessi\([ns]\)\([^[:alnum:]]\)/\1notare\2\3/g
-s/\b\([Aa]\)not\([io]\)\([^[:alnum:]]\)/\1note\3/g
-s/\b\([Aa]\)noti\([ns]\)\([^[:alnum:]]\)/\1note\2\3/g
 # anul·lar
 s/\b\([Aa]\)nul·lés\([^[:alnum:]]\)/\1nul·lara\2/g
 s/\b\([Aa]\)nul·léssi\([mu]\)\([^[:alnum:]]\)/\1nul·làre\2\3/g
@@ -862,24 +919,20 @@ s/\b\([Aa]\)parentéssi\([mu]\)\([^[:alnum:]]\)/\1parentàre\2\3/g
 s/\b\([Aa]\)parentessi\([ns]\)\([^[:alnum:]]\)/\1parentare\2\3/g
 s/\b\([Aa]\)parent\([io]\)\([^[:alnum:]]\)/\1parente\3/g
 s/\b\([Aa]\)parenti\([ns]\)\([^[:alnum:]]\)/\1parente\2\3/g
-# aplegar
-s/\b\([Aa]\)plegués\([^[:alnum:]]\)/\1plegara\2/g
-s/\b\([Aa]\)pleguéssi\([mu]\)\([^[:alnum:]]\)/\1plegàre\2\3/g
-s/\b\([Aa]\)pleguessi\([ns]\)\([^[:alnum:]]\)/\1plegare\2\3/g
-s/\b\([Aa]\)plegui\([ns]\|\)\([^[:alnum:]]\)/\1plegue\2\3/g
-s/\b\([Aa]\)plego\([^[:alnum:]]\)/\1plegue\2/g
+# apilar
+s/\b\([Aa]\)pilés\([^[:alnum:]]\)/\1pilara\2/g
+s/\b\([Aa]\)piléssi\([mu]\)\([^[:alnum:]]\)/\1pilàre\2\3/g
+s/\b\([Aa]\)pilessi\([ns]\)\([^[:alnum:]]\)/\1pilare\2\3/g
+s/\b\([Aa]\)pil\([io]\)\([^[:alnum:]]\)/\1pile\3/g
+s/\b\([Aa]\)pili\([ns]\)\([^[:alnum:]]\)/\1pile\2\3/g
 # aplicar
 s/\b\([Aa]\)pliqués\([^[:alnum:]]\)/\1plicara\2/g
 s/\b\([Aa]\)pliquéssi\([mu]\)\([^[:alnum:]]\)/\1plicàre\2\3/g
 s/\b\([Aa]\)pliquessi\([ns]\)\([^[:alnum:]]\)/\1plicare\2\3/g
 s/\b\([Aa]\)pliqui\([ns]\|\)\([^[:alnum:]]\)/\1plique\2\3/g
 s/\b\([Aa]\)plico\([^[:alnum:]]\)/\1plique\2/g
-# aportar
-s/\b\([Aa]\)portés\([^[:alnum:]]\)/\1portara\2/g
-s/\b\([Aa]\)portéssi\([mu]\)\([^[:alnum:]]\)/\1portàre\2\3/g
-s/\b\([Aa]\)portessi\([ns]\)\([^[:alnum:]]\)/\1portare\2\3/g
-s/\b\([Aa]\)port\([io]\)\([^[:alnum:]]\)/\1porte\3/g
-s/\b\([Aa]\)porti\([ns]\)\([^[:alnum:]]\)/\1porte\2\3/g
+# aprofundir
+# FIXME:
 # apropar -> acostar
 s/\b\([Aa]\)propa\(da\|des\|nt\|nts\|r\|rà\|ran\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/\1costa\2\3/g
 s/\b\([Aa]\)propés\([^[:alnum:]]\)/\1costara\2/g
@@ -909,6 +962,18 @@ s/\baquests\([^[:alnum:]]\)/estos\1/g
  	s/\baques&t\(a\|es\)\([^[:alnum:]]\)/es\&t\1\2/g
  	s/\baques&ts\([^[:alnum:]]\)/es\&tos\1/g
 s/\b\([Aa]\)quí\([^[:alnum:]]\)/\1cí\2/g
+# argumentar
+s/\b\([Aa]\)rgumentés\([^[:alnum:]]\)/\1rgumentara\2/g
+s/\b\([Aa]\)rgumentéssi\([mu]\)\([^[:alnum:]]\)/\1rgumentàre\2\3/g
+s/\b\([Aa]\)rgumentessi\([ns]\)\([^[:alnum:]]\)/\1rgumentare\2\3/g
+s/\b\([Aa]\)rgument\([io]\)\([^[:alnum:]]\)/\1rgumente\3/g
+s/\b\([Aa]\)rgumenti\([ns]\)\([^[:alnum:]]\)/\1rgumente\2\3/g
+# arreglar
+s/\b\([Aa]\)rreglés\([^[:alnum:]]\)/\1rreglara\2/g
+s/\b\([Aa]\)rregléssi\([mu]\)\([^[:alnum:]]\)/\1rreglàre\2\3/g
+s/\b\([Aa]\)rreglessi\([ns]\)\([^[:alnum:]]\)/\1rreglare\2\3/g
+s/\b\([Aa]\)rregl\([io]\)\([^[:alnum:]]\)/\1rregle\3/g
+s/\b\([Aa]\)rregli\([ns]\)\([^[:alnum:]]\)/\1rregle\2\3/g
 # arrencar -> arrancar
 s/\b\([Aa]\)rrenca\(da\|des\|nt\|nts\|r\|rà\|ran\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/\1rranca\2\3/g
 s/\b\([Aa]\)rrenqués\([^[:alnum:]]\)/\1rrencara\2/g
@@ -1119,8 +1184,20 @@ s/\b\([Aa]\)valuéssi\([mu]\)\([^[:alnum:]]\)/\1valuàre\2\3/g
 s/\b\([Aa]\)valuessi\([ns]\)\([^[:alnum:]]\)/\1valuare\2\3/g
 s/\b\([Aa]\)valu\([ïo]\)\([^[:alnum:]]\)/\1value\3/g
 s/\b\([Aa]\)valuï\([ns]\|\)\([^[:alnum:]]\)/\1value\2\3/g
-	s/\bReavalua\(r\|\)\([^[:alnum:]]\)/Torna a avaluar\2/g
-	s/\bReavalua\(r\|\)\([^[:alnum:]]\)/torna a avaluar\2/g
+	# reavaluar
+	s/\bReavalua\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Torna\1 a avaluar\2/g
+	s/\breavalua\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/torna\1 a avaluar\2/g
+		s/\bla reavaluació\([^[:alnum:]]\)/el tornar a avaluar\1/g
+	s/\bReavalués\([^[:alnum:]]\)/Tornara a avaluar\1/g
+	s/\breavalués\([^[:alnum:]]\)/tornara a avaluar\1/g
+	s/\bReavaluéssi\([mu]\)\([^[:alnum:]]\)/Tornàre\1 a avaluar\2/g
+	s/\breavaluéssi\([mu]\)\([^[:alnum:]]\)/tornàre\1 a avaluar\2/g
+	s/\bReavaluessi\([ns]\)\([^[:alnum:]]\)/Tornare\1 a avaluar\2/g
+	s/\breavaluessi\([ns]\)\([^[:alnum:]]\)/tornare\1 a avaluar\2/g
+	s/\bReavalu\([ïo]\)\([^[:alnum:]]\)/Torne a avaluar\2/g
+	s/\breavalu\([ïo]\)\([^[:alnum:]]\)/torne a avaluar\2/g
+	s/\bReavaluï\([ns]\)\([^[:alnum:]]\)/Torne\1 a avaluar\2/g
+	s/\breavaluï\([ns]\)\([^[:alnum:]]\)/torne\1 a avaluar\2/g
 s/\bAviat\([^[:alnum:]]\)/Prompte\1/g
 s/\baviat\([^[:alnum:]]\)/prompte\1/g
 # avançar
@@ -1162,6 +1239,12 @@ s/\b\([Bb]\)alancejo\([^[:alnum:]]\)/\1alancege\2/g
 s/\b\([Bb]\)arcelonès\([^[:alnum:]]\)/\1arcelonés\2/g
 	s/\b\([Ee]\)l Barcelonés\([^[:alnum:]]\)/\1l Barcelonès\2/g
 s/\b\([Bb]\)alinès\([^[:alnum:]]\)/\1alinés\2/g
+# barrejar
+s/\b\([Bb]\)arregés\([^[:alnum:]]\)/\1arrejara\2/g
+s/\b\([Bb]\)arregéssi\([mu]\)\([^[:alnum:]]\)/\1arrejàre\2\3/g
+s/\b\([Bb]\)arregessi\([ns]\)\([^[:alnum:]]\)/\1arrejare\2\3/g
+s/\b\([Bb]\)arregi\([ns]\|\)\([^[:alnum:]]\)/\1arrege\2\3/g
+s/\b\([Bb]\)arrejo\([^[:alnum:]]\)/\1arrege\2/g
 # besar
 	s/\bPetó\([^[:alnum:]]\)/Bes\1/g
 	s/\bpetó\([^[:alnum:]]\)/bes\1/g
@@ -1201,6 +1284,18 @@ s/\bBlat de moro\([^[:alnum:]]\)/Dacsa\1/g
 s/\bblat de moro\([^[:alnum:]]\)/dacsa\1/g
 s/\b\([Bb]\)omboll\(a\|es\)\([^[:alnum:]]\)/\1amboll\2\3/g
 s/\b\([Bb]\)oumerdès\([^[:alnum:]]\)/\1oumerdés\2/g
+# botar
+s/\b\([Bb]\)otés\([^[:alnum:]]\)/\1otara\2/g
+s/\b\([Bb]\)otéssi\([mu]\)\([^[:alnum:]]\)/\1otàre\2\3/g
+s/\b\([Bb]\)otessi\([ns]\)\([^[:alnum:]]\)/\1otare\2\3/g
+s/\b\([Bb]\)ot\([io]\)\([^[:alnum:]]\)/\1ote\3/g
+s/\b\([Bb]\)oti\([ns]\)\([^[:alnum:]]\)/\1ote\2\3/g
+# brotar
+s/\b\([Bb]\)rotés\([^[:alnum:]]\)/\1rotara\2/g
+s/\b\([Bb]\)rotéssi\([mu]\)\([^[:alnum:]]\)/\1rotàre\2\3/g
+s/\b\([Bb]\)rotessi\([ns]\)\([^[:alnum:]]\)/\1rotare\2\3/g
+s/\b\([Bb]\)rot\([io]\)\([^[:alnum:]]\)/\1rote\3/g
+s/\b\([Bb]\)roti\([ns]\)\([^[:alnum:]]\)/\1rote\2\3/g
 # buidar
 s/\b\([Bb]\)uidés\([^[:alnum:]]\)/\1uidara\2/g
 s/\b\([Bb]\)uidéssi\([mu]\)\([^[:alnum:]]\)/\1uidàre\2\3/g
@@ -1250,6 +1345,36 @@ s/\b\([Cc]\)alibréssi\([mu]\)\([^[:alnum:]]\)/\1alibràre\2\3/g
 s/\b\([Cc]\)alibressi\([ns]\)\([^[:alnum:]]\)/\1alibrare\2\3/g
 s/\b\([Cc]\)alibr\([io]\)\([^[:alnum:]]\)/\1alibre\3/g
 s/\b\([Cc]\)alibri\([ns]\)\([^[:alnum:]]\)/\1calibre\2\3/g
+# callar
+s/\b\([Cc]\)allés\([^[:alnum:]]\)/\1allara\2/g
+s/\b\([Cc]\)alléssi\([mu]\)\([^[:alnum:]]\)/\1allàre\2\3/g
+s/\b\([Cc]\)allessi\([ns]\)\([^[:alnum:]]\)/\1allare\2\3/g
+s/\b\([Cc]\)all\([io]\)\([^[:alnum:]]\)/\1alle\3/g
+s/\b\([Cc]\)alli\([ns]\)\([^[:alnum:]]\)/\1alle\2\3/g
+	# embolcallar
+	s/\b\([Ee]\)mbolcallés\([^[:alnum:]]\)/\1mbolcallara\2/g
+	s/\b\([Ee]\)mbolcalléssi\([mu]\)\([^[:alnum:]]\)/\1mbolcallàre\2\3/g
+	s/\b\([Ee]\)mbolcallessi\([ns]\)\([^[:alnum:]]\)/\1mbolcallare\2\3/g
+	s/\b\([Ee]\)mbolcall\([io]\)\([^[:alnum:]]\)/\1mbolcalle\3/g
+	s/\b\([Ee]\)mbolcalli\([ns]\)\([^[:alnum:]]\)/\1mbolcalle\2\3/g
+		# desembolcallar
+		s/\b\([Dd]\)esembolcallés\([^[:alnum:]]\)/\1esembolcallara\2/g
+		s/\b\([Dd]\)esembolcalléssi\([mu]\)\([^[:alnum:]]\)/\1esembolcallàre\2\3/g
+		s/\b\([Dd]\)esembolcallessi\([ns]\)\([^[:alnum:]]\)/\1esembolcallare\2\3/g
+		s/\b\([Dd]\)esembolcall\([io]\)\([^[:alnum:]]\)/\1esembolcalle\3/g
+		s/\b\([Dd]\)esembolcalli\([ns]\)\([^[:alnum:]]\)/\1esembolcalle\2\3/g
+	# encallar
+	s/\b\([Ee]\)ncallés\([^[:alnum:]]\)/\1ncallara\2/g
+	s/\b\([Ee]\)ncalléssi\([mu]\)\([^[:alnum:]]\)/\1ncallàre\2\3/g
+	s/\b\([Ee]\)ncallessi\([ns]\)\([^[:alnum:]]\)/\1ncallare\2\3/g
+	s/\b\([Ee]\)ncall\([io]\)\([^[:alnum:]]\)/\1ncalle\3/g
+	s/\b\([Ee]\)ncalli\([ns]\)\([^[:alnum:]]\)/\1ncalle\2\3/g
+		# desencallar
+		s/\b\([Dd]\)esencallés\([^[:alnum:]]\)/\1esencallara\2/g
+		s/\b\([Dd]\)esencalléssi\([mu]\)\([^[:alnum:]]\)/\1esencallàre\2\3/g
+		s/\b\([Dd]\)esencallessi\([ns]\)\([^[:alnum:]]\)/\1esencallare\2\3/g
+		s/\b\([Dd]\)esencall\([io]\)\([^[:alnum:]]\)/\1esencalle\3/g
+		s/\b\([Dd]\)esencalli\([ns]\)\([^[:alnum:]]\)/\1esencalle\2\3/g
 # caminar
 s/\b\([Cc]\)aminés\([^[:alnum:]]\)/\1aminara\2/g
 s/\b\([Cc]\)aminéssi\([mu]\)\([^[:alnum:]]\)/\1aminàre\2\3/g
@@ -1323,9 +1448,23 @@ s/\b\([Cc]\)arregui\([ns]\)\([^[:alnum:]]\)/\1arregue\2\3/g
 	s/\b\([Dd]\)escarreguessi\([ns]\)\([^[:alnum:]]\)/\1escarregare\2\3/g
 	s/\b\([Dd]\)escarreg\(ui\|o\)\([^[:alnum:]]\)/\1escarregue\3/g
 	s/\b\([Dd]\)escarregui\([ns]\)\([^[:alnum:]]\)/\1escarregue\2\3/g
+	# encarregar
+	s/\b\([Ee]\)ncarregués\([^[:alnum:]]\)/\1ncarregara\2/g
+	s/\b\([Ee]\)ncarreguéssi\([mu]\)\([^[:alnum:]]\)/\1ncarregàre\2\3/g
+	s/\b\([Ee]\)ncarreguessi\([ns]\)\([^[:alnum:]]\)/\1ncarregare\2\3/g
+	s/\b\([Ee]\)ncarreg\(ui\|o\)\([^[:alnum:]]\)/\1ncarregue\3/g
+	s/\b\([Ee]\)ncarregui\([ns]\)\([^[:alnum:]]\)/\1ncarregue\2\3/g
+	# precarregar
+	# TODO: no
+	s/\b\([Pp]\)recarregués\([^[:alnum:]]\)/\1recarregara\2/g
+	s/\b\([Pp]\)recarreguéssi\([mu]\)\([^[:alnum:]]\)/\1recarregàre\2\3/g
+	s/\b\([Pp]\)recarreguessi\([ns]\)\([^[:alnum:]]\)/\1recarregare\2\3/g
+	s/\b\([Pp]\)recarreg\(ui\|o\)\([^[:alnum:]]\)/\1recarregue\3/g
+	s/\b\([Pp]\)recarregui\([ns]\)\([^[:alnum:]]\)/\1recarregue\2\3/g
 	# recarregar
-	s/\bRecarrega\(r\|\)\([^[:alnum:]]\)/Torna\1 a carregar\2/g
-	s/\brecarrega\(r\|\)\([^[:alnum:]]\)/torna\1 a carregar\2/g
+		s/\bcontinuar recarregant\([^[:alnum:]]\)/continuar carregant\1/g
+	s/\bRecarrega\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Torna\1 a carregar\2/g
+	s/\brecarrega\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/torna\1 a carregar\2/g
 	s/\bRecarreg\(ui\|o]\)\([^[:alnum:]]\)/Torne a carregar\2/g
 	s/\brecarreg\(ui\|o]\)\([^[:alnum:]]\)/torne a carregar\2/g
 	s/\bRecarregués\([^[:alnum:]]\)/Tornara a carregar\1/g
@@ -1334,8 +1473,16 @@ s/\b\([Cc]\)arregui\([ns]\)\([^[:alnum:]]\)/\1arregue\2\3/g
 	s/\brecarreguéssi\([mu]\)\([^[:alnum:]]\)/tornàre\1 a carregar\2/g
 	s/\bRecarreguessi\([ns]\)\([^[:alnum:]]\)/Tornare\1 a carregar\2/g
 	s/\brecarreguessi\([ns]\)\([^[:alnum:]]\)/tornare\1 a carregar\2/g
+	s/\bRecarregueu\([^[:alnum:]]\)/Torneu a carregar\1/g
+	s/\brecarregueu\([^[:alnum:]]\)/torneu a carregar\1/g
 	s/\bRecarregui\([ns]\)\([^[:alnum:]]\)/Torne\1 a carregar\2/g
 	s/\brecarregui\([ns]\)\([^[:alnum:]]\)/torne\1 a carregar\2/g
+	# sobrecarregar
+	s/\b\([Ss]\)obrecarregués\([^[:alnum:]]\)/\1obrecarregara\2/g
+	s/\b\([Ss]\)obrecarreguéssi\([mu]\)\([^[:alnum:]]\)/\1obrecarregàre\2\3/g
+	s/\b\([Ss]\)obrecarreguessi\([ns]\)\([^[:alnum:]]\)/\1obrecarregare\2\3/g
+	s/\b\([Ss]\)obrecarreg\(ui\|o\)\([^[:alnum:]]\)/\1obrecarregue\3/g
+	s/\b\([Ss]\)obrecarregui\([ns]\)\([^[:alnum:]]\)/\1obrecarregue\2\3/g
 # casar
 s/\b\([Cc]\)asés\([^[:alnum:]]\)/\1asara\2/g
 s/\b\([Cc]\)aséssi\([mu]\)\([^[:alnum:]]\)/\1asàre\2\3/g
@@ -1418,6 +1565,12 @@ s/\bCercapersones\([^[:alnum:]]\)/Buscapersones\1/g
 s/\bcercapersones\([^[:alnum:]]\)/buscapersones\1/g
 	s/\bRessaltatDeCerca\([^[:alnum:]]\)/RessaltatDeBusca\1/g
 	s/\btext_\(a\|on\)_cercar\([^[:alnum:]]\)/text_\1_buscar\2/g
+# cimentar
+s/\b\([Cc]\)imentés\([^[:alnum:]]\)/\1imentara\2/g
+s/\b\([Cc]\)imentéssi\([mu]\)\([^[:alnum:]]\)/\1imentàre\2\3/g
+s/\b\([Cc]\)imentessi\([ns]\)\([^[:alnum:]]\)/\1imentare\2\3/g
+s/\b\([Cc]\)iment\([io]\)\([^[:alnum:]]\)/\1imente\3/g
+s/\b\([Cc]\)imenti\([ns]\)\([^[:alnum:]]\)/\1imente\2\3/g
 # circular
 s/\b\([Cc]\)irculés\([^[:alnum:]]\)/\1irculara\2/g
 s/\b\([Cc]\)irculéssi\([mu]\)\([^[:alnum:]]\)/\1irculàre\2\3/g
@@ -1444,22 +1597,6 @@ s/\b\([Cc]\)lusteritzéssi\([mu]\)\([^[:alnum:]]\)/\1lusteritzàre\2\3/g
 s/\b\([Cc]\)lusteritzessi\([ns]\)\([^[:alnum:]]\)/\1lusteritzare\2\3/g
 s/\b\([Cc]\)lusteritz\([io]\)\([^[:alnum:]]\)/\1lusteritze\3/g
 s/\b\([Cc]\)lusteritzi\([ns]\)\([^[:alnum:]]\)/\1lusteritze\2\3/g
-# cobrir
-s/\b\([Cc]\)obreix\(en\|es\|\)\([^[:alnum:]]\)/\1obrix\2\3/g
-s/\b\([Cc]\)obreixi\([^[:alnum:]]\)/\1obrisca\2/g
-s/\b\([Cc]\)obreixi\([ns]\)\([^[:alnum:]]\)/\1obrisque\2\3/g
-s/\b\([Cc]\)obreixo\([^[:alnum:]]\)/\1obrisc\2/g
-s/\b\([Cc]\)obrís\([^[:alnum:]]\)/\1obrira\2/g
-s/\b\([Cc]\)obríssi\([mu]\)\([^[:alnum:]]\)/\1obríre\2\3/g
-s/\b\([Cc]\)obrissi\([ns]\)\([^[:alnum:]]\)/\1obrire\2\3/g
-	# descobrir
-	s/\b\([Dd]\)escobreix\(en\|es\|\)\([^[:alnum:]]\)/\1escobrix\2\3/g
-	s/\b\([Dd]\)escobreixi\([^[:alnum:]]\)/\1escobrisca\2/g
-	s/\b\([Dd]\)escobreixi\([ns]\)\([^[:alnum:]]\)/\1escobrisque\2\3/g
-	s/\b\([Dd]\)escobreixo\([^[:alnum:]]\)/\1escobrisc\2/g
-	s/\b\([Dd]\)escobrís\([^[:alnum:]]\)/\1escobrira\2/g
-	s/\b\([Dd]\)escobríssi\([mu]\)\([^[:alnum:]]\)/\1escobríre\2\3/g
-	s/\b\([Dd]\)escobrissi\([ns]\)\([^[:alnum:]]\)/\1escobrire\2\3/g
 # codificar
 s/\b\([Cc]\)odifico\([^[:alnum:]]\)/\1odifique\2/g
 s/\b\([Cc]\)odifiqués\([^[:alnum:]]\)/\1odificara\2/g
@@ -1548,12 +1685,6 @@ s/\b\([Cc]\)ullo\([^[:alnum:]]\)/\1ull\2/g
 s/\b\([Cc]\)ollís\([^[:alnum:]]\)/\1ollira\2/g
 s/\b\([Cc]\)ollíssi\([mu]\)\([^[:alnum:]]\)/\1ollíre\2\3/g
 s/\b\([Cc]\)ollissi\([ns]\)\([^[:alnum:]]\)/\1ollire\2\3/g
-	# arreplegar
-	s/\b\([Aa]\)rreplego\([^[:alnum:]]\)/\1rreplegue\2/g
-	s/\b\([Aa]\)rreplegués\([^[:alnum:]]\)/\1rreplegara\2/g
-	s/\b\([Aa]\)rrepleguéssi\([mu]\)\([^[:alnum:]]\)/\1rreplegàre\2\3/g
-	s/\b\([Aa]\)rrepleguessi\([ns]\)\([^[:alnum:]]\)/\1rreplegare\2\3/g
-	s/\b\([Aa]\)rreplegui\([ns]\|\)\([^[:alnum:]]\)/\1rreplegue\2\3/g
 	# recollir -> arreplegar
 	s/\bRecolli\(da\|des\|nt\|r\|rà\|ran\|rem\|t\|ts\)\([^[:alnum:]]\)/Arreplega\1\2/g
 	s/\brecolli\(da\|des\|nt\|r\|rà\|ran\|rem\|t\|ts\)\([^[:alnum:]]\)/arreplega\1\2/g
@@ -1607,6 +1738,19 @@ s/\b\([Cc]\)omencessi\([ns]\)\([^[:alnum:]]\)/\1omençare\2\3/g
 s/\b\([Cc]\)omenci\([^[:alnum:]]\)/\1omence\2/g
 s/\b\([Cc]\)omenci\([ns]\)\([^[:alnum:]]\)/\1omence\2\3/g
 s/\b\([Cc]\)omenço\([^[:alnum:]]\)/\1omence\2/g
+# comentar
+s/\b\([Cc]\)omentés\([^[:alnum:]]\)/\1omentara\2/g
+s/\b\([Cc]\)omentéssi\([mu]\)\([^[:alnum:]]\)/\1omentàre\2\3/g
+s/\b\([Cc]\)omentessi\([ns]\)\([^[:alnum:]]\)/\1omentare\2\3/g
+s/\b\([Cc]\)oment\([io]\)\([^[:alnum:]]\)/\1omente\3/g
+s/\b\([Cc]\)omenti\([ns]\)\([^[:alnum:]]\)/\1omente\2\3/g
+	# descomentar
+	# TODO: no
+	s/\b\([Dd]\)escomentés\([^[:alnum:]]\)/\1escomentara\2/g
+	s/\b\([Dd]\)escomentéssi\([mu]\)\([^[:alnum:]]\)/\1escomentàre\2\3/g
+	s/\b\([Dd]\)escomentessi\([ns]\)\([^[:alnum:]]\)/\1escomentare\2\3/g
+	s/\b\([Dd]\)escoment\([io]\)\([^[:alnum:]]\)/\1escomente\3/g
+	s/\b\([Dd]\)escomenti\([ns]\)\([^[:alnum:]]\)/\1escomente\2\3/g
 # cometre
 s/\b\([Cc]\)omès\([^[:alnum:]]\)/\1omés\2/g
 s/\b\([Cc]\)ometés\([^[:alnum:]]\)/\1ometera\2/g
@@ -1635,6 +1779,12 @@ s/\b\([Cc]\)omparéssi\([mu]\)\([^[:alnum:]]\)/\1omparàre\2\3/g
 s/\b\([Cc]\)omparessi\([ns]\)\([^[:alnum:]]\)/\1omparare\2\3/g
 s/\b\([Cc]\)ompar\([io]\)\([^[:alnum:]]\)/\1ompare\3/g
 s/\b\([Cc]\)ompari\([ns]\)\([^[:alnum:]]\)/\1ompare\2\3/g
+# compartimentar
+s/\b\([Cc]\)ompartimentés\([^[:alnum:]]\)/\1ompartimentara\2/g
+s/\b\([Cc]\)ompartimentéssi\([mu]\)\([^[:alnum:]]\)/\1ompartimentàre\2\3/g
+s/\b\([Cc]\)ompartimentessi\([ns]\)\([^[:alnum:]]\)/\1ompartimentare\2\3/g
+s/\b\([Cc]\)ompartiment\([io]\)\([^[:alnum:]]\)/\1ompartimente\3/g
+s/\b\([Cc]\)ompartimenti\([ns]\)\([^[:alnum:]]\)/\1ompartimente\2\3/g
 # compartir
 s/\b\([Cc]\)omparteix\(en\|es\|\)\([^[:alnum:]]\)/\1ompartix\2\3/g
 s/\b\([Cc]\)omparteixi\([^[:alnum:]]\)/\1ompartisca\2/g
@@ -1655,6 +1805,18 @@ s/\b\([Cc]\)ompenséssi\([mu]\)\([^[:alnum:]]\)/\1ompensàre\2\3/g
 s/\b\([Cc]\)ompensessi\([ns]\)\([^[:alnum:]]\)/\1ompensare\2\3/g
 s/\b\([Cc]\)ompens\([io]\)\([^[:alnum:]]\)/\1ompense\3/g
 s/\b\([Cc]\)ompensi\([ns]\)\([^[:alnum:]]\)/\1ompense\2\3/g
+	# descompensar
+	s/\b\([Dd]\)escompensés\([^[:alnum:]]\)/\1escompensara\2/g
+	s/\b\([Dd]\)escompenséssi\([mu]\)\([^[:alnum:]]\)/\1escompensàre\2\3/g
+	s/\b\([Dd]\)escompensessi\([ns]\)\([^[:alnum:]]\)/\1escompensare\2\3/g
+	s/\b\([Dd]\)escompens\([io]\)\([^[:alnum:]]\)/\1escompense\3/g
+	s/\b\([Dd]\)escompensi\([ns]\)\([^[:alnum:]]\)/\1escompense\2\3/g
+	# recompensar
+	s/\b\([Rr]\)ecompensés\([^[:alnum:]]\)/\1ecompensara\2/g
+	s/\b\([Rr]\)ecompenséssi\([mu]\)\([^[:alnum:]]\)/\1ecompensàre\2\3/g
+	s/\b\([Rr]\)ecompensessi\([ns]\)\([^[:alnum:]]\)/\1ecompensare\2\3/g
+	s/\b\([Rr]\)ecompens\([io]\)\([^[:alnum:]]\)/\1ecompense\3/g
+	s/\b\([Rr]\)ecompensi\([ns]\)\([^[:alnum:]]\)/\1ecompense\2\3/g
 # compilar
 s/\b\([Cc]\)ompilés\([^[:alnum:]]\)/\1ompilara\2/g
 s/\b\([Cc]\)ompiléssi\([mu]\)\([^[:alnum:]]\)/\1ompilàre\2\3/g
@@ -1668,12 +1830,24 @@ s/\b\([Cc]\)ompili\([ns]\)\([^[:alnum:]]\)/\1ompile\2\3/g
 	s/\b\([Rr]\)ecompilessi\([ns]\)\([^[:alnum:]]\)/\1ecompilare\2\3/g
 	s/\b\([Rr]\)ecompil\([io]\)\([^[:alnum:]]\)/\1ecompile\3/g
 	s/\b\([Rr]\)ecompili\([ns]\)\([^[:alnum:]]\)/\1ecompile\2\3/g
+# complementar
+s/\b\([Cc]\)omplementés\([^[:alnum:]]\)/\1omplementara\2/g
+s/\b\([Cc]\)omplementéssi\([mu]\)\([^[:alnum:]]\)/\1omplementàre\2\3/g
+s/\b\([Cc]\)omplementessi\([ns]\)\([^[:alnum:]]\)/\1omplementare\2\3/g
+s/\b\([Cc]\)omplement\([io]\)\([^[:alnum:]]\)/\1omplemente\3/g
+s/\b\([Cc]\)omplementi\([ns]\)\([^[:alnum:]]\)/\1omplemente\2\3/g
 # completar
 s/\b\([Cc]\)ompletés\([^[:alnum:]]\)/\1ompletara\2/g
 s/\b\([Cc]\)ompletéssi\([mu]\)\([^[:alnum:]]\)/\1ompletàre\2\3/g
 s/\b\([Cc]\)ompletessi\([ns]\)\([^[:alnum:]]\)/\1ompletare\2\3/g
 s/\b\([Cc]\)omplet\([io]\)\([^[:alnum:]]\)/\1omplete\3/g
 s/\b\([Cc]\)ompleti\([ns]\)\([^[:alnum:]]\)/\1omplete\2\3/g
+# complimentar
+s/\b\([Cc]\)omplimentés\([^[:alnum:]]\)/\1omplimentara\2/g
+s/\b\([Cc]\)omplimentéssi\([mu]\)\([^[:alnum:]]\)/\1omplimentàre\2\3/g
+s/\b\([Cc]\)omplimentessi\([ns]\)\([^[:alnum:]]\)/\1omplimentare\2\3/g
+s/\b\([Cc]\)ompliment\([io]\)\([^[:alnum:]]\)/\1omplimente\3/g
+s/\b\([Cc]\)omplimenti\([ns]\)\([^[:alnum:]]\)/\1omplimente\2\3/g
 # complir
 s/\b\([Cc]\)ompleix\(en\|es\|\)\([^[:alnum:]]\)/\1omplix\2\3/g
 s/\b\([Cc]\)ompleixi\([^[:alnum:]]\)/\1omplisca\2/g
@@ -1690,12 +1864,32 @@ s/\b\([Cc]\)omplissi\([ns]\)\([^[:alnum:]]\)/\1omplire\2\3/g
 	s/\b\([Aa]\)complís\([^[:alnum:]]\)/\1complira\2/g
 	s/\b\([Aa]\)complíssi\([mu]\)\([^[:alnum:]]\)/\1complíre\2\3/g
 	s/\b\([Aa]\)complissi\([ns]\)\([^[:alnum:]]\)/\1complire\2\3/g
+	# incomplir
+	s/\b\([Ii]\)ncompleix\(en\|es\|\)\([^[:alnum:]]\)/\1ncomplix\2\3/g
+	s/\b\([Ii]\)ncompleixi\([^[:alnum:]]\)/\1ncomplisca\2/g
+	s/\b\([Ii]\)ncompleixi\([ns]\)\([^[:alnum:]]\)/\1ncomplisque\2\3/g
+	s/\b\([Ii]\)ncompleixo\([^[:alnum:]]\)/\1ncomplisc\2/g
+	s/\b\([Ii]\)ncomplís\([^[:alnum:]]\)/\1ncomplira\2/g
+	s/\b\([Ii]\)ncomplíssi\([mu]\)\([^[:alnum:]]\)/\1ncomplíre\2\3/g
+	s/\b\([Ii]\)ncomplissi\([ns]\)\([^[:alnum:]]\)/\1ncomplire\2\3/g
 # compondre
 s/\b\([Cc]\)ompongués\([^[:alnum:]]\)/\1omponguera\2/g
 s/\b\([Cc]\)omponguéssi\([mu]\)\([^[:alnum:]]\)/\1omponguére\2\3/g
 s/\b\([Cc]\)omponguessi\([ns]\)\([^[:alnum:]]\)/\1omponguere\2\3/g
 s/\b\([Cc]\)ompongui\([^[:alnum:]]\)/\1omponga\2/g
 s/\b\([Cc]\)ompongui\([ns]\)\([^[:alnum:]]\)/\1ompongue\2\3/g
+	# descompondre
+	s/\b\([Dd]\)escompongués\([^[:alnum:]]\)/\1escomponguera\2/g
+	s/\b\([Dd]\)escomponguéssi\([mu]\)\([^[:alnum:]]\)/\1escomponguére\2\3/g
+	s/\b\([Dd]\)escomponguessi\([ns]\)\([^[:alnum:]]\)/\1escomponguere\2\3/g
+	s/\b\([Dd]\)escompongui\([^[:alnum:]]\)/\1escomponga\2/g
+	s/\b\([Dd]\)escompongui\([ns]\)\([^[:alnum:]]\)/\1escompongue\2\3/g
+	# recompondre
+	s/\b\([Rr]\)ecompongués\([^[:alnum:]]\)/\1ecomponguera\2/g
+	s/\b\([Rr]\)ecomponguéssi\([mu]\)\([^[:alnum:]]\)/\1ecomponguére\2\3/g
+	s/\b\([Rr]\)ecomponguessi\([ns]\)\([^[:alnum:]]\)/\1ecomponguere\2\3/g
+	s/\b\([Rr]\)ecompongui\([^[:alnum:]]\)/\1ecomponga\2/g
+	s/\b\([Rr]\)ecompongui\([ns]\)\([^[:alnum:]]\)/\1ecompongue\2\3/g
 # comprimir
 s/\b\([Cc]\)omprimeix\(en\|es\|\)\([^[:alnum:]]\)/\1omprimix\2\3/g
 s/\b\([Cc]\)omprimeixi\([^[:alnum:]]\)/\1omprimisca\2/g
@@ -1712,12 +1906,6 @@ s/\b\([Cc]\)omprimissi\([ns]\)\([^[:alnum:]]\)/\1omprimire\2\3/g
 	s/\b\([Dd]\)escomprimís\([^[:alnum:]]\)/\1escomprimira\2/g
 	s/\b\([Dd]\)escomprimíssi\([mu]\)\([^[:alnum:]]\)/\1escomprimíre\2\3/g
 	s/\b\([Dd]\)escomprimissi\([ns]\)\([^[:alnum:]]\)/\1escomprimire\2\3/g
-# comprovar
-s/\b\([Cc]\)omprovés\([^[:alnum:]]\)/\1omprovara\2/g
-s/\b\([Cc]\)omprovéssi\([mu]\)\([^[:alnum:]]\)/\1omprovàre\2\3/g
-s/\b\([Cc]\)omprovessi\([ns]\)\([^[:alnum:]]\)/\1omprovare\2\3/g
-s/\b\([Cc]\)omprov\([io]\)\([^[:alnum:]]\)/\1omprove\3/g
-s/\b\([Cc]\)omprovi\([ns]\)\([^[:alnum:]]\)/\1omprove\2\3/g
 # comptar
 s/\b\([Cc]\)omptés\([^[:alnum:]]\)/\1omptara\2/g
 s/\b\([Cc]\)omptéssi\([mu]\)\([^[:alnum:]]\)/\1omptàre\2\3/g
@@ -1739,19 +1927,49 @@ s/\b\([Cc]\)ompti\([ns]\)\([^[:alnum:]]\)/\1ompte\2\3/g
 	s/\b\([Cc]\)ontabilitzessi\([ns]\)\([^[:alnum:]]\)/\1omptabilitzare\2\3/g
 	s/\b\([Cc]\)ontabilitz\([io]\)\([^[:alnum:]]\)/\1omptabilitze\3/g
 	s/\b\([Cc]\)ontabilitzi\([ns]\)\([^[:alnum:]]\)/\1omptabilitz\2\3/g
+	# descomptar
+	s/\b\([Dd]\)escomptés\([^[:alnum:]]\)/\1escomptara\2/g
+	s/\b\([Dd]\)escomptéssi\([mu]\)\([^[:alnum:]]\)/\1escomptàre\2\3/g
+	s/\b\([Dd]\)escomptessi\([ns]\)\([^[:alnum:]]\)/\1escomptare\2\3/g
+	s/\b\([Dd]\)escompt\([io]\)\([^[:alnum:]]\)/\1escompte\3/g
+	s/\b\([Dd]\)escompti\([ns]\)\([^[:alnum:]]\)/\1escompte\2\3/g
+	# recomptar
+	s/\b\([Rr]\)ecomptés\([^[:alnum:]]\)/\1ecomptara\2/g
+	s/\b\([Rr]\)ecomptéssi\([mu]\)\([^[:alnum:]]\)/\1ecomptàre\2\3/g
+	s/\b\([Rr]\)ecomptessi\([ns]\)\([^[:alnum:]]\)/\1ecomptare\2\3/g
+	s/\b\([Rr]\)ecompt\([io]\)\([^[:alnum:]]\)/\1ecompte\3/g
+	s/\b\([Rr]\)ecompti\([ns]\)\([^[:alnum:]]\)/\1ecompte\2\3/g
 # comunicar
 s/\b\([Cc]\)omuniqués\([^[:alnum:]]\)/\1omunicara\2/g
 s/\b\([Cc]\)omuniquéssi\([mu]\)\([^[:alnum:]]\)/\1omunicàre\2\3/g
 s/\b\([Cc]\)omuniquessi\([ns]\)\([^[:alnum:]]\)/\1omunicare\2\3/g
 s/\b\([Cc]\)omuniqui\([ns]\|\)\([^[:alnum:]]\)/\1omunique\2\3/g
 s/\b\([Cc]\)omunico\([^[:alnum:]]\)/\1omunique\2/g
+	# incomunicar
+	s/\b\([Ii]\)ncomuniqués\([^[:alnum:]]\)/\1ncomunicara\2/g
+	s/\b\([Ii]\)ncomuniquéssi\([mu]\)\([^[:alnum:]]\)/\1ncomunicàre\2\3/g
+	s/\b\([Ii]\)ncomuniquessi\([ns]\)\([^[:alnum:]]\)/\1ncomunicare\2\3/g
+	s/\b\([Ii]\)ncomuniqui\([ns]\|\)\([^[:alnum:]]\)/\1ncomunique\2\3/g
+	s/\b\([Ii]\)ncomunico\([^[:alnum:]]\)/\1ncomunique\2/g
 # conciliar
 s/\b\([Cc]\)onciliés\([^[:alnum:]]\)/\1onciliara\2/g
 s/\b\([Cc]\)onciliéssi\([mu]\)\([^[:alnum:]]\)/\1onciliàre\2\3/g
 s/\b\([Cc]\)onciliessi\([ns]\)\([^[:alnum:]]\)/\1onciliare\2\3/g
 s/\b\([Cc]\)oncili\([ïo]\)\([^[:alnum:]]\)/\1oncilie\3/g
 s/\b\([Cc]\)onciliï\([ns]\)\([^[:alnum:]]\)/\1oncilie\2\3/g
+	# reconciliar
+	s/\b\([Rr]\)econciliés\([^[:alnum:]]\)/\1econciliara\2/g
+	s/\b\([Rr]\)econciliéssi\([mu]\)\([^[:alnum:]]\)/\1econciliàre\2\3/g
+	s/\b\([Rr]\)econciliessi\([ns]\)\([^[:alnum:]]\)/\1econciliare\2\3/g
+	s/\b\([Rr]\)econcili\([ïo]\)\([^[:alnum:]]\)/\1econcilie\3/g
+	s/\b\([Rr]\)econciliï\([ns]\)\([^[:alnum:]]\)/\1econcilie\2\3/g
 s/\b\([Cc]\)ongolès\([^[:alnum:]]\)/\1ongolés\2/g
+# condimentar
+s/\b\([Cc]\)ondimentés\([^[:alnum:]]\)/\1ondimentara\2/g
+s/\b\([Cc]\)ondimentéssi\([mu]\)\([^[:alnum:]]\)/\1ondimentàre\2\3/g
+s/\b\([Cc]\)ondimentessi\([ns]\)\([^[:alnum:]]\)/\1ondimentare\2\3/g
+s/\b\([Cc]\)ondiment\([io]\)\([^[:alnum:]]\)/\1ondimente\3/g
+s/\b\([Cc]\)ondimenti\([ns]\)\([^[:alnum:]]\)/\1ondimente\2\3/g
 # conduir
 s/\b\([Cc]\)ondueix\(en\|es\|\)\([^[:alnum:]]\)/\1onduïx\2\3/g
 s/\b\([Cc]\)ondueixi\([^[:alnum:]]\)/\1onduïsca\2/g
@@ -1806,18 +2024,6 @@ s/\b\([Cc]\)onfiguri\([ns]\)\([^[:alnum:]]\)/\1onfigure\2\3/g
 	s/\b\([Dd]\)esconfiguressi\([ns]\)\([^[:alnum:]]\)/\1esconfigurare\2\3/g
 	s/\b\([Dd]\)esconfigur\([io]\)\([^[:alnum:]]\)/\1esconfigure\3/g
 	s/\b\([Dd]\)esconfiguri\([ns]\)\([^[:alnum:]]\)/\1esconfigure\2\3/g
-# confirmar
-s/\b\([Cc]\)onfirmés\([^[:alnum:]]\)/\1onfirmara\2/g
-s/\b\([Cc]\)onfirméssi\([mu]\)\([^[:alnum:]]\)/\1onfirmàre\2\3/g
-s/\b\([Cc]\)onfirmessi\([ns]\)\([^[:alnum:]]\)/\1onfirmare\2\3/g
-s/\b\([Cc]\)onfirm\([io]\)\([^[:alnum:]]\)/\1onfirme\3/g
-s/\b\([Cc]\)onfirmi\([ns]\)\([^[:alnum:]]\)/\1onfirme\2\3/g
-# conformar
-s/\b\([Cc]\)onformés\([^[:alnum:]]\)/\1onformara\2/g
-s/\b\([Cc]\)onforméssi\([mu]\)\([^[:alnum:]]\)/\1onformàre\2\3/g
-s/\b\([Cc]\)onformessi\([ns]\)\([^[:alnum:]]\)/\1onformare\2\3/g
-s/\b\([Cc]\)onform\([io]\)\([^[:alnum:]]\)/\1onforme\3/g
-s/\b\([Cc]\)onformi\([ns]\)\([^[:alnum:]]\)/\1onforme\2\3/g
 # connectar
 s/\b\([Cc]\)onnectés\([^[:alnum:]]\)/\1onnectara\2/g
 s/\b\([Cc]\)onnectéssi\([mu]\)\([^[:alnum:]]\)/\1onnectàre\2\3/g
@@ -1830,6 +2036,21 @@ s/\b\([Cc]\)onnecti\([ns]\)\([^[:alnum:]]\)/\1onnecte\2\3/g
 	s/\b\([Dd]\)esconnectessi\([ns]\)\([^[:alnum:]]\)/\1esconnectare\2\3/g
 	s/\b\([Dd]\)esconnect\([io]\)\([^[:alnum:]]\)/\1esconnecte\3/g
 	s/\b\([Dd]\)esconnecti\([ns]\)\([^[:alnum:]]\)/\1esconnecte\2\3/g
+	# reconnectar
+	# TODO: no
+		s/\breconnectar-se\([^[:alnum:]]\)/tornar-se a connectar\1/g
+	s/\bReconnecta\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Torna\1 a connectar\2/g
+	s/\breconnecta\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/torna\1 a connectar\2/g
+	s/\bReconnectés\([^[:alnum:]]\)/Tornara a connectar\1/g
+	s/\breconnectés\([^[:alnum:]]\)/tornara a connectar\1/g
+	s/\bReconnectéssi\([mu]\)\([^[:alnum:]]\)/Tornàre\1 a connectar\2/g
+	s/\breconnectéssi\([mu]\)\([^[:alnum:]]\)/tornàre\1 a connectar\2/g
+	s/\bReconnectessi\([ns]\)\([^[:alnum:]]\)/Tornare\1 a connectar\2/g
+	s/\breconnectessi\([ns]\)\([^[:alnum:]]\)/tornare\1 a connectar\2/g
+	s/\bReconnect\(i\|o]\)\([^[:alnum:]]\)/Torne a connectar\2/g
+	s/\breconnect\(i\|o]\)\([^[:alnum:]]\)/torne a connectar\2/g
+	s/\bReconnecti\([ns]\)\([^[:alnum:]]\)/Torne\1 a connectar\2/g
+	s/\breconnecti\([ns]\)\([^[:alnum:]]\)/torne\1 a connectar\2/g
 # confeccionar
 s/\b\([Cc]\)onfeccionés\([^[:alnum:]]\)/\1onfeccionara\2/g
 s/\b\([Cc]\)onfeccionéssi\([mu]\)\([^[:alnum:]]\)/\1onfeccionàre\2\3/g
@@ -1852,6 +2073,24 @@ s/\b\([Cc]\)onquerissi\([ns]\)\([^[:alnum:]]\)/\1onquerire\2\3/g
 	s/\b\([Rr]\)econquerís\([^[:alnum:]]\)/\1econquerira\2/g
 	s/\b\([Rr]\)econqueríssi\([mu]\)\([^[:alnum:]]\)/\1econqueríre\2\3/g
 	s/\b\([Rr]\)econquerissi\([ns]\)\([^[:alnum:]]\)/\1econquerire\2\3/g
+# considerar
+s/\b\([Cc]\)onsiderés\([^[:alnum:]]\)/\1onsiderara\2/g
+s/\b\([Cc]\)onsideréssi\([mu]\)\([^[:alnum:]]\)/\1onsideràre\2\3/g
+s/\b\([Cc]\)onsideressi\([ns]\)\([^[:alnum:]]\)/\1onsiderare\2\3/g
+s/\b\([Cc]\)onsider\([io]\)\([^[:alnum:]]\)/\1onsidere\3/g
+s/\b\([Cc]\)onsideri\([ns]\)\([^[:alnum:]]\)/\1onsidere\2\3/g
+	# desconsiderar
+	s/\b\([Dd]\)esconsiderés\([^[:alnum:]]\)/\1esconsiderara\2/g
+	s/\b\([Dd]\)esconsideréssi\([mu]\)\([^[:alnum:]]\)/\1esconsideràre\2\3/g
+	s/\b\([Dd]\)esconsideressi\([ns]\)\([^[:alnum:]]\)/\1esconsiderare\2\3/g
+	s/\b\([Dd]\)esconsider\([io]\)\([^[:alnum:]]\)/\1esconsidere\3/g
+	s/\b\([Dd]\)esconsideri\([ns]\)\([^[:alnum:]]\)/\1esconsidere\2\3/g
+	# reconsiderar
+	s/\b\([Rr]\)econsiderés\([^[:alnum:]]\)/\1econsiderara\2/g
+	s/\b\([Rr]\)econsideréssi\([mu]\)\([^[:alnum:]]\)/\1econsideràre\2\3/g
+	s/\b\([Rr]\)econsideressi\([ns]\)\([^[:alnum:]]\)/\1econsiderare\2\3/g
+	s/\b\([Rr]\)econsider\([io]\)\([^[:alnum:]]\)/\1econsidere\3/g
+	s/\b\([Rr]\)econsideri\([ns]\)\([^[:alnum:]]\)/\1econsidere\2\3/g
 # consistir
 s/\b\([Cc]\)onsisteix\(en\|es\|\)\([^[:alnum:]]\)/\1onsistix\2\3/g
 s/\b\([Cc]\)onsisteixi\([^[:alnum:]]\)/\1onsistisca\2/g
@@ -1868,6 +2107,14 @@ s/\b\([Cc]\)onstitueixo\([^[:alnum:]]\)/\1onstituïsc\2/g
 s/\b\([Cc]\)onstituís\([^[:alnum:]]\)/\1onstituïra\2/g
 s/\b\([Cc]\)onstituíssi\([mu]\)\([^[:alnum:]]\)/\1onstituíre\2\3/g
 s/\b\([Cc]\)onstituïssi\([ns]\)\([^[:alnum:]]\)/\1onstituïre\2\3/g
+	# reconstituir
+	s/\b\([Rr]\)econstitueix\(en\|es\|\)\([^[:alnum:]]\)/\1econstituïx\2\3/g
+	s/\b\([Rr]\)econstitueixi\([^[:alnum:]]\)/\1econstituïsca\2/g
+	s/\b\([Rr]\)econstitueixi\([ns]\)\([^[:alnum:]]\)/\1econstituïsque\2\3/g
+	s/\b\([Rr]\)econstitueixo\([^[:alnum:]]\)/\1econstituïsc\2/g
+	s/\b\([Rr]\)econstituís\([^[:alnum:]]\)/\1econstituïra\2/g
+	s/\b\([Rr]\)econstituíssi\([mu]\)\([^[:alnum:]]\)/\1econstituíre\2\3/g
+	s/\b\([Rr]\)econstituïssi\([ns]\)\([^[:alnum:]]\)/\1econstituïre\2\3/g
 # construir
 s/\b\([Cc]\)onstrueix\(en\|es\|\)\([^[:alnum:]]\)/\1onstruïx\2\3/g
 s/\b\([Cc]\)onstrueixi\([^[:alnum:]]\)/\1onstruïsca\2/g
@@ -1877,14 +2124,14 @@ s/\b\([Cc]\)onstruís\([^[:alnum:]]\)/\1onstruïra\2/g
 s/\b\([Cc]\)onstruíssi\([mu]\)\([^[:alnum:]]\)/\1onstruíre\2\3/g
 s/\b\([Cc]\)onstruïssi\([ns]\)\([^[:alnum:]]\)/\1onstruïre\2\3/g
 	s/\bconstrueix\([^[:alnum:]]\)/construïx\1/g
-	# reconstruir
-	s/\b\([Rr]\)econstrueix\(en\|es\|\)\([^[:alnum:]]\)/\1econstruïx\2\3/g
-	s/\b\([Rr]\)econstrueixi\([^[:alnum:]]\)/\1econstruïsca\2/g
-	s/\b\([Rr]\)econstrueixi\([ns]\)\([^[:alnum:]]\)/\1econstruïsque\2\3/g
-	s/\b\([Rr]\)econstrueixo\([^[:alnum:]]\)/\1econstruïsc\2/g
-	s/\b\([Rr]\)econstruís\([^[:alnum:]]\)/\1econstruïra\2/g
-	s/\b\([Rr]\)econstruíssi\([mu]\)\([^[:alnum:]]\)/\1econstruíre\2\3/g
-	s/\b\([Rr]\)econstruïssi\([ns]\)\([^[:alnum:]]\)/\1econstruïre\2\3/g
+	# deconstruir / reconstruir
+	s/\b\([DdRr]\)econstrueix\(en\|es\|\)\([^[:alnum:]]\)/\1econstruïx\2\3/g
+	s/\b\([DdRr]\)econstrueixi\([^[:alnum:]]\)/\1econstruïsca\2/g
+	s/\b\([DdRr]\)econstrueixi\([ns]\)\([^[:alnum:]]\)/\1econstruïsque\2\3/g
+	s/\b\([DdRr]\)econstrueixo\([^[:alnum:]]\)/\1econstruïsc\2/g
+	s/\b\([DdRr]\)econstruís\([^[:alnum:]]\)/\1econstruïra\2/g
+	s/\b\([DdRr]\)econstruíssi\([mu]\)\([^[:alnum:]]\)/\1econstruíre\2\3/g
+	s/\b\([DdRr]\)econstruïssi\([ns]\)\([^[:alnum:]]\)/\1econstruïre\2\3/g
 # consumir
 s/\b\([Cc]\)onsumeix\(en\|es\|\)\([^[:alnum:]]\)/\1onsumix\2\3/g
 s/\b\([Cc]\)onsumeixi\([^[:alnum:]]\)/\1onsumisca\2/g
@@ -1899,6 +2146,12 @@ s/\b\([Cc]\)ontinuéssi\([mu]\)\([^[:alnum:]]\)/\1ontinuàre\2\3/g
 s/\b\([Cc]\)ontinuessi\([ns]\)\([^[:alnum:]]\)/\1ontinuare\2\3/g
 s/\b\([Cc]\)ontinu\([ïo]\)\([^[:alnum:]]\)/\1ontinue\3/g
 s/\b\([Cc]\)ontinuï\([ns]\)\([^[:alnum:]]\)/\1ontinue\2\3/g
+	# discontinuar
+	s/\b\([Dd]\)iscontinués\([^[:alnum:]]\)/\1iscontinuara\2/g
+	s/\b\([Dd]\)iscontinuéssi\([mu]\)\([^[:alnum:]]\)/\1iscontinuàre\2\3/g
+	s/\b\([Dd]\)iscontinuessi\([ns]\)\([^[:alnum:]]\)/\1iscontinuare\2\3/g
+	s/\b\([Dd]\)iscontinu\([ïo]\)\([^[:alnum:]]\)/\1iscontinue\3/g
+	s/\b\([Dd]\)iscontinuï\([ns]\)\([^[:alnum:]]\)/\1iscontinue\2\3/g
 # contrastar
 s/\b\([Cc]\)ontrastés\([^[:alnum:]]\)/\1ontrastara\2/g
 s/\b\([Cc]\)ontrastéssi\([mu]\)\([^[:alnum:]]\)/\1ontrastàre\2\3/g
@@ -1941,6 +2194,12 @@ s/\b\([Cc]\)onvidéssi\([mu]\)\([^[:alnum:]]\)/\1onvidàre\2\3/g
 s/\b\([Cc]\)onvidessi\([ns]\)\([^[:alnum:]]\)/\1onvidare\2\3/g
 s/\b\([Cc]\)onvid\([io]\)\([^[:alnum:]]\)/\1onvide\3/g
 s/\b\([Cc]\)onvidi\([ns]\)\([^[:alnum:]]\)/\1onvide\2\3/g
+	# desconvidar
+	s/\b\([Dd]\)esconvidés\([^[:alnum:]]\)/\1esconvidara\2/g
+	s/\b\([Dd]\)esconvidéssi\([mu]\)\([^[:alnum:]]\)/\1esconvidàre\2\3/g
+	s/\b\([Dd]\)esconvidessi\([ns]\)\([^[:alnum:]]\)/\1esconvidare\2\3/g
+	s/\b\([Dd]\)esconvid\([io]\)\([^[:alnum:]]\)/\1esconvide\3/g
+	s/\b\([Dd]\)esconvidi\([ns]\)\([^[:alnum:]]\)/\1esconvide\2\3/g
 # cop -> colp/vegada
 	s/\b\([Cc]\)op d'ull\([^[:alnum:]]\)/\1olp d'ull\2/g
 	s/\bde cop\([^[:alnum:]]\)/de colp\1/g
@@ -1971,6 +2230,18 @@ s/\b\([Cc]\)opiéssi\([mu]\)\([^[:alnum:]]\)/\1opiàre\2\3/g
 s/\b\([Cc]\)opiessi\([ns]\)\([^[:alnum:]]\)/\1opiare\2\3/g
 s/\b\([Cc]\)opi\([ïo]\)\([^[:alnum:]]\)/\1opie\3/g
 s/\b\([Cc]\)opiï\([ns]\)\([^[:alnum:]]\)/\1opie\2\3/g
+	# fotocopiar
+	s/\b\([Ff]\)otocopiés\([^[:alnum:]]\)/\1otocopiara\2/g
+	s/\b\([Ff]\)otocopiéssi\([mu]\)\([^[:alnum:]]\)/\1otocopiàre\2\3/g
+	s/\b\([Ff]\)otocopiessi\([ns]\)\([^[:alnum:]]\)/\1otocopiare\2\3/g
+	s/\b\([Ff]\)otocopi\([ïo]\)\([^[:alnum:]]\)/\1otocopie\3/g
+	s/\b\([Ff]\)otocopiï\([ns]\)\([^[:alnum:]]\)/\1otocopie\2\3/g
+	# multicopiar
+	s/\b\([Mm]\)ulticopiés\([^[:alnum:]]\)/\1ulticopiara\2/g
+	s/\b\([Mm]\)ulticopiéssi\([mu]\)\([^[:alnum:]]\)/\1ulticopiàre\2\3/g
+	s/\b\([Mm]\)ulticopiessi\([ns]\)\([^[:alnum:]]\)/\1ulticopiare\2\3/g
+	s/\b\([Mm]\)ulticopi\([ïo]\)\([^[:alnum:]]\)/\1ulticopie\3/g
+	s/\b\([Mm]\)ulticopiï\([ns]\)\([^[:alnum:]]\)/\1ulticopie\2\3/g
 s/\b\([Cc]\)ordill\(s\|\)\([^[:alnum:]]\)/\1ordell\2\3/g
 # corregir
 s/\b\([Cc]\)orregeix\(en\|es\|\)\([^[:alnum:]]\)/\1orregix\2\3/g
@@ -1980,6 +2251,14 @@ s/\b\([Cc]\)orregeixo\([^[:alnum:]]\)/\1orregisc\2/g
 s/\b\([Cc]\)orregís\([^[:alnum:]]\)/\1orregira\2/g
 s/\b\([Cc]\)orregíssi\([mu]\)\([^[:alnum:]]\)/\1orregíre\2\3/g
 s/\b\([Cc]\)orregissi\([ns]\)\([^[:alnum:]]\)/\1orregire\2\3/g
+	# recorregir
+	s/\b\([Rr]\)ecorregeix\(en\|es\|\)\([^[:alnum:]]\)/\1ecorregix\2\3/g
+	s/\b\([Rr]\)ecorregeixi\([^[:alnum:]]\)/\1ecorregisca\2/g
+	s/\b\([Rr]\)ecorregeixi\([ns]\)\([^[:alnum:]]\)/\1ecorregisque\2\3/g
+	s/\b\([Rr]\)ecorregeixo\([^[:alnum:]]\)/\1ecorregisc\2/g
+	s/\b\([Rr]\)ecorregís\([^[:alnum:]]\)/\1ecorregira\2/g
+	s/\b\([Rr]\)ecorregíssi\([mu]\)\([^[:alnum:]]\)/\1ecorregíre\2\3/g
+	s/\b\([Rr]\)ecorregissi\([ns]\)\([^[:alnum:]]\)/\1ecorregire\2\3/g
 # córrer
 s/\b\([Cc]\)orregués\([^[:alnum:]]\)/\1orreguera\2/g
 s/\b\([Cc]\)orreguéssi\([mu]\)\([^[:alnum:]]\)/\1orreguére\2\3/g
@@ -2062,6 +2341,18 @@ s/\b\([Cc]\)ostessi\([ns]\)\([^[:alnum:]]\)/\1ostare\2\3/g
 s/\b\([Cc]\)ost\([io]\)\([^[:alnum:]]\)/\1oste\3/g
 s/\b\([Cc]\)osti\([ns]\)\([^[:alnum:]]\)/\1oste\2\3/g
 	s/\bClaudiu Costen\([^[:alnum:]]\)/Claudiu Costin\1/g
+	# acostar
+	s/\b\([Aa]\)costés\([^[:alnum:]]\)/\1costara\2/g
+	s/\b\([Aa]\)costéssi\([mu]\)\([^[:alnum:]]\)/\1costàre\2\3/g
+	s/\b\([Aa]\)costessi\([ns]\)\([^[:alnum:]]\)/\1costare\2\3/g
+	s/\b\([Aa]\)cost\([io]\)\([^[:alnum:]]\)/\1coste\3/g
+	s/\b\([Aa]\)costi\([ns]\)\([^[:alnum:]]\)/\1coste\2\3/g
+	# desacostar
+	s/\b\([Dd]\)esacostés\([^[:alnum:]]\)/\1esacostara\2/g
+	s/\b\([Dd]\)esacostéssi\([mu]\)\([^[:alnum:]]\)/\1esacostàre\2\3/g
+	s/\b\([Dd]\)esacostessi\([ns]\)\([^[:alnum:]]\)/\1esacostare\2\3/g
+	s/\b\([Dd]\)esacost\([io]\)\([^[:alnum:]]\)/\1esacoste\3/g
+	s/\b\([Dd]\)esacosti\([ns]\)\([^[:alnum:]]\)/\1esacoste\2\3/g
 # cotitzar
 s/\b\([Cc]\)otitzés\([^[:alnum:]]\)/\1otitzara\2/g
 s/\b\([Cc]\)otitzéssi\([mu]\)\([^[:alnum:]]\)/\1otitzàre\2\3/g
@@ -2074,13 +2365,49 @@ s/\b\([Cc]\)reéssi\([mu]\)\([^[:alnum:]]\)/\1reàre\2\3/g
 s/\b\([Cc]\)reessi\([ns]\)\([^[:alnum:]]\)/\1reare\2\3/g
 s/\b\([Cc]\)re\([ïo]\)\([^[:alnum:]]\)/\1ree\3/g
 s/\b\([Cc]\)reï\([ns]\)\([^[:alnum:]]\)/\1ree\2\3/g
+	# procrear
+	s/\b\([Pp]\)rocreés\([^[:alnum:]]\)/\1rocreara\2/g
+	s/\b\([Pp]\)rocreéssi\([mu]\)\([^[:alnum:]]\)/\1rocreàre\2\3/g
+	s/\b\([Pp]\)rocreessi\([ns]\)\([^[:alnum:]]\)/\1rocreare\2\3/g
+	s/\b\([Pp]\)rocre\([ïo]\)\([^[:alnum:]]\)/\1rocree\3/g
+	s/\b\([Pp]\)rocreï\([ns]\)\([^[:alnum:]]\)/\1rocree\2\3/g
+	# recrear
+	s/\b\([Rr]\)ecreés\([^[:alnum:]]\)/\1ecreara\2/g
+	s/\b\([Rr]\)ecreéssi\([mu]\)\([^[:alnum:]]\)/\1ecreàre\2\3/g
+	s/\b\([Rr]\)ecreessi\([ns]\)\([^[:alnum:]]\)/\1ecreare\2\3/g
+	s/\b\([Rr]\)ecre\([ïo]\)\([^[:alnum:]]\)/\1ecree\3/g
+	s/\b\([Rr]\)ecreï\([ns]\)\([^[:alnum:]]\)/\1ecree\2\3/g
+# cremar
+s/\b\([Cc]\)remés\([^[:alnum:]]\)/\1remara\2/g
+s/\b\([Cc]\)reméssi\([mu]\)\([^[:alnum:]]\)/\1remàre\2\3/g
+s/\b\([Cc]\)remessi\([ns]\)\([^[:alnum:]]\)/\1remare\2\3/g
+s/\b\([Cc]\)rem\([io]\)\([^[:alnum:]]\)/\1reme\3/g
+s/\b\([Cc]\)remi\([ns]\)\([^[:alnum:]]\)/\1reme\2\3/g
 # creuar
 s/\b\([Cc]\)reués\([^[:alnum:]]\)/\1reuara\2/g
 s/\b\([Cc]\)reuéssi\([mu]\)\([^[:alnum:]]\)/\1reuàre\2\3/g
 s/\b\([Cc]\)reuessi\([ns]\)\([^[:alnum:]]\)/\1reuare\2\3/g
 s/\b\([Cc]\)reu\([ïo]\)\([^[:alnum:]]\)/\1reue\3/g
 s/\b\([Cc]\)reuï\([ns]\)\([^[:alnum:]]\)/\1reue\2\3/g
-# crèixer -> créixer
+	# desencreuar
+	s/\b\([Dd]\)esencreués\([^[:alnum:]]\)/\1esencreuara\2/g
+	s/\b\([Dd]\)esencreuéssi\([mu]\)\([^[:alnum:]]\)/\1esencreuàre\2\3/g
+	s/\b\([Dd]\)esencreuessi\([ns]\)\([^[:alnum:]]\)/\1esencreuare\2\3/g
+	s/\b\([Dd]\)esencreu\([ïo]\)\([^[:alnum:]]\)/\1esencreue\3/g
+	s/\b\([Dd]\)esencreuï\([ns]\)\([^[:alnum:]]\)/\1esencreue\2\3/g
+	# encreuar
+	s/\b\([Ee]\)ncreués\([^[:alnum:]]\)/\1ncreuara\2/g
+	s/\b\([Ee]\)ncreuéssi\([mu]\)\([^[:alnum:]]\)/\1ncreuàre\2\3/g
+	s/\b\([Ee]\)ncreuessi\([ns]\)\([^[:alnum:]]\)/\1ncreuare\2\3/g
+	s/\b\([Ee]\)ncreu\([ïo]\)\([^[:alnum:]]\)/\1ncreue\3/g
+	s/\b\([Ee]\)ncreuï\([ns]\)\([^[:alnum:]]\)/\1ncreue\2\3/g
+	# entrecreuar
+	s/\b\([Ee]\)ntrecreués\([^[:alnum:]]\)/\1ntrecreuara\2/g
+	s/\b\([Ee]\)ntrecreuéssi\([mu]\)\([^[:alnum:]]\)/\1ntrecreuàre\2\3/g
+	s/\b\([Ee]\)ntrecreuessi\([ns]\)\([^[:alnum:]]\)/\1ntrecreuare\2\3/g
+	s/\b\([Ee]\)ntrecreu\([ïo]\)\([^[:alnum:]]\)/\1ntrecreue\3/g
+	s/\b\([Ee]\)ntrecreuï\([ns]\)\([^[:alnum:]]\)/\1ntrecreue\2\3/g
+# créixer
 s/\b\([Cc]\)rèixer\([^[:alnum:]]\)/\1réixer\2/g
 s/\b\([Cc]\)reix\(en\|es\|\)\([^[:alnum:]]\)/\1rix\2\3/g
 s/\b\([Cc]\)reixi\([^[:alnum:]]\)/\1resca\2/g
@@ -2089,16 +2416,25 @@ s/\b\([Cc]\)reixo\([^[:alnum:]]\)/\1resc\2/g
 s/\b\([Cc]\)re\(ix\|qu\)és\([^[:alnum:]]\)/\1resquera\2/g
 s/\b\([Cc]\)re\(ix\|qu\)éssi\([mu]\)\([^[:alnum:]]\)/\1resquére\2\3/g
 s/\b\([Cc]\)re\(ix\|qu\)essi\([ns]\)\([^[:alnum:]]\)/\1resquere\2\3/g
-	# decrèixer -> decréixer
-	s/\b\([Dd]\)ecrèixer\([^[:alnum:]]\)/\1ecréixer\2/g
-	s/\b\([Dd]\)ecreix\(en\|es\|\)\([^[:alnum:]]\)/\1ecrix\2\3/g
-	s/\b\([Dd]\)ecreixi\([^[:alnum:]]\)/\1ecresca\2/g
-	s/\b\([Dd]\)ecreixi\([ns]\)\([^[:alnum:]]\)/\1ecresque\2\3/g
-	s/\b\([Dd]\)ecreixo\([^[:alnum:]]\)/\1ecresc\2/g
-	s/\b\([Dd]\)ecre\(ix\|qu\)és\([^[:alnum:]]\)/\1ecresquera\2/g
-	s/\b\([Dd]\)ecre\(ix\|qu\)éssi\([mu]\)\([^[:alnum:]]\)/\1ecresquére\2\3/g
-	s/\b\([Dd]\)ecre\(ix\|qu\)essi\([ns]\)\([^[:alnum:]]\)/\1ecresquere\2\3/g
-	# sobrecrèixer -> sobrecréixer
+	# acréixer
+	s/\b\([Aa]\)crèixer\([^[:alnum:]]\)/\1créixer\2/g
+	s/\b\([Aa]\)creix\(en\|es\|\)\([^[:alnum:]]\)/\1crix\2\3/g
+	s/\b\([Aa]\)creixi\([^[:alnum:]]\)/\1cresca\2/g
+	s/\b\([Aa]\)creixi\([ns]\)\([^[:alnum:]]\)/\1cresque\2\3/g
+	s/\b\([Aa]\)creixo\([^[:alnum:]]\)/\1cresc\2/g
+	s/\b\([Aa]\)cre\(ix\|qu\)és\([^[:alnum:]]\)/\1cresquera\2/g
+	s/\b\([Aa]\)cre\(ix\|qu\)éssi\([mu]\)\([^[:alnum:]]\)/\1cresquére\2\3/g
+	s/\b\([Aa]\)cre\(ix\|qu\)essi\([ns]\)\([^[:alnum:]]\)/\1cresquere\2\3/g
+	# decréixer / recréixer
+	s/\b\([DdRr]\)ecrèixer\([^[:alnum:]]\)/\1ecréixer\2/g
+	s/\b\([DdRr]\)ecreix\(en\|es\|\)\([^[:alnum:]]\)/\1ecrix\2\3/g
+	s/\b\([DdRr]\)ecreixi\([^[:alnum:]]\)/\1ecresca\2/g
+	s/\b\([DdRr]\)ecreixi\([ns]\)\([^[:alnum:]]\)/\1ecresque\2\3/g
+	s/\b\([DdRr]\)ecreixo\([^[:alnum:]]\)/\1ecresc\2/g
+	s/\b\([DdRr]\)ecre\(ix\|qu\)és\([^[:alnum:]]\)/\1ecresquera\2/g
+	s/\b\([DdRr]\)ecre\(ix\|qu\)éssi\([mu]\)\([^[:alnum:]]\)/\1ecresquére\2\3/g
+	s/\b\([DdRr]\)ecre\(ix\|qu\)essi\([ns]\)\([^[:alnum:]]\)/\1ecresquere\2\3/g
+	# sobrecréixer
 	s/\b\([Ss]\)obrecrèixer\([^[:alnum:]]\)/\1obrecréixer\2/g
 	s/\b\([Ss]\)obrecreix\(en\|es\|\)\([^[:alnum:]]\)/\1obrecrix\2\3/g
 	s/\b\([Ss]\)obrecreixi\([^[:alnum:]]\)/\1obrecresca\2/g
@@ -2114,6 +2450,20 @@ s/\b\([Cc]\)reguessi\([ns]\)\([^[:alnum:]]\)/\1reguere\2\3/g
 s/\b\([Cc]\)regui\([^[:alnum:]]\)/\1rega\2/g
 s/\b\([Cc]\)regui\([ns]\)\([^[:alnum:]]\)/\1regue\2\3/g
 s/\b\([Cc]\)rèie\([mu]\)\([^[:alnum:]]\)/\1réie\2\3/g
+	# descreure
+	s/\b\([Dd]\)escregués\([^[:alnum:]]\)/\1escreguera\2/g
+	s/\b\([Dd]\)escreguéssi\([mu]\)\([^[:alnum:]]\)/\1escreguére\2\3/g
+	s/\b\([Dd]\)escreguessi\([ns]\)\([^[:alnum:]]\)/\1escreguere\2\3/g
+	s/\b\([Dd]\)escregui\([^[:alnum:]]\)/\1escrega\2/g
+	s/\b\([Dd]\)escregui\([ns]\)\([^[:alnum:]]\)/\1escregue\2\3/g
+	s/\b\([Dd]\)escrèie\([mu]\)\([^[:alnum:]]\)/\1escréie\2\3/g
+	# menyscreure
+	s/\b\([Mm]\)enyscegués\([^[:alnum:]]\)/\1enyscreguera\2/g
+	s/\b\([Mm]\)enyscreguéssi\([mu]\)\([^[:alnum:]]\)/\1enyscreguére\2\3/g
+	s/\b\([Mm]\)enyscreguessi\([ns]\)\([^[:alnum:]]\)/\1enyscreguere\2\3/g
+	s/\b\([Mm]\)enyscregui\([^[:alnum:]]\)/\1enyscrega\2/g
+	s/\b\([Mm]\)enyscregui\([ns]\)\([^[:alnum:]]\)/\1enyscregue\2\3/g
+	s/\b\([Mm]\)enyscrèie\([mu]\)\([^[:alnum:]]\)/\1enyscréie\2\3/g
 # TODO: no
 # cristalitzar
 s/\b\([Cc]\)ristal·litzés\([^[:alnum:]]\)/\1ristal·litzara\2/g
@@ -2132,6 +2482,12 @@ s/\bd'hora\([^[:alnum:]]\)/prompte\1/g
 	s/\bEl darrer\([^[:alnum:]]\)/L'últim\1/g
 	s/\bel darrer\([^[:alnum:]]\)/l'últim\1/g
 s/\b\([Dd]\)anès\([^[:alnum:]]\)/\1anés\2/g
+# danyar
+s/\b\([Dd]\)anyés\([^[:alnum:]]\)/\1anyara\2/g
+s/\b\([Dd]\)anyéssi\([mu]\)\([^[:alnum:]]\)/\1anyàre\2\3/g
+s/\b\([Dd]\)anyessi\([ns]\)\([^[:alnum:]]\)/\1anyare\2\3/g
+s/\b\([Dd]\)any\([io]\)\([^[:alnum:]]\)/\1anye\3/g
+s/\b\([Dd]\)anyi\([ns]\)\([^[:alnum:]]\)/\1anye\2\3/g
 s/\bDarrer\(a\|es\|\)\([^[:alnum:]]\)/Últim\1\2/g
 s/\bdarrer\(a\|es\|\)\([^[:alnum:]]\)/últim\1\2/g
 s/\b\([Dd]\)e debò\([^[:alnum:]]\)/\1e veres\2/g
@@ -2149,6 +2505,14 @@ s/\b\([Dd]\)eclaréssi\([mu]\)\([^[:alnum:]]\)/\1eclaràre\2\3/g
 s/\b\([Dd]\)eclaressi\([ns]\)\([^[:alnum:]]\)/\1eclarare\2\3/g
 s/\b\([Dd]\)eclar\([io]\)\([^[:alnum:]]\)/\1eclare\3/g
 s/\b\([Dd]\)eclari\([ns]\)\([^[:alnum:]]\)/\1eclare\2\3/g
+# decrementar / incrementar
+# TODO: no (decrementar)
+s/\b\([Dd]e\|[Ii]n\)crementés\([^[:alnum:]]\)/\1crementara\2/g
+s/\b\([Dd]e\|[Ii]n\)crementéssi\([mu]\)\([^[:alnum:]]\)/\1crementàre\2\3/g
+s/\b\([Dd]e\|[Ii]n\)crementessi\([ns]\)\([^[:alnum:]]\)/\1crementare\2\3/g
+s/\b\([Dd]e\|[Ii]n\)crement\([io]\)\([^[:alnum:]]\)/\1cremente\3/g
+s/\b\([Dd]e\|[Ii]n\)crementi\([ns]\)\([^[:alnum:]]\)/\1cremente\2\3/g
+
 # deduir
 s/\b\([Dd]\)edueix\(en\|es\|\)\([^[:alnum:]]\)/\1eduïx\2\3/g
 s/\b\([Dd]\)edueixi\([^[:alnum:]]\)/\1eduïsca\2/g
@@ -2157,14 +2521,6 @@ s/\b\([Dd]\)edueixo\([^[:alnum:]]\)/\1eduïsc\2/g
 s/\b\([Dd]\)eduís\([^[:alnum:]]\)/\1eduïra\2/g
 s/\b\([Dd]\)eduíssi\([mu]\)\([^[:alnum:]]\)/\1eduíre\2\3/g
 s/\b\([Dd]\)eduïssi\([ns]\)\([^[:alnum:]]\)/\1eduïre\2\3/g
-# deferir
-s/\b\([Dd]\)efereix\(en\|es\|\)\([^[:alnum:]]\)/\1eferix\2\3/g
-s/\b\([Dd]\)efereixi\([^[:alnum:]]\)/\1eferisca\2/g
-s/\b\([Dd]\)efereixi\([ns]\)\([^[:alnum:]]\)/\1eferisque\2\3/g
-s/\b\([Dd]\)efereixo\([^[:alnum:]]\)/\1eferisc\2/g
-s/\b\([Dd]\)eferís\([^[:alnum:]]\)/\1eferira\2/g
-s/\b\([Dd]\)eferíssi\([mu]\)\([^[:alnum:]]\)/\1eferíre\2\3/g
-s/\b\([Dd]\)eferissi\([ns]\)\([^[:alnum:]]\)/\1eferire\2\3/g
 # definir
 s/\b\([Dd]\)efineix\(en\|es\|\)\([^[:alnum:]]\)/\1efinix\2\3/g
 s/\b\([Dd]\)efineixi\([^[:alnum:]]\)/\1efinisca\2/g
@@ -2189,12 +2545,6 @@ s/\b\([Dd]\)eixéssi\([mu]\)\([^[:alnum:]]\)/\1eixàre\2\3/g
 s/\b\([Dd]\)eixessi\([ns]\)\([^[:alnum:]]\)/\1eixare\2\3/g
 s/\b\([Dd]\)eix\([io]\)\([^[:alnum:]]\)/\1eixe\3/g
 s/\b\([Dd]\)eixi\([ns]\)\([^[:alnum:]]\)/\1eixe\2\3/g
-# denegar
-s/\b\([Dd]\)enego\([^[:alnum:]]\)/\1enegue\2/g
-s/\b\([Dd]\)enegués\([^[:alnum:]]\)/\1enegara\2/g
-s/\b\([Dd]\)eneguéssi\([mu]\)\([^[:alnum:]]\)/\1enegàre\2\3/g
-s/\b\([Dd]\)eneguessi\([ns]\)\([^[:alnum:]]\)/\1enegare\2\3/g
-s/\b\([Dd]\)enegui\([ns]\|\)\([^[:alnum:]]\)/\1enegue\2\3/g
 # dependre
 s/\b\([Dd]\)epè\([ns]\)\([^[:alnum:]]\)/\1epé\2\3/g
 s/\b\([Dd]\)epengués\([^[:alnum:]]\)/\1epenguera\2/g
@@ -2239,22 +2589,6 @@ s/\b\([Dd]\)escartéssi\([mu]\)\([^[:alnum:]]\)/\1escartàre\2\3/g
 s/\b\([Dd]\)escartessi\([ns]\)\([^[:alnum:]]\)/\1escartare\2\3/g
 s/\b\([Dd]\)escart\([io]\)\([^[:alnum:]]\)/\1escarte\3/g
 s/\b\([Dd]\)escarti\([ns]\)\([^[:alnum:]]\)/\1escarte\2\3/g
-# descobrir
-s/\b\([Dd]\)escobreix\(en\|es\|\)\([^[:alnum:]]\)/\1escobrix\2\3/g
-s/\b\([Dd]\)escobreixi\([^[:alnum:]]\)/\1escobrisca\2/g
-s/\b\([Dd]\)escobreixi\([ns]\)\([^[:alnum:]]\)/\1escobrisque\2\3/g
-s/\b\([Dd]\)escobreixo\([^[:alnum:]]\)/\1escobrisc\2/g
-s/\b\([Dd]\)escobrís\([^[:alnum:]]\)/\1escobrira\2/g
-s/\b\([Dd]\)escobríssi\([mu]\)\([^[:alnum:]]\)/\1escobríre\2\3/g
-s/\b\([Dd]\)escobrissi\([ns]\)\([^[:alnum:]]\)/\1escobrire\2\3/g
-	# redescobrir
-	s/\b\([Rr]\)edescobreix\(en\|es\|\)\([^[:alnum:]]\)/\1edescobrix\2\3/g
-	s/\b\([Rr]\)edescobreixi\([^[:alnum:]]\)/\1edescobrisca\2/g
-	s/\b\([Rr]\)edescobreixi\([ns]\)\([^[:alnum:]]\)/\1edescobrisque\2\3/g
-	s/\b\([Rr]\)edescobreixo\([^[:alnum:]]\)/\1edescobrisc\2/g
-	s/\b\([Rr]\)edescobrís\([^[:alnum:]]\)/\1edescobrira\2/g
-	s/\b\([Rr]\)edescobríssi\([mu]\)\([^[:alnum:]]\)/\1edescobríre\2\3/g
-	s/\b\([Rr]\)edescobrissi\([ns]\)\([^[:alnum:]]\)/\1edescobrire\2\3/g
 # descriure
 s/\b\([Dd]\)escrigui\([^[:alnum:]]\)/\1scriga\2/g
 s/\b\([Dd]\)escrigui\([ns]\)\([^[:alnum:]]\)/\1scrigue\2\3/g
@@ -2321,6 +2655,12 @@ s/\b\([Dd]\)estruís\([^[:alnum:]]\)/\1estruïra\2/g
 s/\b\([Dd]\)estruíssi\([mu]\|\)\([^[:alnum:]]\)/\1estruíre\2\3/g
 s/\b\([Dd]\)estruïssi\([ns]\|\)\([^[:alnum:]]\)/\1estruïre\2\3/g
 	s/\b\([Dd]\)iàleg de desconnexió\([^[:alnum:]]\)/\1iàleg d'eixida\2/g
+# desviar
+s/\b\([Dd]\)esviés\([^[:alnum:]]\)/\1esviara\2/g
+s/\b\([Dd]\)esviéssi\([mu]\|\)\([^[:alnum:]]\)/\1esviàre\2\3/g
+s/\b\([Dd]\)esviessi\([ns]\|\)\([^[:alnum:]]\)/\1esviare\2\3/g
+s/\b\([Dd]\)esvi\([ïo]\)\([^[:alnum:]]\)/\1esvie\3/g
+s/\b\([Dd]\)esviï\([ns]\)\([^[:alnum:]]\)/\1esvie\2\3/g
 # detectar
 s/\b\([Dd]\)etectés\([^[:alnum:]]\)/\1etectara\2/g
 s/\b\([Dd]\)etectéssi\([mu]\|\)\([^[:alnum:]]\)/\1etectàre\2\3/g
@@ -2339,6 +2679,12 @@ s/\b\([Dd]\)eterminéssi\([mu]\|\)\([^[:alnum:]]\)/\1eterminàre\2\3/g
 s/\b\([Dd]\)eterminessi\([ns]\|\)\([^[:alnum:]]\)/\1eterminare\2\3/g
 s/\b\([Dd]\)etermin\([io]\)\([^[:alnum:]]\)/\1etermine\3/g
 s/\b\([Dd]\)etermini\([ns]\)\([^[:alnum:]]\)/\1etermine\2\3/g
+# diagnosticar
+s/\b\([Dd]\)iagnostico\([^[:alnum:]]\)/\1iagnostique\2/g
+s/\b\([Dd]\)iagnostiqués\([^[:alnum:]]\)/\1iagnosticara\2/g
+s/\b\([Dd]\)iagnostiquéssi\([mu]\|\)\([^[:alnum:]]\)/\1iagnosticàre\2\3/g
+s/\b\([Dd]\)iagnostiquessi\([ns]\|\)\([^[:alnum:]]\)/\1iagnosticare\2\3/g
+s/\b\([Dd]\)iagnostiqui\([ns]\|\)\([^[:alnum:]]\)/\1iagnostique\2\3/g
 # dibuixar
 s/\b\([Dd]\)ibuixés\([^[:alnum:]]\)/\1ibuixara\2/g
 s/\b\([Dd]\)ibuixéssi\([mu]\|\)\([^[:alnum:]]\)/\1ibuixàre\2\3/g
@@ -2351,8 +2697,8 @@ s/\b\([Dd]\)ifereixi\([^[:alnum:]]\)/\1iferisca\2/g
 s/\b\([Dd]\)ifereixi\([ns]\)\([^[:alnum:]]\)/\1iferisque\2\3/g
 s/\b\([Dd]\)ifereixo\([^[:alnum:]]\)/\1iferisc\2/g
 s/\b\([Dd]\)iferís\([^[:alnum:]]\)/\1iferira\2/g
-s/\b\([Dd]\)iferíssi\([mu]\|\)\([^[:alnum:]]\)/\1iferíre\2\3/g
-s/\b\([Dd]\)iferissi\([ns]\|\)\([^[:alnum:]]\)/\1iferire\2\3/g
+s/\b\([Dd]\)iferíssi\([mu]\)\([^[:alnum:]]\)/\1iferíre\2\3/g
+s/\b\([Dd]\)iferissi\([ns]\)\([^[:alnum:]]\)/\1iferire\2\3/g
 # digitalitzar
 s/\b\([Dd]\)igitalitzés\([^[:alnum:]]\)/\1igitalitzara\2/g
 s/\b\([Dd]\)igitalitzéssi\([mu]\|\)\([^[:alnum:]]\)/\1igitalitzàre\2\3/g
@@ -2462,6 +2808,12 @@ s/\b\([Dd]\)ivideixo\([^[:alnum:]]\)/\1ividisc\2/g
 s/\b\([Dd]\)ividís\([^[:alnum:]]\)/\1ividira\2/g
 s/\b\([Dd]\)ividíssi\([mu]\|\)\([^[:alnum:]]\)/\1ividíre\2\3/g
 s/\b\([Dd]\)ividissi\([ns]\|\)\([^[:alnum:]]\)/\1ividire\2\3/g
+# documentar
+s/\b\([Dd]\)ocumentés\([^[:alnum:]]\)/\1ocumentara\2/g
+s/\b\([Dd]\)ocumentéssi\([mu]\|\)\([^[:alnum:]]\)/\1ocumentàre\2\3/g
+s/\b\([Dd]\)ocumentessi\([ns]\|\)\([^[:alnum:]]\)/\1ocumentare\2\3/g
+s/\b\([Dd]\)ocument\([io]\)\([^[:alnum:]]\)/\1ocumente\3/g
+s/\b\([Dd]\)ocumenti\([ns]\)\([^[:alnum:]]\)/\1ocumente\2\3/g
 s/\b\([Dd]\)odecanès\([^[:alnum:]]\)/\1odecanés\2/g
 s/\bDOLENT\([^[:alnum:]]\)/ROÍN\1/g
 s/\bDolent\([^[:alnum:]]\)/Roín\1/g
@@ -2474,6 +2826,20 @@ s/\b\([Dd]\)onéssi\([mu]\|\)\([^[:alnum:]]\)/\1onàre\2\3/g
 s/\b\([Dd]\)onessi\([ns]\|\)\([^[:alnum:]]\)/\1onare\2\3/g
 s/\b\([Dd]\)on\([io]\)\([^[:alnum:]]\)/\1one\3/g
 s/\b\([Dd]\)oni\([ns]\)\([^[:alnum:]]\)/\1one\2\3/g
+# dormir
+s/\b\([Dd]\)ormi\([^[:alnum:]]\)/\1orma\2/g
+s/\b\([Dd]\)ormi\([ns]\)\([^[:alnum:]]\)/\1orme\2\3/g
+s/\b\([Dd]\)ormís\([^[:alnum:]]\)/\1ormira\2/g
+s/\b\([Dd]\)ormíssi\([mu]\|\)\([^[:alnum:]]\)/\1ormíre\2\3/g
+s/\b\([Dd]\)ormissi\([ns]\|\)\([^[:alnum:]]\)/\1ormire\2\3/g
+s/\b\([Dd]\)ormo\([^[:alnum:]]\)/\1orm\2/g
+	# adormir
+	s/\b\([Aa]\)dormi\([^[:alnum:]]\)/\1dorma\2/g
+	s/\b\([Aa]\)dormi\([ns]\)\([^[:alnum:]]\)/\1dorme\2\3/g
+	s/\b\([Aa]\)dormís\([^[:alnum:]]\)/\1dormira\2/g
+	s/\b\([Aa]\)dormíssi\([mu]\|\)\([^[:alnum:]]\)/\1dormíre\2\3/g
+	s/\b\([Aa]\)dormissi\([ns]\|\)\([^[:alnum:]]\)/\1dormire\2\3/g
+	s/\b\([Aa]\)dormo\([^[:alnum:]]\)/\1dorm\2/g
 s/\bDrap\(s\|\) de cuina\([^[:alnum:]]\)/Torcamans\2/g
 s/\bdrap\(s\|\) de cuina\([^[:alnum:]]\)/torcamans\2/g
 # dubtar
@@ -2541,19 +2907,12 @@ s/\b\([Ee]\)limin\([io]\)\([^[:alnum:]]\)/\1limine\3/g
 s/\b\([Ee]\)limini\([ns]\)\([^[:alnum:]]\)/\1limine\2\3/g
 s/\bEmbolcalla\(r\|\)\([^[:alnum:]]\)/Ajusta\1\2/g
 s/\bembolcalla\(r\|\)\([^[:alnum:]]\)/ajusta\1\2/g
-# emfatitzar
-s/\b\([Ee]\)mfatitzés\([^[:alnum:]]\)/\1mfatitzara\2/g
-s/\b\([Ee]\)mfatitzéssi\([mu]\|\)\([^[:alnum:]]\)/\1mfatitzàre\2\3/g
-s/\b\([Ee]\)mfatitzessi\([ns]\|\)\([^[:alnum:]]\)/\1mfatitzare\2\3/g
-s/\b\([Ee]\)mfatitz\([io]\)\([^[:alnum:]]\)/\1mfatitze\3/g
-s/\b\([Ee]\)mfatitzi\([ns]\)\([^[:alnum:]]\)/\1mfatitze\2\3/g
-# emmagatzemar
-s/\b\([Ee]\)mmagatzemés\([^[:alnum:]]\)/\1mmagatzemara\2/g
-s/\b\([Ee]\)mmagatzeméssi\([mu]\|\)\([^[:alnum:]]\)/\1mmagatzemàre\2\3/g
-s/\b\([Ee]\)mmagatzemessi\([ns]\|\)\([^[:alnum:]]\)/\1mmagatzemare\2\3/g
-s/\b\([Ee]\)mmagatzem\([io]\)\([^[:alnum:]]\)/\1mmagatzeme\3/g
-s/\b\([Ee]\)mmagatzemi\([ns]\)\([^[:alnum:]]\)/\1mmagatzeme\2\3/g
-	s/\bEmmagatzema l'últim\([^[:alnum:]]\)/Emmagatzema l'última\1/g
+# embruixar
+s/\b\([Ee]\)mbruixés\([^[:alnum:]]\)/\1mbruixara\2/g
+s/\b\([Ee]\)mbruixéssi\([mu]\|\)\([^[:alnum:]]\)/\1mbruixàre\2\3/g
+s/\b\([Ee]\)mbruixessi\([ns]\|\)\([^[:alnum:]]\)/\1mbruixare\2\3/g
+s/\b\([Ee]\)mbruix\([io]\)\([^[:alnum:]]\)/\1mbruixe\3/g
+s/\b\([Ee]\)mbruixi\([ns]\|\)\([^[:alnum:]]\)/\1mbruixe\2\3/g
 # embolicar
 s/\b\([Ee]\)mboliqués\([^[:alnum:]]\)/\1mbolicara\2/g
 s/\b\([Ee]\)mboliquéssi\([mu]\|\)\([^[:alnum:]]\)/\1mbolicàre\2\3/g
@@ -2584,12 +2943,41 @@ s/\b\([Ee]\)metessi\([ns]\|\)\([^[:alnum:]]\)/\1metere\2\3/g
 s/\b\([Ee]\)meti\([^[:alnum:]]\)/\1meta\2/g
 s/\b\([Ee]\)meti\([ns]\)\([^[:alnum:]]\)/\1mete\2\3/g
 s/\b\([Ee]\)meto\([^[:alnum:]]\)/\1met\2/g
+# emfatitzar
+s/\b\([Ee]\)mfatitzés\([^[:alnum:]]\)/\1mfatitzara\2/g
+s/\b\([Ee]\)mfatitzéssi\([mu]\|\)\([^[:alnum:]]\)/\1mfatitzàre\2\3/g
+s/\b\([Ee]\)mfatitzessi\([ns]\|\)\([^[:alnum:]]\)/\1mfatitzare\2\3/g
+s/\b\([Ee]\)mfatitz\([io]\)\([^[:alnum:]]\)/\1mfatitze\3/g
+s/\b\([Ee]\)mfatitzi\([ns]\)\([^[:alnum:]]\)/\1mfatitze\2\3/g
+# emmagatzemar
+s/\b\([Ee]\)mmagatzemés\([^[:alnum:]]\)/\1mmagatzemara\2/g
+s/\b\([Ee]\)mmagatzeméssi\([mu]\|\)\([^[:alnum:]]\)/\1mmagatzemàre\2\3/g
+s/\b\([Ee]\)mmagatzemessi\([ns]\|\)\([^[:alnum:]]\)/\1mmagatzemare\2\3/g
+s/\b\([Ee]\)mmagatzem\([io]\)\([^[:alnum:]]\)/\1mmagatzeme\3/g
+s/\b\([Ee]\)mmagatzemi\([ns]\)\([^[:alnum:]]\)/\1mmagatzeme\2\3/g
+	s/\bEmmagatzema l'últim\([^[:alnum:]]\)/Emmagatzema l'última\1/g
+# emmascarar
+s/\b\([Ee]\)mmascarés\([^[:alnum:]]\)/\1mmascarara\2/g
+s/\b\([Ee]\)mmascaréssi\([mu]\)\([^[:alnum:]]\)/\1mmascaràre\2\3/g
+s/\b\([Ee]\)mmascaressi\([ns]\)\([^[:alnum:]]\)/\1mmascarare\2\3/g
+s/\b\([Ee]\)mmascar\([io]\)\([^[:alnum:]]\)/\1mmascare\3/g
+s/\b\([Ee]\)mmascari\([ns]\)\([^[:alnum:]]\)/\1mmascare\2\3/g
+	# desemmascarar
+	s/\b\([Dd]\)esemmascarés\([^[:alnum:]]\)/\1esemmascarara\2/g
+	s/\b\([Dd]\)esemmascaréssi\([mu]\)\([^[:alnum:]]\)/\1esemmascaràre\2\3/g
+	s/\b\([Dd]\)esemmascaressi\([ns]\)\([^[:alnum:]]\)/\1esemmascarare\2\3/g
+	s/\b\([Dd]\)esemmascar\([io]\)\([^[:alnum:]]\)/\1esemmascare\3/g
+	s/\b\([Dd]\)esemmascari\([ns]\)\([^[:alnum:]]\)/\1esemmascare\2\3/g
+# emmirallar
+# FIXME:
 # emparellar
 s/\b\([Ee]\)mparellés\([^[:alnum:]]\)/\1mparellara\2/g
 s/\b\([Ee]\)mparelléssi\([mu]\)\([^[:alnum:]]\)/\1mparellàre\2\3/g
 s/\b\([Ee]\)mparellessi\([ns]\)\([^[:alnum:]]\)/\1mparellare\2\3/g
 s/\b\([Ee]\)mparell\([io]\)\([^[:alnum:]]\)/\1mparelle\3/g
 s/\b\([Ee]\)mparelli\([ns]\)\([^[:alnum:]]\)/\1mparelle\2\3/g
+# empenyar
+# FIXME:
 # empènyer -> empényer
 s/\b\([Ee]\)mpenyés\([^[:alnum:]]\)/\1mpenyera\2/g
 s/\b\([Ee]\)mpenyéssi\([mu]\)\([^[:alnum:]]\)/\1mpenyére\2\3/g
@@ -2598,6 +2986,12 @@ s/\b\([Ee]\)mpè\(nyer\|s\)\([^[:alnum:]]\)/\1mpé\2\3/g
 s/\b\([Ee]\)mpenyi\([^[:alnum:]]\)/\1mpenya\2/g
 s/\b\([Ee]\)mpenyi\([ns]\)\([^[:alnum:]]\)/\1mpenye\2\3/g
 s/\b\([Ee]\)mpenyo\([^[:alnum:]]\)/\1mpeny\2/g
+# emplaçar
+s/\b\([Ee]\)mplacés\([^[:alnum:]]\)/\1mplaçara\2/g
+s/\b\([Ee]\)mplacéssi\([mu]\)\([^[:alnum:]]\)/\1mplaçàre\2\3/g
+s/\b\([Ee]\)mplacessi\([ns]\)\([^[:alnum:]]\)/\1mplaçare\2\3/g
+s/\b\([Ee]\)mplaci\([ns]\|\)\([^[:alnum:]]\)/\1mplace\2\3/g
+s/\b\([Ee]\)mplaço\([^[:alnum:]]\)/\1mplace\2/g
 # emplenar (emplenar un imprès)
 s/\b\([Ee]\)mplenés\([^[:alnum:]]\)/\1mplenara\2/g
 s/\b\([Ee]\)mplenéssi\([mu]\)\([^[:alnum:]]\)/\1mplenàre\2\3/g
@@ -2692,6 +3086,12 @@ s/\b\([Ee]\)ndevinéssi\([mu]\)\([^[:alnum:]]\)/\1ndevinàre\2\3/g
 s/\b\([Ee]\)ndevinessi\([ns]\)\([^[:alnum:]]\)/\1ndevinare\2\3/g
 s/\b\([Ee]\)ndevin\([io]\)\([^[:alnum:]]\)/\1ndevine\3/g
 s/\b\([Ee]\)ndevini\([ns]\)\([^[:alnum:]]\)/\1ndevine\2\3/g
+# endinsar
+s/\b\([Ee]\)ndinsés\([^[:alnum:]]\)/\1ndinsara\2/g
+s/\b\([Ee]\)ndinséssi\([mu]\)\([^[:alnum:]]\)/\1ndinsàre\2\3/g
+s/\b\([Ee]\)ndinsessi\([ns]\)\([^[:alnum:]]\)/\1ndinsare\2\3/g
+s/\b\([Ee]\)ndins\([io]\)\([^[:alnum:]]\)/\1ndinse\3/g
+s/\b\([Ee]\)ndinsi\([ns]\)\([^[:alnum:]]\)/\1ndinse\2\3/g
 # endollar
 # PDT:
 s/\bEndoll\(a\|ada\|ant\|at\|i\|in\)\([^[:alnum:]]\)/Connect\1\2/g
@@ -2718,6 +3118,20 @@ s/\b\([Ee]\)nfoquéssi\([mu]\)\([^[:alnum:]]\)/\1nfocàre\2\3/g
 s/\b\([Ee]\)nfoquessi\([ns]\)\([^[:alnum:]]\)/\1nfocare\2\3/g
 s/\b\([Ee]\)nfoqui\([ns]\|\)\([^[:alnum:]]\)/\1nfoque\2\3/g
 s/\b\([Ee]\)nfoco\([^[:alnum:]]\)/\1nfoque\2/g
+	# reenfocar
+	# TODO: no
+	s/\bReenfoca\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Torna\1 a enfocar\2/g
+	s/\breenfoca\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/torna\1 a enfocar\2/g
+	s/\bReenfoqués\([^[:alnum:]]\)/Tornara a enfocar\1/g
+	s/\breenfoqués\([^[:alnum:]]\)/tornara a enfocar\1/g
+	s/\bReenfoquéssi\([mu]\)\([^[:alnum:]]\)/Tornàre\1 a enfocar\2/g
+	s/\breenfoquéssi\([mu]\)\([^[:alnum:]]\)/tornàre\1 a enfocar\2/g
+	s/\bReenfoquessi\([ns]\)\([^[:alnum:]]\)/Tornare\1 a enfocar\2/g
+	s/\breenfoquessi\([ns]\)\([^[:alnum:]]\)/tornare\1 a enfocar\2/g
+	s/\bReenfoqui\([ns]\|\)\([^[:alnum:]]\)/Torne\1 a enfocar\2/g
+	s/\breenfoqui\([ns]\|\)\([^[:alnum:]]\)/torne\1 a enfocar\2/g
+	s/\bReenfoco\([^[:alnum:]]\)/Torne a enfocar\1/g
+	s/\breenfoco\([^[:alnum:]]\)/torne a enfocar\1/g
 # enfosquir
 s/\b\([Ee]\)nfosqueix\(en\|es\|\)\([^[:alnum:]]\)/\1nfosquix\2\3/g
 s/\b\([Ee]\)nfosqueixi\([^[:alnum:]]\)/\1nfosquisca\2/g
@@ -2867,6 +3281,12 @@ s/\b\([Ee]\)qualitzéssi\([mu]\)\([^[:alnum:]]\)/\1qualitzàre\2\3/g
 s/\b\([Ee]\)qualitzessi\([ns]\)\([^[:alnum:]]\)/\1qualitzare\2\3/g
 s/\b\([Ee]\)qualitz\([io]\)\([^[:alnum:]]\)/\1qualitze\3/g
 s/\b\([Ee]\)qualitzi\([ns]\)\([^[:alnum:]]\)/\1qualitze\2\3/g
+# equilibrar
+s/\b\([Ee]\)quilibrés\([^[:alnum:]]\)/\1quilibrara\2/g
+s/\b\([Ee]\)quilibréssi\([mu]\)\([^[:alnum:]]\)/\1quilibràre\2\3/g
+s/\b\([Ee]\)quilibressi\([ns]\)\([^[:alnum:]]\)/\1quilibrare\2\3/g
+s/\b\([Ee]\)quilibri\([ns]\)\([^[:alnum:]]\)/\1quilibre\2\3/g
+s/\b\([Ee]\)quilibro\([^[:alnum:]]\)/\1quilibre\2/g
 # erigir
 s/\b\([Ee]\)rigeix\(en\|es\|\)\([^[:alnum:]]\)/\1rigix\2\3/g
 s/\b\([Ee]\)rigeixi\([^[:alnum:]]\)/\1rigisca\2/g
@@ -2875,6 +3295,18 @@ s/\b\([Ee]\)rigeixo\([^[:alnum:]]\)/\1rigisc\2/g
 s/\b\([Ee]\)rigís\([^[:alnum:]]\)/\1rigira\2/g
 s/\b\([Ee]\)rigíssi\([mu]\)\([^[:alnum:]]\)/\1rigíre\2\3/g
 s/\b\([Ee]\)rigissi\([ns]\)\([^[:alnum:]]\)/\1rigire\2\3/g
+# esborrar
+s/\b\([Ee]\)sborrés\([^[:alnum:]]\)/\1sborrara\2/g
+s/\b\([Ee]\)sborréssi\([mu]\)\([^[:alnum:]]\)/\1sborràre\2\3/g
+s/\b\([Ee]\)sborressi\([ns]\)\([^[:alnum:]]\)/\1sborrare\2\3/g
+s/\b\([Ee]\)sborr\([io]\)\([^[:alnum:]]\)/\1sborre\3/g
+s/\b\([Ee]\)sborri\([ns]\)\([^[:alnum:]]\)/\1sborre\2\3/g
+# esborronar
+s/\b\([Ee]\)sborronés\([^[:alnum:]]\)/\1sborronara\2/g
+s/\b\([Ee]\)sborronéssi\([mu]\)\([^[:alnum:]]\)/\1sborronàre\2\3/g
+s/\b\([Ee]\)sborronessi\([ns]\)\([^[:alnum:]]\)/\1sborronare\2\3/g
+s/\b\([Ee]\)sborron\([io]\)\([^[:alnum:]]\)/\1sborrone\3/g
+s/\b\([Ee]\)sborroni\([ns]\)\([^[:alnum:]]\)/\1sborrone\2\3/g
 # esbrinar
 s/\b\([Ee]\)sbrinés\([^[:alnum:]]\)/\1sbrinara\2/g
 s/\b\([Ee]\)sbrinéssi\([mu]\)\([^[:alnum:]]\)/\1sbrinàre\2\3/g
@@ -2985,6 +3417,12 @@ s/\b\([Ee]\)smenéssi\([mu]\)\([^[:alnum:]]\)/\1smenàre\2\3/g
 s/\b\([Ee]\)smenessi\([ns]\)\([^[:alnum:]]\)/\1smenare\2\3/g
 s/\b\([Ee]\)smen\([io]\)\([^[:alnum:]]\)/\1smene\3/g
 s/\b\([Ee]\)smeni\([ns]\)\([^[:alnum:]]\)/\1smene\2\3/g
+# esmentar
+s/\b\([Ee]\)smentés\([^[:alnum:]]\)/\1smentara\2/g
+s/\b\([Ee]\)smentéssi\([mu]\)\([^[:alnum:]]\)/\1smentàre\2\3/g
+s/\b\([Ee]\)smentessi\([ns]\)\([^[:alnum:]]\)/\1smentare\2\3/g
+s/\b\([Ee]\)sment\([io]\)\([^[:alnum:]]\)/\1smente\3/g
+s/\b\([Ee]\)smenti\([ns]\)\([^[:alnum:]]\)/\1smente\2\3/g
 # espantar
 s/\b\([Ee]\)spantés\([^[:alnum:]]\)/\1spantara\2/g
 s/\b\([Ee]\)spantéssi\([mu]\)\([^[:alnum:]]\)/\1spantàre\2\3/g
@@ -3091,7 +3529,6 @@ s/\b\([Ee]\)stigui\([^[:alnum:]]\)/\1stiga\2/g
 s/\b\([Ee]\)stigui\([ns]\)\([^[:alnum:]]\)/\1stigue\2\3/g
 	s/\bL'ESTEL DE KAWELO\([^[:alnum:]]\)/EL CATXERULO DE KAWELO\1/g
 	s/\"Estel\"/\"Catxerulo\"/g
-	5889,/^msgstr / s/\"estel\"/\"catxerulo\"/g
 s/\bESTEL\([^[:alnum:]]\)/ESTRELA\1/g
 s/\b\([Ee]\)stel\([^[:alnum:]]\)/\1strel\2/g
 s/\b\([Ee]\)stels\([^[:alnum:]]\)/\1streles\2/g
@@ -3155,6 +3592,12 @@ s/\b\([Ee]\)vitéssi\([mu]\)\([^[:alnum:]]\)/\1vitàre\2\3/g
 s/\b\([Ee]\)vitessi\([ns]\)\([^[:alnum:]]\)/\1vitare\2\3/g
 s/\b\([Ee]\)vit\([io]\)\([^[:alnum:]]\)/\1vite\3/g
 s/\b\([Ee]\)viti\([ns]\)\([^[:alnum:]]\)/\1vite\2\3/g
+# examinar
+s/\b\([Ee]\)xaminés\([^[:alnum:]]\)/\1xaminara\2/g
+s/\b\([Ee]\)xaminéssi\([mu]\)\([^[:alnum:]]\)/\1xaminàre\2\3/g
+s/\b\([Ee]\)xaminessi\([ns]\)\([^[:alnum:]]\)/\1xaminare\2\3/g
+s/\b\([Ee]\)xamin\([io]\)\([^[:alnum:]]\)/\1xamine\3/g
+s/\b\([Ee]\)xamini\([ns]\)\([^[:alnum:]]\)/\1xamine\2\3/g
 # excavar
 s/\b\([Ee]\)xcavés\([^[:alnum:]]\)/\1xcavara\2/g
 s/\b\([Ee]\)xcavéssi\([mu]\)\([^[:alnum:]]\)/\1xcavàre\2\3/g
@@ -3181,6 +3624,13 @@ s/\b\([Ee]\)xecutéssi\([mu]\)\([^[:alnum:]]\)/\1xecutàre\2\3/g
 s/\b\([Ee]\)xecutessi\([ns]\)\([^[:alnum:]]\)/\1xecutare\2\3/g
 s/\b\([Ee]\)xecut\([io]\)\([^[:alnum:]]\)/\1xecute\3/g
 s/\b\([Ee]\)xecuti\([ns]\)\([^[:alnum:]]\)/\1xecute\2\3/g
+	# reexecutar
+	# TODO: no
+	s/\b\([Rr]\)eexecutés\([^[:alnum:]]\)/\1eexecutara\2/g
+	s/\b\([Rr]\)eexecutéssi\([mu]\)\([^[:alnum:]]\)/\1eexecutàre\2\3/g
+	s/\b\([Rr]\)eexecutessi\([ns]\)\([^[:alnum:]]\)/\1eexecutare\2\3/g
+	s/\b\([Rr]\)eexecut\([io]\)\([^[:alnum:]]\)/\1eexecute\3/g
+	s/\b\([Rr]\)eexecuti\([ns]\)\([^[:alnum:]]\)/\1eexecute\2\3/g
 # exercitar
 s/\b\([Ee]\)xercités\([^[:alnum:]]\)/\1xercitara\2/g
 s/\b\([Ee]\)xercitéssi\([mu]\)\([^[:alnum:]]\)/\1xercitàre\2\3/g
@@ -3219,12 +3669,24 @@ s/\b\([Ee]\)xpandeixo\([^[:alnum:]]\)/\1xpandisc\2/g
 s/\b\([Ee]\)xpandís\([^[:alnum:]]\)/\1xpandira\2/g
 s/\b\([Ee]\)xpandíssi\([mu]\)\([^[:alnum:]]\)/\1xpandíre\2\3/g
 s/\b\([Ee]\)xpandissi\([ns]\)\([^[:alnum:]]\)/\1xpandire\2\3/g
+# experimentar
+s/\b\([Ee]\)xperimentés\([^[:alnum:]]\)/\1xperimentara\2/g
+s/\b\([Ee]\)xperimentéssi\([mu]\)\([^[:alnum:]]\)/\1xperimentàre\2\3/g
+s/\b\([Ee]\)xperimentessi\([ns]\)\([^[:alnum:]]\)/\1xperimentare\2\3/g
+s/\b\([Ee]\)xperiment\([io]\)\([^[:alnum:]]\)/\1xperimente\3/g
+s/\b\([Ee]\)xperimenti\([ns]\)\([^[:alnum:]]\)/\1xperimente\2\3/g
 # expirar
 s/\b\([Ee]\)xpirés\([^[:alnum:]]\)/\1xpirara\2/g
 s/\b\([Ee]\)xpiréssi\([mu]\)\([^[:alnum:]]\)/\1xpiràre\2\3/g
 s/\b\([Ee]\)xpiressi\([ns]\)\([^[:alnum:]]\)/\1xpirare\2\3/g
 s/\b\([Ee]\)xpir\([io]\)\([^[:alnum:]]\)/\1xpire\3/g
 s/\b\([Ee]\)xpiri\([ns]\)\([^[:alnum:]]\)/\1xpire\2\3/g
+# explicar
+s/\b\([Ee]\)xpliqués\([^[:alnum:]]\)/\1xplicara\2/g
+s/\b\([Ee]\)xpliquéssi\([mu]\)\([^[:alnum:]]\)/\1xplicàre\2\3/g
+s/\b\([Ee]\)xpliquessi\([ns]\)\([^[:alnum:]]\)/\1xplicare\2\3/g
+s/\b\([Ee]\)xpliqui\([ns]\|\)\([^[:alnum:]]\)/\1xplique\2\3/g
+s/\b\([Ee]\)xplico\([^[:alnum:]]\)/\1xplique\2/g
 # explorar
 s/\b\([Ee]\)xplorés\([^[:alnum:]]\)/\1xplorara\2/g
 s/\b\([Ee]\)xploréssi\([mu]\)\([^[:alnum:]]\)/\1xploràre\2\3/g
@@ -3237,18 +3699,6 @@ s/\b\([Ee]\)xplotéssi\([mu]\)\([^[:alnum:]]\)/\1xplotàre\2\3/g
 s/\b\([Ee]\)xplotessi\([ns]\)\([^[:alnum:]]\)/\1xplotare\2\3/g
 s/\b\([Ee]\)xplot\([io]\)\([^[:alnum:]]\)/\1xplote\3/g
 s/\b\([Ee]\)xploti\([ns]\)\([^[:alnum:]]\)/\1xplote\2\3/g
-# exportar
-s/\b\([Ee]\)xportés\([^[:alnum:]]\)/\1xportara\2/g
-s/\b\([Ee]\)xportéssi\([mu]\)\([^[:alnum:]]\)/\1xportàre\2\3/g
-s/\b\([Ee]\)xportessi\([ns]\)\([^[:alnum:]]\)/\1xportare\2\3/g
-s/\b\([Ee]\)xport\([io]\)\([^[:alnum:]]\)/\1xporte\3/g
-s/\b\([Ee]\)xporti\([ns]\)\([^[:alnum:]]\)/\1xporte\2\3/g
-# exposar
-s/\b\([Ee]\)xposés\([^[:alnum:]]\)/\1xposara\2/g
-s/\b\([Ee]\)xposéssi\([mu]\)\([^[:alnum:]]\)/\1xposàre\2\3/g
-s/\b\([Ee]\)xposessi\([ns]\)\([^[:alnum:]]\)/\1xposare\2\3/g
-s/\b\([Ee]\)xpos\([io]\)\([^[:alnum:]]\)/\1xpose\3/g
-s/\b\([Ee]\)xposi\([ns]\)\([^[:alnum:]]\)/\1xpose\2\3/g
 # expressar
 s/\b\([Ee]\)xpressés\([^[:alnum:]]\)/\1xpressara\2/g
 s/\b\([Ee]\)xpréssi\([mu]\)\([^[:alnum:]]\)/\1xpressàre\2\3/g
@@ -3355,6 +3805,102 @@ s/\b\([Ff]\)essi\([ns]\)\([^[:alnum:]]\)/\1ere\2\3/g
 		s/\b\([Ii]\)nsatisfaig\([^[:alnum:]]\)/\1nsatisfaç\2/g
 		s/\b\([Ii]\)nsatisfaci\([^[:alnum:]]\)/\1nsatisfaça\2/g
 		s/\b\([Ii]\)nsatisfaci\([ns]\)\([^[:alnum:]]\)/\1nsatisface\2\3/g
+# ferir
+s/\b\([Ff]\)ereix\(en\|es\|\)\([^[:alnum:]]\)/\1erix\2\3/g
+s/\b\([Ff]\)ereixi\([^[:alnum:]]\)/\1erisca\2/g
+s/\b\([Ff]\)ereixi\([ns]\)\([^[:alnum:]]\)/\1erisque\2\3/g
+s/\b\([Ff]\)ereixo\([^[:alnum:]]\)/\1erisc\2/g
+s/\b\([Ff]\)erís\([^[:alnum:]]\)/\1erira\2/g
+s/\b\([Ff]\)eríssi\([mu]\|\)\([^[:alnum:]]\)/\1eríre\2\3/g
+s/\b\([Ff]\)erissi\([ns]\|\)\([^[:alnum:]]\)/\1erire\2\3/g
+	# deferir
+	s/\b\([Dd]\)efereix\(en\|es\|\)\([^[:alnum:]]\)/\1eferix\2\3/g
+	s/\b\([Dd]\)efereixi\([^[:alnum:]]\)/\1eferisca\2/g
+	s/\b\([Dd]\)efereixi\([ns]\)\([^[:alnum:]]\)/\1eferisque\2\3/g
+	s/\b\([Dd]\)efereixo\([^[:alnum:]]\)/\1eferisc\2/g
+	s/\b\([Dd]\)eferís\([^[:alnum:]]\)/\1eferira\2/g
+	s/\b\([Dd]\)eferíssi\([mu]\)\([^[:alnum:]]\)/\1eferíre\2\3/g
+	s/\b\([Dd]\)eferissi\([ns]\)\([^[:alnum:]]\)/\1eferire\2\3/g
+	# diferir
+	s/\b\([Dd]\)ifereix\(en\|es\|\)\([^[:alnum:]]\)/\1iferix\2\3/g
+	s/\b\([Dd]\)ifereixi\([^[:alnum:]]\)/\1iferisca\2/g
+	s/\b\([Dd]\)ifereixi\([ns]\)\([^[:alnum:]]\)/\1iferisque\2\3/g
+	s/\b\([Dd]\)ifereixo\([^[:alnum:]]\)/\1iferisc\2/g
+	s/\b\([Dd]\)iferís\([^[:alnum:]]\)/\1iferira\2/g
+	s/\b\([Dd]\)iferíssi\([mu]\|\)\([^[:alnum:]]\)/\1iferíre\2\3/g
+	s/\b\([Dd]\)iferissi\([ns]\|\)\([^[:alnum:]]\)/\1iferire\2\3/g
+	# inferir
+	s/\b\([Ii]\)nfereix\(en\|es\|\)\([^[:alnum:]]\)/\1nferix\2\3/g
+	s/\b\([Ii]\)nfereixi\([^[:alnum:]]\)/\1nferisca\2/g
+	s/\b\([Ii]\)nfereixi\([ns]\)\([^[:alnum:]]\)/\1nferisque\2\3/g
+	s/\b\([Ii]\)nfereixo\([^[:alnum:]]\)/\1nferisc\2/g
+	s/\b\([Ii]\)nferís\([^[:alnum:]]\)/\1nferira\2/g
+	s/\b\([Ii]\)nferíssi\([mu]\)\([^[:alnum:]]\)/\1nferíre\2\3/g
+	s/\b\([Ii]\)nferissi\([ns]\)\([^[:alnum:]]\)/\1nferire\2\3/g
+	# interferir
+	s/\b\([Ii]\)nterfereix\(en\|es\|\)\([^[:alnum:]]\)/\1nterferix\2\3/g
+	s/\b\([Ii]\)nterfereixi\([^[:alnum:]]\)/\1nterferisca\2/g
+	s/\b\([Ii]\)nterfereixi\([ns]\)\([^[:alnum:]]\)/\1nterferisque\2\3/g
+	s/\b\([Ii]\)nterfereixo\([^[:alnum:]]\)/\1nterferisc\2/g
+	s/\b\([Ii]\)nterferís\([^[:alnum:]]\)/\1nterferira\2/g
+	s/\b\([Ii]\)nterferíssi\([mu]\)\([^[:alnum:]]\)/\1nterferíre\2\3/g
+	s/\b\([Ii]\)nterferissi\([ns]\)\([^[:alnum:]]\)/\1nterferire\2\3/g
+	# malferir
+	s/\b\([Mm]\)alfereix\(en\|es\|\)\([^[:alnum:]]\)/\1alferix\2\3/g
+	s/\b\([Mm]\)alfereixi\([^[:alnum:]]\)/\1alferisca\2/g
+	s/\b\([Mm]\)alfereixi\([ns]\)\([^[:alnum:]]\)/\1alferisque\2\3/g
+	s/\b\([Mm]\)alfereixo\([^[:alnum:]]\)/\1alferisc\2/g
+	s/\b\([Mm]\)alferís\([^[:alnum:]]\)/\1alferira\2/g
+	s/\b\([Mm]\)alferíssi\([mu]\)\([^[:alnum:]]\)/\1alferíre\2\3/g
+	s/\b\([Mm]\)alferissi\([ns]\)\([^[:alnum:]]\)/\1alferire\2\3/g
+	# oferir
+	s/\b\([Oo]\)fereix\(en\|es\|\)\([^[:alnum:]]\)/\1ferix\2\3/g
+	s/\b\([Oo]\)fereixi\([^[:alnum:]]\)/\1ferisca\2/g
+	s/\b\([Oo]\)fereixi\([ns]\)\([^[:alnum:]]\)/\1ferisque\2\3/g
+	s/\b\([Oo]\)fereixo\([^[:alnum:]]\)/\1ferisc\2/g
+	s/\b\([Oo]\)ferís\([^[:alnum:]]\)/\1ferira\2/g
+	s/\b\([Oo]\)feríssi\([mu]\)\([^[:alnum:]]\)/\1feríre\2\3/g
+	s/\b\([Oo]\)ferissi\([ns]\)\([^[:alnum:]]\)/\1ferire\2\3/g
+	s/\b\([Oo]\)fert\(s\|\)\([^[:alnum:]]\)/\1ferit\2\3/g
+	s/\b\([Oo]\)fert\(a\|es\)\([^[:alnum:]]\)/\1ferid\2\3/g
+	# preferir
+	s/\b\([Pp]\)refereix\(en\|es\|\)\([^[:alnum:]]\)/\1referix\2\3/g
+	s/\b\([Pp]\)refereixi\([^[:alnum:]]\)/\1referisca\2/g
+	s/\b\([Pp]\)refereixi\([ns]\)\([^[:alnum:]]\)/\1referisque\2\3/g
+	s/\b\([Pp]\)refereixo\([^[:alnum:]]\)/\1referisc\2/g
+	s/\b\([Pp]\)referís\([^[:alnum:]]\)/\1referira\2/g
+	s/\b\([Pp]\)referíssi\([mu]\)\([^[:alnum:]]\)/\1referíre\2\3/g
+	s/\b\([Pp]\)referissi\([ns]\)\([^[:alnum:]]\)/\1referire\2\3/g
+	# proferir
+	s/\b\([Pp]\)rofereix\(en\|es\|\)\([^[:alnum:]]\)/\1roferix\2\3/g
+	s/\b\([Pp]\)rofereixi\([^[:alnum:]]\)/\1roferisca\2/g
+	s/\b\([Pp]\)rofereixi\([ns]\)\([^[:alnum:]]\)/\1roferisque\2\3/g
+	s/\b\([Pp]\)rofereixo\([^[:alnum:]]\)/\1roferisc\2/g
+	s/\b\([Pp]\)roferís\([^[:alnum:]]\)/\1roferira\2/g
+	s/\b\([Pp]\)roferíssi\([mu]\)\([^[:alnum:]]\)/\1roferíre\2\3/g
+	s/\b\([Pp]\)roferissi\([ns]\)\([^[:alnum:]]\)/\1roferire\2\3/g
+	# referir
+	s/\b\([Rr]\)efereix\(en\|es\|\)\([^[:alnum:]]\)/\1eferix\2\3/g
+	s/\b\([Rr]\)efereixi\([^[:alnum:]]\)/\1eferisca\2/g
+	s/\b\([Rr]\)efereixi\([ns]\)\([^[:alnum:]]\)/\1eferisque\2\3/g
+	s/\b\([Rr]\)efereixo\([^[:alnum:]]\)/\1eferisc\2/g
+	s/\b\([Rr]\)eferís\([^[:alnum:]]\)/\1eferira\2/g
+	s/\b\([Rr]\)eferíssi\([mu]\)\([^[:alnum:]]\)/\1eferíre\2\3/g
+	s/\b\([Rr]\)eferissi\([ns]\)\([^[:alnum:]]\)/\1eferire\2\3/g
+	# transferir
+	s/\b\([Tt]\)ransfereix\(en\|es\|\)\([^[:alnum:]]\)/\1ransferix\2\3/g
+	s/\b\([Tt]\)ransfereixi\([^[:alnum:]]\)/\1ransferisca\2/g
+	s/\b\([Tt]\)ransfereixi\([ns]\)\([^[:alnum:]]\)/\1ransferisque\2\3/g
+	s/\b\([Tt]\)ransfereixo\([^[:alnum:]]\)/\1ransferisc\2/g
+	s/\b\([Tt]\)ransferís\([^[:alnum:]]\)/\1ransferira\2/g
+	s/\b\([Tt]\)ransferíssi\([mu]\)\([^[:alnum:]]\)/\1ransferíre\2\3/g
+	s/\b\([Tt]\)ransferissi\([ns]\)\([^[:alnum:]]\)/\1ransferire\2\3/g
+# fermentar
+s/\b\([Ff]\)ermentés\([^[:alnum:]]\)/\1ermentara\2/g
+s/\b\([Ff]\)ermentéssi\([mu]\)\([^[:alnum:]]\)/\1ermentàre\2\3/g
+s/\b\([Ff]\)ermentessi\([ns]\)\([^[:alnum:]]\)/\1ermentare\2\3/g
+s/\b\([Ff]\)erment\([io]\)\([^[:alnum:]]\)/\1ermente\3/g
+s/\b\([Ff]\)ermenti\([ns]\)\([^[:alnum:]]\)/\1ermente\2\3/g
 s/\b\([Ff]\)eroès\([^[:alnum:]]\)/\1eroés\2/g
 s/\bFerri\(s\|\)\([^[:alnum:]]\)/Transbordador\1\2/g
 s/\bferri\(s\|\)\([^[:alnum:]]\)/transbordador\1\2/g
@@ -3366,6 +3912,18 @@ s/\b\([Ff]\)inalitz\([io]\)\([^[:alnum:]]\)/\1inalitze\3/g
 s/\b\([Ff]\)inalitzi\([ns]\)\([^[:alnum:]]\)/\1inalitze\2\3/g
 s/\b\([Ff]\)inès\([^[:alnum:]]\)/\1inés\2/g
 s/\b\([Ff]\)inlandès\([^[:alnum:]]\)/\1inlandés\2/g
+# firmar
+s/\b\([Ff]\)irmés\([^[:alnum:]]\)/\1irmara\2/g
+s/\b\([Ff]\)irméssi\([mu]\)\([^[:alnum:]]\)/\1irmàre\2\3/g
+s/\b\([Ff]\)irmessi\([ns]\)\([^[:alnum:]]\)/\1irmare\2\3/g
+s/\b\([Ff]\)irm\([io]\)\([^[:alnum:]]\)/\1irme\3/g
+s/\b\([Ff]\)irmi\([ns]\)\([^[:alnum:]]\)/\1irme\2\3/g
+	# confirmar
+	s/\b\([Cc]\)onfirmés\([^[:alnum:]]\)/\1onfirmara\2/g
+	s/\b\([Cc]\)onfirméssi\([mu]\)\([^[:alnum:]]\)/\1onfirmàre\2\3/g
+	s/\b\([Cc]\)onfirmessi\([ns]\)\([^[:alnum:]]\)/\1onfirmare\2\3/g
+	s/\b\([Cc]\)onfirm\([io]\)\([^[:alnum:]]\)/\1onfirme\3/g
+	s/\b\([Cc]\)onfirmi\([ns]\)\([^[:alnum:]]\)/\1onfirme\2\3/g
 # fixar
 s/\b\([Ff]\)ixés\([^[:alnum:]]\)/\1ixara\2/g
 s/\b\([Ff]\)ixéssi\([mu]\)\([^[:alnum:]]\)/\1ixàre\2\3/g
@@ -3394,6 +3952,26 @@ s/\b\([Ff]\)luïssi\([ns]\)\([^[:alnum:]]\)/\1luïre\2\3/g
 	s/\b\([Ii]\)nfluís\([^[:alnum:]]\)/\1nfluïra\2/g
 	s/\b\([Ii]\)nfluíssi\([mu]\)\([^[:alnum:]]\)/\1nfluíre\2\3/g
 	s/\b\([Ii]\)nfluïssi\([ns]\)\([^[:alnum:]]\)/\1nfluïre\2\3/g
+# fomentar
+s/\b\([Ff]\)omentés\([^[:alnum:]]\)/\1omentara\2/g
+s/\b\([Ff]\)omentéssi\([mu]\)\([^[:alnum:]]\)/\1omentàre\2\3/g
+s/\b\([Ff]\)omentessi\([ns]\)\([^[:alnum:]]\)/\1omentare\2\3/g
+s/\b\([Ff]\)oment\([io]\)\([^[:alnum:]]\)/\1omente\3/g
+s/\b\([Ff]\)omenti\([ns]\)\([^[:alnum:]]\)/\1omente\2\3/g
+	s/\b\([Uu]\)nidad de fomente\([^[:alnum:]]\)/\1nitat de Fomento\2/g
+	s/\b\([Uu]\)nidades de fomente\([^[:alnum:]]\)/\1nitats de Fomento\2/g
+# fonamentar
+s/\b\([Ff]\)onamentés\([^[:alnum:]]\)/\1onamentara\2/g
+s/\b\([Ff]\)onamentéssi\([mu]\)\([^[:alnum:]]\)/\1onamentàre\2\3/g
+s/\b\([Ff]\)onamentessi\([ns]\)\([^[:alnum:]]\)/\1onamentare\2\3/g
+s/\b\([Ff]\)onament\([io]\)\([^[:alnum:]]\)/\1onamente\3/g
+s/\b\([Ff]\)onamenti\([ns]\)\([^[:alnum:]]\)/\1onamente\2\3/g
+	# refonamentar
+	s/\b\([Rr]\)efonamentés\([^[:alnum:]]\)/\1efonamentara\2/g
+	s/\b\([Rr]\)efonamentéssi\([mu]\)\([^[:alnum:]]\)/\1efonamentàre\2\3/g
+	s/\b\([Rr]\)efonamentessi\([ns]\)\([^[:alnum:]]\)/\1efonamentare\2\3/g
+	s/\b\([Rr]\)efonament\([io]\)\([^[:alnum:]]\)/\1efonamente\3/g
+	s/\b\([Rr]\)efonamenti\([ns]\)\([^[:alnum:]]\)/\1efonamente\2\3/g
 # forçar
 s/\b\([Ff]\)orcés\([^[:alnum:]]\)/\1orçara\2/g
 s/\b\([Ff]\)orcéssi\([mu]\)\([^[:alnum:]]\)/\1orçàre\2\3/g
@@ -3402,11 +3980,29 @@ s/\b\([Ff]\)orci\([ns]\|\)\([^[:alnum:]]\)/\1orce\2\3/g
 s/\b\([Ff]\)orço\([^[:alnum:]]\)/\1orce\2/g
 s/\b\([Ff]\)orquill\(a\|es\)\([^[:alnum:]]\)/\1orquet\2\3/g
 # formar
-s/\b\([Ff]\)lotés\([^[:alnum:]]\)/\1lotara\2/g
-s/\b\([Ff]\)lotéssi\([mu]\)\([^[:alnum:]]\)/\1lotàre\2\3/g
-s/\b\([Ff]\)lotessi\([ns]\)\([^[:alnum:]]\)/\1lotare\2\3/g
+s/\b\([Ff]\)ormés\([^[:alnum:]]\)/\1ormara\2/g
+s/\b\([Ff]\)orméssi\([mu]\)\([^[:alnum:]]\)/\1ormàre\2\3/g
+s/\b\([Ff]\)ormessi\([ns]\)\([^[:alnum:]]\)/\1ormare\2\3/g
 s/\b\([Ff]\)orm\([io]\)\([^[:alnum:]]\)/\1orme\3/g
 s/\b\([Ff]\)ormi\([ns]\)\([^[:alnum:]]\)/\1orme\2\3/g
+	# conformar
+	s/\b\([Cc]\)onformés\([^[:alnum:]]\)/\1onformara\2/g
+	s/\b\([Cc]\)onforméssi\([mu]\)\([^[:alnum:]]\)/\1onformàre\2\3/g
+	s/\b\([Cc]\)onformessi\([ns]\)\([^[:alnum:]]\)/\1onformare\2\3/g
+	s/\b\([Cc]\)onform\([io]\)\([^[:alnum:]]\)/\1onforme\3/g
+	s/\b\([Cc]\)onformi\([ns]\)\([^[:alnum:]]\)/\1onforme\2\3/g
+	# informar
+	s/\b\([Ii]\)nformés\([^[:alnum:]]\)/\1nformara\2/g
+	s/\b\([Ii]\)nforméssi\([mu]\)\([^[:alnum:]]\)/\1nformàre\2\3/g
+	s/\b\([Ii]\)nformessi\([ns]\)\([^[:alnum:]]\)/\1nformare\2\3/g
+	s/\b\([Ii]\)nform\([io]\)\([^[:alnum:]]\)/\1nforme\3/g
+	s/\b\([Ii]\)nformi\([ns]\|\)\([^[:alnum:]]\)/\1nforme\2\3/g
+	# transformar
+	s/\b\([Tt]\)ransformés\([^[:alnum:]]\)/\1ransformara\2/g
+	s/\b\([Tt]\)ransforméssi\([mu]\)\([^[:alnum:]]\)/\1ransformàre\2\3/g
+	s/\b\([Tt]\)ransformessi\([ns]\)\([^[:alnum:]]\)/\1ransformare\2\3/g
+	s/\b\([Tt]\)ransform\([io]\)\([^[:alnum:]]\)/\1ransforme\3/g
+	s/\b\([Tt]\)ransformi\([ns]\)\([^[:alnum:]]\)/\1ransforme\2\3/g
 # formatar
 s/\b\([Ff]\)ormatés\([^[:alnum:]]\)/\1ormatara\2/g
 s/\b\([Ff]\)ormatéssi\([mu]\)\([^[:alnum:]]\)/\1ormatàre\2\3/g
@@ -3419,6 +4015,12 @@ s/\b\([Ff]\)ormati\([ns]\)\([^[:alnum:]]\)/\1ormate\2\3/g
 	s/\b\([Rr]\)eformatessi\([ns]\)\([^[:alnum:]]\)/\1eformatare\2\3/g
 	s/\b\([Rr]\)eformat\([io]\)\([^[:alnum:]]\)/\1eformate\3/g
 	s/\b\([Rr]\)eformati\([ns]\)\([^[:alnum:]]\)/\1eformate\2\3/g
+# fragmentar
+s/\b\([Ff]\)ragmentés\([^[:alnum:]]\)/\1ragmentara\2/g
+s/\b\([Ff]\)ragmentéssi\([mu]\)\([^[:alnum:]]\)/\1ragmentàre\2\3/g
+s/\b\([Ff]\)ragmentessi\([ns]\)\([^[:alnum:]]\)/\1ragmentare\2\3/g
+s/\b\([Ff]\)ragment\([io]\)\([^[:alnum:]]\)/\1ragmente\3/g
+s/\b\([Ff]\)ragmenti\([ns]\)\([^[:alnum:]]\)/\1ragmente\2\3/g
 s/\b\([Ff]\)rancès\([^[:alnum:]]\)/\1rancés\2/g
 # funcionar
 s/\b\([Ff]\)uncionés\([^[:alnum:]]\)/\1uncionara\2/g
@@ -3551,6 +4153,8 @@ s/\b\([Hh]\)aguéss\([ei]\)\([mu]\)\([^[:alnum:]]\)/\1aguére\3\4/g
 s/\b\([Hh]\)aguess\([ei]\)\([ns]\)\([^[:alnum:]]\)/\1aguere\3\4/g
 s/\b\([Hh]\)aig\([^[:alnum:]]\)/\1e\2/g
 s/\b\([Hh]\)ave\([mu]\)\([^[:alnum:]]\)/\1e\2\3/g
+# heretar
+# FIXME:
 # homogeneïtzar
 s/\b\([Hh]\)omogeneïtzés\([^[:alnum:]]\)/\1omogeneïtzara\2/g
 s/\b\([Hh]\)omogeneïtzéssi\([mu]\)\([^[:alnum:]]\)/\1omogeneïtzàre\2\3/g
@@ -3621,12 +4225,6 @@ s/\b\([Ii]\)mplementéssi\([mu]\)\([^[:alnum:]]\)/\1mplementàre\2\3/g
 s/\b\([Ii]\)mplementessi\([ns]\)\([^[:alnum:]]\)/\1mplementare\2\3/g
 s/\b\([Ii]\)mplement\([io]\)\([^[:alnum:]]\)/\1mplemente\3/g
 s/\b\([Ii]\)mplementi\([ns]\)\([^[:alnum:]]\)/\1mplemente\2\3/g
-# importar
-s/\b\([Ii]\)mportés\([^[:alnum:]]\)/\1mportara\2/g
-s/\b\([Ii]\)mportéssi\([mu]\)\([^[:alnum:]]\)/\1mportàre\2\3/g
-s/\b\([Ii]\)mportessi\([ns]\)\([^[:alnum:]]\)/\1mportare\2\3/g
-s/\b\([Ii]\)mport\([io]\)\([^[:alnum:]]\)/\1mporte\3/g
-s/\b\([Ii]\)mporti\([ns]\)\([^[:alnum:]]\)/\1mporte\2\3/g
 # imprimir
 s/\b\([Ii]\)mprès\([^[:alnum:]]\)/\1mprés\2/g
 s/\b\([Ii]\)mprimeix\(en\|es\|\)\([^[:alnum:]]\)/\1mprimix\2\3/g
@@ -3652,12 +4250,6 @@ s/\b\([Ii]\)ndiquéssi\([mu]\)\([^[:alnum:]]\)/\1ndicàre\2\3/g
 s/\b\([Ii]\)ndiquessi\([ns]\)\([^[:alnum:]]\)/\1ndicare\2\3/g
 s/\b\([Ii]\)ndiqui\([^[:alnum:]]\)/\1ndique\2/g
 s/\b\([Ii]\)ndiqui\([ns]\)\([^[:alnum:]]\)/\1ndique\2\3/g
-# informar
-s/\b\([Ii]\)nformés\([^[:alnum:]]\)/\1nformara\2/g
-s/\b\([Ii]\)nforméssi\([mu]\)\([^[:alnum:]]\)/\1nformàre\2\3/g
-s/\b\([Ii]\)nformessi\([ns]\)\([^[:alnum:]]\)/\1nformare\2\3/g
-s/\b\([Ii]\)nform\([io]\)\([^[:alnum:]]\)/\1nforme\3/g
-s/\b\([Ii]\)nformi\([ns]\|\)\([^[:alnum:]]\)/\1nforme\2\3/g
 # ingerir
 s/\b\([Ii]\)ngereix\(en\|es\|\)\([^[:alnum:]]\)/\1ngerix\2\3/g
 s/\b\([Ii]\)ngereixi\([^[:alnum:]]\)/\1ngerisca\2/g
@@ -3674,10 +4266,6 @@ s/\b\([Ii]\)nhibeixo\([^[:alnum:]]\)/\1nhibisc\2/g
 s/\b\([Ii]\)nhibís\([^[:alnum:]]\)/\1nhibira\2/g
 s/\b\([Ii]\)nhibíssi\([mu]\)\([^[:alnum:]]\)/\1nhibíre\2\3/g
 s/\b\([Ii]\)nhibissi\([ns]\)\([^[:alnum:]]\)/\1nhibire\2\3/g
-s/\bInicialitza\([^[:alnum:]]\)/Restablix\1/g
-s/\binicialitza\([^[:alnum:]]\)/restablix\1/g
-s/\bInicialitzar\([^[:alnum:]]\)/Restablir\1/g
-s/\binicialitzar\([^[:alnum:]]\)/restablir\1/g
 # inclinar
 s/\b\([Ii]\)nclinés\([^[:alnum:]]\)/\1nclinara\2/g
 s/\b\([Ii]\)nclinéssi\([mu]\)\([^[:alnum:]]\)/\1nclinàre\2\3/g
@@ -3706,6 +4294,10 @@ s/\b\([Ii]\)niciï\([ns]\|\)\([^[:alnum:]]\)/\1nicie\2\3/g
 	s/\bTorna\(r\|\) a engegar\([^[:alnum:]]\)/Reinicia\1\2/g
 	s/\btorna\(r\|\) a engegar\([^[:alnum:]]\)/reinicia\1\2/g
 # inicialitzar
+s/\bInicialitza\([^[:alnum:]]\)/Restablix\1/g
+s/\binicialitza\([^[:alnum:]]\)/restablix\1/g
+s/\bInicialitzar\([^[:alnum:]]\)/Restablir\1/g
+s/\binicialitzar\([^[:alnum:]]\)/restablir\1/g
 s/\b\([Ii]\)nicialitzés\([^[:alnum:]]\)/\1nicialitzara\2/g
 s/\b\([Ii]\)nicialitzéssi\([mu]\)\([^[:alnum:]]\)/\1nicialitzàre\2\3/g
 s/\b\([Ii]\)nicialitzessi\([ns]\)\([^[:alnum:]]\)/\1nicialitzare\2\3/g
@@ -3718,19 +4310,6 @@ s/\b\([Ii]\)nicialitz\([io]\)\([^[:alnum:]]\)/\1nicialitze\3/g
 	s/\b\([Rr]\)einicialitzessi\([ns]\)\([^[:alnum:]]\)/\1einicialitzare\2\3/g
 	s/\b\([Rr]\)einicialitzi\([ns]\)\([^[:alnum:]]\)/\1einicialitze\2\3/g
 	s/\b\([Rr]\)einicialitz\([io]\)\([^[:alnum:]]\)/\1einicialitze\3/g
-# intentar
-s/\b\([Ii]\)ntentés\([^[:alnum:]]\)/\1ntentara\2/g
-s/\b\([Ii]\)ntentéssi\([mu]\)\([^[:alnum:]]\)/\1ntentàre\2\3/g
-s/\b\([Ii]\)ntentessi\([ns]\)\([^[:alnum:]]\)/\1ntentare\2\3/g
-s/\b\([Ii]\)ntent\([io]\)\([^[:alnum:]]\)/\1ntente\3/g
-s/\b\([Ii]\)ntenti\([ns]\)\([^[:alnum:]]\)/\1ntente\2\3/g
-	# TODO: no
-	# reintentar
-	s/\b\([Rr]\)eintentés\([^[:alnum:]]\)/\1eintentara\2/g
-	s/\b\([Rr]\)eintentéssi\([mu]\)\([^[:alnum:]]\)/\1eintentàre\2\3/g
-	s/\b\([Rr]\)eintentessi\([ns]\)\([^[:alnum:]]\)/\1eintentare\2\3/g
-	s/\b\([Rr]\)eintent\([io]\)\([^[:alnum:]]\)/\1eintente\3/g
-	s/\b\([Rr]\)eintenti\([ns]\)\([^[:alnum:]]\)/\1eintente\2\3/g
 # inserir
 	s/\bsigui inserit\([^[:alnum:]]\)/s'insereixi\1/g
 s/\b\([Ii]\)nsereix\(en\|es\|\)\([^[:alnum:]]\)/\1nserix\2\3/g
@@ -3748,6 +4327,12 @@ s/\b\([Ii]\)nsisteixo\([^[:alnum:]]\)/\1nsistisc\2/g
 s/\b\([Ii]\)nsistís\([^[:alnum:]]\)/\1nsistira\2/g
 s/\b\([Ii]\)nsistíssi\([mu]\)\([^[:alnum:]]\)/\1nsistíre\2\3/g
 s/\b\([Ii]\)nsistissi\([ns]\)\([^[:alnum:]]\)/\1nsistire\2\3/g
+# inspeccionar
+s/\b\([Ii]\)nspeccionés\([^[:alnum:]]\)/\1nspeccionara\2/g
+s/\b\([Ii]\)nspeccionéssi\([mu]\)\([^[:alnum:]]\)/\1nspeccionàre\2\3/g
+s/\b\([Ii]\)nspeccionessi\([ns]\)\([^[:alnum:]]\)/\1nspeccionare\2\3/g
+s/\b\([Ii]\)nspeccion\([io]\)\([^[:alnum:]]\)/\1nspeccione\3/g
+s/\b\([Ii]\)nspeccioni\([ns]\)\([^[:alnum:]]\)/\1nspeccione\2\3/g
 # instal·lar
 s/\b\([Ii]\)nstal·lés\([^[:alnum:]]\)/\1nstal·lara\2/g
 s/\b\([Ii]\)nstal·léssi\([mu]\)\([^[:alnum:]]\)/\1nstal·làre\2\3/g
@@ -3775,22 +4360,6 @@ s/\b\([Ii]\)nstal·li\([ns]\)\([^[:alnum:]]\)/\1nstal·le\2\3/g
 	s/\b\([Rr]\)einstal·l\([io]\)\([^[:alnum:]]\)/\1einstal·le\3/g
 	s/\b\([Rr]\)einstal·li\([ns]\)\([^[:alnum:]]\)/\1einstal·le\2\3/g
 s/\b\([Ii]\)nterès\([^[:alnum:]]\)/\1nterés\2/g
-# inferir
-s/\b\([Ii]\)nfereix\(en\|es\|\)\([^[:alnum:]]\)/\1nferix\2\3/g
-s/\b\([Ii]\)nfereixi\([^[:alnum:]]\)/\1nferisca\2/g
-s/\b\([Ii]\)nfereixi\([ns]\)\([^[:alnum:]]\)/\1nferisque\2\3/g
-s/\b\([Ii]\)nfereixo\([^[:alnum:]]\)/\1nferisc\2/g
-s/\b\([Ii]\)nferís\([^[:alnum:]]\)/\1nferira\2/g
-s/\b\([Ii]\)nferíssi\([mu]\)\([^[:alnum:]]\)/\1nferíre\2\3/g
-s/\b\([Ii]\)nferissi\([ns]\)\([^[:alnum:]]\)/\1nferire\2\3/g
-	# interferir
-	s/\b\([Ii]\)nterfereix\(en\|es\|\)\([^[:alnum:]]\)/\1nterferix\2\3/g
-	s/\b\([Ii]\)nterfereixi\([^[:alnum:]]\)/\1nterferisca\2/g
-	s/\b\([Ii]\)nterfereixi\([ns]\)\([^[:alnum:]]\)/\1nterferisque\2\3/g
-	s/\b\([Ii]\)nterfereixo\([^[:alnum:]]\)/\1nterferisc\2/g
-	s/\b\([Ii]\)nterferís\([^[:alnum:]]\)/\1nterferira\2/g
-	s/\b\([Ii]\)nterferíssi\([mu]\)\([^[:alnum:]]\)/\1nterferíre\2\3/g
-	s/\b\([Ii]\)nterferissi\([ns]\)\([^[:alnum:]]\)/\1nterferire\2\3/g
 # instruir
 s/\b\([Ii]\)nstrueix\(en\|es\|\)\([^[:alnum:]]\)/\1nstruïx\2\3/g
 s/\b\([Ii]\)nstrueixi\([^[:alnum:]]\)/\1nstruïsca\2/g
@@ -3805,12 +4374,32 @@ s/\b\([Ii]\)ntentéssi\([mu]\)\([^[:alnum:]]\)/\1ntentàre\2\3/g
 s/\b\([Ii]\)ntentessi\([ns]\)\([^[:alnum:]]\)/\1ntentare\2\3/g
 s/\b\([Ii]\)ntent\([io]\)\([^[:alnum:]]\)/\1ntente\3/g
 s/\b\([Ii]\)ntenti\([ns]\)\([^[:alnum:]]\)/\1ntente\2\3/g
+	# TODO: no
+	# reintentar
+	s/\b\([Rr]\)eintentés\([^[:alnum:]]\)/\1eintentara\2/g
+	s/\b\([Rr]\)eintentéssi\([mu]\)\([^[:alnum:]]\)/\1eintentàre\2\3/g
+	s/\b\([Rr]\)eintentessi\([ns]\)\([^[:alnum:]]\)/\1eintentare\2\3/g
+	s/\b\([Rr]\)eintent\([io]\)\([^[:alnum:]]\)/\1eintente\3/g
+	s/\b\([Rr]\)eintenti\([ns]\)\([^[:alnum:]]\)/\1eintente\2\3/g
+
+# interessar
+s/\b\([Ii]\)nteressés\([^[:alnum:]]\)/\1nteressara\2/g
+s/\b\([Ii]\)nteresséssi\([mu]\)\([^[:alnum:]]\)/\1nteressàre\2\3/g
+s/\b\([Ii]\)nteressessi\([ns]\)\([^[:alnum:]]\)/\1nteressare\2\3/g
+s/\b\([Ii]\)nteress\([io]\)\([^[:alnum:]]\)/\1nteresse\3/g
+s/\b\([Ii]\)nteressi\([ns]\)\([^[:alnum:]]\)/\1nteresse\2\3/g
 # internacionalitzar
 s/\b\([Ii]\)nternacionalitzés\([^[:alnum:]]\)/\1nternacionalitzara\2/g
 s/\b\([Ii]\)nternacionalitzéssi\([mu]\)\([^[:alnum:]]\)/\1nternacionalitzàre\2\3/g
 s/\b\([Ii]\)nternacionalitzessi\([ns]\)\([^[:alnum:]]\)/\1nternacionalitzare\2\3/g
 s/\b\([Ii]\)nternacionalitz\([io]\)\([^[:alnum:]]\)/\1nternacionalitze\3/g
 s/\b\([Ii]\)nternacionalitzi\([ns]\)\([^[:alnum:]]\)/\1nternacionalitze\2\3/g
+# interpolar
+s/\b\([Ii]\)nterpolés\([^[:alnum:]]\)/\1nterpolara\2/g
+s/\b\([Ii]\)nterpoléssi\([mu]\)\([^[:alnum:]]\)/\1nterpolàre\2\3/g
+s/\b\([Ii]\)nterpolessi\([ns]\)\([^[:alnum:]]\)/\1nterpolare\2\3/g
+s/\b\([Ii]\)nterpol\([io]\)\([^[:alnum:]]\)/\1nterpole\3/g
+s/\b\([Ii]\)nterpoli\([ns]\)\([^[:alnum:]]\)/\1nterpole\2\3/g
 # interpretar
 s/\b\([Ii]\)nterpretés\([^[:alnum:]]\)/\1nterpretara\2/g
 s/\b\([Ii]\)nterpretéssi\([mu]\)\([^[:alnum:]]\)/\1nterpretàre\2\3/g
@@ -3883,33 +4472,57 @@ s/\b\([Jj]\)oguina\([^[:alnum:]]\)/\1oguet\2/g
 s/\b\([Jj]\)oguines\([^[:alnum:]]\)/\1oguets\2/g
 s/\b\([Jj]\)udici\([^[:alnum:]]\)/\1uí\2/g
 # jeure -> jaure
-s/\b\([Ii]\)agués\([^[:alnum:]]\)/\1aguera\2/g
-s/\b\([Ii]\)aguéssi\([mu]\)\([^[:alnum:]]\)/\1aguére\2\3/g
-s/\b\([Ii]\)aguessi\([ns]\)\([^[:alnum:]]\)/\1aguere\2\3/g
+s/\b\([Jj]\)agués\([^[:alnum:]]\)/\1aguera\2/g
+s/\b\([Jj]\)aguéssi\([mu]\)\([^[:alnum:]]\)/\1aguére\2\3/g
+s/\b\([Jj]\)aguessi\([ns]\)\([^[:alnum:]]\)/\1aguere\2\3/g
 s/\b\([Jj]\)e\(c\|u\|uen\|ure\|us\)\([^[:alnum:]]\)/\1a\2\3/g
 s/\b\([Jj]\)egui\([^[:alnum:]]\)/\1aga\2/g
 s/\b\([Jj]\)egui\([ns]\)\([^[:alnum:]]\)/\1ague\2\3/g
 # jugar
-s/\b\([Ii]\)ugués\([^[:alnum:]]\)/\1ugara\2/g
-s/\b\([Ii]\)uguéssi\([mu]\)\([^[:alnum:]]\)/\1ugàre\2\3/g
-s/\b\([Ii]\)uguessi\([ns]\)\([^[:alnum:]]\)/\1ugare\2\3/g
+s/\b\([Jj]\)ugués\([^[:alnum:]]\)/\1ugara\2/g
+s/\b\([Jj]\)uguéssi\([mu]\)\([^[:alnum:]]\)/\1ugàre\2\3/g
+s/\b\([Jj]\)uguessi\([ns]\)\([^[:alnum:]]\)/\1ugare\2\3/g
 s/\b\([Jj]\)ugo\([^[:alnum:]]\)/\1ugue\2/g
 s/\b\([Jj]\)ugui\([ns]\|\)\([^[:alnum:]]\)/\1ugue\2\3/g
-# PDT:
-s/\bJunta\([^[:alnum:]]\)/Uneix\1/g
-s/\bjunta\([^[:alnum:]]\)/uneix\1/g
+# juntar
+s/\b\([Jj]\)untés\([^[:alnum:]]\)/\1untara\2/g
+s/\b\([Jj]\)untéssi\([mu]\)\([^[:alnum:]]\)/\1untàre\2\3/g
+s/\b\([Jj]\)untessi\([ns]\)\([^[:alnum:]]\)/\1untare\2\3/g
+s/\b\([Jj]\)unt\([io]\)\([^[:alnum:]]\)/\1unte\3/g
+s/\b\([Jj]\)unti\([ns]\)\([^[:alnum:]]\)/\1unte\2\3/g
+	# PDT:
+	s/\bJunta\([^[:alnum:]]\)/Uneix\1/g
+	s/\bjunta\([^[:alnum:]]\)/uneix\1/g
+	# adjuntar
+	s/\b\([Aa]\)djuntés\([^[:alnum:]]\)/\1djuntara\2/g
+	s/\b\([Aa]\)djuntéssi\([mu]\)\([^[:alnum:]]\)/\1djuntàre\2\3/g
+	s/\b\([Aa]\)djuntessi\([ns]\)\([^[:alnum:]]\)/\1djuntare\2\3/g
+	s/\b\([Aa]\)djunt\([io]\)\([^[:alnum:]]\)/\1djunte\3/g
+	s/\b\([Aa]\)djunti\([ns]\)\([^[:alnum:]]\)/\1djunte\2\3/g
 # justificar
-s/\b\([Ii]\)ustifiqués\([^[:alnum:]]\)/\1ustificara\2/g
-s/\b\([Ii]\)ustifiquéssi\([mu]\)\([^[:alnum:]]\)/\1ustificàre\2\3/g
-s/\b\([Ii]\)ustifiquessi\([ns]\)\([^[:alnum:]]\)/\1ustificare\2\3/g
+s/\b\([Jj]\)ustifiqués\([^[:alnum:]]\)/\1ustificara\2/g
+s/\b\([Jj]\)ustifiquéssi\([mu]\)\([^[:alnum:]]\)/\1ustificàre\2\3/g
+s/\b\([Jj]\)ustifiquessi\([ns]\)\([^[:alnum:]]\)/\1ustificare\2\3/g
 s/\b\([Jj]\)ustifico\([^[:alnum:]]\)/\1ustifique\2/g
 s/\b\([Jj]\)ustifiqui\([ns]\|\)\([^[:alnum:]]\)/\1ustifique\2\3/g
 s/\bJustificat\([^[:alnum:]]\)/Justifica\1/g
+# jutjar
+s/\b\([Jj]\)utgés\([^[:alnum:]]\)/\1utjara\2/g
+s/\b\([Jj]\)utgéssi\([mu]\)\([^[:alnum:]]\)/\1utjàre\2\3/g
+s/\b\([Jj]\)utgessi\([ns]\)\([^[:alnum:]]\)/\1utjare\2\3/g
+s/\b\([Jj]\)utjo\([^[:alnum:]]\)/\1utge\2/g
+s/\b\([Jj]\)utgi\([ns]\|\)\([^[:alnum:]]\)/\1utge\2\3/g
 # k
 #
 s/\b\([Kk]\)anarès\([^[:alnum:]]\)/\1anarés\2/g
 # l
 #
+# lamentar
+s/\b\([Ll]\)amentés\([^[:alnum:]]\)/\1amentara\2/g
+s/\b\([Ll]\)amentéssi\([mu]\)\([^[:alnum:]]\)/\1amentàre\2\3/g
+s/\b\([Ll]\)amentessi\([ns]\)\([^[:alnum:]]\)/\1amentare\2\3/g
+s/\b\([Ll]\)ament\([io]\)\([^[:alnum:]]\)/\1amente\3/g
+s/\b\([Ll]\)amenti\([ns]\)\([^[:alnum:]]\)/\1amente\2\3/g
 # llatinitzar
 s/\b\([Ll]\)latinitzés\([^[:alnum:]]\)/\1latinitzara\2/g
 s/\b\([Ll]\)latinitzéssi\([mu]\)\([^[:alnum:]]\)/\1latinitzàre\2\3/g
@@ -4109,6 +4722,20 @@ s/\bmandra\([^[:alnum:]]\)/peresa\1/g
 s/\bMandr\(ós\|osa\|oses\|osos\)\([^[:alnum:]]\)/Peres\1\2/g
 s/\bmandr\(ós\|osa\|oses\|osos\)\([^[:alnum:]]\)/peres\1\2/g
 s/\b\([Mm]\)anganès\([^[:alnum:]]\)/\1anganés\2/g
+# manifestar
+s/\b\([Mm]\)anifestés\([^[:alnum:]]\)/\1anifestara\2/g
+s/\b\([Mm]\)anifestéssi\([mu]\)\([^[:alnum:]]\)/\1anifestàre\2\3/g
+s/\b\([Mm]\)anifestessi\([ns]\)\([^[:alnum:]]\)/\1anifestare\2\3/g
+s/\b\([Mm]\)anifest\([io]\)\([^[:alnum:]]\)/\1anifeste\3/g
+s/\b\([Mm]\)anifesti\([ns]\)\([^[:alnum:]]\)/\1anifeste\2\3/g
+	s/\bwebsites-manifeste-kde-org\([^[:alnum:]]\)/websites-manifesto-kde-org\1/g
+	s/\bmanifeste.softwaresmanship.org\([^[:alnum:]]\)/manifesto.softwaresmanship.org\1/g
+# manipular
+s/\b\([Mm]\)anipulés\([^[:alnum:]]\)/\1anipulara\2/g
+s/\b\([Mm]\)anipuléssi\([mu]\)\([^[:alnum:]]\)/\1anipulàre\2\3/g
+s/\b\([Mm]\)anipulessi\([ns]\)\([^[:alnum:]]\)/\1anipulare\2\3/g
+s/\b\([Mm]\)anipul\([io]\)\([^[:alnum:]]\)/\1anipule\3/g
+s/\b\([Mm]\)anipuli\([ns]\)\([^[:alnum:]]\)/\1anipule\2\3/g
 # marcar
 s/\b\([Mm]\)arco\([^[:alnum:]]\)/\1arque\2/g
 s/\b\([Mm]\)arqués\([^[:alnum:]]\)/\1arcara\2/g
@@ -4174,6 +4801,12 @@ s/\b\([Mm]\)escléssi\([mu]\)\([^[:alnum:]]\)/\1esclàre\2\3/g
 s/\b\([Mm]\)esclessi\([ns]\)\([^[:alnum:]]\)/\1esclare\2\3/g
 s/\b\([Mm]\)escl\([io]\)\([^[:alnum:]]\)/\1escle\3/g
 s/\b\([Mm]\)escli\([ns]\)\([^[:alnum:]]\)/\1escle\2\3/g
+# mesurar
+s/\b\([Mm]\)esurés\([^[:alnum:]]\)/\1esurara\2/g
+s/\b\([Mm]\)esuréssi\([mu]\)\([^[:alnum:]]\)/\1esuràre\2\3/g
+s/\b\([Mm]\)esuressi\([ns]\)\([^[:alnum:]]\)/\1esurare\2\3/g
+s/\b\([Mm]\)esur\([io]\)\([^[:alnum:]]\)/\1esure\3/g
+s/\b\([Mm]\)esuri\([ns]\)\([^[:alnum:]]\)/\1esure\2\3/g
 # migrar
 s/\b\([Mm]\)igrés\([^[:alnum:]]\)/\1igrara\2/g
 s/\b\([Mm]\)igréssi\([mu]\)\([^[:alnum:]]\)/\1igràre\2\3/g
@@ -4218,6 +4851,12 @@ s/\bMitjó\([^[:alnum:]]\)/Calcetí\1/g
 s/\bmitjó\([^[:alnum:]]\)/calcetí\1/g
 s/\bMitjons\([^[:alnum:]]\)/Calcetins\1/g
 s/\bmitjons\([^[:alnum:]]\)/calcetins\1/g
+# modelar
+s/\b\([Mm]\)odelés\([^[:alnum:]]\)/\1odelara\2/g
+s/\b\([Mm]\)odeléssi\([mu]\)\([^[:alnum:]]\)/\1odelàre\2\3/g
+s/\b\([Mm]\)odelessi\([ns]\)\([^[:alnum:]]\)/\1odelare\2\3/g
+s/\b\([Mm]\)odel\([io]\)\([^[:alnum:]]\)/\1odele\3/g
+s/\b\([Mm]\)odeli\([ns]\)\([^[:alnum:]]\)/\1odele\2\3/g
 # modificar
 s/\b\([Mm]\)odifiqués\([^[:alnum:]]\)/\1odificara\2/g
 s/\b\([Mm]\)odifiquéssi\([mu]\)\([^[:alnum:]]\)/\1odificàre\2\3/g
@@ -4297,6 +4936,18 @@ s/\b\([Nn]\)edéssi\([mu]\)\([^[:alnum:]]\)/\1adàre\2\3/g
 s/\b\([Nn]\)edessi\([ns]\)\([^[:alnum:]]\)/\1adare\2\3/g
 s/\b\([Nn]\)ed\([io]\)\([^[:alnum:]]\)/\1ade\3/g
 s/\b\([Nn]\)edi\([ns]\)\([^[:alnum:]]\)/\1ade\2\3/g
+# negar
+s/\b\([Nn]\)ego\([^[:alnum:]]\)/\1egue\2/g
+s/\b\([Nn]\)egués\([^[:alnum:]]\)/\1egara\2/g
+s/\b\([Nn]\)eguéssi\([mu]\)\([^[:alnum:]]\)/\1egàre\2\3/g
+s/\b\([Nn]\)eguessi\([ns]\)\([^[:alnum:]]\)/\1egare\2\3/g
+s/\b\([Nn]\)egui\([ns]\|\)\([^[:alnum:]]\)/\1egue\2\3/g
+	# denegar
+	s/\b\([Dd]\)enego\([^[:alnum:]]\)/\1enegue\2/g
+	s/\b\([Dd]\)enegués\([^[:alnum:]]\)/\1enegara\2/g
+	s/\b\([Dd]\)eneguéssi\([mu]\)\([^[:alnum:]]\)/\1enegàre\2\3/g
+	s/\b\([Dd]\)eneguessi\([ns]\)\([^[:alnum:]]\)/\1enegare\2\3/g
+	s/\b\([Dd]\)enegui\([ns]\|\)\([^[:alnum:]]\)/\1enegue\2\3/g
 # néixer -> nàixer
 s/\b\([Nn]\)éixer\([^[:alnum:]]\)/\1àixer\2/g
 s/\b\([Nn]\)\([ae]\)ix\(en\|es\|\)\([^[:alnum:]]\)/\1aix\3\4/g
@@ -4315,14 +4966,14 @@ s/\b\([Nn]\)\([ae]\)ixo\([^[:alnum:]]\)/\1asc\3/g
 	s/\b\([Rr]\)en\([ae]\)ixi\([^[:alnum:]]\)/\1enasca\3/g
 	s/\b\([Rr]\)en\([ae]\)ixi\([ns]\)\([^[:alnum:]]\)/\1enasque\3\4/g
 	s/\b\([Rr]\)en\([ae]\)ixo\([^[:alnum:]]\)/\1enasc\3/g
-s/\b\([Nn]\)eozelandès\([^[:alnum:]]\)/\1eozelandés\2/g
 s/\bNen\(a\|es\|s\|\)\([^[:alnum:]]\)/Xiquet\1\2/g
 s/\bnen\(a\|es\|s\|\)\([^[:alnum:]]\)/xiquet\1\2/g
-s/\bNoi\(a\|s\|\)\([^[:alnum:]]\)/Xic\1\2/g
-s/\bnoi\(a\|s\|\)\([^[:alnum:]]\)/xic\1\2/g
-s/\bNoies\([^[:alnum:]]\)/Xiques\1/g
-s/\bnoies\([^[:alnum:]]\)/xiques\1/g
+	s/\bNoi\(a\|s\|\)\([^[:alnum:]]\)/Xic\1\2/g
+	s/\bnoi\(a\|s\|\)\([^[:alnum:]]\)/xic\1\2/g
+	s/\bNoies\([^[:alnum:]]\)/Xiques\1/g
+	s/\bnoies\([^[:alnum:]]\)/xiques\1/g
 s/\b\([Nn]\)epalès\([^[:alnum:]]\)/\1epalés\2/g
+s/\b\([Nn]\)eozelandès\([^[:alnum:]]\)/\1eozelandés\2/g
 # normalitzar
 s/\b\([Mm]\)ormalitzés\([^[:alnum:]]\)/\1ormalitzara\2/g
 s/\b\([Mm]\)ormalitzéssi\([mu]\)\([^[:alnum:]]\)/\1ormalitzàre\2\3/g
@@ -4335,6 +4986,12 @@ s/\b\([Mm]\)otéssi\([mu]\)\([^[:alnum:]]\)/\1otàre\2\3/g
 s/\b\([Mm]\)otessi\([ns]\)\([^[:alnum:]]\)/\1otare\2\3/g
 s/\b\([Nn]\)ot\([io]\)\([^[:alnum:]]\)/\1ote\3/g
 s/\b\([Nn]\)oti\([ns]\)\([^[:alnum:]]\)/\1ote\2\3/g
+	# anotar
+	s/\b\([Aa]\)notés\([^[:alnum:]]\)/\1notara\2/g
+	s/\b\([Aa]\)notéssi\([mu]\)\([^[:alnum:]]\)/\1notàre\2\3/g
+	s/\b\([Aa]\)notessi\([ns]\)\([^[:alnum:]]\)/\1notare\2\3/g
+	s/\b\([Aa]\)not\([io]\)\([^[:alnum:]]\)/\1note\3/g
+	s/\b\([Aa]\)noti\([ns]\)\([^[:alnum:]]\)/\1note\2\3/g
 # notificar
 s/\b\([Mm]\)otifiqués\([^[:alnum:]]\)/\1otificara\2/g
 s/\b\([Mm]\)otifiquéssi\([mu]\)\([^[:alnum:]]\)/\1otificàre\2\3/g
@@ -4372,11 +5029,54 @@ s/\bobro\([^[:alnum:]]\)/òbric\1/g
 	s/\bMostra les obris\([^[:alnum:]]\)/Mostra les obres\1/g
 	s/\bòbrigues mestres\([^[:alnum:]]\)/obres mestres\1/g
 	s/\bobris mestres\([^[:alnum:]]\)/obres mestres\1/g
+	# cobrir
+	s/\b\([Cc]\)obreix\(en\|es\|\)\([^[:alnum:]]\)/\1obrix\2\3/g
+	s/\b\([Cc]\)obreixi\([^[:alnum:]]\)/\1obrisca\2/g
+	s/\b\([Cc]\)obreixi\([ns]\)\([^[:alnum:]]\)/\1obrisque\2\3/g
+	s/\b\([Cc]\)obreixo\([^[:alnum:]]\)/\1obrisc\2/g
+	s/\b\([Cc]\)obrís\([^[:alnum:]]\)/\1obrira\2/g
+	s/\b\([Cc]\)obríssi\([mu]\)\([^[:alnum:]]\)/\1obríre\2\3/g
+	s/\b\([Cc]\)obrissi\([ns]\)\([^[:alnum:]]\)/\1obrire\2\3/g
+		# descobrir
+		s/\b\([Dd]\)escobreix\(en\|es\|\)\([^[:alnum:]]\)/\1escobrix\2\3/g
+		s/\b\([Dd]\)escobreixi\([^[:alnum:]]\)/\1escobrisca\2/g
+		s/\b\([Dd]\)escobreixi\([ns]\)\([^[:alnum:]]\)/\1escobrisque\2\3/g
+		s/\b\([Dd]\)escobreixo\([^[:alnum:]]\)/\1escobrisc\2/g
+		s/\b\([Dd]\)escobrís\([^[:alnum:]]\)/\1escobrira\2/g
+		s/\b\([Dd]\)escobríssi\([mu]\)\([^[:alnum:]]\)/\1escobríre\2\3/g
+		s/\b\([Dd]\)escobrissi\([ns]\)\([^[:alnum:]]\)/\1escobrire\2\3/g
+			# redescobrir
+			s/\b\([Rr]\)edescobreix\(en\|es\|\)\([^[:alnum:]]\)/\1edescobrix\2\3/g
+			s/\b\([Rr]\)edescobreixi\([^[:alnum:]]\)/\1edescobrisca\2/g
+			s/\b\([Rr]\)edescobreixi\([ns]\)\([^[:alnum:]]\)/\1edescobrisque\2\3/g
+			s/\b\([Rr]\)edescobreixo\([^[:alnum:]]\)/\1edescobrisc\2/g
+			s/\b\([Rr]\)edescobrís\([^[:alnum:]]\)/\1edescobrira\2/g
+			s/\b\([Rr]\)edescobríssi\([mu]\)\([^[:alnum:]]\)/\1edescobríre\2\3/g
+			s/\b\([Rr]\)edescobrissi\([ns]\)\([^[:alnum:]]\)/\1edescobrire\2\3/g
+		# encobrir
+		s/\b\([Ee]\)ncobreix\(en\|es\|\)\([^[:alnum:]]\)/\1ncobrix\2\3/g
+		s/\b\([Ee]\)ncobreixi\([^[:alnum:]]\)/\1ncobrisca\2/g
+		s/\b\([Ee]\)ncobreixi\([ns]\)\([^[:alnum:]]\)/\1ncobrisque\2\3/g
+		s/\b\([Ee]\)ncobreixo\([^[:alnum:]]\)/\1ncobrisc\2/g
+		s/\b\([Ee]\)ncobrís\([^[:alnum:]]\)/\1ncobrira\2/g
+		s/\b\([Ee]\)ncobríssi\([mu]\)\([^[:alnum:]]\)/\1ncobríre\2\3/g
+		s/\b\([Ee]\)ncobrissi\([ns]\)\([^[:alnum:]]\)/\1ncobrire\2\3/g
+	# entreobrir
+	s/\b\([Ee]\)ntreobre\(n\|s\|\)\([^[:alnum:]]\)/\1ntreobri\3/g
+	s/\b\([Ee]\)ntreobri\([^[:alnum:]]\)/\1ntreòbrig\2/g
+	s/\b\([Ee]\)ntreobri\([ns]\)\([^[:alnum:]]\)/\1ntreòbrigue\2\3/g
+	s/\b\([Ee]\)ntreobro\([^[:alnum:]]\)/\1ntreòbric\2/g
+	s/\b\([Ee]\)entreobrís\([^[:alnum:]]\)/\1entreobrira\2/g
+	s/\b\([Ee]\)entreobríssi\([mu]\)\([^[:alnum:]]\)/\1entreobríre\2\3/g
+	s/\b\([Ee]\)entreobrissi\([ns]\)\([^[:alnum:]]\)/\1entreobrire\2\3/g
 	# reobrir
-	s/\bReobri\([^[:alnum:]]\)/Torne a obrir\1/g
-	s/\breobri\([^[:alnum:]]\)/torne a obrir\1/g
+		s/\breobrir-la\([^[:alnum:]]\)/tornar-la a obrir\1/g
+	s/\bReobri\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Torna\1 a obrir\2/g
+	s/\breobri\(da\|des\|nt\|r\|rà\|ran\|reu\|t\|ts\|va\|ven\|\)\([^[:alnum:]]\)/torna\1 a obrir\2/g
 	s/\bReobre\([ns]\|\)\([^[:alnum:]]\)/Torne\1 a obrir\2/g
 	s/\breobre\([ns]\|\)\([^[:alnum:]]\)/Torne\1 a obrir\2/g
+	s/\bReobr\([io]\)\([^[:alnum:]]\)/Torne a obrir\2/g
+	s/\breobr\([io]\)\([^[:alnum:]]\)/torne a obrir\2/g
 	s/\bReobri\([ns]\)\([^[:alnum:]]\)/Torne\1 a obrir\2/g
 	s/\breobri\([ns]\)\([^[:alnum:]]\)/torne\1 a obrir\2/g
 	s/\bReobrís\([^[:alnum:]]\)/Tornara a obrir\1/g
@@ -4385,8 +5085,6 @@ s/\bobro\([^[:alnum:]]\)/òbric\1/g
 	s/\breobríssi\([mu]\)\([^[:alnum:]]\)/tornàre\1 a obrir\2/g
 	s/\bReobrissi\([ns]\)\([^[:alnum:]]\)/Tornare\1 a obrir\2/g
 	s/\breobrissi\([ns]\)\([^[:alnum:]]\)/tornare\1 a obrir\2/g
-	s/\bReobro\([^[:alnum:]]\)/Voleu tornar a obrir\1/g
-	s/\breobro\([^[:alnum:]]\)/voleu tornar a obrir\1/g
 # observar
 s/\b\([Oo]\)bservés\([^[:alnum:]]\)/\1bservara\2/g
 s/\b\([Oo]\)bservéssi\([mu]\)\([^[:alnum:]]\)/\1bservàre\2\3/g
@@ -4413,6 +5111,18 @@ s/\b\([Oo]\)cupéssi\([mu]\)\([^[:alnum:]]\)/\1cupàre\2\3/g
 s/\b\([Oo]\)cupessi\([ns]\)\([^[:alnum:]]\)/\1cupare\2\3/g
 s/\b\([Oo]\)cup\([io]\)\([^[:alnum:]]\)/\1cupe\3/g
 s/\b\([Oo]\)cupi\([ns]\)\([^[:alnum:]]\)/\1cupe\2\3/g
+	# desocupar
+	s/\b\([Dd]\)esocupés\([^[:alnum:]]\)/\1esocupara\2/g
+	s/\b\([Dd]\)esocupéssi\([mu]\)\([^[:alnum:]]\)/\1esocupàre\2\3/g
+	s/\b\([PD]\)esocupessi\([ns]\)\([^[:alnum:]]\)/\1esocupare\2\3/g
+	s/\b\([Dd]\)esocup\([io]\)\([^[:alnum:]]\)/\1esocupe\3/g
+	s/\b\([Dd]\)esocupi\([ns]\)\([^[:alnum:]]\)/\1esocupe\2\3/g
+	# preocupar
+	s/\b\([Pp]\)reocupés\([^[:alnum:]]\)/\1reocupara\2/g
+	s/\b\([Pp]\)reocupéssi\([mu]\)\([^[:alnum:]]\)/\1reocupàre\2\3/g
+	s/\b\([Pp]\)reocupessi\([ns]\)\([^[:alnum:]]\)/\1reocupare\2\3/g
+	s/\b\([Pp]\)reocup\([io]\)\([^[:alnum:]]\)/\1reocupe\3/g
+	s/\b\([Pp]\)reocupi\([ns]\)\([^[:alnum:]]\)/\1reocupe\2\3/g
 # ofendre
 s/\b\([Oo]\)fè\([ns]\)\([^[:alnum:]]\)/\1fé\2\3/g
 s/\b\([Oo]\)fengués\([^[:alnum:]]\)/\1fenguera\2/g
@@ -4420,16 +5130,6 @@ s/\b\([Oo]\)fenguéssi\([mu]\)\([^[:alnum:]]\)/\1fenguére\2\3/g
 s/\b\([Oo]\)fenguessi\([ns]\)\([^[:alnum:]]\)/\1fenguere\2\3/g
 s/\b\([Oo]\)fengui\([^[:alnum:]]\)/\1fenga\2/g
 s/\b\([Oo]\)fengui\([ns]\)\([^[:alnum:]]\)/\1fengue\2\3/g
-# oferir
-s/\b\([Oo]\)fereix\(en\|es\|\)\([^[:alnum:]]\)/\1ferix\2\3/g
-s/\b\([Oo]\)fereixi\([^[:alnum:]]\)/\1ferisca\2/g
-s/\b\([Oo]\)fereixi\([ns]\)\([^[:alnum:]]\)/\1ferisque\2\3/g
-s/\b\([Oo]\)fereixo\([^[:alnum:]]\)/\1ferisc\2/g
-s/\b\([Oo]\)ferís\([^[:alnum:]]\)/\1ferira\2/g
-s/\b\([Oo]\)feríssi\([mu]\)\([^[:alnum:]]\)/\1feríre\2\3/g
-s/\b\([Oo]\)ferissi\([ns]\)\([^[:alnum:]]\)/\1ferire\2\3/g
-s/\b\([Oo]\)fert\(s\|\)\([^[:alnum:]]\)/\1ferit\2\3/g
-s/\b\([Oo]\)fert\(a\|es\)\([^[:alnum:]]\)/\1ferid\2\3/g
 # ombrejar
 s/\b\([Oo]\)mbregés\([^[:alnum:]]\)/\1mbrejara\2/g
 s/\b\([Oo]\)mbregéssi\([mu]\)\([^[:alnum:]]\)/\1mbrejàre\2\3/g
@@ -4465,6 +5165,12 @@ s/\b\([Oo]\)ptimitzéssi\([mu]\)\([^[:alnum:]]\)/\1ptimitzàre\2\3/g
 s/\b\([Oo]\)ptimitzessi\([ns]\)\([^[:alnum:]]\)/\1ptimitzare\2\3/g
 s/\b\([Oo]\)ptimitz\([io]\)\([^[:alnum:]]\)/\1ptimitze\3/g
 s/\b\([Oo]\)ptimitzi\([ns]\)\([^[:alnum:]]\)/\1ptimitze\2\3/g
+# ornamentar
+s/\b\([Oo]\)rnamentés\([^[:alnum:]]\)/\1rnamentara\2/g
+s/\b\([Oo]\)rnamentéssi\([mu]\)\([^[:alnum:]]\)/\1rnamentàre\2\3/g
+s/\b\([Oo]\)rnamentessi\([ns]\)\([^[:alnum:]]\)/\1rnamentare\2\3/g
+s/\b\([Oo]\)rnament\([io]\)\([^[:alnum:]]\)/\1rnamente\3/g
+s/\b\([Oo]\)rnamenti\([ns]\)\([^[:alnum:]]\)/\1rnamente\2\3/g
 # ordenar
 s/\b\([Oo]\)rdenés\([^[:alnum:]]\)/\1rdenara\2/g
 s/\b\([Oo]\)rdenéssi\([mu]\)\([^[:alnum:]]\)/\1rdenàre\2\3/g
@@ -4489,6 +5195,12 @@ s/\b\([Oo]\)rganitzi\([ns]\)\([^[:alnum:]]\)/\1rganitze\2\3/g
 	s/\b\([Rr]\)eorganitzessi\([ns]\)\([^[:alnum:]]\)/\1eorganitzare\2\3/g
 	s/\b\([Rr]\)eorganitz\([io]\)\([^[:alnum:]]\)/\1eorganitze\3/g
 	s/\b\([Rr]\)eorganitzi\([ns]\)\([^[:alnum:]]\)/\1eorganitze\2\3/g
+# orientar
+s/\b\([Oo]\)rientés\([^[:alnum:]]\)/\1rientara\2/g
+s/\b\([Oo]\)rientéssi\([mu]\)\([^[:alnum:]]\)/\1rientàre\2\3/g
+s/\b\([Oo]\)rientessi\([ns]\)\([^[:alnum:]]\)/\1rientare\2\3/g
+s/\b\([Oo]\)rient\([io]\)\([^[:alnum:]]\)/\1riente\3/g
+s/\b\([Oo]\)rienti\([ns]\)\([^[:alnum:]]\)/\1riente\2\3/g
 # oscil·lar
 s/\b\([Oo]\)scil·lés\([^[:alnum:]]\)/\1scil·lara\2/g
 s/\b\([Oo]\)scil·léssi\([mu]\)\([^[:alnum:]]\)/\1scil·làre\2\3/g
@@ -4565,6 +5277,13 @@ s/\b\([Pp]\)asséssi\([mu]\)\([^[:alnum:]]\)/\1assàre\2\3/g
 s/\b\([Pp]\)assessi\([ns]\)\([^[:alnum:]]\)/\1assare\2\3/g
 s/\b\([Pp]\)ass\([io]\)\([^[:alnum:]]\)/\1asse\3/g
 s/\b\([Pp]\)assi\([ns]\)\([^[:alnum:]]\)/\1asse\2\3/g
+	# sobrepassar
+	# TODO:
+	s/\b\([Ss]\)obrepassés\([^[:alnum:]]\)/\1obrepassara\2/g
+	s/\b\([Ss]\)obrepasséssi\([mu]\)\([^[:alnum:]]\)/\1obrepassàre\2\3/g
+	s/\b\([Ss]\)obrepassessi\([ns]\)\([^[:alnum:]]\)/\1obrepassare\2\3/g
+	s/\b\([Ss]\)obrepass\([io]\)\([^[:alnum:]]\)/\1obrepasse\3/g
+	s/\b\([Ss]\)obrepassi\([ns]\)\([^[:alnum:]]\)/\1obrepasse\2\3/g
 	# ultrapassar
 	s/\b\([Uu]\)ltrapassés\([^[:alnum:]]\)/\1ltrapassara\2/g
 	s/\b\([Uu]\)ltrapasséssi\([mu]\)\([^[:alnum:]]\)/\1ltrapassàre\2\3/g
@@ -4650,10 +5369,22 @@ s/\bPessigolles\([^[:alnum:]]\)/Cosquerelles\1/g
 s/\bpessigolles\([^[:alnum:]]\)/cosquerelles\1/g
 s/\bPetit\(a\|es\|\)\([^[:alnum:]]\)/Xicotet\1\2/g
 s/\bpetit\(a\|es\|\)\([^[:alnum:]]\)/xicotet\1\2/g
+# pigmentar
+s/\b\([Pp]\)igmentés\([^[:alnum:]]\)/\1igmentara\2/g
+s/\b\([Pp]\)igmentéssi\([mu]\)\([^[:alnum:]]\)/\1igmentàre\2\3/g
+s/\b\([Pp]\)igmentessi\([ns]\)\([^[:alnum:]]\)/\1igmentare\2\3/g
+s/\b\([Pp]\)igment\([io]\)\([^[:alnum:]]\)/\1igmente\3/g
+s/\b\([Pp]\)igmenti\([ns]\)\([^[:alnum:]]\)/\1igmente\2\3/g
 s/\bPlafó\([^[:alnum:]]\)/Quadro\1/g
 s/\bplafó\([^[:alnum:]]\)/quadro\1/g
 s/\bPlafons\([^[:alnum:]]\)/Quadros\1/g
 s/\bplafons\([^[:alnum:]]\)/quadros\1/g
+# planejar
+s/\b\([Pp]\)lanegés\([^[:alnum:]]\)/\1lanejara\2/g
+s/\b\([Pp]\)lanegéssi\([mu]\)\([^[:alnum:]]\)/\1lanejàre\2\3/g
+s/\b\([Pp]\)lanegessi\([ns]\)\([^[:alnum:]]\)/\1lanejare\2\3/g
+s/\b\([Pp]\)lanegi\([ns]\|\)\([^[:alnum:]]\)/\1lanege\2\3/g
+s/\b\([Pp]\)lanejo\([^[:alnum:]]\)/\1lanege\2/g
 # planificar
 s/\b\([Pp]\)lanifiqués\([^[:alnum:]]\)/\1lanificara\2/g
 s/\b\([Pp]\)lanifiquéssi\([mu]\)\([^[:alnum:]]\)/\1lanificàre\2\3/g
@@ -4672,12 +5403,30 @@ s/\b\([Pp]\)leguéssi\([mu]\)\([^[:alnum:]]\)/\1legàre\2\3/g
 s/\b\([Pp]\)leguessi\([ns]\)\([^[:alnum:]]\)/\1legare\2\3/g
 s/\b\([Pp]\)legu\([io]\)\([^[:alnum:]]\)/\1legue\3/g
 s/\b\([Pp]\)legui\([ns]\)\([^[:alnum:]]\)/\1legue\2\3/g
+	# aplegar
+	s/\b\([Aa]\)plegués\([^[:alnum:]]\)/\1plegara\2/g
+	s/\b\([Aa]\)pleguéssi\([mu]\)\([^[:alnum:]]\)/\1plegàre\2\3/g
+	s/\b\([Aa]\)pleguessi\([ns]\)\([^[:alnum:]]\)/\1plegare\2\3/g
+	s/\b\([Aa]\)plegui\([ns]\|\)\([^[:alnum:]]\)/\1plegue\2\3/g
+	s/\b\([Aa]\)plego\([^[:alnum:]]\)/\1plegue\2/g
+	# arreplegar
+	s/\b\([Aa]\)rreplego\([^[:alnum:]]\)/\1rreplegue\2/g
+	s/\b\([Aa]\)rreplegués\([^[:alnum:]]\)/\1rreplegara\2/g
+	s/\b\([Aa]\)rrepleguéssi\([mu]\)\([^[:alnum:]]\)/\1rreplegàre\2\3/g
+	s/\b\([Aa]\)rrepleguessi\([ns]\)\([^[:alnum:]]\)/\1rreplegare\2\3/g
+	s/\b\([Aa]\)rreplegui\([ns]\|\)\([^[:alnum:]]\)/\1rreplegue\2\3/g
 	# desplegar
 	s/\b\([Dd]\)esplegués\([^[:alnum:]]\)/\1esplegara\2/g
 	s/\b\([Dd]\)espleguéssi\([mu]\)\([^[:alnum:]]\)/\1esplegàre\2\3/g
 	s/\b\([Dd]\)espleguessi\([ns]\)\([^[:alnum:]]\)/\1esplegare\2\3/g
 	s/\b\([Dd]\)esplegu\([io]\)\([^[:alnum:]]\)/\1esplegue\3/g
 	s/\b\([Dd]\)esplegui\([ns]\)\([^[:alnum:]]\)/\1esplegue\2\3/g
+	# replegar
+	s/\b\([Rr]\)eplego\([^[:alnum:]]\)/\1eplegue\2/g
+	s/\b\([Rr]\)eplegués\([^[:alnum:]]\)/\1eplegara\2/g
+	s/\b\([Rr]\)epleguéssi\([mu]\)\([^[:alnum:]]\)/\1eplegàre\2\3/g
+	s/\b\([Rr]\)epleguessi\([ns]\)\([^[:alnum:]]\)/\1eplegare\2\3/g
+	s/\b\([Rr]\)eplegui\([ns]\|\)\([^[:alnum:]]\)/\1eplegue\2\3/g
 # poder
 s/\b\([Pp]\)ogués\([^[:alnum:]]\)/\1oguera\2/g
 s/\b\([Pp]\)oguéssi\([mu]\)\([^[:alnum:]]\)/\1oguére\2\3/g
@@ -4709,18 +5458,66 @@ s/\b\([Pp]\)orti\([ns]\)\([^[:alnum:]]\)/\1orte\2\3/g
 	s/\bPorte-Novo\([^[:alnum:]]\)/Porto-Novo\1/g
 	s/\bPorte_Velho\([^[:alnum:]]\)/Porto_Velho\1/g
 	s/\bPorte Velho\([^[:alnum:]]\)/Porto Velho\1/g
+	# aportar
+	s/\b\([Aa]\)portés\([^[:alnum:]]\)/\1portara\2/g
+	s/\b\([Aa]\)portéssi\([mu]\)\([^[:alnum:]]\)/\1portàre\2\3/g
+	s/\b\([Aa]\)portessi\([ns]\)\([^[:alnum:]]\)/\1portare\2\3/g
+	s/\b\([Aa]\)port\([io]\)\([^[:alnum:]]\)/\1porte\3/g
+	s/\b\([Aa]\)porti\([ns]\)\([^[:alnum:]]\)/\1porte\2\3/g
 	# comportar
 	s/\b\([Cc]\)omportés\([^[:alnum:]]\)/\1omportara\2/g
 	s/\b\([Cc]\)omportéssi\([mu]\)\([^[:alnum:]]\)/\1omportàre\2\3/g
 	s/\b\([Cc]\)omportessi\([ns]\)\([^[:alnum:]]\)/\1omportare\2\3/g
 	s/\b\([Cc]\)omport\([io]\)\([^[:alnum:]]\)/\1omporte\3/g
 	s/\b\([Cc]\)omporti\([ns]\)\([^[:alnum:]]\)/\1omporte\2\3/g
+	# deportar
+	s/\b\([Dd]\)eportés\([^[:alnum:]]\)/\1eportara\2/g
+	s/\b\([Dd]\)eportéssi\([mu]\)\([^[:alnum:]]\)/\1eportàre\2\3/g
+	s/\b\([Dd]\)eportessi\([ns]\)\([^[:alnum:]]\)/\1eportare\2\3/g
+	s/\b\([Dd]\)eport\([io]\)\([^[:alnum:]]\)/\1eporte\3/g
+	s/\b\([Dd]\)eporti\([ns]\)\([^[:alnum:]]\)/\1eporte\2\3/g
+	# exportar
+	s/\b\([Ee]\)xportés\([^[:alnum:]]\)/\1xportara\2/g
+	s/\b\([Ee]\)xportéssi\([mu]\)\([^[:alnum:]]\)/\1xportàre\2\3/g
+	s/\b\([Ee]\)xportessi\([ns]\)\([^[:alnum:]]\)/\1xportare\2\3/g
+	s/\b\([Ee]\)xport\([io]\)\([^[:alnum:]]\)/\1xporte\3/g
+	s/\b\([Ee]\)xporti\([ns]\)\([^[:alnum:]]\)/\1xporte\2\3/g
+		# reexportar
+		s/\b\([Rr]\)eexportés\([^[:alnum:]]\)/\1eexportara\2/g
+		s/\b\([Rr]\)eexportéssi\([mu]\)\([^[:alnum:]]\)/\1eexportàre\2\3/g
+		s/\b\([Rr]\)eexportessi\([ns]\)\([^[:alnum:]]\)/\1eexportare\2\3/g
+		s/\b\([Rr]\)eexport\([io]\)\([^[:alnum:]]\)/\1eexporte\3/g
+		s/\b\([Rr]\)eexporti\([ns]\)\([^[:alnum:]]\)/\1eexporte\2\3/g
+	# importar
+	s/\b\([Ii]\)mportés\([^[:alnum:]]\)/\1mportara\2/g
+	s/\b\([Ii]\)mportéssi\([mu]\)\([^[:alnum:]]\)/\1mportàre\2\3/g
+	s/\b\([Ii]\)mportessi\([ns]\)\([^[:alnum:]]\)/\1mportare\2\3/g
+	s/\b\([Ii]\)mport\([io]\)\([^[:alnum:]]\)/\1mporte\3/g
+	s/\b\([Ii]\)mporti\([ns]\)\([^[:alnum:]]\)/\1mporte\2\3/g
+		# reexportar
+		s/\b\([Rr]\)eimportés\([^[:alnum:]]\)/\1eimportara\2/g
+		s/\b\([Rr]\)eimportéssi\([mu]\)\([^[:alnum:]]\)/\1eimportàre\2\3/g
+		s/\b\([Rr]\)eimportessi\([ns]\)\([^[:alnum:]]\)/\1eimportare\2\3/g
+		s/\b\([Rr]\)eimport\([io]\)\([^[:alnum:]]\)/\1eimporte\3/g
+		s/\b\([Rr]\)eimporti\([ns]\)\([^[:alnum:]]\)/\1eimporte\2\3/g
 	# reportar
 	s/\b\([Rr]\)eport\([io]\)\([^[:alnum:]]\)/\1eporte\3/g
 	s/\b\([Rr]\)eporti\([ns]\)\([^[:alnum:]]\)/\1eporte\2\3/g
 	s/\b\([Rr]\)eportés\([^[:alnum:]]\)/\1eportara\2/g
 	s/\b\([Rr]\)eportéssi\([mu]\)\([^[:alnum:]]\)/\1eportàre\2\3/g
 	s/\b\([Rr]\)eportessi\([ns]\)\([^[:alnum:]]\)/\1eportare\2\3/g
+	# suportar
+	s/\b\([Ss]\)uportés\([^[:alnum:]]\)/\1uportara\2/g
+	s/\b\([Ss]\)uportéssi\([mu]\)\([^[:alnum:]]\)/\1uportàre\2\3/g
+	s/\b\([Ss]\)uportessi\([ns]\)\([^[:alnum:]]\)/\1uportare\2\3/g
+	s/\b\([Ss]\)uport\([io]\)\([^[:alnum:]]\)/\1uporte\3/g
+	s/\b\([Ss]\)uporti\([ns]\)\([^[:alnum:]]\)/\1uporte\2\3/g
+	# transportar
+	s/\b\([Tt]\)ansportés\([^[:alnum:]]\)/\1ansportara\2/g
+	s/\b\([Tt]\)ansportéssi\([mu]\)\([^[:alnum:]]\)/\1ansportàre\2\3/g
+	s/\b\([Tt]\)ansportessi\([ns]\)\([^[:alnum:]]\)/\1ansportare\2\3/g
+	s/\b\([Tt]\)ansport\([io]\)\([^[:alnum:]]\)/\1ansporte\3/g
+	s/\b\([Tt]\)ansporti\([ns]\)\([^[:alnum:]]\)/\1ansporte\2\3/g
 s/\b\([Pp]\)ortuguès\([^[:alnum:]]\)/\1ortugués\2/g
 # posar
 s/\b\([Pp]\)osés\([^[:alnum:]]\)/\1osara\2/g
@@ -4728,11 +5525,138 @@ s/\b\([Pp]\)oséssi\([mu]\)\([^[:alnum:]]\)/\1osàre\2\3/g
 s/\b\([Pp]\)osessi\([ns]\)\([^[:alnum:]]\)/\1osare\2\3/g
 s/\b\([Pp]\)os\([io]\)\([^[:alnum:]]\)/\1ose\3/g
 s/\b\([Pp]\)osi\([ns]\)\([^[:alnum:]]\)/\1ose\2\3/g
+	# anteposar
+	s/\b\([Aa]\)nteposés\([^[:alnum:]]\)/\1nteposara\2/g
+	s/\b\([Aa]\)nteposéssi\([mu]\)\([^[:alnum:]]\)/\1nteposàre\2\3/g
+	s/\b\([Aa]\)nteposessi\([ns]\)\([^[:alnum:]]\)/\1nteposare\2\3/g
+	s/\b\([Aa]\)ntepos\([io]\)\([^[:alnum:]]\)/\1ntepose\3/g
+	s/\b\([Aa]\)nteposi\([ns]\)\([^[:alnum:]]\)/\1ntepose\2\3/g
+	# composar
+	s/\b\([Cc]\)omposés\([^[:alnum:]]\)/\1omposara\2/g
+	s/\b\([Cc]\)omposéssi\([mu]\)\([^[:alnum:]]\)/\1omposàre\2\3/g
+	s/\b\([Cc]\)omposessi\([ns]\)\([^[:alnum:]]\)/\1omposare\2\3/g
+	s/\b\([Cc]\)ompos\([io]\)\([^[:alnum:]]\)/\1ompose\3/g
+	s/\b\([Cc]\)omposi\([ns]\)\([^[:alnum:]]\)/\1ompose\2\3/g
+	# contraposar
+	s/\b\([Cc]\)ontraposés\([^[:alnum:]]\)/\1ontraposara\2/g
+	s/\b\([Cc]\)ontraposéssi\([mu]\)\([^[:alnum:]]\)/\1ontraposàre\2\3/g
+	s/\b\([Cc]\)ontraposessi\([ns]\)\([^[:alnum:]]\)/\1ontraposare\2\3/g
+	s/\b\([Cc]\)ontrapos\([io]\)\([^[:alnum:]]\)/\1ontrapose\3/g
+	s/\b\([Cc]\)ontraposi\([ns]\)\([^[:alnum:]]\)/\1ontrapose\2\3/g
+	# deposar
+	s/\b\([Dd]\)eposés\([^[:alnum:]]\)/\1eposara\2/g
+	s/\b\([Dd]\)eposéssi\([mu]\)\([^[:alnum:]]\)/\1eposàre\2\3/g
+	s/\b\([Dd]\)eposessi\([ns]\)\([^[:alnum:]]\)/\1eposare\2\3/g
+	s/\b\([Dd]\)epos\([io]\)\([^[:alnum:]]\)/\1epose\3/g
+	s/\b\([Dd]\)eposi\([ns]\)\([^[:alnum:]]\)/\1epose\2\3/g
+	# disposar
+	s/\b\([Dd]\)isposés\([^[:alnum:]]\)/\1isposara\2/g
+	s/\b\([Dd]\)isposéssi\([mu]\)\([^[:alnum:]]\)/\1isposàre\2\3/g
+	s/\b\([Dd]\)isposessi\([ns]\)\([^[:alnum:]]\)/\1isposare\2\3/g
+	s/\b\([Dd]\)ispos\([io]\)\([^[:alnum:]]\)/\1ispose\3/g
+	s/\b\([Dd]\)isposi\([ns]\)\([^[:alnum:]]\)/\1ispose\2\3/g
+		# indisposar
+		s/\b\([Ii]\)ndisposés\([^[:alnum:]]\)/\1ndisposara\2/g
+		s/\b\([Ii]\)ndisposéssi\([mu]\)\([^[:alnum:]]\)/\1ndisposàre\2\3/g
+		s/\b\([Ii]\)ndisposessi\([ns]\)\([^[:alnum:]]\)/\1ndisposare\2\3/g
+		s/\b\([Ii]\)ndispos\([io]\)\([^[:alnum:]]\)/\1ndispose\3/g
+		s/\b\([Ii]\)ndisposi\([ns]\)\([^[:alnum:]]\)/\1ndispose\2\3/g
+		# predisposar
+		s/\b\([Pp]\)redisposés\([^[:alnum:]]\)/\1redisposara\2/g
+		s/\b\([Pp]\)redisposéssi\([mu]\)\([^[:alnum:]]\)/\1redisposàre\2\3/g
+		s/\b\([Pp]\)redisposessi\([ns]\)\([^[:alnum:]]\)/\1redisposare\2\3/g
+		s/\b\([Pp]\)redispos\([io]\)\([^[:alnum:]]\)/\1redispose\3/g
+		s/\b\([Pp]\)redisposi\([ns]\)\([^[:alnum:]]\)/\1redispose\2\3/g
+	# esposar
+	s/\b\([Ee]\)sposés\([^[:alnum:]]\)/\1sposara\2/g
+	s/\b\([Ee]\)sposéssi\([mu]\)\([^[:alnum:]]\)/\1sposàre\2\3/g
+	s/\b\([Ee]\)sposessi\([ns]\)\([^[:alnum:]]\)/\1sposare\2\3/g
+	s/\b\([Ee]\)spos\([io]\)\([^[:alnum:]]\)/\1spose\3/g
+	s/\b\([Ee]\)sposi\([ns]\)\([^[:alnum:]]\)/\1spose\2\3/g
+	# exposar
+	s/\b\([Ee]\)xposés\([^[:alnum:]]\)/\1xposara\2/g
+	s/\b\([Ee]\)xposéssi\([mu]\)\([^[:alnum:]]\)/\1xposàre\2\3/g
+	s/\b\([Ee]\)xposessi\([ns]\)\([^[:alnum:]]\)/\1xposare\2\3/g
+	s/\b\([Ee]\)xpos\([io]\)\([^[:alnum:]]\)/\1xpose\3/g
+	s/\b\([Ee]\)xposi\([ns]\)\([^[:alnum:]]\)/\1xpose\2\3/g
+	# imposar
+	s/\b\([Ii]\)mposés\([^[:alnum:]]\)/\1mposara\2/g
+	s/\b\([Ii]\)mposéssi\([mu]\)\([^[:alnum:]]\)/\1mposàre\2\3/g
+	s/\b\([Ii]\)mposessi\([ns]\)\([^[:alnum:]]\)/\1mposare\2\3/g
+	s/\b\([Ii]\)mpos\([io]\)\([^[:alnum:]]\)/\1mpose\3/g
+	s/\b\([Ii]\)mposi\([ns]\)\([^[:alnum:]]\)/\1mpose\2\3/g
+		# desimposar
+		s/\b\([Dd]\)esimposés\([^[:alnum:]]\)/\1esimposara\2/g
+		s/\b\([Dd]\)esimposéssi\([mu]\)\([^[:alnum:]]\)/\1esimposàre\2\3/g
+		s/\b\([Dd]\)esimposessi\([ns]\)\([^[:alnum:]]\)/\1esimposare\2\3/g
+		s/\b\([Dd]\)esimpos\([io]\)\([^[:alnum:]]\)/\1esimpose\3/g
+		s/\b\([Dd]\)esimposi\([ns]\)\([^[:alnum:]]\)/\1esimpose\2\3/g
+	# interposar
+	s/\b\([Ii]\)nterposés\([^[:alnum:]]\)/\1nterposara\2/g
+	s/\b\([Ii]\)nterposéssi\([mu]\)\([^[:alnum:]]\)/\1nterposàre\2\3/g
+	s/\b\([Ii]\)nterposessi\([ns]\)\([^[:alnum:]]\)/\1nterposare\2\3/g
+	s/\b\([Ii]\)nterpos\([io]\)\([^[:alnum:]]\)/\1nterpose\3/g
+	s/\b\([Ii]\)nterposi\([ns]\)\([^[:alnum:]]\)/\1nterpose\2\3/g
+	# juxtaposar
+	s/\b\([Jj]\)uxtaposés\([^[:alnum:]]\)/\1uxtaposara\2/g
+	s/\b\([Jj]\)uxtaposéssi\([mu]\)\([^[:alnum:]]\)/\1uxtaposàre\2\3/g
+	s/\b\([Jj]\)uxtaposessi\([ns]\)\([^[:alnum:]]\)/\1uxtaposare\2\3/g
+	s/\b\([Jj]\)uxtapos\([io]\)\([^[:alnum:]]\)/\1uxtapose\3/g
+	s/\b\([Jj]\)uxtaposi\([ns]\)\([^[:alnum:]]\)/\1uxtapose\2\3/g
+	# oposar
+	s/\b\([Oo]\)posés\([^[:alnum:]]\)/\1posara\2/g
+	s/\b\([Oo]\)poséssi\([mu]\)\([^[:alnum:]]\)/\1posàre\2\3/g
+	s/\b\([Oo]\)posessi\([ns]\)\([^[:alnum:]]\)/\1posare\2\3/g
+	s/\b\([Oo]\)pos\([io]\)\([^[:alnum:]]\)/\1pose\3/g
+	s/\b\([Oo]\)posi\([ns]\)\([^[:alnum:]]\)/\1pose\2\3/g
+	# posposar
+	s/\b\([Pp]\)osposés\([^[:alnum:]]\)/\1osposara\2/g
+	s/\b\([Pp]\)osposéssi\([mu]\)\([^[:alnum:]]\)/\1osposàre\2\3/g
+	s/\b\([Pp]\)osposessi\([ns]\)\([^[:alnum:]]\)/\1osposare\2\3/g
+	s/\b\([Pp]\)ospos\([io]\)\([^[:alnum:]]\)/\1ospose\3/g
+	s/\b\([Pp]\)osposi\([ns]\)\([^[:alnum:]]\)/\1ospose\2\3/g
+	# preposar
+	s/\b\([Pp]\)reposés\([^[:alnum:]]\)/\1reposara\2/g
+	s/\b\([Pp]\)reposéssi\([mu]\)\([^[:alnum:]]\)/\1reposàre\2\3/g
+	s/\b\([Pp]\)reposessi\([ns]\)\([^[:alnum:]]\)/\1reposare\2\3/g
+	s/\b\([Pp]\)repos\([io]\)\([^[:alnum:]]\)/\1repose\3/g
+	s/\b\([Pp]\)reposi\([ns]\)\([^[:alnum:]]\)/\1repose\2\3/g
+	# reposar
+	s/\b\([Rr]\)eposés\([^[:alnum:]]\)/\1eposara\2/g
+	s/\b\([Rr]\)eposéssi\([mu]\)\([^[:alnum:]]\)/\1eposàre\2\3/g
+	s/\b\([Rr]\)eposessi\([ns]\)\([^[:alnum:]]\)/\1eposare\2\3/g
+	s/\b\([Rr]\)epos\([io]\)\([^[:alnum:]]\)/\1epose\3/g
+	s/\b\([Rr]\)eposi\([ns]\)\([^[:alnum:]]\)/\1epose\2\3/g
+	# sobreposar
+	s/\b\([Ss]\)obreposés\([^[:alnum:]]\)/\1obreposara\2/g
+	s/\b\([Ss]\)obreposéssi\([mu]\)\([^[:alnum:]]\)/\1obreposàre\2\3/g
+	s/\b\([Ss]\)obreposessi\([ns]\)\([^[:alnum:]]\)/\1obreposare\2\3/g
+	s/\b\([Ss]\)obrepos\([io]\)\([^[:alnum:]]\)/\1obrepose\3/g
+	s/\b\([Ss]\)obreposi\([ns]\)\([^[:alnum:]]\)/\1obrepose\2\3/g
+	# sotaposar
+	s/\b\([Ss]\)otaposés\([^[:alnum:]]\)/\1otaposara\2/g
+	s/\b\([Ss]\)otaposéssi\([mu]\)\([^[:alnum:]]\)/\1otaposàre\2\3/g
+	s/\b\([Ss]\)otaposessi\([ns]\)\([^[:alnum:]]\)/\1otaposare\2\3/g
+	s/\b\([Ss]\)otapos\([io]\)\([^[:alnum:]]\)/\1otapose\3/g
+	s/\b\([Ss]\)otaposi\([ns]\)\([^[:alnum:]]\)/\1otapose\2\3/g
+	# superposar
 	s/\b\([Ss]\)uperposés\([^[:alnum:]]\)/\1uperposara\2/g
 	s/\b\([Ss]\)uperposéssi\([mu]\)\([^[:alnum:]]\)/\1uperposàre\2\3/g
 	s/\b\([Ss]\)uperposessi\([ns]\)\([^[:alnum:]]\)/\1uperposare\2\3/g
 	s/\b\([Ss]\)uperpos\([io]\)\([^[:alnum:]]\)/\1uperpose\3/g
 	s/\b\([Ss]\)uperposi\([ns]\)\([^[:alnum:]]\)/\1uperpose\2\3/g
+	# suposar
+	s/\b\([Ss]\)uposés\([^[:alnum:]]\)/\1uposara\2/g
+	s/\b\([Ss]\)uposéssi\([mu]\)\([^[:alnum:]]\)/\1uposàre\2\3/g
+	s/\b\([Ss]\)uposessi\([ns]\)\([^[:alnum:]]\)/\1uposare\2\3/g
+	s/\b\([Ss]\)upos\([io]\)\([^[:alnum:]]\)/\1upose\3/g
+	s/\b\([Ss]\)uposi\([ns]\)\([^[:alnum:]]\)/\1upose\2\3/g
+	# transposar
+	s/\b\([Tt]\)ransposés\([^[:alnum:]]\)/\1ransposara\2/g
+	s/\b\([Tt]\)ransposéssi\([mu]\)\([^[:alnum:]]\)/\1ransposàre\2\3/g
+	s/\b\([Tt]\)ransposessi\([ns]\)\([^[:alnum:]]\)/\1ransposare\2\3/g
+	s/\b\([Tt]\)ranspos\([io]\)\([^[:alnum:]]\)/\1ranspose\3/g
+	s/\b\([Tt]\)ransposi\([ns]\)\([^[:alnum:]]\)/\1ranspose\2\3/g
 s/\bposicionat\([^[:alnum:]]\)/ubicat\1/g
 # posseir
 s/\b\([Pp]\)osseeix\(en\|es\|\)\([^[:alnum:]]\)/\1osseïx\2\3/g
@@ -4742,6 +5666,14 @@ s/\b\([Pp]\)osseeixo\([^[:alnum:]]\)/\1osseïsc\2/g
 s/\b\([Pp]\)osseís\([^[:alnum:]]\)/\1osseïra\2/g
 s/\b\([Pp]\)osseíssi\([mu]\)\([^[:alnum:]]\)/\1osseíre\2\3/g
 s/\b\([Pp]\)osseïssi\([ns]\)\([^[:alnum:]]\)/\1osseïre\2\3/g
+	# desposseir
+	s/\b\([Dd]\)esposseeix\(en\|es\|\)\([^[:alnum:]]\)/\1esposseïx\2\3/g
+	s/\b\([Dd]\)esposseeixi\([^[:alnum:]]\)/\1esposseïsca\2/g
+	s/\b\([Dd]\)esposseeixi\([ns]\)\([^[:alnum:]]\)/\1esposseïsque\2\3/g
+	s/\b\([Dd]\)esposseeixo\([^[:alnum:]]\)/\1esposseïsc\2/g
+	s/\b\([Dd]\)esposseís\([^[:alnum:]]\)/\1esposseïra\2/g
+	s/\b\([Dd]\)esposseíssi\([mu]\)\([^[:alnum:]]\)/\1esposseíre\2\3/g
+	s/\b\([Dd]\)esposseïssi\([ns]\)\([^[:alnum:]]\)/\1esposseïre\2\3/g
 # practicar
 s/\b\([Pp]\)ractiqués\([^[:alnum:]]\)/\1racticara\2/g
 s/\b\([Pp]\)ractiquéssi\([mu]\)\([^[:alnum:]]\)/\1racticàre\2\3/g
@@ -4762,14 +5694,6 @@ s/\b\([Pp]\)recipitéssi\([mu]\)\([^[:alnum:]]\)/\1recipitàre\2\3/g
 s/\b\([Pp]\)recipitessi\([ns]\)\([^[:alnum:]]\)/\1recipitare\2\3/g
 s/\b\([Pp]\)recipit\([io]\)\([^[:alnum:]]\)/\1recipite\3/g
 s/\b\([Pp]\)recipiti\([ns]\)\([^[:alnum:]]\)/\1recipite\2\3/g
-# preferir
-s/\b\([Pp]\)refereix\(en\|es\|\)\([^[:alnum:]]\)/\1referix\2\3/g
-s/\b\([Pp]\)refereixi\([^[:alnum:]]\)/\1referisca\2/g
-s/\b\([Pp]\)refereixi\([ns]\)\([^[:alnum:]]\)/\1referisque\2\3/g
-s/\b\([Pp]\)refereixo\([^[:alnum:]]\)/\1referisc\2/g
-s/\b\([Pp]\)referís\([^[:alnum:]]\)/\1referira\2/g
-s/\b\([Pp]\)referíssi\([mu]\)\([^[:alnum:]]\)/\1referíre\2\3/g
-s/\b\([Pp]\)referissi\([ns]\)\([^[:alnum:]]\)/\1referire\2\3/g
 s/\bPregària\([^[:alnum:]]\)/Oració\1/g
 s/\bpregària\([^[:alnum:]]\)/oració\1/g
 s/\bPregàries\([^[:alnum:]]\)/Oracions\1/g
@@ -4829,12 +5753,6 @@ s/\b\([Pp]\)rengui\([ns]\)\([^[:alnum:]]\)/\1rengue\2\3/g
 	s/\b\([Ss]\)orprenguessi\([ns]\)\([^[:alnum:]]\)/\1orprenguere\2\3/g
 	s/\b\([Ss]\)orprenguí\([^[:alnum:]]\)/\1sorprenga\2/g
 	s/\b\([Ss]\)orprengui\([ns]\)\([^[:alnum:]]\)/\1orprengue\2\3/g
-# preocupar
-s/\b\([Pp]\)reocupés\([^[:alnum:]]\)/\1reocupara\2/g
-s/\b\([Pp]\)reocupéssi\([mu]\)\([^[:alnum:]]\)/\1reocupàre\2\3/g
-s/\b\([Pp]\)reocupessi\([ns]\)\([^[:alnum:]]\)/\1reocupare\2\3/g
-s/\b\([Pp]\)reocup\([io]\)\([^[:alnum:]]\)/\1reocupe\3/g
-s/\b\([Pp]\)reocupi\([ns]\)\([^[:alnum:]]\)/\1reocupe\2\3/g
 # presentar
 s/\b\([Pp]\)resentés\([^[:alnum:]]\)/\1resentara\2/g
 s/\b\([Pp]\)resentéssi\([mu]\)\([^[:alnum:]]\)/\1resentàre\2\3/g
@@ -4861,6 +5779,13 @@ s/\bPréssec\([^[:alnum:]]\)/Bresquilla\1/g
 s/\bpréssec\([^[:alnum:]]\)/bresquilla\1/g
 s/\bPréssecs\([^[:alnum:]]\)/Bresquilles\1/g
 s/\bpréssecs\([^[:alnum:]]\)/bresquilles\1/g
+# pretendre
+s/\b\([Pp]\)retè\([ns]\)\([^[:alnum:]]\)/\1reté\2\3/g
+s/\b\([Pp]\)retengués\([^[:alnum:]]\)/\1retenguera\2/g
+s/\b\([Pp]\)retenguéssi\([mu]\)\([^[:alnum:]]\)/\1retenguére\2\3/g
+s/\b\([SP]\)retenguessi\([ns]\)\([^[:alnum:]]\)/\1retenguere\2\3/g
+s/\b\([Pp]\)retengui\([^[:alnum:]]\)/\1retenga\2/g
+s/\b\([Pp]\)retengui\([ns]\)\([^[:alnum:]]\)/\1retengue\2\3/g
 # procedir
 s/\b\([Pp]\)rocedeix\(en\|es\|\)\([^[:alnum:]]\)/\1rocedix\2\3/g
 s/\b\([Pp]\)rocedeixi\([^[:alnum:]]\)/\1rocedisca\2/g
@@ -4961,6 +5886,24 @@ s/\b\([Pp]\)rovéssi\([mu]\)\([^[:alnum:]]\)/\1rovàre\2\3/g
 s/\b\([Pp]\)rovessi\([ns]\)\([^[:alnum:]]\)/\1rovare\2\3/g
 s/\b\([Pp]\)rov\([io]\)\([^[:alnum:]]\)/\1rove\3/g
 s/\b\([Pp]\)rovi\([ns]\)\([^[:alnum:]]\)/\1rove\2\3/g
+	# aprovar
+	s/\b\([Aa]\)provés\([^[:alnum:]]\)/\1provara\2/g
+	s/\b\([Aa]\)provéssi\([mu]\)\([^[:alnum:]]\)/\1provàre\2\3/g
+	s/\b\([Aa]\)provessi\([ns]\)\([^[:alnum:]]\)/\1provare\2\3/g
+	s/\b\([Aa]\)prov\([io]\)\([^[:alnum:]]\)/\1prove\3/g
+	s/\b\([Aa]\)provi\([ns]\)\([^[:alnum:]]\)/\1prove\2\3/g
+	# comprovar
+	s/\b\([Cc]\)omprovés\([^[:alnum:]]\)/\1omprovara\2/g
+	s/\b\([Cc]\)omprovéssi\([mu]\)\([^[:alnum:]]\)/\1omprovàre\2\3/g
+	s/\b\([Cc]\)omprovessi\([ns]\)\([^[:alnum:]]\)/\1omprovare\2\3/g
+	s/\b\([Cc]\)omprov\([io]\)\([^[:alnum:]]\)/\1omprove\3/g
+	s/\b\([Cc]\)omprovi\([ns]\)\([^[:alnum:]]\)/\1omprove\2\3/g
+	# desaprovar
+	s/\b\([Dd]\)esaprovés\([^[:alnum:]]\)/\1esaprovara\2/g
+	s/\b\([Dd]\)esaprovéssi\([mu]\)\([^[:alnum:]]\)/\1esaprovàre\2\3/g
+	s/\b\([Dd]\)esaprovessi\([ns]\)\([^[:alnum:]]\)/\1esaprovare\2\3/g
+	s/\b\([Dd]\)esaprov\([io]\)\([^[:alnum:]]\)/\1esaprove\3/g
+	s/\b\([Dd]\)esaprovi\([ns]\)\([^[:alnum:]]\)/\1esaprove\2\3/g
 # proveir
 s/\b\([Pp]\)roveeix\(en\|es\|\)\([^[:alnum:]]\)/\1roveïx\2\3/g
 s/\b\([Pp]\)roveeixi\([^[:alnum:]]\)/\1roveïsca\2/g
@@ -5010,6 +5953,12 @@ s/\b\([Qq]\)uadréssi\([mu]\)\([^[:alnum:]]\)/\1uadràre\2\3/g
 s/\b\([Qq]\)uadressi\([ns]\)\([^[:alnum:]]\)/\1uadrare\2\3/g
 s/\b\([Qq]\)uadr\([io]\)\([^[:alnum:]]\)/\1uadre\3/g
 s/\b\([Qq]\)uadri\([ns]\)\([^[:alnum:]]\)/\1uadre\2\3/g
+	# enquadrar
+	s/\b\([Ee]\)nquadrés\([^[:alnum:]]\)/\1nquadrara\2/g
+	s/\b\([Ee]\)nquadréssi\([mu]\)\([^[:alnum:]]\)/\1nquadràre\2\3/g
+	s/\b\([Ee]\)nquadressi\([ns]\)\([^[:alnum:]]\)/\1nquadrare\2\3/g
+	s/\b\([Ee]\)nquadr\([io]\)\([^[:alnum:]]\)/\1nquadre\3/g
+	s/\b\([Ee]\)nquadri\([ns]\)\([^[:alnum:]]\)/\1nquadre\2\3/g
 s/\b\([Qq]\)uadre\(s\|\)\([^[:alnum:]]\)/\1uadro\2\3/g
 	s/\b\([Rr]\)equadre\(s\|\)\([^[:alnum:]]\)/\1equadro\2\3/g
 	s/\bquadre\(1\|2\)\([^[:alnum:]]\)/quadro\1\2/g
@@ -5101,16 +6050,8 @@ s/\b\([Rr]\)eduïssi\([ns]\)\([^[:alnum:]]\)/\1eduïre\2\3/g
 s/\b\([Rr]\)eferenciés\([^[:alnum:]]\)/\1eferenciara\2/g
 s/\b\([Rr]\)eferenciéssi\([mu]\)\([^[:alnum:]]\)/\1eferenciàre\2\3/g
 s/\b\([Rr]\)eferenciessi\([ns]\)\([^[:alnum:]]\)/\1eferenciare\2\3/g
-s/\b\([Rr]\)eferenci\(ï\|o\)\([^[:alnum:]]\)/\1eferencie\3/g
+s/\b\([Rr]\)eferenci\([ïo]\)\([^[:alnum:]]\)/\1eferencie\3/g
 s/\b\([Rr]\)eferenciï\([ns]\)\([^[:alnum:]]\)/\1eferencie\2\3/g
-# referir
-s/\b\([Rr]\)efereix\(en\|es\|\)\([^[:alnum:]]\)/\1eferix\2\3/g
-s/\b\([Rr]\)efereixi\([^[:alnum:]]\)/\1eferisca\2/g
-s/\b\([Rr]\)efereixi\([ns]\)\([^[:alnum:]]\)/\1eferisque\2\3/g
-s/\b\([Rr]\)efereixo\([^[:alnum:]]\)/\1eferisc\2/g
-s/\b\([Rr]\)eferís\([^[:alnum:]]\)/\1eferira\2/g
-s/\b\([Rr]\)eferíssi\([mu]\)\([^[:alnum:]]\)/\1eferíre\2\3/g
-s/\b\([Rr]\)eferissi\([ns]\)\([^[:alnum:]]\)/\1eferire\2\3/g
 # reflectir
 s/\b\([Rr]\)eflecteix\(en\|es\|\)\([^[:alnum:]]\)/\1eflectix\2\3/g
 s/\b\([Rr]\)eflecteixi\([^[:alnum:]]\)/\1eflectisca\2/g
@@ -5146,6 +6087,12 @@ s/\b\([Rr]\)egistréssi\([mu]\)\([^[:alnum:]]\)/\1egistràre\2\3/g
 s/\b\([Rr]\)egistressi\([ns]\)\([^[:alnum:]]\)/\1egistrare\2\3/g
 s/\b\([Rr]\)egistr\([io]\)\([^[:alnum:]]\)/\1egistre\3/g
 s/\b\([Rr]\)egistri\([ns]\)\([^[:alnum:]]\)/\1egistre\2\3/g
+# reglamentar
+s/\b\([Rr]\)eglamentés\([^[:alnum:]]\)/\1eglamentara\2/g
+s/\b\([Rr]\)eglamentéssi\([mu]\)\([^[:alnum:]]\)/\1eglamentàre\2\3/g
+s/\b\([Rr]\)eglamentessi\([ns]\)\([^[:alnum:]]\)/\1eglamentare\2\3/g
+s/\b\([Rr]\)eglament\([io]\)\([^[:alnum:]]\)/\1eglamente\3/g
+s/\b\([Rr]\)eglamenti\([ns]\)\([^[:alnum:]]\)/\1eglamente\2\3/g
 # renderitzar
 s/\b\([Rr]\)enderitzés\([^[:alnum:]]\)/\1enderitzara\2/g
 s/\b\([Rr]\)enderitzéssi\([mu]\)\([^[:alnum:]]\)/\1enderitzàre\2\3/g
@@ -5169,6 +6116,12 @@ s/\b\([Rr]\)equerís\([^[:alnum:]]\)/\1equerira\2/g
 s/\b\([Rr]\)equeríssi\([mu]\)\([^[:alnum:]]\)/\1equeríre\2\3/g
 s/\b\([Rr]\)equerissi\([ns]\)\([^[:alnum:]]\)/\1equerire\2\3/g
 	s/\bREQUEREIX\([^[:alnum:]]\)/REQUERIX\1/g
+# rescatar
+s/\b\([Rr]\)escatés\([^[:alnum:]]\)/\1escatara\2/g
+s/\b\([Rr]\)escatéssi\([mu]\)\([^[:alnum:]]\)/\1escatàre\2\3/g
+s/\b\([Rr]\)escatessi\([ns]\)\([^[:alnum:]]\)/\1escatare\2\3/g
+s/\b\([Rr]\)escat\([io]\)\([^[:alnum:]]\)/\1escate\3/g
+s/\b\([Rr]\)escati\([ns]\)\([^[:alnum:]]\)/\1escate\2\3/g
 # residir
 s/\b\([Rr]\)esideix\(en\|es\|\)\([^[:alnum:]]\)/\1esidix\2\3/g
 s/\b\([Rr]\)esideixi\([^[:alnum:]]\)/\1esidisca\2/g
@@ -5274,6 +6227,12 @@ s/\b\([Rr]\)ondessi\([ns]\)\([^[:alnum:]]\)/\1ondare\2\3/g
 s/\b\([Rr]\)ond\([io]\)\([^[:alnum:]]\)/\1onde\3/g
 s/\b\([Rr]\)ondi\([ns]\)\([^[:alnum:]]\)/\1onde\2\3/g
 s/\b\([Rr]\)ony\(ó\|ons]\)\([^[:alnum:]]\)/\1eny\2\3/g
+# ruixar
+s/\b\([Rr]\)uixés\([^[:alnum:]]\)/\1uixara\2/g
+s/\b\([Rr]\)uixéssi\([mu]\|\)\([^[:alnum:]]\)/\1uixàre\2\3/g
+s/\b\([Rr]\)uixessi\([ns]\|\)\([^[:alnum:]]\)/\1uixare\2\3/g
+s/\b\([Rr]\)uix\([io]\)\([^[:alnum:]]\)/\1uixe\3/g
+s/\b\([Rr]\)uixi\([ns]\|\)\([^[:alnum:]]\)/\1uixe\2\3/g
 # s
 #
 # sacsejar -> sacsar
@@ -5296,6 +6255,12 @@ s/\b\([Ss]\)alt\([io]\)\([^[:alnum:]]\)/\1alte\3/g
 s/\b\([Ss]\)alti\([ns]\)\([^[:alnum:]]\)/\1alte\2\3/g
 	s/\"Salte\"/\"Salto\"/g
 	s/\bSalte del Guairá\([^[:alnum:]]\)/Salto del Guairá\1/g
+# segmentar
+s/\b\([Ss]\)egmentés\([^[:alnum:]]\)/\1egmentara\2/g
+s/\b\([Ss]\)egmentéssi\([mu]\)\([^[:alnum:]]\)/\1egmentàre\2\3/g
+s/\b\([Ss]\)egmentessi\([ns]\)\([^[:alnum:]]\)/\1egmentare\2\3/g
+s/\b\([Ss]\)egment\([io]\)\([^[:alnum:]]\)/\1egmente\3/g
+s/\b\([Ss]\)egmenti\([ns]\)\([^[:alnum:]]\)/\1egmente\2\3/g
 # seguir
 s/\b\([Ss]\)egueix\(en\|es\|\)\([^[:alnum:]]\)/\1eguix\2\3/g
 s/\b\([Ss]\)egueixi\([^[:alnum:]]\)/\1eguisca\2/g
@@ -5304,7 +6269,7 @@ s/\b\([Ss]\)egueixo\([^[:alnum:]]\)/\1eguisc\2/g
 s/\b\([Ss]\)egís\([^[:alnum:]]\)/\1egira\2/g
 s/\b\([Ss]\)egíssi\([mu]\)\([^[:alnum:]]\)/\1egíre\2\3/g
 s/\b\([Ss]\)egissi\([ns]\)\([^[:alnum:]]\)/\1egire\2\3/g
-# seguir
+	# aconseguir
 	s/\b\([Aa]\)consegueix\(en\|es\|\)\([^[:alnum:]]\)/\1conseguix\2\3/g
 	s/\b\([Aa]\)consegueixi\([^[:alnum:]]\)/\1conseguisca\2/g
 	s/\b\([Aa]\)consegueixi\([ns]\)\([^[:alnum:]]\)/\1conseguisque\2\3/g
@@ -5312,7 +6277,7 @@ s/\b\([Ss]\)egissi\([ns]\)\([^[:alnum:]]\)/\1egire\2\3/g
 	s/\b\([Aa]\)consegís\([^[:alnum:]]\)/\1consegira\2/g
 	s/\b\([Aa]\)consegíssi\([mu]\)\([^[:alnum:]]\)/\1consegíre\2\3/g
 	s/\b\([Aa]\)consegissi\([ns]\)\([^[:alnum:]]\)/\1consegire\2\3/g
-	# seguir
+	# perseguir
 	s/\b\([Pp]\)ersegueix\(en\|es\|\)\([^[:alnum:]]\)/\1erseguix\2\3/g
 	s/\b\([Pp]\)ersegueixi\([^[:alnum:]]\)/\1erseguisca\2/g
 	s/\b\([Pp]\)ersegueixi\([ns]\)\([^[:alnum:]]\)/\1erseguisque\2\3/g
@@ -5393,9 +6358,9 @@ s/\b\([Ss]\)ento\([^[:alnum:]]\)/\1ent\2/g
 	s/\b\([Cc]\)onsentissi\([ns]\)\([^[:alnum:]]\)/\1onsentire\2\3/g
 	s/\b\([Cc]\)onsento\([^[:alnum:]]\)/\1onsent\2/g
 # separar
-s/\b\([Ss]\)enyalés\([^[:alnum:]]\)/\1enyalara\2/g
-s/\b\([Ss]\)enyaléssi\([mu]\)\([^[:alnum:]]\)/\1enyalàre\2\3/g
-s/\b\([Ss]\)enyalessi\([ns]\)\([^[:alnum:]]\)/\1enyalare\2\3/g
+s/\b\([Ss]\)eparés\([^[:alnum:]]\)/\1eparara\2/g
+s/\b\([Ss]\)eparéssi\([mu]\)\([^[:alnum:]]\)/\1eparàre\2\3/g
+s/\b\([Ss]\)eparessi\([ns]\)\([^[:alnum:]]\)/\1eparare\2\3/g
 s/\b\([Ss]\)epar\([io]\)\([^[:alnum:]]\)/\1epare\3/g
 s/\b\([Ss]\)epari\([ns]\)\([^[:alnum:]]\)/\1epare\2\3/g
 s/\b\([Ss]\)èpi\(a\|es\)\([^[:alnum:]]\)/\1épi\2\3/g
@@ -5448,11 +6413,17 @@ s/\b\([Ss]\)igni\([ns]\)\([^[:alnum:]]\)/\1igne\2\3/g
 	s/\b\([Dd]\)esignessi\([ns]\)\([^[:alnum:]]\)/\1esignare\2\3/g
 	s/\b\([Dd]\)esign\([io]\)\([^[:alnum:]]\)/\1esigne\3/g
 	s/\b\([Dd]\)esigni\([ns]\)\([^[:alnum:]]\)/\1esigne\2\3/g
+# significar
+s/\b\([Ss]\)ignifico\([^[:alnum:]]\)/\1ignifique\2/g
+s/\b\([Ss]\)ignifiqués\([^[:alnum:]]\)/\1ignificara\2/g
+s/\b\([Ss]\)ignifiquéssi\([mu]\)\([^[:alnum:]]\)/\1ignificàre\2\3/g
+s/\b\([Ss]\)ignifiquessi\([ns]\)\([^[:alnum:]]\)/\1ignificare\2\3/g
+s/\b\([Ss]\)ignifiqui\([ns]\|\)\([^[:alnum:]]\)/\1ignifique\2\3/g
 # silenciar
 s/\b\([Ss]\)ilenciés\([^[:alnum:]]\)/\1ilenciara\2/g
 s/\b\([Ss]\)ilenciéssi\([mu]\)\([^[:alnum:]]\)/\1ilenciàre\2\3/g
 s/\b\([Ss]\)ilenciessi\([ns]\)\([^[:alnum:]]\)/\1ilenciare\2\3/g
-s/\b\([Ss]\)ilenci\(í\|ï\|o\)\([^[:alnum:]]\)/\1ilencie\3/g
+s/\b\([Ss]\)ilenci\([íïo]\)\([^[:alnum:]]\)/\1ilencie\3/g
 s/\b\([Ss]\)ilenciï\([ns]\)\([^[:alnum:]]\)/\1ilencie\2\3/g
 # simbolitzar
 s/\b\([Ss]\)imbolitzés\([^[:alnum:]]\)/\1imbolitzara\2/g
@@ -5587,6 +6558,12 @@ s/\b\([Ss]\)uavitzéssi\([mu]\)\([^[:alnum:]]\)/\1uavitzàre\2\3/g
 s/\b\([Ss]\)uavitzessi\([ns]\)\([^[:alnum:]]\)/\1uavitzare\2\3/g
 s/\b\([Ss]\)uavitz\([io]\)\([^[:alnum:]]\)/\1uavitze\3/g
 s/\b\([Ss]\)uavitzi\([ns]\)\([^[:alnum:]]\)/\1uavitze\2\3/g
+# subministrar
+s/\b\([Ss]\)ubministrés\([^[:alnum:]]\)/\1ubministrara\2/g
+s/\b\([Ss]\)ubministréssi\([mu]\)\([^[:alnum:]]\)/\1ubministràre\2\3/g
+s/\b\([Ss]\)ubministressi\([ns]\)\([^[:alnum:]]\)/\1ubministrare\2\3/g
+s/\b\([Ss]\)ubministr\([io]\)\([^[:alnum:]]\)/\1ubministre\3/g
+s/\b\([Ss]\)ubministri\([ns]\)\([^[:alnum:]]\)/\1ubministre\2\3/g
 # substituir
 s/\b\([Ss]\)ubstitueix\(en\|es\|\)\([^[:alnum:]]\)/\1ubstituïx\2\3/g
 s/\b\([Ss]\)ubstitueixi\([^[:alnum:]]\)/\1ubstituïsca\2/g
@@ -5626,12 +6603,6 @@ s/\b\([Ss]\)uperéssi\([mu]\)\([^[:alnum:]]\)/\1uperàre\2\3/g
 s/\b\([Ss]\)uperessi\([ns]\)\([^[:alnum:]]\)/\1uperare\2\3/g
 s/\b\([Ss]\)uper\([io]\)\([^[:alnum:]]\)/\1upere\3/g
 s/\b\([Ss]\)uperi\([ns]\)\([^[:alnum:]]\)/\1upere\2\3/g
-# suportar
-s/\b\([Ss]\)uportés\([^[:alnum:]]\)/\1uportara\2/g
-s/\b\([Ss]\)uportéssi\([mu]\)\([^[:alnum:]]\)/\1uportàre\2\3/g
-s/\b\([Ss]\)uportessi\([ns]\)\([^[:alnum:]]\)/\1uportare\2\3/g
-s/\b\([Ss]\)uport\([io]\)\([^[:alnum:]]\)/\1uporte\3/g
-s/\b\([Ss]\)uporti\([ns]\)\([^[:alnum:]]\)/\1uporte\2\3/g
 # suprimir
 s/\b\([Ss]\)uprimeix\(en\|es\|\)\([^[:alnum:]]\)/\1uprimix\2\3/g
 s/\b\([Ss]\)uprimeixi\([^[:alnum:]]\)/\1uprimisca\2/g
@@ -5785,6 +6756,12 @@ s/\b\([Tt]\)oquéssi\([mu]\)\([^[:alnum:]]\)/\1ocàre\2\3/g
 s/\b\([Tt]\)oquessi\([ns]\)\([^[:alnum:]]\)/\1ocare\2\3/g
 s/\b\([Tt]\)oqui\([ns]\|\)\([^[:alnum:]]\)/\1oque\2\3/g
 s/\b\([Tt]\)oco\([^[:alnum:]]\)/\1oque\2/g
+# tolerar
+s/\b\([Tt]\)olerés\([^[:alnum:]]\)/\1olerara\2/g
+s/\b\([Tt]\)oleréssi\([mu]\)\([^[:alnum:]]\)/\1oleràre\2\3/g
+s/\b\([Tt]\)oleressi\([ns]\)\([^[:alnum:]]\)/\1olerare\2\3/g
+s/\b\([Tt]\)oler\([io]\)\([^[:alnum:]]\)/\1olere\3/g
+s/\b\([Tt]\)oleri\([ns]\)\([^[:alnum:]]\)/\1olere\2\3/g
 s/\b\([Tt]\)omàquet\([^[:alnum:]]\)/\1omaca\2/g
 s/\b\([Tt]\)omàquets\([^[:alnum:]]\)/\1omaques\2/g
 # tornar
@@ -5805,6 +6782,12 @@ s/\bTous\([^[:alnum:]]\)/Blans\1/g
 s/\btous\([^[:alnum:]]\)/blans\1/g
 s/\bTov\(a\|es\)\([^[:alnum:]]\)/Blan\1\2/g
 s/\btov\(a\|es\)\([^[:alnum:]]\)/blan\1\2/g
+# traçar
+s/\b\([Tt]\)racés\([^[:alnum:]]\)/\1raçara\2/g
+s/\b\([Tt]\)racéssi\([mu]\)\([^[:alnum:]]\)/\1raçàre\2\3/g
+s/\b\([Tt]\)racessi\([ns]\)\([^[:alnum:]]\)/\1raçare\2\3/g
+s/\b\([Tt]\)raço\([^[:alnum:]]\)/\1race\2/g
+s/\b\([Tt]\)raci\([ns]\|\)\([^[:alnum:]]\)/\1race\2\3/g
 # tractar
 s/\b\([Tt]\)ractés\([^[:alnum:]]\)/\1ractara\2/g
 s/\b\([Tt]\)ractéssi\([mu]\)\([^[:alnum:]]\)/\1ractàre\2\3/g
@@ -5827,20 +6810,6 @@ s/\b\([Tt]\)rametessi\([ns]\)\([^[:alnum:]]\)/\1rametere\2\3/g
 s/\b\([Tt]\)rameti\([^[:alnum:]]\)/\1rameta\2/g
 s/\b\([Tt]\)rameti\([ns]\)\([^[:alnum:]]\)/\1ramete\2\3/g
 s/\b\([Tt]\)rameto\([^[:alnum:]]\)/\1ramet\2/g
-# transfereix
-s/\b\([Tt]\)ransfereix\(en\|es\|\)\([^[:alnum:]]\)/\1ransferix\2\3/g
-s/\b\([Tt]\)ransfereixi\([^[:alnum:]]\)/\1ransferisca\2/g
-s/\b\([Tt]\)ransfereixi\([ns]\)\([^[:alnum:]]\)/\1ransferisque\2\3/g
-s/\b\([Tt]\)ransfereixo\([^[:alnum:]]\)/\1ransferisc\2/g
-s/\b\([Tt]\)ransferís\([^[:alnum:]]\)/\1ransferira\2/g
-s/\b\([Tt]\)ransferíssi\([mu]\)\([^[:alnum:]]\)/\1ransferíre\2\3/g
-s/\b\([Tt]\)ransferissi\([ns]\)\([^[:alnum:]]\)/\1ransferire\2\3/g
-# transformar
-s/\b\([Tt]\)ransformés\([^[:alnum:]]\)/\1ransformara\2/g
-s/\b\([Tt]\)ransforméssi\([mu]\)\([^[:alnum:]]\)/\1ransformàre\2\3/g
-s/\b\([Tt]\)ransformessi\([ns]\)\([^[:alnum:]]\)/\1ransformare\2\3/g
-s/\b\([Tt]\)ransform\([io]\)\([^[:alnum:]]\)/\1ransforme\3/g
-s/\b\([Tt]\)ransformi\([ns]\)\([^[:alnum:]]\)/\1ransforme\2\3/g
 # transmetre
 s/\b\([Tt]\)ransmès\([^[:alnum:]]\)/\1ransmés\2/g
 s/\b\([Tt]\)ransmetés\([^[:alnum:]]\)/\1ransmetera\2/g
@@ -5849,12 +6818,6 @@ s/\b\([Tt]\)ransmetessi\([ns]\)\([^[:alnum:]]\)/\1ransmetere\2\3/g
 s/\b\([Tt]\)ransmeti\([^[:alnum:]]\)/\1ransmeta\2/g
 s/\b\([Tt]\)ransmeti\([ns]\)\([^[:alnum:]]\)/\1ransmete\2\3/g
 s/\b\([Tt]\)ransmeto\([^[:alnum:]]\)/\1ransmet\2/g
-# transportar
-s/\b\([Tt]\)ansportés\([^[:alnum:]]\)/\1ansportara\2/g
-s/\b\([Tt]\)ansportéssi\([mu]\)\([^[:alnum:]]\)/\1ansportàre\2\3/g
-s/\b\([Tt]\)ansportessi\([ns]\)\([^[:alnum:]]\)/\1ansportare\2\3/g
-s/\b\([Tt]\)ansport\([io]\)\([^[:alnum:]]\)/\1ansporte\3/g
-s/\b\([Tt]\)ansporti\([ns]\)\([^[:alnum:]]\)/\1ansporte\2\3/g
 s/\bTransposa\([^[:alnum:]]\)/Invertix\1/g
 s/\btransposa\([^[:alnum:]]\)/invertix\1/g
 # treballar
@@ -5884,6 +6847,8 @@ s/\b\([Tt]\)reien\([^[:alnum:]]\)/\1ragueren\2/g
 	s/\b\([Aa]\)treia\([^[:alnum:]]\)/\1tragué\2/g
 	s/\b\([Aa]\)treien\([^[:alnum:]]\)/\1tragueren\2/g
 	# contreure -> contraure
+# 	contrau
+# FIXME:
 	s/\b\([Cc]\)ontraie\(m\|nt\|u\)\([^[:alnum:]]\)/\1ontrae\2\3/g
 	s/\b\([Cc]\)ontragués\([^[:alnum:]]\)/\1ontraguera\2/g
 	s/\b\([Cc]\)ontraguéssi\([mu]\)\([^[:alnum:]]\)/\1ontraguére\2\3/g
@@ -5986,6 +6951,12 @@ s/\b\([Tt]\)runquéssi\([mu]\|\)\([^[:alnum:]]\)/\1runcàre\2\3/g
 s/\b\([Tt]\)runquessi\([ns]\|\)\([^[:alnum:]]\)/\1runcare\2\3/g
 s/\b\([Tt]\)runqui\([ns]\|\)\([^[:alnum:]]\)/\1runque\2\3/g
 s/\b\([Tt]\)runco\([^[:alnum:]]\)/\1runque\2/g
+# turmentar
+s/\b\([Tt]\)urmentés\([^[:alnum:]]\)/\1urmentara\2/g
+s/\b\([Tt]\)urmentéssi\([mu]\)\([^[:alnum:]]\)/\1urmentàre\2\3/g
+s/\b\([Tt]\)urmentessi\([ns]\)\([^[:alnum:]]\)/\1urmentare\2\3/g
+s/\b\([Tt]\)urment\([io]\)\([^[:alnum:]]\)/\1urmente\3/g
+s/\b\([Tt]\)urmenti\([ns]\)\([^[:alnum:]]\)/\1urmente\2\3/g
 s/\b\([Tt]\)yumèn\([^[:alnum:]]\)/\1yumén\2/g
 # u
 #
@@ -6020,7 +6991,7 @@ s/\b\([Uu]\)nissi\([ns]\|\)\([^[:alnum:]]\)/\1nire\2\3/g
 # utilitzar
 s/\b\([Uu]\)tilitzés\([^[:alnum:]]\)/\1tilitzara\2/g
 s/\b\([Uu]\)tilitzéssi\([mu]\|\)\([^[:alnum:]]\)/\1tilitàre\2\3/g
-s/\b\([Uu]\)tilitzessi\([ns]\|\)\([^[:alnum:]]\)/\1ilitzare\2\3/g
+s/\b\([Uu]\)tilitzessi\([ns]\|\)\([^[:alnum:]]\)/\1tilitzare\2\3/g
 s/\b\([Uu]\)tilitz\([io]\)\([^[:alnum:]]\)/\1tilitze\3/g
 s/\b\([Uu]\)tilitzi\([ns]\)\([^[:alnum:]]\)/\1tilitze\2\3/g
 	# reutilitzar
