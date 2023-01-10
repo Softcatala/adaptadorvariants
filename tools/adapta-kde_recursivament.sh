@@ -225,7 +225,7 @@ for PO in $FITXERSPO
 
     message_removed() {
       [ "$REPETIT" = "$DIR" ] && return
-      echo -e " \e[38;5;46mo\e[0m $DIR"
+      echo -e " \e[44mo\e[0m $DIR"
       REPETIT="$DIR"
     }
 
