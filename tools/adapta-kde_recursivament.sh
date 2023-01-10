@@ -69,7 +69,7 @@ genera_copia() {
   # S'afegeixen els crèdits per al valencià
   TOCAT=$(head -20 ca/$PO | grep "$USUARIS_VAL0")
   if [ "$TOCAT" ]; then
-    if [ $(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr) ]; then
+    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr)" ]; then
       for usuari_val in $USUARIS_VAL1
         do
           if [ "$(echo $TOCAT | grep $usuari_val)" ]; then
@@ -224,12 +224,10 @@ for PO in $FITXERSPO
     FITX=$(basename $PO)
 
     message_removed() {
-      if [ "$REPETIT" = "$DIR" ]; then
-          echo -e " \e[38;5;46mo\e[0m $DIR"
-          return
-      fi
+      [ "$REPETIT" = "$DIR" ] && return
+      echo -e " \e[38;5;46mo\e[0m $DIR"
+      REPETIT="$DIR"
     }
-    REPETIT="$DIR"
 
     # Es desactiven les traduccions següents:
     [  "$DIR" = "messages/digikam-doc" ]                      && message_removed && continue # https://docs.digikam.org/ca/
@@ -257,7 +255,7 @@ for PO in $FITXERSPO
 
 [ -z $MISSATGEPOS ] || echo -e "\nError: $MISSATGEPOS\n"
 
-# Suprimeixo el fitxer creat per l'ordre «msgfmt --statistics»
+# Suprimeixo el fitxer creat per les eines gettext de GNU
 [ -e messages.mo ] && rm -f messages.mo
 
 exit 0
