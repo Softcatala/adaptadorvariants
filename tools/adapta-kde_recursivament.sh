@@ -41,7 +41,7 @@ capçalera() {
     BRANCA="trunk"
     ESCRIPTORI="l10n-kf5 (SVN local)"
   fi
-  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RVINICI:$RVFINAL\n  ****************$([ $ESCRIPTORI = "l10n-kf5-plasma-lts" ] && echo "************")\n$1"
+  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RVINICI:$RVFINAL\n  ****************$([[ "$ESCRIPTORI" = "l10n-kf5"@(-plasma-lts| \(SVN local\)) ]] && echo "************")\n$1"
 }
 
 genera_copia() {
@@ -86,8 +86,8 @@ genera_copia() {
       LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL_EMAIL}/")"
       sed --in-place -e "s/$LINE1/$LINE2/" $MEM_DIR/missatges_2-$FITX
-      USUARI_VAL=""
-      USUARI_VAL_EMAIL=""
+      USUARIS_VAL=""
+      USUARIS_VAL_EMAIL=""
     fi
   fi
 
@@ -111,12 +111,10 @@ genera_copia() {
   mv -f $MEM_DIR/missatges_3-$FITX ca@valencia/$PO
 }
 
-[ -z $ANULA ] && capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n" && ANULA="1"
-
 cerca_po() {
   # Cerca les plantilles de traducció i les ordena
   cd ca
-  FITXERPO=$(find messages/* -type f -name "*.po" | sort)
+  FITXERSPO=$(find messages/* -type f -name "*.po" | sort)
   cd ..
 }
 
@@ -131,7 +129,7 @@ case $ACTION in
         # S'obté la darrera modificació SVN des de la carpeta
         RVFINAL=$(LANG=C; svn info $SVN_URL | grep "^Revision:" | awk '{print $2}')
         if [ $ESCRIPTORI = "l10n-kf5-plasma-lts" ]; then
-          capçalera
+          capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
           echo -e " \e[38;5;82m-\e[0m Aquestes traduccions són mantingudes per l'equip de valencià.\n"
           exit 0
         fi
@@ -161,10 +159,12 @@ case $ACTION in
       done
 
     FITXERSPO="`echo -e "$FITXERST" | sort | uniq | tr "\n" " "`"
+    capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
   ;;
   recursiu)
     CANVIA='1'
     RVFINAL=$(LANG=C; svn info $SVN_URL | grep "^Revision:" | awk '{print $2}')
+    capçalera
     cerca_po
   ;;
   fitxer)
@@ -184,7 +184,7 @@ case $ACTION in
         echo -e "messages/carpeta/fitxer.po\n"
     fi
 
-    # Suprimeixo el fitxer creat per l'ordre «msgfmt --statistics»
+    # Suprimeixo el fitxer creat per les eines gettext de GNU
     [ -e messages.mo ] && rm -f messages.mo
     exit 0
   ;;
