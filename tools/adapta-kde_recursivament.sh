@@ -145,7 +145,7 @@ case $ACTION in
     [ "$USUARIS_SVN" ] || $(echo -e "\nError: no heu establert cap usuari seguit!\n"; exit 0)
     COMMITS=$(LANG=C; svn log --verbose -r $RVINICI:$RVFINAL $SVN_URL  | grep $USUARIS_SVN | cut -f 1 -d' ' | sed 's/^r//g')
     commits_num() {
-      FITXERS=$(LANG=C; svn log --verbose -r $1 $SVN_URL | grep 'ca/messages/' | sed 's/^\(.*\)\/ca\///g')
+      FITXERS=$(LANG=C; svn log --verbose -r $1 $SVN_URL | grep 'ca/messages/' | grep '\.po' | sed 's/^\(.*\)\/ca\///g')
     }
 
     N='0'
@@ -230,20 +230,24 @@ for PO in $FITXERSPO
     }
 
     # Es desactiven les traduccions següents:
-    [  "$DIR" = "messages/digikam-doc" ]                      && message_removed && continue # https://docs.digikam.org/ca/
     [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
     [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
-    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
     [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed && continue # https://ca.wikitolearn.org/
     [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed && continue # https://kde.org/ca/
                                                                                              # https://kde.org/ca/announcements/
-    [  "$DIR" = "messages/websites-krita-org" ]               && message_removed && continue # https://krita.org/ca/
     [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
     [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed && continue # https://www.plasma-mobile.org/ca/
     [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed && continue # https://timeline.kde.org/ca/
     [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed && continue # https://plasma-bigscreen.org/ca/
     [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed && continue # https://25years.kde.org/ca/
     [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed && continue # https://eco.kde.org/ca/
+    # desactivades temporalment (a l'espera de temps per a revisar):
+    [  "$DIR" = "messages/digikam-doc" ]                      && message_removed && continue # https://docs.digikam.org/ca/
+    [  "$DIR" = "messages/websites-skrooge-org" ]             && message_removed && continue # https://skrooge.org/ca/
+    # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
+    # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
+    [  "$DIR" = "messages/websites-krita-org" ]               && message_removed && continue # https://krita.org/ca/
+    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
     # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
     # kdeutils
 #     [[ "$DIR" = "messages/"@(ark|filelight) ]] && VAL='1' && message_removed && continue
