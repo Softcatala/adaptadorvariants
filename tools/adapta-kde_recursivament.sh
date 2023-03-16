@@ -47,6 +47,7 @@ capçalera() {
 genera_copia() {
   # No cal processar (segons antiguitat)
   [ $CANVIA -eq 0 ] && echo -e " \e[38;5;82m-\e[0m $PO" && return 0
+    [ -f ca/$PO ] || return 0
 
   # Si no existeix el directori, el creem
   mkdir -p ca@valencia/$DIR
@@ -56,25 +57,27 @@ genera_copia() {
 
   # Les primeres escriptures van a l'espai d'usuari en la memòria del sistema (molt més ràpid, alleuja i allarga la vida)
   MEM_DIR="$(echo /run/user/$(id -u))"
+  DIRTR="$PWD"
+  cd $MEM_DIR
 
   # Fem que les frases/paràgrafs siguin d'una sola línia:
-  msgmerge --silent --previous --no-wrap ca/$PO templates/${PO}t --output-file=$MEM_DIR/missatges-$FITX
+  msgmerge --silent --previous --no-wrap $DIRTR/ca/$PO $DIRTR/templates/${PO}t --output-file=$MEM_DIR/missatges-$FITX
 
   # Executem la conversió del fitxer PO
-  ./kde-src2valencia.sed < $MEM_DIR/missatges-$FITX   > $MEM_DIR/missatges_1-$FITX
-  ./all-src2valencia.sed < $MEM_DIR/missatges_1-$FITX > $MEM_DIR/missatges_2-$FITX
+  $DIRTR/kde-src2valencia.sed < $MEM_DIR/missatges-$FITX   > $MEM_DIR/missatges_1-$FITX
+  $DIRTR/all-src2valencia.sed < $MEM_DIR/missatges_1-$FITX > $MEM_DIR/missatges_2-$FITX
   [ -f "$MEM_DIR/missatges-$FITX"   ] && rm -f $MEM_DIR/missatges-$FITX
   [ -f "$MEM_DIR/missatges_1-$FITX" ] && rm -f $MEM_DIR/missatges_1-$FITX
 
   # S'afegeixen els crèdits per al valencià
-  TOCAT=$(head -20 ca/$PO | grep "$USUARIS_VAL0")
+  TOCAT=$(head -20 $DIRTR/ca/$PO | grep "$USUARIS_VAL0")
   if [ "$TOCAT" ]; then
     if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr)" ]; then
       for usuari_val in $USUARIS_VAL1
         do
           if [ "$(echo $TOCAT | grep $usuari_val)" ]; then
-            USUARI_VAL="$(head -20 ca/$PO | grep $usuari_val | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ $//g'),"
-            USUARI_VAL_EMAIL="$(head -20 ca/$PO | grep $usuari_val | cut -f 2 -d'<' | sed -e 's/,.*//g' -e 's/>$//g'),"
+            USUARI_VAL="$(head -20 $DIRTR/ca/$PO | grep $usuari_val | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ $//g'),"
+            USUARI_VAL_EMAIL="$(head -20 $DIRTR/ca/$PO | grep $usuari_val | cut -f 2 -d'<' | sed -e 's/,.*//g' -e 's/>$//g'),"
             USUARIS_VAL="$USUARIS_VAL$USUARI_VAL"
             USUARIS_VAL_EMAIL="$USUARIS_VAL_EMAIL$USUARI_VAL_EMAIL"
           fi
@@ -92,7 +95,7 @@ genera_copia() {
   fi
 
   # Es torna a donar el format amb 78 files
-  msgmerge --silent --previous --width=79 --lang=ca@valencia $MEM_DIR/missatges_2-$FITX templates/${PO}t --output-file=$MEM_DIR/missatges_3-$FITX
+  msgmerge --silent --previous --width=79 --lang=ca@valencia $MEM_DIR/missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=$MEM_DIR/missatges_3-$FITX
   [ -f "$MEM_DIR/missatges_2-$FITX" ] && rm -f $MEM_DIR/missatges_2-$FITX
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
@@ -108,7 +111,8 @@ genera_copia() {
   fi
 
   # Ja s'escriu al disc
-  mv -f $MEM_DIR/missatges_3-$FITX ca@valencia/$PO
+  mv -f $MEM_DIR/missatges_3-$FITX $DIRTR/ca@valencia/$PO
+  cd $DIRTR
 }
 
 cerca_po() {
