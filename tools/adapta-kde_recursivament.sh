@@ -28,10 +28,6 @@ if [ "$1" != "fitxer" ]; then
       exit 1
     else
       echo "ping -c 1 -4 anonsvn.kde.org: Molt bé!"
-      # Es modifica l'URL svn+ssh per a que les consultes siguin sobre el SVN anònim
-      cd ca
-      SVN_URL=$(svn info | grep "^URL" | awk '{print $2}' | sed -e s,+ssh,, -e s,svn@,anon,)
-      cd ..
   fi
 fi
 
@@ -47,7 +43,8 @@ capçalera() {
 genera_copia() {
   # No cal processar (segons antiguitat)
   [ $CANVIA -eq 0 ] && echo -e " \e[38;5;82m-\e[0m $PO" && return 0
-    [ -f ca/$PO ] || return 0
+    [ -f ca/$PO           ] || return 0
+    [ -f templates/${PO}t ] || return 0
 
   # Si no existeix el directori, el creem
   mkdir -p ca@valencia/$DIR
@@ -61,18 +58,18 @@ genera_copia() {
   cd $MEM_DIR
 
   # Fem que les frases/paràgrafs siguin d'una sola línia:
-  msgmerge --silent --previous --no-wrap $DIRTR/ca/$PO $DIRTR/templates/${PO}t --output-file=$MEM_DIR/missatges-$FITX
+  msgmerge --silent --previous --no-wrap $DIRTR/ca/$PO $DIRTR/templates/${PO}t --output-file=missatges-$FITX
 
   # Executem la conversió del fitxer PO
-  $DIRTR/kde-src2valencia.sed < $MEM_DIR/missatges-$FITX   > $MEM_DIR/missatges_1-$FITX
-  $DIRTR/all-src2valencia.sed < $MEM_DIR/missatges_1-$FITX > $MEM_DIR/missatges_2-$FITX
-  [ -f "$MEM_DIR/missatges-$FITX"   ] && rm -f $MEM_DIR/missatges-$FITX
-  [ -f "$MEM_DIR/missatges_1-$FITX" ] && rm -f $MEM_DIR/missatges_1-$FITX
+  $DIRTR/kde-src2valencia.sed < missatges-$FITX   > missatges_1-$FITX
+  $DIRTR/all-src2valencia.sed < missatges_1-$FITX > missatges_2-$FITX
+  [ -f "missatges-$FITX"   ] && rm -f missatges-$FITX
+  [ -f "missatges_1-$FITX" ] && rm -f missatges_1-$FITX
 
   # S'afegeixen els crèdits per al valencià
   TOCAT=$(head -20 $DIRTR/ca/$PO | grep "$USUARIS_VAL0")
   if [ "$TOCAT" ]; then
-    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr)" ]; then
+    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_2-$FITX | grep msgstr)" ]; then
       for usuari_val in $USUARIS_VAL1
         do
           if [ "$(echo $TOCAT | grep $usuari_val)" ]; then
@@ -83,35 +80,35 @@ genera_copia() {
           fi
         done
       echo "$USUARIS_VAL_EMAIL"
-      LINE1="$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr)"
+      LINE1="$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_2-$FITX | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" $MEM_DIR/missatges_2-$FITX
-      LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" $MEM_DIR/missatges_2-$FITX | grep msgstr)"
+      sed --in-place -e "s/$LINE1/$LINE2/" missatges_2-$FITX
+      LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" missatges_2-$FITX | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL_EMAIL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" $MEM_DIR/missatges_2-$FITX
+      sed --in-place -e "s/$LINE1/$LINE2/" missatges_2-$FITX
       USUARIS_VAL=""
       USUARIS_VAL_EMAIL=""
     fi
   fi
 
   # Es torna a donar el format amb 78 files
-  msgmerge --silent --previous --width=79 --lang=ca@valencia $MEM_DIR/missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=$MEM_DIR/missatges_3-$FITX
-  [ -f "$MEM_DIR/missatges_2-$FITX" ] && rm -f $MEM_DIR/missatges_2-$FITX
+  msgmerge --silent --previous --width=79 --lang=ca@valencia missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=missatges_3-$FITX
+  [ -f "missatges_2-$FITX" ] && rm -f missatges_2-$FITX
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
-  msgfmt --statistics $MEM_DIR/missatges_3-$FITX
+  msgfmt --statistics missatges_3-$FITX
 
   # Esborrem els missatges obsolets (en silenci)
-  posieve --quiet remove-obsolete $MEM_DIR/missatges_3-$FITX
+  posieve --quiet remove-obsolete missatges_3-$FITX
 
   # Es convida a algun col·laborador/a de valència
   if [ $FITX = "gcompris_qt.po" ]; then
     echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper a convidar a traductors valencians.\n"
-    sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta siga correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" $MEM_DIR/missatges_3-$FITX
+    sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta siga correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" missatges_3-$FITX
   fi
 
   # Ja s'escriu al disc
-  mv -f $MEM_DIR/missatges_3-$FITX $DIRTR/ca@valencia/$PO
+  mv -f missatges_3-$FITX $DIRTR/ca@valencia/$PO
   cd $DIRTR
 }
 
@@ -130,8 +127,9 @@ case $ACTION in
         RV=$(cat $RVF)
         # S'afegeix 1 a la revisió per a ometre els últims canvis
         RVINICI="$(printf %06d $[10#$RV + 1])"
+
         # S'obté la darrera modificació SVN des de la carpeta
-        RVFINAL=$(LANG=C; svn info $SVN_URL | grep "^Revision:" | awk '{print $2}')
+        RVFINAL=$(LANG=C; svn info ca/ | grep "^Revision:" | awk '{print $2}')
         if [ $ESCRIPTORI = "l10n-kf5-plasma-lts" ]; then
           capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
           echo -e " \e[38;5;82m-\e[0m Aquestes traduccions són mantingudes per l'equip de valencià.\n"
@@ -147,9 +145,9 @@ case $ACTION in
     fi
 
     [ "$USUARIS_SVN" ] || $(echo -e "\nError: no heu establert cap usuari seguit!\n"; exit 0)
-    COMMITS=$(LANG=C; svn log --verbose -r $RVINICI:$RVFINAL $SVN_URL  | grep $USUARIS_SVN | cut -f 1 -d' ' | sed 's/^r//g')
+    COMMITS=$(LANG=C; svn log --verbose -r $RVINICI:$RVFINAL ca/  | grep $USUARIS_SVN | cut -f 1 -d' ' | sed 's/^r//g')
     commits_num() {
-      FITXERS=$(LANG=C; svn log --verbose -r $1 $SVN_URL | grep 'ca/messages/' | grep '\.po' | sed 's/^\(.*\)\/ca\///g')
+      FITXERS=$(LANG=C; svn log --verbose -r $1 ca/ | grep 'ca/messages/' | grep '\.po' | sed 's/^\(.*\)\/ca\///g')
     }
 
     N='0'
@@ -167,7 +165,7 @@ case $ACTION in
   ;;
   recursiu)
     CANVIA='1'
-    RVFINAL=$(LANG=C; svn info $SVN_URL | grep "^Revision:" | awk '{print $2}')
+    RVFINAL=$(LANG=C; svn info ca/ | grep "^Revision:" | awk '{print $2}')
     capçalera
     cerca_po
   ;;
@@ -245,6 +243,7 @@ for PO in $FITXERSPO
     [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed && continue # https://plasma-bigscreen.org/ca/
     [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed && continue # https://25years.kde.org/ca/
     [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed && continue # https://eco.kde.org/ca/
+    [  "$DIR" = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
     # desactivades temporalment (a l'espera de temps per a revisar):
     [  "$DIR" = "messages/digikam-doc" ]                      && message_removed && continue # https://docs.digikam.org/ca/
     [  "$DIR" = "messages/websites-skrooge-org" ]             && message_removed && continue # https://skrooge.org/ca/
