@@ -60,7 +60,7 @@ def get_translations(project_slug, component_slug):
   next_url = '/'.join([API_URL+'components',
                          project_slug,
                          component_slug,
-                         'translations'])
+                         'translations/'])
   result = list()
   found_flag=False
   while (next_url is not None) and (found_flag is not True):
@@ -159,6 +159,7 @@ API_HEADERS = {'Accept': 'application/json, text/javascript',
 LANG_CODE = 'ca'
 
 PROJECTS = ['libo_ui-master', 'libo_help-master']
+#PROJECTS = ['libo_ui-7-5', 'libo_help-7-5']
 
 for project_item in get_projects():
   project_slug = project_item['slug']
