@@ -17,19 +17,11 @@ USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
 USUARIS_VAL0="montoro_mde@\|alviboi@"
 USUARIS_VAL1="$(echo $USUARIS_VAL0 | sed -e 's,\\|, ,g')"
 
-[ $(command -v egrep)   ] || $(echo "Error: Penseu a instal·lar el paquet «grep» de GNU. apt install grep"; exit 0)
+[ $(command -v awk)     ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
+[ $(command -v egrep)   ] || $(echo "Error: Penseu a instal·lar el paquet «grep» de GNU: apt install grep"; exit 0)
 [ $(command -v posieve) ] || $(echo "Error: Penseu a instal·lar les eines del Pology. http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install"; exit 0)
-[ $(command -v sed)     ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU. apt install sed"; exit 0)
-
-if [ "$1" != "fitxer" ]; then
-  # Comprova la disponibilitat del servidor
-  if [ $(ping -c 1 -4 anonsvn.kde.org &> /dev/null) ]; then
-      echo "No es pot fer ping amb el servidor «anonsvn.kde.org»! Es finalitza."
-      exit 1
-    else
-      echo "ping -c 1 -4 anonsvn.kde.org: Molt bé!"
-  fi
-fi
+[ $(command -v sed)     ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU: apt install sed"; exit 0)
+[ $(command -v svn)     ] || $(echo "Error: Penseu a instal·lar el paquet «subversion»: apt install subversion"; exit 0)
 
 # Establim la capçalera
 capçalera() {
@@ -43,8 +35,8 @@ capçalera() {
 genera_copia() {
   # No cal processar (segons antiguitat)
   [ $CANVIA -eq 0 ] && echo -e " \e[38;5;82m-\e[0m $PO" && return 0
-    [ -f ca/$PO           ] || return 0
-    [ -f templates/${PO}t ] || return 0
+  [ -f ca/$PO           ] || return 0
+  [ -f templates/${PO}t ] || return 0
 
   # Si no existeix el directori, el creem
   mkdir -p ca@valencia/$DIR
@@ -172,6 +164,7 @@ case $ACTION in
   fitxer)
     CANVIA='1'
     PO="$2"
+    DIR=$(dirname $PO)
 
     capçalera
     if [ -f ca/$PO ]; then
@@ -245,11 +238,10 @@ for PO in $FITXERSPO
     [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed && continue # https://eco.kde.org/ca/
     [  "$DIR" = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
     # desactivades temporalment (a l'espera de temps per a revisar):
-    [  "$DIR" = "messages/digikam-doc" ]                      && message_removed && continue # https://docs.digikam.org/ca/
     [  "$DIR" = "messages/websites-skrooge-org" ]             && message_removed && continue # https://skrooge.org/ca/
     # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
     # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
-    [  "$DIR" = "messages/websites-krita-org" ]               && message_removed && continue # https://krita.org/ca/
+    # Fet! - https://krita.org/ca/
     [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
     # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
     # kdeutils
