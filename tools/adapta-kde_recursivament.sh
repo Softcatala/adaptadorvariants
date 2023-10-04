@@ -225,24 +225,19 @@ for PO in $FITXERSPO
     }
 
     # Es desactiven les traduccions següents:
-    [  "$DIR" = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
-    [  "$DIR" = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
-    [  "$DIR" = "messages/wikitolearn-translation" ]          && message_removed && continue # https://ca.wikitolearn.org/
-    [  "$DIR" = "messages/websites-kde-org" ]                 && message_removed && continue # https://kde.org/ca/
-                                                                                             # https://kde.org/ca/announcements/
-    [  "$DIR" = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-mobile-org" ]       && message_removed && continue # https://www.plasma-mobile.org/ca/
-    [  "$DIR" = "messages/websites-timeline-kde-org" ]        && message_removed && continue # https://timeline.kde.org/ca/
-    [  "$DIR" = "messages/websites-plasma-bigscreen-org" ]    && message_removed && continue # https://plasma-bigscreen.org/ca/
-    [  "$DIR" = "messages/websites-25years-kde-org" ]         && message_removed && continue # https://25years.kde.org/ca/
-    [  "$DIR" = "messages/websites-eco-kde-org" ]             && message_removed && continue # https://eco.kde.org/ca/
-    [  "$DIR" = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
+    [ "$DIR"  = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
+    [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
+    # messages/websites-kde-org:
+    [ "$FITX" = "release_announcements.po" ]                  && message_removed && continue  # https://kde.org/ca/announcements/
+    [ "$FITX" = "www_www.po" ]                                && message_removed && continue
+    [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
+    [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
     # desactivades temporalment (a l'espera de temps per a revisar):
-    [  "$DIR" = "messages/websites-skrooge-org" ]             && message_removed && continue # https://skrooge.org/ca/
+    [ "$DIR"  = "messages/websites-skrooge-org" ]             && message_removed && continue # https://skrooge.org/ca/
     # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
     # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
     # Fet! - https://krita.org/ca/
-    [  "$DIR" = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
+    [ "$DIR"  = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
     # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
     # kdeutils
 #     [[ "$DIR" = "messages/"@(ark|filelight) ]] && VAL='1' && message_removed && continue
