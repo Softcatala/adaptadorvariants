@@ -18,18 +18,17 @@ potser '**va**', el qual ara està lliure i així potser serà més fàcil que l
 
 An explanation of the scripts:
 
-| Script                        | Description                                            |
-|----------------------------------------------------------------------------------------|
-| `c_crea_val-po.sh`            | Helper script in Bash to manage Valencian translations |
-| `adapta-kde_recursivament.sh` | Bash script to process translations with sed           |
+* `c_crea_val-po.sh`            *->* Helper script in Bash to manage Valencian translations
+* `adapta-kde_recursivament.sh` *->* Bash script to process translations with sed
 
 
 ## sed scripts:
 
-| Script                                | Description                                                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `kde-src2valencia.sed` *(unreleased)* | Make corrections and improves (Catalan text) **IMPORTANT:** also includes some adaptations to Valencian                   |
-| `all-src2valencia.sed`                | Core rules with Valencian language (e.g. verb conjugation, app names...)                                                |
+* `kde-src2valencia.sed` *(unreleased) ->* Make corrections and improves (Catalan text)
+
+**IMPORTANT:** also includes some adaptations to Valencian
+
+* `all-src2valencia.sed`                *->* Core rules with Valencian language (e.g. verb conjugation, app names...)
 
 **Note:** sed files are very large, it is recommended to close one before opening the other
 
