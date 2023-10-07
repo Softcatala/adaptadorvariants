@@ -10,7 +10,7 @@ free and so it might be easier for [Qt](https://www.qt.io/) to support our langu
 
 ***va:*** Este projecte es va iniciar gràcies als comentaris i traduccions al valencià. Un
 consell és que intal·leu GCompris en el mòbil (android) i que gaudiu del valencià en jocs
-per a xiquets i xiquetes des dels 2 fins als 10 asnys (ens cal una veu nativa per a les
+per a xiquets i xiquetes des dels 2 fins als 10 anys (ens cal una veu nativa per a les
 gravacions). També cal veure si es pot habiliar el codi de dues lletres per al valencià,
 potser '**va**', el qual ara està lliure i així potser serà més fàcil que les
 [Qt](https://www.qt.io/) admetin el nostre idioma (veure aquest
@@ -18,7 +18,7 @@ potser '**va**', el qual ara està lliure i així potser serà més fàcil que l
 
 An explanation of the scripts:
 
-* `c_crea_val-po.sh`            *->* Helper script in Bash to manage Valencian translations
+* `c_crea_val-po.sh`            *->* Helper script in Bash to manage the workflow
 * `adapta-kde_recursivament.sh` *->* Bash script to process translations with sed
 
 
@@ -43,13 +43,21 @@ An explanation of the scripts:
 
 ## Contributing
 
-Contact through the [KDE Catalan Translation Team](kde-i18n-ca@kde.org) mailing list (visit the [kde-i18n-ca Archives](https://mail.kde.org/pipermail/kde-i18n-ca/) too) and we will treat any level of collaboration.
+Contact through the [KDE Catalan Translation Team](kde-i18n-ca@kde.org) mailing list
+(visit the [kde-i18n-ca Archives](https://mail.kde.org/pipermail/kde-i18n-ca/) too)
+and we will treat any level of collaboration.
 
-***va:*** Poseu-vos en contacte amb la llista de correu de l'[Equip de traducció al català de KDE](kde-i18n-ca@kde.org) (visiteu també els [arxius de kde-i18n-ca](https://mail.kde.org/pipermail/kde-i18n-ca/)) i tractarem qualsevol nivell de col·laboració.
+***va:*** Poseu-vos en contacte amb la llista de correu de
+l'[Equip de traducció al català de KDE](kde-i18n-ca@kde.org) (visiteu també els
+[arxius de kde-i18n-ca](https://mail.kde.org/pipermail/kde-i18n-ca/)) i tractarem
+qualsevol nivell de col·laboració.
 
 
 ## Work License
 
-SPDX: [LGPL-2.1-or-later](https://spdx.org/licenses/LGPL-2.1-or-later.html) or later versions approved by the membership of [KDE e.V.](https://ev.kde.org/)
+SPDX: [LGPL-2.1-or-later](https://spdx.org/licenses/LGPL-2.1-or-later.html)
+or later versions approved by the membership of [KDE e.V.](https://ev.kde.org/)
 
-See [Guidelines and HOWTOs/Licensing](https://community.kde.org/Guidelines_and_HOWTOs/Licensing) and [Policies/Licensing Policy](https://community.kde.org/Policies/Licensing_Policy) pages from the [KDE Community Wiki](https://community.kde.org/)
+See [Guidelines and HOWTOs/Licensing](https://community.kde.org/Guidelines_and_HOWTOs/Licensing)
+and [Policies/Licensing Policy](https://community.kde.org/Policies/Licensing_Policy) pages from
+the [KDE Community Wiki](https://community.kde.org/)
