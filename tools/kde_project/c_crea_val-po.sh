@@ -76,6 +76,13 @@ sortida_po() {
   \033[47;31minstalla_va\e[0m                     * \033[1;37mInstal·la les traduccions\e[0m.
   sense_installar                 \033[1;37mObjectius futurs\e[0m [?].
   revisa                          Revisa la documentació del digiKam.
+  \033[47;31minforma_diff\e[0m                    * Es crea un diff amb el qual informar-ne a l'equip de català.
+                                    - Responeu al primer «Sí» i feu la comissió en el repo
+                                      de proves.
+                                    - Responeu al segon «Sí» i extreieu el diff (caldrà
+                                      revisar els valencianismes).
+                                    - Responeu al tercer «Sí» i es restaurarà el seu
+                                      darrer estat.
 
   \033[1;37mARBRE DE CARPETES\n  -----------------\e[0m
   - stable / l10n-kf5 /                          \033[1;37m[repositoris SVN de KDE]\e[0m
@@ -640,6 +647,9 @@ case $1 in
         FOLDER='doc'
         command_cm
       ;;
+      *)
+        sortida_po
+      ;;
     esac
   ;;
   neteja_ca)
@@ -655,12 +665,15 @@ case $1 in
         MESSAGES='docmessages'
         command_cm
       ;;
+      *)
+        sortida_po
+      ;;
     esac
-    echo -e "\n * S'està actualitzant KF5 «stable»:"
+    echo "\n * S'està actualitzant KF5 «stable»:"
     cd $DIR0/$STABLE/ca/ && svn update
-    echo -e "\n * S'està actualitzant KF5 «trunk»:"
+    echo "\n * S'està actualitzant KF5 «trunk»:"
     cd $DIR0/$TRUNK/ca/  && svn update
-    echo -e "\n * S'està actualitzant KF6 «trunk»:"
+    echo "\n * S'està actualitzant KF6 «trunk»:"
     cd $DIR0/$TRUNK6/ca/ && svn update
   ;;
   actualitza_svn_local)
@@ -737,7 +750,7 @@ case $1 in
   ;;
   installa_va)
     comprova_lloc
-    echo -e "head ~/.config/plasma-localerc
+    echo "head ~/.config/plasma-localerc
 [Formats]
 LANG=ca_ES.UTF-8
 
@@ -818,13 +831,89 @@ LANGUAGE=ca@valencia:ca:en_US\n"
   ;;
   revisa)
     [ -d ca/messages/digikam-doc/ ] || exit 0
-    echo -e "\n* digiKam:\n  _______\n"
-    echo -e "\n - Regla: apps-multimedia.rules.disabled\n   *************************************\n\n"
+    echo "\n* digiKam:\n  _______\n"
+    echo "\n - Regla: apps-multimedia.rules.disabled\n   *************************************\n\n"
     posieve check-rules -s rfile:$HOME/Documents/Treball/svn/kde/pology/lang/ca/rules/apps-multimedia.rules.disabled ca/messages/digikam-doc/docs_digikam_org_$2*
-    echo -e "\n - Regla: esmenes.rules\n   ********************\n\n"
+    echo "\n - Regla: esmenes.rules\n   ********************\n\n"
     posieve check-rules -s rfile:Carpeta_nova/Treball/esmenes.rules ca/messages/digikam-doc/docs_digikam_org_$2*
-    echo -e "\n - Regla: TOTES\n   *************\n\n"
+    echo "\n - Regla: TOTES\n   *************\n\n"
     posieve check-rules ca/messages/digikam-doc/docs_digikam_org_$2*
+  ;;
+  informa_diff)
+    comprova_lloc
+    FOLDERS="$(find $SOURCE_0/messages/ -type d -name "$2")"
+    if [ -z "$FOLDERS" ]; then
+      echo "\033[47;31mERROR:\e[0m Indiqueu una carpeta vàlida (p. ex., kstars) o prefix de carpetes (p. ex., websites-*) com a entrada!"
+      exit 0
+    fi
+    case $3 in
+      gui)
+        MESSAGES='messages'
+      ;;
+      doc)
+        MESSAGES='docmessages'
+      ;;
+      *)
+        sortida_po
+      ;;
+    esac
+
+    llista() {
+      for folder in $FOLDERS
+        do
+          FILES="$(find $DIR0/$TRUNK/$folder/* -type f -name "*.po")"
+          for file in $FILES
+            do
+              DIR=$(basename $(dirname $file))
+              DIRMOD="$DIR1/ca-mod/$MESSAGES"
+              DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
+              DIROBJ="$DIR1/ca/$MESSAGES"
+              DIRTEM="$DIR0/$TRUNK/templates/$MESSAGES"
+              PO="$(basename $file)"
+
+              [ "$1" = "1" ] && msgmerge --silent --previous --width=79 --lang=ca $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=$DIROBJ/$DIR/$PO
+              if [ "$1" = "2" ]; then
+                MEM_DIR="$(echo /run/user/$(id -u))"
+                cd $MEM_DIR
+                msgmerge --silent --previous --no-wrap $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=missatges-$PO
+                $DIR1/kde-src2valencia.sed < missatges-$PO > missatges_1-$PO && rm -f missatges-$PO
+                msgmerge --silent --previous --width=79 --lang=ca missatges_1-$PO $DIRTEM/$DIR/${PO}t --output-file=missatges_2-$PO && rm -f missatges_1-$PO
+                mv -f missatges_2-$PO $DIROBJ/$DIR/$PO
+              fi
+              if [ "$1" = "3" ];then
+                if [ -e $DIRMOD/$DIR/$PO ]; then
+                    cp -f $DIRMOD/$DIR/$PO $DIROBJ/$DIR/$PO
+                  else
+                    cp -f $DIRSRC/$DIR/$PO $DIROBJ/$DIR/$PO
+                fi
+              fi
+            done
+        done
+    }
+
+    pregunta() {
+      echo "\033[1;37m* Ara es requereix una acció:\e[0m $MISSATGE_DIFF"
+      read -p "Voleu procedir? (Sí/no) " sn
+      case $sn in
+	    no)
+	      echo "Se surt..."
+	      exit 0
+		;;
+	    *)
+	      echo "Es procedeix..."
+	    ;;
+      esac
+    }
+
+    # Es dona format amb «msgmerge» per a que el diff sigui menor
+    echo "\033[47;31mPrimer:\e[0m es copia amb «msgmerge» en el repositori de proves"
+    MISSATGE_DIFF="Cometeu els canvis en el repo de proves «ca/$MESSAGES/$2»"
+    llista 1 && pregunta
+    echo "\033[47;31mSegon:\e[0m es passa per l'script en sed només del català"
+    MISSATGE_DIFF="Procediu a extreure el diff amb el «kdesvn» (caldrà revisar-lo)"
+    llista 2 && pregunta
+    echo "\033[47;31mTercer:\e[0m es restaura el seu darrer estat"
+    llista 3
   ;;
   *)
     sortida_po
