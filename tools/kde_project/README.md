@@ -13,7 +13,7 @@ consell és que intal·leu GCompris en el mòbil (android) i que gaudiu del vale
 per a xiquets i xiquetes des dels 2 fins als 10 anys (ens cal una veu nativa per a les
 gravacions). També cal veure si es pot habiliar el codi de dues lletres per al valencià,
 potser '**va**', el qual ara està lliure i així potser serà més fàcil que les
-[Qt](https://www.qt.io/) admetin el nostre idioma (veure aquest
+[Qt](https://www.qt.io/) admeten el nostre idioma (vegeu aquest
 [informe d'error](https://bugreports.qt.io/browse/QTBUG-7100?gerritIssueType=IssueOnly)).
 
 An explanation of the scripts:
