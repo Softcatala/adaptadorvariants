@@ -54,14 +54,16 @@ genera_copia() {
 
   # Executem la conversió del fitxer PO
   $DIRTR/kde-src2valencia.sed < missatges-$FITX   > missatges_1-$FITX
-  $DIRTR/all-src2valencia.sed < missatges_1-$FITX > missatges_2-$FITX
+  $DIRTR/all-src2valencia-adapta.sed < missatges_1-$FITX > missatges_2-$FITX
+  $DIRTR/all-src2valencia.sed < missatges_2-$FITX > missatges_3-$FITX
   [ -f "missatges-$FITX"   ] && rm -f missatges-$FITX
   [ -f "missatges_1-$FITX" ] && rm -f missatges_1-$FITX
+  [ -f "missatges_2-$FITX" ] && rm -f missatges_2-$FITX
 
   # S'afegeixen els crèdits per al valencià
   TOCAT=$(head -20 $DIRTR/ca/$PO | grep "$USUARIS_VAL0")
   if [ "$TOCAT" ]; then
-    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_2-$FITX | grep msgstr)" ]; then
+    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_3-$FITX | grep msgstr)" ]; then
       for usuari_val in $USUARIS_VAL1
         do
           if [ "$(echo $TOCAT | grep $usuari_val)" ]; then
@@ -72,20 +74,19 @@ genera_copia() {
           fi
         done
       echo "$USUARIS_VAL_EMAIL"
-      LINE1="$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_2-$FITX | grep msgstr)"
+      LINE1="$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_3-$FITX | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" missatges_2-$FITX
-      LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" missatges_2-$FITX | grep msgstr)"
+      sed --in-place -e "s/$LINE1/$LINE2/" missatges_3-$FITX
+      LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" missatges_3-$FITX | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL_EMAIL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" missatges_2-$FITX
+      sed --in-place -e "s/$LINE1/$LINE2/" missatges_3-$FITX
       USUARIS_VAL=""
       USUARIS_VAL_EMAIL=""
     fi
   fi
 
   # Es torna a donar el format amb 78 files
-  msgmerge --silent --previous --width=79 --lang=ca@valencia missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=missatges_3-$FITX
-  [ -f "missatges_2-$FITX" ] && rm -f missatges_2-$FITX
+  msgmerge --silent --previous --width=79 --lang=ca@valencia missatges_3-$FITX $DIRTR/templates/${PO}t --output-file=missatges_3-$FITX
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
   msgfmt --statistics missatges_3-$FITX

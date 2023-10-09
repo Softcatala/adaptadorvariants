@@ -11,7 +11,7 @@ free and so it might be easier for [Qt](https://www.qt.io/) to support our langu
 ***va:*** Este projecte es va iniciar gràcies als comentaris i traduccions al valencià. Un
 consell és que intal·leu GCompris en el mòbil (android) i que gaudiu del valencià en jocs
 per a xiquets i xiquetes des dels 2 fins als 10 anys (ens cal una veu nativa per a les
-gravacions). També cal veure si es pot habiliar el codi de dues lletres per al valencià,
+gravacions). També cal veure si es pot habilitar el codi de dues lletres per al valencià,
 potser '**va**', el qual ara està lliure i així potser serà més fàcil que les
 [Qt](https://www.qt.io/) admeten el nostre idioma (vegeu aquest
 [informe d'error](https://bugreports.qt.io/browse/QTBUG-7100?gerritIssueType=IssueOnly)).
@@ -24,14 +24,24 @@ An explanation of the scripts:
 
 ## sed scripts:
 
-* `kde-src2valencia.sed` *(unreleased) ->* Make corrections and improves (Catalan text)
+* `kde-src2valencia.sed`       *(unreleased) ->* Make corrections and improves (into Catalan text)
 
-**IMPORTANT:** also includes some adaptations to Valencian
+**IMPORTANT:** also includes some adaptations to Valencian *(in review)*.
 
-* `all-src2valencia.sed`                *->* Core rules with Valencian language (e.g. verb conjugation, app names...)
+* `all-src2valencia-adapta.sed` *(in review) ->* Rules to adapt the language to Valencian (e.g. a -> en, app names...)
+* `all-src2valencia.sed`                    *->* Core rules with Valencian language (e.g. verb conjugation, loose words...)
 
-**Note:** sed files are very large, it is recommended to close one before opening the other
+**Note 1:** this last sed file are very large, we recommend *closing everything* before opening it.
 
+**Note 2:** having two smaller sed files (so called '\**-adapta*' and '*kde-*\*') lightens the load and speeds up the workflow.
+
+### Dilluns, 9 d'octubre de 2023
+
+The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***2h*** and ***50m***.
+
+***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***2 h*** i ***50 m***.
+
+**SVN Message (*with version info*):** Updates to 010.00 (http://avl.gva.es/lexicval/)
 
 ## Linguistic resources:
 

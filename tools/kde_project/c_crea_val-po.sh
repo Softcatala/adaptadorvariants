@@ -101,13 +101,13 @@ sortida_po() {
   - ca-mod                      \033[1;37m[carpeta amb les traduccions modificades]\e[0m
 
   · c_crea_val-po.sh            \033[1;37m[aquest script]\e[0m
-                                \033[1;37mRepo:\e[0m https://websvn.kde.org/trunk/l10n-support/ca/scripts/
   · adapta-kde_recursivament.sh \033[1;37m[script en Bash que adapta amb els scripts en SED]\e[0m
-                                \033[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/pull/13
+                                \033[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/tools/kde_project/
   · kde-src2valencia.sed        \033[1;37m[els scripts en SED, en odre de processament]\e[0m
                                 \033[1;37mRepo:\e[0m sense publicar
   · all-src2valencia.sed
-                                \033[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/pull/13
+  · all-src2valencia-adapta.sed
+                                \033[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/tools/kde_project/
 
   \033[1;37mLLEGENDA\n  --------\e[0m
   * (Opcions que només es poden executar des de la carpeta base de l'script).\n"
@@ -151,12 +151,13 @@ copia_valencia() {
 
     # Executem la conversió del fitxer PO
     $DIR1/kde-src2valencia.sed < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
-    $DIR1/all-src2valencia.sed < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
+    $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
+    $DIR1/all-src2valencia.sed < missatges_2-$PO2 > missatges_3-$PO2 && rm -f missatges_2-$PO2
 
     mkdir -p $DIRDES
     # Es torna a donar el format amb 78 files
-    msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_2-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
-    mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_2-$PO2
+    msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
+    mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_3-$PO2
     cd $DIR1
   }
 
