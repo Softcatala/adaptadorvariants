@@ -1573,6 +1573,8 @@ s/\bcàntirs\([^[:alnum:]]\)/botiges\1/g
 s/\bCantitat\(s\|\)\([^[:alnum:]]\)/Quantitat\1\2/g
 s/\bcantitat\(s\|\)\([^[:alnum:]]\)/quantitat\1\2/g
 	s/\b\([Dd]\)e la cantonada\([^[:alnum:]]\)/\1el cantó\2/g
+	s/\bcantó més propera\([^[:alnum:]]\)/cantó més proper\1/g
+	s/\bcantó oposada\([^[:alnum:]]\)/cantó oposat\1/g
 	s/\bLa cantonada\([^[:alnum:]]\)/El cantó\1/g
 	s/\bla cantonada\([^[:alnum:]]\)/el cantó\1/g
 s/\b\([Cc]\)antonada\([^[:alnum:]]\)/\1antó\2/g
@@ -2849,6 +2851,7 @@ s/\b\([Dd]\)anyéssi\([mu]\)\([^[:alnum:]]\)/\1anyàre\2\3/g
 s/\b\([Dd]\)anyessi\([ns]\)\([^[:alnum:]]\)/\1anyare\2\3/g
 s/\b\([Dd]\)any\([io]\)\([^[:alnum:]]\)/\1anye\3/g
 s/\b\([Dd]\)anyi\([ns]\)\([^[:alnum:]]\)/\1anye\2\3/g
+    s/\b\([Aa]\)l darrer\([^[:alnum:]]\)/\1 l'últim\2/g
 	s/\bEl darrer\([^[:alnum:]]\)/L'últim\1/g
 	s/\bel darrer\([^[:alnum:]]\)/l'últim\1/g
 s/\bDarrer\(a\|es\|\)\([^[:alnum:]]\)/Últim\1\2/g
@@ -7681,6 +7684,7 @@ s/\b\([Qq]\)ueixi\([ns]\)\([^[:alnum:]]\)/\1ueixe\2\3/g
 	s/\bsubstitueix per quelcom altre\([^[:alnum:]]\)/substitueix per algun altre\1/g
 s/\bQuelcom\([^[:alnum:]]\)/Alguna cosa\1/g
 s/\bquelcom\([^[:alnum:]]\)/alguna cosa\1/g
+    s/\balguna cosa xicotet\([^[:alnum:]]\)/alguna cosa xicoteta\1/g
 # r
 #
 # rasteritzar

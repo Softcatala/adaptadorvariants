@@ -63,6 +63,7 @@ sortida_po() {
   adapta                          * \033[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
   adapta_doc                      * \033[1;37mAdapta i genera la documentació\e[0m en el SVN local.
                                   \033[47;31mNOTA:\e[0m Després s'han de moure manualment!
+  \033[47;31madapta_dir (dir)\e[0m                * \033[1;37mPROVES! Adapta i genera nomes una carpeta\e[0m en el SVN local.
   modifica_capçalera fitxer.po    * \033[1;37mActualitza la informació a la capçalera\e[0m.
   adapta_valencia (recursiu|usuari)
                                   * \033[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
@@ -76,7 +77,8 @@ sortida_po() {
   \033[47;31minstalla_va\e[0m                     * \033[1;37mInstal·la les traduccions\e[0m.
   sense_installar                 \033[1;37mObjectius futurs\e[0m [?].
   revisa                          Revisa la documentació del digiKam.
-  \033[47;31minforma_diff\e[0m                    * Es crea un diff amb el qual informar-ne a l'equip de català.
+  \033[47;31minforma_diff\e[0m websites-* (gui|doc)
+                                  * Es crea un diff amb el qual informar-ne a l'equip de català.
                                     - Responeu al primer «Sí» i feu la comissió en el repo
                                       de proves.
                                     - Responeu al segon «Sí» i extreieu el diff (caldrà
@@ -145,7 +147,7 @@ copia_valencia() {
     MEM_DIR="$(echo /run/user/$(id -u))"
     cd $MEM_DIR
 
-    echo "   -- ($1) $PO2"
+    echo "   · ($1) $PO2"
     # Fem que les frases/paràgrafs siguin d'una sola línia:
     msgmerge --silent --previous --no-wrap $CA_MOD $DIRTEM/${PO2}t --output-file=missatges-$PO2
 
@@ -250,19 +252,19 @@ neteja_ca() {
     do
       PO2="$(basename $po)"
       if [ -e $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
-        echo "* KF5 -> $DIRMOD/$PO2"
+        echo "   · KF5 -> $DIRMOD/$PO2"
         cp -f  $DIR0/$TRUNK/$DIROBJ/$PO2     $DIR1/$DIROBJ/$PO2
         mv -f  $DIR0/$TRUNK/$DIROBJ/$PO2     $DIR1/$DIRMOD/$PO2
         cp -f  $DIR0/$TRUNK/$DIRTEM/${PO2}t  $DIR1/$DIRTEM/${PO2}t
         if [ -e $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
           mkdir -p $DIRMOD/stable
-          echo "* KF5 -> $DIRMOD/stable/$PO2"
+          echo "   · KF5 -> $DIRMOD/stable/$PO2"
           mv -f $DIR0/$STABLE/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable/$PO2
         fi
       fi
       if [ -e $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/kf6
-        echo "* KF6 -> $DIRMOD/kf6/$PO2"
+        echo "   · KF6 -> $DIRMOD/kf6/$PO2"
         cp -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIROBJ/$PO2
         mv -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIRMOD/kf6/$PO2
         cp -f  $DIR0/$TRUNK6/$DIRTEM/${PO2}t $DIR1/$DIRTEM/${PO2}t
@@ -318,6 +320,20 @@ cerca_and_not() {
   posieve find-messages -s fexpr:"$STRING" "$SOURCE/docmessages/"
   echo "\n\n - IGU:\n   ****"
   posieve find-messages -s fexpr:"$STRING" "$SOURCE/messages/"
+}
+
+pregunta() {
+  echo "\033[1;37m* Ara es requereix una acció:\e[0m $MISSATGE_DIFF"
+  read -p "Voleu procedir? (Sí/no) " sn
+  case $sn in
+    no)
+      echo "Se surt..."
+      exit 0
+	;;
+    *)
+      echo "Es procedeix..."
+    ;;
+  esac
 }
 
 case $1 in
@@ -605,6 +621,15 @@ case $1 in
     echo "\n# stable_kf5 / stable_lts_kf5 / trunk_kf5 / trunk_kf6"
     echo "SCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0"
   ;;
+  adapta_dir)
+    comprova_lloc
+    for po in $(find ca/messages/$2/* -type f -name "*.po")
+      do
+        PO2="$(basename $po)"
+        DIR="$(dirname $po | sed -e s,ca\/,,)"
+        ./adapta-kde_recursivament.sh fitxer $DIR/$PO2
+      done
+  ;;
   adapta_valencia)
     comprova_lloc
     adapta_val() {
@@ -687,7 +712,6 @@ case $1 in
       [ -e $1/websites-kde-org/www_www.po ]               && rm -f $1/websites-kde-org/www_www.po
       [ -d $1/websites-kdevelop-org ]           && rm -Rf $1/websites-kdevelop-org
       [ -d $1/websites-planet-kde-org ]         && rm -Rf $1/websites-planet-kde-org
-      [ -d $1/websites-skrooge-org ]            && rm -Rf $1/websites-skrooge-org
     }
 
     for obj in ca ca@valencia templates
@@ -872,49 +896,71 @@ LANGUAGE=ca@valencia:ca:en_US\n"
               DIRTEM="$DIR0/$TRUNK/templates/$MESSAGES"
               PO="$(basename $file)"
 
-              [ "$1" = "1" ] && msgmerge --silent --previous --width=79 --lang=ca $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=$DIROBJ/$DIR/$PO
+              if [ "$1" = "1" ]; then
+                msgmerge --silent --previous --width=79 --lang=ca $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=$DIROBJ/$DIR/$PO
+              fi
               if [ "$1" = "2" ]; then
                 MEM_DIR="$(echo /run/user/$(id -u))"
                 cd $MEM_DIR
+                [ -e $DIRMOD/$DIR/$PO ] && DIRSRC="$DIRMOD"
+
                 msgmerge --silent --previous --no-wrap $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=missatges-$PO
                 $DIR1/kde-src2valencia.sed < missatges-$PO > missatges_1-$PO && rm -f missatges-$PO
                 msgmerge --silent --previous --width=79 --lang=ca missatges_1-$PO $DIRTEM/$DIR/${PO}t --output-file=missatges_2-$PO && rm -f missatges_1-$PO
                 mv -f missatges_2-$PO $DIROBJ/$DIR/$PO
               fi
               if [ "$1" = "3" ];then
-                if [ -e $DIRMOD/$DIR/$PO ]; then
-                    cp -f $DIRMOD/$DIR/$PO $DIROBJ/$DIR/$PO
-                  else
-                    cp -f $DIRSRC/$DIR/$PO $DIROBJ/$DIR/$PO
-                fi
+                cp -f $DIRSRC/$DIR/$PO $DIROBJ/$DIR/$PO
               fi
+              DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
             done
         done
-    }
-
-    pregunta() {
-      echo "\033[1;37m* Ara es requereix una acció:\e[0m $MISSATGE_DIFF"
-      read -p "Voleu procedir? (Sí/no) " sn
-      case $sn in
-	    no)
-	      echo "Se surt..."
-	      exit 0
-		;;
-	    *)
-	      echo "Es procedeix..."
-	    ;;
-      esac
     }
 
     # Es dona format amb «msgmerge» per a que el diff sigui menor
     echo "\033[47;31mPrimer:\e[0m es copia amb «msgmerge» en el repositori de proves"
     MISSATGE_DIFF="Cometeu els canvis en el repo de proves «ca/$MESSAGES/$2»"
     llista 1 && pregunta
+
     echo "\033[47;31mSegon:\e[0m es passa per l'script en sed només del català"
     MISSATGE_DIFF="Procediu a extreure el diff amb el «kdesvn» (caldrà revisar-lo)"
     llista 2 && pregunta
+
     echo "\033[47;31mTercer:\e[0m es restaura el seu darrer estat"
     llista 3
+  ;;
+  fitxer_erroni)
+    DIR="kstars"
+    PO="kstars.po"
+    DIRMOD="$DIR1/ca-mod/messages/$DIR"
+    DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
+    DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
+
+    [ -e $DIRMOD/$PO ] && DIRSRC="$DIRMOD"
+    echo "\033[47;31mPrimer:\e[0m s'executa «msgmerge»"
+    MISSATGE_DIFF="[missatges-$PO]: Res, però podeu emprar «msgfmt --statistics missatges_3-$PO.po» en qualsevol moment"
+    pregunta
+    msgmerge --silent --previous --no-wrap $DIRSRC/$PO $DIRTEM/${PO}t --output-file=missatges-$PO
+
+    echo "\033[47;31mSegon:\e[0m es passa per sed amb l'script «kde-src2valencia.sed»"
+    MISSATGE_DIFF="[missatges_1-$PO]: Res"
+    pregunta
+    $DIR1/kde-src2valencia.sed        < missatges-$PO   > missatges_1-$PO && rm -f missatges-$PO
+
+    echo "\033[47;31mTercer:\e[0m es passa per sed amb l'script «all-src2valencia-adapta.sed»"
+    MISSATGE_DIFF="[missatges_2-$PO]: Res"
+    pregunta
+    $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO > missatges_2-$PO && rm -f missatges_1-$PO
+
+    echo "\033[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
+    MISSATGE_DIFF="[missatges_3-$PO]: Res"
+    pregunta
+    $DIR1/all-src2valencia.sed        < missatges_2-$PO > missatges_3-$PO && rm -f missatges_2-$PO
+
+    echo "\033[47;31mCinquè i últim:\e[0m es torna a executar «msgmerge»"
+    MISSATGE_DIFF="[$PO]: Res"
+    pregunta
+    msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO $DIRTEM/${PO}t --output-file=$PO && rm -f missatges_3-$PO2
   ;;
   *)
     sortida_po

@@ -234,7 +234,6 @@ for PO in $FITXERSPO
     [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
     [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
     # desactivades temporalment (a l'espera de temps per a revisar):
-    [ "$DIR"  = "messages/websites-skrooge-org" ]             && message_removed && continue # https://skrooge.org/ca/
     # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
     # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
     # Fet! - https://krita.org/ca/
