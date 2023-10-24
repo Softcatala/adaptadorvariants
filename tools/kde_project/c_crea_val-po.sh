@@ -555,6 +555,7 @@ case $1 in
     per_carpeta
   ;;
   cerca)
+SOURCE_0='ca'
     [ "$2" ] || sortida_po
     CADENA="akonadi akregator alk alli am an ap ar at au b cal can ce ch cl co cu day di do dr e f g h ik inc index-fm iso it j k3b ka kb kc kda kdb kde-c kde-d kde-g kde-i kde-n kdeb kdec kded kdeg kdel kden kdep kdes kdev kdf kdi kdn kdo ke kf kg kh ki kj kl km kn ko kp kr ks kt ku kw kx l m n o p q r s tel to tr u v w x y z"
     for cadena in $CADENA
@@ -910,6 +911,7 @@ LANGUAGE=ca@valencia:ca:en_US\n"
                 mv -f missatges_2-$PO $DIROBJ/$DIR/$PO
               fi
               if [ "$1" = "3" ];then
+                [ -e $DIRMOD/$DIR/$PO ] && DIRSRC="$DIRMOD"
                 cp -f $DIRSRC/$DIR/$PO $DIROBJ/$DIR/$PO
               fi
               DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
@@ -919,30 +921,34 @@ LANGUAGE=ca@valencia:ca:en_US\n"
 
     # Es dona format amb «msgmerge» per a que el diff sigui menor
     echo "\033[47;31mPrimer:\e[0m es copia amb «msgmerge» en el repositori de proves"
-    MISSATGE_DIFF="Cometeu els canvis en el repo de proves «ca/$MESSAGES/$2»"
+    MISSATGE_DIFF="Cometeu els canvis en el repo de proves «\033[47;31mca/$MESSAGES/$2\e[0m»"
     llista 1 && pregunta
 
-    echo "\033[47;31mSegon:\e[0m es passa per l'script en sed només del català"
-    MISSATGE_DIFF="Procediu a extreure el diff amb el «kdesvn» (caldrà revisar-lo)"
+    echo "\033[47;31mSegon:\e[0m ara es passa per l'script en sed només del català"
+    MISSATGE_DIFF="Procediu a extreure el diff amb el «\033[47;31mkdesvn\e[0m» (caldrà revisar-lo)"
     llista 2 && pregunta
 
-    echo "\033[47;31mTercer:\e[0m es restaura el seu darrer estat"
+    echo "\033[47;31mTercer:\e[0m per acabar es restaura el seu darrer estat"
     llista 3
   ;;
   fitxer_erroni)
-    DIR="kstars"
-    PO="kstars.po"
+    DIR="discover"
+    PO="plasma-discover.po"
     DIRMOD="$DIR1/ca-mod/messages/$DIR"
     DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
     DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
 
-    [ -e $DIRMOD/$PO ] && DIRSRC="$DIRMOD"
+    if [ -e "$DIR0/$TRUNK6/ca/messages/$DIR/$PO" ]; then
+      DIRSRC="$DIR0/$TRUNK6/ca/messages/$DIR"
+      DIRTEM="$DIR0/$TRUNK6/templates/messages/$DIR"
+    fi
+    [ -e "$DIRMOD/$PO" ] && DIRSRC="$DIRMOD"
     echo "\033[47;31mPrimer:\e[0m s'executa «msgmerge»"
     MISSATGE_DIFF="[missatges-$PO]: Res, però podeu emprar «msgfmt --statistics missatges_3-$PO.po» en qualsevol moment"
     pregunta
     msgmerge --silent --previous --no-wrap $DIRSRC/$PO $DIRTEM/${PO}t --output-file=missatges-$PO
 
-    echo "\033[47;31mSegon:\e[0m es passa per sed amb l'script «kde-src2valencia.sed»"
+    echo "\033[47;31mSegon:\e[0m ara es passa per sed amb l'script «kde-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_1-$PO]: Res"
     pregunta
     $DIR1/kde-src2valencia.sed        < missatges-$PO   > missatges_1-$PO && rm -f missatges-$PO
@@ -961,6 +967,7 @@ LANGUAGE=ca@valencia:ca:en_US\n"
     MISSATGE_DIFF="[$PO]: Res"
     pregunta
     msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO $DIRTEM/${PO}t --output-file=$PO && rm -f missatges_3-$PO2
+    kwrite missatges_3-$PO && rm -f *.po
   ;;
   *)
     sortida_po

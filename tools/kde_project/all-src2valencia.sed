@@ -4534,6 +4534,7 @@ s/\b\([Ee]\)stavelli\([ns]\)\([^[:alnum:]]\)/\1stavelle\2\3/g
 	s/\"Estel\"/\"Catxerulo\"/g
 s/\bESTEL\([^[:alnum:]]\)/ESTRELA\1/g
 s/\b\([Ee]\)stel\([^[:alnum:]]\)/\1strel\2/g
+    s/\b\([Ee]\)strel·lar\([^[:alnum:]]\)/\1stel·lar\2/g
 s/\b\([Ee]\)stels\([^[:alnum:]]\)/\1streles\2/g
 s/\bESTRELL\(A\|ES\)\([^[:alnum:]]\)/ESTREL\1\2/g
 s/\b\([Ee]\)strell\(a\|at\|es\)\([^[:alnum:]]\)/\1strel\2\3/g
@@ -4870,6 +4871,7 @@ s/\b\([Ff]\)essi\([ns]\)\([^[:alnum:]]\)/\1ere\2\3/g
         s/\bdesprés sobre un\([^[:alnum:]]\)/després damunt d'un\1/g
         s/\bpremeu clic en\([^[:alnum:]]\)/feu clic en\1/g
     s/\bclic en un valor\([^[:alnum:]]\)/clic damunt d'un valor\1/g
+    s/\bsobre la \(imatge\|superposició\)\([^[:alnum:]]\)/damunt de la \1\2/g
     # esmenes
     s/\b\En fer clic \(central \|dret \|del mig \|esquerre \|mig \|\)en\([^[:alnum:]]\)/Fent clic \1en\2/g
     s/\b\en fer clic \(central \|dret \|del mig \|esquerre \|mig \|\)en\([^[:alnum:]]\)/fent clic \1en\2/g
