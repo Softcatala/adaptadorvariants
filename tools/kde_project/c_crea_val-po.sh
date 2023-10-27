@@ -130,7 +130,7 @@ command_cm() {
         for package in $(find $DIR1/ca-mod/$MESSAGES/* -maxdepth 0 -type d)
           do
             PACKAGE="$(basename $package)"
-            echo " * $PACKAGE"
+            echo " \e[38;5;46m* $PACKAGE\e[0m"
             $ORDRE $PACKAGE
           done
 }
@@ -143,24 +143,28 @@ copia_valencia() {
   DIROBJ="$DIR1/ca/$MESSAGES/$1"
 
   adapta_ho() {
-    # Les primeres escriptures van a l'espai d'usuari en la memòria del sistema (molt més ràpid, alleuja i allarga la vida)
-    MEM_DIR="$(echo /run/user/$(id -u))"
-    cd $MEM_DIR
+    if [ -e $DIRTEM/${PO2}t ]; then
+        # Les primeres escriptures van a l'espai d'usuari en la memòria del sistema (molt més ràpid, alleuja i allarga la vida)
+        MEM_DIR="$(echo /run/user/$(id -u))"
+        cd $MEM_DIR
 
-    echo "   · ($1) $PO2"
-    # Fem que les frases/paràgrafs siguin d'una sola línia:
-    msgmerge --silent --previous --no-wrap $CA_MOD $DIRTEM/${PO2}t --output-file=missatges-$PO2
+        echo "   \e[38;5;44m· ($1)\e[0m $PO2"
+        # Fem que les frases/paràgrafs siguin d'una sola línia:
+        msgmerge --silent --previous --no-wrap $CA_MOD $DIRTEM/${PO2}t --output-file=missatges-$PO2
 
-    # Executem la conversió del fitxer PO
-    $DIR1/kde-src2valencia.sed < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
-    $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
-    $DIR1/all-src2valencia.sed < missatges_2-$PO2 > missatges_3-$PO2 && rm -f missatges_2-$PO2
+        # Executem la conversió del fitxer PO
+        $DIR1/kde-src2valencia.sed < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
+        $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
+        $DIR1/all-src2valencia.sed < missatges_2-$PO2 > missatges_3-$PO2 && rm -f missatges_2-$PO2
 
-    mkdir -p $DIRDES
-    # Es torna a donar el format amb 78 files
-    msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
-    mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_3-$PO2
-    cd $DIR1
+        mkdir -p $DIRDES
+        # Es torna a donar el format amb 78 files
+        msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
+        mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_3-$PO2
+        cd $DIR1
+      else
+        echo "    \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut cap a l10n-kf6\e[0m"
+    fi
   }
 
   # KF5 (trunk)
@@ -212,33 +216,37 @@ crea_po() {
   DIROBJ="ca/$MESSAGES/$1"
   DIRTEM="templates/$MESSAGES/$1"
 
-  for po in $(find $DIR1/$DIRMOD/* -maxdepth 0 -type f -name "*.po")
+  for po in $(find $DIR1/$DIRMOD/* -maxdepth 1 -type f -name "*.po")
     do
       PO2="$(basename $po)"
       if   [ -f $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
           mkdir -p $DIROBJ
-          echo "   -- (KF5) $PO2"
+          echo "   \e[38;5;44m-- (KF5) <-\e[0m $PO2"
           msgmerge --silent --previous --width=79 --lang=ca $DIRMOD/$PO2 $DIR0/$TRUNK/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$TRUNK/$DIROBJ/$PO2
           msgfmt   --statistics    $DIR0/$TRUNK/$DIROBJ/$PO2
-          if [ -f $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
-            if [ -d $DIRMOD/stable ]; then
-              CA_MOD="$DIRMOD/stable/$PO2"
-              mkdir -p $DIROBJ
-              echo "   -- (stable) $PO2"
-              msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE/$DIROBJ/$PO2
-              posieve  remove-obsolete $DIR0/$STABLE/$DIROBJ/$PO2
-              msgfmt   --statistics    $DIR0/$STABLE/$DIROBJ/$PO2
-            fi
-          fi
       fi
+
+      if [ -f $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
+        if [ -d $DIRMOD/stable ]; then
+          CA_MOD="$DIRMOD/stable/$PO2"
+          mkdir -p $DIROBJ
+          echo "   \e[38;5;44m-- (stable) <-\e[0m $PO2"
+          msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE/$DIROBJ/$PO2
+          posieve  remove-obsolete $DIR0/$STABLE/$DIROBJ/$PO2
+          msgfmt   --statistics    $DIR0/$STABLE/$DIROBJ/$PO2
+        fi
+      fi
+
       if [ -f $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
+        if [ -d $DIRMOD/kf6 ]; then
           CA_MOD="$DIRMOD/kf6/$PO2"
           mkdir -p $DIROBJ
-          echo "   -- (KF6) $PO2"
+          echo "   \e[38;5;44m-- (KF6) <-\e[0m $PO2"
           msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$TRUNK6/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK6/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$TRUNK6/$DIROBJ/$PO2
           msgfmt   --statistics    $DIR0/$TRUNK6/$DIROBJ/$PO2
+        fi
       fi
     done
 }
@@ -252,19 +260,21 @@ neteja_ca() {
     do
       PO2="$(basename $po)"
       if [ -e $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
-        echo "   · KF5 -> $DIRMOD/$PO2"
+        echo "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/$PO2"
         cp -f  $DIR0/$TRUNK/$DIROBJ/$PO2     $DIR1/$DIROBJ/$PO2
         mv -f  $DIR0/$TRUNK/$DIROBJ/$PO2     $DIR1/$DIRMOD/$PO2
         cp -f  $DIR0/$TRUNK/$DIRTEM/${PO2}t  $DIR1/$DIRTEM/${PO2}t
-        if [ -e $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
-          mkdir -p $DIRMOD/stable
-          echo "   · KF5 -> $DIRMOD/stable/$PO2"
-          mv -f $DIR0/$STABLE/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable/$PO2
-        fi
       fi
+
+      if [ -e $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
+        mkdir -p $DIRMOD/stable
+        echo "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/stable/$PO2"
+        mv -f $DIR0/$STABLE/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable/$PO2
+      fi
+
       if [ -e $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/kf6
-        echo "   · KF6 -> $DIRMOD/kf6/$PO2"
+        echo "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/kf6/$PO2"
         cp -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIROBJ/$PO2
         mv -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIRMOD/kf6/$PO2
         cp -f  $DIR0/$TRUNK6/$DIRTEM/${PO2}t $DIR1/$DIRTEM/${PO2}t
@@ -619,8 +629,8 @@ SOURCE_0='ca'
     MESSAGES='docmessages'
     ORDRE='copia_valencia'
     command_cm
-    echo "\n# stable_kf5 / stable_lts_kf5 / trunk_kf5 / trunk_kf6"
-    echo "SCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0"
+    echo "\n\e[38;5;44m# stable_kf5 / stable_lts_kf5 / trunk_kf5 / trunk_kf6\e[0m"
+    echo "\e[38;5;44mSCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0 [app]\e[0m"
   ;;
   adapta_dir)
     comprova_lloc
@@ -867,11 +877,6 @@ LANGUAGE=ca@valencia:ca:en_US\n"
   ;;
   informa_diff)
     comprova_lloc
-    FOLDERS="$(find $SOURCE_0/messages/ -type d -name "$2")"
-    if [ -z "$FOLDERS" ]; then
-      echo "\033[47;31mERROR:\e[0m Indiqueu una carpeta vàlida (p. ex., kstars) o prefix de carpetes (p. ex., websites-*) com a entrada!"
-      exit 0
-    fi
     case $3 in
       gui)
         MESSAGES='messages'
@@ -884,17 +889,33 @@ LANGUAGE=ca@valencia:ca:en_US\n"
       ;;
     esac
 
+    DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
+    DIRMOD="$DIR1/ca-mod/$MESSAGES"
+    DIROBJ="$DIR1/ca/$MESSAGES"
+
+    FOLDERS_5="$(find $DIRSRC/ -type d -name "$2")"
+    FOLDERS_6="$(find $DIR0/$TRUNK6/ca/$MESSAGES/ -type d -name "$2")"
+    if   [ "$FOLDERS_5" ]; then
+        BRANCA="$TRUNK"
+        FOLDERS="$(basename -a $FOLDERS_5)"
+    elif [ "$FOLDERS_6" ]; then
+        BRANCA="$TRUNK6"
+        DIRMOD="$DIR1/ca-mod/$MESSAGES/kf6"
+        FOLDERS="$(basename -a $FOLDERS_6)"
+      else
+        echo "\033[47;31mERROR:\e[0m Indiqueu una carpeta vàlida (p. ex., kstars) o prefix de carpetes (p. ex., websites-*) com a entrada!"
+        exit 0
+    fi
+    DIRSRC="$DIR0/$BRANCA/ca/$MESSAGES"
+    DIRTEM="$DIR0/$BRANCA/templates/$MESSAGES"
+
     llista() {
       for folder in $FOLDERS
         do
-          FILES="$(find $DIR0/$TRUNK/$folder/* -type f -name "*.po")"
+          FILES="$(find $DIR0/$BRANCA/ca/$MESSAGES/$folder/* -type f -name "*.po" 2>/dev/null)"
           for file in $FILES
             do
               DIR=$(basename $(dirname $file))
-              DIRMOD="$DIR1/ca-mod/$MESSAGES"
-              DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
-              DIROBJ="$DIR1/ca/$MESSAGES"
-              DIRTEM="$DIR0/$TRUNK/templates/$MESSAGES"
               PO="$(basename $file)"
 
               if [ "$1" = "1" ]; then
@@ -914,7 +935,7 @@ LANGUAGE=ca@valencia:ca:en_US\n"
                 [ -e $DIRMOD/$DIR/$PO ] && DIRSRC="$DIRMOD"
                 cp -f $DIRSRC/$DIR/$PO $DIROBJ/$DIR/$PO
               fi
-              DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
+              DIRSRC="$DIR0/$BRANCA/ca/$MESSAGES"
             done
         done
     }
