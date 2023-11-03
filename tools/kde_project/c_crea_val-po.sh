@@ -163,7 +163,7 @@ copia_valencia() {
         mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_3-$PO2
         cd $DIR1
       else
-        echo "    \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut cap a l10n-kf6\e[0m"
+        echo "   \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut cap a l10n-kf6\e[0m"
     fi
   }
 
@@ -615,7 +615,7 @@ SOURCE_0='ca'
   ;;
   adapta)
     comprova_lloc
-    ./adapta-kde_recursivament.sh recursiu
+    ./adapta-kde_recursivament.sh recursiu $2
   ;;
   modifica_capçalera)
     [ -f "$2" ] || sortida_po

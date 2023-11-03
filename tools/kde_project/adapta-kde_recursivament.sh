@@ -106,6 +106,7 @@ genera_copia() {
 }
 
 cerca_po() {
+  [ -z $(echo $FOUND | grep -E 'messages/[[:alnum:]-]{3,}*$') ] && exit 0
   # Cerca les plantilles de traducció i les ordena
   cd ca
   FITXERSPO=$(find messages/* -type f -name "*.po" | sort)
@@ -158,6 +159,7 @@ case $ACTION in
   ;;
   recursiu)
     CANVIA='1'
+    FOUND="$2"
     RVFINAL=$(LANG=C; svn info ca/ | grep "^Revision:" | awk '{print $2}')
     capçalera
     cerca_po
@@ -185,6 +187,7 @@ case $ACTION in
     exit 0
   ;;
   arranja_po)
+    FOUND="$2"
     cerca_po
     echo -en "\nS'arranjen les traduccions: "
     for PO in $FITXERSPO
@@ -199,16 +202,18 @@ case $ACTION in
     echo "$0 [ usuari | recursiu | fitxer (po) | arranja_po ]"
     echo
     echo    " usuari       : Mode SVN: mira l'última data i hora de canvi per als usuaris seguits."
-    echo    "                Empra la revisió en el fitxer $RVF i processa els\n\t\tmodificats."
-    echo -e "                Usuaris seguits = $(echo $USUARIS_SVN | sed -e s,.\|,\ ,g)\n"
-    echo    " recursiu     : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
-    echo -e "                Si aquest no existeix, ho actualitza tot.\n"
+    echo    "                • Empra la revisió en el fitxer $RVF i processa els\n\t\tmodificats."
+    echo -e "                • Usuaris seguits = $(echo $USUARIS_SVN | sed -e s,.\|,\ ,g)\n"
+    echo    " recursiu [messages/«mòdul»]?"
+    echo    "              : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
+    echo    "                • Si aquest no existeix, ho actualitza tot."
+    echo -e "                • Es pot especificar un mòdul per a començar per allà.\n"
     echo    " fitxer [po]  : Mode local: actualitza el fitxer sense emprar cap data."
-    echo    "                Útil si observem alguna desactualització puntual."
+    echo    "                • Útil si observem alguna desactualització puntual."
     echo    "                Nota: No actualitza la revisió en el fitxer $RVF."
     echo -e "                po = messages/carpeta/fitxer.po\n"
     echo    " arranja_po   : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
-    echo -e "                No actualitza la data en el fitxer $RVF.\n"
+    echo -e "                Nota: No actualitza la data en el fitxer $RVF.\n"
     exit 0
   ;;
 esac
@@ -219,29 +224,32 @@ for PO in $FITXERSPO
     DIR=$(dirname $PO)
     FITX=$(basename $PO)
 
-    message_removed() {
-      [ "$REPETIT" = "$DIR" ] && return
-      echo -e " \e[44mo\e[0m $DIR"
-      REPETIT="$DIR"
-    }
+    if [ -z "$FOUND" -o "$2" = "$DIR" ]; then
+      FOUND=""
+      message_removed() {
+        [ "$REPETIT" = "$DIR" ] && return
+        echo -e " \e[44mo\e[0m $DIR"
+        REPETIT="$DIR"
+      }
 
-    # Es desactiven les traduccions següents:
-    [ "$DIR"  = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
-    [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
-    # messages/websites-kde-org:
-    [ "$FITX" = "release_announcements.po" ]                  && message_removed && continue  # https://kde.org/ca/announcements/
-    [ "$FITX" = "www_www.po" ]                                && message_removed && continue
-    [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
-    [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
-    # desactivades temporalment (a l'espera de temps per a revisar):
-    # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
-    # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
-    # Fet! - https://krita.org/ca/
-    [ "$DIR"  = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
-    # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
-    # kdeutils
-#     [[ "$DIR" = "messages/"@(ark|filelight) ]] && VAL='1' && message_removed && continue
-    genera_copia
+      # Es desactiven les traduccions següents:
+      [ "$DIR"  = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
+      [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
+      # messages/websites-kde-org:
+      [ "$FITX" = "release_announcements.po" ]                  && message_removed && continue  # https://kde.org/ca/announcements/
+      [ "$FITX" = "www_www.po" ]                                && message_removed && continue
+      [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
+      [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
+      # desactivades temporalment (a l'espera de temps per a revisar):
+      # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
+      # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
+      # Fet! - https://krita.org/ca/
+      [ "$DIR"  = "messages/websites-docs-krita-org" ]          && message_removed && continue # https://docs.krita.org/ca/
+      # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
+      # kdeutils
+#       [[ "$DIR" = "messages/"@(ark|filelight) ]] && VAL='1' && message_removed && continue
+      genera_copia
+    fi
   done
 
 # Actualització normal
