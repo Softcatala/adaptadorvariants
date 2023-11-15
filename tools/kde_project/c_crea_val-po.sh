@@ -222,6 +222,7 @@ crea_po() {
       if   [ -f $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
           mkdir -p $DIROBJ
           echo "   \e[38;5;44m-- (KF5) <-\e[0m $PO2"
+          [ -f $DIR0/$TRUNK/$DIRTEM/${PO2}t ] || return
           msgmerge --silent --previous --width=79 --lang=ca $DIRMOD/$PO2 $DIR0/$TRUNK/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$TRUNK/$DIROBJ/$PO2
           msgfmt   --statistics    $DIR0/$TRUNK/$DIROBJ/$PO2
@@ -232,6 +233,7 @@ crea_po() {
           CA_MOD="$DIRMOD/stable/$PO2"
           mkdir -p $DIROBJ
           echo "   \e[38;5;44m-- (stable) <-\e[0m $PO2"
+          [ -f $DIR0/$STABLE/$DIRTEM/${PO2}t ] || return
           msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$STABLE/$DIROBJ/$PO2
           msgfmt   --statistics    $DIR0/$STABLE/$DIROBJ/$PO2
@@ -243,6 +245,7 @@ crea_po() {
           CA_MOD="$DIRMOD/kf6/$PO2"
           mkdir -p $DIROBJ
           echo "   \e[38;5;44m-- (KF6) <-\e[0m $PO2"
+          [ -f $DIR0/$TRUNK6/$DIRTEM/${PO2}t ] || return
           msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$TRUNK6/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK6/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$TRUNK6/$DIROBJ/$PO2
           msgfmt   --statistics    $DIR0/$TRUNK6/$DIROBJ/$PO2
@@ -461,7 +464,7 @@ case $1 in
     if   [ "$2" = 'ca' ]; then
         SOURCE='ca'
     elif [ "$2" = 'en' ]; then
-        SOURCE='ca'
+        [ "$5" ] && SOURCE='ca'
         MSG='msgid'
     fi
 
@@ -565,7 +568,7 @@ case $1 in
     per_carpeta
   ;;
   cerca)
-SOURCE_0='ca'
+# SOURCE_0='ca'
     [ "$2" ] || sortida_po
     CADENA="akonadi akregator alk alli am an ap ar at au b cal can ce ch cl co cu day di do dr e f g h ik inc index-fm iso it j k3b ka kb kc kda kdb kde-c kde-d kde-g kde-i kde-n kdeb kdec kded kdeg kdel kden kdep kdes kdev kdf kdi kdn kdo ke kf kg kh ki kj kl km kn ko kp kr ks kt ku kw kx l m n o p q r s tel to tr u v w x y z"
     for cadena in $CADENA
@@ -953,8 +956,8 @@ LANGUAGE=ca@valencia:ca:en_US\n"
     llista 3
   ;;
   fitxer_erroni)
-    DIR="discover"
-    PO="plasma-discover.po"
+    DIR="dolphin"
+    PO="dolphin.po"
     DIRMOD="$DIR1/ca-mod/messages/$DIR"
     DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
     DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
@@ -965,29 +968,34 @@ LANGUAGE=ca@valencia:ca:en_US\n"
     fi
     [ -e "$DIRMOD/$PO" ] && DIRSRC="$DIRMOD"
     echo "\033[47;31mPrimer:\e[0m s'executa «msgmerge»"
-    MISSATGE_DIFF="[missatges-$PO]: Res, però podeu emprar «msgfmt --statistics missatges_3-$PO.po» en qualsevol moment"
+    MISSATGE_DIFF="[missatges-$PO]: Res"
     pregunta
     msgmerge --silent --previous --no-wrap $DIRSRC/$PO $DIRTEM/${PO}t --output-file=missatges-$PO
+    msgfmt --statistics missatges-$PO
 
     echo "\033[47;31mSegon:\e[0m ara es passa per sed amb l'script «kde-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_1-$PO]: Res"
     pregunta
-    $DIR1/kde-src2valencia.sed        < missatges-$PO   > missatges_1-$PO && rm -f missatges-$PO
+    $DIR1/kde-src2valencia.sed        < missatges-$PO   > missatges_1-$PO
+    msgfmt --statistics missatges_1-$PO
 
     echo "\033[47;31mTercer:\e[0m es passa per sed amb l'script «all-src2valencia-adapta.sed»"
     MISSATGE_DIFF="[missatges_2-$PO]: Res"
     pregunta
-    $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO > missatges_2-$PO && rm -f missatges_1-$PO
+    $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO > missatges_2-$PO
+    msgfmt --statistics missatges_2-$PO
 
     echo "\033[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_3-$PO]: Res"
     pregunta
-    $DIR1/all-src2valencia.sed        < missatges_2-$PO > missatges_3-$PO && rm -f missatges_2-$PO
+    $DIR1/all-src2valencia.sed        < missatges_2-$PO > missatges_3-$PO
+    msgfmt --statistics missatges_3-$PO
 
     echo "\033[47;31mCinquè i últim:\e[0m es torna a executar «msgmerge»"
     MISSATGE_DIFF="[$PO]: Res"
     pregunta
     msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO $DIRTEM/${PO}t --output-file=$PO && rm -f missatges_3-$PO2
+    msgfmt --statistics $PO
     kwrite missatges_3-$PO && rm -f *.po
   ;;
   *)

@@ -33,7 +33,7 @@ An explanation of the scripts:
 
 **Note 1:** this last sed file are very large, we recommend *closing everything* before opening it.
 
-**Note 2:** having two smaller sed files (so called '\**-adapta*' and '*kde-*\*') lightens the load and speeds up the workflow.
+**Note 2:** having two smaller sed files (so called '*\*-adapta*' and '*kde-\**') lightens the load and speeds up the workflow.
 
 ### Dilluns, 9 d'octubre de 2023
 
@@ -46,10 +46,19 @@ The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the
 ## Linguistic resources:
 
 * [Institut d'Estudis Catalans](https://geiec.iec.cat/)
-* [Diccionari de la llengua catalana](https://dlc.iec.cat/) - (DIEC2)
 * [Acadèmia Valenciana de la Llengua](https://www.avl.gva.es/)
-* [Diccionari Normatiu Valencià](https://www.avl.gva.es/lexicval/)
 
+### Dictionaries
+
+* [Conjugació de tots els verbs](https://giec.iec.cat/conjugacio) - (IEC)
+* [Diccionari de la llengua catalana](https://dlc.iec.cat/) - (DIEC2)
+* [Diccionari Normatiu Valencià](https://www.avl.gva.es/lexicval/) - (AVL)
+
+### Language regulations
+
+* [Recursos lingüístics en línia](https://www.iec.cat/recursos-linguistics-en-linia/) - (IEC)
+* [Gramàtica bàsica i d'ús](https://gbu.iec.cat/inici) - (IEC) *recommended*
+* [Gramàtiques Normatives Valencianes](https://www.avl.gva.es/gnv/buscador.jsp) - (AVL) *recommended query tool*
 
 ## Contributing
 
@@ -58,8 +67,8 @@ Contact through the [KDE Catalan Translation Team](kde-i18n-ca@kde.org) mailing 
 and we will treat any level of collaboration.
 
 ***va:*** Poseu-vos en contacte amb la llista de correu de
-l'[Equip de traducció al català de KDE](kde-i18n-ca@kde.org) (visiteu també els
-[arxius de kde-i18n-ca](https://mail.kde.org/pipermail/kde-i18n-ca/)) i tractarem
+l'[Equip de traducció al català de KDE](kde-i18n-ca@kde.org) (visiteu també
+l'[arxiu de kde-i18n-ca](https://mail.kde.org/pipermail/kde-i18n-ca/)) i tractarem
 qualsevol nivell de col·laboració.
 
 

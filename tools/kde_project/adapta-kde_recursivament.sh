@@ -53,9 +53,9 @@ genera_copia() {
   msgmerge --silent --previous --no-wrap $DIRTR/ca/$PO $DIRTR/templates/${PO}t --output-file=missatges-$FITX
 
   # Executem la conversió del fitxer PO
-  $DIRTR/kde-src2valencia.sed < missatges-$FITX   > missatges_1-$FITX
+  $DIRTR/kde-src2valencia.sed        < missatges-$FITX   > missatges_1-$FITX
   $DIRTR/all-src2valencia-adapta.sed < missatges_1-$FITX > missatges_2-$FITX
-  $DIRTR/all-src2valencia.sed < missatges_2-$FITX > missatges_3-$FITX
+  $DIRTR/all-src2valencia.sed        < missatges_2-$FITX > missatges_3-$FITX
   [ -f "missatges-$FITX"   ] && rm -f missatges-$FITX
   [ -f "missatges_1-$FITX" ] && rm -f missatges_1-$FITX
   [ -f "missatges_2-$FITX" ] && rm -f missatges_2-$FITX
@@ -106,7 +106,8 @@ genera_copia() {
 }
 
 cerca_po() {
-  [ -z $(echo $FOUND | grep -E 'messages/[[:alnum:]-]{3,}*$') ] && exit 0
+  [ $FOUND -o $(echo $FOUND | grep -E 'messages/[[:alnum:]-]{3,}*$') ] || exit 0
+
   # Cerca les plantilles de traducció i les ordena
   cd ca
   FITXERSPO=$(find messages/* -type f -name "*.po" | sort)

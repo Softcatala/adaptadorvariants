@@ -3,6 +3,7 @@
 # Recursos:
 # ---------
 # <https://geiec.iec.cat/>
+# <https://giec.iec.cat/conjugacio>
 # <https://www.avl.gva.es/lexicval/>
 
 # No tradueixis linies que no pertanyin a un msgstr
@@ -641,7 +642,7 @@ s/\b\([Aa]\)lço\([^[:alnum:]]\)/\1lce\2/g
 	s/\b\([Cc]\)alcés\([^[:alnum:]]\)/\1alçara\2/g
 	s/\b\([Cc]\)alcéssi\([mu]\)\([^[:alnum:]]\)/\1alçàre\2\3/g
 	s/\b\([Cc]\)alcessi\([ns]\)\([^[:alnum:]]\)/\1alçare\2\3/g
- 	s/\b\([Cc]\)alci\([ns]\)\([^[:alnum:]]\)/\1alce\2\3/g # «calci»: No, element químic
+	s/\b\([Cc]\)alci\([ns]\)\([^[:alnum:]]\)/\1alce\2\3/g # «calci»: No, element químic
 	s/\b\([Cc]\)alço\([^[:alnum:]]\)/\1alce\2/g
         s/\"Calces\"/\"Calcis\"/g # greece prefectures
 	# descalçar
@@ -926,9 +927,9 @@ s/\bAquest\(a\|es\)\([^[:alnum:]]\)/Est\1\2/g
 s/\baquest\(a\|es\)\([^[:alnum:]]\)/est\1\2/g
 s/\bAquests\([^[:alnum:]]\)/Estos\1/g
 s/\baquests\([^[:alnum:]]\)/estos\1/g
- 	s/\baques&t\([^[:alnum:]]\)/es\&te\1/g
- 	s/\baques&t\(a\|es\)\([^[:alnum:]]\)/es\&t\1\2/g
- 	s/\baques&ts\([^[:alnum:]]\)/es\&tos\1/g
+	s/\baques&t\([^[:alnum:]]\)/es\&te\1/g
+	s/\baques&t\(a\|es\)\([^[:alnum:]]\)/es\&t\1\2/g
+	s/\baques&ts\([^[:alnum:]]\)/es\&tos\1/g
 s/\b\([Aa]\)quí\([^[:alnum:]]\)/\1cí\2/g
     s/AquíElVostreBotó\([^[:alnum:]]\)/AcíElVostreBotó\1/g
 	s/\bel_nom_especificat_aquí\([^[:alnum:]]\)/el_nom_especificat_ací\1/g
@@ -1038,20 +1039,53 @@ s/\b\([Aa]\)ssignessi\([ns]\)\([^[:alnum:]]\)/\1ssignare\2\3/g
 s/\b\([Aa]\)ssign\([io]\)\([^[:alnum:]]\)/\1ssigne\3/g
 s/\b\([Aa]\)ssign\([io]\)\([ns]\)\([^[:alnum:]]\)/\1ssigne\3\4/g
 	# TODO: no
-	# desassignar
-	s/\b\([Dd]\)esassignés\([^[:alnum:]]\)/\1esassignara\2/g
-	s/\b\([Dd]\)esassignéssi\([mu]\)\([^[:alnum:]]\)/\1esassignàre\2\3/g
-	s/\b\([Dd]\)esassignessi\([ns]\)\([^[:alnum:]]\)/\1esassignare\2\3/g
-		s/\b\([Dd]\)esassigna\(r\|\)\([^[:alnum:]]\)/\1esselecciona\2\3/g
-	s/\b\([Dd]\)esassign\([io]\)\([^[:alnum:]]\)/\1esassigne\3/g
-	s/\b\([Dd]\)esassigni\([ns]\)\([^[:alnum:]]\)/\1esassigne\2\3/g
+	# desassignar -> treure l'assignació
+	s/\bDesassignés\([^[:alnum:]]\)/Tragués l'assignació\1/g
+	s/\bdesassignés\([^[:alnum:]]\)/tragués l'assignació\1/g
+	s/\bDesassignéssi\([mu]\)\([^[:alnum:]]\)/Traguéssi\1 l'assignació\2/g
+	s/\bdesassignéssi\([mu]\)\([^[:alnum:]]\)/traguéssi\1 l'assignació\2/g
+	s/\bDesassignessi\([ns]\)\([^[:alnum:]]\)/Traguessi\1 l'assignació\2/g
+	s/\bdesassignessi\([ns]\)\([^[:alnum:]]\)/traguessi\1 l'assignació\2/g
+	s/\bDesassigna\(r\|\)\([^[:alnum:]]\)/Treure l'assignació\2/g
+	s/\bdesassigna\(r\|\)\([^[:alnum:]]\)/treure l'assignació\2/g
+		s/\bes treure l'assignació\([^[:alnum:]]\)/es treu l'assignació\1/g
+		s/\bNo s'ha pogut treure l'assignació l'informe\([^[:alnum:]]\)/No s'ha pogut treure l'assignació de l'informe\1/g
+		s/\b\([Tt]\)reure l'assignació el\(s\|\)\([^[:alnum:]]\)/\1reure l'assignació del\2\3/g
+		s/\b\([Tt]\)reure l'assignació \(etiquetes\|una etiqueta\)\([^[:alnum:]]\)/\1reure l'assignació d'\2\3/g
+		s/\b\([Tt]\)reure l'assignació la clau\([^[:alnum:]]\)/\1reu l'assignació de la clau\2/g
+		s/\bTreure l'assignació\([^[:alnum:]]\)/Treu l'assignació\1/g
+	s/\bDesassigni\([^[:alnum:]]\)/Tregui l'assignació\1/g
+	s/\bdesassigni\([^[:alnum:]]\)/tregui l'assignació\1/g
+	s/\bDesassigni\([ns]\)\([^[:alnum:]]\)/Tregui\1 l'assignació\2/g
+	s/\bdesassigni\([ns]\)\([^[:alnum:]]\)/tregui\1 l'assignació\2/g
+	s/\bDesassigno\([^[:alnum:]]\)/Trec l'assignació\1/g
+	s/\bdesassigno\([^[:alnum:]]\)/trec l'assignació\1/g
 	# TODO: no
-	# reassignar
-	s/\b\([Rr]\)eassignés\([^[:alnum:]]\)/\1eassignara\2/g
-	s/\b\([Rr]\)eassignéssi\([mu]\)\([^[:alnum:]]\)/\1eassignàre\2\3/g
-	s/\b\([Rr]\)eassignessi\([ns]\)\([^[:alnum:]]\)/\1eassignare\2\3/g
-	s/\b\([Rr]\)eassign\([io]\)\([^[:alnum:]]\)/\1eassigne\3/g
-	s/\b\([Rr]\)eassigni\([ns]\)\([^[:alnum:]]\)/\1eassigne\2\3/g
+	# reassignar -> tornar a assignar
+	s/\bReassignés\([^[:alnum:]]\)/Tornés a assignar\1/g
+	s/\breassignés\([^[:alnum:]]\)/tornés a assignar\1/g
+	s/\bReassignéssi\([mu]\)\([^[:alnum:]]\)/Tornéssi\1 a assignar\2/g
+	s/\breassignéssi\([mu]\)\([^[:alnum:]]\)/tornéssi\1 a assignar\2/g
+	s/\bReassignessi\([ns]\)\([^[:alnum:]]\)/Tornessi\1 a assignar\2/g
+	s/\breassignessi\([ns]\)\([^[:alnum:]]\)/tornessi\1 a assignar\2/g
+		s/\bReassigna beneficiaris\([^[:alnum:]]\)/Torna a assignar els beneficiaris\1/g
+		s/\bReassigna categories\([^[:alnum:]]\)/Torna a assignar les categories\1/g
+	s/\bReassigna\(r\|\)\([^[:alnum:]]\)/Torna\1 a assignar\2/g
+	s/\breassigna\(r\|\)\([^[:alnum:]]\)/torna\1 a assignar\2/g
+	s/\bReassigni\([^[:alnum:]]\)/Torni a assignar\1/g
+	s/\breassigni\([^[:alnum:]]\)/torni a assignar\1/g
+	s/\bReassigni\([ns]\)\([^[:alnum:]]\)/Torni\1 a assignar\2/g
+	s/\breassigni\([ns]\)\([^[:alnum:]]\)/torni\1 a assignar\2/g
+	s/\bReassigno\([^[:alnum:]]\)/Torno a assignar\1/g
+	s/\breassigno\([^[:alnum:]]\)/torno a assignar\1/g
+# assistir
+s/\b\([Aa]\)ssisteix\(en\|es\|\)\([^[:alnum:]]\)/\1ssistix\2\3/g
+s/\b\([Aa]\)ssisteixi\([^[:alnum:]]\)/\1ssistisca\2/g
+s/\b\([Aa]\)ssisteixi\([ns]\)\([^[:alnum:]]\)/\1ssistisque\2\3/g
+s/\b\([Aa]\)ssisteixo\([^[:alnum:]]\)/\1ssistisc\2/g
+s/\b\([Aa]\)ssistís\([^[:alnum:]]\)/\1ssistira\2/g
+s/\b\([Aa]\)ssistíssi\([mu]\)\([^[:alnum:]]\)/\1ssistíre\2\3/g
+s/\b\([Aa]\)ssistissi\([ns]\)\([^[:alnum:]]\)/\1ssistire\2\3/g
 # associar
 s/\b\([Aa]\)ssociés\([^[:alnum:]]\)/\1ssociara\2/g
 s/\b\([Aa]\)ssociéssi\([mu]\)\([^[:alnum:]]\)/\1ssignàre\2\3/g
@@ -1579,6 +1613,7 @@ s/\bcantitat\(s\|\)\([^[:alnum:]]\)/quantitat\1\2/g
 	s/\bla cantonada\([^[:alnum:]]\)/el cantó\1/g
 s/\b\([Cc]\)antonada\([^[:alnum:]]\)/\1antó\2/g
 	s/\bcantó inferior esquerre està força agitada\([^[:alnum:]]\)/cantó inferior esquerre està força agitat\1/g
+	s/\b\([Cc]\)antó dreta\([^[:alnum:]]\)/\1antó dret\2/g
 	s/\bla primera cantó\([^[:alnum:]]\)/el primer cantó\1/g
 	s/\bla segona cantó\([^[:alnum:]]\)/el segon cantó\1/g
 	s/\buna cantó angulada\([^[:alnum:]]\)/un cantó angulat\1/g
@@ -2856,6 +2891,7 @@ s/\b\([Dd]\)anyi\([ns]\)\([^[:alnum:]]\)/\1anye\2\3/g
 	s/\bel darrer\([^[:alnum:]]\)/l'últim\1/g
 s/\bDarrer\(a\|es\|\)\([^[:alnum:]]\)/Últim\1\2/g
 s/\bdarrer\(a\|es\|\)\([^[:alnum:]]\)/últim\1\2/g
+    s/\b\([Ee]\)nfocament al última\([^[:alnum:]]\)/\1nfocament al darrera\2/g
 s/\b\([Dd]\)e debò\([^[:alnum:]]\)/\1e veres\2/g
 # debatre
 s/\b\([Dd]\)ebatés\([^[:alnum:]]\)/\1ebatera\2/g
@@ -3024,6 +3060,14 @@ s/\b\([Dd]\)esignéssi\([mu]\)\([^[:alnum:]]\)/\1esignàre\2\3/g
 s/\b\([Dd]\)esignessi\([ns]\)\([^[:alnum:]]\)/\1esignare\2\3/g
 s/\b\([Dd]\)esign\([io]\)\([^[:alnum:]]\)/\1esigne\2/g
 s/\b\([Dd]\)esigni\([ns]\|\)\([^[:alnum:]]\)/\1esigne\2\3/g
+# desistir
+s/\b\([Dd]\)esisteix\(en\|es\|\)\([^[:alnum:]]\)/\1esistix\2\3/g
+s/\b\([Dd]\)esisteixi\([^[:alnum:]]\)/\1esistisca\2/g
+s/\b\([Dd]\)esisteixi\([ns]\)\([^[:alnum:]]\)/\1esistisque\2\3/g
+s/\b\([Dd]\)esisteixo\([^[:alnum:]]\)/\1esistisc\2/g
+s/\b\([Dd]\)esistís\([^[:alnum:]]\)/\1esistira\2/g
+s/\b\([Dd]\)esistíssi\([mu]\)\([^[:alnum:]]\)/\1esistíre\2\3/g
+s/\b\([Dd]\)esistissi\([ns]\)\([^[:alnum:]]\)/\1esistire\2\3/g
 # desitjar
 s/\b\([Dd]\)esitgés\([^[:alnum:]]\)/\1esitjara\2/g
 s/\b\([Dd]\)esitgéssi\([mu]\)\([^[:alnum:]]\)/\1esitjàre\2\3/g
@@ -3076,6 +3120,12 @@ s/\b\([Dd]\)estil·li\([ns]\)\([^[:alnum:]]\)/\1estil·le\2\3/g
  	s/\bSeleccioneu la destinació\([^[:alnum:]]\)/Seleccioneu el destí\1/g
  	s/\bVídeo de destinació\([^[:alnum:]]\)/Vídeo del destí\1/g
 # #
+# destinar
+s/\b\([Dd]\)estinés\([^[:alnum:]]\)/\1estinara\2/g
+s/\b\([Dd]\)estinéssi\([mu]\|\)\([^[:alnum:]]\)/\1estinàre\2\3/g
+s/\b\([Dd]\)estinessi\([ns]\|\)\([^[:alnum:]]\)/\1estinare\2\3/g
+s/\b\([Dd]\)estin\([io]\)\([^[:alnum:]]\)/\1estine\3/g
+s/\b\([Dd]\)estini\([ns]\)\([^[:alnum:]]\)/\1estine\2\3/g
 # destorbar
 s/\b\([Dd]\)estorbés\([^[:alnum:]]\)/\1estorbara\2/g
 s/\b\([Dd]\)estorbéssi\([mu]\|\)\([^[:alnum:]]\)/\1estorbàre\2\3/g
@@ -3127,6 +3177,13 @@ s/\b\([Dd]\)ibuixéssi\([mu]\|\)\([^[:alnum:]]\)/\1ibuixàre\2\3/g
 s/\b\([Dd]\)ibuixessi\([ns]\|\)\([^[:alnum:]]\)/\1ibuixare\2\3/g
 s/\b\([Dd]\)ibuix\([io]\)\([^[:alnum:]]\)/\1ibuixe\3/g
 s/\b\([Dd]\)ibuixi\([ns]\)\([^[:alnum:]]\)/\1ibuixe\2\3/g
+    # TODO: No
+    # redibuixar
+    s/\b\([Rr]\)edibuixés\([^[:alnum:]]\)/\1edibuixara\2/g
+    s/\b\([Rr]\)edibuixéssi\([mu]\|\)\([^[:alnum:]]\)/\1edibuixàre\2\3/g
+    s/\b\([Rr]\)edibuixessi\([ns]\|\)\([^[:alnum:]]\)/\1edibuixare\2\3/g
+    s/\b\([Rr]\)edibuix\([io]\)\([^[:alnum:]]\)/\1edibuixe\3/g
+    s/\b\([Rr]\)edibuixi\([ns]\)\([^[:alnum:]]\)/\1edibuixe\2\3/g
 # diferenciar
 s/\b\([Dd]\)iferenciés\([^[:alnum:]]\)/\1iferenciara\2/g
 s/\b\([Dd]\)iferenciéssi\([mu]\|\)\([^[:alnum:]]\)/\1iferenciàre\2\3/g
@@ -3774,8 +3831,11 @@ s/\b\([Ee]\)ncongiment\([^[:alnum:]]\)/\1ncolliment\2/g
 	s/\bun encriptatge segur màxim\([^[:alnum:]]\)/una encriptació segura màxima\1/g
 s/\b\([Ee]\)ncriptatge\([^[:alnum:]]\)/\1ncriptació\2/g
 	s/\bclau de l'encriptació\([^[:alnum:]]\)/clau d'encriptació\1/g
+	s/\b\([Ee]\)ncriptació activat\([^[:alnum:]]\)/\1ncriptació activada\2/g
 	s/\bencriptació complet\([^[:alnum:]]\)/encriptació completa\1/g
-	s/\bencriptació habilitat\([^[:alnum:]]\)/encriptació habilitada\1/g
+        s/\b\([Ee]\)ncriptació desactivat\([^[:alnum:]]\)/\1ncriptació desactivada\2/g
+	s/\bEncriptació E2E activat\([^[:alnum:]]\)/Encriptació E2E activada\1/g
+	s/\b\([Ee]\)ncriptació habilitat\([^[:alnum:]]\)/\1ncriptació habilitada\2/g
 	s/\b\([Ee]\)ncriptació simètric\([^[:alnum:]]\)/\1ncriptació simètrica\2/g
 s/\b\([Dd]\)esencriptatge\([^[:alnum:]]\)/\1esencriptació\2/g
 	s/\bdel desencriptació\([^[:alnum:]]\)/de desencriptació\1/g
@@ -4118,11 +4178,17 @@ s/\b\([Ee]\)ngrandís\([^[:alnum:]]\)/\1ngrandira\2/g
 s/\b\([Ee]\)ngrandíssi\([mu]\)\([^[:alnum:]]\)/\1ngrandíre\2\3/g
 s/\b\([Ee]\)ngrandissi\([ns]\)\([^[:alnum:]]\)/\1ngrandire\2\3/g
 # enllaçar
-s/\b\([Ee]\)nllaçara\([^[:alnum:]]\)/\1ngrandira\2/g
-s/\b\([Ee]\)nllaçàre\([mu]\)\([^[:alnum:]]\)/\1ngrandíre\2\3/g
-s/\b\([Ee]\)nllaçare\([ns]\)\([^[:alnum:]]\)/\1ngrandire\2\3/g
+s/\b\([Ee]\)nllacés\([^[:alnum:]]\)/\1nllaçara\2/g
+s/\b\([Ee]\)nllaçàre\([mu]\)\([^[:alnum:]]\)/\1nllaçare\2\3/g
+s/\b\([Ee]\)nllaçare\([ns]\)\([^[:alnum:]]\)/\1nllaçare\2\3/g
 s/\b\([Ee]\)nllaço\([^[:alnum:]]\)/\1nllace\2/g
 s/\b\([Ee]\)nllaci\([ns]\|\)\([^[:alnum:]]\)/\1nllace\2\3/g
+    # desenllaçar
+    s/\b\([Dd]\)esenllacés\([^[:alnum:]]\)/\1esenllaçara\2/g
+    s/\b\([Dd]\)esenllaçàre\([mu]\)\([^[:alnum:]]\)/\1esenllaçare\2\3/g
+    s/\b\([Dd]\)esenllaçare\([ns]\)\([^[:alnum:]]\)/\1esenllaçare\2\3/g
+    s/\b\([Dd]\)esenllaço\([^[:alnum:]]\)/\1esenllace\2/g
+    s/\b\([dd]\)esenllaci\([ns]\|\)\([^[:alnum:]]\)/\1esenllace\2\3/g
 # enregistrar -> gravar
 s/\bEnregistra\(dor\|nt\|\)\([^[:alnum:]]\)/Grava\1\2/g
 s/\benregistra\(dor\|nt\|\)\([^[:alnum:]]\)/grava\1\2/g
@@ -5272,6 +5338,13 @@ s/\b\([Ff]\)uncionéssi\([mu]\)\([^[:alnum:]]\)/\1uncionàre\2\3/g
 s/\b\([Ff]\)uncionessi\([ns]\)\([^[:alnum:]]\)/\1uncionare\2\3/g
 s/\b\([Ff]\)uncion\([io]\)\([^[:alnum:]]\)/\1uncione\3/g
 s/\b\([Ff]\)uncioni\([ns]\)\([^[:alnum:]]\)/\1uncione\2\3/g
+# furonejar
+s/\b\([Ff]\)uronegés\([^[:alnum:]]\)/\1uronejara\2/g
+s/\b\([Ff]\)uronegéssi\([mu]\)\([^[:alnum:]]\)/\1uronejàre\2\3/g
+s/\b\([Ff]\)uronegessi\([ns]\)\([^[:alnum:]]\)/\1uronejare\2\3/g
+s/\b\([Ff]\)uronegi\([^[:alnum:]]\)/\1uronege\2/g
+s/\b\([Ff]\)uronegi\([ns]\)\([^[:alnum:]]\)/\1uronege\2\3/g
+s/\b\([Ff]\)uroneji\([^[:alnum:]]\)/\1uronege\2/g
 # fusionar
 s/\b\([Ff]\)usionés\([^[:alnum:]]\)/\1usionara\2/g
 s/\b\([Ff]\)usionéssi\([mu]\)\([^[:alnum:]]\)/\1usionàre\2\3/g
@@ -5584,6 +5657,24 @@ s/\b\([Ii]\)maginéssi\([mu]\)\([^[:alnum:]]\)/\1maginàre\2\3/g
 s/\b\([Ii]\)maginessi\([ns]\)\([^[:alnum:]]\)/\1maginare\2\3/g
 s/\b\([Ii]\)magin\([io]\)\([^[:alnum:]]\)/\1magine\3/g
 s/\b\([Ii]\)magini\([ns]\)\([^[:alnum:]]\)/\1magine\2\3/g
+# imitar
+s/\b\([Ii]\)mités\([^[:alnum:]]\)/\1mitara\2/g
+s/\b\([Ii]\)mitéssi\([mu]\)\([^[:alnum:]]\)/\1mitàre\2\3/g
+s/\b\([Ii]\)mitessi\([ns]\)\([^[:alnum:]]\)/\1mitare\2\3/g
+s/\b\([Ii]\)mit\([io]\)\([^[:alnum:]]\)/\1mite\3/g
+s/\b\([Ii]\)miti\([ns]\)\([^[:alnum:]]\)/\1mite\2\3/g
+	# delimitar
+	s/\b\([Dd]\)elimités\([^[:alnum:]]\)/\1elimitara\2/g
+	s/\b\([Dd]\)elimitéssi\([mu]\)\([^[:alnum:]]\)/\1elimitàre\2\3/g
+	s/\b\([Dd]\)elimitessi\([ns]\)\([^[:alnum:]]\)/\1elimitare\2\3/g
+	s/\b\([Dd]\)elimit\([io]\)\([^[:alnum:]]\)/\1elimite\3/g
+	s/\b\([Dd]\)elimiti\([ns]\)\([^[:alnum:]]\)/\1elimite\2\3/g
+	# limitar
+	s/\b\([Ll]\)imités\([^[:alnum:]]\)/\1imitara\2/g
+	s/\b\([Ll]\)imitéssi\([mu]\)\([^[:alnum:]]\)/\1imitàre\2\3/g
+	s/\b\([Ll]\)imitessi\([ns]\)\([^[:alnum:]]\)/\1imitare\2\3/g
+	s/\b\([Ll]\)imit\([io]\)\([^[:alnum:]]\)/\1imite\3/g
+	s/\b\([Ll]\)imiti\([ns]\)\([^[:alnum:]]\)/\1imite\2\3/g
 # immergir
 s/\b\([Ii]\)mmergeix\(en\|es\|\)\([^[:alnum:]]\)/\1mmergix\2\3/g
 s/\b\([Ii]\)mmergeixi\([^[:alnum:]]\)/\1mmergisca\2/g
@@ -5601,12 +5692,6 @@ s/\b\([Ii]\)mmergissi\([ns]\)\([^[:alnum:]]\)/\1mmergire\2\3/g
 	s/\b\([Ss]\)ubmmergís\([^[:alnum:]]\)/\1ubmmergira\2/g
 	s/\b\([Ss]\)ubmmergíssi\([mu]\)\([^[:alnum:]]\)/\1ubmmergíre\2\3/g
 	s/\b\([Ss]\)ubmmergissi\([ns]\)\([^[:alnum:]]\)/\1ubmmergire\2\3/g
-# immobilitzar
-s/\b\([Ii]\)mmobilitzés\([^[:alnum:]]\)/\1mmobilitzara\2/g
-s/\b\([Ii]\)mmobilitzéssi\([mu]\)\([^[:alnum:]]\)/\1mmobilitzàre\2\3/g
-s/\b\([Ii]\)mmobilitzessi\([ns]\)\([^[:alnum:]]\)/\1mmobilitzare\2\3/g
-s/\b\([Ii]\)mmobilitz\([io]\)\([^[:alnum:]]\)/\1mmovilitze\3/g
-s/\b\([Ii]\)mmobilitzi\([ns]\)\([^[:alnum:]]\)/\1mmovilitze\2\3/g
 # impedir
 s/\b\([Ii]\)mpedeix\(en\|es\|\)\([^[:alnum:]]\)/\1mpedix\2\3/g
 s/\b\([Ii]\)mpedeixi\([^[:alnum:]]\)/\1mpedisca\2/g
@@ -5717,6 +5802,12 @@ s/\b\([Ii]\)ncloguéssi\([mu]\)\([^[:alnum:]]\)/\1ncloguére\2\3/g
 s/\b\([Ii]\)ncloguessi\([ns]\)\([^[:alnum:]]\)/\1ncloguere\2\3/g
 s/\b\([Ii]\)nclogui\([^[:alnum:]]\)/\1ncloga\2/g
 s/\b\([Ii]\)nclogui\([ns]\)\([^[:alnum:]]\)/\1nclogue\2\3/g
+# incrutar
+s/\b\([Ii]\)ncrustés\([^[:alnum:]]\)/\1ncrustara\2/g
+s/\b\([Ii]\)ncrustéssi\([mu]\)\([^[:alnum:]]\)/\1ncrustàre\2\3/g
+s/\b\([Ii]\)ncrustessi\([ns]\)\([^[:alnum:]]\)/\1ncrustare\2\3/g
+s/\b\([Ii]\)ncrust\([io]\)\([^[:alnum:]]\)/\1ncruste\3/g
+s/\b\([Ii]\)ncrusti\([ns]\)\([^[:alnum:]]\)/\1ncruste\2\3/g
 # indexar
 s/\b\([Ii]\)ndexés\([^[:alnum:]]\)/\1ndexara\2/g
 s/\b\([Ii]\)ndexéssi\([mu]\)\([^[:alnum:]]\)/\1ndexàre\2\3/g
@@ -5885,6 +5976,12 @@ s/\b\([Ii]\)nterrompessi\([ns]\)\([^[:alnum:]]\)/\1nterrompere\2\3/g
 s/\b\([Ii]\)nterrompi\([^[:alnum:]]\)/\1nterrompa\2/g
 s/\b\([Ii]\)nterrompi\([ns]\)\([^[:alnum:]]\)/\1nterrompe\2\3/g
 s/\b\([Ii]\)nterrompo\([^[:alnum:]]\)/\1nterromp\2/g
+# intimidar
+s/\b\([Ii]\)ntimidés\([^[:alnum:]]\)/\1ntimidara\2/g
+s/\b\([Ii]\)ntimidéssi\([mu]\)\([^[:alnum:]]\)/\1ntimidàre\2\3/g
+s/\b\([Ii]\)ntimidessi\([ns]\)\([^[:alnum:]]\)/\1ntimidare\2\3/g
+s/\b\([Ii]\)ntimid\([io]\)\([^[:alnum:]]\)/\1ntimide\3/g
+s/\b\([Ii]\)ntimidi\([ns]\)\([^[:alnum:]]\)/\1ntimide\2\3/g
 # introduir
 s/\b\([Ii]\)ntrodueix\(en\|es\|\)\([^[:alnum:]]\)/\1ntroduïx\2\3/g
 s/\b\([Ii]\)ntrodueixi\([^[:alnum:]]\)/\1ntroduïsca\2/g
@@ -6067,18 +6164,12 @@ s/\b\([Ll]\)listi\([ns]\)\([^[:alnum:]]\)/\1liste\2\3/g
 	s/\b\([Ee]\)nllistessi\([ns]\)\([^[:alnum:]]\)/\1nllistare\2\3/g
 	s/\b\([Ee]\)nllist\([io]\)\([^[:alnum:]]\)/\1nlliste\3/g
 	s/\b\([Ee]\)nllisti\([ns]\)\([^[:alnum:]]\)/\1nlliste\2\3/g
-# limitar
-s/\b\([Ll]\)imités\([^[:alnum:]]\)/\1imitara\2/g
-s/\b\([Ll]\)imitéssi\([mu]\)\([^[:alnum:]]\)/\1imitàre\2\3/g
-s/\b\([Ll]\)imitessi\([ns]\)\([^[:alnum:]]\)/\1imitare\2\3/g
-s/\b\([Ll]\)imit\([io]\)\([^[:alnum:]]\)/\1imite\3/g
-s/\b\([Ll]\)imiti\([ns]\)\([^[:alnum:]]\)/\1imite\2\3/g
-	# delimitar
-	s/\b\([Dd]\)elimités\([^[:alnum:]]\)/\1elimitara\2/g
-	s/\b\([Dd]\)elimitéssi\([mu]\)\([^[:alnum:]]\)/\1elimitàre\2\3/g
-	s/\b\([Dd]\)elimitessi\([ns]\)\([^[:alnum:]]\)/\1elimitare\2\3/g
-	s/\b\([Dd]\)elimit\([io]\)\([^[:alnum:]]\)/\1elimite\3/g
-	s/\b\([Dd]\)elimiti\([ns]\)\([^[:alnum:]]\)/\1elimite\2\3/g
+# liquidar
+s/\b\([Ll]\)iquidés\([^[:alnum:]]\)/\1iquidara\2/g
+s/\b\([Ll]\)iquidéssi\([mu]\)\([^[:alnum:]]\)/\1iquidàre\2\3/g
+s/\b\([Ll]\)iquidessi\([ns]\)\([^[:alnum:]]\)/\1iquidare\2\3/g
+s/\b\([Ll]\)iquid\([io]\)\([^[:alnum:]]\)/\1iquide\3/g
+s/\b\([Ll]\)iquidi\([ns]\)\([^[:alnum:]]\)/\1iquide\2\3/g
 # TODO: internacionalitzacio
 s/\bLocalitzaci\(ó\|ons\)\([^[:alnum:]]\)/Ubicaci\1\2/g
 s/\blocalitzaci\(ó\|ons\)\([^[:alnum:]]\)/ubicaci\1\2/g
@@ -6213,18 +6304,18 @@ s/\b\([Ll]\)ongitud\([^[:alnum:]]\)/\1largària\2/g
     s/\bA diferència de la llargària\([^[:alnum:]]\)/A diferència de la longitud\1/g
     s/\banomenat <firstterm>llargària\([^[:alnum:]]\)/anomenat <firstterm>longitud\1/g
     s/\bempleneu la llargària\([^[:alnum:]]\)/empleneu la longitud\1/g
+    s/\b\([Ll]\)atitud i llargària\([^[:alnum:]]\)/\1atitud i longitud\2/g
     s/\bllargària=0 graus\([^[:alnum:]]\)/longitud=0 graus\1/g
     s/\bllargària, latitud\([^[:alnum:]]\)/longitud, latitud\1/g
-    s/\b\([Ll]\)largària\/\([Ll]\)ongitud\([^[:alnum:]]\)/\1atitud\/\2ongitud\3/g
-    s/\b\([Ll]\)largària-\([Ll]\)ongitud\([^[:alnum:]]\)/\1atitud-\2ongitud\3/g
+    s/\b\([Ll]\)largària, \(en graus\)\([^[:alnum:]]\)/\1ongitud en \2\3/g
+    s/\b\([Ll]\)largària i \([Ll]\)ongitud\([^[:alnum:]]\)/\1atitud i longitud\3/g
     s/\b\([Ll]\)largària com a valor\([^[:alnum:]]\)/\1ongitud com a valor\2/g
     s/\bllargària de 76,6 graus\([^[:alnum:]]\)/longitud de 76,6 graus\1/g
     s/\b\([Ll]\)largària de l'emplaçament\([^[:alnum:]]\)/\1ongitud de l'emplaçament\2/g
     s/\b\([Ll]\)largària \(del \|\)GPS\([^[:alnum:]]\)/\1ongitud \2GPS\3/g
     s/\b\([Ll]\)largària del pol nord\([^[:alnum:]]\)/\1ongitud del pol nord\2/g
-    s/\b\([Ll]\)largària en \(el format\|forma\|graus\)\([^[:alnum:]]\)/\1ongitud en \2\3/g
-    s/\b\([Ll]\)largària en la qual es trobava\([^[:alnum:]]\)/\1ongitud en la qual es trobava\2/g
-    s/\b\([Ll]\)largària \(és positiva\|Est\|geogràfica\|GPS\|Oest\|zero\)\([^[:alnum:]]\)/\1ongitud \2\3/g
+    s/\b\([Ll]\)largària en \(el format\|forma\|graus\|la qual es trobava\)\([^[:alnum:]]\)/\1ongitud en \2\3/g
+    s/\b\([Ll]\)largària \(és positiva\|Est\|geogràfica\|GPS\|Oest\|serà positiva\|zero\)\([^[:alnum:]]\)/\1ongitud \2\3/g
     s/\b\([Ll]\)largària \(eclíptica\|galàctica\)\([^[:alnum:]]\)/\1ongitud \2\3/g
     s/\b\([Ll]\)largària i \(altitud\|latitud\|radi\)\([^[:alnum:]]\)/\1ongitud i \2\3/g
     s/\b\([Ll]\)largària i \(la \|\)longitud\([^[:alnum:]]\)/\1atitud i \2longitud\3/g
@@ -6266,6 +6357,8 @@ s/\bmaduix\(a\|es\)\([^[:alnum:]]\)/fraul\1\2/g
 s/\bMainada\([^[:alnum:]]\)/Xicalla\1/g
 s/\bmainada\([^[:alnum:]]\)/xicalla\1/g
 # s/\b\([Mm]\)anat\(s\|\)\([^[:alnum:]]\)/\1anoll\2\3/g # Manat d'Azerbaidjan
+s/\bMalauradament\([^[:alnum:]]\)/Desgraciadament\1/g
+s/\bmalauradament\([^[:alnum:]]\)/desgraciadament\1/g
 # malbaratar
 s/\b\([Mm]\)albaratés\([^[:alnum:]]\)/\1albaratara\2/g
 s/\b\([Mm]\)albaratéssi\([mu]\)\([^[:alnum:]]\)/\1albaratàre\2\3/g
@@ -6505,6 +6598,24 @@ s/\b\([Mm]\)escléssi\([mu]\)\([^[:alnum:]]\)/\1esclàre\2\3/g
 s/\b\([Mm]\)esclessi\([ns]\)\([^[:alnum:]]\)/\1esclare\2\3/g
 s/\b\([Mm]\)escl\([io]\)\([^[:alnum:]]\)/\1escle\3/g
 s/\b\([Mm]\)escli\([ns]\)\([^[:alnum:]]\)/\1escle\2\3/g
+	# desmesclar
+	s/\b\([Dd]\)esmesclés\([^[:alnum:]]\)/\1esmesclara\2/g
+	s/\b\([Dd]\)esmescléssi\([mu]\)\([^[:alnum:]]\)/\1esmesclàre\2\3/g
+	s/\b\([Dd]\)esmesclessi\([ns]\)\([^[:alnum:]]\)/\1esmesclare\2\3/g
+	s/\b\([Dd]\)esmescl\([io]\)\([^[:alnum:]]\)/\1esmescle\3/g
+	s/\b\([Dd]\)esmescli\([ns]\)\([^[:alnum:]]\)/\1esmescle\2\3/g
+	# entremesclar
+	s/\b\([Ee]\)ntremesclés\([^[:alnum:]]\)/\1ntremesclara\2/g
+	s/\b\([Ee]\)ntremescléssi\([mu]\)\([^[:alnum:]]\)/\1ntremesclàre\2\3/g
+	s/\b\([Ee]\)ntremesclessi\([ns]\)\([^[:alnum:]]\)/\1ntremesclare\2\3/g
+	s/\b\([Ee]\)ntremescl\([io]\)\([^[:alnum:]]\)/\1ntremescle\3/g
+	s/\b\([Ee]\)ntremescli\([ns]\)\([^[:alnum:]]\)/\1ntremescle\2\3/g
+	# malmesclar
+	s/\b\([Mm]\)almesclés\([^[:alnum:]]\)/\1almesclara\2/g
+	s/\b\([Mm]\)almescléssi\([mu]\)\([^[:alnum:]]\)/\1almesclàre\2\3/g
+	s/\b\([Mm]\)almesclessi\([ns]\)\([^[:alnum:]]\)/\1almesclare\2\3/g
+	s/\b\([Mm]\)almescl\([io]\)\([^[:alnum:]]\)/\1almescle\3/g
+	s/\b\([Mm]\)almescli\([ns]\)\([^[:alnum:]]\)/\1almescle\2\3/g
 # mesurar
 s/\b\([Mm]\)esurés\([^[:alnum:]]\)/\1esurara\2/g
 s/\b\([Mm]\)esuréssi\([mu]\)\([^[:alnum:]]\)/\1esuràre\2\3/g
@@ -6517,12 +6628,30 @@ s/\b\([Mm]\)igréssi\([mu]\)\([^[:alnum:]]\)/\1igràre\2\3/g
 s/\b\([Mm]\)igressi\([ns]\)\([^[:alnum:]]\)/\1igrare\2\3/g
 s/\b\([Mm]\)igr\([io]\)\([^[:alnum:]]\)/\1igre\3/g
 s/\b\([Mm]\)igri\([ns]\)\([^[:alnum:]]\)/\1igre\2\3/g
+	# emigrar
+	s/\b\([Ee]\)migrés\([^[:alnum:]]\)/\1migrara\2/g
+	s/\b\([Ee]\)migréssi\([mu]\)\([^[:alnum:]]\)/\1migràre\2\3/g
+	s/\b\([Ee]\)migressi\([ns]\)\([^[:alnum:]]\)/\1migrare\2\3/g
+	s/\b\([Ee]\)migr\([io]\)\([^[:alnum:]]\)/\1migre\3/g
+	s/\b\([Ee]\)migri\([ns]\)\([^[:alnum:]]\)/\1migre\2\3/g
+	# immigrar
+	s/\b\([Ii]\)mmigrés\([^[:alnum:]]\)/\1mmigrara\2/g
+	s/\b\([Ii]\)mmigréssi\([mu]\)\([^[:alnum:]]\)/\1mmigràre\2\3/g
+	s/\b\([Ii]\)mmigressi\([ns]\)\([^[:alnum:]]\)/\1mmigrare\2\3/g
+	s/\b\([Ii]\)mmigr\([io]\)\([^[:alnum:]]\)/\1mmigre\3/g
+	s/\b\([Ii]\)mmigri\([ns]\)\([^[:alnum:]]\)/\1mmigre\2\3/g
 # millorar
 s/\b\([Mm]\)illorés\([^[:alnum:]]\)/\1illorara\2/g
 s/\b\([Mm]\)illoréssi\([mu]\)\([^[:alnum:]]\)/\1illoràre\2\3/g
 s/\b\([Mm]\)illoressi\([ns]\)\([^[:alnum:]]\)/\1illorare\2\3/g
 s/\b\([Mm]\)illor\([io]\)\([^[:alnum:]]\)/\1illore\3/g
 s/\b\([Mm]\)illori\([ns]\)\([^[:alnum:]]\)/\1illore\2\3/g
+	# desmillorar
+	s/\b\([Dd]\)esmillorés\([^[:alnum:]]\)/\1esmillorara\2/g
+	s/\b\([Dd]\)esmilloréssi\([mu]\)\([^[:alnum:]]\)/\1esmilloràre\2\3/g
+	s/\b\([Dd]\)esmilloressi\([ns]\)\([^[:alnum:]]\)/\1esmillorare\2\3/g
+	s/\b\([Dd]\)esmillor\([io]\)\([^[:alnum:]]\)/\1esmillore\3/g
+	s/\b\([Dd]\)esmillori\([ns]\)\([^[:alnum:]]\)/\1esmillore\2\3/g
 # minimitzar
 s/\b\([Mm]\)inimitzés\([^[:alnum:]]\)/\1inimitzara\2/g
 s/\b\([Mm]\)inimitzéssi\([mu]\)\([^[:alnum:]]\)/\1inimitzàre\2\3/g
@@ -6545,6 +6674,30 @@ s/\b\([Mm]\)iréssi\([mu]\)\([^[:alnum:]]\)/\1iràre\2\3/g
 s/\b\([Mm]\)iressi\([ns]\)\([^[:alnum:]]\)/\1irare\2\3/g
 s/\b\([Mm]\)ir\([io]\)\([^[:alnum:]]\)/\1ire\3/g
 s/\b\([Mm]\)iri\([ns]\)\([^[:alnum:]]\)/\1ire\2\3/g
+	# admirar
+	s/\b\([Aa]\)dmirés\([^[:alnum:]]\)/\1dmirara\2/g
+	s/\b\([Aa]\)dmiréssi\([mu]\)\([^[:alnum:]]\)/\1dmiràre\2\3/g
+	s/\b\([Aa]\)dmiressi\([ns]\)\([^[:alnum:]]\)/\1dmirare\2\3/g
+	s/\b\([Aa]\)dmir\([io]\)\([^[:alnum:]]\)/\1dmire\3/g
+	s/\b\([Aa]\)dmiri\([ns]\)\([^[:alnum:]]\)/\1dmire\2\3/g
+	# entremirar
+	s/\b\([Ee]\)ntremirés\([^[:alnum:]]\)/\1ntremirara\2/g
+	s/\b\([Ee]\)ntremiréssi\([mu]\)\([^[:alnum:]]\)/\1ntremiràre\2\3/g
+	s/\b\([Ee]\)ntremiressi\([ns]\)\([^[:alnum:]]\)/\1ntremirare\2\3/g
+	s/\b\([Ee]\)ntremir\([io]\)\([^[:alnum:]]\)/\1ntremire\3/g
+	s/\b\([Ee]\)ntremiri\([ns]\)\([^[:alnum:]]\)/\1ntremire\2\3/g
+	# malmirar
+	s/\b\([Mm]\)almirés\([^[:alnum:]]\)/\1almirara\2/g
+	s/\b\([Mm]\)almiréssi\([mu]\)\([^[:alnum:]]\)/\1almiràre\2\3/g
+	s/\b\([Mm]\)almiressi\([ns]\)\([^[:alnum:]]\)/\1almirare\2\3/g
+	s/\b\([Mm]\)almir\([io]\)\([^[:alnum:]]\)/\1almire\3/g
+	s/\b\([Mm]\)almiri\([ns]\)\([^[:alnum:]]\)/\1almire\2\3/g
+	# remirar
+	s/\b\([Rr]\)emirés\([^[:alnum:]]\)/\1emirara\2/g
+	s/\b\([Rr]\)emiréssi\([mu]\)\([^[:alnum:]]\)/\1emiràre\2\3/g
+	s/\b\([Rr]\)emiressi\([ns]\)\([^[:alnum:]]\)/\1emirare\2\3/g
+	s/\b\([Rr]\)emir\([io]\)\([^[:alnum:]]\)/\1emire\3/g
+	s/\b\([Rr]\)emiri\([ns]\)\([^[:alnum:]]\)/\1emire\2\3/g
 s/\bMitges\([^[:alnum:]]\)/Calces\1/g
 s/\bmitges\([^[:alnum:]]\)/calces\1/g
 	s/\bCalces hores\([^[:alnum:]]\)/Mitges hores\1/g
@@ -6573,16 +6726,34 @@ s/\bmongeta tendra\([^[:alnum:]]\)/bajoca\1/g
 s/\bMoisès\([^[:alnum:]]\)/Moisés\1/g
 # molestar
 s/\b\([Mm]\)olestés\([^[:alnum:]]\)/\1olestara\2/g
-s/\b\([Mm]\)olestéssi\([mu]\)\([^[:alnum:]]\)/\1oguére\2\3/g
-s/\b\([Mm]\)olestessi\([ns]\)\([^[:alnum:]]\)/\1oguere\2\3/g
+s/\b\([Mm]\)olestéssi\([mu]\)\([^[:alnum:]]\)/\1olestàre\2\3/g
+s/\b\([Mm]\)olestessi\([ns]\)\([^[:alnum:]]\)/\1olestare\2\3/g
 s/\b\([Mm]\)olest\([io]\)\([^[:alnum:]]\)/\1oleste\3/g
 s/\b\([Mm]\)olesti\([ns]\)\([^[:alnum:]]\)/\1oleste\2\3/g
 # moure
 s/\b\([Mm]\)ogués\([^[:alnum:]]\)/\1oguera\2/g
-s/\b\([Mm]\)oguéssi\([mu]\)\([^[:alnum:]]\)/\1olestàre\2\3/g
-s/\b\([Mm]\)oguessi\([ns]\)\([^[:alnum:]]\)/\1olestare\2\3/g
+s/\b\([Mm]\)oguéssi\([mu]\)\([^[:alnum:]]\)/\1oguére\2\3/g
+s/\b\([Mm]\)oguessi\([ns]\)\([^[:alnum:]]\)/\1oguere\2\3/g
 s/\b\([Mm]\)ogui\([^[:alnum:]]\)/\1oga\2/g
 s/\b\([Mm]\)ogui\([ns]\)\([^[:alnum:]]\)/\1ogue\2\3/g
+	# commoure
+	s/\b\([Cc]\)ommogués\([^[:alnum:]]\)/\1ommoguera\2/g
+	s/\b\([Cc]\)ommoguéssi\([mu]\)\([^[:alnum:]]\)/\1ommoguére\2\3/g
+	s/\b\([Cc]\)ommoguessi\([ns]\)\([^[:alnum:]]\)/\1ommoguere\2\3/g
+	s/\b\([Cc]\)ommogui\([^[:alnum:]]\)/\1ommoga\2/g
+	s/\b\([Cc]\)ommogui\([ns]\)\([^[:alnum:]]\)/\1ommogue\2\3/g
+	# promoure
+	s/\b\([Pp]\)romogués\([^[:alnum:]]\)/\1romoguera\2/g
+	s/\b\([Pp]\)romoguéssi\([mu]\)\([^[:alnum:]]\)/\1romoguére\2\3/g
+	s/\b\([Pp]\)romoguessi\([ns]\)\([^[:alnum:]]\)/\1romoguere\2\3/g
+	s/\b\([Pp]\)romogui\([^[:alnum:]]\)/\1romoga\2/g
+	s/\b\([Pp]\)romogui\([ns]\)\([^[:alnum:]]\)/\1romogue\2\3/g
+	# remoure
+	s/\b\([Rr]\)emogués\([^[:alnum:]]\)/\1emoguera\2/g
+	s/\b\([Rr]\)emoguéssi\([mu]\)\([^[:alnum:]]\)/\1emoguére\2\3/g
+	s/\b\([Rr]\)emoguessi\([ns]\)\([^[:alnum:]]\)/\1emoguere\2\3/g
+	s/\b\([Rr]\)emogui\([^[:alnum:]]\)/\1emoga\2/g
+	s/\b\([Rr]\)emogui\([ns]\)\([^[:alnum:]]\)/\1emogue\2\3/g
 # monopolitzar
 s/\b\([Mm]\)onopolitzés\([^[:alnum:]]\)/\1onopolitzara\2/g
 s/\b\([Mm]\)onopolitzéssi\([mu]\)\([^[:alnum:]]\)/\1onopolitzàre\2\3/g
@@ -6595,6 +6766,24 @@ s/\b\([Mm]\)ostréssi\([mu]\)\([^[:alnum:]]\)/\1ostràre\2\3/g
 s/\b\([Mm]\)ostressi\([ns]\)\([^[:alnum:]]\)/\1ostrare\2\3/g
 s/\b\([Mm]\)ostr\([io]\)\([^[:alnum:]]\)/\1ostre\3/g
 s/\b\([Mm]\)ostri\([ns]\)\([^[:alnum:]]\)/\1ostre\2\3/g
+# mobilitzar
+s/\b\([Mm]\)obilitzés\([^[:alnum:]]\)/\1obilitzara\2/g
+s/\b\([Mm]\)obilitzéssi\([mu]\)\([^[:alnum:]]\)/\1obilitzàre\2\3/g
+s/\b\([Mm]\)obilitzessi\([ns]\)\([^[:alnum:]]\)/\1obilitzare\2\3/g
+s/\b\([Mm]\)obilitz\([io]\)\([^[:alnum:]]\)/\1ovilitze\3/g
+s/\b\([Mm]\)obilitzi\([ns]\)\([^[:alnum:]]\)/\1ovilitze\2\3/g
+	# desmobilitzar
+	s/\b\([Dd]\)esmobilitzés\([^[:alnum:]]\)/\1esmobilitzara\2/g
+	s/\b\([Dd]\)esmobilitzéssi\([mu]\)\([^[:alnum:]]\)/\1esmobilitzàre\2\3/g
+	s/\b\([Dd]\)esmobilitzessi\([ns]\)\([^[:alnum:]]\)/\1esmobilitzare\2\3/g
+	s/\b\([Dd]\)esmobilitz\([io]\)\([^[:alnum:]]\)/\1esmovilitze\3/g
+	s/\b\([Dd]\)esmobilitzi\([ns]\)\([^[:alnum:]]\)/\1esmovilitze\2\3/g
+	# immobilitzar
+	s/\b\([Ii]\)mmobilitzés\([^[:alnum:]]\)/\1mmobilitzara\2/g
+	s/\b\([Ii]\)mmobilitzéssi\([mu]\)\([^[:alnum:]]\)/\1mmobilitzàre\2\3/g
+	s/\b\([Ii]\)mmobilitzessi\([ns]\)\([^[:alnum:]]\)/\1mmobilitzare\2\3/g
+	s/\b\([Ii]\)mmobilitz\([io]\)\([^[:alnum:]]\)/\1mmovilitze\3/g
+	s/\b\([Ii]\)mmobilitzi\([ns]\)\([^[:alnum:]]\)/\1mmovilitze\2\3/g
 # multiplicar
 s/\b\([Mm]\)ultipliqués\([^[:alnum:]]\)/\1ultiplicara\2/g
 s/\b\([Mm]\)ultipliquéssi\([mu]\)\([^[:alnum:]]\)/\1ultiplicàre\2\3/g
@@ -6743,8 +6932,8 @@ s/\bObro\([^[:alnum:]]\)/Òbric\1/g
 s/\bobro\([^[:alnum:]]\)/òbric\1/g
 	s/\bLes obris\([^[:alnum:]]\)/Les obres\1/g
 	s/\bMostra les obris\([^[:alnum:]]\)/Mostra les obres\1/g
-	s/\bòbrigues mestres\([^[:alnum:]]\)/obres mestres\1/g
-	s/\bobris mestres\([^[:alnum:]]\)/obres mestres\1/g
+	s/\bòbrigues \(d'art\|mestres\)\([^[:alnum:]]\)/obres \1\2/g
+	s/\bobris \(d'art\|mestres\)\([^[:alnum:]]\)/obres \1\2/g
 	# cobrir
 	s/\b\([Cc]\)obreix\(en\|es\|\)\([^[:alnum:]]\)/\1obrix\2\3/g
 	s/\b\([Cc]\)obreixi\([^[:alnum:]]\)/\1obrisca\2/g
@@ -7686,6 +7875,7 @@ s/\b\([Qq]\)ueixi\([ns]\)\([^[:alnum:]]\)/\1ueixe\2\3/g
 	s/\bsubstitueix per quelcom altre\([^[:alnum:]]\)/substitueix per algun altre\1/g
 s/\bQuelcom\([^[:alnum:]]\)/Alguna cosa\1/g
 s/\bquelcom\([^[:alnum:]]\)/alguna cosa\1/g
+    s/\balguna cosa no desitjat\([^[:alnum:]]\)/alguna cosa no desitjada\1/g
     s/\balguna cosa xicotet\([^[:alnum:]]\)/alguna cosa xicoteta\1/g
 # r
 #
@@ -8494,6 +8684,14 @@ s/\b\([Ss]\)ubministréssi\([mu]\)\([^[:alnum:]]\)/\1ubministràre\2\3/g
 s/\b\([Ss]\)ubministressi\([ns]\)\([^[:alnum:]]\)/\1ubministrare\2\3/g
 s/\b\([Ss]\)ubministr\([io]\)\([^[:alnum:]]\)/\1ubministre\3/g
 s/\b\([Ss]\)ubministri\([ns]\)\([^[:alnum:]]\)/\1ubministre\2\3/g
+# subsistir
+s/\b\([Ss]\)ubsisteix\(en\|es\|\)\([^[:alnum:]]\)/\1ubsistix\2\3/g
+s/\b\([Ss]\)ubsisteixi\([^[:alnum:]]\)/\1ubsistisca\2/g
+s/\b\([Ss]\)ubsisteixi\([ns]\)\([^[:alnum:]]\)/\1ubsistisque\2\3/g
+s/\b\([Ss]\)ubsisteixo\([^[:alnum:]]\)/\1ubsistisc\2/g
+s/\b\([Ss]\)ubsistís\([^[:alnum:]]\)/\1ubsistira\2/g
+s/\b\([Ss]\)ubsistíssi\([mu]\)\([^[:alnum:]]\)/\1ubsistíre\2\3/g
+s/\b\([Ss]\)ubsistissi\([ns]\)\([^[:alnum:]]\)/\1ubsistire\2\3/g
 # substituir
 s/\b\([Ss]\)ubstitueix\(en\|es\|\)\([^[:alnum:]]\)/\1ubstituïx\2\3/g
 s/\b\([Ss]\)ubstitueixi\([^[:alnum:]]\)/\1ubstituïsca\2/g
@@ -8904,7 +9102,7 @@ s/\b\([Tt]\)reien\([^[:alnum:]]\)/\1ragueren\2/g
 	s/\b\([Ee]\)xtragués\([^[:alnum:]]\)/\1xtraguera\2/g
 	s/\b\([Ee]\)xtraguéssi\([mu]\)\([^[:alnum:]]\)/\1xtraguére\2\3/g
 	s/\b\([Ee]\)xtraguessi\([ns]\)\([^[:alnum:]]\)/\1xtraguere\2\3/g
-	s/\b\([Ee]\)xtre\(c\|u\|uen\|ure\|us\)\([^[:alnum:]]\)/\1xtra\2\3/g
+	s/\b\([Ee]\)xtre\(c\|u\|uen\|urà\|ure\|us\)\([^[:alnum:]]\)/\1xtra\2\3/g
 	s/\b\([Ee]\)xtregui\([^[:alnum:]]\)/\1xtraga\2/g
 	s/\b\([Ee]\)xtregui\([ns]\)\([^[:alnum:]]\)/\1xtrague\2\3/g
 	s/\b\([Ee]\)xtreia\([^[:alnum:]]\)/\1xtragué\2/g
@@ -8997,10 +9195,11 @@ s/\b\([Tt]\)urmenti\([ns]\)\([^[:alnum:]]\)/\1urmente\2\3/g
 s/\b\([Tt]\)yumèn\([^[:alnum:]]\)/\1yumén\2/g
 # u
 #
-s/\b\([Ll]\)a última\([^[:alnum:]]\)/\1'última\2/g
-s/\b\([Dd]\)el últim\([^[:alnum:]]\)/\1e l'últim\2/g
-s/\bEl últim\([^[:alnum:]]\)/L'últim\1/g
-s/\bel últim\([^[:alnum:]]\)/l'últim\1/g
+    s/\b\([Aa]\)l últim\(a\|\)\([^[:alnum:]]\)/\1 l'últim\2\3/g
+    s/\b\([Dd]\)el últim\(a\|\)\([^[:alnum:]]\)/\1e l'últim\2\3/g
+    s/\bEl últim\([^[:alnum:]]\)/L'últim\1/g
+    s/\bel últim\([^[:alnum:]]\)/l'últim\1/g
+    s/\b\([Ll]\)a última\([^[:alnum:]]\)/\1'última\2/g
 s/\b\([Uu]\)craïnès\([^[:alnum:]]\)/\1craïnés\2/g
 s/\b\([Uu]\)gandès\([^[:alnum:]]\)/\1gandés\2/g
 # unificar
@@ -9176,6 +9375,7 @@ s/\b\([Vv]\)ists\([^[:alnum:]]\)/\1istos\2/g
 	s/\b\([Pp]\)reveiés\([^[:alnum:]]\)/\1revera\2/g
 	s/\b\([Pp]\)reveiéssi\([mu]\)\([^[:alnum:]]\)/\1revére\2\3/g
 	s/\b\([Pp]\)reveiessi\([ns]\)\([^[:alnum:]]\)/\1revere\2\3/g
+	s/\b\([Pp]\)revists\([^[:alnum:]]\)/\1revistos\2/g
 # victorejar
 s/\b\([Vv]\)ictoregés\([^[:alnum:]]\)/\1ictorejara\2/g
 s/\b\([Vv]\)ictoregéssi\([mu]\)\([^[:alnum:]]\)/\1ictorejàre\2\3/g
@@ -9194,6 +9394,12 @@ s/\b\([Vv]\)inculéssi\([mu]\)\([^[:alnum:]]\)/\1inculàre\2\3/g
 s/\b\([Vv]\)inculessi\([ns]\)\([^[:alnum:]]\)/\1inculare\2\3/g
 s/\b\([Vv]\)incul\([io]\)\([^[:alnum:]]\)/\1incule\3/g
 s/\b\([Vv]\)inculi\([ns]\)\([^[:alnum:]]\)/\1incule\2\3/g
+    # desvincular
+    s/\b\([Dd]\)esvinculés\([^[:alnum:]]\)/\1esvinculara\2/g
+    s/\b\([Dd]\)esvinculéssi\([mu]\)\([^[:alnum:]]\)/\1esvinculàre\2\3/g
+    s/\b\([Dd]\)esvinculessi\([ns]\)\([^[:alnum:]]\)/\1esvinculare\2\3/g
+    s/\b\([Dd]\)esvincul\([io]\)\([^[:alnum:]]\)/\1esvincule\3/g
+    s/\b\([Dd]\)esvinculi\([ns]\)\([^[:alnum:]]\)/\1esvincule\2\3/g
 # virtualitzar
 s/\b\([Vv]\)irtualitzés\([^[:alnum:]]\)/\1irtualitzara\2/g
 s/\b\([Vv]\)irtualitzéssi\([mu]\)\([^[:alnum:]]\)/\1irtualitzàre\2\3/g
@@ -9215,6 +9421,30 @@ s/\b\([Vv]\)isquéssi\([mu]\)\([^[:alnum:]]\)/\1isquére\2\3/g
 s/\b\([Vv]\)isquessi\([ns]\)\([^[:alnum:]]\)/\1isquere\2\3/g
 s/\b\([Vv]\)isqui\([^[:alnum:]]\)/\1isca\2/g
 s/\b\([Vv]\)isqui\([ns]\)\([^[:alnum:]]\)/\1isque\2\3/g
+	# conviure
+	s/\b\([Cc]\)onvisqués\([^[:alnum:]]\)/\1onvisquera\2/g
+	s/\b\([Cc]\)onvisquéssi\([mu]\)\([^[:alnum:]]\)/\1onvisquére\2\3/g
+	s/\b\([Cc]\)onvisquessi\([ns]\)\([^[:alnum:]]\)/\1onvisquere\2\3/g
+	s/\b\([Cc]\)onvisqui\([^[:alnum:]]\)/\1onvisca\2/g
+	s/\b\([Cc]\)onvisqui\([ns]\)\([^[:alnum:]]\)/\1onvisque\2\3/g
+	# desviure
+	s/\b\([Dd]\)esvisqués\([^[:alnum:]]\)/\1esvisquera\2/g
+	s/\b\([Dd]\)esvisquéssi\([mu]\)\([^[:alnum:]]\)/\1esvisquére\2\3/g
+	s/\b\([Dd]\)esvisquessi\([ns]\)\([^[:alnum:]]\)/\1esvisquere\2\3/g
+	s/\b\([Dd]\)esvisqui\([^[:alnum:]]\)/\1esvisca\2/g
+	s/\b\([Dd]\)esvisqui\([ns]\)\([^[:alnum:]]\)/\1esvisque\2\3/g
+	# malviure
+	s/\b\([Mm]\)alvisqués\([^[:alnum:]]\)/\1alvisquera\2/g
+	s/\b\([Mm]\)alvisquéssi\([mu]\)\([^[:alnum:]]\)/\1alvisquére\2\3/g
+	s/\b\([Mm]\)alvisquessi\([ns]\)\([^[:alnum:]]\)/\1alvisquere\2\3/g
+	s/\b\([Mm]\)alvisqui\([^[:alnum:]]\)/\1alvisca\2/g
+	s/\b\([Mm]\)alvisqui\([ns]\)\([^[:alnum:]]\)/\1alvisque\2\3/g
+	# perviure
+	s/\b\([Pp]\)ervisqués\([^[:alnum:]]\)/\1ervisquera\2/g
+	s/\b\([Pp]\)ervisquéssi\([mu]\)\([^[:alnum:]]\)/\1ervisquére\2\3/g
+	s/\b\([Pp]\)ervisquessi\([ns]\)\([^[:alnum:]]\)/\1ervisquere\2\3/g
+	s/\b\([Pp]\)ervisqui\([^[:alnum:]]\)/\1ervisca\2/g
+	s/\b\([Pp]\)ervisqui\([ns]\)\([^[:alnum:]]\)/\1ervisque\2\3/g
 	# sobreviure
 	s/\b\([Ss]\)obrevisqués\([^[:alnum:]]\)/\1obrevisquera\2/g
 	s/\b\([Ss]\)obrevisquéssi\([mu]\)\([^[:alnum:]]\)/\1obrevisquére\2\3/g
@@ -9286,11 +9516,12 @@ s/\b\([Xx]\)ategessi\([ns]\)\([^[:alnum:]]\)/\1atejare\2\3/g
 s/\b\([VX]\)ategi\([ns]\)\([^[:alnum:]]\)/\1atege\2\3/g
 s/\b\([Xx]\)atejo\([^[:alnum:]]\)/\1atege\2/g
 # xerrar -> xarrar
-s/\b\([Xx]\)arrés\([^[:alnum:]]\)/\1arrara\2/g
-s/\b\([Xx]\)arréssi\([mu]\)\([^[:alnum:]]\)/\1arràre\2\3/g
-s/\b\([Xx]\)arressi\([ns]\)\([^[:alnum:]]\)/\1arrare\2\3/g
-s/\b\([Xx]\)arr\([io]\)\([^[:alnum:]]\)/\1arre\3/g
-s/\b\([VX]\)arri\([ns]\)\([^[:alnum:]]\)/\1arre\2\3/g
+s/\b\([Xx]\)\([ae]\)rr\(a\|a[rt]\|ava\|àve[mu]\|ave[ns]\|e[mnsu]\)\([^[:alnum:]]\)/\1arr\3\4/g
+s/\b\([Xx]\)\([ae]\)rrés\([^[:alnum:]]\)/\1arrara\3/g
+s/\b\([Xx]\)\([ae]\)rréssi\([mu]\)\([^[:alnum:]]\)/\1arràre\3\4/g
+s/\b\([Xx]\)\([ae]\)rressi\([ns]\)\([^[:alnum:]]\)/\1arrare\3\4/g
+s/\b\([Xx]\)\([ae]\)rr\([io]\)\([^[:alnum:]]\)/\1arre\4/g
+s/\b\([VX]\)\([ae]\)rri\([ns]\)\([^[:alnum:]]\)/\1arre\3\4/g
 s/\b\([Xx]\)inès\([^[:alnum:]]\)/\1inés\2/g
 # z
 #
