@@ -62,12 +62,12 @@ The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the
 
 ## Contributing
 
-Contact through the [KDE Catalan Translation Team](kde-i18n-ca@kde.org) mailing list
+Contact through the [KDE Catalan Translation Team](mailto:kde-i18n-ca@kde.org) mailing list
 (visit the [kde-i18n-ca Archives](https://mail.kde.org/pipermail/kde-i18n-ca/) too)
 and we will treat any level of collaboration.
 
 ***va:*** Poseu-vos en contacte amb la llista de correu de
-l'[Equip de traducció al català de KDE](kde-i18n-ca@kde.org) (visiteu també
+l'[Equip de traducció al català de KDE](mailto:kde-i18n-ca@kde.org) (visiteu també
 l'[arxiu de kde-i18n-ca](https://mail.kde.org/pipermail/kde-i18n-ca/)) i tractarem
 qualsevol nivell de col·laboració.
 
