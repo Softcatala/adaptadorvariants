@@ -52,10 +52,17 @@ genera_copia() {
   # Fem que les frases/paràgrafs siguin d'una sola línia:
   msgmerge --silent --previous --no-wrap $DIRTR/ca/$PO $DIRTR/templates/${PO}t --output-file=missatges-$FITX
 
+  # Una ordre per a optimitzar el procés (/usr/bin/time ./c_crea_val-po.sh adapta)
+  # Peta en el krita.po i el kstars.po (motiu desconegut: a part que són els més grans)
+#   if [[ "$FITX" = @(krita.po|kstars.po) ]]; then
+      PARALLEL=""                               # 27/11/2023: temps 3:02:45 amb  99% de CPU
+#     else
+#       PARALLEL="parallel -j 4 -k --pipe sed -f" # 27/11/2023: temps 3:53:22 amb 104% de CPU
+#   fi
   # Executem la conversió del fitxer PO
-  $DIRTR/kde-src2valencia.sed        < missatges-$FITX   > missatges_1-$FITX
-  $DIRTR/all-src2valencia-adapta.sed < missatges_1-$FITX > missatges_2-$FITX
-  $DIRTR/all-src2valencia.sed        < missatges_2-$FITX > missatges_3-$FITX
+  $PARALLEL $DIRTR/kde-src2valencia.sed        < missatges-$FITX   > missatges_1-$FITX
+  $PARALLEL $DIRTR/all-src2valencia-adapta.sed < missatges_1-$FITX > missatges_2-$FITX
+  $PARALLEL $DIRTR/all-src2valencia.sed        < missatges_2-$FITX > missatges_3-$FITX
   [ -f "missatges-$FITX"   ] && rm -f missatges-$FITX
   [ -f "missatges_1-$FITX" ] && rm -f missatges_1-$FITX
   [ -f "missatges_2-$FITX" ] && rm -f missatges_2-$FITX
