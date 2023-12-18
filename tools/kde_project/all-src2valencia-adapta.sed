@@ -682,6 +682,8 @@ s/\b\(buida\|buida la memòria cau\|prendre de mitjana\) a cada\([^[:alnum:]]\)/
 s/\b\(executeu Pkg\.install(\\"GR\\")\) a Cantor\([^[:alnum:]]\)/\1 en Cantor\2/g
 # a Configuració
 s/\b\(afegir ordres noves\|Definiu quatre jugadors\|Magnatune\) a \(<[^<]\{1,\}>\|«\|\[\|\)Configuració\([^[:alnum:]]\)/\1 en \2Configuració\3/g
+# a Configureu
+s/\b\(configurar-lo\) a \(<[^<]\{1,\}>\|«\|\[\|\)Configureu\([^[:alnum:]]\)/\1 en \2Configureu\3/g
 # a digiKam
 s/\b\(disponibles\) a digiKam\([^[:alnum:]]\)/disponibles en digiKam\2/g
 # a Discover
@@ -695,7 +697,9 @@ s/\b\([Dd]emana confirmació\|[Ee]rror\|[Gg]estió de fitxers\|Samba\) a Dolphin
 # a eBay
 s/\b\(p\. ex\.,\) a eBay\([^[:alnum:]]\)/\1 en eBay\2/g
 # a Ekos
-s/\b\(inici\|troba\) a Ekos\([^[:alnum:]]\)/\1 en Ekos\2/g
+s/\b\(adquisició d'imatges i vídeo\|Aquesta és una característica experimental\|inici\|reprendrà el procés de captura\|troba\) a Ekos\([^[:alnum:]]\)/\1 en Ekos\2/g
+# a Enfocament
+s/\b\(damunt d'un segment\|[Dd]esprés,\) a \(<[^<]\{1,\}>\|«\|\[\|\)Enfocament\([^[:alnum:]]\)/\1 en \2Enfocament\3/g
 # a Epic Store
 s/\b\(publicar-lo\) a Epic\([^[:alnum:]]\)/\1 en Epic\2/g
 # a Exchange
@@ -709,12 +713,16 @@ s/\b\(visibles\) a FSView\([^[:alnum:]]\)/\1 en FSView\2/g
 # a GCompris
 s/\bA GCompris\([^[:alnum:]]\)/En GCompris\1/g
 s/\b\(que tenim\) a GCompris\([^[:alnum:]]\)/\1 en GCompris\2/g
-# A GitHub
+# a GitHub
 s/\bA GitHub\([^[:alnum:]]\)/En GitHub\1/g
 # A GitLab
 s/\bA GitLab\([^[:alnum:]]\)/En GitLab\1/g
 # a Gwenview
 s/\b\(com s'utilitzen\) a Gwenview\([^[:alnum:]]\)/\1 en Gwenview\2/g
+# a INDI
+s/\bA INDI\([^[:alnum:]]\)/En INDI\1/g
+# a Internet
+s/\b\(triar paràmetres\|veu més habitualment\) a \([Ii]\)nternet\([^[:alnum:]]\)/\1 en Internet\3/g
 # a invent
 s/\b\(crear una petició de fusió\|GitLab\|sol·licitud de fusió\|trobar\) a \(<[^<]\{1,\}>\|«\|\[\|\)invent\([^[:alnum:]]\)/\1 en \2invent\3/g
 # a irc
@@ -769,8 +777,8 @@ s/\b\(polzada\) a Krita\([^[:alnum:]]\)/\1 en Krita\2/g
 # a KSquares
 s/\b\(Un tauler inicial\) a KSquares\([^[:alnum:]]\)/\1 en KSquares\2/g
 # a KStars
-s/\b\(Eina Ekos\|interessant»\|passes\|telescopis?\) a KStars\([^[:alnum:]]\)/\1 en KStars\2/g
-s/\b\(application>\|carregat\|DSS\|emprats\|es troben\|FITS\|mapa celeste\|mostraran\|simulació\) a &kstars;\([^[:alnum:]]\)/\1 en \&kstars;\2/g
+s/\b\(Eina Ekos\|interessant»\|magnitud -1[02]\|passes\|telescopis?\) a KStars\([^[:alnum:]]\)/\1 en KStars\2/g
+s/\b\(application>\|carregat\|DSS\|emprats\|es troben\|FITS\|implementat\|mapa celeste\|mostraran\|simulació\) a &kstars;\([^[:alnum:]]\)/\1 en \&kstars;\2/g
 # a KWallet
 s/\b\(dades del formulari\|desar-la\|emmagatzemar les contrasenyes\|[Ee]rror\) a KWallet\([^[:alnum:]]\)/\1 en KWallet\2/g
 # a KWordQuiz
@@ -780,7 +788,9 @@ s/\b\(Implementació del ressaltat de la sintaxi XML\) a KWrite\([^[:alnum:]]\)/
 # a les opcions
 s/\(»\|canvieu\|establert\|L'accés\|nom i el port de l'amfitrió\|rotor»,\) a les \(<[^<]\{1,\}>\|«\|\[\|\)\([Oo]\)pcions\([^[:alnum:]]\)/\1 en les \2\3pcions\4/g
 # a Linux
+s/\bA Linux\([^[:alnum:]]\)/En Linux\1/g
 s/\() i\|funcionava\|per primera vegada\|Wayland\) a \(<[^<]\{1,\}>\|«\|\[\|\)Linux\([^[:alnum:]]\)/\1 en \2Linux\3/g
+s/\(Ekos\) a &linux\([^[:alnum:]]\)/\1 en \&linux\2/g
 # a macOS
 s/\b\(G'Mic\) a macOS\([^[:alnum:]]\)/\1 en macOS\2/g
 # a Marble
@@ -820,7 +830,9 @@ s/\b\(Kate\) a Snapcraft\([^[:alnum:]]\)/\1 en Snapcraft\2/g
 # a Steam
 s/\b\(Kate\|Krita\|Store i\) a Steam\([^[:alnum:]]\)/\1 en Steam\2/g
 # a StellarMate
-s/\b\([Ee]rror\|dispositiu\|selecció oficial\) a StellarMate\([^[:alnum:]]\)/\1 en StellarMate\2/g
+s/\b\([Ee]rror\|dispositiu\|posició\|selecció oficial\) a StellarMate\([^[:alnum:]]\)/\1 en StellarMate\2/g
+# a StellarSolver
+s/\b\([Ee]rror\|dispositiu\|posició\|selecció oficial\) a StellarSolver\([^[:alnum:]]\)/\1 en StellarSolver\2/g
 # a terra
 s/\bpeus a terra\([^[:alnum:]]\)/peus en terra\1/g
 # a totes
@@ -872,6 +884,8 @@ s/\b\(Consulteu els detalls\|per a cercar\) a l'ajuda\([^[:alnum:]]\)/\1 en l'aj
 s/\b\(l'anterior\|ordenació\) a l'àlbum\([^[:alnum:]]\)/\1 en l'àlbum\2/g
  #
 s/\b\([Cc]erca\|estan\|estan tant\|estaran\|inclosos\|però no\) als àlbums\([^[:alnum:]]\)/\1 en els àlbums\2/g
+# a l'algorisme
+s/\bA l'algorisme\([^[:alnum:]]\)/En l'algorisme\1/g
 # a l'alta
 s/\b\(Transport públic regional\) a l'alta\([^[:alnum:]]\)/\1 en l'alta\2/g
 # a l'altra / a l'altre
@@ -940,14 +954,18 @@ s/\b\([Ee]rror de citació\|inclòs un metacaràcter\) als arguments\([^[:alnum:
 # a l'arrel
     s/\bsituar al directori LICENSES\/ a l'arrel\([^[:alnum:]]\)/situar en el directori LICENSES\/ en l'arrel\1/g
 s/\b\(.txt)\|de GNU[,)]\) a l'arrel\([^[:alnum:]]\)/\1 en l'arrel\2/g
+# a l'article
+s/\b\(explica\|Per exemple,\|tractarà\) a l'article\([^[:alnum:]]\)/\1 en l'article\2/g
 # a l'arxiu
 s/\b\(accedir directament als fitxers\|localitzar els fitxers requerits\|Obre el missatge\|obrir les entrades\|seran incloses\|trobar el fitxer «filters»\|trobar el fitxer «emailidentities»\|trobar el fitxer «mailtransports»\|trobat cap connector\|trobat cap script\) a l'arxiu\([^[:alnum:]]\)/\1 en l'arxiu\2/g
 # a l'assistent
 s/\b\(usar\|utilitzar\) a l'assistent\([^[:alnum:]]\)/\1 en l'assistent\2/g
+# a l'eclíptica
+s/\b\(estan\) a l'\(<[^<]\{1,\}>\|«\|\[\|\)eclíptica\([^[:alnum:]]\)/\1 en l'\2eclíptica\3/g
 # a l'editor
 s/\bA l'\(<[^<]\{1,\}>\|«\|\[\|\)editor\([^[:alnum:]]\)/En l'\1editor\2/g
     s/\bés controlat a l'editor\([^[:alnum:]]\)/és controlat per l'editor\1/g
-s/\b\(característica «Adjunta el meu certificat»\|característica «Adjunta la meva clau pública»\|carregades\|carregar aquesta imatge\|clicant\|com a separador\|comportar la tecla de retorn\|configuració actual\|configurats\|corregir automàticament tot el text\|Ctrl+D<\/command>\|De tornada\|definit\|Desa temporalment les deformacions al predefinit»\|desactiva els números de línia\|desar\|desfet\|disposició\|dividir la lògica\|emplaçament\|emprada\|emprat\|errors\|es poden establir\|escrites\|escriviu-lo\|està\|establir\|Executa el fitxer obert\|i línies noves\|inserció\|inserir caràcters especials\|inserir-lo\|mostra\|mostrar la línia respectiva\|mostrarà automàticament\|mostrats\|mou\|Obre\|Obre aquesta col·lecció de vocabulari\|Obre el fitxer\|Obre els documents de vocabulari\|Obre els fitxers RAW\|Obre l'object\|Obre la carpeta\|obrir\|obrir les imatges RAW\|obrir un fitxer\|ortogràfica\|predeterminats\|renderització d'imatges fosques\|seleccionat\|text de la finestra\|troba\|troba el camp\|ubicació de les tecles addicionals de compleció automàtica\|Utilitza la vista de color gestionat\|utilitzada\|utilitzat\|Veure\|[Zz]oom\) a l'\(<[^<]\{1,\}>\|«\|\[\|\)\([Ee]\)ditor\([^[:alnum:]]\)/\1 en l'\2\3ditor\4/g
+s/\b\(característica «Adjunta el meu certificat»\|característica «Adjunta la meva clau pública»\|carregades\|carregar aquesta imatge\|clicant\|com a separador\|comportar la tecla de retorn\|configuració actual\|configurats\|corregir automàticament tot el text\|Ctrl+D<\/command>\|De tornada\|definit\|Desa temporalment les deformacions al predefinit»\|desactiva els números de línia\|desar\|desfet\|disposició\|dividir la lògica\|emplaçament\|emprada\|emprat\|errors\|es poden establir\|escrites\|escriviu-lo\|està\|establir\|Executa el fitxer obert\|i línies noves\|inserció\|inserir caràcters especials\|inserir-lo\|mostra\|mostrar la línia respectiva\|mostrarà automàticament\|mostrats\|mou\|Obre\|Obre aquesta col·lecció de vocabulari\|Obre el fitxer\|Obre els documents de vocabulari\|Obre els fitxers RAW\|Obre l'object\|Obre la carpeta\|obrir\|obrir les imatges RAW\|obrir un fitxer\|ortogràfica\|predeterminats\|renderització d'imatges fosques\|seleccionar (una vegada) un sistema de guiatge\|seleccionat\|text de la finestra\|troba\|troba el camp\|ubicació de les tecles addicionals de compleció automàtica\|Utilitza la vista de color gestionat\|utilitzada\|utilitzat\|Veure\|[Zz]oom\) a l'\(<[^<]\{1,\}>\|«\|\[\|\)\([Ee]\)ditor\([^[:alnum:]]\)/\1 en l'\2\3ditor\4/g
  #
 s/\b\(mostren\) als editors\([^[:alnum:]]\)/\1 en els editors\2/g
 # a l'educació
@@ -974,6 +992,8 @@ s/\b\(llistades\|o directament\) a l'element\([^[:alnum:]]\)/\1 en l'element\2/g
 s/\b\(desar\|Dimensions\|present\) a l'emmagatzematge\([^[:alnum:]]\)/\1 en l'emmagatzematge\2/g
 # a l'emulador
 s/\b\(AqBanking\|Executa\) a l'emulador\([^[:alnum:]]\)/\1 en l'emulador\2/g
+# a l'enfocament
+s/\b\(utilitzant\) a l'enfocament\([^[:alnum:]]\)/\1 en l'enfocament\2/g
 # a l'enllaç
 s/\b\(clic\|llegir la nostra política\) a l'enllaç\([^[:alnum:]]\)/\1 en l'enllaç\2/g
 # a l'entorn
@@ -987,10 +1007,16 @@ s/\b\(executar\|Les accions més importants\|[Ss]agnat\) als entorns\([^[:alnum:
 s/\b\(Afegiu aquestes aplicacions a continuació\|apareixerà\|assenyala les línies comentades\|canvis\|cap paraula\|[Ee]rror de citació\|la qual pot ser una imatge\|número d'1\|passat\|prenen\|si el nombre d'1\|Skype\|vistos\) a l'entrada\([^[:alnum:]]\)/\1 en l'entrada\2/g
  #
 s/\b\(Mostra el progrés\|Mostra tots els detalls\|per a les expressions matemàtiques\|Utilitza el format de text enriquit\) a les entrades\([^[:alnum:]]\)/\1 en les entrades\2/g
+# a l'equació
+s/\b\(utilitzat\) a l'equació\([^[:alnum:]]\)/\1 en l'equació\2/g
 # a l'esborrany
 s/\b\(descriu\) a l'esborrany\([^[:alnum:]]\)/\1 en l'esborrany\2/g
+# a l'escala
+s/\b\([Cc]ada pas sencer\) a l'escala\([^[:alnum:]]\)/\1 en l'escala\2/g
 # a l'escenari
 s/\b\(Alexander\) a l'escenari\([^[:alnum:]]\)/\1 en l'escenari\2/g
+# a l'escola
+s/\bA l'escola\([^[:alnum:]]\)/En l'escola\1/g
 # a l'escriptori
 s/\bA l'escriptori /En l'escriptori /g
     s/\bquan el giny és a l'escriptori\([^[:alnum:]]\)/quan el giny es troba en l'escriptori\1/g
@@ -1003,6 +1029,8 @@ s/\b\(utilitza\) als escriptoris\([^[:alnum:]]\)/\1 en els escriptoris\2/g
  #
     s/\bno reaccionen als esdeveniments\([^[:alnum:]]\)/no reaccionaran als esdeveniments\1/g
 s/\b\(mostrarà\) als esdeveniments\([^[:alnum:]]\)/\1 en els esdeveniments\2/g
+# a l'esfera
+s/\b\(Terra\) a l'esfera\([^[:alnum:]]\)/\1 en l'esfera\2/g
 # a l'esglèsia
  #
 s/\b\(roques\) a les esglésies\([^[:alnum:]]\)/\1 en les esglésies\2/g
@@ -1041,7 +1069,7 @@ s/\b\(generar múltiples parts\|pausa\) a l'execució\([^[:alnum:]]\)/\1 en l'ex
 s/\b\([Ee]rror de citació\|inclòs un metacaràcter\) a l'executable\([^[:alnum:]]\)/\1 en l'executable\2/g
 # a l'exemple
 s/\bA l'exemple\([^[:alnum:]]\)/En l'exemple\1/g
-s/\b\(com\) a l'exemple\([^[:alnum:]]\)/\1 en l'exemple\2/g
+s/\b\(com\|Lum \*»\) a l'exemple\([^[:alnum:]]\)/\1 en l'exemple\2/g
 # a l'exercici
 s/\bA l'exercici\([^[:alnum:]]\)/En l'exercici\1/g
 s/\b\(inclosa\|inclouran\) a l'exercici\([^[:alnum:]]\)/\1 en l'exercici\2/g
@@ -1057,6 +1085,8 @@ s/\b\(contingut\) a l'extracte\([^[:alnum:]]\)/\1 en l'extracte\2/g
 s/\bA l'extrem\([^[:alnum:]]\)/En l'extrem\1/g
     s/\bHabilitar l'estirament: a l'extrem\([^[:alnum:]]\)/Habilitar l'estirament: en l'extrem\1/g
 s/\b\(Apunta la vista d'ocell\|arribant a terra de nou\|capturats\|troba\|utilitzar el terra fals\) a l'extrem\([^[:alnum:]]\)/\1 en l'extrem\2/g
+# a l'hemisferi
+s/\b\(final de l'hivern\) a l'hemisferi\([^[:alnum:]]\)/\1 en l'hemisferi\2/g
 # a l'hiperespai
 s/\b\([Uu]na carrera\) a l'hiperespai\([^[:alnum:]]\)/\1 en l'hiperespai\2/g
 # a l'histograma
@@ -1082,20 +1112,23 @@ s/\b\(teclegeu <pre>kgpg -k<\/pre>\) a l'indicatiu\([^[:alnum:]]\)/\1 en l'indic
 s/\b\(cap operació\|disponible\|Inclou o no els ingressos\|Inclou o no les despeses\|Inclou o no les operacions agrupades\|Inclou o no les operacions seguides\|Inclou o no les transferències\|Mostra la versió\|tenen en compte\) a l'informe\([^[:alnum:]]\)/\1 en l'informe\2/g
  #
 s/\b\(cap operació\|en un valor\|impacte\|inclòs\|mostrat\) als \(<[^<]\{1,\}>\|«\|\[\|\)informes\([^[:alnum:]]\)/\1 en els \2informes\3/g
+# a l'infraroig
+s/\b\(emeta principalment\) a l'infraroig\([^[:alnum:]]\)/\1 en l'infraroig\2/g
 # a l'inici
+s/\bA l'inici\([^[:alnum:]]\)/En l'inici\1/g
 s/\b\(Inicia automàticament el temporitzador d'aparcament\) a l'inici\([^[:alnum:]]\)/\1 en l'inici\2/g
 # a l'insegur
     s/\bcartera; <br \/>voleu\([^[:alnum:]]\)/cartera\. <br \/>Voleu\1/g
 s/\b\(desar-la\) a l'\(<[^<]\{1,\}>\|«\|\[\|\)insegur\([^[:alnum:]]\)/\1 en l'\2insegur\3/g
 # a l'inspector
-s/\b\(Gràfic en 3D»\|Posició del divisor horitzontal\|Posició del divisor vertical\|utilitzarà\) a l'inspector\([^[:alnum:]]\)/\1 en l'inspector\2/g
+s/\b\(Corba V\|Gràfic en 3D»\|Posició del divisor horitzontal\|Posició del divisor vertical\|[Tt]aula\|utilitzarà\) a l'\([Ii]\)nspector\([^[:alnum:]]\)/\1 en l'\2nspector\3/g
 # a l'intèrpret
 s/\bA l'intèrpret\([^[:alnum:]]\)/En l'intèrpret\1/g
 s/\b\([Ee]rror de citació\|Executa la línia actual\|executarà\|inclòs un metacaràcter\) a l'intèrpret\([^[:alnum:]]\)/\1 en l'intèrpret\2/g
  #
 s/\bAls intèrprets\([^[:alnum:]]\)/En els intèrprets\1/g
 # a l'interval
-s/\b\(contingut\|Converteix els bytes\|descarregar\|disponible\|estar\|hi ha\|hi ha plafons\|produir\|suma tots els valors\|tots els bytes\|utilitza\) a l'interval\([^[:alnum:]]\)/\1 en l'interval\2/g
+s/\b\(contingut\|Converteix els bytes\|descarregar\|disponible\|estar\|hi ha\|hi ha plafons\|pèrdua significativa\|produir\|suma tots els valors\|tots els bytes\|utilitza\) a l'interval\([^[:alnum:]]\)/\1 en l'interval\2/g
 # a l'IU
 s/\bA l'IU\([^[:alnum:]]\)/En la IU\1/g
 s/\b\([Mm]illores\|visualitza\) a l'IU\([^[:alnum:]]\)/\1 en la IU\2/g
@@ -1110,6 +1143,8 @@ s/\b\(Desa els canvis\) als objectes\([^[:alnum:]]\)/\1 en els objectes\2/g
 s/\b\(centrat\|instal·lat\) a l'objectiu\([^[:alnum:]]\)/\1 en l'objectiu\2/g
 # a l'obra
 # s/\b\(\) a l'obra\([^[:alnum:]]\)/\1 en l'obra\2/g
+# a l'obtenció
+s/\b\(emprada\) a l'obtenció\([^[:alnum:]]\)/\1 en l'obtenció\2/g
 # a l'opció
 s/\b\(disponible\|especificar\|especificat\|Seleccioneu «Altres»\) a l'opció\([^[:alnum:]]\)/\1 en l'opció\2/g
  #
@@ -1117,6 +1152,8 @@ s/\b\(disponible\|especificar\|especificat\|Seleccioneu «Altres»\) a l'opció\
 s/\b\(activació\|activar-ho\|Ajusteu el termini de lliurament\|canviar qualsevol preferència\|desactiveu l'opció del rotor\|es pot ajustar\|especificat\|establert\|habilitada\|HFR<\/guilabel>\|mostrades\|port\|presenten\|rotor»,\|tasca<\/guilabel>\|Utilitza els desplaçaments de l'alba i la posta\) a les \(<[^<]\{1,\}>\|«\|\[\|\)\([Oo]\)pcions\([^[:alnum:]]\)/\1 en les \2\3pcions\4/g
 # a l'operant
 s/\b\(Falta un operador o espai\) a l'operant\([^[:alnum:]]\)/\1 en l'operant\2/g
+# a l'òptica
+s/\b\(obstruccions\) a l'òptica\([^[:alnum:]]\)/\1 en l'òptica\2/g
 # a l'ordenació
 s/\b\(Pes\) a l'ordenació\([^[:alnum:]]\)/\1 en l'ordenació\2/g
 # a l'ordinador
@@ -1971,7 +2008,8 @@ s/\b\(acolorit\|activades\|Bu&sca\|[Cc]erca\|compartició de fitxers\|Enllaços\
 # al mòbil
 s/\b\(Calindori\|en l'escriptori,\|en l'escriptori i\|estigui habilitat\|Kongress\|Kontrast\|[Vv]ista\|[Vv]ista dinàmica\|[Vv]ista plana\) al mòbil\([^[:alnum:]]\)/\1 en el mòbil\2/g
 # al mòdul
-s/\b\(emmagatzema\|localitzadors de mailto\|resoldre imatges\|utilitzats\) al mòdul\([^[:alnum:]]\)/\1 en el mòdul\2/g
+s/\bAl mòdul\([^[:alnum:]]\)/En el mòdul\1/g
+s/\b\(emmagatzema\|guibutton>\|guilabel>\|guimenuitem>\|link>\|localitzadors de mailto\|resoldre imatges\|suport de baixada\|utilitzats\) al mòdul\([^[:alnum:]]\)/\1 en el mòdul\2/g
  #
 s/\bAls mòduls\([^[:alnum:]]\)/En els mòduls\1/g
 # al navegador*
@@ -2078,7 +2116,7 @@ s/\b\(Estableix la precisió desitjada del guiatge\|Mostra el costat del moll (�
 s/\b\(s'inclou\) al vídeo\([^[:alnum:]]\)/\1 en el vídeo\2/g
 # al valor
 # al visualitzador / visor
-s/\b\(controls d'estirament\|cursor\|fitxer\|imatge\|Marca les estrelles»\|Mostra automàticament les imatges rebudes\|[Mm]ostra el fitxer\|Mostra les imatges DSLR rebudes\|[Mm]ostrar els vídeos\|mostrarà\|[Oo]bre\|pantalla d'estat\|paràmetre d'estirament\|ratolí\|rebudes\|s'obriran\|utilitzar\|utilitzarà\|veu\) al vis\(or\|ualitzador\)\([^[:alnum:]]\)/\1 en el visor\3/g
+s/\b\(controls d'estirament\|cursor\|Ekos o\|estirament automàtic a les imatges\|fitxer\|imatge\|La lupa\|Marca les estrelles»\|[Mm]ostra\|Mostra automàticament les imatges rebudes\|[Mm]ostra el fitxer\|Mostra les imatges DSLR rebudes\|[Mm]ostrar els vídeos\|mostrarà\|mostraran les imatges\|mostren\|[Oo]bre\|pantalla d'estat\|paràmetre d'estirament\|ratolí\|rebudes\|s'obriran\|utilitzar\|utilitzarà\|veu\) al vis\(or\|ualitzador\)\([^[:alnum:]]\)/\1 en el visor\3/g
 # al vostre
 s/\b\(aplicable\|configurada\|configurades\|configurat\|configurats\|emmagatzemant una galeta\|instal·lar el mòdul d'impressora\|instal·lat el &frameworks;\|instal·lats\|KDE\|referir-se a un recurs tal com un fitxer\|Responeu a missatges de text del telèfon\|tal com un fitxer\|troba\|Vegeu les notificacions del telèfon\) al vostre\([^[:alnum:]]\)/\1 en el vostre\2/g
 # al wiki
@@ -2130,7 +2168,7 @@ s/\ba la República Txeca\([^[:alnum:]]\)/en la República Txeca\1/g
 s/\a Ludwigsburg\([^[:alnum:]]\)/en Ludwigsburg\1/g
 s/\ba Trysil, Noruega\([^[:alnum:]]\)/en Trysil, Noruega\1/g
 s/\ba Trysill\([^[:alnum:]]\)/en Trysil\1/g
-s/\ba West Potomac Park\([^[:alnum:]]\)/en West Potomac Park\1/g
+s/\ba \(Anglaterra\|Holanda\|West Potomac Park\|Williams Bay\)\([^[:alnum:]]\)/en \1\2/g
 s/\bal RU\b/en RU/g
 s/\bals Estats Units\([^[:alnum:]]\)/en els Estats Units\1/g
 s/\bals EUA\([^[:alnum:]]\)/en els EUA\1/g

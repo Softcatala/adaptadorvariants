@@ -12,6 +12,8 @@ TEXT="$2"
 
 APPEND='\[|\*|\*\*|\*\*\*|&|«|<[^<]{1,}>'
 APPEND_A="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
+APPEND_B="baix|bord|causa|completar|continuació|dalt|davall|diferència|dins|dreta|esquerra|est|estar|freqüències|mesura|nord|oest|partir|penes|principis|prop|punt|simple|sud|terme|través|vegades"
+APPEND_AL1="esquerra|est|estar|hora|oest"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -313,13 +315,13 @@ prompt_1() {
           ;;
           *)
             if   [ "$TEXT2" ]; then
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b$TEXT2/" $SOURCE/${DOC}messages/$DIR
+                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b$TEXT2/ and not msgstr/\b$APPEND_B/" $SOURCE/${DOC}messages/$DIR
             elif [ "$TEXT3" ]; then
                 echo -e "\n\n - Doc:\n   ****"
                 [ -d "$SOURCE/docmessages/$DIR" ] && \
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_A) $TEXT/" $SOURCE/docmessages/$DIR
+                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_A) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/docmessages/$DIR
                 echo -e "\n\n - IGU:\n   ****"
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_A) $TEXT/" $SOURCE/messages/$DIR
+                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_A) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/messages/$DIR
               else
                 posieve find_messages -s$MSG:"$TEXT" $SOURCE/${DOC}messages/$DIR
             fi
@@ -392,21 +394,30 @@ case $1 in
     WORD='4,15'
     TEXT="a ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_A) a ($APPEND|)\w{$WORD}"
+    APPEND_B="a ($APPEND|)($APPEND_B)"
     MISSATGE="$MISSATGE1 ** a inserir -> que cal inserir / que s'ha d'inserir / que s'inserirà **"
     prompt_1
     WORD='2,15'
     TEXT="\ba l'($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_A) a l'($APPEND|)\w{$WORD}"
+    APPEND_B="a l'($APPEND|)($APPEND_AL1)"
     MISSATGE="$MISSATGE1 ** amb / en l' **"
     prompt_1
     WORD='4,15'
     TEXT="\ba la ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_A) a la ($APPEND|)\w{$WORD}"
+#     APPEND_B="a la ($APPEND|)($APPEND_ALA)"
     MISSATGE="$MISSATGE1 ** amb / en la **"
     prompt_1
     TEXT="\ba les ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_A) a les ($APPEND|)\w{$WORD}"
+#     APPEND_B="a les ($APPEND|)($APPEND_ALES)"
     MISSATGE="$MISSATGE1 ** amb / en les **"
+    prompt_1
+    TEXT="\bals? ($APPEND|)\w{$WORD}"
+    TEXT2="($APPEND_A) als? ($APPEND|)\w{$WORD}"
+#     APPEND_B="a als? ($APPEND|)($APPEND_ALS)"
+    MISSATGE="$MISSATGE1 ** amb / en els? **"
     prompt_1
     TEXT="\ba on "
     MISSATGE="$MISSATGE1 ** a on cal / s'ha(n) **"
@@ -414,10 +425,6 @@ case $1 in
     TEXT="\ba un(es)? ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_A) a un(es)? ($APPEND|)\w{$WORD}"
     MISSATGE="$MISSATGE1 ** amb / en un(es) **"
-    prompt_1
-    TEXT="\bals? ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) als? ($APPEND|)\w{$WORD}"
-    MISSATGE="$MISSATGE1 ** amb / en els? **"
     prompt_1
     TEXT="\bcàrreg(a|ues)"
     MISSATGE="$MISSATGE1 ** carrega(ues) **"
@@ -800,10 +807,9 @@ case $1 in
       [ "$(echo $2 | grep "^[0-9]*$")" ] || sortida_po
     commits_num(){
       cd $SOURCE_0
-      FITXERS="$(svn log --verbose -r $1 | grep '\/messages\/' | sed 's/\(^.*\)Treball\/ca@valencia\/messages\///g' | sed 's/$/\\n/g')"
+      FITXERS="$(svn log --verbose -r $1 | grep '\/messages\/' | sed 's/\(^.*\)Treball\/ca@valencia\/messages\// /g' | tr -d '\n')"
       cd ..
     }
-
     ARRAY="("$@")"
     N=
     for arg; do

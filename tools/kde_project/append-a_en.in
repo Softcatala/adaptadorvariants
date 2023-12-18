@@ -1,52 +1,77 @@
 [Aa]cc(edeix[io]?|edeixe[ns]|edeixi[ns]|edi[amrtu]|edie[mnsu]|edís|edíssi[mu]|edissi[ns]|és)|
 [Aa]cc(edira|edíre[mu]|edire[ns]|edisca?|edisque[ns]|edix|edixe[ns])|
-[Aa]ccés ràpid|
-[Aa]costum(ada|ades|ats?|eu)|
-[Aa]daptar-se|
+[Aa]ccedir de manera remota|
+[Aa]ccés (directe|ràpid)|
+[Aa]costeu el sensor|
+[Aa]costum([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]costum(a[ara|àre[mu]|are[ns])|
+[Aa]dapt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]dapt(a[ara|àre[mu]|are[ns])|
+[Aa]daptar-(nos|se)|
+[Aa]djunt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]djunt(a[ara|àre[mu]|are[ns])|
+[Aa]fany([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]fany(a[ara|àre[mu]|are[ns])|
 [Aa]fanyeu(-vos)?|
-[Aa]feg(eix|ida|ides|irà?|i[ru]-la|iran|its?)|
+[Aa]fectarà|
+[Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ís|i[mtu]|int|íssi[mu]|issi[ns]|its)|
+[Aa]f(egira|egíre[mu]|egire[ns]|g|ig|ige[ns]|ija)|
 [Aa]fegeix (aquesta pàgina|aquesta compartició|l'enllaç|les pestanyes &marcades|les pestanyes seleccionades|&?totes les pestanyes|una funcionalitat nova)|
 [Aa]fegir fitxers d'imatge JPEG|
 [Aa]fegir..em. fotogrames|
-[Aa]fegiu (aquesta funció|la funció <firstterm>waitFor<.firstterm>)|
-[Aa]jud(a|ar|ar?-l[ao]|ar-[mt]e|ar-[nv]os|arà|aran|arem|e[nu]|eu en Tux|[ei]n?|eu-l[ao]|eu-nos)|
+[Aa]fegiu ((aquesta|esta) funció|la funció <firstterm>waitFor<.firstterm>)|
+[Aa]fegiu-la|
+[Aa]jud([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]jud(a[ara|àre[mu]|are[ns])|
+[Aa]jud(ar?-l[ao]|ar-[mt]e|ar-[nv]os|eu en Tux|eu-l[ao]|eu-nos)|
 [Aa]judar? a (en Joaquim|en Tux|l'Alícia|l'usuari|la muntura|na Maria)|
 [Aa]judarà als usuaris nous|
 [Aa]juda als (animals|desenvolupadors d'aplicacions)|
 [Aa]juda els (editors|infants molt menuts o els adults)|
 [Aa]judar-nos els uns|
 [Aa]judareu directament|
-[Aa]just|
+[Aa]just([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]just(a[ara|àre[mu]|are[ns])|
 [Aa]mplia la cerca|
 [Aa]n(ar|ava|e[mu]|irem)|
-[Aa]nim[ai]|
+[Aa]nim([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]nim(a[ara|àre[mu]|are[ns])|
 [Aa]nimem molt més|
 [Aa]nimi als altres|
 [Aa]nota (aquest àlbum|aquest artista|la vista d'orígens de suports|les miniaplicacions de context|les miniaplicacions de vista de context)|
-[Aa]pli(ca[rt]?|car-les|carà|cats?)|
+[Aa]pli(c[ao]|cada|cades|ca[rt]|cant|carà|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
+[Aa]pli(cara|càre[mu]|care[ns]|que|que[mnsu])|
+[Aa]pli(car-les)|
 [Aa]plica la llista de preferències de dispositiu actualment mostrada|
 [Aa]pren(dran|dre|neu)|
+[Aa]proxima|
+[Aa]proximar cada submarc el més possible|
 [Aa]rrib(aràs|em?)|
-[Aa]ssigna|
+[Aa]ssign([aeio]|ada|ades|ant|aran|a[rt]|ats|e[mnsu]|és|éssi[mu]|essi[ns]|i[ns])|
+[Aa]ssign(ara|àre[mu]|are[ns])|
 [Aa]ssigna una (categoria|prioritat més (alta|baixa))|
+[Aa]ssignar el mateix nom de <guilabel>grup<.guilabel>|
 [Aa]traure trànsit|
 [Aa]utoritza(t|da|ades)?|
 [Aa]utoritza aquest contacte|
 [Bb]aixar?|
 [Bb]envinguda|
-[Cc]anvi(a[rt]?|eu)|
+[Cc]anvi(a[rt]?|arà|eu)|
 [Cc]anviar? (els segments|la cistella actual)|
 [Cc]ap|
 [Cc]au(en|ràs|re)?|
-[Cc]av[aei|e[su]]|
+[Cc]av(aei|e[su])|
 [Cc]er(ca|ques|queu)|
 [Cc]om|
-[Cc]omen(çar?|çant|çarà|çaran|çat|c[ei]n?|céssiu|ceu)|
+[Cc]omen(ç[àao]|ça[rt]|çada|çades|çant|çats|çarà|cés|ce[mnsu]|céssi[mu]|cessi[ns]|ci|ci[ns])|
+[Cc]omen(çara|çàre[mu]|çare[ns]|ce)|
 [Cc]omençar immediatament|
 [Cc]ommut(ar?|e[su])|
 [Cc]omprom(ès|eten)|
 [Cc]omprometen..b.|
+[Cc]onsulta|
 [Cc]onvidem|
+[Cc]onvertida|
 [Cc]onverteix(en)?|
 [Cc]onverteix (els clons|les formes)|
 [Cc]onvidat?|
@@ -55,7 +80,7 @@
 [Cc]opiar? (el fitxer %1|el fitxer d'un plafó|fitxers d'un|la carpeta %1|un canal|un canal d'àudio)|
 [Cc]orr[ei]|
 [Cc]orrespon|crear..em. una <em>escena..em. nova|
-[Cc]reu(ar?|uem)|
+[Cc]reu(ar?|em)|
 [Dd]amunt seu|
 [Dd]e cara|
 [Dd]esafia als jugadors|
@@ -64,53 +89,77 @@
 [Dd]egut|
 [Dd]esplaça (endavant|enrere)|
 [Dd]estin(ar?|ada|ades|ats?|eu)|
-[Dd]ifereixen d'un dispositiu|
+[Dd]eu|
+[Dd]ifere?ixen d'un dispositiu|
 [Dd]on(ar-li|arà)|
 [Dd]ona de manera predeterminada|
 [Dd]onem la benvinguda a tothom|
 [Dd]ret|
 [Dd]ubteu|
 [Ee]nganx([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
-[Aa]peg(a|ada|ades|amt|a[rt]|ara|àre[mu]|are[ns]|at|ats|ue|gue[mnsu])|
+[Aa]peg(a|ada|ades|ant|a[rt]|ara|àre[mu]|are[ns]|at|ats|ue|gue[mnsu])|
 ([Aa]peg|[Ee]nganx)ar directament|
-[Ee]nvi(ant|arà?|e[nsu])|
+[Ee]nvi([aeiïo]|ada|ades|ant|a[rt]|ats|és|e[mnsu]|éssi[mu]|essi[ns]|ï[ns])|
+[Ee]nvi(ara|àre[mu]|are[ns])|
 [Ee]nvia (ara el correu|un correu|una (BCC|CC):|un missatge|el missatge a un altre usuari|fitxers)|
+[Ee]nvieu-nos un correu electrònic|
 [Ee]nseny(a[rt]?|arà|e[su])|
+[Éé]s|
 [Éé]s a dir,|
+[Ee]scalfat|
 [Ee]sperant|
-[Ee]stable(ix|rta?)|
+[Ee]stabl(eix|eix[io]|eixe[ns]|eixi[ns]|ert|i[amru]|int|ís|íssi[mu]|issi[ns])|
+[Ee]stabl(i[mrtux]|i[dr]a|ides|int|íre[mu]|ire[ns]|isc|isca|isque[ns]|its|ixe[ns])|
 [Ee]stableix (el camí de l'aplicació|respon A:)|
-[Ee]stablir la data|
+[Ee]stablir (l'emplaçament geogràfic|la data)|
 [Ee]stan autoritzats|
 [Ee]stona|
 [Ee]xcava|
 [Ff]ins|
+[Ff]ix(a|a[rt])|
 [Ff]orça('l)?|
 [Ff]orça l'ordinador|
+[Gg]ràcies|
 [Hh]abitua(da|des|ts?)?|
 [Hh]i ha|
+[Ii]ndi(c[ao]|cada|cades|ca[rt]|cant|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
+[Ii]ndi(cara|càre[mu]|care[ns]|que|que[mnsu])|
 [Ii]nformar?|
 [Ii]nteressa(da|des?|ts?)?|
 [Ii]ntroducció|
+[Ii]nvitar?|
+[Jj]ug([ao]|ada|ades|ant|aran|a[rt]|ats|ue[mnsu]|ués|uéssi[mu]|uessi[ns]|u[ei][ns])|
+[Jj]ug(ara|àre[mu]|are[ns])|
 [Ll]imitar?|
 [Mm]ou|
 [Mm]ou(re|re's) (d'est a oest d'una nit|el fitxer %1|el fitxer d'un plafó|la carpeta %1|la pestanya actual)|
 [Ll]lança't|
 [Mm]olt|
 [Oo]bliga(da|des|r|ts?)?|
+[Oo]btindrà|
 [Oo]cultar la vostra adreça IP|
+[Oo]ferix|
+[Oo]rdenarà|
 [Oo]rienta[rt]?|
 [Pp]assar|
 [Pp]el que fa|
 [Pp]enseu|
 [Pp]er|
-[Pp]ermeteu|
+[Pp]ermet|
+[Pp]ermete[nu]|
+[Pp]ermetrà|
+[Pp]erpendicular|
 [Pp]ertany(en)|
 [Pp]orta(rà?)?|
-[Pp]os(ar?|eu)]|
+[Pp]os(ar?|eu)|
 [Pp]oseu un nom|
+[Pp]refixa(da|des|t|ts)|
+[Pp]rendre|
 [Pp]rohibeix|
+[Pp]roper|
+[Pp]ròximes|
 [Pp]roximitat propera l'un|
+[Pp]ujaran|
 [Qq]ualsevol ús subjecte|
 [Qq]uant?|
 [Rr]eferències|
@@ -124,10 +173,9 @@
 [Ss]emblant|
 [Ss]imilar|
 [Tt]emps|
-[Tt]orn(a|a'ls|ada|
-[aio][rt]?|ant(-l[ao]|-se|-ho)|ar?-l[eo]s|ar?-l[ao]|ar-se|ar(à|an)|e[nsu]|
-[ei]s|eu-ho|eu-l[ao]|eu-l[eo]s)|
+[Tt]orn(a|a'ls|ada|[aio][rt]?|ant(-l[ao]|-se|-ho)|ar?-l[eo]s|ar?-l[ao]|ar-se|ar(à|an)|e[nsu]|[ei]s|eu-ho|eu-l[ao]|eu-l[eo]s)|
 [Tt]orna automàticament|
+[Tt]ransmetre|
 [Tt]rigar? una mica|
 [Tt]rob(ar?|eu)|
 [Uu]na mica|
