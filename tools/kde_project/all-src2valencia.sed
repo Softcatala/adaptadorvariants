@@ -2984,6 +2984,7 @@ s/\bdes\(a\|ada\|ades\|ant\|ar\|arà\|aran\|areu\|at\|ats\|ava\|aven\|en\|es\|eu
 	s/\bdel desament automàtic\([^[:alnum:]]\)/de la guardada automàtica\1/g
 	s/\bdels desaments automàtics\([^[:alnum:]]\)/de les guardades automàtiques\1/g
 	s/\bDesament automàtic\([^[:alnum:]]\)/Guardada automàtica\1/g
+        s/\bDesament &automàtic\([^[:alnum:]]\)/Guardada \&automàtica\1/g
 	s/\bdesament automàtic\([^[:alnum:]]\)/guardada automàtica\1/g
 	s/\bDesaments automàtics\([^[:alnum:]]\)/Guardades automàtiques\1/g
 	s/\bdesaments automàtics\([^[:alnum:]]\)/guardades automàtiques\1/g
@@ -6427,7 +6428,7 @@ s/\b\([Ll]\)ongitud\([^[:alnum:]]\)/\1largària\2/g
     s/\bvariànciaLongitud\([^[:alnum:]]\)/variànciaLlargària\1/g
 s/\b\([Ll]\)ongituds\([^[:alnum:]]\)/\1largàries\2/g
     s/\baltituds, llargàries\([^[:alnum:]]\)/altituds, longituds\1/g
-    s/\bLa llargària no té sentit al pol nord\([^[:alnum:]]\)/La longitud no té sentit al pol nord\1/g
+    s/\bLa llargària no té sentit en el pol nord\([^[:alnum:]]\)/La longitud no té sentit en el pol nord\1/g
     s/\bllargàries i latituds\([^[:alnum:]]\)/longituds i latituds\1/g
     s/\bllocs diferents en llargàries diferents\([^[:alnum:]]\)/llocs diferents en longituds diferents\1/g
     s/\bTé totes les llargàries alhora\([^[:alnum:]]\)/Té totes les longituds alhora\1/g

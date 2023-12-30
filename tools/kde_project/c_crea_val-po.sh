@@ -11,9 +11,12 @@ SOURCE_0='ca@valencia'
 TEXT="$2"
 
 APPEND='\[|\*|\*\*|\*\*\*|&|«|<[^<]{1,}>'
-APPEND_A="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
-APPEND_B="baix|bord|causa|completar|continuació|dalt|davall|diferència|dins|dreta|esquerra|est|estar|freqüències|mesura|nord|oest|partir|penes|principis|prop|punt|simple|sud|terme|través|vegades"
-APPEND_AL1="esquerra|est|estar|hora|oest"
+APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
+APPEND_A="acte (es bus|se cer)caran|baix|bord|cada segon|causa|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més del resultat|mida|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|simple|sud|terme|tindre en compte|través|una distància|vegades"
+APPEND_AL1="escala especificada|especificat|esquerra|est del nord|estar|estil BSD|extrem baix|hora|inrevés\)\.|oest de Greenwich"
+APPEND_ALA="conclusió|distància en micres|dreta|dreta, davall|inversa|manera de fer|normal|part|posició apuntada|qual|rotació|vegada|visualització|vostra opció"
+APPEND_ALES="dotze del migdia"
+APPEND_ALS="100%|canvis ambientals|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual sovint es refer(eix|ix)|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|voltant"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -278,13 +281,13 @@ neteja_ca() {
 
       if [ -e $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/stable
-        echo -e "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/stable/$PO2"
+        echo -e "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/\e[38;5;44mstable/\e[0m$PO2"
         mv -f $DIR0/$STABLE/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable/$PO2
       fi
 
       if [ -e $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/kf6
-        echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/kf6/$PO2"
+        echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mkf6/\e[0m$PO2"
         cp -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIROBJ/$PO2
         mv -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIRMOD/kf6/$PO2
         cp -f  $DIR0/$TRUNK6/$DIRTEM/${PO2}t $DIR1/$DIRTEM/${PO2}t
@@ -319,14 +322,15 @@ prompt_1() {
             elif [ "$TEXT3" ]; then
                 echo -e "\n\n - Doc:\n   ****"
                 [ -d "$SOURCE/docmessages/$DIR" ] && \
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_A) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/docmessages/$DIR
+                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_0) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/docmessages/$DIR
                 echo -e "\n\n - IGU:\n   ****"
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_A) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/messages/$DIR
+                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_0) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/messages/$DIR
               else
                 posieve find_messages -s$MSG:"$TEXT" $SOURCE/${DOC}messages/$DIR
             fi
             TEXT2=
             TEXT3=
+            echo
           ;;
         esac
 }
@@ -391,40 +395,44 @@ case $1 in
     TEXT=", que "
     MISSATGE="$MISSATGE1 ** , el qual **"
     prompt_1
-    WORD='4,15'
-    TEXT="a ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) a ($APPEND|)\w{$WORD}"
-    APPEND_B="a ($APPEND|)($APPEND_B)"
-    MISSATGE="$MISSATGE1 ** a inserir -> que cal inserir / que s'ha d'inserir / que s'inserirà **"
-    prompt_1
     WORD='2,15'
     TEXT="\ba l'($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) a l'($APPEND|)\w{$WORD}"
+    TEXT2="($APPEND_0) a l'($APPEND|)\w{$WORD}"
     APPEND_B="a l'($APPEND|)($APPEND_AL1)"
     MISSATGE="$MISSATGE1 ** amb / en l' **"
     prompt_1
-    WORD='4,15'
+    WORD='3,15'
+    TEXT="a ($APPEND|)\w{$WORD}"
+    TEXT2="($APPEND_0) a ($APPEND|)\w{$WORD}"
+    APPEND_B="a ($APPEND|)($APPEND_A)"
+    MISSATGE="$MISSATGE1 ** a inserir -> que cal inserir / que s'ha d'inserir / que s'inserirà **"
+    prompt_1
     TEXT="\ba la ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) a la ($APPEND|)\w{$WORD}"
-#     APPEND_B="a la ($APPEND|)($APPEND_ALA)"
+    TEXT2="($APPEND_0) a la ($APPEND|)\w{$WORD}"
+    APPEND_B="\ba la ($APPEND|)($APPEND_ALA)"
     MISSATGE="$MISSATGE1 ** amb / en la **"
     prompt_1
     TEXT="\ba les ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) a les ($APPEND|)\w{$WORD}"
-#     APPEND_B="a les ($APPEND|)($APPEND_ALES)"
+    TEXT2="($APPEND_0) a les ($APPEND|)\w{$WORD}"
+    APPEND_B="a les ($APPEND|)($APPEND_ALES)"
     MISSATGE="$MISSATGE1 ** amb / en les **"
     prompt_1
     TEXT="\bals? ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) als? ($APPEND|)\w{$WORD}"
-#     APPEND_B="a als? ($APPEND|)($APPEND_ALS)"
+    TEXT2="($APPEND_0) als? ($APPEND|)\w{$WORD}"
+    APPEND_B="als? ($APPEND|)($APPEND_ALS)"
     MISSATGE="$MISSATGE1 ** amb / en els? **"
     prompt_1
+    APPEND_B=""
     TEXT="\ba on "
+    TEXT2="($APPEND_0) a on ($APPEND|)\w{$WORD}"
     MISSATGE="$MISSATGE1 ** a on cal / s'ha(n) **"
     prompt_1
-    TEXT="\ba un(es)? ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_A) a un(es)? ($APPEND|)\w{$WORD}"
-    MISSATGE="$MISSATGE1 ** amb / en un(es) **"
+    TEXT="\ba un ($APPEND|)\w{$WORD}"
+    TEXT2="($APPEND_0) a un ($APPEND|)\w{$WORD}"
+    MISSATGE="$MISSATGE1 ** amb / en un **"
+    prompt_1
+    TEXT="\b(activ[aei]|desactiv[aei]|habilit|inhabilit|marca|marque)"
+    MISSATGE="$MISSATGE1 ** Quan se selecciona aquesta opció, / Quan no està seleccionada, / Si se selecciona, / Si no se selecciona, **"
     prompt_1
     TEXT="\bcàrreg(a|ues)"
     MISSATGE="$MISSATGE1 ** carrega(ues) **"
@@ -432,14 +440,14 @@ case $1 in
     TEXT="\bdest(í|inació|inacions|ins)"
     MISSATGE="$MISSATGE1 ** destinació / destí **"
     prompt_1
-    TEXT="\bdiverses"
-    MISSATGE="$MISSATGE1 ** múltiples **"
-    prompt_1
     TEXT="^Error"
     MISSATGE="$MISSATGE1 ** S'ha produït un error **"
     prompt_1
     TEXT="\bextr(a|es)\b"
     MISSATGE="$MISSATGE1 ** addicional(s) **"
+    prompt_1
+    TEXT="\bgraell(a|es)"
+    MISSATGE="$MISSATGE1 ** quadrícula(es) **"
     prompt_1
     TEXT="\bHa fallat"
     MISSATGE="$MISSATGE1 ** No s'ha(n) pogut **"
@@ -464,8 +472,8 @@ case $1 in
     TEXT="\bhosts?"
     MISSATGE="$MISSATGE1 ** amfitrió(ons) **"
     prompt_1
-    TEXT="\bon "
-    MISSATGE="$MISSATGE1 ** en, sobre **"
+    TEXT="\bmultiple"
+    MISSATGE="$MISSATGE1 ** múltiple(s) **"
     prompt_1
     TEXT="\bon(\s)?to "
     MISSATGE="$MISSATGE1 ** «és molt variable»: a sobre, **"
@@ -514,7 +522,7 @@ case $1 in
         SOURCE='ca'
     fi
 
-    STRING="msgstr/\ba ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) a ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a ($APPEND|)$TEXT/"
     cerca_and_not
   ;;
   cerca_dir_al1)
@@ -523,7 +531,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba l'($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) a l'($APPEND|)$TEXT/"
+    STRING="msgstr/\ba l'($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a l'($APPEND|)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_ala)
@@ -532,7 +540,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba la ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) a la ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba la ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a la ($APPEND|)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_ales)
@@ -541,7 +549,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba les ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) a les ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba les ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a les ($APPEND|)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_al)
@@ -550,7 +558,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\bal ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) al ($APPEND|)$TEXT/"
+    STRING="msgstr/\bal ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) al ($APPEND|)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_als)
@@ -559,7 +567,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\bals ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) als ($APPEND|)$TEXT/"
+    STRING="msgstr/\bals ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) als ($APPEND|)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_auns)
@@ -568,7 +576,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba uns? ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_A) a uns? ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba uns? ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a uns? ($APPEND|)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_ab)
@@ -779,10 +787,22 @@ case $1 in
     mkdir -p ca@valencia/docmessages/
     cp ../../ca@valencia/docmessages/language ca@valencia/docmessages/language
     mkdir -p templates/docmessages/
-    $0 crea_po doc
-    $0 neteja_ca doc
     echo "* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions."
     posieve --quiet remove-obsolete ca/
+
+    # La documentació són enllaços
+    cd ca@valencia/docmessages
+    echo "  - kf5: enllaços cap a la documentació"
+    ln -s ../../kf5-trunk/ca@valencia/docmessages/ksatrs kstars
+
+    echo "  - kf6: enllaços cap a la documentació"
+    for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
+      do
+        MODULE="$(echo $obj | awk -F '/' '{print $5}')"
+        ln -s ../../kf6-trunk/ca@valencia/docmessages/$MODULE $MODULE
+        echo
+      done
+
     echo -e "\n\033[47;31mNOTA:\e[0m \033[1;37mAra executeu «$0 adapta» per a aplicar els darrers canvis a «ca@valencia/».\e[0m"
   ;;
   copia_a_svn_local)
@@ -822,16 +842,16 @@ case $1 in
 
     FITXERS="`echo "$FITXERST" | sort | uniq`"
     cd $DIR0/$STABLE
-    for file in $FITXERS
-      do
-        [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
-      done
-
-    cd ../../$TRUNK/
-    for file in $FITXERS
-      do
-        [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
-      done
+#     for file in $FITXERS
+#       do
+#         [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
+#       done
+#
+#     cd ../../$TRUNK/
+#     for file in $FITXERS
+#       do
+#         [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
+#       done
 
     cd ../../$TRUNK6/
     for file in $FITXERS

@@ -1,27 +1,49 @@
-[Aa]cc(edeix[io]?|edeixe[ns]|edeixi[ns]|edi[amrtu]|edie[mnsu]|edís|edíssi[mu]|edissi[ns]|és)|
+[Aa]bsorbeixen millor|
+[Aa]cc(edeix[io]?|edeixe[ns]|edeixi[ns]|edi[amrtu]|edie[mnsu]|edir|edirà|edís|edíssi[mu]|edissi[ns]|és)|
 [Aa]cc(edira|edíre[mu]|edire[ns]|edisca?|edisque[ns]|edix|edixe[ns])|
-[Aa]ccedir de manera remota|
-[Aa]ccés (directe|ràpid)|
+[Aa]ccedir de manera (remota|senzilla)|
+[Aa]ccés (directe|lliure|ràpid|ràpid i organitzat)|
+[Aa]costem|
 [Aa]costeu el sensor|
-[Aa]costum([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]costum([aio]|ada|ades|ant|a[rt]|aran|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]costum(a[ara|àre[mu]|are[ns])|
-[Aa]dapt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
-[Aa]dapt(a[ara|àre[mu]|are[ns])|
-[Aa]daptar-(nos|se)|
-[Aa]djunt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]ctualitza la taula i el traçat|
+[Aa]ctualitza les coordenades|
+[Aa]dapt([aeio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]dapt(aran?|àre[mu]|are[ns])|
+[Aa]daptar-(lo|nos|se|vos)|
+[Aa]daptació de KStars|
+[Aa]daptar un programa|
+[Aa]dequat|
+[Aa]djacent|
+[Aa]djunt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])?|
 [Aa]djunt(a[ara|àre[mu]|are[ns])|
+[Aa]djuntar? (automàticament o no una etiqueta de nom|una etiqueta|una etiqueta de nom permanent)|
+[Aa]djuntar manualment una etiqueta persistent de nom|
+[Aa]djunt[ei] automàticament l'etiqueta de nom|
 [Aa]fany([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]fany(a[ara|àre[mu]|are[ns])|
 [Aa]fanyeu(-vos)?|
 [Aa]fectarà|
-[Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ís|i[mtu]|int|íssi[mu]|issi[ns]|its)|
+[Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ir-los|irà|iran|ís|i[mtu]|int|íssi[mu]|issi[ns]|its)|
 [Aa]f(egira|egíre[mu]|egire[ns]|g|ig|ige[ns]|ija)|
-[Aa]fegeix (aquesta pàgina|aquesta compartició|l'enllaç|les pestanyes &marcades|les pestanyes seleccionades|&?totes les pestanyes|una funcionalitat nova)|
-[Aa]fegir fitxers d'imatge JPEG|
+[Aa]f(egeix|egint|egi[rtu]|ig) (%1|algunes fotografies|aplicacions|aplicacions a l'escriptori|(aqu|)esta (compartició|funció|pàgina)|catàlegs|controladors INDI remots|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|marques|més interruptors|més suggeriments del diccionari|objectes|subelements nous|totes les pestanyes)|
+[Aa]f(egeix|egint|egi[rtu]|ig) el directori correcte|
+[Aa]f(egeix|egint|egi[rtu]|ig) els (objectes visibles (aqu)?esta nit|vostres objectes favorits)|
+[Aa]f(egeix|egint|egi[rtu]|ig) l'enllaç|
+[Aa]f(egeix|egint|egi[rtu]|ig) la (carpeta seleccionada|carta d'escales i magnituds|columna «Elevació»|contribució predita)|
+[Aa]f(egeix|egint|egi[rtu]|ig) les (pestanyes (&marcades|seleccionades)|tasques)|
+[Aa]f(egeix|egint|egi[rtu]|ig) un (element|element nou observador|emplaçament personalitzat nou|lot|objecte|objecte nou|número|punt)|
+[Aa]f(egeix|egint|egi[rtu]|ig) una (entrada nova|etiqueta de nom|funcionalitat nova|llegenda|tasca)|
+[Aa]fegirà la funció ressaltada en el navegador de funcions|
+[Aa]fegint més interruptors|
 [Aa]fegir..em. fotogrames|
-[Aa]fegiu ((aquesta|esta) funció|la funció <firstterm>waitFor<.firstterm>)|
-[Aa]fegiu-la|
-[Aa]jud([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]fegirà directament|
+[Aa]fegiu ((aquesta|esta) funció|l'argument <option>--paused<.option>|la funció <firstterm>waitFor<.firstterm>)|
+[Aa]fegi[ru]-(l[ao]|les)|
+[Aa]graïment especial|
+[Aa]rr[eo]don(eix|ix)|
+[Aa]jud([aio]|ada|ades|ant|a[rt]|arà|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]jud(a[ara|àre[mu]|are[ns])|
 [Aa]jud(ar?-l[ao]|ar-[mt]e|ar-[nv]os|eu en Tux|eu-l[ao]|eu-nos)|
 [Aa]judar? a (en Joaquim|en Tux|l'Alícia|l'usuari|la muntura|na Maria)|
@@ -30,154 +52,384 @@
 [Aa]juda els (editors|infants molt menuts o els adults)|
 [Aa]judar-nos els uns|
 [Aa]judareu directament|
-[Aa]just([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]just([aeio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])?|
 [Aa]just(a[ara|àre[mu]|are[ns])|
+[Aa]justar en píxels aproximadament|
+[Aa]justar? una (corba|superfície)|
+[Aa]justa a una corba quadràtica|
+[Aa]justarà a una equació quadràtica|
+[Aa]llunyen de nosaltres|
+[Aa]mplia|
 [Aa]mplia la cerca|
 [Aa]n(ar|ava|e[mu]|irem)|
+[Aa]ncorarà|
+[Aa]ncorat|
 [Aa]nim([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]nim(a[ara|àre[mu]|are[ns])|
 [Aa]nimem molt més|
 [Aa]nimi als altres|
-[Aa]nota (aquest àlbum|aquest artista|la vista d'orígens de suports|les miniaplicacions de context|les miniaplicacions de vista de context)|
-[Aa]pli(c[ao]|cada|cades|ca[rt]|cant|carà|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
+[Aa]nota (aquest àlbum|aquest artista)|
+[Aa]nota la vista d'orígens de suports|
+[Aa]nota les (miniaplicacions de context|miniaplicacions de vista de context)|
+[Aa]nticipant-se|
+[Aa]parca el telescopi|
+[Aa]parca la cúpula|
+[Aa]pareixen|
+[Aa]pli(c[ao]|cada|cades|cant|ca[rt]|car-les|carà|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
 [Aa]pli(cara|càre[mu]|care[ns]|que|que[mnsu])|
-[Aa]pli(car-les)|
+[Aa]plicar sempre l'estirament automàtic|
+[Aa]plica el filtre d'estirament automàtic|
+[Aa]plicat els canvis|
 [Aa]plica la llista de preferències de dispositiu actualment mostrada|
+[Aa]plica un filtre|
+[Aa]plicar una disminució de l'entrada d'(aquest|este) valor|
+[Aa]plicar-les|
+[Aa]plicable|
+[Aa]plicaran un <emphasis>desplaçament<.emphasis> i un <emphasis>multiplicador<.emphasis>|
 [Aa]pren(dran|dre|neu)|
 [Aa]proxima|
 [Aa]proximar cada submarc el més possible|
-[Aa]rrib(aràs|em?)|
+[Aa]proximar-vos|
+[Aa]puntat|
+[Aa]rrib(aràs|at|em?)|
+[Aa]ssembla(rà)?|
 [Aa]ssign([aeio]|ada|ades|ant|aran|a[rt]|ats|e[mnsu]|és|éssi[mu]|essi[ns]|i[ns])|
 [Aa]ssign(ara|àre[mu]|are[ns])|
-[Aa]ssigna una (categoria|prioritat més (alta|baixa))|
 [Aa]ssignar el mateix nom de <guilabel>grup<.guilabel>|
+[Aa]ssigna una (categoria|prioritat més (alta|baixa))|
 [Aa]traure trànsit|
 [Aa]utoritza(t|da|ades)?|
 [Aa]utoritza aquest contacte|
+Avís: l(a|es) tas(ca|ques) «%1»|
+[Aa]zimut|
+[Bb]aixa altra vegada|
 [Bb]aixar?|
 [Bb]envinguda|
-[Cc]anvi(a[rt]?|arà|eu)|
-[Cc]anviar? (els segments|la cistella actual)|
+Bellatrix|
+Betelgeuse|
+[Cc]anvi(a[rt]?|ada|arà|[eï]|eu)|
+[Cc]anviar? &khelpcenter;|
+[Cc]anviar? l'opció de vista anomenada %1|
+[Cc]anviar? els segments|
+[Cc]anviar? la (cistella actual|condició de finalització|mida de les icones dels elements|vista de la carta estel·lar)|
+[Cc]anviar? les etiquetes del punt d'enfocament|
 [Cc]ap|
+[Cc]apturar|
+[Cc]apturaran|
+[Cc]arregar|
 [Cc]au(en|ràs|re)?|
+[Cc]ausa de la temperatura de l'aire|
 [Cc]av(aei|e[su])|
 [Cc]er(ca|ques|queu)|
+[Cc]ol·loca un cercle|
 [Cc]om|
 [Cc]omen(ç[àao]|ça[rt]|çada|çades|çant|çats|çarà|cés|ce[mnsu]|céssi[mu]|cessi[ns]|ci|ci[ns])|
 [Cc]omen(çara|çàre[mu]|çare[ns]|ce)|
+[Cc]omença la mesura d'una distància angular|
 [Cc]omençar immediatament|
 [Cc]ommut(ar?|e[su])|
 [Cc]omprom(ès|eten)|
 [Cc]omprometen..b.|
+[Cc]oncernents|
+[Cc]onsist(eix|ix)|
 [Cc]onsulta|
+[Cc]ontrari|
 [Cc]onvidem|
 [Cc]onvertida|
-[Cc]onverteix(en)?|
-[Cc]onverteix (els clons|les formes)|
+[Cc]onvertit|
+[Cc]onvert(eix|ix)(en)?|
+[Cc]onvert(eix|ix) els clons|
+[Cc]onvert(eix|ix) les formes|
+[Cc]onverteix les <firstterm>coordenades del catàleg<.firstterm> d'un punt en el cel|
 [Cc]onvidat?|
 [Cc]op d'ull|
 [Cc]opia[rt]?|
-[Cc]opiar? (el fitxer %1|el fitxer d'un plafó|fitxers d'un|la carpeta %1|un canal|un canal d'àudio)|
+[Cc]opiar? fitxers d'un|
+[Cc]opiar? el (fitxer %1|fitxer d'un plafó)|
+[Cc]opiar? els elements (seleccionats |)des (de la vista|del) <emphasis>(activa|porta-retalls)<.emphasis>|
+[Cc]opiar? la carpeta %1|
+[Cc]opiar? un canal|
+[Cc]opieu-los|
 [Cc]orr[ei]|
-[Cc]orrespon|crear..em. una <em>escena..em. nova|
+[Cc]orrespon|
+[Cc]orresponen|
+[Cc]orresponent|
+[Cc]rear..em. una <em>escena..em. nova|
 [Cc]reu(ar?|em)|
-[Dd]amunt seu|
+[Dd]amunt (d'un segment|seu)|
 [Dd]e cara|
 [Dd]esafia als jugadors|
 [Dd]ecidi(da|des|its?)|
 [Dd]edica(da|des|ts?|ven)|
 [Dd]egut|
+[Dd]eixar tots els altres paràmetres|
+[Dd]eixarà el tipus d'imatge|
+[Dd]eixeu l'algorisme|
+[Dd]erivà|
+([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?)|
+([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) (en l'ordinador remot (<[^<]{1,}>|)i(<[^<]{1,}>|) també|localment)|
+([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) el mapa de defectes|
+([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) els (canvis|desplaçaments dels filtres)|
+([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) la llista d'observació actual|
+([Dd]es|[Gg]uard)ar-lo|
 [Dd]esplaça (endavant|enrere)|
 [Dd]estin(ar?|ada|ades|ats?|eu)|
+[Dd]etectar cap estrell?a|
 [Dd]eu|
+[Dd]euen|
 [Dd]ifere?ixen d'un dispositiu|
+[Dd]irigirà|
+[Dd]irigit|
 [Dd]on(ar-li|arà)|
 [Dd]ona de manera predeterminada|
+[Dd]ona el (focus|mateix pes)|
+[Dd]onar (suport|suport als efectes de composició en 3D)|
+[Dd]onarà lloc|
 [Dd]onem la benvinguda a tothom|
+[Dd]oneu una ullada|
 [Dd]ret|
+[Dd]ugueren|
 [Dd]ubteu|
-[Ee]nganx([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
-[Aa]peg(a|ada|ades|ant|a[rt]|ara|àre[mu]|are[ns]|at|ats|ue|gue[mnsu])|
-([Aa]peg|[Ee]nganx)ar directament|
-[Ee]nvi([aeiïo]|ada|ades|ant|a[rt]|ats|és|e[mnsu]|éssi[mu]|essi[ns]|ï[ns])|
-[Ee]nvi(ara|àre[mu]|are[ns])|
-[Ee]nvia (ara el correu|un correu|una (BCC|CC):|un missatge|el missatge a un altre usuari|fitxers)|
-[Ee]nvieu-nos un correu electrònic|
+[Dd]uplicat|
+[Ee]mprar qualsevol dels dos formats|
+[Ee]nganx([aio]|ada|ades|ant|a[rt]|aran|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]peg(a|ada|ades|ant|a[rt]|ara|aran|àre[mu]|are[ns]|at|ats|ue|gue[mnsu])|
+[Aa]pegaran»|
+([Aa]peg|[Ee]nganx)ar? directament|
+[Ee]n referència|
+[Pp]aral·leles: encreuen|
+[Ee]nfocament|
 [Ee]nseny(a[rt]?|arà|e[su])|
+[Ee]nvi([aeiïo]|ada|ades|ant|a[rt]|arà|ats|és|e[mnsu]|éssi[mu]|essi[ns]|ï[ns])|
+[Ee]nvi(ara|àre[mu]|are[ns])|
+[Ee]nvia(nt|r|rà)? (ara el correu|cap pols|fitxers|missatges|polsos de guiatge (adequats|directament))|
+[Ee]nvia(nt|r|rà)? el missatge a un altre usuari|
+[Ee]nvia(nt|r|rà)? els (pedaços|polsos de guiatge)|
+[Ee]nvia(nt|r|rà)? la llista|
+[Ee]nvia(nt|r|rà)? un (correu|correu electrònic|missatge|pols)|
+[Ee]nvia(nt|r|rà)? una (BCC:|CC:|ordre de sincronització)|
+[Ee]nviar-lo|
+[Ee]nviaran polsos de correcció del guiatge|
+[Ee]nvieu un informe d'error|
+[Ee]nvieu-nos un correu electrònic|
+[Ee]nvolta|
+[Ee]quivalent|
 [Éé]s|
-[Éé]s a dir,|
+[Éé]s (a dir,|inferior)|
+[Ee]scala automàtica del gràfic «Guiatge»|
+[Ee]scala l'eix de valors( del gràfic del sensor)?|
+[Ee]scalarà|
 [Ee]scalfat|
 [Ee]sperant|
+[Ee]scriptura actual de la taula del programador|
+[Ee]scriptures excessives|
+[Ee]scriviu|
+[Ee]sdevindran una versió|
 [Ee]stabl(eix|eix[io]|eixe[ns]|eixi[ns]|ert|i[amru]|int|ís|íssi[mu]|issi[ns])|
 [Ee]stabl(i[mrtux]|i[dr]a|ides|int|íre[mu]|ire[ns]|isc|isca|isque[ns]|its|ixe[ns])|
-[Ee]stableix (el camí de l'aplicació|respon A:)|
-[Ee]stablir (l'emplaçament geogràfic|la data)|
+[Ee]stabl(eix|i[rux]) (CDV|respon A:)|
+[Ee]stabl(eix|i[rux]) el (camí de l'aplicació|color anomenat %1|pas temporal|rellotge del sistema|solucionador|temps d'Xplanet)|
+[Ee]stabl(eix|i[rux]) l'(emplaçament geogràfic|època)|
+[Ee]stabl(eix|i[rux]) la (data|rotació de la vista)|
+[Ee]stabliu-l[ao]|
 [Ee]stan autoritzats|
+[Ee]starà a ((37,5|76,6) graus|una hora d'ascensió recta)|
+([Ee]sta|[Ss]e)ran|
 [Ee]stona|
 [Ee]xcava|
+[Ee]xecutat|
+[Ee]xposicions inferiors|
+[Ff]acilita|
+[Ff]er (canvis|correccions|front)|
 [Ff]ins|
 [Ff]ix(a|a[rt])|
+[Ff]ixat a la Terra, no|
 [Ff]orça('l)?|
 [Ff]orça l'ordinador|
+[Ff]orçarà un límit|
 [Gg]ràcies|
+[Hh]a (estat|sigut) un model|
+[Hh]abilita|
+[Hh]abilitar les correccions de fotograma fosc|
 [Hh]abitua(da|des|ts?)?|
 [Hh]i ha|
+[Hh]i ha un forat|
+[Ii] est|
+[Ii]mpressió|
+[Ii]mprim(eix|ix) la imatge del cel|
+[Ii]nclouen|
+[Ii]nclourà informació addicional de la missió|
+[Ii]ncorporat|
 [Ii]ndi(c[ao]|cada|cades|ca[rt]|cant|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
 [Ii]ndi(cara|càre[mu]|care[ns]|que|que[mnsu])|
+[Ii]nformació|
 [Ii]nformar?|
+[Ii]nformeu d'errades o de sol·licituds de característiques|
+[Ii]nformeu-ne|
 [Ii]nteressa(da|des?|ts?)?|
+[Ii]nterns?|
 [Ii]ntroducció|
+[Ii]ntroduint-vos|
+[Ii]ntrodu(eixi|ïsca) un nom d'objecte desconegut per &kstars;|
 [Ii]nvitar?|
+[Ii]nvocant|
+[Ii]nvocar|
 [Jj]ug([ao]|ada|ades|ant|aran|a[rt]|ats|ue[mnsu]|ués|uéssi[mu]|uessi[ns]|u[ei][ns])|
 [Jj]ug(ara|àre[mu]|are[ns])|
+[Jj]ust|
+[Ll]es dades d'usuari|
 [Ll]imitar?|
-[Mm]ou|
-[Mm]ou(re|re's) (d'est a oest d'una nit|el fitxer %1|el fitxer d'un plafó|la carpeta %1|la pestanya actual)|
+[Ll]imita el quadro de carpetes|
+[Ll]imita la busca a «%1» i|
 [Ll]lança't|
+[Ll]legir|
+[Ll]licenciat|
+[Mm]anté el traçat|
+[Mm]esura l'angle d'un objecte|
+[Mm]esurada amb 3 exposicions|
+[Mm]ireu|
+[Mm]ou|
+[Mm]ou(re|re's) d'est a oest d'una nit|
+[Mm]ou(re|re's) el (fitxer %1|fitxer d'un plafó)|
+[Mm]ou(re|re's) la (carpeta %1|pestanya actual)|
 [Mm]olt|
-[Oo]bliga(da|des|r|ts?)?|
+[Oo] oest|
+[Oo]bliga(da|des|r|rà|ts?)?|
+[Oo]bligarà al solucionador|
+[Oo]br[ei] l'accés remot|
 [Oo]btindrà|
 [Oo]cultar la vostra adreça IP|
-[Oo]ferix|
+[Oo]fer(eix|ix)|
+[Oo]fer(eix|ix) adreces|
+[Oo]posat|
+[Oo]rdenar?|
 [Oo]rdenarà|
+[Oo]rdenats de (l'A|menor)|
 [Oo]rienta[rt]?|
+[Pp]areixent|
+[Ss]emblant|
+[Pp]aral·leles|
+[Pp]assa|
+[Pp]assa de la meitat inferior|
 [Pp]assar|
+[Pp]assar d'una imatge|
+[Pp]assant de la meitat (il·luminada|obscura)|
+[Pp]assen|
 [Pp]el que fa|
 [Pp]enseu|
 [Pp]er|
+[Pp]ercentatge del cel|
 [Pp]ermet|
 [Pp]ermete[nu]|
 [Pp]ermetrà|
 [Pp]erpendicular|
-[Pp]ertany(en)|
+[Pp]ersistent|
+[Pp]ertany(en)?|
+[Pp]ertanyent|
+[Pp]on|
+[Pp]onderació|
 [Pp]orta(rà?)?|
-[Pp]os(ar?|eu)|
+[Pp]orta tota la funcionalitat de nou|
+[Pp]ortar «una alenada d'aire fresc»|
+[Pp]os(ar?|e[nu])|
 [Pp]oseu un nom|
-[Pp]refixa(da|des|t|ts)|
+[Pp]osta|
+[Pp]ot provocar desperfectes irreversibles|
+[Pp]refixa(da|des|t|ts)?|
+[Pp]rendrà|
 [Pp]rendre|
-[Pp]rohibeix|
+[Pp]rendre fotogrames foscos|
+[Pp]renent|
+[Pp]rocedix directament|
+[Pp]rohib(eix|ix)|
 [Pp]roper|
+[Pp]roperes|
+[Pp]roporciona una mica de «dades de realimentació per al canal de retorn» des de la impressora|
+[Pp]roporciona[lt]|
+[Pp]roporcionals?|
+[Pp]roporcionarà una millora relativament gran|
 [Pp]ròximes|
 [Pp]roximitat propera l'un|
 [Pp]ujaran|
+[Pp]ujar el fitxer|
+[Pp]ujar la imatge|
+[Pp]ujar-lo|
+[Pp]uja públicament|
 [Qq]ualsevol ús subjecte|
 [Qq]uant?|
+[Qq]ue (acab[ei]|tenen)|
+[Rr]eaccionar|
+[Rr]eajustar el rellotge|
+[Rr]eajustem el pas temporal del rellotge|
+[Rr]ectifica la forma de CDV|
+[Rr]edu(eix|ïx)|
+[Rr]eduint|
+[Rr]eduirà|
+[Rr]efer(eix|eixen|ix|ixen)|
 [Rr]eferències|
+[Rr]eferent|
+[Rr]eferir|
+[Rr]einicia la mida de les icones|
+[Rr]einiciaran tots els comptadors de captura|
+[Rr]elació|
+[Rr]elació de senyal|
+[Rr]epetir|
 [Rr]es|
+[Rr]esolts|
 [Rr]especte|
-[Rr]estringeix|
+[Rr]espon logarítmicament|
+[Rr]espondre|
+[Rr]espostes|
+[Rr]establ(eix|ix)|
+[Rr]establ(eix|ix) a ara|
+[Rr]establ(eix|ix) el centre del mosaic|
+[Rr]establ(eix|ix) l'enfocament del submarc|
+[Rr]establir-l(es|[ao])|
+[Rr]estaura|
+[Rr]estaura la vista|
+[Rr]estring(eix|ix)|
 [Rr]estringit el dret|
+[Rr]etornant|
+[Rr]etornar?|
+[Rr]itme|
 [Rr]obar el focus|
 [Ss]alta|
-[Ss]egueix immediatament|
+[Ss]cript (%1 |)(anterior|posterior)|
+[Ss]egu(eix|ix) immediatament|
+[Ss]egu(eixi|isca)|
+[Ss]eguiment|
 [Ss]emblant|
-[Ss]imilar|
+[Ss]ensibilitat del sistema|
+[Ss]ensible|
+[Ss]erà l'hora del rellotge|
+[Ss]èrie de «RFC», els quals estan disponibles|
+[Ss]imilars?|
+[Ss]incronitzant l'angle del rotor|
+[Ss]ituaran|
+[Ss]ituen|
+[Ss]ón (idèntiques|similars en ús)|
+([Ss]ort|[Ee]ix)ida|
+[Ss]ubscriviu-vos|
+[Ss]ubstitu(eix|ïx)|
+([Ss]urt|[Ii]x)|
 [Tt]emps|
+[Tt]indre «UseAltAz»|
+[Tt]olerant|
 [Tt]orn(a|a'ls|ada|[aio][rt]?|ant(-l[ao]|-se|-ho)|ar?-l[eo]s|ar?-l[ao]|ar-se|ar(à|an)|e[nsu]|[ei]s|eu-ho|eu-l[ao]|eu-l[eo]s)|
+[Tt]orn[ei]|
 [Tt]orna automàticament|
+[Tt]ornant|
+[Tt]ransferida|
+[Tt]ransita|
 [Tt]ransmetre|
 [Tt]rigar? una mica|
-[Tt]rob(ar?|eu)|
+[Tt]rob(ar?|areu|eu)|
 [Uu]na mica|
-[Vv](a|agi|aig|es)|
-[Vv]ingut
+[Uu]niu-vos|
+[Uu]tilitzar un control lliscant vertical|
+[Uu]tilitzeu el vostre ull|
+[Vv]ariància és la desviació estàndard|
+[Vv](a|agi|ag[ei][ns]|aig|e|es)|
+[Vv]ingut|
+[Vv]isible en un arc|
+[Vv]istes en arbre
