@@ -731,7 +731,7 @@ case $1 in
       ;;
       doc)
         MESSAGES='docmessages'
-        command_cm
+#         command_cm
       ;;
       *)
         sortida_po
@@ -784,24 +784,41 @@ case $1 in
     $0 neteja_ca gui
     mkdir -p ca/docmessages/
     cp ../../ca/docmessages/language ca/docmessages/language
-    mkdir -p ca@valencia/docmessages/
-    cp ../../ca@valencia/docmessages/language ca@valencia/docmessages/language
-    mkdir -p templates/docmessages/
-    echo "* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions."
-    posieve --quiet remove-obsolete ca/
 
-    # La documentació són enllaços
-    cd ca@valencia/docmessages
-    echo "  - kf5: enllaços cap a la documentació"
-    ln -s ../../kf5-trunk/ca@valencia/docmessages/ksatrs kstars
+    # ca: La documentació són enllaços
+    cd ca/docmessages
+    echo "  - kf5: enllaços cap a la documentació «ca»"
+    echo kstars
+    ln -s ../../ca-mod/docmessages/kstars kstars
 
-    echo "  - kf6: enllaços cap a la documentació"
+    echo "  - kf6: enllaços cap a la documentació «ca»"
     for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
       do
         MODULE="$(echo $obj | awk -F '/' '{print $5}')"
-        ln -s ../../kf6-trunk/ca@valencia/docmessages/$MODULE $MODULE
-        echo
+        echo $MODULE
+        ln -s $obj $MODULE
       done
+    cd ../../
+    mkdir -p ca@valencia/docmessages/
+    cp ../../ca@valencia/docmessages/language ca@valencia/docmessages/language
+
+    # La documentació són enllaços
+    cd ca@valencia/docmessages
+    echo "  - kf5: enllaços cap a la documentació «ca@valencia»"
+    echo kstars
+    ln -s ../../kf5-trunk/ca@valencia/docmessages/kstars kstars
+
+    echo "  - kf6: enllaços cap a la documentació «ca@valencia»"
+    for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
+      do
+        MODULE="$(echo $obj | awk -F '/' '{print $5}')"
+        echo $MODULE
+        ln -s ../../kf6-trunk/ca@valencia/docmessages/$MODULE $MODULE
+      done
+    cd ../../
+    mkdir -p templates/docmessages/
+    echo "* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions."
+    posieve --quiet remove-obsolete ca/
 
     echo -e "\n\033[47;31mNOTA:\e[0m \033[1;37mAra executeu «$0 adapta» per a aplicar els darrers canvis a «ca@valencia/».\e[0m"
   ;;
@@ -842,16 +859,16 @@ case $1 in
 
     FITXERS="`echo "$FITXERST" | sort | uniq`"
     cd $DIR0/$STABLE
-#     for file in $FITXERS
-#       do
-#         [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
-#       done
-#
-#     cd ../../$TRUNK/
-#     for file in $FITXERS
-#       do
-#         [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
-#       done
+    for file in $FITXERS
+      do
+        [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
+      done
+
+    cd ../../$TRUNK/
+    for file in $FITXERS
+      do
+        [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
+      done
 
     cd ../../$TRUNK6/
     for file in $FITXERS
@@ -961,6 +978,8 @@ case $1 in
       ;;
       doc)
         MESSAGES='docmessages'
+        echo "La documentació no admet aquesta característica"
+        exit 0
       ;;
       *)
         sortida_po
