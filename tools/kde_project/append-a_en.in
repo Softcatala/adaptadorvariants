@@ -1,19 +1,24 @@
 [Aa]bsorbeixen millor|
-[Aa]cc(edeix[io]?|edeixe[ns]|edeixi[ns]|edi[amrtu]|edie[mnsu]|edir|edirà|edís|edíssi[mu]|edissi[ns]|és)|
+[Aa]cc(edeix[io]?|edeixe[ns]|edeixi[ns]|edi[amrtu]|edint|edie[mnsu]|edir|edirà|edís|edíssi[mu]|edissi[ns]|és)|
 [Aa]cc(edira|edíre[mu]|edire[ns]|edisca?|edisque[ns]|edix|edixe[ns])|
 [Aa]ccedir de manera (remota|senzilla)|
-[Aa]ccés (directe|lliure|ràpid|ràpid i organitzat)|
+[Aa]ccedint recentment|
+[Aa]ccés (directe|lliure|més ràpid|ràpid|ràpid i organitzat|suficient)|
+[Aa]ccés d'(aquest|este) ordinador|
 [Aa]costem|
 [Aa]costeu el sensor|
 [Aa]costum([aio]|ada|ades|ant|a[rt]|aran|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]costum(a[ara|àre[mu]|are[ns])|
-[Aa]ctualitza la taula i el traçat|
-[Aa]ctualitza les coordenades|
+[Aa]ctualitzada|
+[Aa]ctualitz(a|eu) el (paquet|vostre programa)|
+[Aa]ctualitz(a|eu) la taula i el traçat|
+[Aa]ctualitz(a|eu) les coordenades|
 [Aa]dapt([aeio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]dapt(aran?|àre[mu]|are[ns])|
 [Aa]daptar-(lo|nos|se|vos)|
 [Aa]daptació de KStars|
 [Aa]daptar un programa|
+[Aa]dequar-lo|
 [Aa]dequat|
 [Aa]djacent|
 [Aa]djunt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])?|
@@ -27,10 +32,10 @@
 [Aa]fectarà|
 [Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ir-los|irà|iran|ís|i[mtu]|int|íssi[mu]|issi[ns]|its)|
 [Aa]f(egira|egíre[mu]|egire[ns]|g|ig|ige[ns]|ija)|
-[Aa]f(egeix|egint|egi[rtu]|ig) (%1|algunes fotografies|aplicacions|aplicacions a l'escriptori|(aqu|)esta (compartició|funció|pàgina)|catàlegs|controladors INDI remots|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|marques|més interruptors|més suggeriments del diccionari|objectes|subelements nous|totes les pestanyes)|
+[Aa]f(egeix|egint|egi[rtu]|ig) (%1|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|(aqu|)esta (compartició|funció|pàgina)|carpetes|catàlegs|controladors INDI remots|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|marques|més interruptors|més suggeriments del diccionari|objectes|subelements nous|totes les pestanyes)|
 [Aa]f(egeix|egint|egi[rtu]|ig) el directori correcte|
 [Aa]f(egeix|egint|egi[rtu]|ig) els (objectes visibles (aqu)?esta nit|vostres objectes favorits)|
-[Aa]f(egeix|egint|egi[rtu]|ig) l'enllaç|
+[Aa]f(egeix|egint|egi[rtu]|ig) l'(enllaç|extensió <literal role=\"extension\">\.part<.literal>)|
 [Aa]f(egeix|egint|egi[rtu]|ig) la (carpeta seleccionada|carta d'escales i magnituds|columna «Elevació»|contribució predita)|
 [Aa]f(egeix|egint|egi[rtu]|ig) les (pestanyes (&marcades|seleccionades)|tasques)|
 [Aa]f(egeix|egint|egi[rtu]|ig) un (element|element nou observador|emplaçament personalitzat nou|lot|objecte|objecte nou|número|punt)|
@@ -47,11 +52,11 @@
 [Aa]jud(a[ara|àre[mu]|are[ns])|
 [Aa]jud(ar?-l[ao]|ar-[mt]e|ar-[nv]os|eu en Tux|eu-l[ao]|eu-nos)|
 [Aa]judar? a (en Joaquim|en Tux|l'Alícia|l'usuari|la muntura|na Maria)|
-[Aa]judarà als usuaris nous|
-[Aa]juda als (animals|desenvolupadors d'aplicacions)|
-[Aa]juda els (editors|infants molt menuts o els adults)|
+[Aa]juda(r?|rà|reu) directament|
+[Aa]juda(r?|rà|reu) a l'equip KDE o|
+[Aa]juda(r?|rà|reu) als (animals|desenvolupadors d'aplicacions|usuaris nous)|
+[Aa]juda(r?|rà|reu) els (editors|infants molt menuts o els adults)|
 [Aa]judar-nos els uns|
-[Aa]judareu directament|
 [Aa]just([aeio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])?|
 [Aa]just(a[ara|àre[mu]|are[ns])|
 [Aa]justar en píxels aproximadament|
@@ -68,6 +73,7 @@
 [Aa]nim(a[ara|àre[mu]|are[ns])|
 [Aa]nimem molt més|
 [Aa]nimi als altres|
+[Aa]nnexar?|
 [Aa]nota (aquest àlbum|aquest artista)|
 [Aa]nota la vista d'orígens de suports|
 [Aa]nota les (miniaplicacions de context|miniaplicacions de vista de context)|
@@ -75,16 +81,15 @@
 [Aa]parca el telescopi|
 [Aa]parca la cúpula|
 [Aa]pareixen|
-[Aa]pli(c[ao]|cada|cades|cant|ca[rt]|car-les|carà|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
+[Aa]pli(c[ao]|cable|cada|cades|cant|ca[rt]|car-les|carà|caran|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
 [Aa]pli(cara|càre[mu]|care[ns]|que|que[mnsu])|
-[Aa]plicar sempre l'estirament automàtic|
-[Aa]plica el filtre d'estirament automàtic|
-[Aa]plicat els canvis|
-[Aa]plica la llista de preferències de dispositiu actualment mostrada|
-[Aa]plica un filtre|
-[Aa]plicar una disminució de l'entrada d'(aquest|este) valor|
+[Aa]plica[rt]? sempre l'estirament automàtic|
+[Aa]plica[rt]? el filtre d'estirament automàtic|
+[Aa]plica[rt]? els canvis|
+[Aa]plica[rt]? la llista de preferències de dispositiu actualment mostrada|
+[Aa]plica[rt]? un filtre|
+[Aa]plica[rt]? una disminució de l'entrada d'(aquest|este) valor|
 [Aa]plicar-les|
-[Aa]plicable|
 [Aa]plicaran un <emphasis>desplaçament<.emphasis> i un <emphasis>multiplicador<.emphasis>|
 [Aa]pren(dran|dre|neu)|
 [Aa]proxima|
@@ -108,7 +113,7 @@ Avís: l(a|es) tas(ca|ques) «%1»|
 Bellatrix|
 Betelgeuse|
 [Cc]anvi(a[rt]?|ada|arà|[eï]|eu)|
-[Cc]anviar? &khelpcenter;|
+[Cc]anviar? («QStandardPaths»|&khelpcenter;)|
 [Cc]anviar? l'opció de vista anomenada %1|
 [Cc]anviar? els segments|
 [Cc]anviar? la (cistella actual|condició de finalització|mida de les icones dels elements|vista de la carta estel·lar)|
@@ -131,13 +136,16 @@ Betelgeuse|
 [Cc]omprom(ès|eten)|
 [Cc]omprometen..b.|
 [Cc]oncernents|
+[Cc]onfondre|
 [Cc]onsist(eix|ix)|
 [Cc]onsulta|
+[Cc]onsulteu la guia de configuració del vostre proveïdor de serveis d'Internet o|
 [Cc]ontrari|
 [Cc]onvidem|
 [Cc]onvertida|
 [Cc]onvertit|
 [Cc]onvert(eix|ix)(en)?|
+[Cc]onvert(eix|ix) fitxers en DocBook|
 [Cc]onvert(eix|ix) els clons|
 [Cc]onvert(eix|ix) les formes|
 [Cc]onverteix les <firstterm>coordenades del catàleg<.firstterm> d'un punt en el cel|
@@ -145,9 +153,9 @@ Betelgeuse|
 [Cc]op d'ull|
 [Cc]opia[rt]?|
 [Cc]opiar? fitxers d'un|
-[Cc]opiar? el (fitxer %1|fitxer d'un plafó)|
+[Cc]opiar? el (fitxer %1|fitxer d'un plafó|paquet)|
 [Cc]opiar? els elements (seleccionats |)des (de la vista|del) <emphasis>(activa|porta-retalls)<.emphasis>|
-[Cc]opiar? la carpeta %1|
+[Cc]opiar? la (carpeta %1|suma de verificació)|
 [Cc]opiar? un canal|
 [Cc]opieu-los|
 [Cc]orr[ei]|
@@ -156,6 +164,7 @@ Betelgeuse|
 [Cc]orresponent|
 [Cc]rear..em. una <em>escena..em. nova|
 [Cc]reu(ar?|em)|
+[Cc]rides|
 [Dd]amunt (d'un segment|seu)|
 [Dd]e cara|
 [Dd]esafia als jugadors|
@@ -166,11 +175,12 @@ Betelgeuse|
 [Dd]eixarà el tipus d'imatge|
 [Dd]eixeu l'algorisme|
 [Dd]erivà|
-([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?)|
-([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) (en l'ordinador remot (<[^<]{1,}>|)i(<[^<]{1,}>|) també|localment)|
-([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) el mapa de defectes|
-([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) els (canvis|desplaçaments dels filtres)|
-([Dd]es|[Gg]uard)(a|ar|arà|[ei]n?) la llista d'observació actual|
+([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?)|
+([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?) (en l'ordinador remot (<[^<]{1,}>|)i(<[^<]{1,}>|) també|localment)|
+([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?) el mapa de defectes|
+([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?) els (canvis|desplaçaments dels filtres)|
+([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?) la llista d'observació actual|
+([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?) les (dreceres|dreceres actuals)|
 ([Dd]es|[Gg]uard)ar-lo|
 [Dd]esplaça (endavant|enrere)|
 [Dd]estin(ar?|ada|ades|ats?|eu)|
@@ -183,9 +193,11 @@ Betelgeuse|
 [Dd]on(ar-li|arà)|
 [Dd]ona de manera predeterminada|
 [Dd]ona el (focus|mateix pes)|
-[Dd]onar (suport|suport als efectes de composició en 3D)|
-[Dd]onarà lloc|
+[Dd]onar (format|suport|suport als efectes de composició en 3D)|
+[Dd]onar un colp d'ull|
+[Dd]onarà? lloc|
 [Dd]onem la benvinguda a tothom|
+[Dd]oneu un colp d'ull|
 [Dd]oneu una ullada|
 [Dd]ret|
 [Dd]ugueren|
@@ -196,21 +208,23 @@ Betelgeuse|
 [Aa]peg(a|ada|ades|ant|a[rt]|ara|aran|àre[mu]|are[ns]|at|ats|ue|gue[mnsu])|
 [Aa]pegaran»|
 ([Aa]peg|[Ee]nganx)ar? directament|
+([Aa]peg|[Ee]nganx)ar? la suma de verificació des del porta-retalls|
+[Aa]pliquen només|
 [Ee]n referència|
 [Pp]aral·leles: encreuen|
 [Ee]nfocament|
 [Ee]nseny(a[rt]?|arà|e[su])|
+[Ee]ntrar?|
 [Ee]nvi([aeiïo]|ada|ades|ant|a[rt]|arà|ats|és|e[mnsu]|éssi[mu]|essi[ns]|ï[ns])|
 [Ee]nvi(ara|àre[mu]|are[ns])|
-[Ee]nvia(nt|r|rà)? (ara el correu|cap pols|fitxers|missatges|polsos de guiatge (adequats|directament))|
-[Ee]nvia(nt|r|rà)? el missatge a un altre usuari|
-[Ee]nvia(nt|r|rà)? els (pedaços|polsos de guiatge)|
-[Ee]nvia(nt|r|rà)? la llista|
-[Ee]nvia(nt|r|rà)? un (correu|correu electrònic|missatge|pols)|
-[Ee]nvia(nt|r|rà)? una (BCC:|CC:|ordre de sincronització)|
+[Ee]nvi(ant|ar|arà|aran|eu)? (ara el correu|cap pols|fitxers|missatges|polsos de correcció del guiatge|polsos de guiatge (adequats|directament))|
+[Ee]nvi(ant|ar|arà|aran|eu)? el missatge a un altre usuari|
+[Ee]nvi(ant|ar|arà|aran|eu)? els (pedaços|polsos de guiatge)|
+[Ee]nvi(ant|ar|arà|aran|eu)? la llista|
+[Ee]nvi(ant|ar|arà|aran|eu)? un (correu|correu electrònic|informe d'error|informe d'error complet|missatge|pols)|
+[Ee]nvi(ant|ar|arà|aran|eu)? una (BCC:|CC:|ordre de sincronització)|
 [Ee]nviar-lo|
-[Ee]nviaran polsos de correcció del guiatge|
-[Ee]nvieu un informe d'error|
+[Ee]nviar-lo privadament|
 [Ee]nvieu-nos un correu electrònic|
 [Ee]nvolta|
 [Ee]quivalent|
@@ -223,6 +237,7 @@ Betelgeuse|
 [Ee]sperant|
 [Ee]scriptura actual de la taula del programador|
 [Ee]scriptures excessives|
+[Ee]scriure|
 [Ee]scriviu|
 [Ee]sdevindran una versió|
 [Ee]stabl(eix|eix[io]|eixe[ns]|eixi[ns]|ert|i[amru]|int|ís|íssi[mu]|issi[ns])|
@@ -230,7 +245,7 @@ Betelgeuse|
 [Ee]stabl(eix|i[rux]) (CDV|respon A:)|
 [Ee]stabl(eix|i[rux]) el (camí de l'aplicació|color anomenat %1|pas temporal|rellotge del sistema|solucionador|temps d'Xplanet)|
 [Ee]stabl(eix|i[rux]) l'(emplaçament geogràfic|època)|
-[Ee]stabl(eix|i[rux]) la (data|rotació de la vista)|
+[Ee]stabl(eix|i[rux]) la (carpeta <emphasis>cartera<.emphasis>|data|rotació de la vista)|
 [Ee]stabliu-l[ao]|
 [Ee]stan autoritzats|
 [Ee]starà a ((37,5|76,6) graus|una hora d'ascensió recta)|
@@ -238,6 +253,7 @@ Betelgeuse|
 [Ee]stona|
 [Ee]xcava|
 [Ee]xecutat|
+[Ee]xpiraran|
 [Ee]xposicions inferiors|
 [Ff]acilita|
 [Ff]er (canvis|correccions|front)|
@@ -255,10 +271,13 @@ Betelgeuse|
 [Hh]i ha|
 [Hh]i ha un forat|
 [Ii] est|
+[Ii]llegibles|
 [Ii]mpressió|
 [Ii]mprim(eix|ix) la imatge del cel|
+[Ii]mprim(eix|ix) un missatge de depuració|
 [Ii]nclouen|
 [Ii]nclourà informació addicional de la missió|
+[Ii]ncloeu-los|
 [Ii]ncorporat|
 [Ii]ndi(c[ao]|cada|cades|ca[rt]|cant|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
 [Ii]ndi(cara|càre[mu]|care[ns]|que|que[mnsu])|
@@ -281,7 +300,9 @@ Betelgeuse|
 [Ll]imitar?|
 [Ll]imita el quadro de carpetes|
 [Ll]imita la busca a «%1» i|
+[Ll]imitar la paperera|
 [Ll]lança't|
+[Ll]lença|
 [Ll]legir|
 [Ll]licenciat|
 [Mm]anté el traçat|
@@ -301,6 +322,7 @@ Betelgeuse|
 [Oo]cultar la vostra adreça IP|
 [Oo]fer(eix|ix)|
 [Oo]fer(eix|ix) adreces|
+[Oo]ferir una nova experiència &kde;|
 [Oo]posat|
 [Oo]rdenar?|
 [Oo]rdenarà|
@@ -312,6 +334,7 @@ Betelgeuse|
 [Pp]assa|
 [Pp]assa de la meitat inferior|
 [Pp]assar|
+[Pp]assaran|
 [Pp]assar d'una imatge|
 [Pp]assant de la meitat (il·luminada|obscura)|
 [Pp]assen|
@@ -322,6 +345,7 @@ Betelgeuse|
 [Pp]ermet|
 [Pp]ermete[nu]|
 [Pp]ermetrà|
+[Pp]ermetre només|
 [Pp]erpendicular|
 [Pp]ersistent|
 [Pp]ertany(en)?|
@@ -336,6 +360,7 @@ Betelgeuse|
 [Pp]osta|
 [Pp]ot provocar desperfectes irreversibles|
 [Pp]refixa(da|des|t|ts)?|
+[Pp]reguntar|
 [Pp]rendrà|
 [Pp]rendre|
 [Pp]rendre fotogrames foscos|
@@ -343,14 +368,17 @@ Betelgeuse|
 [Pp]rocedix directament|
 [Pp]rohib(eix|ix)|
 [Pp]roper|
-[Pp]roperes|
+[Pp]roper(a|es)|
 [Pp]roporciona una mica de «dades de realimentació per al canal de retorn» des de la impressora|
 [Pp]roporciona[lt]|
 [Pp]roporcionals?|
 [Pp]roporcionarà una millora relativament gran|
 [Pp]ròximes|
 [Pp]roximitat propera l'un|
+[Pp]ujada del fitxer %1|
+[Pp]ujant el fitxer %1|
 [Pp]ujaran|
+[Pp]uja els fitxers|
 [Pp]ujar el fitxer|
 [Pp]ujar la imatge|
 [Pp]ujar-lo|
@@ -379,14 +407,17 @@ Betelgeuse|
 [Rr]especte|
 [Rr]espon logarítmicament|
 [Rr]espondre|
-[Rr]espostes|
-[Rr]establ(eix|ix)|
-[Rr]establ(eix|ix) a ara|
-[Rr]establ(eix|ix) el centre del mosaic|
-[Rr]establ(eix|ix) l'enfocament del submarc|
+[Rr]espost(a|es)|
+[Rr]establ(eix|i[rx])|
+[Rr]establ(eix|i[rx]) a ara|
+[Rr]establ(eix|i[rx]) el centre del mosaic|
+[Rr]establ(eix|i[rx]) l'enfocament del submarc|
+[Rr]establ(eix|i[rx]) una drecera individual|
 [Rr]establir-l(es|[ao])|
 [Rr]estaura|
-[Rr]estaura la vista|
+[Rr]estaurar? (aquest|este) element|
+[Rr]estaurar? la vista|
+[Rr]estaurar? un fitxer de la paperera|
 [Rr]estring(eix|ix)|
 [Rr]estringit el dret|
 [Rr]etornant|
@@ -410,7 +441,7 @@ Betelgeuse|
 [Ss]ón (idèntiques|similars en ús)|
 ([Ss]ort|[Ee]ix)ida|
 [Ss]ubscriviu-vos|
-[Ss]ubstitu(eix|ïx)|
+[Ss]ubstitu(eix|ïren|ïssin|ïx)|
 ([Ss]urt|[Ii]x)|
 [Tt]emps|
 [Tt]indre «UseAltAz»|
@@ -418,6 +449,7 @@ Betelgeuse|
 [Tt]orn(a|a'ls|ada|[aio][rt]?|ant(-l[ao]|-se|-ho)|ar?-l[eo]s|ar?-l[ao]|ar-se|ar(à|an)|e[nsu]|[ei]s|eu-ho|eu-l[ao]|eu-l[eo]s)|
 [Tt]orn[ei]|
 [Tt]orna automàticament|
+[Tt]orna-ho|
 [Tt]ornant|
 [Tt]ransferida|
 [Tt]ransita|
@@ -432,4 +464,5 @@ Betelgeuse|
 [Vv](a|agi|ag[ei][ns]|aig|e|es)|
 [Vv]ingut|
 [Vv]isible en un arc|
+[Vv]isites|
 [Vv]istes en arbre

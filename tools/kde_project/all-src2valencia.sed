@@ -1189,6 +1189,7 @@ s/\b\([Aa]\)tribuïssi\([ns]\)\([^[:alnum:]]\)/\1tribuïre\2\3/g
 # aturar -> parar
 	s/\bd'atura\(da\|r\)\([^[:alnum:]]\)/de para\1\2/g
 	s/\bl'aturada\([^[:alnum:]]\)/la parada\1/g
+        s/\bS'atura\([^[:alnum:]]\)/Es para\1/g
 	s/\bs'atura\([^[:alnum:]]\)/es para\1/g
 	s/\bS'aturarà\([^[:alnum:]]\)/Es pararà\1/g
 	s/\bs'aturarà\([^[:alnum:]]\)/es pararà\1/g

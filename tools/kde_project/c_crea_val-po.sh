@@ -5,6 +5,7 @@ DIR0="$(cd ../../../.. ; echo $PWD)"
 cd $DIR1
 STABLE="stable/l10n-kf5"
 TRUNK="trunk/l10n-kf5"
+STABLE6="stable/l10n-kf6"
 TRUNK6="trunk/l10n-kf6"
 MSG='msgstr'
 SOURCE_0='ca@valencia'
@@ -12,8 +13,8 @@ TEXT="$2"
 
 APPEND='\[|\*|\*\*|\*\*\*|&|«|<[^<]{1,}>'
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
-APPEND_A="acte (es bus|se cer)caran|baix|bord|cada segon|causa|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més del resultat|mida|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|simple|sud|terme|tindre en compte|través|una distància|vegades"
-APPEND_AL1="escala especificada|especificat|esquerra|est del nord|estar|estil BSD|extrem baix|hora|inrevés\)\.|oest de Greenwich"
+APPEND_A="acte (es bus|se cer)caran|baix|bord|cada segon|causa|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més del resultat|mida|motius|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|simple|sud|terme|tindre en compte|través|una distància|vegades"
+APPEND_AL1="escala especificada|especificat|esquerra|est del nord|estar|estil (BSD|ini)|extrem baix|hora|inrevés\)\.|oest de Greenwich"
 APPEND_ALA="conclusió|distància en micres|dreta|dreta, davall|inversa|manera de fer|normal|part|posició apuntada|qual|rotació|vegada|visualització|vostra opció"
 APPEND_ALES="dotze del migdia"
 APPEND_ALS="100%|canvis ambientals|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual sovint es refer(eix|ix)|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|voltant"
@@ -209,6 +210,17 @@ copia_valencia() {
       adapta_ho kf6-plasma-lts
     done
 
+  # KF6 (stable)
+  DIRDES="$DIR1/kf6-stable/$SOURCE_0/$MESSAGES/$1"
+  DIRTEM="$DIR0/$STABLE6/templates/$MESSAGES/$1"
+  [ $(find $DIRMOD/ -maxdepth 2 -type d -name "stable6") ] && \
+  for po in $(find $DIRMOD/stable6/* -maxdepth 1 -type f -name "*.po")
+    do
+      PO2="$(basename $po)"
+      CA_MOD="$DIRMOD/stable6/$PO2"
+      adapta_ho kf6-stable
+    done
+
   # Futur KF6 (transcició)
   DIRDES="$DIR1/kf6-trunk/$SOURCE_0/$MESSAGES/$1"
   DIRTEM="$DIR0/$TRUNK6/templates/$MESSAGES/$1"
@@ -231,7 +243,7 @@ crea_po() {
       PO2="$(basename $po)"
       if   [ -f $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
           mkdir -p $DIROBJ
-          echo -e "   \e[38;5;44m-- (KF5) <-\e[0m $PO2"
+          echo -e "   \e[38;5;44m-- (KF5 trunk) <-\e[0m $PO2"
           [ -f $DIR0/$TRUNK/$DIRTEM/${PO2}t ] || return
           msgmerge --silent --previous --width=79 --lang=ca $DIRMOD/$PO2 $DIR0/$TRUNK/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$TRUNK/$DIROBJ/$PO2
@@ -242,7 +254,7 @@ crea_po() {
         if [ -d $DIRMOD/stable ]; then
           CA_MOD="$DIRMOD/stable/$PO2"
           mkdir -p $DIROBJ
-          echo -e "   \e[38;5;44m-- (stable) <-\e[0m $PO2"
+          echo -e "   \e[38;5;44m-- (KF5 stable) <-\e[0m $PO2"
           [ -f $DIR0/$STABLE/$DIRTEM/${PO2}t ] || return
           msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$STABLE/$DIROBJ/$PO2
@@ -254,11 +266,23 @@ crea_po() {
         if [ -d $DIRMOD/kf6 ]; then
           CA_MOD="$DIRMOD/kf6/$PO2"
           mkdir -p $DIROBJ
-          echo -e "   \e[38;5;44m-- (KF6) <-\e[0m $PO2"
+          echo -e "   \e[38;5;44m-- (KF6 trunk) <-\e[0m $PO2"
           [ -f $DIR0/$TRUNK6/$DIRTEM/${PO2}t ] || return
           msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$TRUNK6/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK6/$DIROBJ/$PO2
           posieve  remove-obsolete $DIR0/$TRUNK6/$DIROBJ/$PO2
           msgfmt   --statistics    $DIR0/$TRUNK6/$DIROBJ/$PO2
+        fi
+      fi
+
+      if [ -f $DIR0/$STABLE6/$DIROBJ/$PO2 ]; then
+        if [ -d $DIRMOD/stable6 ]; then
+          CA_MOD="$DIRMOD/stable6/$PO2"
+          mkdir -p $DIROBJ
+          echo -e "   \e[38;5;44m-- (KF6 stable) <-\e[0m $PO2"
+          [ -f $DIR0/$STABLE6/$DIRTEM/${PO2}t ] || return
+          msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE6/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE6/$DIROBJ/$PO2
+          posieve  remove-obsolete $DIR0/$STABLE6/$DIROBJ/$PO2
+          msgfmt   --statistics    $DIR0/$STABLE6/$DIROBJ/$PO2
         fi
       fi
     done
@@ -274,9 +298,9 @@ neteja_ca() {
       PO2="$(basename $po)"
       if [ -e $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
         echo -e "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/$PO2"
-        cp -f  $DIR0/$TRUNK/$DIROBJ/$PO2     $DIR1/$DIROBJ/$PO2
-        mv -f  $DIR0/$TRUNK/$DIROBJ/$PO2     $DIR1/$DIRMOD/$PO2
-        cp -f  $DIR0/$TRUNK/$DIRTEM/${PO2}t  $DIR1/$DIRTEM/${PO2}t
+        [ "$MESSAGES" = "messages" ] && cp -f $DIR0/$TRUNK/$DIROBJ/$PO2  $DIR1/$DIROBJ/$PO2
+        mv -f  $DIR0/$TRUNK/$DIROBJ/$PO2      $DIR1/$DIRMOD/$PO2
+        cp -f  $DIR0/$TRUNK/$DIRTEM/${PO2}t   $DIR1/$DIRTEM/${PO2}t
       fi
 
       if [ -e $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
@@ -287,10 +311,16 @@ neteja_ca() {
 
       if [ -e $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/kf6
-        echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mkf6/\e[0m$PO2"
-        cp -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIROBJ/$PO2
-        mv -f  $DIR0/$TRUNK6/$DIROBJ/$PO2    $DIR1/$DIRMOD/kf6/$PO2
-        cp -f  $DIR0/$TRUNK6/$DIRTEM/${PO2}t $DIR1/$DIRTEM/${PO2}t
+        echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mktrunk/\e[0m$PO2"
+        [ "$MESSAGES" = "messages" ] && cp -f $DIR0/$TRUNK6/$DIROBJ/$PO2 $DIR1/$DIROBJ/$PO2
+        mv -f  $DIR0/$TRUNK6/$DIROBJ/$PO2     $DIR1/$DIRMOD/kf6/$PO2
+        cp -f  $DIR0/$TRUNK6/$DIRTEM/${PO2}t  $DIR1/$DIRTEM/${PO2}t
+      fi
+
+      if [ -e $DIR0/$STABLE6/$DIROBJ/$PO2 ]; then
+        mkdir -p $DIRMOD/stable6
+        echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mstable6/\e[0m$PO2"
+        mv -f $DIR0/$STABLE6/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable6/$PO2
       fi
     done
 }
@@ -684,6 +714,9 @@ case $1 in
       cd $DIR0/$TRUNK
       ./adapta-kde_recursivament.sh $1
 
+      cd $DIR0/$STABLE6
+      ./adapta-kde_recursivament.sh $1
+
       cd $DIR0/$TRUNK6
       ./adapta-kde_recursivament.sh $1
     }
@@ -731,7 +764,7 @@ case $1 in
       ;;
       doc)
         MESSAGES='docmessages'
-#         command_cm
+        command_cm
       ;;
       *)
         sortida_po
@@ -741,6 +774,8 @@ case $1 in
     cd $DIR0/$STABLE/ca/ && svn update
     echo -e "\n * S'està actualitzant KF5 «trunk»:"
     cd $DIR0/$TRUNK/ca/  && svn update
+    echo -e "\n * S'està actualitzant KF6 «stable»:"
+    cd $DIR0/$STABLE6/ca/ && svn update
     echo -e "\n * S'està actualitzant KF6 «trunk»:"
     cd $DIR0/$TRUNK6/ca/ && svn update
   ;;
@@ -762,34 +797,39 @@ case $1 in
     rm -Rf templates/*
 
     echo "* Es copien les branques següents:"
-    for obj in ca ca@valencia templates
+    for obj in ca templates
+      do
+        echo "  - kf5 stable $obj"
+        mkdir -p $obj/messages/
+        cp -fr ../../../../stable/l10n-kf5/$obj/messages/* $obj/messages/
+      done; echo
+
+    for obj in ca templates
       do
         echo "  - kf5 $obj"
         mkdir -p $obj/messages/
-        cp -r ../../$obj/messages/* $obj/messages/
+        cp -fr ../../$obj/messages/* $obj/messages/
         [ "$obj" = "templates" ] || elimina_carpetes $obj/messages
-        echo
-      done
+      done; echo
 
-    for obj in ca ca@valencia templates
+    for obj in ca templates
       do
         echo "  - kf6 $obj"
         mkdir -p $obj/messages/
-        cp -r ../../../l10n-kf6/$obj/messages/* $obj/messages/
-        echo
-      done
+        cp -fr ../../../l10n-kf6/$obj/messages/* $obj/messages/
+      done; echo
 
     echo "* Es copien les traduccions des de «ca-mod/».\e[0m"
     $0 crea_po gui
     $0 neteja_ca gui
     mkdir -p ca/docmessages/
-    cp ../../ca/docmessages/language ca/docmessages/language
 
-    # ca: La documentació són enllaços
+    # ca: la documentació són enllaços
     cd ca/docmessages
     echo "  - kf5: enllaços cap a la documentació «ca»"
     echo kstars
     ln -s ../../ca-mod/docmessages/kstars kstars
+    cp -fr ../../../../templates/docmessages/kstars ../../templates/docmessages/kstars
 
     echo "  - kf6: enllaços cap a la documentació «ca»"
     for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
@@ -797,12 +837,14 @@ case $1 in
         MODULE="$(echo $obj | awk -F '/' '{print $5}')"
         echo $MODULE
         ln -s $obj $MODULE
+        cp -fr ../../../../../l10n-kf6/templates/docmessages/$MODULE ../../templates/docmessages/$MODULE
       done
     cd ../../
     mkdir -p ca@valencia/docmessages/
+    cp ../../ca/docmessages/language ca/docmessages/language
     cp ../../ca@valencia/docmessages/language ca@valencia/docmessages/language
 
-    # La documentació són enllaços
+    # ca@valencia: la documentació són enllaços
     cd ca@valencia/docmessages
     echo "  - kf5: enllaços cap a la documentació «ca@valencia»"
     echo kstars
@@ -1050,8 +1092,8 @@ case $1 in
     llista 3
   ;;
   fitxer_erroni)
-    DIR="kstars"
-    PO="kstars.po"
+    DIR="knotifications"
+    PO="knotifications6_qt.po"
     DIRMOD="$DIR1/ca-mod/messages/$DIR"
     DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
     DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
