@@ -238,7 +238,7 @@ crea_po() {
   DIROBJ="ca/$MESSAGES/$1"
   DIRTEM="templates/$MESSAGES/$1"
 
-  for po in $(find $DIR1/$DIRMOD/* -maxdepth 1 -type f -name "*.po")
+  for po in $(find $DIR1/$DIRMOD/* -maxdepth 0 -type f -name "*.po")
     do
       PO2="$(basename $po)"
       if   [ -f $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then

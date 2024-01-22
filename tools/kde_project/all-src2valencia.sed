@@ -6390,7 +6390,7 @@ s/\b\([Ll]\)luïssi\([ns]\)\([^[:alnum:]]\)/\1luïre\2\3/g
     s/\bLluïra \(II\|Demo\)\([^[:alnum:]]\)/Lluís \1\2/g
 # TODO: latitud / longitud (Longitude & Long)
 s/\b\([Ll]\)ongitud\([^[:alnum:]]\)/\1largària\2/g
-    s/\" i llargària \"/\" i longitud \"/g
+    s/\" i la llargària: \"/\" i la longitud: \"/g
     s/\bA diferència de la llargària\([^[:alnum:]]\)/A diferència de la longitud\1/g
     s/\banomenat <firstterm>llargària\([^[:alnum:]]\)/anomenat <firstterm>longitud\1/g
     s/\bempleneu la llargària\([^[:alnum:]]\)/empleneu la longitud\1/g
