@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash --debug
 
 DIR1="$(echo $PWD)"
 DIR0="$(cd ../../../.. ; echo $PWD)"
@@ -11,20 +11,25 @@ MSG='msgstr'
 SOURCE_0='ca@valencia'
 TEXT="$2"
 
-APPEND='\[|\*|\*\*|\*\*\*|&|«|<[^<]{1,}>'
+# Per a trobar els resultats amb un enllaç o caràcter especial (p. ex., va rebre el [premi a -en aquest cas «[»-)
+APPEND='\*|\*\*|\*\*\*|\[|[&«]|<[^<]{1,}>'
+# Es descarten les paraules annexades abans (p. ex., accedint recentment a la -en aquest cas «accedint recentment»-)
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
-APPEND_A="acte (es bus|se cer)caran|baix|bord|cada segon|causa|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més del resultat|mida|motius|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|simple|sud|terme|tindre en compte|través|una distància|vegades"
-APPEND_AL1="escala especificada|especificat|esquerra|est del nord|estar|estil (BSD|ini)|extrem baix|hora|inrevés\)\.|oest de Greenwich"
-APPEND_ALA="conclusió|distància en micres|dreta|dreta, davall|inversa|manera de fer|normal|part|posició apuntada|qual|rotació|vegada|visualització|vostra opció"
+# Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
+APPEND_A="acte (es bus|se cer)caran|baix|bord|cada segon|causa|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|simple|sud|temps complet|terme|tindre en compte|tort|través|una distància|vegades|voluntat"
+APPEND_AL1="escala especificada|especificat|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés\)\.|instant|oest de Greenwich"
+APPEND_ALA="conclusió|distància en micres|dreta|dreta, davall|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició apuntada|qual|rotació|vegada|visualització|vostra opció"
 APPEND_ALES="dotze del migdia"
-APPEND_ALS="100%|canvis ambientals|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual sovint es refer(eix|ix)|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|voltant"
+# Inclou «AL»
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual sovint es refer(eix|ix)|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
 
   \033[1;37mAJUDA\n  -----\e[0m
   troba_po (nom|exp. reg.)        Cerca \033[1;37ma on es troba ara aquest fitxer\e[0m.
-  crea_po_linia ruqola/ruqola.po  \033[1;37mCrea un fitxer amb les entrades en una sola línia\e[0m,
+  crea_po_linia ruqola/ruqola.po (cadena de lletres)
+                                  \033[1;37mCrea un fitxer amb les entrades en una sola línia\e[0m,
                                   de manera que es poden esmenar els números de línia
                                   a l'script en sed.
   po_nou (dir)[/fitxer.po]? (doc)?
@@ -68,7 +73,7 @@ sortida_po() {
   adapta                          * \033[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
   adapta_doc                      * \033[1;37mAdapta i genera la documentació\e[0m en el SVN local.
                                   \033[47;31mNOTA:\e[0m Després s'han de moure manualment!
-  \033[47;31madapta_dir (dir)\e[0m                * \033[1;37mPROVES! Adapta i genera nomes una carpeta\e[0m en el SVN local.
+  \033[47;31madapta_dir (dir)\e[0m                \033[1;37mPROVES! Adapta i genera nomes una carpeta\e[0m en el SVN local.
   modifica_capçalera fitxer.po    * \033[1;37mActualitza la informació a la capçalera\e[0m.
   adapta_valencia (recursiu|usuari)
                                   * \033[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
@@ -398,11 +403,15 @@ case $1 in
   ;;
   crea_po_linia)
     [ "$2" ] || sortida_po
+    [ "$3" ] || sortida_po
     if [ -f ca/messages/$2 ]; then
         PO="$(basename $2)"
         DIR="$(echo $2 | cut -f 1 -d'/')"
         echo $DIR - $PO
+        PHRASE="$3"
         msgmerge --silent --previous --no-wrap ca/messages/$DIR/$PO templates/messages/$DIR/${PO}t --output-file=missatges-$PO
+        grep -n "$PHRASE" missatges-$PO
+        [ -f missatges-$PO ] && rm -f missatges-$PO
       else
        echo "$2: No existeix!"
     fi
@@ -694,7 +703,6 @@ case $1 in
     echo -e "\e[38;5;44mSCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0 [app]\e[0m"
   ;;
   adapta_dir)
-    comprova_lloc
     for po in $(find ca/messages/$2/* -type f -name "*.po")
       do
         PO2="$(basename $po)"
@@ -886,7 +894,7 @@ case $1 in
       [ "$(echo $2 | grep "^[0-9]*$")" ] || sortida_po
     commits_num(){
       cd $SOURCE_0
-      FITXERS="$(svn log --verbose -r $1 | grep '\/messages\/' | sed 's/\(^.*\)Treball\/ca@valencia\/messages\// /g' | tr -d '\n')"
+      FITXERS="$(svn log --verbose -r $1 | grep '\/ca@valencia\/messages\/' | sed 's/\(^.*\)Treball\/ca@valencia\/messages\// /g' | tr -d '\n')"
       cd ..
     }
     ARRAY="("$@")"
@@ -899,7 +907,7 @@ case $1 in
       N='1'
     done
 
-    FITXERS="`echo "$FITXERST" | sort | uniq`"
+    FITXERS="`echo "$FITXERST" | sed 's/ /\n/g' | sort | uniq`"
     cd $DIR0/$STABLE
     for file in $FITXERS
       do
@@ -907,6 +915,12 @@ case $1 in
       done
 
     cd ../../$TRUNK/
+    for file in $FITXERS
+      do
+        [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
+      done
+
+    cd ../../$STABLE6/
     for file in $FITXERS
       do
         [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
@@ -1092,8 +1106,8 @@ case $1 in
     llista 3
   ;;
   fitxer_erroni)
-    DIR="knotifications"
-    PO="knotifications6_qt.po"
+    DIR="digikam"
+    PO="digikam.po"
     DIRMOD="$DIR1/ca-mod/messages/$DIR"
     DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
     DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"

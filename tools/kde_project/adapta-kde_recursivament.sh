@@ -244,9 +244,11 @@ for PO in $FITXERSPO
       [ "$DIR"  = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
       [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
       # messages/websites-kde-org:
-      [ "$FITX" = "release_announcements.po" ]                  && message_removed && continue  # https://kde.org/ca/announcements/
+      [ "$FITX" = "release_announcements.po" ]                  && message_removed && continue # https://kde.org/ca/announcements/
       [ "$FITX" = "www_www.po" ]                                && message_removed && continue
       [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
+      [ "$DIR"  = "messages/websites-docs-glaxnimate-org" ]     && message_removed && continue #
+      [ "$DIR"  = "messages/websites-glaxnimate-org" ]          && message_removed && continue #
       [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
       # desactivades temporalment (a l'espera de temps per a revisar):
       # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):

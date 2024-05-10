@@ -923,8 +923,10 @@ s/\b\([Aa]\)puntéssi\([mu]\)\([^[:alnum:]]\)/\1puntàre\2\3/g
 s/\b\([Aa]\)puntessi\([ns]\)\([^[:alnum:]]\)/\1puntare\2\3/g
 s/\b\([Aa]\)punt\([io]\)\([^[:alnum:]]\)/\1punte\3/g
 s/\b\([Aa]\)punti\([ns]\)\([^[:alnum:]]\)/\1punte\2\3/g
+s/\bAQUEST\([^[:alnum:]]\)/ESTE\1/g
 s/\bAquest\([^[:alnum:]]\)/Este\1/g
 s/\baquest\([^[:alnum:]]\)/este\1/g
+s/\bAQUEST\(A\|ES\)\([^[:alnum:]]\)/EST\1\2/g
 s/\bAquest\(a\|es\)\([^[:alnum:]]\)/Est\1\2/g
 s/\baquest\(a\|es\)\([^[:alnum:]]\)/est\1\2/g
 s/\bAquests\([^[:alnum:]]\)/Estos\1/g
@@ -2979,6 +2981,12 @@ s/\b\([Dd]\)epreciéssi\([mu]\)\([^[:alnum:]]\)/\1epreciàre\2\3/g
 s/\b\([Dd]\)epreciessi\([ns]\)\([^[:alnum:]]\)/\1epreciare\2\3/g
 s/\b\([Dd]\)epreci\([ïo]\)\([^[:alnum:]]\)/\1eprecie\3/g
 s/\b\([Dd]\)epreciï\([ns]\)\([^[:alnum:]]\)/\1eprecie\2\3/g
+# derivar
+s/\b\([Dd]\)erivés\([^[:alnum:]]\)/\1erivara\2/g
+s/\b\([Dd]\)erivéssi\([mu]\)\([^[:alnum:]]\)/\1erivàre\2\3/g
+s/\b\([Dd]\)erivessi\([ns]\)\([^[:alnum:]]\)/\1erivare\2\3/g
+s/\b\([Dd]\)eriv\([io]\)\([^[:alnum:]]\)/\1erive\3/g
+s/\b\([Dd]\)erivi\([ns]\)\([^[:alnum:]]\)/\1erive\2\3/g
 # desar -> guardar
 s/\bDes\(a\|ada\|ades\|ant\|ar\|arà\|aran\|areu\|at\|ats\|ava\|aven\|en\|es\|eu\|in\|is\)\([^[:alnum:]]\)/Guard\1\2/g
 s/\bdes\(a\|ada\|ades\|ant\|ar\|arà\|aran\|areu\|at\|ats\|ava\|aven\|en\|es\|eu\|in\|is\)\([^[:alnum:]]\)/guard\1\2/g
@@ -3122,7 +3130,7 @@ s/\b\([Dd]\)estil·li\([ns]\)\([^[:alnum:]]\)/\1estil·le\2\3/g
     s/\bIndiqueu la destinació del sobre\([^[:alnum:]]\)/Indiqueu el destí del sobre\1/g
 #     Destinació:
     s/\bper a les destinacions seleccionades\([^[:alnum:]]\)/per als destins seleccionats\1/g
-    s/\bSeleccioneu la destinació\([^[:alnum:]]\)/Seleccioneu el destí\1/g
+    s/\bSeleccioneu la destinació\"/Seleccioneu el destí\"/g
     s/\bVídeo de destinació\([^[:alnum:]]\)/Vídeo del destí\1/g
 # #
 # destinar
@@ -6284,12 +6292,14 @@ s/\bllança\(dor\|dors\|r\|\)\([^[:alnum:]]\)/inicia\1\2/g
     s/\biniciar-los en un dels pous\([^[:alnum:]]\)/llançar-los en un dels pous\1/g
     s/\bInicia't\([^[:alnum:]]\)/Llança't\1/g
     s/\binicia't\([^[:alnum:]]\)/llança't\1/g
+    s/\bInicia \(una \|\)bomba\([^[:alnum:]]\)/Llança \1bomba\2/g
     s/\biniciar-se \(a l'esquerra\|al mig\)\([^[:alnum:]]\)/llançar-se \1\2/g
     s/\biniciar-te\([^[:alnum:]]\)/llançar-te\1/g
     s/\b\([Nn]\)otes d'iniciament\([^[:alnum:]]\)/\1otes de llançament\2/g
     s/\bper a iniciar un dard\([^[:alnum:]]\)/per a llançar un dard\1/g
     s/\bper a iniciar els dards\([^[:alnum:]]\)/per a llançar els dards\1/g
     s/\b\([Ss]\)'acaba de iniciar Krita\([^[:alnum:]]\)/\1'acaba de llançar Krita\2/g
+    s/\bEs inicia el lloc web\([^[:alnum:]]\)/Es llança el lloc web\1/g
 s/\bLlanci\([^[:alnum:]]\)/Inicie\1/g
 s/\bllanci\([^[:alnum:]]\)/inicie\1/g
 s/\bLlangardaix\([^[:alnum:]]\)/Fardatxo\1/g
@@ -7020,10 +7030,10 @@ s/\b\([Oo]\)bríssi\([mu]\)\([^[:alnum:]]\)/\1briríe\2\3/g
 s/\b\([Oo]\)brissi\([ns]\)\([^[:alnum:]]\)/\1bririe\2\3/g
 s/\bObro\([^[:alnum:]]\)/Òbric\1/g
 s/\bobro\([^[:alnum:]]\)/òbric\1/g
+    s/\bd'obris com música\([^[:alnum:]]\)/d'obres com música\1/g
     s/\bLes obris\([^[:alnum:]]\)/Les obres\1/g
     s/\bMostra les obris\([^[:alnum:]]\)/Mostra les obres\1/g
-    s/\bd'obris com música\([^[:alnum:]]\)/d'obres com música\1/g
-    s/\bobris \(d'art\|mestres\)\([^[:alnum:]]\)/obres \1\2/g
+    s/\b\([Oo]\)bris \(artístiques\|d'art\|mestres\)\([^[:alnum:]]\)/\1bres \2\3/g
     # cobrir
     s/\b\([Cc]\)obreix\(en\|es\|\)\([^[:alnum:]]\)/\1obrix\2\3/g
     s/\b\([Cc]\)obreixi\([^[:alnum:]]\)/\1obrisca\2/g
@@ -7740,7 +7750,7 @@ s/\b\([Pp]\)remi\([ns]\)\([^[:alnum:]]\)/\1reme\2\3/g
 s/\b\([Pp]\)remo\([^[:alnum:]]\)/\1rem\2/g
     s/\b\([Aa]\)mb este prema\([^[:alnum:]]\)/\1mb este premi\2/g
     s/\b\([Cc]\)erimònia del prema\([^[:alnum:]]\)/\1erimònia del premi\2/g
-    s/\brebre el prema\([^[:alnum:]]\)/rebre el premi\1/g
+    s/\brebre el \(\[\|\)prema\([^[:alnum:]]\)/rebre el \1premi\2/g
     s/\brecent prema\([^[:alnum:]]\)/recent premi\1/g
 # presentar
 s/\b\([Pp]\)resentés\([^[:alnum:]]\)/\1resentara\2/g
