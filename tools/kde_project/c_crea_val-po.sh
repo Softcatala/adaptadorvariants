@@ -123,7 +123,8 @@ sortida_po() {
   • append-a_en.in              \033[1;37m[Ajudant del pology -el contingut s'inclou al primer script-]\e[0m
   • adapta-kde_recursivament.sh \033[1;37m[Script en Bash que adapta amb els scripts en SED]\e[0m
   \033[1;37mEls scripts en SED, en odre de processament:\e[0m
-  • kde-src2valencia.sed        \033[1;37mRepo:\e[0m sense publicar
+  • kde-src2valencia_a.sed      \033[1;37mRepo:\e[0m sense publicar
+  • kde-src2valencia_b.sed      \033[1;37mRepo:\e[0m sense publicar
   • all-src2valencia.sed
   • all-src2valencia-adapta.sed
 
@@ -151,6 +152,15 @@ command_cm() {
           done
 }
 
+sed_files() {
+  if [ ! -f kde-src2valencia.sed ]; then
+      cp  $DIRTR/kde-src2valencia_a.sed         kde-src2valencia.sed
+      cat $DIRTR/kde-src2valencia_b.sed      >> kde-src2valencia.sed
+      cp  $DIRTR/all-src2valencia-adapta.sed    all-src2valencia.sed
+      cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
+  fi
+}
+
 copia_valencia() {
   FOLDER="$2"
   [ -z $FOLDER ] && FOLDER='igu'
@@ -168,15 +178,15 @@ copia_valencia() {
         # Fem que les frases/paràgrafs siguin d'una sola línia:
         msgmerge --silent --previous --no-wrap $CA_MOD $DIRTEM/${PO2}t --output-file=missatges-$PO2
 
+        sed_files
         # Executem la conversió del fitxer PO
-        $DIR1/kde-src2valencia.sed        < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
-        $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
-        $DIR1/all-src2valencia.sed        < missatges_2-$PO2 > missatges_3-$PO2 && rm -f missatges_2-$PO2
+        ./kde-src2valencia.sed        < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
+        ./all-src2valencia.sed        < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
 
         mkdir -p $DIRDES
         # Es torna a donar el format amb 78 files
-        msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
-        mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_3-$PO2
+        msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_2-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
+        mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_2-$PO2
         cd $DIR1
       else
         echo -e "   \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut cap a l10n-kf6\e[0m"
@@ -685,7 +695,9 @@ case $1 in
   ;;
   adapta)
     comprova_lloc
-    ./adapta-kde_recursivament.sh recursiu $2
+      __NV_PRIME_RENDER_OFFLOAD=1
+      __glx_vendor_library_name=nvidia ./adapta-kde_recursivament.sh recursiu $2
+#       DRI_PRIME=1 ./adapta-kde_recursivament.sh recursiu $2
   ;;
   modifica_capçalera)
     [ -f "$2" ] || sortida_po
@@ -942,33 +954,55 @@ case $1 in
 
     installa_tot() {
       BRANCA="$1"
-      DIR_ST="$DIR0/$BRANCA/l10n-kf5/$SOURCE_0/messages"
       DIR_MESSAGES="/usr/share/locale/$SOURCE_0/LC_MESSAGES"
 
       comprova_stable() {
+        DIR_ST="$DIR0/$BRANCA/l10n-kf5/$SOURCE_0/messages"
         if [ "$BRANCA" = 'trunk' ]; then
-            DIR_M="$(basename $(dirname $POFILE))"
-            test -f $DIR0/$STABLE/ca@valencia/messages/$DIR_M/$FILE_NAME.po && EXIST='1'
+          DIR_M="$(basename $(dirname $POFILE))"
+          test -f $DIR0/$STABLE/ca@valencia/messages/$DIR_M/$FILE_NAME.po && EXIST='1'
+        fi
+      }
+
+      comprova_stable6() {
+        DIR_ST="$DIR0/$BRANCA/l10n-kf6/$SOURCE_0/messages"
+        if [ "$BRANCA" = 'trunk' ]; then
+          DIR_M="$(basename $(dirname $POFILE))"
+          test -f $DIR0/$STABLE6/ca@valencia/messages/$DIR_M/$FILE_NAME.po && EXIST='1'
+        fi
+      }
+
+      fes_mo6() {
+        DIR_ST="$DIR0/$BRANCA/l10n-kf6/$SOURCE_0/messages"
+        POFILE="$(find $DIR_ST -type f -name $1.po)"
+        if [ "$POFILE" ]; then
+            comprova_stable6
+            [ "$EXIST" = '1' ] && return
+            echo "$BRANCA 6 - $DIR_MESSAGES/$FILE_NAME.mo"
+            sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
         fi
       }
 
       fes_mo() {
         POFILE="$(find $DIR_ST -type f -name $1.po)"
-        if [ $POFILE ]; then
+        if [ "$POFILE" ]; then
             comprova_stable
             [ "$EXIST" = '1' ] && return
-            echo "$BRANCA - $DIR_MESSAGES/$FILE_NAME.mo"
+            echo "$BRANCA 5 - $DIR_MESSAGES/$FILE_NAME.mo"
             sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
+          else
+            fes_mo6 $FILE_NAME
         fi
       }
 
+      DIR_ST="$DIR0/$BRANCA/l10n-kf5/$SOURCE_0/messages"
       fes_qm() {
         POFILE="$(find $DIR_ST -type f -name $1.po)"
         [ $2 ] && FILE_NAME="$2"
         if [ $POFILE ]; then
             comprova_stable
             [ "$EXIST" = '1' ] && return
-            echo "$BRANCA - $DIR_MESSAGES/$FILE_NAME.qm"
+            echo "$BRANCA 5 - $DIR_MESSAGES/$FILE_NAME.qm"
             sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE_NAME.qm
         fi
       }
@@ -1080,7 +1114,11 @@ case $1 in
                 [ -e $DIRMOD/$DIR/$PO ] && DIRSRC="$DIRMOD"
 
                 msgmerge --silent --previous --no-wrap $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=missatges-$PO
-                $DIR1/kde-src2valencia.sed < missatges-$PO > missatges_1-$PO && rm -f missatges-$PO
+                if [ ! -f kde-src2valencia.sed ]; then
+                    cp  $DIRTR/kde-src2valencia_a.sed         kde-src2valencia.sed
+                    cat $DIRTR/kde-src2valencia_b.sed      >> kde-src2valencia.sed
+                fi
+                ./kde-src2valencia.sed < missatges-$PO > missatges_1-$PO && rm -f missatges-$PO
                 msgmerge --silent --previous --width=79 --lang=ca missatges_1-$PO $DIRTEM/$DIR/${PO}t --output-file=missatges_2-$PO && rm -f missatges_1-$PO
                 mv -f missatges_2-$PO $DIROBJ/$DIR/$PO
               fi
@@ -1112,6 +1150,8 @@ case $1 in
     DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
     DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
 
+    sed_files
+
     if [ -e "$DIR0/$TRUNK6/ca/messages/$DIR/$PO" ]; then
       DIRSRC="$DIR0/$TRUNK6/ca/messages/$DIR"
       DIRTEM="$DIR0/$TRUNK6/templates/messages/$DIR"
@@ -1126,27 +1166,21 @@ case $1 in
     echo -e "\033[47;31mSegon:\e[0m ara es passa per sed amb l'script «kde-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_1-$PO]: Res"
     pregunta
-    $DIR1/kde-src2valencia.sed        < missatges-$PO   > missatges_1-$PO
+    ./kde-src2valencia.sed        < missatges-$PO   > missatges_1-$PO
     msgfmt --statistics missatges_1-$PO
 
-    echo -e "\033[47;31mTercer:\e[0m es passa per sed amb l'script «all-src2valencia-adapta.sed»"
+    echo -e "\033[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_2-$PO]: Res"
     pregunta
-    $DIR1/all-src2valencia-adapta.sed < missatges_1-$PO > missatges_2-$PO
+    ./all-src2valencia.sed        < missatges_1-$PO > missatges_2-$PO
     msgfmt --statistics missatges_2-$PO
-
-    echo -e "\033[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
-    MISSATGE_DIFF="[missatges_3-$PO]: Res"
-    pregunta
-    $DIR1/all-src2valencia.sed        < missatges_2-$PO > missatges_3-$PO
-    msgfmt --statistics missatges_3-$PO
 
     echo -e "\033[47;31mCinquè i últim:\e[0m es torna a executar «msgmerge»"
     MISSATGE_DIFF="[$PO]: Res"
     pregunta
-    msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_3-$PO $DIRTEM/${PO}t --output-file=$PO && rm -f missatges_3-$PO2
+    msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_2-$PO $DIRTEM/${PO}t --output-file=$PO && rm -f missatges_2-$PO2
     msgfmt --statistics $PO
-    kwrite missatges_3-$PO && rm -f *.po
+    kwrite missatges_2-$PO && rm -f *.po
   ;;
   *)
     sortida_po

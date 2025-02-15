@@ -41,7 +41,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]fectarà|
 [Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ir-los|irà|iran|ís|i[mtu]|int|íssi[mu]|issi[ns]|its|iu-l[eo]s?)|
 [Aa]f(egira|egíre[mu]|egire[ns]|g|ig|ige[ns]|ija)|
-[Aa]f(egeix|egint|egi[rtu]|egiu-l[ao]s|egirà|egirem|ig) (@krita_painting\|%1|accions de gir|ajustaments predefinits d'openh264|alguns recursos i enllaços cap a guies d'aprenentatge|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|(aqu|)esta (compartició|funció|pàgina)|carpetes|catàlegs|controladors INDI remots|diversos mètodes|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|ginys|marques|més (distribucions de partícules|interruptors|suggeriments del diccionari)|objectes|solidesa i profunditat|subelements nous|totes les pestanyes)|
+[Aa]f(egeix|egint|egi[rtu]|egiu-l[ao]s|egirà|egirem|ig) (@krita_painting\|%1|accions de gir|ajustaments predefinits d'openh264|alguns recursos i enllaços cap a guies d'aprenentatge|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|aquesta (compartició|funció|pàgina)|carpetes|catàlegs|controladors INDI remots|diversos mètodes|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|ginys|marques|més (distribucions de partícules|interruptors|suggeriments del diccionari)|objectes|solidesa i profunditat|subelements nous|totes les pestanyes)|
 [Aa]f(egeix|egint|egi[rtu]|egiu-l[ao]s|egirà|egirem|ig) el directori correcte|
 [Aa]f(egeix|egint|egi[rtu]|egiu-l[ao]s|egirà|egirem|ig) els (objectes visibles (aqu)?esta nit|vostres objectes favorits)|
 [Aa]f(egeix|egint|egi[rtu]|egiu-l[ao]s|egirà|egirem|ig) l'(enllaç|extensió <literal role=\"extension\">\.part<.literal>|opció per a mostrar el resultat)|
@@ -55,7 +55,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]fegi[ru]-(l[ao]|les)|
 [Aa]graïment especial|
 [Aa]rr[eo]don(eix|ix)|
-[Aa]jud([aio]|ada|ades|ant|a[rt]|arà|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
+[Aa]jud([aeio]|ada|ades|ant|a[rt]|arà|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
 [Aa]jud(a[ara|àre[mu]|are[ns])|
 [Aa]jud(ar?-l[ao]|ar-[mt]e|ar-[nv]os|eu en Tux|eu-l[ao]|eu-nos)|
 [Aa]judar? a (en Joaquim|en Tux|l'Alícia|l'usuari|la muntura|na Maria)|
@@ -194,7 +194,7 @@ Betelgeuse|
 [Dd]eixeu l'algorisme|
 [Dd]emana|
 [Dd]emana ajut|
-[Dd]emanem|
+[Dd]emane[mu]|
 [Dd]erivà|
 ([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?)|
 ([Dd]es|[Gg]uard)(a|ant|ar|arà|[ei]n?) (en l'ordinador remot (<[^<]{1,}>|)i(<[^<]{1,}>|) també|localment)|
@@ -363,7 +363,7 @@ Betelgeuse|
 [Oo]cultar la vostra adreça IP|
 [Oo]fer(eix|ix)|
 [Oo]fer(eix|ix) adreces|
-[Oo]ferir una (àmplia gamma de colors i HDR|nova experiència &kde;|)|
+[Oo]ferir una (àmplia gamma de colors i HDR|nova experiència &kde;)|
 [Oo]posat|
 [Oo]rdenar?|
 [Oo]rdenarà|

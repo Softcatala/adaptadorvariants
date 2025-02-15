@@ -6,16 +6,6 @@
 # <https://giec.iec.cat/conjugacio>
 # <https://www.avl.gva.es/lexicval/>
 
-# No tradueixis linies que no pertanyin a un msgstr
-/^msgstr/,/^#/ {
-
-# No tradueixis les linies comentades ni els msgid
-/^#/ b END
-/^msgid/ b END
-
-# -> es protegeix \n i \t: les paraules enganxades
-s/\\\([nt]\)/\\\1- /g
-
 # - verbs - #
 # Infinitiu / Gerundi / Participi
 # Indicatiu Present
@@ -1144,6 +1134,12 @@ s/\b\([Aa]\)terressi\([ns]\)\([^[:alnum:]]\)/\1terrare\2\3/g
 s/\b\([Aa]\)terr\([io]\)\([^[:alnum:]]\)/\1terre\3/g
 s/\b\([Aa]\)terri\([ns]\)\([^[:alnum:]]\)/\1terre\2\3/g
 s/\b\([Aa]\)tès\([^[:alnum:]]\)/\1tés\2/g
+# atorgar
+s/\b\([Aa]\)torgo\([^[:alnum:]]\)/\1torgue\2/g
+s/\b\([Aa]\)torgués\([^[:alnum:]]\)/\1torgara\2/g
+s/\b\([Aa]\)torguéssi\([mu]\)\([^[:alnum:]]\)/\1torgàre\2\3/g
+s/\b\([Aa]\)torguessi\([ns]\)\([^[:alnum:]]\)/\1torgare\2\3/g
+s/\b\([Aa]\)torgui\([ns]\|\)\([^[:alnum:]]\)/\1torgue\2\3/g
 # atrapar
 s/\b\([Aa]\)trapés\([^[:alnum:]]\)/\1trapara\2/g
 s/\b\([Aa]\)trapéssi\([mu]\)\([^[:alnum:]]\)/\1trapàre\2\3/g
@@ -1274,6 +1270,7 @@ s/\b\([Aa]\)utomatitzessi\([ns]\)\([^[:alnum:]]\)/\1utomatitzare\2\3/g
 s/\b\([Aa]\)utomatitz\([io]\)\([^[:alnum:]]\)/\1utomatitze\3/g
 s/\b\([Aa]\)utomatitzi\([ns]\)\([^[:alnum:]]\)/\1utomatitze\2\3/g
 s/\bAutor\(s\|\)\([^[:alnum:]]\)/Autoria\2/g
+    s/\bAutoria de LabPlot\([^[:alnum:]]\)/Autors de LabPlot\1/g
     s/\b\([Aa]\)utoria desconegut\([^[:alnum:]]\)/\1utoria desconeguda\2/g
     s/\bAutoria original\([^[:alnum:]]\)/Autor original\1/g
     s/\b\([Dd]\)rets d'autor\([^[:alnum:]]\)/\1rets d'autoria\2/g
@@ -1326,6 +1323,14 @@ s/\b\([Aa]\)v\([ae]\)ncéssi\([mu]\)\([^[:alnum:]]\)/\1vançàre\3\4/g
 s/\b\([Aa]\)v\([ae]\)ncessi\([ns]\)\([^[:alnum:]]\)/\1vançare\3\4/g
 s/\b\([Aa]\)v\([ae]\)nço\([^[:alnum:]]\)/\1vance\3/g
 s/\b\([Aa]\)v\([ae]\)nci\([ns]\|\)\([^[:alnum:]]\)/\1vance\3\4/g
+# avergonyir
+s/\b\([Aa]\)vergonyeix\(en\|es\|\)\([^[:alnum:]]\)/\1vergonyix\2\3/g
+s/\b\([Aa]\)vergonyeixi\([^[:alnum:]]\)/\1vergonyisca\2/g
+s/\b\([Aa]\)vergonyeixi\([ns]\)\([^[:alnum:]]\)/\1vergonyisque\2\3/g
+s/\b\([Aa]\)vergonyeixo\([^[:alnum:]]\)/\1vergonyisc\2/g
+s/\b\([Aa]\)vergonyís\([^[:alnum:]]\)/\1vergonyira\2/g
+s/\b\([Aa]\)vergonyíssi\([mu]\)\([^[:alnum:]]\)/\1vergonyíre\2\3/g
+s/\b\([Aa]\)vergonyissi\([ns]\)\([^[:alnum:]]\)/\1vergonyire\2\3/g
 # avisar
 s/\b\([Aa]\)visés\([^[:alnum:]]\)/\1visara\2/g
 s/\b\([Aa]\)viséssi\([mu]\)\([^[:alnum:]]\)/\1visàre\2\3/g
@@ -1646,6 +1651,7 @@ s/\b\([Cc]\)antonada\([^[:alnum:]]\)/\1antó\2/g
     s/\bles cantonades\([^[:alnum:]]\)/els cantons\1/g
     s/\bles quatre cantonades\([^[:alnum:]]\)/els quatre cantons\1/g
 s/\b\([Cc]\)antonades\([^[:alnum:]]\)/\1antons\2/g
+    s/\bcantons actives\([^[:alnum:]]\)/cantons actius\1/g
 s/\b\([Cc]\)antonès\([^[:alnum:]]\)/\1antonés\2/g
 # canviar
 s/\b\([Cc]\)anviés\([^[:alnum:]]\)/\1anviara\2/g
@@ -3001,12 +3007,14 @@ s/\bdes\(a\|ada\|ades\|ant\|ar\|arà\|aran\|areu\|at\|ats\|ava\|aven\|en\|es\|eu
     s/\bdesaments automàtics\([^[:alnum:]]\)/guardades automàtiques\1/g
 s/\bDesament\([^[:alnum:]]\)/Guardada\1/g
 s/\bdesament\([^[:alnum:]]\)/guardada\1/g
-s/\bDesaments\([^[:alnum:]]\)/Guardades\1/g
-s/\bdesaments\([^[:alnum:]]\)/guardades\1/g
+    s/\b\([Dd]\)el guardada\([^[:alnum:]]\)/\1e la guardada\2/g
     s/\b\([AE]\)l guardada\([^[:alnum:]]\)/La guardada\2/g
+        s/\bel pròxim guardada\([^[:alnum:]]\)/la pròxima guardada\1/g
     s/\b\([ae]\)l guardada\([^[:alnum:]]\)/la guardada\2/g
         s/\bper la guardada\([^[:alnum:]]\)/per a la guardada\1/g
     s/\bguardada manual de la sessió estigui actiu\([^[:alnum:]]\)/guardada manual de la sessió estiga activa\1/g
+s/\bDesaments\([^[:alnum:]]\)/Guardades\1/g
+s/\bdesaments\([^[:alnum:]]\)/guardades\1/g
 s/\bDesés\([^[:alnum:]]\)/Guardara\1/g
 s/\bdesés\([^[:alnum:]]\)/guardara\1/g
 s/\bDeséssi\([mu]\)\([^[:alnum:]]\)/Guardàre\1\2/g
@@ -6404,6 +6412,7 @@ s/\b\([Ll]\)ongitud\([^[:alnum:]]\)/\1largària\2/g
     s/\bA diferència de la llargària\([^[:alnum:]]\)/A diferència de la longitud\1/g
     s/\banomenat <firstterm>llargària\([^[:alnum:]]\)/anomenat <firstterm>longitud\1/g
     s/\bempleneu la llargària\([^[:alnum:]]\)/empleneu la longitud\1/g
+    s/\blatitud, llargària\([^[:alnum:]]\)/latitud, longitud\1/g
     s/\b\([Ll]\)atitud i llargària\([^[:alnum:]]\)/\1atitud i longitud\2/g
     s/\bllargària=0 graus\([^[:alnum:]]\)/longitud=0 graus\1/g
     s/\bllargària, latitud\([^[:alnum:]]\)/longitud, latitud\1/g
@@ -8688,6 +8697,7 @@ s/\b\([Ss]\)olucioni\([ns]\)\([^[:alnum:]]\)/\1olucione\2\3/g
     s/\ba sota\([^[:alnum:]]\)/davall\1/g
 s/\bSota\([^[:alnum:]]\)/Davall\1/g
 s/\bsota\([^[:alnum:]]\)/davall\1/g
+    s/\bdavall una capa\([^[:alnum:]]\)/davall d'una capa\1/g
     s/\bDavall demanda\([^[:alnum:]]\)/Sota demanda\1/g
     s/\bdavall demanda\([^[:alnum:]]\)/sota demanda\1/g
 # sol·licitar
@@ -8718,7 +8728,7 @@ s/\bsortints\([^[:alnum:]]\)/ixents\1/g
     s/\bquan sorti\([mu]\)\([^[:alnum:]]\)/quan isque\1\2/g        # hi ha cap manera millor de capturar el subjuntiu?
 s/\bSorti\(a\|da\|des\|en\|m\|nt\|r\|rà\|ran\|t\|ts\|u\)\([^[:alnum:]]\)/Eixi\1\2/g
 s/\bsorti\(a\|da\|des\|en\|m\|nt\|r\|rà\|ran\|t\|ts\|u\)\([^[:alnum:]]\)/eixi\1\2/g
-    s/\bse eixirà\([^[:alnum:]]\)/s'eixirà\1/g
+    s/\b\([Ss]\)e eixirà\([^[:alnum:]]\)/\1'eixirà\2/g
 s/\bSortí\([^[:alnum:]]\)/Isquí\1/g
 s/\bsortí\([^[:alnum:]]\)/isquí\1/g
 s/\bSortís\([^[:alnum:]]\)/Isquera\1/g
@@ -9641,8 +9651,12 @@ s/\b\([Xx]\)inès\([^[:alnum:]]\)/\1inés\2/g
 # Bookmarks / punts / marcadors
 # per sobre i sota / per damunt i per davall
 
+s/\b\([Pp]\)er el\([^[:alnum:]]\)/\1el\2/g
+
 # -> es desprotegeix
 s/\\\([nt]\)- /\\\1/g
+
+
 
 # Apostrofacions incorrectes
 s/\([^_&[:alnum:]]\)\([Dd]\)e \([aeiouAEIOU]\)/\1\2'\3/g
@@ -9662,6 +9676,7 @@ s/\([^_&[:alnum:]]\)el \([aeiouAEIOU]\)/\1l'\2/g
 s/\([^_&[:alnum:]]\)\([Dd]\)'\(UNIX\|Unix\|unix\)/\1\2e \3/g
 s/\([^_&[:alnum:]]\)L'\(UNIX\|Unix\|unix\)/\1El \2/g
 s/\([^_&[:alnum:]]\)l'\(UNIX\|Unix\|unix\)/\1el \2/g
+s/\bd'a l'equip\([^[:alnum:]]\)/de a l'equip\1/g
 # femenins
     # 7.4.3 La formació de sigles i de mots creuats <https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html?input_cercar=apostrofaci%F3+sigles&action=Principal&method=detall_completa&numPagina=1&idHit=14538&database=FITXES_PUB&tipusFont=Fitxes%20de%20l%27Optimot&idFont=14538&titol=Apostrofaci%F3%20davant%20de%20sigles%20i%20acr%F2nims&numeroResultat=7&clickLink=detall&tipusCerca=cerca.tot>
 s/\([^_&[:alnum:]]\)\([Ll]\)'IGU\([^[:alnum:]]\)/\1\2a IGU\3/g
