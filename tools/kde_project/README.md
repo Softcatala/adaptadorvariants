@@ -10,7 +10,7 @@ Valencian can be enabled, maybe '**va**', which is now free and so it might be e
 [bug report](https://bugreports.qt.io/browse/QTBUG-7100?gerritIssueType=IssueOnly)).
 
 ***va:*** Este projecte es va iniciar gràcies als comentaris i traduccions al valencià. Un
-consell és que intal·leu [GCompris](https://gcompris.net/index-ca@valencia.html) en el mòbil
+consell és que instal·leu [GCompris](https://gcompris.net/index-ca@valencia.html) en el mòbil
 (*Android*) i que gaudiu del valencià en jocs per a xiquets i xiquetes des dels 2 fins als
 10 anys (ens cal una veu nativa per a les gravacions). També cal veure si es pot habilitar
 el codi de dues lletres per al valencià, potser '**va**', el qual ara està lliure i així
