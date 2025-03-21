@@ -435,49 +435,49 @@ case $1 in
     TEXT2=
     TEXT3=
 # valencià
-    TEXT="[?]"
+    TEXT="[?]( |$)"
     MISSATGE="$MISSATGE1 ** Voleu ...? **"
     prompt_1
-    TEXT="[!]"
+    TEXT="[!]( |$)"
     MISSATGE="$MISSATGE1 ** _esborrar el signe d'exclamació?_ **"
     prompt_1
     TEXT=", que "
     MISSATGE="$MISSATGE1 ** , el qual **"
     prompt_1
     WORD='2,15'
-    TEXT="\ba l'($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a l'($APPEND|)\w{$WORD}"
-    APPEND_B="a l'($APPEND|)($APPEND_AL1)"
+    TEXT="\ba l'($APPEND)\w{$WORD}"
+    TEXT2="($APPEND_0) a l'($APPEND)\w{$WORD}"
+    APPEND_B="a l'($APPEND)($APPEND_AL1)"
     MISSATGE="$MISSATGE1 ** amb / en l' **"
     prompt_1
     WORD='3,15'
-    TEXT="a ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a ($APPEND|)\w{$WORD}"
-    APPEND_B="a ($APPEND|)($APPEND_A)"
+    TEXT="a ($APPEND)\w{$WORD}"
+    TEXT2="($APPEND_0) a ($APPEND)\w{$WORD}"
+    APPEND_B="a ($APPEND)($APPEND_A)"
     MISSATGE="$MISSATGE1 ** a inserir -> que cal inserir / que s'ha d'inserir / que s'inserirà **"
     prompt_1
-    TEXT="\ba la ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a la ($APPEND|)\w{$WORD}"
-    APPEND_B="\ba la ($APPEND|)($APPEND_ALA)"
+    TEXT="\ba la ($APPEND)\w{$WORD}"
+    TEXT2="($APPEND_0) a la ($APPEND)\w{$WORD}"
+    APPEND_B="\ba la ($APPEND)($APPEND_ALA)"
     MISSATGE="$MISSATGE1 ** amb / en la **"
     prompt_1
-    TEXT="\ba les ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a les ($APPEND|)\w{$WORD}"
-    APPEND_B="a les ($APPEND|)($APPEND_ALES)"
+    TEXT="\ba les ($APPEND)\w{$WORD}"
+    TEXT2="($APPEND_0) a les ($APPEND)\w{$WORD}"
+    APPEND_B="a les ($APPEND)($APPEND_ALES)"
     MISSATGE="$MISSATGE1 ** amb / en les **"
     prompt_1
-    TEXT="\bals? ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) als? ($APPEND|)\w{$WORD}"
-    APPEND_B="als? ($APPEND|)($APPEND_ALS)"
+    TEXT="\bals? ($APPEND)\w{$WORD}"
+    TEXT2="($APPEND_0) als? ($APPEND)\w{$WORD}"
+    APPEND_B="als? ($APPEND)($APPEND_ALS)"
     MISSATGE="$MISSATGE1 ** amb / en els? **"
     prompt_1
     APPEND_B=""
     TEXT="\ba on "
-    TEXT2="($APPEND_0) a on ($APPEND|)\w{$WORD}"
+    TEXT2="($APPEND_0) a on ($APPEND)\w{$WORD}"
     MISSATGE="$MISSATGE1 ** a on cal / s'ha(n) **"
     prompt_1
-    TEXT="\ba un ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a un ($APPEND|)\w{$WORD}"
+    TEXT="\ba un ($APPEND)\w{$WORD}"
+    TEXT2="($APPEND_0) a un ($APPEND)\w{$WORD}"
     MISSATGE="$MISSATGE1 ** amb / en un **"
     prompt_1
     TEXT="\b(activ[aei]|desactiv[aei]|habilit|inhabilit|marca|marque)"
@@ -571,7 +571,7 @@ case $1 in
         SOURCE='ca'
     fi
 
-    STRING="msgstr/\ba ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba ($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) a ($APPEND)$TEXT/"
     cerca_and_not
   ;;
   cerca_dir_al1)
@@ -580,7 +580,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba l'($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a l'($APPEND|)$TEXT/"
+    STRING="msgstr/\ba l'($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) a l'($APPEND)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_ala)
@@ -589,7 +589,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba la ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a la ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba la ($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) a la ($APPEND)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_ales)
@@ -598,7 +598,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba les ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a les ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba les ($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) a les ($APPEND)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_al)
@@ -607,7 +607,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\bal ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) al ($APPEND|)$TEXT/"
+    STRING="msgstr/\bal ($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) al ($APPEND)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_als)
@@ -616,7 +616,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\bals ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) als ($APPEND|)$TEXT/"
+    STRING="msgstr/\bals ($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) als ($APPEND)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_auns)
@@ -625,7 +625,7 @@ case $1 in
     [ "$3" ] || sortida_po
     TEXT="$3"
 
-    STRING="msgstr/\ba uns? ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a uns? ($APPEND|)$TEXT/"
+    STRING="msgstr/\ba uns? ($APPEND)$TEXT/ and not msgstr/\b($APPEND_0) a uns? ($APPEND)$TEXT/"
     cerca_and_not $2
   ;;
   cerca_dir_ab)
@@ -954,55 +954,76 @@ case $1 in
 
     installa_tot() {
       BRANCA="$1"
-      DIR_MESSAGES="/usr/share/locale/$SOURCE_0/LC_MESSAGES"
+      DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
 
       comprova_stable() {
-        DIR_ST="$DIR0/$BRANCA/l10n-kf5/$SOURCE_0/messages"
-        if [ "$BRANCA" = 'trunk' ]; then
-          DIR_M="$(basename $(dirname $POFILE))"
-          test -f $DIR0/$STABLE/ca@valencia/messages/$DIR_M/$FILE_NAME.po && EXIST='1'
-        fi
+        DIR_ST="$1"
+        DIR_M="$(basename $(dirname $POFILE))"
+        test -f $DIR0/$STABLE/ca@valencia/messages/$DIR_M/$FILE_NAME.po && EXIST='1'
       }
 
-      comprova_stable6() {
-        DIR_ST="$DIR0/$BRANCA/l10n-kf6/$SOURCE_0/messages"
-        if [ "$BRANCA" = 'trunk' ]; then
-          DIR_M="$(basename $(dirname $POFILE))"
-          test -f $DIR0/$STABLE6/ca@valencia/messages/$DIR_M/$FILE_NAME.po && EXIST='1'
-        fi
+      canvia_install_dir() {
+        DIR_MESSAGES="/usr/share/locale/ca/LC_MESSAGES"
+        $1 $2
       }
 
-      fes_mo6() {
-        DIR_ST="$DIR0/$BRANCA/l10n-kf6/$SOURCE_0/messages"
-        POFILE="$(find $DIR_ST -type f -name $1.po)"
+      crea_mo() {
+        if [[ "$DIR_M" = @(falkon|kwalletmanager) ]]; then
+            canvia_install_dir
+#         elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
+#             canvia_install_dir
+        fi
+        sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
+      }
+
+      fes_mo5() {
+        DIR_ST="$DIR0/trunk/l10n-kf5/ca@valencia/messages"
+        POFILE="$(find $DIR_ST -type f -name $FILE_NAME.po)"
+
         if [ "$POFILE" ]; then
-            comprova_stable6
-            [ "$EXIST" = '1' ] && return
-            echo "$BRANCA 6 - $DIR_MESSAGES/$FILE_NAME.mo"
-            sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
+            comprova_stable $DIR0/stable/l10n-kf5/ca@valencia/messages
+            if [ "$EXIST" = '1' ]; then
+                crea_mo
+                BRANCA='stable'
+              else
+                crea_mo
+                BRANCA='trunk '
+            fi
+            echo "$BRANCA 5 - $DIR_MESSAGES/$FILE_NAME.mo"
         fi
       }
 
       fes_mo() {
-        POFILE="$(find $DIR_ST -type f -name $1.po)"
+        POFILE="$(find $DIR_ST -type f -name $FILE_NAME.po)"
         if [ "$POFILE" ]; then
-            comprova_stable
-            [ "$EXIST" = '1' ] && return
-            echo "$BRANCA 5 - $DIR_MESSAGES/$FILE_NAME.mo"
-            sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
+            comprova_stable $DIR0/stable/l10n-kf6/ca@valencia/messages
+            if [ "$EXIST" = '1' ]; then
+                crea_mo
+                BRANCA='stable'
+              else
+                crea_mo
+                BRANCA='trunk '
+            fi
+            echo "$BRANCA 6 - $DIR_MESSAGES/$FILE_NAME.mo"
           else
-            fes_mo6 $FILE_NAME
+            fes_mo5
         fi
       }
 
-      DIR_ST="$DIR0/$BRANCA/l10n-kf5/$SOURCE_0/messages"
+      DIR_ST="$DIR0/trunk/l10n-kf6/ca@valencia/messages"
       fes_qm() {
         POFILE="$(find $DIR_ST -type f -name $1.po)"
         [ $2 ] && FILE_NAME="$2"
-        if [ $POFILE ]; then
+        if [ "$POFILE" ]; then
             comprova_stable
-            [ "$EXIST" = '1' ] && return
-            echo "$BRANCA 5 - $DIR_MESSAGES/$FILE_NAME.qm"
+            if [ "$EXIST" = '1' ]; then
+                crea_mo
+                BRANCA='stable'
+              else
+                crea_mo
+                BRANCA='trunk '
+            fi
+            echo "$BRANCA 6 - $DIR_MESSAGES/$FILE_NAME.qm"
             sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE_NAME.qm
         fi
       }
@@ -1010,13 +1031,16 @@ case $1 in
       for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
         do
           EXIST='0'
+          DIR_ST="$DIR0/trunk/l10n-kf6/ca@valencia/messages"
           FILE_NAME=$(echo "$file" | sed "s/\.\(mo\|qm\)//")
-          [ -f /usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo ] && fes_mo $FILE_NAME
-          [ -f /usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm ] && fes_qm $FILE_NAME
+          [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo" ] && fes_mo $FILE_NAME
+          [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm" ] && canvia_install_dir fes_qm $FILE_NAME
+          DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
+          DIR_M=""
         done
 
+
       # qt5 qt5keychain buho kid3 smplayer qt6 subsurface gcompris-qt sddm pavucontrol-qt kImageAnnotator
-      [ "$BRANCA" = 'trunk' ] && return
       if   [ -f /usr/share/gcompris-qt/translations/gcompris_ca.qm ];then
           DIR_MESSAGES="/usr/share/gcompris-qt/translations"
           fes_qm gcompris_qt gcompris_$SOURCE_0
@@ -1026,7 +1050,7 @@ case $1 in
       fi
     }
 
-    installa_tot trunk
+    installa_tot
     # Missing link
         # sudo ln -sf /usr/share/locale-langpack/ca/LC_MESSAGES/coreutils.mo /usr/share/locale/ca/LC_MESSAGES/coreutils.mo
     # LC_SCRIPTS
@@ -1034,7 +1058,7 @@ case $1 in
         # sudo cp -f ca@valencia/scripts/ki18n/ki18n5/ki18n5.js /usr/share/locale/ca@valencia/LC_SCRIPTS/ki18n5/
     # Desktop
         # sudo cp -f ca@valencia/messages/kconfigwidgets/kf5_entry.desktop /usr/share/locale/ca@valencia/kf5_entry.desktop
-    installa_tot stable
+#     installa_tot stable
   ;;
   sense_installar)
     DIR_ST="$DIR0/$TRUNK/ca@valencia/messages"
