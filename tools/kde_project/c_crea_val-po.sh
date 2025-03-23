@@ -961,7 +961,7 @@ case $1 in
     crea_mo() {
       if [[ "$DIR_M" = @(falkon|kwalletmanager) ]]; then
           canvia_install_dir
-        elif [[ "$FILE_NAME" = @(kbroadcastnotification|kcm_keyboard) ]]; then
+        elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
           canvia_install_dir
       fi
       sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
