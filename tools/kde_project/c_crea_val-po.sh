@@ -961,84 +961,76 @@ case $1 in
     crea_mo() {
       if [[ "$DIR_M" = @(falkon|kwalletmanager) ]]; then
           canvia_install_dir
-        elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
+        elif [[ "$FILE_NAME" = @(kbroadcastnotification|kcm_keyboard) ]]; then
           canvia_install_dir
       fi
       sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
     }
 
-    comprova_stable() {
-      DIR_ST="$1"
-      POFILE_ST="$(find $DIR_ST -type f -name $FILE_NAME.po)"
-      [ "$POFILE_ST" ] && POFILE="$POFILE_ST"
+    comprova() {
+      DIR="$1"
+      POFILE_2="$(find $DIR -type f -name $FILE_NAME.po)"
+      [ "$POFILE_2" ] && POFILE="$POFILE_2"
       [ ! "$POFILE" ] && return
       DIR_M="$(basename $(dirname $POFILE))"
       if [ "$2" = "qm" ]; then
-          if [ -f $DIR_ST/$DIR_M/$FILE_NAME.po ]; then
+          if [ $(echo $POFILE | grep stable) ]; then
               BRANCA='stable'
             else
               BRANCA='trunk '
           fi
-          sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE_NAME.qm
         else
-          if [ -f $DIR_ST/$DIR_M/$FILE_NAME.po ]; then
+          if [ $(echo $POFILE | grep stable) ]; then
               BRANCA='stable'
             else
               BRANCA='trunk '
           fi
-          crea_mo
       fi
-      POFILE_ST=""
-      POFILE=""
-    }
-
-    fes_mo5() {
-      DIR_ST="$DIR0/trunk/l10n-kf5/ca@valencia/messages"
-      POFILE="$(find $DIR_ST -type f -name $FILE_NAME.po)"
-      if [ "$POFILE" ]; then
-          comprova_stable $DIR0/stable/l10n-kf5/ca@valencia/messages
-          echo -e "\e[1;95m$BRANCA 5 -\e[0m $DIR_MESSAGES/$FILE_NAME.mo"
-      fi
+      NUM="$(echo $POFILE | cut -f 7 -d'/' | sed 's/l10n-kf//')"
     }
 
     fes_mo() {
-      POFILE="$(find $DIR_ST -type f -name $FILE_NAME.po)"
-      if [ "$POFILE" ]; then
-          comprova_stable $DIR0/stable/l10n-kf6/ca@valencia/messages
-          echo -e "\e[1;33m$BRANCA 6 -\e[0m $DIR_MESSAGES/$FILE_NAME.mo"
-        else
-          fes_mo5
+      comprova $DIR0/trunk/l10n-kf6/ca@valencia/messages
+      comprova $DIR0/stable/l10n-kf6/ca@valencia/messages
+      comprova $DIR0/trunk/l10n-kf5/ca@valencia/messages
+      comprova $DIR0/stable/l10n-kf5/ca@valencia/messages
+      if [ "$DIR_M" ]; then
+          if [[ "$(echo $BRANCA $NUM)" = @(stable 5|trunk 5) ]]; then
+              COLOR_B="95"
+            else
+              COLOR_B="33"
+          fi
+          echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE_NAME.mo"
+          crea_mo
+          POFILE=""
       fi
     }
 
     fes_qm() {
-      POFILE="$(find $DIR_ST -type f -name $1.po)"
-      if [ "$POFILE" ]; then
-          comprova_stable $DIR0/stable/l10n-kf5/ca@valencia/messages qm
-          comprova_stable $DIR0/stable/l10n-kf6/ca@valencia/messages qm
-          echo -e "\e[1;94m$BRANCA 6 -\e[0m $DIR_MESSAGES/$FILE_NAME.qm"
+      comprova $DIR0/trunk/l10n-kf6/ca@valencia/messages  qm
+      comprova $DIR0/stable/l10n-kf6/ca@valencia/messages qm
+      comprova $DIR0/trunk/l10n-kf5/ca@valencia/messages  qm
+      comprova $DIR0/stable/l10n-kf5/ca@valencia/messages qm
+      if [ "$DIR_M" ]; then
+          echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE_NAME.qm"
+          sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE_NAME.qm
+          POFILE=""
       fi
-# ../../ca/messages/karchive/karchive5_qt.po
-# ../../ca/messages/kauth/kauth5_qt.po
-# ../../ca/messages/kbookmarks/kbookmarks5_qt.po
-# ../../../../stable/l10n-kf5/ca/messages/kwin/kcmkwincompositing.po
-# kcm_notificationhelper
-
     }
 
     for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
       do
-        DIR_ST="$DIR0/trunk/l10n-kf6/ca@valencia/messages"
+        DIR="$DIR0/trunk/l10n-kf6/ca@valencia/messages"
         FILE_NAME=$(echo "$file" | sed "s/\.\(mo\|qm\)//")
-        [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo" ] && fes_mo $FILE_NAME
+        [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo" ] && fes_mo
         if [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm" ]; then
             canvia_install_dir
-            fes_qm $FILE_NAME
+            fes_qm
         fi
         DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
         [ "$DIR_M" ] || echo -e "$DIR_M \e[1;91m- $FILE_NAME\e[0m"
         DIR_M=""
-
+        NUM=""
       done
 
     # qt5 qt5keychain buho kid3 smplayer qt6 subsurface gcompris-qt sddm pavucontrol-qt kImageAnnotator
@@ -1059,13 +1051,13 @@ case $1 in
         # sudo cp -f ca@valencia/messages/kconfigwidgets/kf5_entry.desktop /usr/share/locale/ca@valencia/kf5_entry.desktop
   ;;
   sense_installar)
-    DIR_ST="$DIR0/$TRUNK/ca@valencia/messages"
+    DIR="$DIR0/$TRUNK/ca@valencia/messages"
 
     for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
       do
         executa() {
           FILE_NAME=$(echo "$file" | sed "s/\.\(mo\|qm\)//")
-          POFILE="$(find $DIR_ST -type f -name $FILE_NAME.po)"
+          POFILE="$(find $DIR -type f -name $FILE_NAME.po)"
           echo " * $file -> $POFILE"
         }
 
