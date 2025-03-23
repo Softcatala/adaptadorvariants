@@ -954,17 +954,13 @@ case $1 in
 
     DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
 
-    canvia_install_dir() {
-      DIR_MESSAGES="/usr/share/locale/ca/LC_MESSAGES"
-    }
-
     crea_mo() {
-      if [[ "$DIR_M" = @(falkon|kwalletmanager) ]]; then
-          canvia_install_dir
-        elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
-          canvia_install_dir
-      fi
       sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
+      if [[ "$DIR_M" = @(falkon|kwalletmanager) ]]; then
+          LINK="1"
+        elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
+          LINK="1"
+      fi
     }
 
     comprova() {
@@ -1000,9 +996,9 @@ case $1 in
             else
               COLOR_B="33"
           fi
-          echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE_NAME.mo"
+          FILE="$FILE_NAME.mo"
+          echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
           crea_mo
-          POFILE=""
       fi
     }
 
@@ -1012,25 +1008,30 @@ case $1 in
       comprova $DIR0/trunk/l10n-kf5/ca@valencia/messages  qm
       comprova $DIR0/stable/l10n-kf5/ca@valencia/messages qm
       if [ "$DIR_M" ]; then
-          echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE_NAME.qm"
-          sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE_NAME.qm
-          POFILE=""
+          FILE="$FILE_NAME.qm"
+          echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
+          sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE
       fi
     }
 
     for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
       do
+        LINK="0"
         DIR="$DIR0/trunk/l10n-kf6/ca@valencia/messages"
         FILE_NAME=$(echo "$file" | sed "s/\.\(mo\|qm\)//")
         [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo" ] && fes_mo
         if [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm" ]; then
-            canvia_install_dir
             fes_qm
+            LINK="1"
         fi
         DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
-        [ "$DIR_M" ] || echo -e "$DIR_M \e[1;91m- $FILE_NAME\e[0m"
+        if [ "$LINK" -eq 1 ]; then
+            sudo ln -fs /usr/share/locale/ca@valencia/LC_MESSAGES/$FILE /usr/share/locale/ca/LC_MESSAGES/$FILE
+            echo -e "\t\t\e[3m(Enllaçat amb /usr/share/locale/ca/LC_MESSAGES/$FILE)\e[0m"
+        fi
         DIR_M=""
         NUM=""
+        POFILE=""
       done
 
     # qt5 qt5keychain buho kid3 smplayer qt6 subsurface gcompris-qt sddm pavucontrol-qt kImageAnnotator
@@ -1053,14 +1054,14 @@ case $1 in
   sense_installar)
     DIR="$DIR0/$TRUNK/ca@valencia/messages"
 
+    echo "** Se cerca el PO a «$TRUNK/ca@valencia/messages» **"
     for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
       do
         executa() {
           FILE_NAME=$(echo "$file" | sed "s/\.\(mo\|qm\)//")
           POFILE="$(find $DIR -type f -name $FILE_NAME.po)"
-          echo " * $file -> $POFILE"
+          echo -e " \e[1;91m-* $file -> $POFILE\e[0m"
         }
-
         [ -f /usr/share/locale/ca@valencia/LC_MESSAGES/$file ] || executa
       done
   ;;
