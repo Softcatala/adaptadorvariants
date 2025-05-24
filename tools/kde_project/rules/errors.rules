@@ -1,0 +1,193 @@
+#
+#
+
+# Remove XML entities.
+# include file="filter.include"
+
+# Remove accelerator and  hyphen inside words.
+addFilterRegex match="(_|~|&)" on="pmsgid,pmsgstr"
+
+{\bbrightness\b}i
+valid msgstr="brillantor"
+hint="Es tradueix per «brillantor»."
+
+{\bhost\b}i
+valid msgid="\bA host of tools\b"
+valid msgid="\bhost.?name\b"
+valid msgid="\bIRC\shost\sserver\b"
+valid msgid="\b(proxy|remote|unknown)\shost\b"
+valid msgid="\bWe host interviews\b"
+valid msgstr="acolliu"
+valid msgstr="allotgeu"
+valid msgstr="allotja"
+valid msgstr="amfitrió"
+valid msgstr="amfitriona"
+valid msgstr="hostatja"
+valid msgstr="--host"
+hint="Es tradueix per «acolliu, allotgeu, allotja, amfitrió, amfitriona, hostatja»."
+
+    {\bhost.?name\b}i
+    valid msgid="\b(custom|invalid|proxy|remote|server|unknown|valid)\shost.?name\b"
+    valid msgid="\bhost.?name.(address|and\sport|of\sthe)\b"
+    valid msgstr="nom_amfitrió"
+    valid msgstr="nom de l'amfitrió"
+    hint="Es tradueix per «nom_amfitrió, nom de l'amfitrió»."
+
+        {\bcustom\shost.?name\b}i
+        valid msgstr="nom personalitzat de l'amfitrió"
+        hint="Es tradueix per «nom personalitzat de l'amfitrió»."
+
+        {\bhost.?name.address\b}i
+        valid msgstr="nom d'amfitrió o adreça"
+        hint="Es tradueix per «nom d'amfitrió o adreça»."
+
+        {\bhost.?name\sand\sport\b}i
+        valid msgstr="nom i el port de l'amfitrió"
+        hint="Es tradueix per «nom i el port de l'amfitrió»."
+
+        {\bhost.?name\sof\sthe\b}i
+        valid msgstr="nom d'amfitrió del"
+        hint="Es tradueix per «nom d'amfitrió del»."
+
+        {\binvalid\shost.?name\b}i
+        valid msgstr="nom no vàlid de l'amfitrió"
+        hint="Es tradueix per «nom no vàlid de l'amfitrió»."
+
+        {\bunknown\shost.?name\b}i
+        valid msgstr="nom d'amfitrió desconegut"
+        hint="Es tradueix per «nom d'amfitrió desconegut»."
+
+        {\bvalid\shost.?name\b}i
+        valid msgstr="nom d'amfitrió vàlid"
+        hint="Es tradueix per «nom d'amfitrió vàlid»."
+
+    {\bproxy\shost\b}i
+    valid msgid="\bproxy\shost.?(device|name)\b"
+    valid msgstr="\bamfitrió intermediari\b"
+    hint="Es tradueix per «amfitrió intermediari»."
+
+        {\bproxy\shost.?name\b}i
+        valid msgid="\binvalid\sproxy\shost.?name\b"
+        valid msgstr="\bnom de l'amfitrió intermediari\b"
+        hint="Es tradueix per «nom de l'amfitrió intermediari»."
+
+            {\binvalid\sproxy\shost.?device\b}i
+            valid msgstr="nom no vàlid de l'amfitrió intermediari"
+            hint="Es tradueix per «nom no vàlid de l'amfitrió intermediari»."
+
+    {\bremote\shost\b}i
+    valid msgid="\bremote\shost.?(device|name)\b"
+    valid msgstr="amfitrió remot"
+    hint="Es tradueix per «amfitrió remot»."
+
+        {\bremote\shost\/device\b}i
+        valid msgstr="amfitrió o del dispositiu remot"
+        hint="Es tradueix per «amfitrió o del dispositiu remot»."
+
+        {\bremote\shost.?name\b}i
+        valid msgstr="nom de l'amfitrió remot"
+        hint="Es tradueix per «nom de l'amfitrió remot»."
+
+    {\bserver\b}i
+    valid msgid="\b(CDDB|IMAP|IRC|SMTP)\sserver\b"
+    valid msgid="\bhost.?name\sof\sthe\sserver\b"
+    valid msgid="bIRC\shost\sserver\b"
+    valid msgid="\bserver\shost.?name\b"
+    valid msgid="\bWindows\sServer\b"
+    valid msgstr="servidor"
+    hint="Es tradueix per «servidor»."
+
+        {\bCDDB\sserver\b}i
+        valid msgstr="servidor de la CDDB"
+        hint="Es tradueix per «servidor de la CDDB»."
+
+        {\bIMAP\sserver\b}i
+        valid msgid="\bIMAP\sserver\shost.?name\b"
+        valid msgstr="servidor IMAP"
+        hint="Es tradueix per «servidor IMAP»."
+
+            {\bIMAP\sserver\shost.?name\b}i
+            valid msgstr="nom d'amfitrió del servidor IMAP"
+            hint="Es tradueix per «nom d'amfitrió del servidor IMAP»."
+
+        {\bIRC\sserver\b}i
+        valid msgstr="servidor d'IRC"
+        hint="Es tradueix per «servidor d'IRC»."
+
+            {\bIRC\shost\sserver\b}i
+            valid msgstr="servidor amfitrió d'IRC"
+            hint="Es tradueix per «servidor amfitrió d'IRC»."
+
+        {\bserver\shost.?name\b}i
+        valid msgid="\b(IMAP|SMTP)\sserver\shost.?name\b"
+        valid msgstr="nom d'amfitrió del servidor"
+        hint="Es tradueix per «nom d'amfitrió del servidor»."
+
+        {\bSMTP\sserver\b}i
+        valid msgid="\bSMTP\sserver\shost.?name\b"
+        valid msgstr="servidor SMTP"
+        hint="Es tradueix per «servidor SMTP»."
+
+            {\bSMTP\sserver\shost.?name\b}i
+            valid msgstr="nom d'amfitrió del servidor SMTP"
+            hint="Es tradueix per «nom d'amfitrió del servidor SMTP»."
+
+        {\bunknown\shost\b}i
+        valid msgstr="amfitrió desconegut"
+        hint="Es tradueix per «amfitrió desconegut»."
+
+{\bhosts\b}i
+valid msgstr="allotja"
+valid msgstr="amfitrions"
+hint="Es tradueix per «aallotja, mfitrions»."
+
+    {\bservers\b}i
+    valid msgid="\bany\sremote\sservers\b"
+    valid msgstr="cap servidor"
+    valid msgstr="servidors"
+    hint="Es tradueix per «cap servidor, servidors»."
+
+        {\bany\sremote\sservers\b}i
+        valid msgstr="cap servidor remot"
+        hint="Es tradueix per «cap servidor remot»."
+
+{\blengths?\b}i
+valid msgid="\b(file|filename|focal|Full|Half|l|line|path|Rubber).?lengths?\b"
+valid msgid="\blength\sof\stime\b"
+valid msgid="\blengths?\s(needed|notes)\b"
+valid msgstr="duració"
+valid msgstr="grandàri(a|es)"
+valid msgstr="llargàri(a|es)"
+valid msgstr="mida de zero bytes"
+valid msgstr="incrementant-les cada vegada"
+valid msgstr="Do not translate, it's a waste of time"
+hint="Es tradueix per «duració, grandària, grandàries, llargària, llargàries»."
+
+    {\bfocal\slengths?\b}i
+    valid msgstr="\bfocal\slengths?\b"
+    valid msgstr="distància focal"
+    valid msgstr="distàncies focals"
+    hint="Es tradueix per «distància focal, distàncies focals»."
+
+{\bLightness\b}i
+valid msgid="\bhue\/colorfulness\/lightness\b"
+valid msgstr="aclarir"
+valid msgstr="Claredat"
+valid msgstr="lleugeresa"
+hint="Es tradueix per «aclarir, (Eina:) Claredat» (multimèdia)"
+
+    {\bhue\/colorfulness\/lightness\b}i
+    valid msgstr="to\/color\/claredat"
+    hint="Es tradueix per «to\/color\/claredat, (Eina: Claredat)» (multimèdia)"
+
+{\blongitudes?\b}i
+valid msgstr="\blongituds?\b"
+hint="Es tradueix per «longitud, longituds»."
+
+#     {\blong\b}i
+#     valid msgstr="long"
+#     hint="Es tradueix per «long (de longitud)»."
+
+{\bluminosity\b}i
+valid msgstr="\blluminositat\b"
+hint="Es tradueix per «lluminositat»."

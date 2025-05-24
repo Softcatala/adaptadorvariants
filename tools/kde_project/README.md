@@ -28,11 +28,13 @@ An explanation of the scripts:
 
 * `kde-src2valencia_a.sed`      *->* Make corrections and improves (into Catalan text)
 * `kde-src2valencia_b.sed`
+* `kde-src2valencia-esmena.sed` *->* fixes (improves the control and review)
 
 **IMPORTANT:** also includes some adaptations to Valencian *(in review)*.
 
 * `all-src2valencia-adapta.sed` *->* Rules to adapt the language to Valencian (e.g. a -> en, app names...)
 * `all-src2valencia.sed`        *->* Core rules with Valencian language (e.g. verb conjugation, loose words...)
+* `all-src2valencia-esmena.sed` *->* fixes (improves the control and review)
 
 **Note 1:** this last sed file are very large, we recommend *closing everything* before opening it.
 

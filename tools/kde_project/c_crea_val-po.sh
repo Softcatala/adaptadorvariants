@@ -1,5 +1,12 @@
 #!/bin/bash --debug
 
+[ $(command -v awk)      ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
+[ $(command -v cpulimit) ] || $(echo "Error: Penseu a instal·lar el paquet «cpulimit»: apt install cpulimit"; exit 0)
+[ $(command -v /usr/lib/qt6/bin/lconvert) ] || $(echo "Error: Penseu a instal·lar el paquet «qt6-l10n-tools»: apt install qt6-l10n-tools"; exit 0)
+[ $(command -v posieve)  ] || $(echo "Error: Penseu a instal·lar les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."; exit 0)
+[ $(command -v sed)      ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU: apt install sed"; exit 0)
+[ $(command -v svn)      ] || $(echo "Error: Penseu a instal·lar el paquet «subversion»: apt install subversion"; exit 0)
+
 DIR1="$(echo $PWD)"
 DIR0="$(cd ../../../.. ; echo $PWD)"
 cd $DIR1
@@ -7,21 +14,23 @@ STABLE="stable/l10n-kf5"
 TRUNK="trunk/l10n-kf5"
 STABLE6="stable/l10n-kf6"
 TRUNK6="trunk/l10n-kf6"
+MEM_DIR="$(echo /run/user/$(id -u))"
+CPU=
 MSG='msgstr'
 SOURCE_0='ca@valencia'
 TEXT="$2"
 
 # Per a trobar els resultats amb un enllaç o caràcter especial (p. ex., va rebre el [premi a -en aquest cas «[»-)
-APPEND='\*|\*\*|\*\*\*|\[|[&«]|<[^<]{1,}>'
+APPEND='\*|\*\*|\*\*\*|:ref:`|`|\[|[&«]|<[^<]{1,}>'
 # Es descarten les paraules annexades abans (p. ex., accedint recentment a la -en aquest cas «accedint recentment»-)
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="acte (es bus|se cer)caran|baix|bord|cada segon|causa|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|simple|sud|temps complet|terme|tindre en compte|tort|través|una distància|vegades|voluntat"
-APPEND_AL1="escala especificada|especificat|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés\)\.|instant|oest de Greenwich"
-APPEND_ALA="conclusió|distància en micres|dreta|dreta, davall|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició apuntada|qual|rotació|vegada|visualització|vostra opció"
-APPEND_ALES="dotze del migdia"
+APPEND_A="[0123456789]|«Escala|acte (es bus|se cer)caran|baix|bord|cada segon|causa|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|temps complet|terme|tindre en compte|title=|tort|través|una distància|vegades|voluntat"
+APPEND_A_L="escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés\)|instant|oest de Greenwich"
+APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició apuntada|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
+APPEND_A_LES="dotze del migdia"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual sovint es refer(eix|ix)|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -38,6 +47,7 @@ sortida_po() {
                                   Apareix un indicatiu en canviar de regla.
                                   Permet especificar un sol fitxer.
                                   \033[47;31mNOTA:\e[0m Primer s'ha de generar la traducció!
+  comprova (dir)                  Aplica unes regles de cerca del pology.
 
   \033[1;37mCERCAR\n  ------\e[0m
   cerca_dir va (text_cerca) (dir))[/fitxer.po]? [doc]?
@@ -51,7 +61,7 @@ sortida_po() {
                                   Si s'especifica una carpeta, la cerca començarà en
                                   aquesta.
   cerca_dir_a    va (paraula)     \033[1;37mSe cerca «a »+«paraula».\e[0m
-  cerca_dir_al1  va (paraula)     \033[1;37mSe cerca «a l'»+«paraula».\e[0m
+  cerca_dir_a_l  va (paraula)     \033[1;37mSe cerca «a l'»+«paraula».\e[0m
   cerca_dir_ala  va (paraula)     \033[1;37mSe cerca «a la »+«paraula».\e[0m
   cerca_dir_ales va (paraula)     \033[1;37mSe cerca «a les »+«paraula».\e[0m
   cerca_dir_al   va (paraula)     \033[1;37mSe cerca «al »+«paraula».\e[0m
@@ -73,7 +83,8 @@ sortida_po() {
   adapta                          * \033[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
   adapta_doc                      * \033[1;37mAdapta i genera la documentació\e[0m en el SVN local.
                                   \033[47;31mNOTA:\e[0m Després s'han de moure manualment!
-  \033[47;31madapta_dir (dir)\e[0m                \033[1;37mPROVES! Adapta i genera nomes una carpeta\e[0m en el SVN local.
+  \033[47;31madapta_dir (dir)\e[0m                \033[1;37mPROVES! Adapta i genera només una carpeta\e[0m en el SVN local.
+  \033[47;31madapta_dir_va (dir)\e[0m                \033[1;37mPROVES! El mateix pero només amb els fitxers ja en valencià\e[0m.
   modifica_capçalera fitxer.po    * \033[1;37mActualitza la informació a la capçalera\e[0m.
   adapta_valencia (recursiu|usuari)
                                   * \033[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
@@ -125,8 +136,10 @@ sortida_po() {
   \033[1;37mEls scripts en SED, en odre de processament:\e[0m
   • kde-src2valencia_a.sed      \033[1;37mRepo:\e[0m sense publicar
   • kde-src2valencia_b.sed      \033[1;37mRepo:\e[0m sense publicar
+  • kde-src2valencia-esmena.sed \033[1;37mRepo:\e[0m sense publicar
   • all-src2valencia.sed
   • all-src2valencia-adapta.sed
+  • all-src2valencia-esmena.sed
 
   \033[1;37mLLEGENDA\n  --------\e[0m
   * (Opcions que només es poden executar des de la carpeta base de l'script).\n"
@@ -152,12 +165,21 @@ command_cm() {
           done
 }
 
+command_rm() { [ -e "$(echo /run/user/$(id -u))/kde-src2valencia.sed" ] && rm -f "/run/user/$(id -u)/kde-src2valencia.sed"; }
+
 sed_files() {
   if [ ! -f kde-src2valencia.sed ]; then
       cp  $DIRTR/kde-src2valencia_a.sed         kde-src2valencia.sed
       cat $DIRTR/kde-src2valencia_b.sed      >> kde-src2valencia.sed
+      cat $DIRTR/kde-src2valencia-esmena.sed >> kde-src2valencia.sed
       cp  $DIRTR/all-src2valencia-adapta.sed    all-src2valencia.sed
       cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
+      cat $DIRTR/all-src2valencia-esmena.sed >> all-src2valencia.sed
+      [ "$(pidof -c cpulimit)" ] && CPU='1'
+      [ "$CPU" ] && kill -9 $(pidof -c cpulimit)
+      [ "$CPU" ] || cpulimit -be all-src2valencia.sed -l 75
+      [ "$CPU" ] || cpulimit -be kde-src2valencia.sed -l 75
+      CPU='1'
   fi
 }
 
@@ -170,15 +192,15 @@ copia_valencia() {
 
   adapta_ho() {
     if [ -e $DIRTEM/${PO2}t ]; then
+        DIRTR="$PWD"
         # Les primeres escriptures van a l'espai d'usuari en la memòria del sistema (molt més ràpid, alleuja i allarga la vida)
-        MEM_DIR="$(echo /run/user/$(id -u))"
         cd $MEM_DIR
+        sed_files
 
         echo -e "   \e[38;5;44m· ($1)\e[0m $PO2"
         # Fem que les frases/paràgrafs siguin d'una sola línia:
         msgmerge --silent --previous --no-wrap $CA_MOD $DIRTEM/${PO2}t --output-file=missatges-$PO2
 
-        sed_files
         # Executem la conversió del fitxer PO
         ./kde-src2valencia.sed        < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
         ./all-src2valencia.sed        < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
@@ -189,7 +211,7 @@ copia_valencia() {
         mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_2-$PO2
         cd $DIR1
       else
-        echo -e "   \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut cap a l10n-kf6\e[0m"
+        echo -e "   \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut o eliminat\e[0m"
     fi
   }
 
@@ -307,6 +329,7 @@ neteja_ca() {
   DIROBJ="ca/$MESSAGES/$1"
   DIRMOD="ca-mod/$MESSAGES/$1"
   DIRTEM="templates/$MESSAGES/$1"
+
   mkdir -p $DIRTEM
   for po in $(find $DIR1/$DIRMOD/* -maxdepth 1 -type f -name "*.po")
     do
@@ -412,19 +435,35 @@ case $1 in
     find $SOURCE_0/messages/* -type f -name "$2"
   ;;
   crea_po_linia)
+    comprova_lloc
     [ "$2" ] || sortida_po
     [ "$3" ] || sortida_po
-    if [ -f ca/messages/$2 ]; then
-        PO="$(basename $2)"
-        DIR="$(echo $2 | cut -f 1 -d'/')"
-        echo $DIR - $PO
-        PHRASE="$3"
-        msgmerge --silent --previous --no-wrap ca/messages/$DIR/$PO templates/messages/$DIR/${PO}t --output-file=missatges-$PO
-        grep -n "$PHRASE" missatges-$PO
-        [ -f missatges-$PO ] && rm -f missatges-$PO
-      else
-       echo "$2: No existeix!"
-    fi
+    FILE="$2"
+    PHRASE="$3"
+
+    cerca_linia() {
+      PO="$(basename $FILE)"
+      DIR="$(echo $FILE | cut -f 1 -d'/')"
+      echo -e "\033[1;37m# $BRANCH:\e[0m $DIR \033[1;37m-\e[0m $PO"
+      msgmerge --silent --previous --no-wrap ca/messages/$DIR/$PO templates/messages/$DIR/${PO}t --output-file=missatges-$PO
+      grep --color=auto --ignore-case --line-number "$PHRASE" missatges-$PO
+      [ -f missatges-$PO ] && rm -f missatges-$PO
+    }
+
+    BRANCH='Repositori local'
+    cerca_linia
+    BRANCH='Repositori l10n-kf5 de trunk'
+    cd ../../
+    [ -r "ca/messages/$FILE" ] && cerca_linia
+    BRANCH='Repositori l10n-kf5 de stable'
+    cd ../../stable/l10n-kf5/
+    [ -r "ca/messages/$FILE" ] && cerca_linia
+    BRANCH='Repositori l10n-kf6 de trunk'
+    cd ../../trunk/l10n-kf6/
+    [ -r "ca/messages/$FILE" ] && cerca_linia
+    BRANCH='Repositori l10n-kf6 de stable'
+    cd ../../stable/l10n-kf6/
+    [ -r "ca/messages/$FILE" ] && cerca_linia
   ;;
   po_nou)
     [ "$2" ] || sortida_po
@@ -444,13 +483,13 @@ case $1 in
     TEXT=", que "
     MISSATGE="$MISSATGE1 ** , el qual **"
     prompt_1
-    WORD='2,15'
+    WORD='2,'
     TEXT="\ba l'($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_0) a l'($APPEND|)\w{$WORD}"
-    APPEND_B="a l'($APPEND|)($APPEND_AL1)"
+    APPEND_B="a l'($APPEND|)($APPEND_A_L)"
     MISSATGE="$MISSATGE1 ** amb / en l' **"
     prompt_1
-    WORD='3,15'
+    WORD='3,'
     TEXT="a ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_0) a ($APPEND|)\w{$WORD}"
     APPEND_B="a ($APPEND|)($APPEND_A)"
@@ -458,12 +497,12 @@ case $1 in
     prompt_1
     TEXT="\ba la ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_0) a la ($APPEND|)\w{$WORD}"
-    APPEND_B="\ba la ($APPEND|)($APPEND_ALA)"
+    APPEND_B="\ba la ($APPEND|)($APPEND_A_LA)"
     MISSATGE="$MISSATGE1 ** amb / en la **"
     prompt_1
     TEXT="\ba les ($APPEND|)\w{$WORD}"
     TEXT2="($APPEND_0) a les ($APPEND|)\w{$WORD}"
-    APPEND_B="a les ($APPEND|)($APPEND_ALES)"
+    APPEND_B="a les ($APPEND|)($APPEND_A_LES)"
     MISSATGE="$MISSATGE1 ** amb / en les **"
     prompt_1
     TEXT="\bals? ($APPEND|)\w{$WORD}"
@@ -528,8 +567,14 @@ case $1 in
     MISSATGE="$MISSATGE1 ** «és molt variable»: a sobre, **"
     prompt_1
     TEXT="\bunder "
-    MISSATGE="$MISSATGE1 ** a sota **"
+    MISSATGE="$MISSATGE1 ** a sota, d'acord amb **"
     prompt_1
+  ;;
+  comprova)
+    DIR="ca@valencia/messages/$2"
+    [ -d "$DIR" ] || sortida_po
+    posieve check-rules -s rfile:../../../../svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/errors.rules $DIR/
+    echo "* posieve check-rules -s lokalize -s rfile:rules/errors.rules ca-mod/messages/kstars"
   ;;
   cerca_dir)
     [ "$2" ] || sortida_po
@@ -574,7 +619,7 @@ case $1 in
     STRING="msgstr/\ba ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a ($APPEND|)$TEXT/"
     cerca_and_not
   ;;
-  cerca_dir_al1)
+  cerca_dir_a_l)
     [ "$2" ] || sortida_po
       [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
     [ "$3" ] || sortida_po
@@ -695,9 +740,8 @@ case $1 in
   ;;
   adapta)
     comprova_lloc
-      __NV_PRIME_RENDER_OFFLOAD=1
-      __glx_vendor_library_name=nvidia ./adapta-kde_recursivament.sh recursiu $2
-#       DRI_PRIME=1 ./adapta-kde_recursivament.sh recursiu $2
+    command_rm
+    ./adapta-kde_recursivament.sh recursiu $2
   ;;
   modifica_capçalera)
     [ -f "$2" ] || sortida_po
@@ -708,6 +752,7 @@ case $1 in
   ;;
   adapta_doc)
     comprova_lloc
+    command_rm
     MESSAGES='docmessages'
     ORDRE='copia_valencia'
     command_cm
@@ -715,6 +760,7 @@ case $1 in
     echo -e "\e[38;5;44mSCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0 [app]\e[0m"
   ;;
   adapta_dir)
+    command_rm
     for po in $(find ca/messages/$2/* -type f -name "*.po")
       do
         PO2="$(basename $po)"
@@ -722,8 +768,18 @@ case $1 in
         ./adapta-kde_recursivament.sh fitxer $DIR/$PO2
       done
   ;;
+  adapta_dir_va)
+    command_rm
+    for po in $(find ca@valencia/messages/$2/* -type f -name "*.po")
+      do
+        PO2="$(basename $po)"
+        DIR="$(dirname $po | sed -e s,ca@valencia\/,,)"
+        ./adapta-kde_recursivament.sh fitxer $DIR/$PO2
+      done
+  ;;
   adapta_valencia)
     comprova_lloc
+    command_rm
     adapta_val() {
       cd $DIR0/$STABLE
       ./adapta-kde_recursivament.sh $1
@@ -903,23 +959,29 @@ case $1 in
   copia_aquests)
     comprova_lloc
     [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep "^[0-9]*$")" ] || sortida_po
+
+    TARGETS="$(echo $2 | grep "^[0-9 ]*$")"
+    [ "$TARGETS" ] || sortida_po
+
     commits_num(){
       cd $SOURCE_0
       FITXERS="$(svn log --verbose -r $1 | grep '\/ca@valencia\/messages\/' | sed 's/\(^.*\)Treball\/ca@valencia\/messages\// /g' | tr -d '\n')"
       cd ..
     }
-    ARRAY="("$@")"
+
+    ARRAY=( $TARGETS )
     N=
-    for arg; do
-      if [ "$N" ]; then
-        commits_num "$arg"
-        FITXERST="$FITXERST $FITXERS"
-      fi
-      N='1'
-    done
+    for arg in ${ARRAY[@]}
+      do
+        if [ "$N" ]; then
+          commits_num "$arg"
+          FITXERST="$FITXERST $FITXERS"
+        fi
+        N='1'
+      done
 
     FITXERS="`echo "$FITXERST" | sed 's/ /\n/g' | sort | uniq`"
+
     cd $DIR0/$STABLE
     for file in $FITXERS
       do
@@ -956,7 +1018,7 @@ case $1 in
 
     crea_mo() {
       sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
-      if [[ "$DIR_M" = @(falkon|kwalletmanager) ]]; then
+      if [[ "$DIR_M" = @(ark|falkon|kwalletmanager) ]]; then
           LINK="1"
         elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
           LINK="1"
@@ -1010,7 +1072,7 @@ case $1 in
       if [ "$DIR_M" ]; then
           FILE="$FILE_NAME.qm"
           echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
-          sudo lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE
+          sudo /usr/lib/qt6/bin/lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE
       fi
     }
 
@@ -1124,7 +1186,6 @@ case $1 in
                 msgmerge --silent --previous --width=79 --lang=ca $DIRSRC/$DIR/$PO $DIRTEM/$DIR/${PO}t --output-file=$DIROBJ/$DIR/$PO
               fi
               if [ "$1" = "2" ]; then
-                MEM_DIR="$(echo /run/user/$(id -u))"
                 cd $MEM_DIR
                 [ -e $DIRMOD/$DIR/$PO ] && DIRSRC="$DIRMOD"
 
@@ -1132,6 +1193,7 @@ case $1 in
                 if [ ! -f kde-src2valencia.sed ]; then
                     cp  $DIRTR/kde-src2valencia_a.sed         kde-src2valencia.sed
                     cat $DIRTR/kde-src2valencia_b.sed      >> kde-src2valencia.sed
+                    cat $DIRTR/kde-src2valencia-esmena.sed >> kde-src2valencia.sed
                 fi
                 ./kde-src2valencia.sed < missatges-$PO > missatges_1-$PO && rm -f missatges-$PO
                 msgmerge --silent --previous --width=79 --lang=ca missatges_1-$PO $DIRTEM/$DIR/${PO}t --output-file=missatges_2-$PO && rm -f missatges_1-$PO
@@ -1164,8 +1226,6 @@ case $1 in
     DIRMOD="$DIR1/ca-mod/messages/$DIR"
     DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
     DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
-
-    sed_files
 
     if [ -e "$DIR0/$TRUNK6/ca/messages/$DIR/$PO" ]; then
       DIRSRC="$DIR0/$TRUNK6/ca/messages/$DIR"

@@ -16,12 +16,14 @@ USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
 # Establir els traductors seguits
 USUARIS_VAL0="montoro_mde@\|alviboi@"
 USUARIS_VAL1="$(echo $USUARIS_VAL0 | sed -e 's,\\|, ,g')"
+CPU=
 
-[ $(command -v awk)     ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
-[ $(command -v egrep)   ] || $(echo "Error: Penseu a instal·lar el paquet «grep» de GNU: apt install grep"; exit 0)
-[ $(command -v posieve) ] || $(echo "Error: Penseu a instal·lar les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."; exit 0)
-[ $(command -v sed)     ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU: apt install sed"; exit 0)
-[ $(command -v svn)     ] || $(echo "Error: Penseu a instal·lar el paquet «subversion»: apt install subversion"; exit 0)
+[ $(command -v awk)      ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
+[ $(command -v cpulimit) ] || $(echo "Error: Penseu a instal·lar el paquet «cpulimit»: apt install cpulimit"; exit 0)
+[ $(command -v egrep)    ] || $(echo "Error: Penseu a instal·lar el paquet «grep» de GNU: apt install grep"; exit 0)
+[ $(command -v posieve)  ] || $(echo "Error: Penseu a instal·lar les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."; exit 0)
+[ $(command -v sed)      ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU: apt install sed"; exit 0)
+[ $(command -v svn)      ] || $(echo "Error: Penseu a instal·lar el paquet «subversion»: apt install subversion"; exit 0)
 
 # Establim la capçalera
 capçalera() {
@@ -55,8 +57,15 @@ genera_copia() {
   if [ ! -f kde-src2valencia.sed ]; then
       cp  $DIRTR/kde-src2valencia_a.sed         kde-src2valencia.sed
       cat $DIRTR/kde-src2valencia_b.sed      >> kde-src2valencia.sed
+      cat $DIRTR/kde-src2valencia-esmena.sed >> kde-src2valencia.sed
       cp  $DIRTR/all-src2valencia-adapta.sed    all-src2valencia.sed
       cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
+      cat $DIRTR/all-src2valencia-esmena.sed >> all-src2valencia.sed
+      [ "$(pidof -c cpulimit)" ] && CPU='1'
+      [ "$CPU" ] && kill -9 $(pidof -c cpulimit)
+      [ "$CPU" ] || cpulimit -be all-src2valencia.sed   -l 75
+      [ "$CPU" ] || cpulimit -be kde-src2valencia_b.sed -l 75
+      CPU='1'
   fi
   # Executem la conversió del fitxer PO
   ./kde-src2valencia.sed < missatges-$FITX   > missatges_1-$FITX
@@ -251,6 +260,7 @@ for PO in $FITXERSPO
       [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
       [ "$DIR"  = "messages/websites-docs-glaxnimate-org" ]     && message_removed && continue #
       [ "$DIR"  = "messages/websites-glaxnimate-org" ]          && message_removed && continue #
+      [ "$DIR"  = "messages/websites-kdenlive-org" ]            && message_removed && continue # https://kdenlive.org/ca/
       [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
       # desactivades temporalment (a l'espera de temps per a revisar):
       [ "$DIR"  = "messages/digikam-doc" ]                      && message_removed && continue
