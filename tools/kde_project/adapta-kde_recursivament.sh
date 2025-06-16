@@ -16,7 +16,6 @@ USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
 # Establir els traductors seguits
 USUARIS_VAL0="montoro_mde@\|alviboi@"
 USUARIS_VAL1="$(echo $USUARIS_VAL0 | sed -e 's,\\|, ,g')"
-CPU=
 
 [ $(command -v awk)      ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
 [ $(command -v cpulimit) ] || $(echo "Error: Penseu a instal·lar el paquet «cpulimit»: apt install cpulimit"; exit 0)
@@ -61,11 +60,7 @@ genera_copia() {
       cp  $DIRTR/all-src2valencia-adapta.sed    all-src2valencia.sed
       cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
       cat $DIRTR/all-src2valencia-esmena.sed >> all-src2valencia.sed
-      [ "$(pidof -c cpulimit)" ] && CPU='1'
-      [ "$CPU" ] && kill -9 $(pidof -c cpulimit)
-      [ "$CPU" ] || cpulimit -be all-src2valencia.sed   -l 75
-      [ "$CPU" ] || cpulimit -be kde-src2valencia_b.sed -l 75
-      CPU='1'
+      [ "$(pidof -c cpulimit)" ] || cpulimit --background --quiet --path=/bin/sed --limit=75 2&>/dev/null
   fi
   # Executem la conversió del fitxer PO
   ./kde-src2valencia.sed < missatges-$FITX   > missatges_1-$FITX
@@ -100,6 +95,20 @@ genera_copia() {
 
   # Es torna a donar el format amb 78 files
   msgmerge --silent --previous --width=79 --lang=ca@valencia missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=missatges_2-$FITX
+
+  if  [[ "$FITX" != *@(appdata.po|_qt.po|metainfo.po) ]]; then
+    if [ "$FITX"  = "kajongg.po" ]; then
+        LBUGS="wolfgang@rohdewald.de"
+      else
+        LBUGS="https://bugs.kde.org"
+    fi
+
+    grep --silent "^\"Report-Msgid-Bugs-To: $LBUGS"  missatges_2-$FITX || posieve set-header -sfield:"Report-Msgid-Bugs-To:$LBUGS" -screate -safter:'Project-Id-Version' -sreorder missatges_2-$FITX
+
+    if [[ "$FITX" = @(docs_digikam_org_|kstars_docs_)* ]]; then
+        grep --silent "^\"Plural-Forms: nplurals=2; plural=n != 1;"  missatges_2-$FITX || posieve set-header -sfield:"Plural-Forms:nplurals=2; plural=n != 1;" -screate -safter:'X-Generator:' -sreorder missatges_2-$FITX
+    fi
+  fi
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
   msgfmt --statistics missatges_2-$FITX
@@ -252,22 +261,23 @@ for PO in $FITXERSPO
       }
 
       # Es desactiven les traduccions següents:
-      [ "$DIR"  = "messages/documentation-develop-kde-org" ]    && message_removed && continue # https://develop.kde.org/ca/docs/
-      [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]  && message_removed && continue # https://docs.kdenlive.org/ca/
+      [ "$DIR"  = "messages/documentation-develop-kde-org" ]     && message_removed && continue # https://develop.kde.org/ca/docs/
+      [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]   && message_removed && continue # https://docs.kdenlive.org/ca/
+      [ "$DIR"  = "messages/documentation-kstars-docs-kde-org" ] && message_removed && continue # https://kstars-docs.kde.org/ca/
       # messages/websites-kde-org:
-      [ "$FITX" = "release_announcements.po" ]                  && message_removed && continue # https://kde.org/ca/announcements/
-      [ "$FITX" = "www_www.po" ]                                && message_removed && continue
-      [ "$DIR"  = "messages/websites-planet-kde-org" ]          && message_removed && continue # https://planet.kde.org/ca/
-      [ "$DIR"  = "messages/websites-docs-glaxnimate-org" ]     && message_removed && continue #
-      [ "$DIR"  = "messages/websites-glaxnimate-org" ]          && message_removed && continue #
-      [ "$DIR"  = "messages/websites-kdenlive-org" ]            && message_removed && continue # https://kdenlive.org/ca/
-      [ "$DIR"  = "messages/websites-kdevelop-org" ]            && message_removed && continue # https://kdevelop.org/ca/
+      [ "$FITX" = "release_announcements.po" ]                   && message_removed && continue # https://kde.org/ca/announcements/
+      [ "$FITX" = "www_www.po" ]                                 && message_removed && continue
+      [ "$DIR"  = "messages/websites-planet-kde-org" ]           && message_removed && continue # https://planet.kde.org/ca/
+      [ "$DIR"  = "messages/websites-docs-glaxnimate-org" ]      && message_removed && continue #
+      [ "$DIR"  = "messages/websites-glaxnimate-org" ]           && message_removed && continue #
+      [ "$DIR"  = "messages/websites-kdenlive-org" ]             && message_removed && continue # https://kdenlive.org/ca/
+      [ "$DIR"  = "messages/websites-kdevelop-org" ]             && message_removed && continue # https://kdevelop.org/ca/
       # desactivades temporalment (a l'espera de temps per a revisar):
-      [ "$DIR"  = "messages/digikam-doc" ]                      && message_removed && continue
+      [ "$DIR"  = "messages/digikam-doc" ]                       && message_removed && continue
       # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
       # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
       # Fet! - https://krita.org/ca/
-      [ "$DIR"  = "messages/documentation-docs-krita-org" ]     && message_removed && continue # https://docs.krita.org/ca/
+      [ "$DIR"  = "messages/documentation-docs-krita-org" ]      && message_removed && continue # https://docs.krita.org/ca/
       # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
       # kdeutils
 #       [[ "$DIR" = "messages/"@(ark|filelight) ]] && VAL='1' && message_removed && continue

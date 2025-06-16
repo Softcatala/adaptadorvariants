@@ -2,17 +2,135 @@
 # # # # # # # # # # # # # #
 #
 # extensions o
-s/ \*\.\(exe\|ini\|torrent\)\([^[:alnum:]]\)/ «*.\1»\2/g
-s/ \.\(exe\|ini\|torrent\)\([^[:alnum:]]\)/ «.\1»\2/g
+s/ \*\.\(exe\|hidden\|ini\|torrent\)\([^[:alnum:]]\)/ «*.\1»\2/g
+s/ \.\(exe\|hidden\|ini\|torrent\)\([^[:alnum:]]\)/ «.\1»\2/g
 s/\bkbits\([^[:alnum:]]\)/kbits\/s\1/g
     s/\bkbit\/s\/s\([^[:alnum:]]\)/kbits\/s\1/g
     s/\bkbits\/s\/s\([^[:alnum:]]\)/kbits\/s\1/g
     s/\bkbit\/seg\./kbits\/s/g
 s/(kbit)/(kbits)/g
-
+# #
+# # # # # # # # # # # # # # kcoreaddons5_qt.po
+#
+# intel·ligència artificial - IA (p. ex., milions, bilions, trilions, quadrilions de paràmetres)
+# unitats de distància (p. ex., kilòmetres)
+# unitats de temps (p. ex., hores)
+s/\b\([Ee]xperimental\|[Ll]lenguatge\|[Ll]leugers\|[Mm]ides\|[Mm]odel\|[Mm]odel obert\|[Mm]odels\|SQL\|xat\) \(de \|\)\([0-9]\|\)\([0-9]\|\)\([0-9]\)\(,[0-9]\|\)\([BbKkMmT]\)\([^[:alnum:]]\)/\1 amb \3\4\5\6\7\8/g
+ #
+s/\b\([0-9]\|\)\([0-9]\|\)\([0-9]\)\(,[0-9]\|\)\([BbKkMmT]\|[Kk]B\)\b/\1\2\3\4 \5/g
+    s/\bdes de de\([^[:alnum:]]\)/des de\1/g
+ #
+s/:\([0-9]\) p\([tx]\);/:\1p\2;/g
+s/-606 b-/-606b-/g
+s/\(;\|\[\)\([0-9]\) m/\1\2m/g
+s/;200 b,/;200b,/g
+s/%2 B/%2B/g
+s/100km\/h/100 km\/h/g
+s/Co-58 m/Co-58m/g
+s/sup\]58 m/sup]58m/g
+s/\bEncoding: 8 bit/Encoding: 8bit/g
+s/\bI%27 m/I%27m/g
+s/\bU+266 b/U+266b/g
+ #
+# calligraplan/calligraplanlibs.po
+96,/^msgstr / s/"%1h:%2 m\"/\"%1h:%2m\"/g
+97,/^msgstr / s/"%1h:%2 m\"/\"%1h:%2m\"/g
+108,/^msgstr / s/"%1d %2h:%3 m\"/\"%1d %2h:%3m\"/g
+109,/^msgstr / s/"%1d %2h:%3 m\"/\"%1d %2h:%3m\"/g
+115,/^msgstr / s/"%1 m:%2s.%3\"/\"%1m:%2s.%3\"/g
+121,/^msgstr / s/"%1 m:%2s\"/\"%1m:%2s\"/g
+127,/^msgstr / s/"%1 m\"/\"%1m\"/g
+145,/^msgstr / s/"%1 ms\"/\"%1ms\"/g
+# ghostwriter/ghostwriter_qt.po
+s/\"%1h %2 m\"/\"%1 h %2 m\"/g
+# krita/krita.po
+s/\b02 b TeixitSuau\([^[:alnum:]]\)/02b TeixitSuau\1/g
+s/\b09 b línies\([^[:alnum:]]\)/09b línies\1/g
+s/\b18 b OnaFlex\([^[:alnum:]]\)/18b OnaFlex\1/g
+s/\b2 B Gra\([^[:alnum:]]\)/2B Gra\1/g
+s/\bcercle 5 b\([^[:alnum:]]\)/cercle 5b\1/g
+s/\bgran 4 B\([^[:alnum:]]\)/gran 4B\1/g
+s/\bGranit 1 b\([^[:alnum:]]\)/Granit 1b\1/g
+s/\bLlapis 2 B\([^[:alnum:]]\)/Llapis 2B\1/g
+# tokodon/tokodon.po
+5533,/^msgstr / s/"%1d\"/\"%1 d\"/g
+5632,/^msgstr / s/"%1d\"/\"%1 d\"/g
+5642,/^msgstr / s/"%1d\"/\"%1 d\"/g
+5523,/^msgstr / s/"%1h\"/\"%1 h\"/g
+5622,/^msgstr / s/"%1h\"/\"%1 h\"/g
+5632,/^msgstr / s/"%1h\"/\"%1 h\"/g
+5518,/^msgstr / s/"%1m\"/\"%1 m\"/g
+5617,/^msgstr / s/"%1m\"/\"%1 m\"/g
+5627,/^msgstr / s/"%1m\"/\"%1 m\"/g
+5513,/^msgstr / s/"%1s\"/\"%1 s\"/g
+5612,/^msgstr / s/"%1s\"/\"%1 s\"/g
+5622,/^msgstr / s/"%1s\"/\"%1 s\"/g
+# trojita/trojita_common.po
+s/\"88,8kB\"/\"88,8 kB\"/g
+# websites-kde-org/kde-org.po
+s/\"%1d %2h %3 m %4s\"/\"%1d %2h %3m %4s\"/g
+ #
+s/\bCode Llama \([0-9]\) B\([^[:alnum:]]\)/Code Llama amb \1 B\2/g
+s/\bDolphin-2.2-70 b\([^[:alnum:]]\)/Dolphin-2.2 amb 70 b\1/g
+s/\bIBM Granite \([123456789]\) B\([^[:alnum:]]\)/IBM Granite amb \1 B\2/g
+s/\bIBM Granite Embedding \([0-9]\|\)\([0-9][0-9]\) M\([^[:alnum:]]\)/IBM Granite Embedding amb \1\2 M\3/g
+s/\bIBM Granite Guardian 3.0 \([123456789]\) B\([^[:alnum:]]\)/IBM Granite Guardian 3.0 amb \1 B\2/g
+s/\bkrita2 d\.org\([^[:alnum:]]\)/krita2d.org\1/g
+s/\bLlama \([0-9]\|\)\(\.[0-9]\|\) \([0-9]\|\)\([0-9]\|\)\([0-9]\) B\([^[:alnum:]]\)/Llama \1\2 amb \3\4\5 B\6/g
+s/\bLlama 1.1 B\([^[:alnum:]]\)/Llama amb 1,1 B\1/g
+s/\bLlama 3.2 de «Meta»/Llama 3.2 de Meta/g
+s/\bLLama-3 8 B\([^[:alnum:]]\)/LLama-3 amb 8 B\1/g
+s/\bMistral \(de \|\)\([0-9]\) B\([^[:alnum:]]\)/Mistral amb \2 B\3/g
+s/\bModel \([0-9][0-9]\) B\([^[:alnum:]]\)/Model amb \1 B\2/g
+s/\bNemotron-70 B-Instruct\([^[:alnum:]]\)/Nemotron-70B-Instruct\1/g
+s/\bQwen 2\.5 \([0-9]\) B\([^[:alnum:]]\)/Qwen 2.5 amb \1 B\2/g
+    s/\bQwen 2\.5 amb 3 B Instruct\([^[:alnum:]]\)/Qwen 2.5 amb 3 B instruccions\1/g
+    s/\bQwen-1.5 B/Qwen amb 1,5 B/g
+s/\bStable Code \([0-9]\) B\([^[:alnum:]]\)/Stable Code amb \1 B\2/g
+s/www\.68 k\.org/www.68k.org/g
+s/2\.2-120 b/2.2 amb 120 b/g
+ #
+s/=128 M/=128M/g
+s/\(BT\.\|-\)\(170\|240\|470\) M/\1\2M/g
+s/1 B-\(12\) B/1B-\1B/g
+s/2 b)/2b)/g
+s/ 2\.4 B\([^[:alnum:]]\)/ 2,4 B\1/g
+s/2.5 K QHD/2,5K QHD/g
+s/4 K UHD/4K UHD/g
+s/4 K DCI/4K DCI/g
+s/5 K (Wide/5K (Wide/g
+s/8x7b i 8x22b/8x7 b i 8x22 b/g
+s/\scontext 2 K a 16 K\([^[:alnum:]]\)/context des de 2 K fins als 16 K\1/g
+s/\bde 1,/d'1,/g
+s/\bde fins a 4 x 4 K\([^[:alnum:]]\)/de fins a 4 x 4K\1/g
+s/\bdes de 0,5 B a 110 B\([^[:alnum:]]\)/des de 0,5 B fins als 110 B\1/g
+s/\bdes de 7 B a 70 B\([^[:alnum:]]\)/des de 7 B fins als 70 B\1/g
+s/\bgeneració de «Meta»/generació de Meta/g
+s/\bisòmer, 2 m, 3 m,/isòmer, 2m, 3m,/g
+s/\b\([Ll]\)lapis 2 b\([^[:alnum:]]\)/\1lapis 2b\2/g
+s/\b\([Mm]onitor\|[Vv]ídeo\) \([3458]\|1[26]\) K\([^[:alnum:]]\)/\1 \2K\3/g
+    s/\b\([Rr]\)esolució \(de \|\)\([3458]\|1[26]\) K\([^[:alnum:]]\)/\1esolució \2\3K\4/g
+    s/,\([23458]\|1[26]\) \([Kk]\)/,\1\2/g
+s/\bMotorola 68 k\([^[:alnum:]]\)/Motorola 68k\1/g
+s/\b\([Tt]\)extura \([123456789]\) k\([^[:alnum:]]\)/\1extura \2k\3/g
+s/\bUHD-4 K/UHD-4K/g
+s/\bWarhammer 40 k\([^[:alnum:]]\)/Warhammer 40k\1/g
+# #
+# # # # # # # # # # # # # #
+#
+#
 # gcompris/gcompris_lang._static_.po
 5890,/^msgstr / s/\"estel\"/\"catxerulo\"/g
-
+# #
+# # # # # # # # # # # # # #
+#
+#
+# graella -> quadrícula
+s/\b\([Aa]justa a\|[Cc]olor de\|[Dd]esa\\|[Ll]ínies de\|[Mm]ostra\|[Mm]ostrar\|[Mm]ostrar o no\) la graella\([^[:alnum:]]\)/\1 la quadrícula\2/g
+s/\bdibuixar o no una graella\([^[:alnum:]]\)/dibuixar o no una quadrícula\1/g
+s/\bDivisions de graella\([^[:alnum:]]\)/Divisions de quadrícula\1/g
+s/\b\([Mm]\)ostra\(r\|\) la &graella\([^[:alnum:]]\)/\1ostra\2 la quad\&rícula\3/g
+s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 # #
 # # # # # # # # # # # # # #
 #
@@ -79,10 +197,10 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 1165,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 1167,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 1173,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
-# tokodon
-2636,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+# tokodon/tokodon.po
 4369,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 4388,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+4402,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
  #
 s/\"Configuració de l'ordinador/\"Configuració de l'amfitrió/g
 s/\"host:port\"/\"amfitrió:port"/g
@@ -222,64 +340,97 @@ s/\bversió de NFS que admeti la màquina\([^[:alnum:]]\)/versió de NFS que adm
 s/\bVoleu eliminar la configuració per a la màquina\([^[:alnum:]]\)/Voleu eliminar la configuració per a l'amfitrió\1/g
  #
 s/\bde l'amfitrió de claus\([^[:alnum:]]\)/del servidor de claus\1/g
-
 # Atlantik
 s/: connexió refusada pel servidor\([^[:alnum:]]\)/: connexió refusada per l'amfitrió\1/g
 s/: no s'ha trobat el servidor\([^[:alnum:]]\)/: no s'ha trobat l'amfitrió\1/g
 s/\bConnecta amb aquest servidor\([^[:alnum:]]\)/Connecta amb aquest amfitrió\1/g
 s/\b\([Nn]\)om de màquina del servidor\([^[:alnum:]]\)/\1om de l'amfitrió del servidor\2/g
-
+# #
+# # # # # # # # # # # # # #
+# TODO
+# indicatiu(s) <- indicació(ons) (prompt(s))
+# ksshaskpass/ksshaskpass.po
+# ktextaddons/libtextautogeneratetext.po
+ #
+s/\"Indica\(ció\|dor\)\"/\"Indicatiu\"/g
+s/\b\([Ii]\)ndica\(ció\|dor\):\([^[:alnum:]]\)/\1ndicatiu:\3/g
+s/\b\([Ii]\)ndicador del sistema\"/\1ndicatiu del sistema\"/g
+ #
+s/\bCopia excepte els indicadors\([^[:alnum:]]\)/Copia excepte els indicatius\1/g
+s/\b\([Dd]\)iàleg de l'indicatiu de text\([^[:alnum:]]\)/\1iàleg de la indicació de text\2/g
+s/\bgeneri el mateix text per a la mateixa indicació\([^[:alnum:]]\)/generi el mateix text per al mateix indicatiu\1/g
+s/\b\([Ii]\)ndicador d'autenticació\([^[:alnum:]]\)/\1ndicatiu d'autenticació\2/g
+s/\b\([Ii]\)ndicador de Bourne\([^[:alnum:]]\)/\1ndicatiu de Bourne\2/g
+s/\b\([Ii]\)ndicació de contrasenya\([^[:alnum:]]\)/\1ndicatiu de contrasenya\2/g
+s/\b\([Ii]\)ndicador de l'intèrpret d'ordres\([^[:alnum:]]\)/\1ndicatiu de l'intèrpret d'ordres\2/g
+s/\b\([Ii]\)ndicador del MySQL\([^[:alnum:]]\)/\1ndicatiu de MySQL\2/g
+s/\bL'indicador del sistema del LLM\([^[:alnum:]]\)/L'indicatiu del sistema del LLM\1/g
+s/\bLa indicació d'autenticació\([^[:alnum:]]\)/L'indicatiu d'autenticació\1/g
+s/\bLa indicació del sistema del LLM\([^[:alnum:]]\)/L'indicatiu del sistema del LLM\1/g
+s/\bMonitor per a l'&indicador\([^[:alnum:]]\)/Monitor per a l'\&indicatiu\1/g
+s/\bMostra l'indicador de sortida\([^[:alnum:]]\)/Mostra l'indicatiu de sortida\1/g
+s/\bseguretat de les indicacions d'entrada i de les respostes de text de sortida\([^[:alnum:]]\)/seguretat de la indicació de text d'entrada i de la resposta de sortida\1/g
+s/\bSense indicació del sistema\([^[:alnum:]]\)/Sense indicatiu del sistema\1/g
+s/\bun\(a\|\) indica\(dor\|ció\) d'ordres\([^[:alnum:]]\)/un indicatiu d'ordres\3/g
+    s/\b\([Ii]\)ndica\(dor\|ció\) d'ordres\([^[:alnum:]]\)/\1ndicatiu d'ordres\3/g
+s/\bvora de l'indicador\([^[:alnum:]]\)/vora de l'indicatiu\1/g
 # #
 # # # # # # # # # # # # # #
 #
 # lightness - claredat
 # calligra/calligra.po
-2645,/^msgstr / s/\"Lluminositat\"/\"Claredat\"/g
-3099,/^msgstr / s/\"Augmenta la brillantor\"/\"Augmenta la claredat\"/g
-3105,/^msgstr / s/\"Disminueix la brillantor\"/\"Disminueix la claredat\"/g
 2585,/^msgstr / s/\"Lluminositat\"/\"Claredat\"/g
 3039,/^msgstr / s/\"Augmenta la brillantor\"/\"Augmenta la claredat\"/g
 3045,/^msgstr / s/\"Disminueix la brillantor\"/\"Disminueix la claredat\"/g
+# kdenlive/kdenlive.po
+
 # calligra/kocolorspaces.po
 125,/^msgstr / s/\"Lluminositat\"/\"Claredat\"/g
 # kontrast/kontrast.po
-161,/^msgstr / s/\"Lluminositat %1\"/\"Claredat %1\"/g
 253,/^msgstr / s/\"Lluminositat: %1\"/\"Claredat: %1\"/g
 # okular/okular.po
 s/\"Inverteix la &lluminositat\"/\"Inverteix la c\&laredat\"/g
-2406,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
 2483,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
  #
+s/\"Lluminositat del fons\"/\"Claredat del fons\"/g
+s/\"Lluminositat del fons (0 a 90)\.\"/\"Claredat del fons (0 a 90).\"/g
+s/\bAjusta el to, la saturació i la lluminositat\([^[:alnum:]]\)/Ajusta el to, la saturació i la claredat\1/g
+s/\bBrillantor de la imatge acolorida\([^[:alnum:]]\)/Claredat de la imatge acolorida\1/g
 s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de claredat del color\1/g
-
 # #
 # # # # # # # # # # # # # #
 #
+# brightest
 # brightness - brillantor
 # luminosity - lluminositat
 # arianna/arianna.po
-253,/^msgstr / s/\"Lluminositat:/\"Brillantor:/g
-288,/^msgstr / s/\"Lluminositat:/\"Brillantor:/g
-300,/^msgstr / s/\"Lluminositat:/\"Brillantor:/g
-370,/^msgstr / s/\"Lluminositat:/\"Brillantor:/g
 386,/^msgstr / s/\"Lluminositat:/\"Brillantor:/g
+433,/^msgstr / s/\"Lluminositat:/\"Brillantor:/g
 # calligra/calligra.po
 2937,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
-2925,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
-2997,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
-# calligra/kocolorspaces.po
-125,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
+2943,/^msgstr / s/\bDisminueix la brillantor\([^[:alnum:]]\)/Disminueix la lluminositat\1/g
 # dragon/dragonplayer.po
 450,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
 # haruna/haruna.po
-1773,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+508,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 1972,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+1987,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+# kdeconnect-kde/kdeconnect-plugins.po
+219,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
+226,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
 # kdenlive/kdenlive.po
-1066,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 2681,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-2683,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2684,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2687,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2740,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 7387,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 7395,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+7645,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8139,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+11226,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+11235,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+11791,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+12309,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 # kmplayer/kmplayer.po
 s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 # kooka
@@ -294,7 +445,6 @@ s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 4586,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 # krita/krita.po
 17828,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
-17843,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
 21612,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
 # kscreen/kcm_kscreen.po
 507,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
@@ -312,13 +462,41 @@ s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 # skanpage/skanpage.po
 451,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
  #
+s/\benfosquiment,lluminositat,esquinçament\([^[:alnum:]]\)/enfosquiment,brillantor,esquinçament\1/g
+s/\bhibernar,lluminositat,rendiment\([^[:alnum:]]\)/hibernar,brillantor,rendiment\1/g
+ # calligra, dragon, haruna, kdeconnect-kde, kdenlive, kgamma5, kopete, perceptualcolor, plasma-desktop, plasma-workspace, powerdevil
+s/\bassigna el color d'entrada més lluminós\([^[:alnum:]]\)/assigna el color d'entrada més brillant\1/g
+    s/\blluminositat\(, \|\/\)contrast\([^[:alnum:]]\)/brillantor\1contrast\2/g
+s/\b\(Ajusta\|Baixa\|Estableix\|Obtén\|Redueix\|Restableix\) la lluminositat\([^[:alnum:]]\)/\1 la brillantor\2/g
+s/\bBateria i lluminositat\([^[:alnum:]]\)/Bateria i brillantor\1/g
+s/\bBrillantor 100 (o similar)/Brillant 100 (o similar)/g
+s/\bCanvia la lluminositat general de la imatge\([^[:alnum:]]\)/Canvia la brillantor general de la imatge\1/g
+s/\bcom la lluminositat o el volum\([^[:alnum:]]\)/com la brillantor o el volum\1/g
 s/\bConfigura com de lluminós hauria de ser el «100%» en el control lliscant la lluminositat normal/Configura com de brillant hauria de ser el «100%» normal en el control lliscant de la brillantor/g
+s/\bdescriu la lluminositat dels colors\([^[:alnum:]]\)/descriu la brillantor dels colors\1/g
+s/\bLluminositat\/Valor\([^[:alnum:]]\)/Brillantor\/Valor\1/g
+    s/\bLluminositat de %1 al %2%/Brillantor de %1 al %2%/g
 s/\"Lluminositat: %1/\"Brillantor: %1/g
 s/\"Lluminositat: 0/\"Brillantor: 0/g
+s/\bLluminositat (amb fotogrames clau)\([^[:alnum:]]\)/Brillantor (amb fotogrames clau)\1/g
+    s/\bCanvia la lluminositat d'imatge amb fotogrames clau\([^[:alnum:]]\)/Canvia la brillantor de la imatge amb els fotogrames clau\1/g
+    s/\bcanvis aleatoris de lluminositat\([^[:alnum:]]\)/canvis aleatoris de brillantor\1/g
+s/\bLluminositat cada\([^[:alnum:]]\)/Brillantor cada\1/g
+s/\bLluminositat de la pantalla\([^[:alnum:]]\)/Brillantor de la pantalla\1/g
+    s/\blluminositat de la pantalla\([^[:alnum:]]\)/brillantor de la pantalla\1/g
+    s/\bLluminositat del teclat\([^[:alnum:]]\)/Brillantor del teclat\1/g
+    s/\blluminositat definida pel terme de cerca\([^[:alnum:]]\)/brillantor definida pel terme de cerca\1/g
+    s/\bde la lluminositat màxima\([^[:alnum:]]\)/de la brillantor màxima\1/g
+s/\blluminositat i contrast del monitor\([^[:alnum:]]\)/brillantor i contrast del monitor\1/g
 s/\bLluminositat màxima de la pantalla\([^[:alnum:]]\)/Brillantor màxima de la pantalla\1/g
 s/\blluminositat màxima de la pantalla\([^[:alnum:]]\)/brillantor màxima de la pantalla\1/g
+s/\bSortida del color més lluminós d'entrada\([^[:alnum:]]\)/Sortida del color més brillant d'entrada\1/g
+s/\bvalor màxim de la lluminositat\([^[:alnum:]]\)/valor màxim de la brillantor\1/g
+    s/\bControls bàsics per a la lluminositat\([^[:alnum:]]\)/Controls bàsics per a la brillantor\1/g
 s/\b\([Vv]\)alors de lluminositat de la imatge\([^[:alnum:]]\)/\1alors de brillantor de la imatge\2/g
-
+# #
+# # # # # # # # # # # # # #
+#
 # localització
 s/\bLocalitzaci\(ó\|ons\)\([^[:alnum:]]\)/Ubicaci\1\2/g
 s/\blocalitzaci\(ó\|ons\)\([^[:alnum:]]\)/ubicaci\1\2/g
@@ -331,7 +509,6 @@ s/\[Ubicació\]/\[Localització\]/g
     s/\bMillora d'ubicació\([^[:alnum:]]\)/Millora de la localització\1/g
     s/\bmillorar la ubicació del sistema\([^[:alnum:]]\)/millorar la localització del sistema\1/g
     s/\b\([Nn]\)om la ubicació\([^[:alnum:]]\)/\1om de la ubicació\2/g
-
 # #
 # # # # # # # # # # # # # #
 #
@@ -339,12 +516,18 @@ s/\[Ubicació\]/\[Localització\]/g
 s/\b\([Aa]\)\(l\|\) \(\[\|\*\|\*\*\|\*\*\*\|[|&«]\|<[^<]\{1,\}>\|\)\(KPart\|KParts\)\(;\|\)\([^[:alnum:]]\)/\1 les \3\4\5\6/g
 s/\b\([Dd]\)e \(\[\|\*\|\*\*\|\*\*\*\|[|&«]\|<[^<]\{1,\}>\|\)\(KPart\|KParts\)\(;\|\)\([^[:alnum:]]\)/\1e les \2\3\4\5/g
 s/\bKParts\([^[:alnum:]]\)/KPart\1/g
-
+# #
+# # # # # # # # # # # # # #
 #
+# mode
 s/\b\([Mm]\)ode d'administrador\([^[:alnum:]]\)/\1ode administrador\2/g
 s/\b\([Mm]\)ode d'edició\([^[:alnum:]]\)/\1ode edició\2/g
 s/\b\([Mm]\)ode d'icones\([^[:alnum:]]\)/\1ode icones\2/g
-
+# #
+# # # # # # # # # # # # # #
+#
+# vista
+s/\b\([Vv]\)ista d'icona\([^[:alnum:]]\)/\1ista d'icones\2/g
 # #
 # # # # # # # # # # # # # #
 #
@@ -498,7 +681,7 @@ s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<ite
 s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació de l\(a\|es\)\([^[:alnum:]]\)/\1Navegueu l\2\3/g
 s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació del\(s\|\)\([^[:alnum:]]\)/\1Navegueu el\2\3/g
     s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació\([^[:alnum:]]\)/\1Navegueu\2/g
-    s/\bNavegueu \(de l'OpenStreetMap\|de Rails\|de transport\|externa\|LEO de Rússia\|millorada\|personalitzada\|privada\|segura\|tàctil\|web\)\([^[:alnum:]]\)/Navegació \1\2/g
+    s/\bNavegueu \(de codi\|de l'OpenStreetMap\|de Rails\|de transport\|externa\|LEO de Rússia\|millorada\|personalitzada\|privada\|segura\|tàctil\|web\)\([^[:alnum:]]\)/Navegació \1\2/g
     s/\bNavegueu el navegador\([^[:alnum:]]\)/Navegació del navegador\1/g
     s/\bNavegueu el sistema\([^[:alnum:]]\)/Navegueu pel sistema\1/g
     s/\bNavegueu de \(botons\|gestos\)\([^[:alnum:]]\)/Navegueu amb els \1\2/g

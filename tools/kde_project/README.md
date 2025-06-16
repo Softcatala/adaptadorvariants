@@ -36,17 +36,20 @@ An explanation of the scripts:
 * `all-src2valencia.sed`        *->* Core rules with Valencian language (e.g. verb conjugation, loose words...)
 * `all-src2valencia-esmena.sed` *->* fixes (improves the control and review)
 
-**Note 1:** this last sed file are very large, we recommend *closing everything* before opening it.
+**Note 1:** all-src2valencia sed file are very large, we recommend *closing everything* before opening it.
 
-**Note 2:** having two smaller sed files (so called '*\*-adapta*' and '*kde-\**') lightens the load and speeds up the workflow.
+**Note 2:** multiple sed files (so called '*all-\**' and '*kde-\**') lightens the load, speeds up the workflow and allows you to create reports for improvements.
+Concatenated into two single files for the adaptation process.
 
-### Dilluns, 9 d'octubre de 2023
+**Note 3:** the '*\*-esmena*' files are used to keep updated the major changes (the last review).
 
-The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***2h*** and ***50m***.
+### Dimarts, 16 de juny del 2025
 
-***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***2 h*** i ***50 m***.
+The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***4h*** and ***57m*** with 81%CPU.
 
-**SVN Message (*with version info*):** Updates to 010.00 (http://avl.gva.es/lexicval/)
+***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***4 h*** i ***57 m*** amb un 81% de la CPU.
+
+**SVN Message (*with version info*):** Updates to 012.02 (http://avl.gva.es/lexicval/)
 
 
 ## Linguistic resources:

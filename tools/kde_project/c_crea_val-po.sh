@@ -15,7 +15,6 @@ TRUNK="trunk/l10n-kf5"
 STABLE6="stable/l10n-kf6"
 TRUNK6="trunk/l10n-kf6"
 MEM_DIR="$(echo /run/user/$(id -u))"
-CPU=
 MSG='msgstr'
 SOURCE_0='ca@valencia'
 TEXT="$2"
@@ -38,7 +37,7 @@ sortida_po() {
   \033[1;37mAJUDA\n  -----\e[0m
   troba_po (nom|exp. reg.)        Cerca \033[1;37ma on es troba ara aquest fitxer\e[0m.
   crea_po_linia ruqola/ruqola.po (cadena de lletres)
-                                  \033[1;37mCrea un fitxer amb les entrades en una sola línia\e[0m,
+                                  * \033[1;37mCrea un fitxer amb les entrades en una sola línia\e[0m,
                                   de manera que es poden esmenar els números de línia
                                   a l'script en sed.
   po_nou (dir)[/fitxer.po]? (doc)?
@@ -91,6 +90,8 @@ sortida_po() {
   crea_po (gui|doc)               * \033[1;37mCrea els fitxers PO que es mantenen\e[0m.
   neteja_ca (gui|doc)             * \033[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
 
+  comprova_tot                    * \033[1;37mS'empren les regles del pology per a confirmar totes les branques\e[0m.
+
   \033[1;37mMANTENIMENT\n  -----------\e[0m
   \033[47;31mactualitza_svn_local\e[0m            \033[1;37mActualitza l'SVN local amb trunk\e[0m.
                                   \033[47;31mNOTA:\e[0m Després s'han d'entregar manualment els canvis!
@@ -127,6 +128,7 @@ sortida_po() {
   \033[1;37mCarpetes on es genera l'adaptació de la documentació:\e[0m
   - kf5-stable
   - kf5-trunk
+  - kf6-stable
   - kf6-trunk
 
   \033[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/tools/kde_project/
@@ -136,7 +138,7 @@ sortida_po() {
   \033[1;37mEls scripts en SED, en odre de processament:\e[0m
   • kde-src2valencia_a.sed      \033[1;37mRepo:\e[0m sense publicar
   • kde-src2valencia_b.sed      \033[1;37mRepo:\e[0m sense publicar
-  • kde-src2valencia-esmena.sed \033[1;37mRepo:\e[0m sense publicar
+  • kde-src2valencia-esmena.sed
   • all-src2valencia.sed
   • all-src2valencia-adapta.sed
   • all-src2valencia-esmena.sed
@@ -175,11 +177,7 @@ sed_files() {
       cp  $DIRTR/all-src2valencia-adapta.sed    all-src2valencia.sed
       cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
       cat $DIRTR/all-src2valencia-esmena.sed >> all-src2valencia.sed
-      [ "$(pidof -c cpulimit)" ] && CPU='1'
-      [ "$CPU" ] && kill -9 $(pidof -c cpulimit)
-      [ "$CPU" ] || cpulimit -be all-src2valencia.sed -l 75
-      [ "$CPU" ] || cpulimit -be kde-src2valencia.sed -l 75
-      CPU='1'
+      [ "$(pidof -c cpulimit)" ] || cpulimit --background --quiet --path=/bin/sed --limit=75 2&>/dev/null
   fi
 }
 
@@ -202,8 +200,8 @@ copia_valencia() {
         msgmerge --silent --previous --no-wrap $CA_MOD $DIRTEM/${PO2}t --output-file=missatges-$PO2
 
         # Executem la conversió del fitxer PO
-        ./kde-src2valencia.sed        < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
-        ./all-src2valencia.sed        < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
+        ./kde-src2valencia.sed < missatges-$PO2   > missatges_1-$PO2 && rm -f missatges-$PO2
+        ./all-src2valencia.sed < missatges_1-$PO2 > missatges_2-$PO2 && rm -f missatges_1-$PO2
 
         mkdir -p $DIRDES
         # Es torna a donar el format amb 78 files
@@ -847,13 +845,26 @@ case $1 in
       ;;
     esac
     echo -e "\n * S'està actualitzant KF5 «stable»:"
-    cd $DIR0/$STABLE/ca/ && svn update
+    cd $DIR0/$STABLE/ca/  && svn update
     echo -e "\n * S'està actualitzant KF5 «trunk»:"
-    cd $DIR0/$TRUNK/ca/  && svn update
+    cd $DIR0/$TRUNK/ca/   && svn update
     echo -e "\n * S'està actualitzant KF6 «stable»:"
     cd $DIR0/$STABLE6/ca/ && svn update
     echo -e "\n * S'està actualitzant KF6 «trunk»:"
-    cd $DIR0/$TRUNK6/ca/ && svn update
+    cd $DIR0/$TRUNK6/ca/  && svn update
+  ;;
+  comprova_tot)
+    comprova_lloc
+    ca_rules() { posieve check-rules -s rfile:../../svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/errors.rules ca@valencia/messages; }
+
+    echo -e "\n * S'està revisant KF5 «stable»:"
+    cd $DIR0/$STABLE/  && ca_rules
+    echo -e "\n * S'està revisant KF5 «trunk»:"
+    cd $DIR0/$TRUNK/   && ca_rules
+    echo -e "\n * S'està revisant KF6 «stable»:"
+    cd $DIR0/$STABLE6/ && ca_rules
+    echo -e "\n * S'està revisant KF6 «trunk»:"
+    cd $DIR0/$TRUNK6/  && ca_rules
   ;;
   actualitza_svn_local)
     comprova_lloc
@@ -867,12 +878,12 @@ case $1 in
       [ -d $1/websites-planet-kde-org ]         && rm -Rf $1/websites-planet-kde-org
     }
 
-    echo "* Es netegen les carpetes que s'actualitzaran."
+    echo -e "\033[1;37m* Es netegen les carpetes que s'actualitzaran.\e[0m"
     rm -Rf ca/*
     rm -Rf ca@valencia/*
     rm -Rf templates/*
 
-    echo "* Es copien les branques següents:"
+    echo -e "\033[1;37m* Es copien les branques següents:\e[0m"
     for obj in ca templates
       do
         echo "  - kf5 stable $obj"
@@ -895,19 +906,19 @@ case $1 in
         cp -fr ../../../l10n-kf6/$obj/messages/* $obj/messages/
       done; echo
 
-    echo "* Es copien les traduccions des de «ca-mod/».\e[0m"
+    echo -e "\033[1;37m* Es copien les traduccions des de «ca-mod/»:\e[0m"
     $0 crea_po gui
     $0 neteja_ca gui
     mkdir -p ca/docmessages/
 
     # ca: la documentació són enllaços
     cd ca/docmessages
-    echo "  - kf5: enllaços cap a la documentació «ca»"
+    echo -e "  \033[1;37m- kf5: enllaços cap a la documentació «ca»:\e[0m"
     echo kstars
     ln -s ../../ca-mod/docmessages/kstars kstars
     cp -fr ../../../../templates/docmessages/kstars ../../templates/docmessages/kstars
 
-    echo "  - kf6: enllaços cap a la documentació «ca»"
+    echo -e "  \033[1;37m- kf6: enllaços cap a la documentació «ca»:\e[0m"
     for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
       do
         MODULE="$(echo $obj | awk -F '/' '{print $5}')"
@@ -922,11 +933,11 @@ case $1 in
 
     # ca@valencia: la documentació són enllaços
     cd ca@valencia/docmessages
-    echo "  - kf5: enllaços cap a la documentació «ca@valencia»"
+    echo -e "  \033[1;37m- kf5: enllaços cap a la documentació «ca@valencia»:\e[0m"
     echo kstars
     ln -s ../../kf5-trunk/ca@valencia/docmessages/kstars kstars
 
-    echo "  - kf6: enllaços cap a la documentació «ca@valencia»"
+    echo -e "  \033[1;37m- kf6: enllaços cap a la documentació «ca@valencia»:\e[0m"
     for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
       do
         MODULE="$(echo $obj | awk -F '/' '{print $5}')"
@@ -935,7 +946,7 @@ case $1 in
       done
     cd ../../
     mkdir -p templates/docmessages/
-    echo "* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions."
+    echo -e "\033[1;37m* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions:\e[0m"
     posieve --quiet remove-obsolete ca/
 
     echo -e "\n\033[47;31mNOTA:\e[0m \033[1;37mAra executeu «$0 adapta» per a aplicar els darrers canvis a «ca@valencia/».\e[0m"
@@ -970,14 +981,11 @@ case $1 in
     }
 
     ARRAY=( $TARGETS )
-    N=
+
     for arg in ${ARRAY[@]}
       do
-        if [ "$N" ]; then
-          commits_num "$arg"
-          FITXERST="$FITXERST $FITXERS"
-        fi
-        N='1'
+        commits_num "$arg"
+        FITXERST="$FITXERST $FITXERS"
       done
 
     FITXERS="`echo "$FITXERST" | sed 's/ /\n/g' | sort | uniq`"

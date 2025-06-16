@@ -37,6 +37,9 @@ s/\ba&lçades\([^[:alnum:]]\)/a\&lçàries\1/g
  #
 s/\b\([Mm]\)à alçària\([^[:alnum:]]\)/\1à alçada\2/g
 
+# alliberar
+s/\ba&lliberi\([^[:alnum:]]\)/a\&llibere\1/g
+
 # amollar
 # s/\bamollar fitxers\([^[:alnum:]]\)/deixar fitxers\1/g
 # amollar -> deixar
@@ -216,6 +219,7 @@ s/\b\([Cc]\)antons oposades\([^[:alnum:]]\)/\1antons oposats\2/g
 s/\b\([Cc]\)antons primes\([^[:alnum:]]\)/\1antons prims\2/g
 s/\b\([Dd]\)e la cantó\([^[:alnum:]]\)/\1el cantó\2/g
 s/\bde les cantons\([^[:alnum:]]\)/dels cantons\1/g
+s/\b\([Dd]\)es de la seua cantó\([^[:alnum:]]\)/\1es del seu cantó\2/g
 s/\bdues cantons oposats\([^[:alnum:]]\)/dos cantons oposats\1/g
 s/\bLa cantó\([^[:alnum:]]\)/El cantó\1/g
 s/\bla cantó\([^[:alnum:]]\)/el cantó\1/g
@@ -940,15 +944,24 @@ s/\bllança\(dor\|dors\|r\|\)\([^[:alnum:]]\)/inicia\1\2/g
 s/\bLlanci\([^[:alnum:]]\)/Inicie\1/g
 s/\bllanci\([^[:alnum:]]\)/inicie\1/g
  #
+s/\ba punt de iniciar-se KDE\([^[:alnum:]]\)/a punt de llançar-se KDE\1/g
+s/\bAçò feia que les actualitzacions\([^[:alnum:]]\)/Açò feia que els llançaments\1/g
+s/\banunci del llançament\([^[:alnum:]]\)/anunci de llançament\1/g
+    s/\bpàgina d'anunci de llançament\([^[:alnum:]]\)/pàgina d'anunci del llançament\1/g
+s/\buna actualització \(amb \|d'\)esmenes d'errors\([^[:alnum:]]\)/un llançament amb esmenes d'errors\2/g
 s/\bal iniciador\([^[:alnum:]]\)/a l'iniciador\1/g
 s/\bcap raó per a iniciar-lo\([^[:alnum:]]\)/cap raó per a llançar-lo\1/g
 s/\b\([Dd]\)'iniciar-te\([^[:alnum:]]\)/\1e llançar-te\2/g
 s/\b\([Dd]\)el \([Ii]\)niciador\([^[:alnum:]]\)/\1e l'\2niciador\3/g
 s/\bdel llançament del\([^[:alnum:]]\)/de la iniciació del\1/g
-s/\bDesprés d'iniciar Krita\([^[:alnum:]]\)/Després de llançar Krita\1/g
+s/\bDesprés de iniciar Krita\([^[:alnum:]]\)/Després de llançar Krita\1/g
+s/\bencara puguem iniciar Krita per a Android\([^[:alnum:]]\)/encara puguem llançar Krita per a Android\1/g
 s/\bEs inicia el lloc web\([^[:alnum:]]\)/Es llança el lloc web\1/g
 s/\bes llance\([^[:alnum:]]\)/s'inicie\1/g
-s/\bmenú del <interface>Iniciador\([^[:alnum:]]\)/menú de l'<interface>Iniciador\1/g
+s/\bEs va iniciar]/Es va llançar]/g
+s/\bEs va iniciar KDE \([1234]\)/Es va llançar KDE \1/g
+s/\bes va iniciar el\([^[:alnum:]]\)/es va llançar el\1/g
+s/\bGNU i està llicenciat\([^[:alnum:]]\)/GNU i es distribuïx\1/g
 s/\bIniciar bomba\([^[:alnum:]]\)/Llançar bomba\1/g
 s/\bIniciar els dards\([^[:alnum:]]\)/Llançar els dards\1/g
 s/\biniciar-los en un dels pous\([^[:alnum:]]\)/llançar-los en un dels pous\1/g
@@ -957,10 +970,22 @@ s/\binicia't\([^[:alnum:]]\)/llança't\1/g
 s/\bInicia \(una \|\)bomba\([^[:alnum:]]\)/Llança \1bomba\2/g
 s/\biniciar-se \(a l'esquerra\|al mig\)\([^[:alnum:]]\)/llançar-se \1\2/g
 s/\biniciar-te\([^[:alnum:]]\)/llançar-te\1/g
+s/\bKDE \[va iniciar\]/KDE [va llançar]/g
+s/\bKDE va iniciar la seua\([^[:alnum:]]\)/KDE va llançar la seua\1/g
+s/\bKrita 1.5 es va iniciar\([^[:alnum:]]\)/Krita 1.5 es va llançar\1/g
+s/\bKrita 2.1 també es va iniciar l'any\([^[:alnum:]]\)/Krita 2.1 també es va llançar l'any\1/g
+s/\bmenú del <interface>Iniciador\([^[:alnum:]]\)/menú de l'<interface>Iniciador\1/g
 s/\b\([Nn]\)otes d'iniciament\([^[:alnum:]]\)/\1otes de llançament\2/g
 s/\bper a iniciar un dard\([^[:alnum:]]\)/per a llançar un dard\1/g
 s/\bper a iniciar els dards\([^[:alnum:]]\)/per a llançar els dards\1/g
 s/\b\([Ss]\)'acaba de iniciar Krita\([^[:alnum:]]\)/\1'acaba de llançar Krita\2/g
+s/\bEs inicia una versió nova\([^[:alnum:]]\)/Es llança una versió nova\1/g
+s/\bva iniciar l'\(abril\|agost\|octubre\)\([^[:alnum:]]\)/va llançar l'\1\2/g
+s/\bva iniciar el \(gener\|febrer\|març\|maig\|juny\|juliol\|setembre\|novembre\|desembre\)\([^[:alnum:]]\)/va llançar el \1\2/g
+s/\bvan iniciar les Qt4\([^[:alnum:]]\)/van llançar les Qt4\1/g
+s/\bvarem iniciar onze versions\([^[:alnum:]]\)/varem llançar onze versions\1/g
+s/\bvarem iniciar Krita\([^[:alnum:]]\)/varem llançar Krita\1/g
+    s/\bEl temps transcorregut des que es va llançar el procés\([^[:alnum:]]\)/El temps transcorregut des que es va iniciar el procés\1/g
 
 # llegir
 s/\bLLEGEIX\([^[:alnum:]]\)/LLIG\1/g
@@ -1019,11 +1044,17 @@ s/\"<b>Llargària<\/b>:\"/\"<b>Longitud<\/b>:\"/g
 65966,/^msgstr / s/\bLlargària: \"/Longitud: \"/g
 66353,/^msgstr / s/\bLlargària: \"/Longitud: \"/g
 s/ i la llargària: \"/ i la longitud: \"/g
+# labplot/labplot.po
+19791,/^msgstr / s/\bLongitud:\"/Llargària:\"/g
+19855,/^msgstr / s/\bLongitud:\"/Llargària:\"/g
+20017,/^msgstr / s/\bLongitud:\"/Llargària:\"/g
 # marble/marble_qt.po
 12255,/^msgstr / s/\bLlargària\"/Longitud\"/g
 13568,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
 12026,/^msgstr / s/\bLlargària\"/Longitud\"/g
 13322,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
+# mauikit-imagetools/mauikitimagetools.po
+230,/^msgstr / s/\bLlargària\"/Longitud\"/g
 # marble/plasma_applet_org.kde.plasma.worldclock.po
 57,/^msgstr / s/\"Llargària\"/\"Longitud\"/g
 67,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
@@ -1044,15 +1075,16 @@ s/\baltituds, llargàries\([^[:alnum:]]\)/altituds, longituds\1/g
     s/\baltituds, longituds i distàncies\([^[:alnum:]]\)/altituds, llargàries i distàncies\1/g
 s/\banomenat <firstterm>llargària\([^[:alnum:]]\)/anomenat <firstterm>longitud\1/g
 s/\b\([Ee]\)mpleneu la llargària\([^[:alnum:]]\)/\1mpleneu la longitud\2/g
+s/\bgrau de lluminositat del color\([^[:alnum:]]\)/grau de claredat del color\1/g
 s/\blatitud\/llargària\([^[:alnum:]]\)/latitud\/longitud\1/g
-s/\blatitud, llargària\([^[:alnum:]]\)/latitud, longitud\1/g
+s/\b\([Ll]\)atitud, llargària\([^[:alnum:]]\)/\1atitud, longitud\2/g
 s/\b\([Ll]\)atitud\( i \|\/\|-\)llargària\([^[:alnum:]]\)/\1atitud i longitud\3/g
 s/\b\([Ll]\)atitud i la llargària\([^[:alnum:]]\)/\1atitud i la longitud\2/g
 s/\bLlargària: %1/Longitud: %1/g
     s/\bLongitud: %1 px\([^[:alnum:]]\)/Llargària: %1 px\1/g
 s/\bLlargària: %2°/Longitud: %2°/g
 s/\bllargària=0 graus\([^[:alnum:]]\)/longitud=0 graus\1/g
-s/\bllargària, latitud\([^[:alnum:]]\)/longitud, latitud\1/g
+s/\b\([Ll]\)largària, latitud\([^[:alnum:]]\)/\1ongitud, latitud\2/g
 s/\b\([Ll]\)largària, \(en graus\)\([^[:alnum:]]\)/\1ongitud en \2\3/g
 s/\b\([Ll]\)largària i \([Ll]\)ongitud\([^[:alnum:]]\)/\1atitud i longitud\3/g
 s/\b\([Ll]\)largària com a valor\([^[:alnum:]]\)/\1ongitud com a valor\2/g
@@ -1536,7 +1568,7 @@ s/\b\([Ff]\)óssi\([mu]\)\([^[:alnum:]]\)/\1óre\2\3/g
 s/\b\([Ss]\)igui\([^[:alnum:]]\)/\1iga\2/g
 s/\b\([Ss]\)igui\([ns]\)\([^[:alnum:]]\)/\1igue\2\3/g
  #
-s/\b\([Hh]\)\(a\|age[ns]\|àge[mu]\|aguda\|agudes\|aguera\|aguére[mu]\|aguere[ns]\|agut\|aguts\|aja\|aja[mu]\|ajara\|a[ns]\|avent\|aver\|avia\|avie[ns]\|avíe[mu]\|e\|e[mu]\) estat\([^[:alnum:]]\)/\1\2 sigut\3/g
+s/\b\([Hh]\)\([ae]\|age[ns]\|àge[mu]\|aguda\|agudes\|aguera\|aguére[mu]\|aguere[ns]\|agut\|aguts\|aja\|aja[mu]\|ajara\|a[ns]\|avent\|aver\|avia\|avie[ns]\|avíe[mu]\|e[mu]\) estat\([^[:alnum:]]\)/\1\2 sigut\3/g
 s/\bSiguda \(màxima\|mínima\)\([^[:alnum:]]\)/Estada \1\2/g
 s/\bsiguda \(màxima\|mínima\)\([^[:alnum:]]\)/estada \1\2/g
 
@@ -1654,7 +1686,7 @@ s/\b\([Tt]\)raie\(m\|nt\|u\)\([^[:alnum:]]\)/\1rae\2\3/g
 s/\b\([Tt]\)ragués\([^[:alnum:]]\)/\1raguera\2/g
 s/\b\([Tt]\)raguéssi\([mu]\)\([^[:alnum:]]\)/\1raguére\2\3/g
 s/\b\([Tt]\)raguessi\([ns]\)\([^[:alnum:]]\)/\1raguere\2\3/g
-s/\b\([Tt]\)re\(c\|u\|uen\|ure\|us\)\([^[:alnum:]]\)/\1ra\2\3/g
+s/\b\([Tt]\)re\(c\|u\|uen\|ur[àe]\|us\)\([^[:alnum:]]\)/\1ra\2\3/g
 s/\b\([Tt]\)regui\([^[:alnum:]]\)/\1raga\2/g
 s/\b\([Tt]\)regui\([ns]\)\([^[:alnum:]]\)/\1rague\2\3/g
 s/\b\([Tt]\)reia\([^[:alnum:]]\)/\1ragué\2/g
