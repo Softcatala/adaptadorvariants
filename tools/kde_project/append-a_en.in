@@ -9,6 +9,7 @@
 [Aa]ccés|
 [Aa]ccés (concurrent|directe|especial|incorrecte|lliure|més ràpid|ràpid|ràpid i organitzat|suficient)|
 [Aa]ccés d'este ordinador|
+Accions prèvies|
 [Aa]costem|
 [Aa]costeu el sensor|
 [Aa]costum([aio]|ada|ades|ant|a[rt]|aran|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
@@ -32,9 +33,10 @@
 [Aa]djacent|
 [Aa]djunt([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])?|
 [Aa]djunt(a[ara|àre[mu]|are[ns])|
-[Aa]djunt(ar?|aran|en?) (automàticament l'etiqueta de nom|automàticament o no una etiqueta de nom|automàticament una etiqueta de nom|etiquetes de nom|manualment una etiqueta persistent de nom)|
-[Aa]djunt(ar?|aran|en?) les etiquetes de nom|
-[Aa]djunt(ar?|aran|en?) una (etiqueta|etiqueta de nom permanent)|
+[Aa]djunt(ar?|arà|aran|en?) (automàticament una etiqueta de nom|automàticament o no una etiqueta de nom|automàticament una etiqueta de nom|etiquetes de nom|manualment una etiqueta persistent de nom)|
+[Aa]djunt(ar?|arà|aran|en?) el número de seqüència|
+[Aa]djunt(ar?|arà|aran|en?) les etiquetes de nom|
+[Aa]djunt(ar?|arà|aran|en?) una (etiqueta|etiqueta de nom permanent)|
 [Aa]dreça de correu electrònic d'assistència|
 ADREÇA D'ASSISTÈNCIA|
 [Aa]fany([aio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])|
@@ -45,14 +47,15 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]fecten|
 [Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ir-los|irà|iran|ís|i[mtu]|int|íssi[mu]|issi[ns]|its|iu-l[eo]s?)|
 [Aa]f(egira|egíre[mu]|egire[ns]|g|ig|ige[ns]|ija)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) (%[12345]|@krita_painting\|%1|«\.sha256»|accions de gir|ajustaments predefinits d'openh264|alguns recursos i enllaços cap a guies d'aprenentatge|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|(aquesta|esta) (compartició|funció|pàgina)|àudio|automàticament una traça|cap sagnat|característiques d'IA|carpetes|catàlegs|configuració|controladors INDI remots|correctament %1 objectes?|directament|diversos mètodes|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|ginys|imatges|marques|més (distribucions de partícules|interruptors|suggeriments del diccionari)|objectes|opcions de conversió de capes que falten|qualsevol acoblador|\*\*showfoto\*\* com a argument|solidesa i profunditat|subelements nous|tantes ubicacions com vulgueu|text|totes les pestanyes)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) el (directori correcte|paràmetre de pressió)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) els (objectes visibles esta nit|vostres objectes favorits)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) (%[12345]|@krita_painting\|%1|«\.sha256»|accions de gir|ajustaments predefinits d'openh264|alguns recursos i enllaços cap a guies d'aprenentatge|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|(aquesta|esta) (compartició|funció|pàgina)|àudio|automàticament una traça|cap sagnat|característiques d'IA|carpetes|catàlegs|configuració|controladors INDI remots|correctament %1 objectes?|directament|diversos mètodes|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|ginys|imatges|marques|més (distribucions de partícules|interruptors|suggeriments del diccionari)|nivell de fons la mitjana quadràtica .rms. múltiples vegades|objectes|opcions de conversió de capes que falten|qualsevol acoblador|\*\*showfoto\*\* com a argument|solidesa i profunditat|subelements nous|tantes ubicacions com vulgueu|text|totes les pestanyes)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) el (directori correcte|nivell de fons la mitjana quadràtica (rms) múltiples vegades|paràmetre de pressió)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) els (controladors remots de l'INDI|objectes visibles esta nit|vostres objectes preferits)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) l'(enllaç|extensió <literal role=\"extension\">\.part<.literal>|opció «--software-renderer»\|opció «Patró»|opció per a mostrar el resultat)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) la (carpeta seleccionada|carta d'escales i magnituds|columna «Elevació»|contribució predita|funció ressaltada en el navegador de funcions|mateixa informació de data i hora|seua corba)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) la (carpeta correcta|carpeta seleccionada|carta d'escales i magnituds|columna «Elevació»|contribució predita|funció \*waitFor\*|funció ressaltada en el navegador de funcions|mateixa informació de data i hora|seua corba)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) les (pestanyes (.marcades|seleccionades)|tasques)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) un (desplaçament global de la inclinació del llapis|element|element nou observador|emplaçament personalitzat nou|estabilitzador|farciment d'1 px|formulari de registre bàsic|lot|mode nou|objecte|objecte nou|número|punt)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) un (desplaçament global de la inclinació del llapis|element|element nou observador|emplaçament personalitzat nou|enllaç personalitzat|estabilitzador|farciment d'1 px|formulari de registre bàsic|lot|mode nou|objecte|objecte nou|número|punt)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) una (característica nova|entrada nova|etiqueta de nom|fotografia a qualsevol icona|funcionalitat nova|llegenda|opció|paleta de glif|propietat independent de posició|tasca|traça|vista nova)|
+[Aa]fig este desplaçament|
 [Aa]fegir..em. fotogrames|
 [Aa]fegiu («&»|esta funció|l'argument <option>--paused<.option>|la funció <firstterm>waitFor<.firstterm>)|
 [Aa]fegi[ru]-(l[ao]|les)|
@@ -74,7 +77,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]just(a[ara|àre[mu]|are[ns])|
 [Aa]justar (en píxels aproximadament|molts aspectes de KMail)|
 [Aa]justar? la corba|
-[Aa]justar? una (corba|corba quadràtica|superfície)|
+[Aa]justar? una (corba|corba quadràtica|hipèrbola|paràbola|superfície)|
 [Aa]justament|
 [Aa]justar-(los|se)|
 [Aa]justarà|
@@ -100,6 +103,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]nota la vista d'orígens de suports|
 [Aa]nota les (miniaplicacions de context|miniaplicacions de vista de context)|
 [Aa]nticipant-se|
+apar\.|
 [Aa]parca el telescopi|
 [Aa]parca la cúpula|
 [Aa]pareixen|
@@ -120,6 +124,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]plicaran un <emphasis>desplaçament<.emphasis> i un <emphasis>multiplicador<.emphasis>|
 [Aa]pliquen només|
 [Aa]pren(dran|dre|neu)|
+[Aa]preneu-ne més|
 [Aa]proxima|
 [Aa]proximar cada submarc el més possible|
 [Aa]proximar-vos|
@@ -130,7 +135,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]ssign([aeio]|ada|ades|ant|aran|a[rt]|ats|e[mnsu]|és|éssi[mu]|essi[ns]|i[ns])|
 [Aa]ssign(ara|àre[mu]|are[ns])|
 [Aa]ssignar? el mateix nom de <guilabel>grup<.guilabel>|
-[Aa]ssignar? múltiples modificadors|
+[Aa]ssignar? (múltiples modificadors|noms (<[^<]{1,}>)permanents(<[^<]{1,}>))|
 [Aa]ssignar? una (categoria|plantilla d'informació textual|prioritat més (alta|baixa))|
 [Aa]ssigneu el botó|
 [Aa]ssistir|
@@ -152,7 +157,7 @@ Betelgeuse|
 [Cc]anviar? el nom|
 [Cc]anviar? els segments|
 [Cc]anviar? l'(opció de vista anomenada %1|opció de vista anomenada «%1»)|
-[Cc]anviar? la (cistella actual|condició de finalització|mida de les icones dels elements|vista de la carta estel·lar)|
+[Cc]anviar? la (cistella actual|condició de finalització|mida de les icones dels elements|pantalla|vista de la carta estel·lar)|
 [Cc]anviar? les etiquetes del punt d'enfocament|
 [Cc]anviat el tipus d'interpolació predeterminada|
 [Cc]anvis|
@@ -181,6 +186,7 @@ Betelgeuse|
 [Cc]omprometen..b.|
 [Cc]oncernents|
 [Cc]onfondre|
+[Cc]onservarà|
 [Cc]onsistix|
 [Cc]onsulta|
 [Cc]onsulteu la guia de configuració del vostre proveïdor de serveis d'Internet o|
@@ -196,7 +202,7 @@ Betelgeuse|
 [Cc]onvertida|
 [Cc]onvertit|
 [Cc]onverti[rx](en)?|
-[Cc]onverti[rx] fitxers en DocBook|
+[Cc]onverti[rx] (fitxers en DocBook|entre :ref:`coordenades equatorials <ai-skycoords-equatorial>`)|
 [Cc]onverti[rx] els clons|
 [Cc]onverti[rx] la forma vectorial|
 [Cc]onverti[rx] les (<firstterm>coordenades del catàleg<.firstterm> d'un punt en el cel|formes)|
@@ -206,15 +212,15 @@ Betelgeuse|
 [Cc]op d'ull|
 [Cc]opia[rt]?|
 [Cc]opiar? fitxers d'un|
-[Cc]opiar? el (fitxer %1|fitxer d'un plafó|paquet)|
+[Cc]opiar? el (catàleg|fitxer %1|fitxer d'un plafó|paquet)|
 [Cc]opiar? els elements (seleccionats |)des (de la vista|del) <emphasis>(activa|porta-retalls)<.emphasis>|
+[Cc]opiar? els objectes|
 [Cc]opiar? la (carpeta %1|carpeta de digiKam|suma de verificació)|
 [Cc]opiar? un canal|
+[Cc]opiar? una carpeta de dades predeterminada de KStars|
 [Cc]opieu-los|
 [Cc]orr[ei]|
-[Cc]orrespon|
-[Cc]orresponen|
-[Cc]orresponent|
+[Cc]orrespon(en|ent|ga)?|
 [Cc]rear..em. una <em>escena..em. nova|
 [Cc]reu(ar?|em)|
 [Cc]rid(a|es)|
@@ -224,6 +230,7 @@ Betelgeuse|
 [Dd]ebatuts|
 [Dd]ecidi(da|des|its?)|
 [Dd]edica(da|des|r?|ts?|ven)|
+[Dd]egudes|
 [Dd]egut|
 [Dd]eixar tots els altres paràmetres|
 [Dd]eixarà el tipus d'imatge|
@@ -243,6 +250,7 @@ Betelgeuse|
 [Dd]irigirà|
 [Dd]irigiran directament|
 [Dd]irigit|
+[Dd]istància màxima|
 [Dd]iverses esmenes|
 [Dd]on(ació|ar-li|ant|ar-li|arà?|ava|eu)|
 [Dd]on(ant|ar?|arà|e[mnu]) (aire fresc|de manera predeterminada|forma|format|lloc|suport|suport als efectes de composició en 3D|vida)|
@@ -250,6 +258,7 @@ Betelgeuse|
 [Dd]on(ant|ar?|arà|e[mnu]) la (benvinguda a (tothom|tots i totes)|quantitat que vulgueu|suport)|
 [Dd]on(ant|ar?|arà|e[mnu]) un (colp d'ull)|
 [Dd]on(ant|ar?|arà|e[mnu]) una (bona fregada|ullada)|
+[Dd]onar més pes|
 [Dd]ret|
 [Dd]ugueren|
 [Dd]ubteu|
@@ -291,13 +300,14 @@ Es fa|
 [Ee]scriptura actual de la taula del programador|
 [Ee]scriptures excessives|
 [Ee]scriure|
-[Ee]scriviu|
+[Ee]scrivi[au]|
 [Ee]sdevindran una versió|
 [Ee]stabl(eix[io]|eixe[ns]|eixi[ns]|ert|i[amru]|int|ís|íssi[mu]|issi[ns]|iu-l[ao])|
 [Ee]stabl(i[mrtux]|i[dr]a|ides|int|íre[mu]|ire[ns]|isc|isca|isque[ns]|its|ixe[ns])|
 [Ee]stabl(ert|int|i[rtux]) («updateRect»|CDV|respon A:)|
-[Ee]stabl(ert|int|i[rtux]) el (camí de l'aplicació|color anomenat %1|color anomenat «%1»|marc de la finestra|nivell d'ampliació|pas temporal|rellotge del sistema|solucionador|temps d'Xplanet)|
-[Ee]stabl(ert|int|i[rtux]) l'(emplaçament geogràfic|època)|
+[Ee]stabl(ert|int|i[rtux]) el (``Mètode de resolució:``|camí de l'aplicació|color anomenat %1|color anomenat «%1»|marc de la finestra|nivell d'ampliació|pas temporal|rellotge del sistema|solucionador|temps d'Xplanet)|
+[Ee]stabl(ert|int|i[rtux]) els paràmetres a :ref:`Configuració de l'enfocament <ekos-focus-focus-settings>`|
+[Ee]stabl(ert|int|i[rtux]) l'(emplaçament geogràfic|època|objectiu)|
 [Ee]stabl(ert|int|i[rtux]) la (carpeta <emphasis>cartera<.emphasis>|data|drecera|rotació de la vista|versió mínima de «freetype»)|
 [Ee]stan autoritzats|
 [Ee]star|
@@ -315,7 +325,7 @@ Es fa|
 [Ff]ets|
 [Ff]ins|
 [Ff]itxers anteriors|
-[Ff]ix(a|a[rt])|
+[Ff]ix(a|a[rt])?|
 [Ff]ixat a la Terra, no|
 [Ff]orça('l)?|
 [Ff]orça l'ordinador|
@@ -325,7 +335,7 @@ Es fa|
 [Gg]uard(a|ant|ar|arà|[ei]n?) (en l'ordinador remot (<[^<]{1,}>|)i(<[^<]{1,}>|) també|immediatament|localment)|
 [Gg]uard(a|ant|ar|arà|[ei]n?) el mapa de defectes|
 [Gg]uard(a|ant|ar|arà|[ei]n?) els (canvis|desplaçaments dels filtres)|
-[Gg]uard(a|ant|ar|arà|[ei]n?) la llista d'observació actual|
+[Gg]uard(a|ant|ar|arà|[ei]n?) la (imatge|llista d'observacions actual)|
 [Gg]uard(a|ant|ar|arà|[ei]n?) les (dreceres|dreceres actuals)|
 [Gg]uardar-lo|
 [Gg]uia pas|
@@ -357,13 +367,15 @@ Es fa|
 [Ii]nformar-ne .en anglés.|
 [Ii]nformeu d'errades o de sol·licituds de característiques|
 [Ii]nformeu-ne|
+[Ii]nici (anterior|posterior)|
 [Ii]nsereix un comentari HTML|
 [Ii]nteressa(da|des?|ts?)?|
 [Ii]nterfereixi amb el registre predeterminat|
 [Ii]nterns?|
 [Ii]ntroducció|
 [Ii]ntroduint-vos|
-[Ii]ntrodu(eixi|ïsca) un nom d'objecte desconegut per &kstars;|
+[Ii]ntrodu(eixi|ïsca) un nom d'objecte desconegut per KStars|
+[Ii]ntroduïu «dia julià»|
 [Ii]nvitar?|
 [Ii]nvocant|
 [Ii]nvocar|
@@ -371,6 +383,7 @@ Es fa|
 [Jj]ug([ao]|ada|ades|ant|aran|a[rt]|ats|ue[mnsu]|ués|uéssi[mu]|uessi[ns]|u[ei][ns])|
 [Jj]ug(ara|àre[mu]|are[ns])|
 [Jj]ust|
+KStars començarà automàticament|
 [Ll]a resposta és fidel|
 [Ll]es dades d'usuari|
 [Ll]imitar?|
@@ -385,9 +398,11 @@ Es fa|
 [Mm]anté el traçat|
 [Mm]antindre'ns|
 [Mm]apat|
+[Mm]és gran del món es troba|
 [Mm]esura l'angle d'un objecte|
 [Mm]esurada amb 3 exposicions|
 Millores|
+[Mm]irar la regió|
 [Mm]ireu|
 [Mm]olt més obert|
 [Mm]ostrar el llenç|
@@ -398,6 +413,7 @@ Millores|
 [Mm]ou(re|re's) la (carpeta %1|pestanya actual)|
 [Mm]olt|
 [Mm]udar|
+[Nn]o hi ha cap estrela|
 [Nn]ou|
 [Oo] oest|
 [Oo]blidar mai|
@@ -417,7 +433,7 @@ Millores|
 [Oo]rdenats de (l'A|menor)|
 [Oo]rienta(des|[rt])?|
 [Pp]areixent|
-[Ss]emblant|
+[Pp]arada (anterior|posterior)|
 [Pp]aral·leles|
 [Pp]aral·leles: encreuen|
 [Pp]areu especial atenció|
@@ -469,6 +485,7 @@ Millores|
 [Pp]rohib(eix|ix)|
 [Pp]roper|
 [Pp]roper(a|es)|
+[Pp]ropers l'un|
 [Pp]roporciona una mica de «dades de realimentació per al canal de retorn» des de la impressora|
 [Pp]roporciona[lrt]|
 [Pp]roporcionar ajustaments predefinits|
@@ -490,6 +507,7 @@ Millores|
 [Pp]ujar la imatge|
 [Pp]ujar-lo|
 [Pp]uja públicament|
+[Ss]emblant|
 [Qq]ualsevol ús subjecte|
 [Qq]uant?|
 [Qq]ue (acab[ei]|tenen)|
@@ -502,12 +520,13 @@ Millores|
 [Rr]eduint|
 [Rr]eduirà|
 [Rr]efer(eix|eixen|ix|ixen)|
-[Rr]eferències|
+[Rr]eferènci(a|es)|
 [Rr]eferent|
 [Rr]eferir|
 [Rr]eferiu-vos|
 [Rr]einicia la mida de les icones|
 [Rr]einiciaran tots els comptadors de captura|
+rel\.|
 [Rr]elació|
 [Rr]elació de senyal|
 [Rr]elatives|
@@ -596,3 +615,4 @@ Millores|
 [Vv]isites|
 [Vv]istes en arbre|
 [Vv]oten
+[Zz]oom de la vista|

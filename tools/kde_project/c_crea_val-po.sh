@@ -1,11 +1,17 @@
 #!/bin/bash --debug
 
-[ $(command -v awk)      ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
-[ $(command -v cpulimit) ] || $(echo "Error: Penseu a instal·lar el paquet «cpulimit»: apt install cpulimit"; exit 0)
-[ $(command -v /usr/lib/qt6/bin/lconvert) ] || $(echo "Error: Penseu a instal·lar el paquet «qt6-l10n-tools»: apt install qt6-l10n-tools"; exit 0)
-[ $(command -v posieve)  ] || $(echo "Error: Penseu a instal·lar les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."; exit 0)
-[ $(command -v sed)      ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU: apt install sed"; exit 0)
-[ $(command -v svn)      ] || $(echo "Error: Penseu a instal·lar el paquet «subversion»: apt install subversion"; exit 0)
+msg_exit() {
+  echo "Error: Penseu a instal·lar $1"
+  exit 0
+}
+
+[ $(command -v awk)      ] || msg_exit "el paquet «gawk» de GNU: apt install gawk"
+[ $(command -v cpulimit) ] || msg_exit "el paquet «cpulimit»: apt install cpulimit"
+[ $(command -v msgmerge) ] || msg_exit "el paquet «gettext»: apt install gettext"
+[ $(command -v /usr/lib/qt6/bin/lconvert) ] || msg_exit "el paquet «qt6-l10n-tools»: apt install qt6-l10n-tools"
+[ $(command -v posieve)  ] || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
+[ $(command -v sed)      ] || msg_exit "el paquet «sed» de GNU: apt install sed"
+[ $(command -v svn)      ] || msg_exit "el paquet «subversion»: apt install subversion"
 
 DIR1="$(echo $PWD)"
 DIR0="$(cd ../../../.. ; echo $PWD)"
@@ -20,16 +26,17 @@ SOURCE_0='ca@valencia'
 TEXT="$2"
 
 # Per a trobar els resultats amb un enllaç o caràcter especial (p. ex., va rebre el [premi a -en aquest cas «[»-)
-APPEND='\*|\*\*|\*\*\*|:ref:`|`|\[|[&«]|<[^<]{1,}>'
+TEMPORAL=':(alt|command|dfn|doc|file|guilabel|kbd|literal|menuselection|program|ref|su[bp]|term):`|``|`'
+APPEND="\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\]|[,&»]|<[^<]{1,}>"
 # Es descarten les paraules annexades abans (p. ex., accedint recentment a la -en aquest cas «accedint recentment»-)
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="[0123456789]|«Escala|acte (es bus|se cer)caran|baix|bord|cada segon|causa|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|temps complet|terme|tindre en compte|title=|tort|través|una distància|vegades|voluntat"
+APPEND_A="[0123456789]|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|vegades|voluntat"
 APPEND_A_L="escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés\)|instant|oest de Greenwich"
-APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició apuntada|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
+APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició (apuntada|d'enfocament)|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
 APPEND_A_LES="dotze del migdia"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|participant|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -114,11 +121,12 @@ sortida_po() {
 
   \033[1;37mARBRE DE CARPETES\n  -----------------\e[0m
   - stable / l10n-kf5 /                          \033[1;37m[repositoris SVN de KDE]\e[0m
-#   - stable / l10n-kf6-plasma-lts /
+  - stable / l10n-kf6 /
   - trunk  / l10n-kf5 /
+  - trunk  / l10n-kf6 /
+
   - trunk  / l10n-kf5 / Carpeta_nova / Treball / \033[1;37m[repositori SVN local i carpeta
                                                  base d'aquest script]\e[0m
-  - trunk  / l10n-kf6 /
 
   \033[1;37mCONTINGUT\n  ---------\e[0m
   - ca                          \033[1;37m[SVN de les traduccions al català]\e[0m
@@ -150,8 +158,8 @@ sortida_po() {
 
 comprova_lloc() {
   # Comprova que es crida des de la ubicació correcta
+  echo $DIR0
   [ -d $DIR0/$STABLE ] || sortida_po
-  [ -d $DIR0/stable/l10n-kf6-plasma-lts ] || sortida_po
   [ -d $DIR0/$TRUNK ]  || sortida_po
 }
 
@@ -517,7 +525,7 @@ case $1 in
     TEXT2="($APPEND_0) a un ($APPEND|)\w{$WORD}"
     MISSATGE="$MISSATGE1 ** amb / en un **"
     prompt_1
-    TEXT="\b(activ[aei]|desactiv[aei]|habilit|inhabilit|marca|marque)"
+    TEXT="\b(activ|desactiv|habilit|inhabilit|marc|marqu)[aei]"
     MISSATGE="$MISSATGE1 ** Quan se selecciona aquesta opció, / Quan no està seleccionada, / Si se selecciona, / Si no se selecciona, **"
     prompt_1
     TEXT="\bcàrreg(a|ues)"
@@ -809,6 +817,7 @@ case $1 in
   ;;
   crea_po)
     comprova_lloc
+
     [ "$2" ] || sortida_po
     ORDRE='crea_po'
     case $2 in

@@ -1,3 +1,4 @@
+s/%1 (%2b)/%1 (%2 b)/g
 # agarrotar -> engarrotar
 s/\bAgarrota\([dv]a\|des\|nt\|nts\|[rt]\|rà\|ran\|ts\|ven\|\)\([^[:alnum:]]\)/Engarrota\1\2/g
 s/\bagarrota\([dv]a\|des\|nt\|nts\|[rt]\|rà\|ran\|ts\|ven\|\)\([^[:alnum:]]\)/engarrota\1\2/g
@@ -107,7 +108,6 @@ s/\b\([Aa]\)rrodoníssi\([mu]\)\([^[:alnum:]]\)/\1rredoníre\2\3/g
 s/\b\([Aa]\)rrodonissi\([ns]\)\([^[:alnum:]]\)/\1rredonire\2\3/g
 
 # assignar
-    # TODO: no
     # desassignar -> treure l'assignació
     s/\bDesassignés\([^[:alnum:]]\)/Tragués l'assignació\1/g
     s/\bdesassignés\([^[:alnum:]]\)/tragués l'assignació\1/g
@@ -123,7 +123,6 @@ s/\b\([Aa]\)rrodonissi\([ns]\)\([^[:alnum:]]\)/\1rredonire\2\3/g
     s/\bdesassigni\([ns]\)\([^[:alnum:]]\)/tregui\1 l'assignació\2/g
     s/\bDesassigno\([^[:alnum:]]\)/Trec l'assignació\1/g
     s/\bdesassigno\([^[:alnum:]]\)/trec l'assignació\1/g
-    # TODO: no
     # reassignar -> tornar a assignar
     s/\bReassignés\([^[:alnum:]]\)/Tornés a assignar\1/g
     s/\breassignés\([^[:alnum:]]\)/tornés a assignar\1/g
@@ -214,6 +213,7 @@ s/\b\([Cc]\)antó rodona\([^[:alnum:]]\)/\1antó arredonit\2/g
 s/\b\([Cc]\)antons actives\([^[:alnum:]]\)/\1antons actius\2/g
 s/\b\([Cc]\)antons a&rredonides\([^[:alnum:]]\)/\1antons a\&rredonits\2/g
 s/\b\([Cc]\)antons arredonides\([^[:alnum:]]\)/\1antons arredonits\2/g
+s/\b\([Cc]\)antons inferiors arredonides\([^[:alnum:]]\)/\1antons inferiors arredonits\2/g
 s/\b\([Cc]\)antons inverses\([^[:alnum:]]\)/\1antons inversos\2/g
 s/\b\([Cc]\)antons oposades\([^[:alnum:]]\)/\1antons oposats\2/g
 s/\b\([Cc]\)antons primes\([^[:alnum:]]\)/\1antons prims\2/g
@@ -308,7 +308,7 @@ s/\b\([Cc]\)oncordi\([ns]\)\([^[:alnum:]]\)/\1oincidisque\2\3/g
 s/\b\([Cc]\)oncordo\([^[:alnum:]]\)/\1oincidisc\2/g
 
 # contabilitzar -> comptabilitzar
-# TODO: no
+# TODO: no existeix
 s/\b\([Cc]\)ontabilitza\(ble\|bles\|ció\|cions\|[dv]a\|des\|dor\|dors\|nt\|nts\|[rt]\|rà\|ran\|ts\|ven\|\)\([^[:alnum:]]\)/\1omptabilitz\2\3/g
 s/\b\([Cc]\)ontabilitz\(e[mnsu]\)\([^[:alnum:]]\)/\1omptabilitz\2\3/g
 s/\b\([Cc]\)ontabilitzés\([^[:alnum:]]\)/\1omptabilitzara\2/g
@@ -487,7 +487,7 @@ s/\bID de la destinació\([^[:alnum:]]\)/ID del destí\1/g
 s/\bIndiqueu la destinació del sobre\([^[:alnum:]]\)/Indiqueu el destí del sobre\1/g
 # Destinació:
 s/\bper a les destinacions seleccionades\([^[:alnum:]]\)/per als destins seleccionats\1/g
-s/\bSeleccioneu la destinació\"/Seleccioneu el destí\"/g
+s/\bTrieu la destinació\"/Trieu el destí\"/g
 s/\bVídeo de destinació\([^[:alnum:]]\)/Vídeo del destí\1/g
 
 # dipòsit
@@ -877,11 +877,10 @@ s/\bl'salvapantalla\([^[:alnum:]]\)/el salvapantalla\1/g
     5890,/^msgstr / s/\"estel\"/\"catxerulo\"/g
     s/\bL'ESTEL DE KAWELO\([^[:alnum:]]\)/EL CATXERULO DE KAWELO\1/g
     s/\"Estrel\"/\"Catxerulo\"/g
-
 # estrella -> estrela
 s/\bESTEL\([^[:alnum:]]\)/ESTRELA\1/g
 s/\bESTRELL\(A\|ES\)\([^[:alnum:]]\)/ESTREL\1\2/g
-
+s/\b\([Ee]\)strell\(a\|es\)\([^[:alnum:]]\)/\1strel\2\3/g
     # estrel·lar -> estel·lar
     s/\b\([Ee]\)strel·lar\([^[:alnum:]]\)/\1stel·lar\2/g
 
@@ -1019,8 +1018,8 @@ s/\b\([Ll]\)ongituds\([^[:alnum:]]\)/\1largàries\2/g
 ## calligra/calligra_semanticitem_location.po
 75,/^msgstr / s/\"Llargària\"/\"Longitud\"/g
 ## digikam/digikam.po
-9951,/^msgstr / s/\"Llargària\"/\"Longitud\"/g
-22144,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
+10151,/^msgstr / s/\"Llargària\"/\"Longitud\"/g
+22230,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
 10131,/^msgstr / s/\"Llargària\"/\"Longitud\"/g
 22366,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
 s/\"<b>Llargària<\/b>:\"/\"<b>Longitud<\/b>:\"/g
@@ -1035,14 +1034,13 @@ s/\"<b>Llargària<\/b>:\"/\"<b>Longitud<\/b>:\"/g
 # koko/koko.po
 567,/^msgstr / s/\bLlargària\"/Longitud\"/g
 580,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
+656,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
 590,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
 # kreport/kreport_mapsplugin_qt.po
 32,/^msgstr / s/\bLlargària\"/Longitud\"/g
 # kstars/kstars.po
-4851,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
-4830,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
-65966,/^msgstr / s/\bLlargària: \"/Longitud: \"/g
-66353,/^msgstr / s/\bLlargària: \"/Longitud: \"/g
+4857,/^msgstr / s/\bLlargària:\"/Longitud:\"/g
+66865,/^msgstr / s/\bLlargària: \"/Longitud: \"/g
 s/ i la llargària: \"/ i la longitud: \"/g
 # labplot/labplot.po
 19791,/^msgstr / s/\bLongitud:\"/Llargària:\"/g
@@ -1070,12 +1068,14 @@ s/ i la llargària: \"/ i la longitud: \"/g
 s/\"Longitud \(màxima\|mínima\):\"/\"Durada \1:\"/g
  #
 s/\" i la llargària: \"/\" i la longitud: \"/g
+s/``Llargària:`` i ``Latitud:``/``Longitud:`` i ``Latitud:``/g
 s/\bA diferència de la llargària\([^[:alnum:]]\)/A diferència de la longitud\1/g
 s/\baltituds, llargàries\([^[:alnum:]]\)/altituds, longituds\1/g
     s/\baltituds, longituds i distàncies\([^[:alnum:]]\)/altituds, llargàries i distàncies\1/g
 s/\banomenat <firstterm>llargària\([^[:alnum:]]\)/anomenat <firstterm>longitud\1/g
 s/\b\([Ee]\)mpleneu la llargària\([^[:alnum:]]\)/\1mpleneu la longitud\2/g
 s/\bgrau de lluminositat del color\([^[:alnum:]]\)/grau de claredat del color\1/g
+s/\bla llargària, la latitud\([^[:alnum:]]\)/la longitud, la latitud\1/g
 s/\blatitud\/llargària\([^[:alnum:]]\)/latitud\/longitud\1/g
 s/\b\([Ll]\)atitud, llargària\([^[:alnum:]]\)/\1atitud, longitud\2/g
 s/\b\([Ll]\)atitud\( i \|\/\|-\)llargària\([^[:alnum:]]\)/\1atitud i longitud\3/g
@@ -1084,8 +1084,10 @@ s/\bLlargària: %1/Longitud: %1/g
     s/\bLongitud: %1 px\([^[:alnum:]]\)/Llargària: %1 px\1/g
 s/\bLlargària: %2°/Longitud: %2°/g
 s/\bllargària=0 graus\([^[:alnum:]]\)/longitud=0 graus\1/g
+s/\b\([Ll]\)largària (vegeu el `Sistema\([^[:alnum:]]\)/\1ongitud (vegeu el `Sistema\2/g
 s/\b\([Ll]\)largària, latitud\([^[:alnum:]]\)/\1ongitud, latitud\2/g
 s/\b\([Ll]\)largària, \(en graus\)\([^[:alnum:]]\)/\1ongitud en \2\3/g
+s/\b\([Ll]\)largària a la qual es trobava\([^[:alnum:]]\)/\1ongitud a la qual es trobava\2/g
 s/\b\([Ll]\)largària i \([Ll]\)ongitud\([^[:alnum:]]\)/\1atitud i longitud\3/g
 s/\b\([Ll]\)largària com a valor\([^[:alnum:]]\)/\1ongitud com a valor\2/g
 s/\b\([Ll]\)largària d'ona\([^[:alnum:]]\)/\1ongitud d'ona\2/g
@@ -1110,6 +1112,10 @@ s/\bTé totes les llargàries alhora\([^[:alnum:]]\)/Té totes les longituds alh
  #
 s/\bLongitud\(Byte\|Mínima\)\([^[:alnum:]]\)/Llargària\1\2/g
 s/\bvariànciaLongitud\([^[:alnum:]]\)/variànciaLlargària\1/g
+
+# Luminosity
+# documentation-kstars-docs-kde-org/kstars_docs_user_manual___ai-luminosity.po
+25,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
 
 # manat
 s/\b\([Mm]\)anat\(s\|\)\([^[:alnum:]]\)/\1anoll\2\3/g
@@ -1617,7 +1623,7 @@ s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) \(cada\|fitxers\|qua
 s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) als \(\*\*\|\)\(botons\|punts\)\([^[:alnum:]]\)/\1li\2 damunt dels \4\5\6/g
 s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) el \(\*\*\|\)\(barret\|botó\|bloc\|camp\|circuit\|component\|control\|color\|cub\|dia\|document\|fitxer\|giny\|gradient\|mapa\|marcador\|nom\|número\|primer\|punt\|quadrat\|quadre\|signe\|[Ss]ol\|tambor\|text\|valor\)\([^[:alnum:]]\)/\1li\2 damunt del \4\5\6/g
 s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) els \(\*\*\|\)\(botons\|camps\|diferents\|elements\|enllaços\|ginys\|instruments\|nombres\|números\|objectes\|països\|punts\|quadrats\|quadres\|seguents\|termes\)\([^[:alnum:]]\)/\1li\2 damunt dels \4\5\6/g
-s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) l'\(\*\*\|\)\(activitat\|ànec\|animal\|àrea\|element\|enllaç\|esquerra\|estrella\|etiqueta\|objecte\|objectiu\|últim\)\([^[:alnum:]]\)/\1li\2 damunt de l'\4\5\6/g
+s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) l'\(\*\*\|\)\(activitat\|ànec\|animal\|àrea\|element\|enllaç\|esquerra\|estrela\|etiqueta\|objecte\|objectiu\|últim\)\([^[:alnum:]]\)/\1li\2 damunt de l'\4\5\6/g
 s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) la \(\*\*\|\)\(barra\|«Creu\|capçalera\|columna\|dreta\|finestra\|fitxa\|fletxa\|icona\|línia\|llavor\|lletra\|quadrícula\|seva\|via\|vostra\|zona\)\([^[:alnum:]]\)/\1li\2 damunt de la \4\5\6/g
 s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) les \(\*\*\|\)\(barres\|fletxes\|tasques\|tecles\)\([^[:alnum:]]\)/\1li\2 damunt de les \4\5\6/g
 s/\b\([Cc]\)li\(ca\|cant\|car\|que\|que[mu]\) \(en\|sobre\) un \(\*\*\|\)\(animal\|àtom\|botó\|contenidor\|detall\|enllaç\|fitxer\|metacontacte\|parell\|planeta\|punt\|URL\|valor\)\([^[:alnum:]]\)/\1li\2 damunt d'un \4\5\6/g

@@ -1,8 +1,4 @@
 #!/bin/bash
-#
-# TODO:
-# Més proves i polir el codi.
-# Si teniu cap idea...
 
 # En aquest fitxer es desa la revisió del darrer commit (format: 1641759)
 RVF='svn-revision_ca-valencia.log'
@@ -17,12 +13,18 @@ USUARIS_SVN="aacid\|apol\|bellaperez\|jferrer\|omas"
 USUARIS_VAL0="montoro_mde@\|alviboi@"
 USUARIS_VAL1="$(echo $USUARIS_VAL0 | sed -e 's,\\|, ,g')"
 
-[ $(command -v awk)      ] || $(echo "Error: Penseu a instal·lar el paquet «gawk» de GNU: apt install gawk"; exit 0)
-[ $(command -v cpulimit) ] || $(echo "Error: Penseu a instal·lar el paquet «cpulimit»: apt install cpulimit"; exit 0)
-[ $(command -v egrep)    ] || $(echo "Error: Penseu a instal·lar el paquet «grep» de GNU: apt install grep"; exit 0)
-[ $(command -v posieve)  ] || $(echo "Error: Penseu a instal·lar les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."; exit 0)
-[ $(command -v sed)      ] || $(echo "Error: Penseu a instal·lar el paquet «sed» de GNU: apt install sed"; exit 0)
-[ $(command -v svn)      ] || $(echo "Error: Penseu a instal·lar el paquet «subversion»: apt install subversion"; exit 0)
+msg_exit() {
+  echo "Error: Penseu a instal·lar $1"
+  exit 0
+}
+
+[ $(command -v awk)      ] || msg_exit "el paquet «gawk» de GNU: apt install gawk"
+[ $(command -v cpulimit) ] || msg_exit "el paquet «cpulimit»: apt install cpulimit"
+[ $(command -v msgmerge) ] || msg_exit "el paquet «gettext»: apt install gettext"
+[ $(command -v egrep)    ] || msg_exit "el paquet «grep» de GNU: apt install grep"
+[ $(command -v posieve)  ] || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
+[ $(command -v sed)      ] || msg_exit "el paquet «sed» de GNU: apt install sed"
+[ $(command -v svn)      ] || msg_exit "el paquet «subversion»: apt install subversion"
 
 # Establim la capçalera
 capçalera() {
@@ -96,18 +98,25 @@ genera_copia() {
   # Es torna a donar el format amb 78 files
   msgmerge --silent --previous --width=79 --lang=ca@valencia missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=missatges_2-$FITX
 
-  if  [[ "$FITX" != *@(appdata.po|_qt.po|metainfo.po) ]]; then
-    if [ "$FITX"  = "kajongg.po" ]; then
-        LBUGS="wolfgang@rohdewald.de"
-      else
-        LBUGS="https://bugs.kde.org"
-    fi
+  if  [[ "$FITX" = *@(appdata.po|_qt.po|metainfo.po) ]]; then
+        LBUGS=""
+    else
+      if   [ "$FITX"  = "kajongg.po" ]; then
+          LBUGS="wolfgang@rohdewald.de"
+      elif [[ "$FITX"  = @(docs_digikam_org_|docs_kdenlive_org_|docs_krita_org_|kstars_docs_)*".po" ]]; then
+          LBUGS=""
+        else
+          LBUGS="https://bugs.kde.org"
+      fi
 
-    grep --silent "^\"Report-Msgid-Bugs-To: $LBUGS"  missatges_2-$FITX || posieve set-header -sfield:"Report-Msgid-Bugs-To:$LBUGS" -screate -safter:'Project-Id-Version' -sreorder missatges_2-$FITX
-
-    if [[ "$FITX" = @(docs_digikam_org_|kstars_docs_)* ]]; then
-        grep --silent "^\"Plural-Forms: nplurals=2; plural=n != 1;"  missatges_2-$FITX || posieve set-header -sfield:"Plural-Forms:nplurals=2; plural=n != 1;" -screate -safter:'X-Generator:' -sreorder missatges_2-$FITX
-    fi
+      if [[ "$FITX" = @(docs_digikam_org_|kstars_docs_)* ]]; then
+          grep --silent "^\"Plural-Forms: nplurals=2; plural=n != 1;"  missatges_2-$FITX || posieve set-header -sfield:"Plural-Forms:nplurals=2; plural=n != 1;" -screate -safter:'X-Generator:' -sreorder missatges_2-$FITX
+      fi
+  fi
+  if [ -n "$LBUGS" ]; then
+      posieve set-header -sfield:"Report-Msgid-Bugs-To:$LBUGS" -screate -safter:'Project-Id-Version' -sreorder missatges_2-$FITX
+#   elif  [[ "$FITX" = *@(appdata.po|metainfo.po) ]]; then
+#       posieve set-header -sremove:"Report-Msgid-Bugs-To:" -sreorder missatges_2-$FITX
   fi
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer

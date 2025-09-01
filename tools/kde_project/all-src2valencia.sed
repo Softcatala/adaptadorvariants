@@ -38,12 +38,24 @@ s/\b\([Aa]\)bastéssi\([mu]\)\([^[:alnum:]]\)/\1bastàre\2\3/g
 s/\b\([Aa]\)bastessi\([ns]\)\([^[:alnum:]]\)/\1bastare\2\3/g
 s/\b\([Aa]\)bast\([io]\)\([^[:alnum:]]\)/\1baste\3/g
 s/\b\([Aa]\)basti\([ns]\)\([^[:alnum:]]\)/\1baste\2\3/g
+# abordar
+s/\b\([Aa]\)bordés\([^[:alnum:]]\)/\1bordara\2/g
+s/\b\([Aa]\)bordéssi\([mu]\)\([^[:alnum:]]\)/\1bordàre\2\3/g
+s/\b\([Aa]\)bordessi\([ns]\)\([^[:alnum:]]\)/\1bordare\2\3/g
+s/\b\([Aa]\)bordi\([ns]\)\([^[:alnum:]]\)/\1borde\2\3/g
+s/\b\([Aa]\)bordo\([^[:alnum:]]\)/\1borde\2/g
 # abreujar
 s/\b\([Aa]\)breugés\([^[:alnum:]]\)/\1breujara\2/g
 s/\b\([Aa]\)breugéssi\([mu]\)\([^[:alnum:]]\)/\1breujàre\2\3/g
 s/\b\([Aa]\)breugessi\([ns]\)\([^[:alnum:]]\)/\1breujare\2\3/g
 s/\b\([Aa]\)breugi\([ns]\)\([^[:alnum:]]\)/\1breuge\2\3/g
 s/\b\([Aa]\)breujo\([^[:alnum:]]\)/\1breuge\2/g
+# abrigar
+s/\b\([Aa]\)brigués\([^[:alnum:]]\)/\1brigara\2/g
+s/\b\([Aa]\)briguéssi\([mu]\)\([^[:alnum:]]\)/\1brigàre\2\3/g
+s/\b\([Aa]\)briguessi\([ns]\)\([^[:alnum:]]\)/\1brigare\2\3/g
+s/\b\([Aa]\)brigui\([ns]\)\([^[:alnum:]]\)/\1brigue\2\3/g
+s/\b\([Aa]\)brigo\([^[:alnum:]]\)/\1brigue\2/g
 # abscindir
 s/\b\([Aa]\)bscindeix\(e[ns]\|\)\([^[:alnum:]]\)/\1bscindix\2\3/g
 s/\b\([Aa]\)bscindeixi\([^[:alnum:]]\)/\1bscindisca\2/g
@@ -52,6 +64,14 @@ s/\b\([Aa]\)bscindeixo\([^[:alnum:]]\)/\1bscindisc\2/g
 s/\b\([Aa]\)bscindís\([^[:alnum:]]\)/\1bscindira\2/g
 s/\b\([Aa]\)bscindíssi\([mu]\|\)\([^[:alnum:]]\)/\1bscindíre\2\3/g
 s/\b\([Aa]\)bscindissi\([ns]\|\)\([^[:alnum:]]\)/\1bscindire\2\3/g
+# absorbir
+s/\b\([Aa]\)bsorbeix\(e[ns]\|\)\([^[:alnum:]]\)/\1bsorbix\2\3/g
+s/\b\([Aa]\)bsorbeixi\([^[:alnum:]]\)/\1bsorbisca\2/g
+s/\b\([Aa]\)bsorbeixi\([ns]\)\([^[:alnum:]]\)/\1bsorbisque\2\3/g
+s/\b\([Aa]\)bsorbeixo\([^[:alnum:]]\)/\1bsorbisc\2/g
+s/\b\([Aa]\)bsorbís\([^[:alnum:]]\)/\1bsorbira\2/g
+s/\b\([Aa]\)bsorbíssi\([mu]\|\)\([^[:alnum:]]\)/\1bsorbíre\2\3/g
+s/\b\([Aa]\)bsorbissi\([ns]\|\)\([^[:alnum:]]\)/\1bsorbire\2\3/g
 # acabar
 s/\b\([Aa]\)cabés\([^[:alnum:]]\)/\1cabara\2/g
 s/\b\([Aa]\)cabéssi\([mu]\)\([^[:alnum:]]\)/\1cabàre\2\3/g
@@ -5341,6 +5361,12 @@ s/\b\([Ii]\)nterrompessi\([ns]\)\([^[:alnum:]]\)/\1nterrompere\2\3/g
 s/\b\([Ii]\)nterrompi\([^[:alnum:]]\)/\1nterrompa\2/g
 s/\b\([Ii]\)nterrompi\([ns]\)\([^[:alnum:]]\)/\1nterrompe\2\3/g
 s/\b\([Ii]\)nterrompo\([^[:alnum:]]\)/\1nterromp\2/g
+# intersecar
+s/\b\([Ii]\)nterseco\([^[:alnum:]]\)/\1nterseque\2/g
+s/\b\([Ii]\)ntersequés\([^[:alnum:]]\)/\1ntersecara\2/g
+s/\b\([Ii]\)ntersequéssi\([mu]\)\([^[:alnum:]]\)/\1ntersecàre\2\3/g
+s/\b\([Ii]\)ntersequessi\([ns]\)\([^[:alnum:]]\)/\1ntersecare\2\3/g
+s/\b\([Ii]\)ntersequi\([ns]\|\)\([^[:alnum:]]\)/\1nterseque\2\3/g
 # intimidar
 s/\b\([Ii]\)ntimidés\([^[:alnum:]]\)/\1ntimidara\2/g
 s/\b\([Ii]\)ntimidéssi\([mu]\)\([^[:alnum:]]\)/\1ntimidàre\2\3/g
@@ -5402,6 +5428,12 @@ s/\b\([Ii]\)onitzessi\([ns]\)\([^[:alnum:]]\)/\1onitzare\2\3/g
 s/\b\([Ii]\)onitz\([io]\)\([^[:alnum:]]\)/\1onitze\3/g
 s/\b\([Ii]\)onitzi\([ns]\)\([^[:alnum:]]\)/\1onitze\2\3/g
 s/\b\([Ii]\)\([rs]\)landès\([^[:alnum:]]\)/\1\2landés\3/g
+# irradiar
+s/\b\([Ii]\)rradiés\([^[:alnum:]]\)/\1rradiara\2/g
+s/\b\([Ii]\)rradiéssi\([mu]\)\([^[:alnum:]]\)/\1rradiàre\2\3/g
+s/\b\([Ii]\)rradiessi\([ns]\)\([^[:alnum:]]\)/\1rradiare\2\3/g
+s/\b\([Ii]\)rradi\([ïo]\)\([^[:alnum:]]\)/\1rradie\3/g
+s/\b\([Ii]\)rradiï\([ns]\)\([^[:alnum:]]\)/\1rradie\2\3/g
 # j
 #
 s/\b\([Jj]\)aponès\([^[:alnum:]]\)/\1aponés\2/g
@@ -6247,6 +6279,12 @@ s/\b\([Oo]\)ptimitzéssi\([mu]\)\([^[:alnum:]]\)/\1ptimitzàre\2\3/g
 s/\b\([Oo]\)ptimitzessi\([ns]\)\([^[:alnum:]]\)/\1ptimitzare\2\3/g
 s/\b\([Oo]\)ptimitz\([io]\)\([^[:alnum:]]\)/\1ptimitze\3/g
 s/\b\([Oo]\)ptimitzi\([ns]\)\([^[:alnum:]]\)/\1ptimitze\2\3/g
+# orbitar
+s/\b\([Oo]\)rbités\([^[:alnum:]]\)/\1rbitara\2/g
+s/\b\([Oo]\)rbitéssi\([mu]\)\([^[:alnum:]]\)/\1rbitàre\2\3/g
+s/\b\([Oo]\)rbitessi\([ns]\)\([^[:alnum:]]\)/\1rbitare\2\3/g
+s/\b\([Oo]\)rbit\([io]\)\([^[:alnum:]]\)/\1rbite\3/g
+s/\b\([Oo]\)rbiti\([ns]\)\([^[:alnum:]]\)/\1rbite\2\3/g
 # ornamentar
 s/\b\([Oo]\)rnamentés\([^[:alnum:]]\)/\1rnamentara\2/g
 s/\b\([Oo]\)rnamentéssi\([mu]\)\([^[:alnum:]]\)/\1rnamentàre\2\3/g
