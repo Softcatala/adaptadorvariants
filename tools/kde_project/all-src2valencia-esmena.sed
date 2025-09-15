@@ -1,4 +1,7 @@
+#
 s/%1 (%2b)/%1 (%2 b)/g
+s/\bQuè hi ha per a vós\([^[:alnum:]]\)/Què hi ha per a tu\1/g
+
 # agarrotar -> engarrotar
 s/\bAgarrota\([dv]a\|des\|nt\|nts\|[rt]\|rà\|ran\|ts\|ven\|\)\([^[:alnum:]]\)/Engarrota\1\2/g
 s/\bagarrota\([dv]a\|des\|nt\|nts\|[rt]\|rà\|ran\|ts\|ven\|\)\([^[:alnum:]]\)/engarrota\1\2/g
@@ -913,6 +916,8 @@ s/\bgra\(ó\|ons\)\([^[:alnum:]]\)/escal\1\2/g
 
 # gratuït -> debades
 s/\b\([Dd]\)e franc\([^[:alnum:]]\)/\1ebades\2/g
+s/\bGratuïtament\([^[:alnum:]]\)/Debades\1/g
+s/\bgratuïtament\([^[:alnum:]]\)/debades\1/g
 s/\bGratuït\(s\|\)\([^[:alnum:]]\)/Debades\2/g
 s/\bgratuït\(s\|\)\([^[:alnum:]]\)/debades\2/g
 s/\bGratuïtes\([^[:alnum:]]\)/Debades\1/g
@@ -1062,6 +1067,8 @@ s/ i la llargària: \"/ i la longitud: \"/g
 # plasma-workspace/kcm_nightcolor.po
 59,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
 68,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
+# plasma-workspace/kcm_nighttime.po
+106,/^msgstr / s/\"Llargària:\"/\"Longitud:\"/g
 # plasma-workspace/plasma_engine_time.po
 61,/^msgstr / s/\"Llargària\"/\"Longitud\"/g
 # tokodon
