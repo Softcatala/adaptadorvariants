@@ -3,18 +3,20 @@
 
 This project was started thanks to the comments and translations into Valencian. One tip
 is to install [GCompris](https://gcompris.net/index-ca@valencia.html) on your mobile
-(*Android*) and enjoy the Valencian language in games for children from 2 to 10 years old
-(we need a native voice for recordings). We also need to see if the two-letter code for
-Valencian can be enabled, maybe '**va**', which is now free and so it might be easier for
+(*Android*, *GNU/Linux*, *macOS*, *Raspberry Pi* o *Windows*) and enjoy the Valencian
+language in games for children from 2 to 10 years old (we need a native voice for
+recordings). We also need to see if the two-letter code for Valencian can be enabled,
+maybe '**va**', which is now free and so it might be easier for
 [Qt](https://www.qt.io/) to support our language (see this
 [bug report](https://bugreports.qt.io/browse/QTBUG-7100?gerritIssueType=IssueOnly)).
 
 ***va:*** Este projecte es va iniciar gràcies als comentaris i traduccions al valencià. Un
 consell és que instal·leu [GCompris](https://gcompris.net/index-ca@valencia.html) en el mòbil
-(*Android*) i que gaudiu del valencià en jocs per a xiquets i xiquetes des dels 2 fins als
-10 anys (ens cal una veu nativa per a les gravacions). També cal veure si es pot habilitar
-el codi de dues lletres per al valencià, potser '**va**', el qual ara està lliure i així
-potser serà més fàcil que les [Qt](https://www.qt.io/) admeten el nostre idioma (vegeu este
+(*Android*, *GNU/Linux*, *macOS*, *Raspberry Pi* o *Windows*) i que gaudiu del valencià en
+jocs per a xiquets i xiquetes des dels 2 fins als 10 anys (ens cal una veu nativa per a les
+gravacions). També cal veure si es pot habilitar el codi de dues lletres per al valencià,
+potser '**va**', el qual ara està lliure i així potser serà més fàcil que les
+[Qt](https://www.qt.io/) admeten el nostre idioma (vegeu este
 [informe d'error](https://bugreports.qt.io/browse/QTBUG-7100?gerritIssueType=IssueOnly)).
 
 An explanation of the scripts:
