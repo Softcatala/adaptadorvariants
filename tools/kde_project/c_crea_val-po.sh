@@ -36,7 +36,7 @@ APPEND_A_L="escala especificada|especificat|espera|esquerra|est del nord|estar|e
 APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició (apuntada|d'enfocament)|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
 APPEND_A_LES="dotze del migdia"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de KDE|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
