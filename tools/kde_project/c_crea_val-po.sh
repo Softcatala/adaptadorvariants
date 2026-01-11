@@ -31,12 +31,12 @@ APPEND="\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\]|[,&»]|<[^<]{1,}>"
 # Es descarten les paraules annexades abans (p. ex., accedint recentment a la -en aquest cas «accedint recentment»-)
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="[0123456789]|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|vegades|voluntat"
-APPEND_A_L="escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés\)|instant|oest de Greenwich"
+APPEND_A="[0123456789]|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|hores d'ara|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|vegades|voluntat"
+APPEND_A_L="escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés.|instant|oest de Greenwich"
 APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició (apuntada|d'enfocament)|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
 APPEND_A_LES="dotze del migdia"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de (&kde|KDE)|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -53,7 +53,6 @@ sortida_po() {
                                   Apareix un indicatiu en canviar de regla.
                                   Permet especificar un sol fitxer.
                                   \033[47;31mNOTA:\e[0m Primer s'ha de generar la traducció!
-  comprova (dir)                  Aplica unes regles de cerca del pology.
 
   \033[1;37mCERCAR\n  ------\e[0m
   cerca_dir va (text_cerca) (dir))[/fitxer.po]? [doc]?
@@ -96,8 +95,7 @@ sortida_po() {
                                   * \033[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
   crea_po (gui|doc)               * \033[1;37mCrea els fitxers PO que es mantenen\e[0m.
   neteja_ca (gui|doc)             * \033[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
-
-  comprova_tot                    * \033[1;37mS'empren les regles del pology per a confirmar totes les branques\e[0m.
+  adapta_mod                      * \033[47;31mAdapta tots els fitxers mantinguts en el SVN local.\e[0m
 
   \033[1;37mMANTENIMENT\n  -----------\e[0m
   \033[47;31mactualitza_svn_local\e[0m            \033[1;37mActualitza l'SVN local amb trunk\e[0m.
@@ -105,7 +103,7 @@ sortida_po() {
   copia_a_svn_local kdenlive/kdenlive.po
                                   * Copia algun fitxer des de trunk a dins del SVN local.
                                     - També l'adapta al valencià.
-  \033[47;31mcopia_aquests\e[0m [núm. comissió]   * \033[1;37mAdapta els PO amb modificacions\e[0m en el SVN de KDE.
+  \033[47;31mcopia_aquests\e[0m \"[núm. comissió]\" * \033[1;37mAdapta els PO amb modificacions\e[0m en el SVN de KDE.
   \033[47;31minstalla_va\e[0m                     * \033[1;37mInstal·la les traduccions\e[0m.
   sense_installar                 \033[1;37mObjectius futurs\e[0m [?].
   revisa                          Revisa la documentació del digiKam.
@@ -144,8 +142,8 @@ sortida_po() {
   • append-a_en.in              \033[1;37m[Ajudant del pology -el contingut s'inclou al primer script-]\e[0m
   • adapta-kde_recursivament.sh \033[1;37m[Script en Bash que adapta amb els scripts en SED]\e[0m
   \033[1;37mEls scripts en SED, en odre de processament:\e[0m
-  • kde-src2valencia_a.sed      \033[1;37mRepo:\e[0m sense publicar
-  • kde-src2valencia_b.sed      \033[1;37mRepo:\e[0m sense publicar
+  • kde-src2valencia_a.sed
+  • kde-src2valencia_b.sed
   • kde-src2valencia-esmena.sed
   • all-src2valencia.sed
   • all-src2valencia-adapta.sed
@@ -221,7 +219,7 @@ copia_valencia() {
     fi
   }
 
-  # KF5 (trunk)
+  # KF5
   DIRDES="$DIR1/kf5-trunk/$SOURCE_0/$MESSAGES/$1"
   DIRTEM="$DIR0/$TRUNK/templates/$MESSAGES/$1"
   for po in $(find $DIRMOD/* -maxdepth 0 -type f -name "*.po")
@@ -231,7 +229,6 @@ copia_valencia() {
       adapta_ho kf5-trunk
     done
 
-  # KF5 (stable)
   DIRDES="$DIR1/kf5-stable/$SOURCE_0/$MESSAGES/$1"
   DIRTEM="$DIR0/$STABLE/templates/$MESSAGES/$1"
   [ $(find $DIRMOD/ -maxdepth 2 -type d -name "stable") ] && \
@@ -242,18 +239,7 @@ copia_valencia() {
       adapta_ho kf5-stable
     done
 
-  # KF6 (kf6-plasma-lts)
-  DIRDES="$DIR1/kf6-plasma-lts/$SOURCE_0/$MESSAGES/$1"
-  DIRTEM="$DIR0/stable/l10n-kf6-plasma-lts/templates/$MESSAGES/$1"
-  [ $(find $DIRMOD/ -maxdepth 2 -type d -name "kf6-plasma-lts") ] && \
-  for po in $(find $DIRMOD/kf6-plasma-lts/* -maxdepth 1 -type f -name "*.po")
-    do
-      PO2="$(basename $po)"
-      CA_MOD="$DIRMOD/kf6-plasma-lts/$PO2"
-      adapta_ho kf6-plasma-lts
-    done
-
-  # KF6 (stable)
+  # KF6 (transcició)
   DIRDES="$DIR1/kf6-stable/$SOURCE_0/$MESSAGES/$1"
   DIRTEM="$DIR0/$STABLE6/templates/$MESSAGES/$1"
   [ $(find $DIRMOD/ -maxdepth 2 -type d -name "stable6") ] && \
@@ -264,7 +250,6 @@ copia_valencia() {
       adapta_ho kf6-stable
     done
 
-  # Futur KF6 (transcició)
   DIRDES="$DIR1/kf6-trunk/$SOURCE_0/$MESSAGES/$1"
   DIRTEM="$DIR0/$TRUNK6/templates/$MESSAGES/$1"
   [ $(find $DIRMOD/ -maxdepth 2 -type d -name "kf6") ] && \
@@ -276,7 +261,7 @@ copia_valencia() {
     done
 }
 
-crea_po() {
+crea_po_mod() {
   DIRMOD="ca-mod/$MESSAGES/$1"
   DIROBJ="ca/$MESSAGES/$1"
   DIRTEM="templates/$MESSAGES/$1"
@@ -284,24 +269,26 @@ crea_po() {
   for po in $(find $DIR1/$DIRMOD/* -maxdepth 0 -type f -name "*.po")
     do
       PO2="$(basename $po)"
+      crea_missatges() {
+        BRANCA="$1"
+        [ -f $DIR0/$BRANCA/$DIRTEM/${PO2}t ] || return
+        msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$BRANCA/$DIRTEM/${PO2}t  --output-file=$DIR0/$BRANCA/$DIROBJ/$PO2
+        posieve  remove-obsolete $DIR0/$BRANCA/$DIROBJ/$PO2
+        msgfmt   --statistics    $DIR0/$BRANCA/$DIROBJ/$PO2
+      }
+
       if   [ -f $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
+          CA_MOD="$DIRMOD/$PO2"
           mkdir -p $DIROBJ
           echo -e "   \e[38;5;44m-- (KF5 trunk) <-\e[0m $PO2"
-          [ -f $DIR0/$TRUNK/$DIRTEM/${PO2}t ] || return
-          msgmerge --silent --previous --width=79 --lang=ca $DIRMOD/$PO2 $DIR0/$TRUNK/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK/$DIROBJ/$PO2
-          posieve  remove-obsolete $DIR0/$TRUNK/$DIROBJ/$PO2
-          msgfmt   --statistics    $DIR0/$TRUNK/$DIROBJ/$PO2
+          crea_missatges $TRUNK
       fi
 
       if [ -f $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
         if [ -d $DIRMOD/stable ]; then
           CA_MOD="$DIRMOD/stable/$PO2"
           mkdir -p $DIROBJ
-          echo -e "   \e[38;5;44m-- (KF5 stable) <-\e[0m $PO2"
-          [ -f $DIR0/$STABLE/$DIRTEM/${PO2}t ] || return
-          msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE/$DIROBJ/$PO2
-          posieve  remove-obsolete $DIR0/$STABLE/$DIROBJ/$PO2
-          msgfmt   --statistics    $DIR0/$STABLE/$DIROBJ/$PO2
+          crea_missatges $STABLE
         fi
       fi
 
@@ -310,10 +297,7 @@ crea_po() {
           CA_MOD="$DIRMOD/kf6/$PO2"
           mkdir -p $DIROBJ
           echo -e "   \e[38;5;44m-- (KF6 trunk) <-\e[0m $PO2"
-          [ -f $DIR0/$TRUNK6/$DIRTEM/${PO2}t ] || return
-          msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$TRUNK6/$DIRTEM/${PO2}t  --output-file=$DIR0/$TRUNK6/$DIROBJ/$PO2
-          posieve  remove-obsolete $DIR0/$TRUNK6/$DIROBJ/$PO2
-          msgfmt   --statistics    $DIR0/$TRUNK6/$DIROBJ/$PO2
+          crea_missatges $TRUNK6
         fi
       fi
 
@@ -322,10 +306,7 @@ crea_po() {
           CA_MOD="$DIRMOD/stable6/$PO2"
           mkdir -p $DIROBJ
           echo -e "   \e[38;5;44m-- (KF6 stable) <-\e[0m $PO2"
-          [ -f $DIR0/$STABLE6/$DIRTEM/${PO2}t ] || return
-          msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$STABLE6/$DIRTEM/${PO2}t  --output-file=$DIR0/$STABLE6/$DIROBJ/$PO2
-          posieve  remove-obsolete $DIR0/$STABLE6/$DIROBJ/$PO2
-          msgfmt   --statistics    $DIR0/$STABLE6/$DIROBJ/$PO2
+          crea_missatges $STABLE6
         fi
       fi
     done
@@ -576,12 +557,6 @@ case $1 in
     MISSATGE="$MISSATGE1 ** a sota, d'acord amb **"
     prompt_1
   ;;
-  comprova)
-    DIR="ca@valencia/messages/$2"
-    [ -d "$DIR" ] || sortida_po
-    posieve check-rules -s rfile:../../../../svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/errors.rules $DIR/
-    echo "* posieve check-rules -s lokalize -s rfile:rules/errors.rules ca-mod/messages/kstars"
-  ;;
   cerca_dir)
     [ "$2" ] || sortida_po
       [ "$(echo $2 | grep -P "^([cv]a|en)$")" ] || sortida_po
@@ -767,7 +742,7 @@ case $1 in
   ;;
   adapta_dir)
     command_rm
-    for po in $(find ca/messages/$2/* -type f -name "*.po")
+    for po in $(find ca/messages/$2/* -type f -name "*.po" | sort)
       do
         PO2="$(basename $po)"
         DIR="$(dirname $po | sed -e s,ca\/,,)"
@@ -776,10 +751,19 @@ case $1 in
   ;;
   adapta_dir_va)
     command_rm
-    for po in $(find ca@valencia/messages/$2/* -type f -name "*.po")
+    for po in $(find ca@valencia/messages/$2/* -type f -name "*.po" | sort)
       do
         PO2="$(basename $po)"
         DIR="$(dirname $po | sed -e s,ca@valencia\/,,)"
+        ./adapta-kde_recursivament.sh fitxer $DIR/$PO2
+      done
+  ;;
+  adapta_mod)
+    command_rm
+    for po in $(find ca-mod/messages/* -maxdepth 1 -type f -name "*.po" | sort)
+      do
+        PO2="$(basename $po)"
+        DIR="$(dirname $po | sed -e s,ca-mod\/,,)"
         ./adapta-kde_recursivament.sh fitxer $DIR/$PO2
       done
   ;;
@@ -819,7 +803,7 @@ case $1 in
     comprova_lloc
 
     [ "$2" ] || sortida_po
-    ORDRE='crea_po'
+    ORDRE='crea_po_mod'
     case $2 in
       gui)
         MESSAGES='messages'
@@ -861,19 +845,6 @@ case $1 in
     cd $DIR0/$STABLE6/ca/ && svn update
     echo -e "\n * S'està actualitzant KF6 «trunk»:"
     cd $DIR0/$TRUNK6/ca/  && svn update
-  ;;
-  comprova_tot)
-    comprova_lloc
-    ca_rules() { posieve check-rules -s rfile:../../svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/errors.rules ca@valencia/messages; }
-
-    echo -e "\n * S'està revisant KF5 «stable»:"
-    cd $DIR0/$STABLE/  && ca_rules
-    echo -e "\n * S'està revisant KF5 «trunk»:"
-    cd $DIR0/$TRUNK/   && ca_rules
-    echo -e "\n * S'està revisant KF6 «stable»:"
-    cd $DIR0/$STABLE6/ && ca_rules
-    echo -e "\n * S'està revisant KF6 «trunk»:"
-    cd $DIR0/$TRUNK6/  && ca_rules
   ;;
   actualitza_svn_local)
     comprova_lloc
@@ -990,10 +961,10 @@ case $1 in
     }
 
     ARRAY=( $TARGETS )
-
     for arg in ${ARRAY[@]}
       do
         commits_num "$arg"
+        echo $arg
         FITXERST="$FITXERST $FITXERS"
       done
 
@@ -1035,7 +1006,7 @@ case $1 in
 
     crea_mo() {
       sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
-      if [[ "$DIR_M" = @(ark|falkon|kwalletmanager) ]]; then
+      if [[ "$DIR_M" = @(ark|falkon|krita|kwalletmanager) ]]; then
           LINK="1"
         elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
           LINK="1"

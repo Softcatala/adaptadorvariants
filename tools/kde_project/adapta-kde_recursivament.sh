@@ -77,7 +77,8 @@ genera_copia() {
       for usuari_val in $USUARIS_VAL1
         do
           if [ "$(echo $TOCAT | grep $usuari_val)" ]; then
-            USUARI_VAL="$(head -20 $DIRTR/ca/$PO | grep $usuari_val | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ $//g'),"
+            USUARI_VAL="$(head -20 $DIRTR/ca/$PO | grep $usuari_val | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ $//g' -e 's/[^A-Z]\{10\}/ /g' -e 's/SPDX-FileCopyright. //g'),"
+            USUARI_VAL="$(echo $USUARI_VAL | sed -e 's/\# //g')"
             USUARI_VAL_EMAIL="$(head -20 $DIRTR/ca/$PO | grep $usuari_val | cut -f 2 -d'<' | sed -e 's/,.*//g' -e 's/>$//g'),"
             USUARIS_VAL="$USUARIS_VAL$USUARI_VAL"
             USUARIS_VAL_EMAIL="$USUARIS_VAL_EMAIL$USUARI_VAL_EMAIL"
@@ -129,6 +130,16 @@ genera_copia() {
   if [ $FITX = "gcompris_qt.po" ]; then
     echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper a convidar a traductors valencians.\n"
     sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta siga correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" missatges_2-$FITX
+  fi
+
+  # es fa el seguiment de les esmenes en regressió
+  posieve check-rules -s rfile:$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/errors.rules missatges_2-$FITX
+  if   [[ $DIR = "messages/"@(digikam|digikam-doc) ]]; then
+    echo -e " \033[1;37m* Es comproven les regles multimedia:\e[0m"
+#     posieve check-rules -s rfile:$HOME/Documents/Treball/svn/kde/pology/lang/ca/rules/apps-multimedia.rules.disabled missatges_2-$FITX
+  elif [[ $DIR = "messages/"@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
+    echo -e " \033[1;37m* Es comproven les regles del KStars:\e[0m"
+    posieve check-rules -s rfile:$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/kstars.rules missatges_2-$FITX
   fi
 
   # Ja s'escriu al disc

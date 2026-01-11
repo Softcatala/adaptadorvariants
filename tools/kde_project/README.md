@@ -3,7 +3,7 @@
 
 This project was started thanks to the comments and translations into Valencian. One tip
 is to install [GCompris](https://gcompris.net/index-ca@valencia.html) on your mobile
-(*Android*, *GNU/Linux*, *macOS*, *Raspberry Pi* o *Windows*) and enjoy the Valencian
+(*Android*, *GNU/Linux*, *macOS*, *Raspberry Pi* or *Windows*) and enjoy the Valencian
 language in games for children from 2 to 10 years old (we need a native voice for
 recordings). We also need to see if the two-letter code for Valencian can be enabled,
 maybe '**va**', which is now free and so it might be easier for
@@ -30,13 +30,13 @@ An explanation of the scripts:
 
 * `kde-src2valencia_a.sed`      *->* Make corrections and improves (into Catalan text)
 * `kde-src2valencia_b.sed`
-* `kde-src2valencia-esmena.sed` *->* fixes (improves the control and review)
+* `kde-src2valencia-esmena.sed` *->* Fixes (improves the control and review)
 
 **IMPORTANT:** also includes some adaptations to Valencian *(in review)*.
 
 * `all-src2valencia-adapta.sed` *->* Rules to adapt the language to Valencian (e.g. a -> en, app names...)
 * `all-src2valencia.sed`        *->* Core rules with Valencian language (e.g. verb conjugation, loose words...)
-* `all-src2valencia-esmena.sed` *->* fixes (improves the control and review)
+* `all-src2valencia-esmena.sed` *->* Fixes (improves the control and review)
 
 **Note 1:** all-src2valencia sed file are very large, we recommend *closing everything* before opening it.
 

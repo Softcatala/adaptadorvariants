@@ -10,20 +10,20 @@ s/\bAccepto el risc i continua\([^[:alnum:]]\)/Accepte el risc i continua\1/g
 # # # # # # # # # # # # # #
 #
 # actualitzar
-    s/\bCertificat actualitzat\([^[:alnum:]]\)/S'ha actualitzat el certificat\1/g
-    s/\b\([Ee]\)rror en actualitzar\([^[:alnum:]]\)/\1rror durant l'actualització\2/g
-    s/\b\([Ee]\)rror en l'actualització\([^[:alnum:]]\)/\1rror durant l'actualització\2/g
-        s/\bdurant l'actualització els paràmetres\([^[:alnum:]]\)/durant l'actualització dels paràmetres\1/g
-        s/\bdurant l'actualització el \(pòdcast\|programari\)\([^[:alnum:]]\)/durant l'actualització del \1\2/g
-        s/\bdurant l'actualització la \(col·lecció\|imatge\|regla\)\([^[:alnum:]]\)/durant l'actualització de la \1\2/g
-        s/\bactualització el \(certificat\|missatge\)\([^[:alnum:]]\)/actualització del \1\2/g
-    s/\bEl certificat s'ha actualitzat\([^[:alnum:]]\)/El certificat ha sigut actualitzat\1/g
-    s/\bLa clau no ha canviat\([^[:alnum:]]\)/No s'ha canviat la clau\1/g
-    s/\bLa clau s'ha actualitzat\([^[:alnum:]]\)/La clau ha sigut actualitzada\1/g
-    s/\bL'actualització ha fallat\([^[:alnum:]]\)/No s'ha pogut fer l'actualització\1/g
+  s/\bCertificat actualitzat\([^[:alnum:]]\)/S'ha actualitzat el certificat\1/g
+  s/\b\([Ee]\)rror en actualitzar\([^[:alnum:]]\)/\1rror durant l'actualització\2/g
+  s/\b\([Ee]\)rror en l'actualització\([^[:alnum:]]\)/\1rror durant l'actualització\2/g
+    s/\bdurant l'actualització els paràmetres\([^[:alnum:]]\)/durant l'actualització dels paràmetres\1/g
+    s/\bdurant l'actualització el \(pòdcast\|programari\)\([^[:alnum:]]\)/durant l'actualització del \1\2/g
+    s/\bdurant l'actualització la \(col·lecció\|imatge\|regla\)\([^[:alnum:]]\)/durant l'actualització de la \1\2/g
+    s/\bactualització el \(certificat\|missatge\)\([^[:alnum:]]\)/actualització del \1\2/g
+  s/\bEl certificat s'ha actualitzat\([^[:alnum:]]\)/El certificat ha sigut actualitzat\1/g
+  s/\bLa clau no ha canviat\([^[:alnum:]]\)/No s'ha canviat la clau\1/g
+  s/\bLa clau s'ha actualitzat\([^[:alnum:]]\)/La clau ha sigut actualitzada\1/g
+  s/\bL'actualització ha fallat\([^[:alnum:]]\)/No s'ha pogut fer l'actualització\1/g
 s/\baquesta ocurrència\([^[:alnum:]]\)/este cas\1/g
 s/\bAugment el límit d'instàncies\([^[:alnum:]]\)/Augmenta el límit d'instàncies\1/g
-    s/\bd'autocentrat\([^[:alnum:]]\)/de centrat automàtic\1/g
+  s/\bd'autocentrat\([^[:alnum:]]\)/de centrat automàtic\1/g
 s/\bautocentrat\([^[:alnum:]]\)/centrat automàtic\1/g
 s/\bcanviar de nom l'entrada\([^[:alnum:]]\)/canviar el nom a l'entrada\1/g
 s/\b\([Cc]\)om a una pestanya nova\([^[:alnum:]]\)/\1om a pestanya nova\2/g
@@ -32,15 +32,15 @@ s/\b\([Cc]\)om si fossin teclejats\([^[:alnum:]]\)/\1om si es teclejaren\2/g
 # # # # # # # # # # # # # #
 #
 # # ** concordant
-    s/\b\([Pp]\)arèntesis concordants\([^[:alnum:]]\)/\1arèntesis emparellats\2/g
+  s/\b\([Pp]\)arèntesis concordants\([^[:alnum:]]\)/\1arèntesis emparellats\2/g
 s/\bConfigura els connectors de l'aplicació i l'aspecte i el comportament\([^[:alnum:]]\)/Configura els connectors de l'aplicació, així com l'aspecte i el comportament\1/g
 s/\bDesa els canvis al paràmetre\([^[:alnum:]]\)/Desa els canvis del paràmetre\1/g
 s/\b\([Dd]\)isting\(eix\|int\|ir\) majúscules i minúscules\([^[:alnum:]]\)/\1isting\2 entre majúscules i minúscules\3/g
 s/\bEl dorsal potser no admet la gravació\([^[:alnum:]]\)/Pot ser que el dorsal no admeti la gravació\1/g
 s/\bEl fitxer XML no conté una cartera\([^[:alnum:]]\)/El fitxer XML no conté cap cartera\1/g
 s/\b\(el\|la\) qual té\([^[:alnum:]]\)/que té\2/g
-    s/, que té com/, el qual té com/g
-    s/\bBoltzman, que té com a valor\([^[:alnum:]]\)/Boltzman, la qual té com a valor\1/g
+  s/, que té com/, el qual té com/g
+  s/\bBoltzman, que té com a valor\([^[:alnum:]]\)/Boltzman, la qual té com a valor\1/g
 s/\b\([Ee]\)n desactivar la vista dividida\([^[:alnum:]]\)/\1n treure la vista dividida\2/g
 s/\ben guanyar accés\([^[:alnum:]]\)/en obtenir accés\1/g
 s/\ben la que l'editor\([^[:alnum:]]\)/en què l'editor\1/g
@@ -58,8 +58,8 @@ s/\bEngega\/apaga\([^[:alnum:]]\)/Activa\/desactiva\1/g
 # # # # # # # # # # # # # #
 #
 # invàlid
-    s/\bés invàlid\(a\|\)\([^[:alnum:]]\)/no és vàlid\1\2/g
-    s/\binvàlid\(a\|es\|\)\([^[:alnum:]]\)/no vàlid\1\2/g
+  s/\bés invàlid\(a\|\)\([^[:alnum:]]\)/no és vàlid\1\2/g
+  s/\binvàlid\(a\|es\|\)\([^[:alnum:]]\)/no vàlid\1\2/g
 s/\bL'última vegada que aquestes propietats foren canviades per l'usuari\([^[:alnum:]]\)/L'última vegada que l'usuari canvià aquestes propietats\1/g
 s/\bllavors se cercaran\([^[:alnum:]]\)/se cercaran\1/g
 s/\b\([Mm]\)ai més es tornarà\([^[:alnum:]]\)/\1ai més tornarà\2/g
@@ -109,60 +109,60 @@ s/\b\([Pp]\)rogramari de reserva\([^[:alnum:]]\)/\1rogramari alternatiu\2/g
 # # # # # # # # # # # # # #
 #
 # retall -> fragment
-    s/&Retall\(:\|s\|\)\([^[:alnum:]]\)/F\&ragment\1\2/g
-    s/\"Retalls\"/\"Fragments\"/g
-    s/%1 retalls\([^[:alnum:]]\)/%1 fragments\1/g
-    s/\b\(Actualitza\|actualitzar\|Edita\|Elimina\|eliminar\|suprimir\) el retall\([^[:alnum:]]\)/\1 el fragment\2/g
-    s/\b\(Afegeix\|Insereix\) un retall\([^[:alnum:]]\)/\1 un fragment\2/g
-    s/\baquest retall\([^[:alnum:]]\)/aquest fragment\1/g
-    s/\bcadena del retall\([^[:alnum:]]\)/cadena del fragment\1/g
-    s/\bCrea un retall nou al repositori\([^[:alnum:]]\)/Crea un fragment nou al repositori\1/g
-        s/\bCrea un retall\([^[:alnum:]]\)/Crea un fragment\1/g
-    s/\bcreat un retall\([^[:alnum:]]\)/creat un fragment\1/g
-    s/\beina de retalls\([^[:alnum:]]\)/eina de fragments\1/g
-    s/\bEl nom del retall\([^[:alnum:]]\)/El nom del fragment\1/g
-    s/\bEl retall conté canvis\([^[:alnum:]]\)/El fragment conté canvis\1/g
-    s/\bels retalls que conté\([^[:alnum:]]\)/els fragments que conté\1/g
-    s/\bels seus retalls\([^[:alnum:]]\)/els seus fragments\1/g
-    s/\ben els retalls\([^[:alnum:]]\)/en els fragments\1/g
-    s/\ben un\( altre\|\) retall\([^[:alnum:]]\)/en un\1 fragment\2/g
-    s/\bFitxer de retall\([^[:alnum:]]\)/Fitxer de fragment\1/g
-    s/\binsereix el retall\([^[:alnum:]]\)/insereix el fragment\1/g
-    s/\bper als retalls d'ús\([^[:alnum:]]\)/per als fragments d'ús\1/g
-    s/\bProva aquest retall\([^[:alnum:]]\)/Prova aquest fragment\1/g
-    s/\brepositori\( nou\|\) de retalls\([^[:alnum:]]\)/repositori\1 de fragments\2/g
-    s/\bRetall\(:\|\) %1\([^[:alnum:]]\)/Fragment\1 %1\2/g
-    s/\bretall buit\([^[:alnum:]]\)/fragment buit\1/g
-    s/\bRetall\(s\|\) de \(codi\|text\)\([^[:alnum:]]\)/Fragment\1 de \2\3/g
-    s/\bretall\(s\|\) de \(codi\|text\)\([^[:alnum:]]\)/fragment\1 de \2\3/g
-        s/\bgestió de retalls\([^[:alnum:]]\)/gestió de fragments\1/g
-    s/ retalls,/ fragments,/g
-    s/\bRetalls de l'editor\([^[:alnum:]]\)/Fragments de l'editor\1/g
-    s/\bRetalls en Ruby\([^[:alnum:]]\)/Fragments en Ruby\1/g
-    s/\bretalls nous\([^[:alnum:]]\)/fragments nous\1/g
-    s/\bUn retall pot contenir\([^[:alnum:]]\)/Un fragment pot contenir\1/g
-        s/\b\(Afegeix\|Edita\) \(un\|el\) fragment de clip\([^[:alnum:]]\)/\1 \2 retall de clip\3/g
+  s/&Retall\(:\|s\|\)\([^[:alnum:]]\)/F\&ragment\1\2/g
+  s/\"Retalls\"/\"Fragments\"/g
+  s/%1 retalls\([^[:alnum:]]\)/%1 fragments\1/g
+  s/\b\(Actualitza\|actualitzar\|Edita\|Elimina\|eliminar\|suprimir\) el retall\([^[:alnum:]]\)/\1 el fragment\2/g
+  s/\b\(Afegeix\|Insereix\) un retall\([^[:alnum:]]\)/\1 un fragment\2/g
+  s/\baquest retall\([^[:alnum:]]\)/aquest fragment\1/g
+  s/\bcadena del retall\([^[:alnum:]]\)/cadena del fragment\1/g
+  s/\bCrea un retall nou al repositori\([^[:alnum:]]\)/Crea un fragment nou al repositori\1/g
+    s/\bCrea un retall\([^[:alnum:]]\)/Crea un fragment\1/g
+  s/\bcreat un retall\([^[:alnum:]]\)/creat un fragment\1/g
+  s/\beina de retalls\([^[:alnum:]]\)/eina de fragments\1/g
+  s/\bEl nom del retall\([^[:alnum:]]\)/El nom del fragment\1/g
+  s/\bEl retall conté canvis\([^[:alnum:]]\)/El fragment conté canvis\1/g
+  s/\bels retalls que conté\([^[:alnum:]]\)/els fragments que conté\1/g
+  s/\bels seus retalls\([^[:alnum:]]\)/els seus fragments\1/g
+  s/\ben els retalls\([^[:alnum:]]\)/en els fragments\1/g
+  s/\ben un\( altre\|\) retall\([^[:alnum:]]\)/en un\1 fragment\2/g
+  s/\bFitxer de retall\([^[:alnum:]]\)/Fitxer de fragment\1/g
+  s/\binsereix el retall\([^[:alnum:]]\)/insereix el fragment\1/g
+  s/\bper als retalls d'ús\([^[:alnum:]]\)/per als fragments d'ús\1/g
+  s/\bProva aquest retall\([^[:alnum:]]\)/Prova aquest fragment\1/g
+  s/\brepositori\( nou\|\) de retalls\([^[:alnum:]]\)/repositori\1 de fragments\2/g
+  s/\bRetall\(:\|\) %1\([^[:alnum:]]\)/Fragment\1 %1\2/g
+  s/\bretall buit\([^[:alnum:]]\)/fragment buit\1/g
+  s/\bRetall\(s\|\) de \(codi\|text\)\([^[:alnum:]]\)/Fragment\1 de \2\3/g
+  s/\bretall\(s\|\) de \(codi\|text\)\([^[:alnum:]]\)/fragment\1 de \2\3/g
+    s/\bgestió de retalls\([^[:alnum:]]\)/gestió de fragments\1/g
+  s/ retalls,/ fragments,/g
+  s/\bRetalls de l'editor\([^[:alnum:]]\)/Fragments de l'editor\1/g
+  s/\bRetalls en Ruby\([^[:alnum:]]\)/Fragments en Ruby\1/g
+  s/\bretalls nous\([^[:alnum:]]\)/fragments nous\1/g
+  s/\bUn retall pot contenir\([^[:alnum:]]\)/Un fragment pot contenir\1/g
+    s/\b\(Afegeix\|Edita\) \(un\|el\) fragment de clip\([^[:alnum:]]\)/\1 \2 retall de clip\3/g
 # #
 # # # # # # # # # # # # # #
 #
 # sagnar
-    s/\bindentadors\([^[:alnum:]]\)/sagnats\1/g
-    s/\bl'indentador\([^[:alnum:]]\)/el sagnat\1/g
-    s/\bSagna usant\([^[:alnum:]]\)/Ús del sagnat\1/g
-    s/\bTreu el sagnat\([^[:alnum:]]\)/Elimina el sagnat\1/g
-    s/\btreu el sagnat\([^[:alnum:]]\)/elimina el sagnat\1/g
-    s/\bTreure el sagnat\([^[:alnum:]]\)/Eliminar el sagnat\1/g
-    s/\btreure el sagnat\([^[:alnum:]]\)/eliminar el sagnat\1/g
+  s/\bindentadors\([^[:alnum:]]\)/sagnats\1/g
+  s/\bl'indentador\([^[:alnum:]]\)/el sagnat\1/g
+  s/\bSagna usant\([^[:alnum:]]\)/Ús del sagnat\1/g
+  s/\bTreu el sagnat\([^[:alnum:]]\)/Elimina el sagnat\1/g
+  s/\btreu el sagnat\([^[:alnum:]]\)/elimina el sagnat\1/g
+  s/\bTreure el sagnat\([^[:alnum:]]\)/Eliminar el sagnat\1/g
+  s/\btreure el sagnat\([^[:alnum:]]\)/eliminar el sagnat\1/g
 s/\bTria una imatge de vista prèvia\([^[:alnum:]]\)/Trieu una imatge de vista prèvia\1/g
 s/\b\([Ss]\)i és d'aplicació\([^[:alnum:]]\)/\1i és aplicable\2/g
 s/\bTambé podria ser\([^[:alnum:]]\)/També pot ser\1/g
-    s/\b\([Dd]\)esa tanmateix\([^[:alnum:]]\)/\1esa de totes maneres\2/g
-    s/\b\([Ii]\)nclou tanmateix\([^[:alnum:]]\)/\1nclou de totes maneres\2/g
-    s/\bperò tanmateix\([^[:alnum:]]\)/però de totes maneres\1/g
-    s/\bque tanmateix\([^[:alnum:]]\)/que de totes maneres\1/g
-    s/\b\([Tt]\)anca tanmateix\([^[:alnum:]]\)/\1anca de totes maneres\2/g
+  s/\b\([Dd]\)esa tanmateix\([^[:alnum:]]\)/\1esa de totes maneres\2/g
+  s/\b\([Ii]\)nclou tanmateix\([^[:alnum:]]\)/\1nclou de totes maneres\2/g
+  s/\bperò tanmateix\([^[:alnum:]]\)/però de totes maneres\1/g
+  s/\bque tanmateix\([^[:alnum:]]\)/que de totes maneres\1/g
+  s/\b\([Tt]\)anca tanmateix\([^[:alnum:]]\)/\1anca de totes maneres\2/g
 s/\([Tt]\)emps excedit\([^[:alnum:]]\)/\1emps límit excedit\2/g
-    s/ha excedit el temps límit\([^[:alnum:]]\)/ha excedit el temps\1/g
+  s/ha excedit el temps límit\([^[:alnum:]]\)/ha excedit el temps\1/g
 s/\btindran efecte\([^[:alnum:]]\)/s'efectuaran\1/g
 s/\b\([Tt]\)ipus de lletra d'amplada\([^[:alnum:]]\)/\1ipus de lletra\2/g
 s/\bun diàleg que us permetrà escollir una\([^[:alnum:]]\)/un diàleg i us permet escollir la\1/g
@@ -173,57 +173,57 @@ s/\b\([Uu]\)na \(fletxa\|línia vertical\) indicant\([^[:alnum:]]\)/\1na \2 que 
 # referència a una opció
 s/\bDesmarqueu\( això\|-ho\)\([^[:alnum:]]\)/Desmarqueu-la\2/g
 s/\bMarqueu\( això\|-ho\)\([^[:alnum:]]\)/Marqueu-la\2/g
-    s/\bEmpreu-ho per a\([^[:alnum:]]\)/Empreu-la per a\1/g
+  s/\bEmpreu-ho per a\([^[:alnum:]]\)/Empreu-la per a\1/g
 s/\b\(Inh\|[H]\)abiliteu aquesta \(casella\|opció\)\([^[:alnum:]]\)/Marqueu aquesta \2\3/g
 s/\b\(in\|\)habiliteu aquesta \(casella\|opció\)\([^[:alnum:]]\)/marqueu aquesta \2\3/g
 s/\bMarqueu\( això\|-ho\)\([^[:alnum:]]\)/Marqueu-la\2/g
-    s/\bActiveu\(-la\|\) \(per a\|si\)\([^[:alnum:]]\)/Marqueu-la \2\3/g
-    s/\bs'activa aquesta \(casella\|opció\)\([^[:alnum:]]\)/es marca aquesta \1\2/g
+  s/\bActiveu\(-la\|\) \(per a\|si\)\([^[:alnum:]]\)/Marqueu-la \2\3/g
+  s/\bs'activa aquesta \(casella\|opció\)\([^[:alnum:]]\)/es marca aquesta \1\2/g
 s/\bActivada: quan\([^[:alnum:]]\)/Marcada: quan\1/g
-    s/\bDesactivada: quan\([^[:alnum:]]\)/Desmarcada: quan\1/g
-    s/\b\([Dd]\)esactiveu-la si no voleu\([^[:alnum:]]\)/\1esmarqueu-la si no voleu\2/g
+  s/\bDesactivada: quan\([^[:alnum:]]\)/Desmarcada: quan\1/g
+  s/\b\([Dd]\)esactiveu-la si no voleu\([^[:alnum:]]\)/\1esmarqueu-la si no voleu\2/g
 s/\bActiv\(a\|ant\|a[rt]\) aquesta \(casella\|opció\)\([^[:alnum:]]\)/Marc\1 aquesta \2\3/g
 s/\bactiv\(a\|ant\|a[rt]\) aquesta \(casella\|opció\)\([^[:alnum:]]\)/marc\1 aquesta \2\3/g
-    s/\bActiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/Marqueu aquesta \1\2/g
-    s/\bactiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/marqueu aquesta \1\2/g
+  s/\bActiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/Marqueu aquesta \1\2/g
+  s/\bactiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/marqueu aquesta \1\2/g
 s/\bActiv\(a\|ant\|a[rt]\) \(la casella\|l'opció\)\([^[:alnum:]]\)/Marc\1 \2\3/g
 s/\bactiv\(a\|ant\|a[rt]\) \(la casella\|l'opció\)\([^[:alnum:]]\)/marc\1 \2\3/g
-    s/\bActiveu \(la casella\|l'opció\)\([^[:alnum:]]\)/Marqueu \1\2/g
-    s/\bactiveu \(la casella\|l'opció\)\([^[:alnum:]]\)/marqueu \1\2/g
+  s/\bActiveu \(la casella\|l'opció\)\([^[:alnum:]]\)/Marqueu \1\2/g
+  s/\bactiveu \(la casella\|l'opció\)\([^[:alnum:]]\)/marqueu \1\2/g
 s/\bDesactiv\(a\|ant\|a[rt]\) aquesta \(casella\|opció\)\([^[:alnum:]]\)/Desmarc\1 aquesta \2\3/g
 s/\bdesactiv\(a\|ant\|a[rt]\) aquesta \(casella\|opció\)\([^[:alnum:]]\)/desmarc\1 aquesta \2\3/g
-    s/\bDesactiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/Desmarqueu aquesta \1\2/g
-    s/\bdesactiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/desmarqueu aquesta \1\2/g
+  s/\bDesactiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/Desmarqueu aquesta \1\2/g
+  s/\bdesactiveu aquesta \(casella\|opció\)\([^[:alnum:]]\)/desmarqueu aquesta \1\2/g
 s/\bDesactiv\(a\|ant\|a[rt]\) \(la casella\|l'opció\)\([^[:alnum:]]\)/Desmarc\1 \2\3/g
 s/\bdesactiv\(a\|ant\|a[rt]\) \(la casella\|l'opció\)\([^[:alnum:]]\)/desmmarc\1 \2\3/g
 s/\bDesactiveu \(la casella\|l'opció\)\([^[:alnum:]]\)/Desmarqueu \1\2/g
 s/\bdesactiveu \(la casella\|l'opció\)\([^[:alnum:]]\)/desmarqueu \1\2/g
-        s/\bd'seleccionar\([^[:alnum:]]\)/de marcar\1/g
-    s/\b\(des\|\)activat aquesta opció\([^[:alnum:]]\)/\1marcat aquesta opció\2/g
-        s/\bper tant, s'ha \(des\|\)seleccionat aquesta opció\([^[:alnum:]]\)/per tant, s'ha \1marcat aquesta opció\2/g
-    s/\baquesta \(casella\|opció\) està \(des\|\)activada\([^[:alnum:]]\)/aquesta \1 està \2marcada\3/g
-    s/\baquesta \(casella\|opció\) haurà d'estar \(des\|\)activada\([^[:alnum:]]\)/aquesta \1 haurà d'estar \2marcada\3/g
-    s/\bdeixar aquesta \(casella\|opció\) \(<[^<]\{1,\}>\|\)\(des\|\)activada\([^[:alnum:]]\)/deixar aquesta \1 \2\3marcada\4/g
-    s/\bdeixeu \(des\|\)activada aquesta opció\([^[:alnum:]]\)/deixeu \1marcada aquesta opció\2/g
-    s/\bEn seleccionar aquesta opció,/Quan es marca aquesta opció,/g
-    s/\bEn seleccionar aquesta opció /Quan es marca aquesta opció, /g
-    s/\bheu \(des\|\)activat aquesta opció\([^[:alnum:]]\)/heu \1marcat aquesta opció\2/g
-    s/\bintenteu \(des\|\)activar també l'opció\([^[:alnum:]]\)/intenteu \1marcar també l'opció\2/g
-    s/\bl'activació de l'opció\([^[:alnum:]]\)/el marcatge de l'opció\1/g
-    s/\b\([Qq]uan\|[Ss]i\) aquesta \(casella\|opció\) està seleccionada\([^[:alnum:]]\)/\1 es marca aquesta \2\3/g
-    s/\b\([Qq]uan\|[Ss]i\) s'ha \(des\|\)activat \(la casella\|l'opció\)\([^[:alnum:]]\)/\1 s'ha \2marcat \3\4/g
-    s/\b\([Qq]uan\|[Ss]i\) aquesta \(casella\|opció\) està seleccionada\([^[:alnum:]]\)/\1 es marca aquesta \2\3/g
-        s/opció de </opció </g
-    s/\b\([Ss]\)i està activada,/\1i està marcada,/g
-    s/\b\([Ss]\)i està desactivada,/\1i no està marcada,/g
-    s/\b\([Ss]\)i està activada l'opció/\1i es marca l'opció/g
-    s/\b\([Ss]\)i està desactivada l'opció/\1i no es marca l'opció/g
-    s/\b\([Ss]\)i la primera opció està activada\([^[:alnum:]]\)/\1i es marca la primera opció\2/g
-    s/\b\([Ss]\)i no està activada,/\1i no està marcada,/g
-    s/\b\([Ss]\)i no està desactivada,/\1i no es desmarca,/g
-    s/\b\([Ss]\)i no està ja activada\([^[:alnum:]]\)/\1i no està ja marcada\2/g
+    s/\bd'seleccionar\([^[:alnum:]]\)/de marcar\1/g
+  s/\b\(des\|\)activat aquesta opció\([^[:alnum:]]\)/\1marcat aquesta opció\2/g
+    s/\bper tant, s'ha \(des\|\)seleccionat aquesta opció\([^[:alnum:]]\)/per tant, s'ha \1marcat aquesta opció\2/g
+  s/\baquesta \(casella\|opció\) està \(des\|\)activada\([^[:alnum:]]\)/aquesta \1 està \2marcada\3/g
+  s/\baquesta \(casella\|opció\) haurà d'estar \(des\|\)activada\([^[:alnum:]]\)/aquesta \1 haurà d'estar \2marcada\3/g
+  s/\bdeixar aquesta \(casella\|opció\) \(<[^<]\{1,\}>\|\)\(des\|\)activada\([^[:alnum:]]\)/deixar aquesta \1 \2\3marcada\4/g
+  s/\bdeixeu \(des\|\)activada aquesta opció\([^[:alnum:]]\)/deixeu \1marcada aquesta opció\2/g
+  s/\bEn seleccionar aquesta opció,/Quan es marca aquesta opció,/g
+  s/\bEn seleccionar aquesta opció /Quan es marca aquesta opció, /g
+  s/\bheu \(des\|\)activat aquesta opció\([^[:alnum:]]\)/heu \1marcat aquesta opció\2/g
+  s/\bintenteu \(des\|\)activar també l'opció\([^[:alnum:]]\)/intenteu \1marcar també l'opció\2/g
+  s/\bl'activació de l'opció\([^[:alnum:]]\)/el marcatge de l'opció\1/g
+  s/\b\([Qq]uan\|[Ss]i\) aquesta \(casella\|opció\) està seleccionada\([^[:alnum:]]\)/\1 es marca aquesta \2\3/g
+  s/\b\([Qq]uan\|[Ss]i\) s'ha \(des\|\)activat \(la casella\|l'opció\)\([^[:alnum:]]\)/\1 s'ha \2marcat \3\4/g
+  s/\b\([Qq]uan\|[Ss]i\) aquesta \(casella\|opció\) està seleccionada\([^[:alnum:]]\)/\1 es marca aquesta \2\3/g
+    s/opció de </opció </g
+  s/\b\([Ss]\)i està activada,/\1i està marcada,/g
+  s/\b\([Ss]\)i està desactivada,/\1i no està marcada,/g
+  s/\b\([Ss]\)i està activada l'opció/\1i es marca l'opció/g
+  s/\b\([Ss]\)i està desactivada l'opció/\1i no es marca l'opció/g
+  s/\b\([Ss]\)i la primera opció està activada\([^[:alnum:]]\)/\1i es marca la primera opció\2/g
+  s/\b\([Ss]\)i no està activada,/\1i no està marcada,/g
+  s/\b\([Ss]\)i no està desactivada,/\1i no es desmarca,/g
+  s/\b\([Ss]\)i no està ja activada\([^[:alnum:]]\)/\1i no està ja marcada\2/g
 s/\bDesactivada: la gestió del color està inactivada\([^[:alnum:]]\)/Desmarcada: la gestió del color està desactivada\1/g
-    s/\bquedarà inactivada fins\([^[:alnum:]]\)/quedarà desactivada fins\1/g
+  s/\bquedarà inactivada fins\([^[:alnum:]]\)/quedarà desactivada fins\1/g
 s/\bEn marcar-lo\([^[:alnum:]]\)/En marcar-la\1/g
 s/\bestà desactivat per motius\([^[:alnum:]]\)/està desactivada per motius\1/g
 s/\b\([Qq]\)uan \(això \|això no \|no \|\)està activa\(da\|t\)\([^[:alnum:]]\)/\1uan \2es marca\4/g
@@ -232,7 +232,7 @@ s/\b\([Qq]\)uan \(això \|això no \|no \|\)està \(des\|\)marca\(da\|t\) /\1uan
 s/\b\([Qq]\)uan \(això \|això no \|no \|\)està seleccionat,/\1uan \2es marca,/g
 s/\b\([Qq]\)uan \(això \|això no \|no \|\)estigui activat\([^[:alnum:]]\)/\1uan \2està activada\3/g
 s/\b\([Qq]\)uan \(això \|això no \|no \|\)s'activa\([^[:alnum:]]\)/\1uan \2està activada\3/g
-    s/\bQuan això s'activa, aquests paràmetres\([^[:alnum:]]\)/Quan està marcada, aquests paràmetres\1/g
+  s/\bQuan això s'activa, aquests paràmetres\([^[:alnum:]]\)/Quan està marcada, aquests paràmetres\1/g
 s/\b\([Qq]\)uan aquesta \(casella\|opció\) està habilitada,/\1uan es marca aquesta \2,/g
 s/\b\([Qq]\)uan aquesta \(casella\|opció\) està inhabilitada,/\1uan no està marcada,/g
 s/\b\([Qq]\)uan \(la casella\|l'opció\) està \(des\|\)activada\([^[:alnum:]]\)/\1uan \2 està \3marcada\4/g
@@ -240,29 +240,29 @@ s/\b\([Qq]\)uan \(la casella\|l'opció\) està \(in\|\)habilitada\([^[:alnum:]]\
 s/\bQuan aquest està activat,/Quan està marcada,/g
 s/\bQuan està desactivada,/Quan no està marcada,/g
 s/(si està activat)\([^[:alnum:]]\)/(si està activada)\1/g
-    s/\bBloqueja automàticament la cel·la després del gir\./Si està marcada, es bloquejarà automàticament la cel·la després del gir./g
-    s/\bSI està activat, converteix els espais\([^[:alnum:]]\)/Si està marcada, es convertiran els espais\1/g
-    s/\bSi està activat, \(cada pestanya mostrarà\|el clic del mig\|el doble clic\|es calcularà\|l'Amarok llençarà\|les pestanyes prendran\)\([^[:alnum:]]\)/Si està marcada, \1\2/g
+  s/\bBloqueja automàticament la cel·la després del gir\./Si està marcada, es bloquejarà automàticament la cel·la després del gir./g
+  s/\bSI està activat, converteix els espais\([^[:alnum:]]\)/Si està marcada, es convertiran els espais\1/g
+  s/\bSi està activat, \(cada pestanya mostrarà\|el clic del mig\|el doble clic\|es calcularà\|l'Amarok llençarà\|les pestanyes prendran\)\([^[:alnum:]]\)/Si està marcada, \1\2/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està \(actiu\|activat\)\([^[:alnum:]]\)/\1i \2es marca\4/g
-    s/\b\([Ss]\)i està activa,/\1i està marcada,/g
+  s/\b\([Ss]\)i està activa,/\1i està marcada,/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està desactivat\([^[:alnum:]]\)/\1i \2està marcada\3/g
 s/\b\([Ss]\)i està activada,/\1i està marcada,/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està establert\([^[:alnum:]]\)/\1i \2està establerta\3/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està inactiu\([^[:alnum:]]\)/\1i \2està inactiva\3/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està \(in\|\)habilitat/\1i \2està \3habilitada/g
-    s/\bSi està habilitada, llavors\([^[:alnum:]]\)/Si està marcada, llavors\1/g
-    s/\bopció si està activa\(da\|\)\([^[:alnum:]]\)/opció si s'ha marcat\2/g
-    s/\b\([Ss]\)i s'ha activat\([^[:alnum:]]\)/\1i s'ha marcat\2/g
-    s/\bSi s'ha seleccionat,/Si està marcada,/g
+  s/\bSi està habilitada, llavors\([^[:alnum:]]\)/Si està marcada, llavors\1/g
+  s/\bopció si està activa\(da\|\)\([^[:alnum:]]\)/opció si s'ha marcat\2/g
+  s/\b\([Ss]\)i s'ha activat\([^[:alnum:]]\)/\1i s'ha marcat\2/g
+  s/\bSi s'ha seleccionat,/Si està marcada,/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està selecciona\(da\|t\)\([^[:alnum:]]\)/\1i \2es marca\4/g
 s/\b\([Ss]\)i \(això \|això no \|no \|\)està desselecciona\(da\|t\)\([^[:alnum:]]\)/\1i \2es desmarca\4/g
-    s/\b\([Qq]uan\|[Ss]i\) això \(no \|\)\(es\|està\|s'ha\|se\)\([^[:alnum:]]\)/\1 \2\3\4/g
+  s/\b\([Qq]uan\|[Ss]i\) això \(no \|\)\(es\|està\|s'ha\|se\)\([^[:alnum:]]\)/\1 \2\3\4/g
 s/\bEn marcar aquesta \(casella\|opció\)\([^[:alnum:]]\)/Quan es marca aquesta \1\2/g
-    s/\bQuan es marca aquesta opció i triar una clau\([^[:alnum:]]\)/Quan es marca aquesta opció i es tria una clau\1/g
+  s/\bQuan es marca aquesta opció i triar una clau\([^[:alnum:]]\)/Quan es marca aquesta opció i es tria una clau\1/g
 s/\bEn marcar-la,/Quan està marcada,/g
 s/\bHauríeu de marcar aquesta \(casella\|opció\)\([^[:alnum:]]\)/Hauríeu de marcar-la\2/g
 s/\bla casella de selecció del visor ha d'estar marcada\([^[:alnum:]]\)/la casella de selecció del visor haurà d'estar marcada\1/g
-    s/\bTrieu aquesta casella de selecció\([^[:alnum:]]\)/Marqueu aquesta casella de selecció\1/g
+  s/\bTrieu aquesta casella de selecció\([^[:alnum:]]\)/Marqueu aquesta casella de selecció\1/g
 s/\bMarcar si voleu activar\([^[:alnum:]]\)/Marqueu-la si voleu activar\1/g
 s/\bSi aquesta \(casella\|opció\) està marcada,/Si està marcada,/g
 s/\bSi \(la casella\|l'opció\) següent no està marcada\([^[:alnum:]]\)/Si \1 següent no està marcada\2/g
@@ -287,19 +287,19 @@ s/\bparell nou de claus com a parell de claus predeterminades\([^[:alnum:]]\)/pa
 s/\bSi es marca aquesta opció, els certificats d'emissor que falten s'obtenen quan és necessari\([^[:alnum:]]\)/Si es marca aquesta opció, els certificats d'emissor que falten s'obtindran quan sigui necessari\1/g
 
 s/\bUseu això\([^[:alnum:]]\)/Useu-la\1/g
-    s/\bestà activada el registre\([^[:alnum:]]\)/s'activa el registre\1/g
-    s/\bposició del cursor del ratolí quan se selecciona\([^[:alnum:]]\)/posició del cursor del ratolí quan està activat\1/g
-    s/\bQuan se selecciona, aquesta casella,/Quan se selecciona,/g
-    s/\bquan està activada una alarma\([^[:alnum:]]\)/quan s'activa una alarma\1/g
-    s/\b\([Qq]\)uan se selecciona \(el vigilant\)\([^[:alnum:]]\)/\1uan està activat \2\3/g
-    s/\b\([Qq]\)uan se selecciona l'estalvi de pantalla\([^[:alnum:]]\)/\1uan està activat l'estalvi de pantalla\2/g
-    s/\bquè passa quan està activada\([^[:alnum:]]\)/què passa quan s'activa\1/g
-    s/\bSi està activada el moviment natiu\([^[:alnum:]]\)/Si està activat el moviment natiu\1/g
-    s/\b\([Ss]\)i s'ha seleccionat \(el resolutor\|el suport\|l'enfocament adaptatiu\)\([^[:alnum:]]\)/\1i s'ha activat \2\3/g
-    s/\b\([Ss]\)i se selecciona \(el bloqueig\)\([^[:alnum:]]\)/\1i està actiu \2\3/g
-    s/\b\([Ss]\)i se selecciona \(el resolutor\|el suport\|el vigilant\|l'enfocament adaptatiu\|la compressió\|la incrustació\)\([^[:alnum:]]\)/\1i s'ha activat \2\3/g
-    s/\b\([Ss]\)i se selecciona llavors\([^[:alnum:]]\)/\1i se selecciona, llavors\2/g
-    s/\bs'ha seleccionat \(la «Resposta directa\|la detecció\|la vibració\)\([^[:alnum:]]\)/s'ha activat \1\2/g
+  s/\bestà activada el registre\([^[:alnum:]]\)/s'activa el registre\1/g
+  s/\bposició del cursor del ratolí quan se selecciona\([^[:alnum:]]\)/posició del cursor del ratolí quan està activat\1/g
+  s/\bQuan se selecciona, aquesta casella,/Quan se selecciona,/g
+  s/\bquan està activada una alarma\([^[:alnum:]]\)/quan s'activa una alarma\1/g
+  s/\b\([Qq]\)uan se selecciona \(el vigilant\)\([^[:alnum:]]\)/\1uan està activat \2\3/g
+  s/\b\([Qq]\)uan se selecciona l'estalvi de pantalla\([^[:alnum:]]\)/\1uan està activat l'estalvi de pantalla\2/g
+  s/\bquè passa quan està activada\([^[:alnum:]]\)/què passa quan s'activa\1/g
+  s/\bSi està activada el moviment natiu\([^[:alnum:]]\)/Si està activat el moviment natiu\1/g
+  s/\b\([Ss]\)i s'ha seleccionat \(el resolutor\|el suport\|l'enfocament adaptatiu\)\([^[:alnum:]]\)/\1i s'ha activat \2\3/g
+  s/\b\([Ss]\)i se selecciona \(el bloqueig\)\([^[:alnum:]]\)/\1i està actiu \2\3/g
+  s/\b\([Ss]\)i se selecciona \(el resolutor\|el suport\|el vigilant\|l'enfocament adaptatiu\|la compressió\|la incrustació\)\([^[:alnum:]]\)/\1i s'ha activat \2\3/g
+  s/\b\([Ss]\)i se selecciona llavors\([^[:alnum:]]\)/\1i se selecciona, llavors\2/g
+  s/\bs'ha seleccionat \(la «Resposta directa\|la detecció\|la vibració\)\([^[:alnum:]]\)/s'ha activat \1\2/g
 # #
 # # # # # # # # # # # # # #
 #
@@ -316,11 +316,11 @@ s/\besteu segur de voler\([^[:alnum:]]\)/esteu segur que voleu\1/g
 s/\bEsteu segur \(de\|que\)\([^[:alnum:]]\)/Segur \1\2/g
 s/\besteu segur \(de\|que\)\([^[:alnum:]]\)/segur \1\2/g
 
-    s/\b\([Ss]\)egur de voler\([^[:alnum:]]\)/\1egur que voleu\2/g
-    s/\bSegur que voleu-lo canviar de nom[?]/Segur que voleu canviar-lo de nom\?/g
-    s/\b\([Ss]\)i no segur\([^[:alnum:]]\)/\1i no esteu segur\2/g
-    s/\bi no segur que això\([^[:alnum:]]\)/i no esteu segur que això\1/g
-    s/\bsi segur que voleu tancar\([^[:alnum:]]\)/si esteu segur de voler tancar\1/g
+  s/\b\([Ss]\)egur de voler\([^[:alnum:]]\)/\1egur que voleu\2/g
+  s/\bSegur que voleu-lo canviar de nom[?]/Segur que voleu canviar-lo de nom\?/g
+  s/\b\([Ss]\)i no segur\([^[:alnum:]]\)/\1i no esteu segur\2/g
+  s/\bi no segur que això\([^[:alnum:]]\)/i no esteu segur que això\1/g
+  s/\bsi segur que voleu tancar\([^[:alnum:]]\)/si esteu segur de voler tancar\1/g
 s/\bRealment \(desitgeu\|voleu\)\([^[:alnum:]]\)/Segur que voleu\2/g
 s/\brealment \(desitgeu\|voleu\)\([^[:alnum:]]\)/segur que voleu\2/g
 # #
@@ -375,32 +375,33 @@ s/\bError amb la carpeta\([^[:alnum:]]\)/S'ha produït un error amb la carpeta\1
 s/\bError al \(nom de format\|patró\)\([^[:alnum:]]\)/S'ha produït un error al \1\2/g
 s/\bError analitzant:\([^[:alnum:]]\)/S'ha produït un error analitzant:\1/g
 s/\bError d'aplicació:\([^[:alnum:]]\)/S'ha produït un error de l'aplicació:\1/g
-    s/\bError d'escriptura\([^[:alnum:]]\)/S'ha produït un error mentre s'escrivia\1/g
-    s/\"error d'escriptura\([^[:alnum:]]\)/\"s'ha produït un error mentre s'escrivia\1/g
-s/\bError \(d\|de\|del\|desconegut\|en\|inesperat\)\([^[:alnum:]]\)/S'ha produït un error \1\2/g
-    s/\bS'ha produït un error en el fitxer del tema\([^[:alnum:]]\)/Error en el fitxer del tema\1/g
-    s/\bS'ha produït un error en invocar\([^[:alnum:]]\)/Error en cridar\1/g
-    s/\bError de lectura\([^[:alnum:]]\)/S'ha produït un error mentre es llegia\1/g
-    s/\"error de lectura\([^[:alnum:]]\)/\"s'ha produït un error mentre es llegia\1/g
+  s/\bError d'escriptura\([^[:alnum:]]\)/S'ha produït un error mentre s'escrivia\1/g
+  s/\"error d'escriptura\([^[:alnum:]]\)/\"s'ha produït un error mentre s'escrivia\1/g
+s/\bError \(d\|de\|del\|desconegut\|durant\|en\|inesperat\)\([^[:alnum:]]\)/S'ha produït un error \1\2/g
+  s/\bS'ha produït un error en el fitxer del tema\([^[:alnum:]]\)/Error en el fitxer del tema\1/g
+  s/\bS'ha produït un error en invocar\([^[:alnum:]]\)/Error en cridar\1/g
+  s/\bError de lectura\([^[:alnum:]]\)/S'ha produït un error mentre es llegia\1/g
+  s/\"error de lectura\([^[:alnum:]]\)/\"s'ha produït un error mentre es llegia\1/g
+  s/\berror en durant\([^[:alnum:]]\)/error durant\1/g
 s/\bError en el\([^[:alnum:]]\)/S'ha produït un error en el\1/g
-    s/: S'ha produït un error en el fitxer\([^[:alnum:]]\)/: Error en el fitxer\1/g
+  s/: S'ha produït un error en el fitxer\([^[:alnum:]]\)/: Error en el fitxer\1/g
 s/\bError durant l'actualització\([^[:alnum:]]\)/S'ha produït un error durant l'actualització\1/g
 s/\bError en actualitzar\([^[:alnum:]]\)/S'ha produït un error durant l'actualització\1/g
-    s/\bError en escriure\([^[:alnum:]]\)/S'ha produït un error mentre s'escrivia\1/g
-    s/\"error en escriure\([^[:alnum:]]\)/\"s'ha produït un error mentre s'escrivia\1/g
+  s/\bError en escriure\([^[:alnum:]]\)/S'ha produït un error mentre s'escrivia\1/g
+  s/\"error en escriure\([^[:alnum:]]\)/\"s'ha produït un error mentre s'escrivia\1/g
 s/\bError intern\([^[:alnum:]]\)/S'ha produït un error intern\1/g
-    s/\berror intern del \(component\|depurador\|dispositiu\|motor\|servei\|servidor\|sistema\)\([^[:alnum:]]\)/error intern en el \1\2/g
+  s/\berror intern del \(component\|depurador\|dispositiu\|motor\|servei\|servidor\|sistema\)\([^[:alnum:]]\)/error intern en el \1\2/g
 s/\bError mentre\([^[:alnum:]]\)/S'ha produït un error mentre\1/g
-    s/\"error mentre\([^[:alnum:]]\)/\"s'ha produït un error mentre\1/g
+  s/\"error mentre\([^[:alnum:]]\)/\"s'ha produït un error mentre\1/g
 s/\bError no gestionat\([^[:alnum:]]\)/S'ha produït un error no gestionat\1/g
 s/\b\([Ee]\)rror obtingut\([^[:alnum:]]\)/\1rror reportat\2/g
 s/\bError total\([^[:alnum:]]\)/S'ha produït un error total\1/g
 s/\bHi ha \(hagut \|\)un error\([^[:alnum:]]\)/S'ha produït un error\2/g
 s/\bL'error informat ha estat\([^[:alnum:]]\)/S'ha informat de l'error\1/g
 s/\bInforma d'un \(error\|problema\)\([^[:alnum:]]\)/Informeu d'un \1\2/g
-    s/\bS'ha produït un error del tipus de fitxer\([^[:alnum:]]\)/S'ha produït un error amb el tipus de fitxer\1/g
-    s/\berror del JSON\([^[:alnum:]]\)/error amb el JSON\1/g
-    s/\bS'ha produït un error: quan\([^[:alnum:]]\)/Hi ha un error: quan\1/g
+  s/\bS'ha produït un error del tipus de fitxer\([^[:alnum:]]\)/S'ha produït un error amb el tipus de fitxer\1/g
+  s/\berror del JSON\([^[:alnum:]]\)/error amb el JSON\1/g
+  s/\bS'ha produït un error: quan\([^[:alnum:]]\)/Hi ha un error: quan\1/g
 # #
 # # # # # # # # # # # # # #
 #
@@ -408,8 +409,8 @@ s/\bInforma d'un \(error\|problema\)\([^[:alnum:]]\)/Informeu d'un \1\2/g
 s/\bAccepto\([? ]\)/Voleu acceptar\1/g
 s/\bActualitzo\([? ]\)/Voleu actualitzar\1/g
 s/\bActivo\([? ]\)/Voleu activar\1/g
-    s/\bL'Activo[?]/Voleu activar-lo\?/g
-    s/\bAfegeixo fitxer[?]/Voleu afegir un fitxer\?/g
+  s/\bL'Activo[?]/Voleu activar-lo\?/g
+  s/\bAfegeixo fitxer[?]/Voleu afegir un fitxer\?/g
 s/\bAfegeixo\([? ]\)/Voleu afegir\1/g
 s/\bAplico o descarto\([? ]\)/Voleu aplicar o descartar\1/g
 s/\bAplico\([? ]\)/Voleu aplicar\1/g
@@ -424,34 +425,34 @@ s/\bConfio\([? ]\)/Voleu confiar\1/g
 s/\bConfirmo\([? ]\)/Voleu confirmar\1/g
 s/\bContinuo\([? ]\)/Voleu continuar\1/g
 s/\bCre\(a\|o\) o actualitz\(a\|o\)[?]/Voleu crear o actualitzar\?/g
-    s/\bLa voleu crear ara[?]/Voleu crear-la ara\?/g
+  s/\bLa voleu crear ara[?]/Voleu crear-la ara\?/g
 s/\bCreo\([? ]\)/Voleu crear\1/g
-    s/\bVoleu crear Leaf\([^[:alnum:]]\)/Cree Leaf\1/g
+  s/\bVoleu crear Leaf\([^[:alnum:]]\)/Cree Leaf\1/g
 # #
 # # # # # # # # # # # # # #
 #
 # de debò
-    s/\bDe debò elimino\([^[:alnum:]]\)/De debò voleu eliminar\1/g
-    s/\bDe debò habilito\([^[:alnum:]]\)/De debò voleu habilitar\1/g
-    s/\bDe debò reordeno\([^[:alnum:]]\)/De debò voleu reordenar\1/g
-    s/\bDe debò suprimeixo\([^[:alnum:]]\)/De debò voleu suprimir\1/g
+  s/\bDe debò elimino\([^[:alnum:]]\)/De debò voleu eliminar\1/g
+  s/\bDe debò habilito\([^[:alnum:]]\)/De debò voleu habilitar\1/g
+  s/\bDe debò reordeno\([^[:alnum:]]\)/De debò voleu reordenar\1/g
+  s/\bDe debò suprimeixo\([^[:alnum:]]\)/De debò voleu suprimir\1/g
 s/\bDescarto\([? ]\)/Voleu descartar\1/g
 s/\bDeso\([? ]\)/Voleu desar\1/g
-    s/\bEl voleu desar[?]/Voleu desar-lo\?/g
-    s/\bEls deso[?]/Voleu desar-los\?/g
-    s/\bLa voleu desar[?]/Voleu desar-la\?/g
+  s/\bEl voleu desar[?]/Voleu desar-lo\?/g
+  s/\bEls deso[?]/Voleu desar-los\?/g
+  s/\bLa voleu desar[?]/Voleu desar-la\?/g
 s/\bDibuixo\([^[:alnum:]]\)/Voleu dibuixar\1/g
 s/\bEl voleu posar en línia[?]/Voleu posar-lo en línia\?/g
-    s/\bLa voleu posar en línia[?]/Voleu posar-la en línia\?/g
+  s/\bLa voleu posar en línia[?]/Voleu posar-la en línia\?/g
 s/\bElimino\([? ]\)/Voleu eliminar\1/g
-    s/\bL'elimino/Voleu eliminar-lo/g
+  s/\bL'elimino/Voleu eliminar-lo/g
 s/\bEmpenyo\([? ]\)/Voleu empènyer\1/g
 s/\bEmpr\([ao]\) el nom de fitxer original[?]/Voleu emprar el nom de fitxer original\?/g
 s/\bEncripto\([? ]\)/Voleu encriptar\1/g
 s/\b\(Engego\|Inicio\)\([? ]\)/Voleu iniciar\2/g
-    s/\bHaig d'engegar\([^[:alnum:]]\)/Voleu iniciar\1/g
+  s/\bHaig d'engegar\([^[:alnum:]]\)/Voleu iniciar\1/g
 s/\bEnvio\([? ]\|\)/Voleu enviar\1/g
-    s/\bL'envio igualment[?]/Voleu enviar-lo igualment\?/g
+  s/\bL'envio igualment[?]/Voleu enviar-lo igualment\?/g
 s/\bEscric/Voleu escriure-hi/g
 s/\bExecuto\([? ]\)/Voleu executar\1/g
 s/\bExporto\([? ]\)/Voleu exortar\1/g
@@ -459,30 +460,30 @@ s/\bFinalitzo\([? ]\)/Voleu finalitzar\1/g
 s/\bHo esmeno[?]/Voleu esmerar-ho\?/g
 s/\bHo netejo tot[?]/Voleu netejar-ho tot\?/g
 s/\bIgnoro\([? ]\)/Voleu ignorar\1/g
-    s/\bi torno a sembrar\([^[:alnum:]]\)/i tornar a sembrar\1/g
+  s/\bi torno a sembrar\([^[:alnum:]]\)/i tornar a sembrar\1/g
 s/\bImporto\([? ]\)/Voleu importar\1/g
 s/\bInterrompo\([? ]\)/Voleu interrompre\1/g
 s/\bLlevo\([? ]\)/Voleu llevar\1/g
 s/\bMato\([? ]\)/Voleu matar\1/g
 # Necessito (No!)
-    s/\bMostro imatges incloses en el cel[?]/Voleu que es mostrin com a incloses les imatges en el cel\?/g
-    s/\bnova sense clau, voleu tornar a intentar-ho[?]/nova sense clau. Voleu tornar a intentar-ho\?/g
+  s/\bMostro imatges incloses en el cel[?]/Voleu que es mostrin com a incloses les imatges en el cel\?/g
+  s/\bnova sense clau, voleu tornar a intentar-ho[?]/nova sense clau. Voleu tornar a intentar-ho\?/g
 s/\bNetejo\([? ]\)/Voleu netejar\1/g
 s/\bObro\([? ]\)/Voleu obrir\1/g
 s/\bOblido\([? ]\)/Voleu oblidar\1/g
 s/\bOculto\([? ]\)/Voleu amagar\1/g
 s/\bPerdo\([? ]\)/Voleu perdre\1/g
-    s/\bReanomeno el \(document\|recurs\)\([^[:alnum:]]\)/Voleu canviar el nom del \1\2/g
+  s/\bReanomeno el \(document\|recurs\)\([^[:alnum:]]\)/Voleu canviar el nom del \1\2/g
 s/\bReanomeno\([? ]\)/Voleu canviar el nom\1/g
-    s/\bEncara \(el\|la\) voleu canviar de nom[?]/Segur que voleu canviar-ne el nom\?/g
+  s/\bEncara \(el\|la\) voleu canviar de nom[?]/Segur que voleu canviar-ne el nom\?/g
 s/\bLa voleu reassignar[?]/Voleu tornar-la a assignar\?/g
-    s/\bProcedeixo igualment\./Es procedirà igualment./g
+  s/\bProcedeixo igualment\./Es procedirà igualment./g
 s/\bProcedeixo\([? ]\)/Voleu procedir\1/g
 s/\bRecursiu[?]/És recursiu\?/g
 s/\bReinicio\([? ]\)/Voleu reiniciar\1/g
-    s/\bEl reinicio\([^[:alnum:]]\)/Voleu reiniciar-lo\1/g
-    s/\bEl voleu provar de reiniciar[?]/Voleu provar de reiniciar-lo\?/g
-    s/\bLa voleu provar de reiniciar[?]/Voleu provar de reiniciar-la\?/g
+  s/\bEl reinicio\([^[:alnum:]]\)/Voleu reiniciar-lo\1/g
+  s/\bEl voleu provar de reiniciar[?]/Voleu provar de reiniciar-lo\?/g
+  s/\bLa voleu provar de reiniciar[?]/Voleu provar de reiniciar-la\?/g
 s/\bRepeteixo\([? ]\)/Voleu repetir\1/g
 s/\bRestableixo\([? ]\)/Voleu restablir\1/g
 s/\bRestauro\([? ]\)/Voleu restaurar\1/g
@@ -491,19 +492,19 @@ s/\bReverteixo\([? ]\)/Voleu revertir\1/g
 s/\bSigno\/Voleu encriptar\([^[:alnum:]]\)/Voleu signar\/encriptar\1/g
 s/\bSigno\([? ]\)/Voleu signar\1/g
 s/\bSobreescric\([? ]\)/Voleu sobreescriure\1/g
-    s/\bEl voleu sobreescriure[?]/Voleu sobreescriure'l\?/g
-    s/\bLa voleu sobreescriure[?]/Voleu sobreescriure-la\?/g
-    s/\bS'ha de sobreescriure[?]/Voleu sobreescriure'l\?/g
+  s/\bEl voleu sobreescriure[?]/Voleu sobreescriure'l\?/g
+  s/\bLa voleu sobreescriure[?]/Voleu sobreescriure-la\?/g
+  s/\bS'ha de sobreescriure[?]/Voleu sobreescriure'l\?/g
 s/\bSubstitueixo\([? ]\)/Voleu substituir\1/g
 s/\bSuprimeixo\([? ]\)/Voleu suprimir\1/g
-    s/\bEncara el voleu suprimir[?]/Encara voleu suprimir-lo\?/g
-    s/\bEncara la voleu \(reanomenar\|suprimir\)[?]/Encara voleu \1-la\?/g
+  s/\bEncara el voleu suprimir[?]/Encara voleu suprimir-lo\?/g
+  s/\bEncara la voleu \(reanomenar\|suprimir\)[?]/Encara voleu \1-la\?/g
 s/\bSurto i abandono\([? ]\)/Voleu sortir i abandonar\1/g
 s/\bSurto\([? ]\)/Voleu sortir\1/g
 s/\bTanco i abandono\([? ]\)/Voleu tancar i abandonar\1/g
-    s/\bTanco i descarto\\n/Voleu tancar i descartar\\n/g
+  s/\bTanco i descarto\\n/Voleu tancar i descartar\\n/g
 s/\bTanco i descarto\([? ]\)/Voleu tancar i descartar\1/g
-    s/\bVoleu desar ara el document[?]/Voleu desar-lo ara\?/g
+  s/\bVoleu desar ara el document[?]/Voleu desar-lo ara\?/g
 s/\bTorno\([? ]\)/Voleu tornar\1/g
 s/\bUso\([^[:alnum:]]\)/Voleu usar\1/g
 
@@ -522,6 +523,16 @@ s/\(<p>\)Zel de grum\(:<br\/>\)quètxup, whisky, cafè, bon vi; ja[!]/\1Jove xef
 # # # # # # # # # # # # # #
 #
 # Adaptació per aplicació
+s/\bdistribuït amb els termes de la\([^[:alnum:]]\)/distribuït d'acord amb els termes de la\1/g
+s/\ben forma de codi font en les clàusules de l'apartat\([^[:alnum:]]\)/en forma de codi font d'acord amb els termes de l'apartat\1/g
+s/\bllicenciada d'acord amb la\([^[:alnum:]]\)/llicenciada d'acord amb els termes de la\1/g
+s/\blliurement sota els termes de la\([^[:alnum:]]\)/lliurement d'acord amb els termes de la\1/g
+s/\bmodificada d'acord amb les clàusules\([^[:alnum:]]\)/modificada d'acord amb els termes\1/g
+  s/\bd'acord amb les clàusules\([^[:alnum:]]\)/d'acord amb els termes\1/g
+s/\bsegons les clàusules d'aquesta llicència\([^[:alnum:]]\)/d'acord amb els termes d'aquesta llicència\1/g
+s/\bsegons les clàusules de la\([^[:alnum:]]\)/d'acord amb els termes de la\1/g
+s/\bsegons les clàusules de les seccions\([^[:alnum:]]\)/d'acord amb els termes de les seccions\1/g
+ #
 s/\bAnimació 2D\([^[:alnum:]]\)/Animació en 2D\1/g
 s/\bAquesta \(acció\|operació\) no es pot desfer\./Aquesta \1 no es podrà desfer./g
 s/\bCAD 3D\([^[:alnum:]]\)/CAD en 3D\1/g
@@ -531,8 +542,8 @@ s/\b\([Dd]\)ocument\(s\|\) \(Markdown\|RMarkdown\)\([^[:alnum:]]\)/\1ocument\2 e
 s/\b\([Ee]\)xtensió QML\([^[:alnum:]]\)/\1xtensió en QML\2/g
 s/\bfeta amb el Markdown\([^[:alnum:]]\)/en Markdown\1/g
 s/\b\([Ff]\)itxer\(s\|\) \(<[^<]\{1,\}>\|:ref:`\|[&«]\|\[\|\)\(DocBook\|javascript\|Logo\|[Mm]arkdown\|QML\|[Rr][Mm]arkdown\|XML\)\([^[:alnum:]]\)/\1itxer\2 en \3\4\5/g
-    s/\b\([Ff]\)itxer\(s\|\) en DocBook en &XML;\([^[:alnum:]]\)/\1itxer\2 DocBook en \&XML;\3/g
-    s/\b\([Ff]\)ormat\(s\|\) de fitxer en \(DocBook\|Logo\)\([^[:alnum:]]\)/\1ormat\2 de fitxer \3\4/g
+  s/\b\([Ff]\)itxer\(s\|\) en DocBook en &XML;\([^[:alnum:]]\)/\1itxer\2 DocBook en \&XML;\3/g
+  s/\b\([Ff]\)ormat\(s\|\) de fitxer en \(DocBook\|Logo\)\([^[:alnum:]]\)/\1ormat\2 de fitxer \3\4/g
 s/\b\([Gg]\)uia d'aprenentatge \(ODF\|PDF\)\([^[:alnum:]]\)/\1uia d'aprenentatge en \2\3/g
 s/\b\([Mm]\)iniaplicació QML\([^[:alnum:]]\)/\1iniaplicació en QML\2/g
 s/\b\([Ss]\)cript\(s\|\) del Logo\([^[:alnum:]]\)/\1cript\2 en Logo\3/g
@@ -541,8 +552,8 @@ s/\b\([Tt]auler\|versió\) QML\([^[:alnum:]]\)/\1 en QML\2/g
 s/\bQuadre de diàleg\([^[:alnum:]]\)/Diàleg\1/g
 s/\bquadre de diàleg\([^[:alnum:]]\)/diàleg\1/g
 s/\b\([Tt]\)orneu\(-ho\|\) a \(intentar\|provar\)\(-ho\|\)\([^[:alnum:]]\)/\1orneu-ho a provar\5/g
-    s/\b\([Tt]\)orneu-ho a provar en mode\([^[:alnum:]]\)/\1orneu-ho a provar en el mode\2/g
-    s/\b\([Tt]\)orneu-ho a provar la \(baixada\|petició\)\([^[:alnum:]]\)/\1orneu a provar la \2\3/g
+  s/\b\([Tt]\)orneu-ho a provar en mode\([^[:alnum:]]\)/\1orneu-ho a provar en el mode\2/g
+  s/\b\([Tt]\)orneu-ho a provar la \(baixada\|petició\)\([^[:alnum:]]\)/\1orneu a provar la \2\3/g
 
 #
 # Akonadi
@@ -562,14 +573,12 @@ s/\bUtilitzeu-lo sota la vostra responsabilitat\([^[:alnum:]]\)/Useu-la sota la 
 s/\bVRefs\([^[:alnum:]]\)/VRef\1/g
 # akonadi-calendar
 s/\btorna mostra la notificació\([^[:alnum:]]\)/es tornarà a mostrar la notificació\1/g
+s/\bVegeu la planificació de grups manual\([^[:alnum:]]\)/Vegeu la planificació manual dels grups\1/g
 # akonadiclient
 s/\bEl servidor Akonadi està aturant-se\([^[:alnum:]]\)/El servidor Akonadi s'està aturant\1/g
 s/\bS'han reanomenat %1 grups\([^[:alnum:]]\)/S'ha canviat el nom de %1 grups\1/g
 # Akregator
 s/\bImpressió del document\"/Imprimiu el document\"/g
- #
-s/\ben analitzar\([^[:alnum:]]\)/en l'anàlisi sintàctica de\1/g
-    s/\bde el\(s\|\)\([^[:alnum:]]\)/del\1\2/g
 # Alpaka
 s/\bOllama, que permet executar\([^[:alnum:]]\)/Ollama, el qual permet executar\1/g
 # Alligator
@@ -605,6 +614,7 @@ s/\bReprodueix una gravació emmagatzemat\([^[:alnum:]]\)/Reprodueix una gravaci
 # Audex
 s/\"Definiu un esquema\"/\"Establiu un esquema\"/g
 s/\"Definiu un esquema d'ordres\"/\"Establiu un esquema d'ordres\"/g
+s/\badministrador del servidor de la CDDB\([^[:alnum:]]\)/administrador de la CDDB\1/g
 s/\ben la pista %1 a la posició\([^[:alnum:]]\)/a la pista %1 a la posició\1/g
 s/\bEl format del fitxer de la\([^[:alnum:]]\)/El format de fitxer de la\1/g
 s/\bels sectors trencats s'ompliran de silenci\([^[:alnum:]]\)/els sectors trencats s'ompliran amb silenci\1/g
@@ -630,12 +640,14 @@ s/\bCreació de nota\"/Creeu una nota"/g
 s/(NaN) i es marca un error\([^[:alnum:]]\)/(NaN) i s'estableix un error\1/g
 s/\bAfe\(&\|\)geix grup…/Afe\1geix un grup…/g
 s/\bGira\/Pessiga\([^[:alnum:]]\)/Gira i pessiga\1/g
+s/\bMoH server\([^[:alnum:]]\)/Servidor MoH\1/g
 s/\bNomés exporta\([^[:alnum:]]\)/Exporta només\1/g
 s/\bnomés exporta\([^[:alnum:]]\)/exporta només\1/g
 s/\bSi està marcada, el contingut de la cel·la no s'imprimirà\([^[:alnum:]]\)/Si està marcada, no s'imprimirà el contingut de la cel·la\1/g
 s/\bSi està marcada, el text de la cel·la actual se subratllarà\([^[:alnum:]]\)/Si està marcada, se subratllarà el text de la cel·la actual\1/g
 s/\bQuan es marca, el Words mostra \(totes \|\)les\([^[:alnum:]]\)/Quan es marca, el Words mostrarà \1les\2/g
 s/\bQuan es marca, la cel·la encara és visible\([^[:alnum:]]\)/Quan es marca, la cel·la encara serà visible\1/g
+s/\bSC2200\/VSC3000 host\([^[:alnum:]]\)/Amfitrió SC2200\/VSC3000\1/g
 s/\b\([Vv]\)isualització de miniatures\([^[:alnum:]]\)/\1ista de miniatures\2/g
 # Calligra Plan
 s/\bAdjunta el document\"/Adjunteu el document\"/g
@@ -646,6 +658,7 @@ s/\bDesament dels documents\"/Deseu els documents\"/g
 s/\bEdita|\(Afegeix\|Elimina\)\([^[:alnum:]]\)/Edita -> \1\2/g
 s/\bEdita la dependència\"/Editeu la dependència\"/g
 s/\bEnvia els paquets de feina\"/Envieu els paquets de feina\"/g
+s/\bIPTV broadcast server\([^[:alnum:]]\)/Servidor de difusió IPTV\1/g
 s/\bModifica l'\(entrada\|URL\)\"/Modifiqueu l'\1\"/g
 s/\bque ara ja s'haurien\([^[:alnum:]]\)/que ja s'haurien\1/g
 # Cantor
@@ -662,8 +675,9 @@ s/\bInforme d'exportació de torneig/Exporta l'informe del torneig/g
 s/\bInforme d'importació de torneig/Importa l'informe del torneig/g
 # Choqok
 s/(activar\/desactivar)/(activar o desactivar)/g
-    s/carregar el connector (activar o desactivar)/carregar el connector (activar i desactivar)/g
+  s/carregar el connector (activar o desactivar)/carregar el connector (activar i desactivar)/g
 # crow-translate
+s/\bp>Nom del servidor intermediari\([^[:alnum:]]\)/p>Nom d'amfitrió de l'intermediari\1/g
 s/\bper protegir la vostra privadesa\([^[:alnum:]]\)/per a protegir la vostra privadesa\1/g
 # Daykountdown
 s/\bAfegeix un compte enrere\"/Afegiu un compte enrere\"/g
@@ -673,7 +687,7 @@ s/\bElimina tots els comptes enrere\"/Elimineu tots els comptes enrere\"/g
 s/\"Aplica metadades\"/\"Aplica les metadades\"/g
 s/\"FastStone Image Viewer\"/\"Visor d'imatges FastStone\"/g
 s/\bActiveu això si voleu un fons emplenant\([^[:alnum:]]\)/Marqueu-la si voleu un fons emplenant\1/g
-    s/\bDesactiveu això si no voleu \(convertir\|veure icones\)\([^[:alnum:]]\)/Desmarqueu-la si no voleu \1\2/g
+  s/\bDesactiveu això si no voleu \(convertir\|veure icones\)\([^[:alnum:]]\)/Desmarqueu-la si no voleu \1\2/g
 s/\bActiveu aquest botó\([^[:alnum:]]\)/Useu aquest botó\1/g
 s/\bAdaptació a Windows i gestor de llançaments\([^[:alnum:]]\)/Adaptació a Windows i encarregat dels llançaments\1/g
 s/\bAfegeix una etiqueta nova:\"/Afegiu una etiqueta nova:\"/g
@@ -689,9 +703,15 @@ s/\bEdició de fotografies al Showfoto\([^[:alnum:]]\)/Editeu fotografies al Sho
 s/\bEspecifica la qualitat de mapa que es mostrarà durant les animacions del mapa\([^[:alnum:]]\)/Especifica la qualitat del mapa que es mostrarà durant les animacions\1/g
 s/\bEstabliment de les imatges del panorama\"/Establiu les imatges del panorama\"/g
 s/\bEstablir les imatges amb bràqueting\"/Establiu les imatges amb bràqueting\"/g
+s/\b\([Ff]\)iltre \([Bb]\)lau\([^[:alnum:]]\)/\1iltre «Blau»\3/g
+s/\b\([Ff]\)iltre \([Vv]\)ermell\([^[:alnum:]]\)/\1iltre «Vermell»\3/g
+s/\b\([Ff]\)iltre \([Vv]\)erd-\([Gg]\)roc\([^[:alnum:]]\)/\1iltre «Verd-Groc»\4/g
+  s/\b\([Ff]\)iltre \([Vv]\)erd\([^[:alnum:]]\)/\1iltre «Verd»\3/g
 s/\bForça la renderització del programari OpenGL\([^[:alnum:]]\)/Força la renderització OpenGL per programari\1/g
 s/\bgraus-minuts-segons\([^[:alnum:]]\)/graus, minuts i segons\1/g
 s/\bpartir de fitxers de memòria cau\([^[:alnum:]]\)/partir dels fitxers de memòria cau\1/g
+s/\bUsa les etiquetes d'aplicació del servidor\([^[:alnum:]]\)/Usa les etiquetes de l'aplicació pare\1/g
+s/\busername@my\.server\.org\([^[:alnum:]]\)/nom_usuari@servidor.meu.org\1/g
 s/\bVoleu eliminar el camí afegit\([^[:alnum:]]\)/Voleu eliminar el camí annexat\1/g
  #
 s/\bla nova reproducció engegarà\([^[:alnum:]]\)/la reproducció nova començarà\1/g
@@ -725,7 +745,7 @@ s/\bAjuda|Manual del Dolphin\([^[:alnum:]]\)/Ajuda -> Manual del Dolphin\1/g
 s/\barrossegant carpetes a aquest plafó\([^[:alnum:]]\)/arrossegant carpetes cap a aquest plafó\1/g
 s/\bReanomena elements individuals en línia\([^[:alnum:]]\)/Canvia el nom d'elements individuals inclosos\1/g
 s/\beina per a assignar metadades de \(llegendes\|rètols\)\([^[:alnum:]]\)/eina per a assignar les metadades de \1\2/g
-    s/\bpropietat de rètol de selecció\([^[:alnum:]]\)/propietat del rètol de selecció\1/g
+  s/\bpropietat de rètol de selecció\([^[:alnum:]]\)/propietat del rètol de selecció\1/g
 s/\bEls canvis que no es poden desfer\([^[:alnum:]]\)/Els canvis que no es podran desfer\1/g
 s/\bEntrega al repositori <application>Hg<\/application>\"/Entregueu al repositori <application>Hg<\/application>\"/g
 s/\bEtiquetatge a <application>Hg<\/application>\"/Etiqueteu a <application>Hg<\/application>\"/g
@@ -736,7 +756,7 @@ s/\b\(Import\|Incorpor\)ació a <application>\(Git\|Hg\)<\/application>\"/\1eu a
 s/\bMenú|Plafons\([^[:alnum:]]\)/Menú --> Plafons\1/g
 s/\bMou els elements seleccionats des de la vista <emphasis>activa<\/emphasis> a la vista\([^[:alnum:]]\)/Mou els elements seleccionats des de la vista <emphasis>activa<\/emphasis> cap a la vista\1/g
 s/\bmoviment<\/interface> a una ubicació\([^[:alnum:]]\)/moviment<\/interface> cap a una ubicació\1/g
-    s/\bcap a una ubicació diferent o a la <filename>Paperera\([^[:alnum:]]\)/cap a una ubicació diferent o cap a dins de la <filename>Paperera\1/g
+  s/\bcap a una ubicació diferent o a la <filename>Paperera\([^[:alnum:]]\)/cap a una ubicació diferent o cap a dins de la <filename>Paperera\1/g
 s/\bnavegar per diverses carpetes al mateix temps\([^[:alnum:]]\)/navegar per múltiples carpetes al mateix temps\1/g
 s/\bObtenció de <application>Git<\/application>\"/Obteniu de <application>Git<\/application>\"/g
 s/\bordinador o a la xarxa\([^[:alnum:]]\)/ordinador o amb la xarxa\1/g
@@ -750,21 +770,26 @@ s/\bVisualitza|Plafons\([^[:alnum:]]\)/Visualitza --> Plafons\1/g
 # dolphin-plugins
 s/\b\([Ee]\)xtrau de\([^[:alnum:]]\)/\1xtrau des de\2/g
 s/\bObre una finestra nova de terminal per a veure la sortida de fer el «make» de l'objectiu triat\([^[:alnum:]]\)/Obre una finestra nova de terminal per a veure la sortida de crear l'objectiu triat\1/g
-s/\bS'ha produït un error en intentar fer «make» de l'objectiu «%1»\([^[:alnum:]]\)/S'ha produït un error en intentar fer l'objectiu «%1»\1/g
+s/\bS'ha produït un error mentre s'intentava fer «make» de l'objectiu «%1»\([^[:alnum:]]\)/S'ha produït un error mentre s'intentava fer l'objectiu «%1»\1/g
 # Dragon
 s/\bReproducció de fitxer multimèdia\([^[:alnum:]]\)/Reproduïu un fitxer multimèdia\1/g
 # drkonqi
 s/\bés molt limitada\([^[:alnum:]]\)/està molt limitada\1/g
+s/\bLa depuració no és possible per a fallades de programari que s'executen dins d'un espai aïllat \(Flatpak\|Snap\) en aquest moment\([^[:alnum:]]\)/En aquest moment, la depuració no és possible per a fallades de programari que s'executen dins d'un espai aïllat \1\2/g
 s/\bper generar\([^[:alnum:]]\)/per a generar\1/g
 # Els/\bisa
 s/\"Cerca i filtre\"/\"Cerca i filtratge\"/g
-    s/\b\([Bb]\)arra d'eines de cerca i filtre\([^[:alnum:]]\)/\1arra d'eines de cerca i filtratge\2/g
+  s/\b\([Bb]\)arra d'eines de cerca i filtre\([^[:alnum:]]\)/\1arra d'eines de cerca i filtratge\2/g
 # eventviews
 s/\b\(des\|\)seleccioneu-la per a seleccionar\([^[:alnum:]]\)/\1seleccioneu-la per a triar\2/g
 # Falkon
+s/\bactualitza la vista de la carpeta\([^[:alnum:]]\)/actualitza la vista de carpetes\1/g
+s/\bcoincidirà amb la vista de la carpeta de manera\([^[:alnum:]]\)/coincidirà amb la vista de carpetes, de manera\1/g
+  s/\bcoincidirà amb la vista de la carpeta, de manera\([^[:alnum:]]\)/coincidirà amb la vista de carpetes, de manera\1/g
 s/\bEls esquemes de permesos es poden afegir per extensions\([^[:alnum:]]\)/Els esquemes de permesos poden ser afegits per les extensions\1/g
 s/\bllista \(blanca\|negra\); primer elimineu-lo\([^[:alnum:]]\)/llista \1. Primer elimineu-lo\2/g
 s/\bPermet l'animació d'imatges\([^[:alnum:]]\)/Permet l'animació de les imatges\1/g
+s/\bpropietats de la vista de les carpetes\([^[:alnum:]]\)/propietats de la vista de carpetes\1/g
 s/\bSi no està marcada, evita la sortida de l'aplicació si la drecera «Ctrl+W» estava prevista\([^[:alnum:]]\)/Si no està marcada, s'evitarà la sortida accidental de l'aplicació si es pretén la drecera «Ctrl+W»\1/g
 # Fielding
 s/\bAPI REST\([^[:alnum:]]\)/API del Rest\1/g
@@ -786,10 +811,10 @@ s/\bnúmeros entre 0 i 20\([^[:alnum:]]\)/números entre el 0 i el 20\1/g
 s/\bnúmeros entre 0 i 100\([^[:alnum:]]\)/números entre el 0 i el 100\1/g
 s/\bnúmeros entre 1 i 10\([^[:alnum:]]\)/números entre l'1 i el 10\1/g
 s/\bomplir la quadrícula\([^[:alnum:]]\)/emplenar la quadrícula\1/g
-    s/\binformació sobre com omplir-les\([^[:alnum:]]\)/informació sobre com emplenar-les\1/g
+  s/\binformació sobre com omplir-les\([^[:alnum:]]\)/informació sobre com emplenar-les\1/g
 s/\bper Samuel\([^[:alnum:]]\)/per en Samuel\1/g
 s/\bservir amb --launch activity)/servir amb «--launch activitat»)/g
-    s/\bespecífic (--start-level level,/específic («--start-level nivell»,/g
+  s/\bespecífic (--start-level level,/específic («--start-level nivell»,/g
 s/\bsobre el Tux\([^[:alnum:]]\)/sobre en Tux\1/g
 s/\b\([Rr]estes\|[Ss]umes\) \(amb\|de\) nombres fins a \(10\|15\|20\|100\)\([^[:alnum:]]\)/\1 \2 nombres fins al \3\4/g
 s/\bté la voltant\([^[:alnum:]]\)/té al voltant\1/g
@@ -812,8 +837,8 @@ s/\bDe la paleta…/Des de la paleta…/g
 s/\b\([Dd]\)esenllaça \(el color\|el traç\|l'emplenament\)\([^[:alnum:]]\)/\1esvincula \2\3/g
 s/\bEnllaça \(el color\|el traç\|l'emplenament\|les formes\)\([^[:alnum:]]\)/Vincula \1\2/g
 s/\benllaça \(el color\|el traç\|l'emplenament\|les formes\)\([^[:alnum:]]\)/vincula \1\2/g
-    s/\b\([Vv]\)incula el color de %1\([^[:alnum:]]\)/\1incula amb el color %1\2/g
-    s/\b\([Vv]\)incula les formes a la mostra\([^[:alnum:]]\)/\1incula les formes amb la mostra\2/g
+  s/\b\([Vv]\)incula el color de %1\([^[:alnum:]]\)/\1incula amb el color %1\2/g
+  s/\b\([Vv]\)incula les formes a la mostra\([^[:alnum:]]\)/\1incula les formes amb la mostra\2/g
 s/\bLes imatges ràster s'han de traçar en vectors\([^[:alnum:]]\)/Les imatges ràster s'han de traçar a dins de vectors\1/g
 s/\bPredefinits de degradat\([^[:alnum:]]\)/Predefinits amb degradats\1/g
 # Ghostwriter
@@ -824,15 +849,19 @@ s/\b\([Pp]\)àgina extra\([^[:alnum:]]\)/\1àgina addicional\2/g
 # Gwenview
 s/\bEnllaça a…\([^[:alnum:]]\)/Enllaça amb…\1/g
 s/\bpantalles que es calibraran amb l'espai de color sRGB\([^[:alnum:]]\)/pantalles calibrades amb l'espai de color sRGB\1/g
+# Hana
+s/\b\([Ff]\)inestra principal amb diversos fitxers\([^[:alnum:]]\)/\1inestra principal amb múltiples fitxers\2/g
 # Haruna
 s/, l'estat (visible\/ocult) de la llista de reproducció es recorda en els reinicis\([^[:alnum:]]\)/, es recordarà l'estat (visible\/ocult) de la llista de reproducció en els reinicis\1/g
 s/\bComproveu els paràmetres de «Reproducció» per a més detalls\([^[:alnum:]]\)/Per a més detalls, comproveu les opcions de configuració de «Reproducció»\1/g
 s/\bQuan se selecciona, els subtítols es poden representar\([^[:alnum:]]\)/Quan se selecciona, els subtítols es podran representar\1/g
+s/\bvídeo ric en funcions\([^[:alnum:]]\)/vídeo ric en característiques\1/g
 # Hash-o-Matic
 # Heaptrack
 s/\bQuan no se selecciona, de manera predeterminada està activada\([^[:alnum:]]\)/Quan no se selecciona, de manera predeterminada estarà activada\1/g
 # incidenceeditor
 s/\bposant els vostres valors predeterminats a l'editor automàticament\([^[:alnum:]]\)/posant automàticament els vostres valors predeterminats a l'editor\1/g
+s/\bseu corresponent servidor\([^[:alnum:]]\)/seu servidor corresponent\1/g
 # index-fm
 s/\bExploració i navegació\([^[:alnum:]]\)/Exploreu i navegueu\1/g
 # Juk
@@ -849,9 +878,11 @@ s/\bImporta sessió…\([^[:alnum:]]\)/Importa la sessió…\1/g
 s/\brendiment de lectura\/escriptura\([^[:alnum:]]\)/rendiment de lectura i escriptura\1/g
 s/\bseguir enllaços a carpetes\([^[:alnum:]]\)/seguir enllaços cap a carpetes\1/g
 s/\bSi es marca aquesta opció, el K3b fa servir un espai\([^[:alnum:]]\)/Si es marca aquesta opció, el K3b usarà un espai\1/g
+s/\bun servidor CDDB informació\([^[:alnum:]]\)/un servidor de la CDDB per a informació\1/g
 # KAddressBook
 # kaidan
 s/\"Afegeix contacte\"/\"Afegeix un contacte\"/g
+s/\"Funcionalitat no admesa\"/\"Característica no admesa\"/g
 s/\b\([Aa]\)dreça de xat\([^[:alnum:]]\)/\1dreça del xat\2/g
 s/\bAfegeix una part oculta del missatge\([^[:alnum:]]\)/Afegeix una part oculta al missatge\1/g
 s/\bAixò no es pot desfer\([^[:alnum:]]\)/Això no es podrà desfer\1/g
@@ -868,13 +899,13 @@ s/\bConfiguració|Jugadors\([^[:alnum:]]\)/Configuració -> Jugadors\1/g
 s/\bja està executant-se\([^[:alnum:]]\)/ja s'està executant\1/g
 # Kalarm
 s/\b\([Cc]\)om enviar els correus electrònics\([^[:alnum:]]\)/\1om s'enviarà el correu electrònic\2/g
-    s/\bquan s'activa una alarma\([^[:alnum:]]\)/quan s'activi una alarma\1/g
+  s/\bquan s'activa una alarma\([^[:alnum:]]\)/quan s'activi una alarma\1/g
 s/\bMarqueu\(-la\|\) \(per a executar\|perquè es demani\|perquè se us requereixi\)\([^[:alnum:]]\)/Trieu\1 \2\3/g
 s/\bSi està marcada, la finestra serà una finestra normal amb una barra de títol, que quan es mostra, captura l'entrada de teclat\([^[:alnum:]]\)/Si està marcada, la finestra serà una normal amb una barra de títol, que quan es mostri, capturarà l'entrada del teclat\1/g
 # Kalendar
 s/\"Calendar\"/\"Calendari\"/g
 s/\"Kalendar Mail\"/\"Correu del Kalendar\"/g
-    s/\bGestioneu el correu amb el Kalendar Mail\([^[:alnum:]]\)/Gestioneu la correspondència amb el Correu del Kalendar\1/g
+  s/\bGestioneu el correu amb el Kalendar Mail\([^[:alnum:]]\)/Gestioneu la correspondència amb el Correu del Kalendar\1/g
 s/\bamb el Calendar\([^[:alnum:]]\)/amb el Calendari\1/g
 s/\bamb el Contacts del Kalendar\([^[:alnum:]]\)/amb els Contactes del Kalendar\1/g
 s/\bConfiguració de publicació de lliure\/ocupat\([^[:alnum:]]\)/Configuració de la publicació de lliure\/ocupat\1/g
@@ -924,7 +955,7 @@ s/\bFixa\/deixa de fixar\([^[:alnum:]]\)/Fixa o deixa de fixar\1/g
 s/\bHa finalitzat l'anàlisi de %\([12]\) fitxer\./Ha finalitzat l'anàlisi d'%\1 fitxer./g
 s/\bJa està construint-se\([^[:alnum:]]\)/Ja s'està construint\1/g
 s/\b\([Pp]\)arèntesis acolorits\([^[:alnum:]]\)/\1arèntesis en color\2/g
-    s/\bper a l'acoloriment dels parèntesis\([^[:alnum:]]\)/per a donar color als parèntesis\1/g
+  s/\bper a l'acoloriment dels parèntesis\([^[:alnum:]]\)/per a donar color als parèntesis\1/g
 s/\bportar a terme diverses operacions a múltiples projectes\([^[:alnum:]]\)/portar a terme diverses operacions a través de múltiples projectes\1/g
 s/\bRessalta la línia de destí quan s'hi salta\([^[:alnum:]]\)/Ressalta la línia de destinació quan s'hi salta\1/g
 s/\bSi està marcada, això permet desplaçar\([^[:alnum:]]\)/Si està marcada, es permetrà desplaçar\1/g
@@ -952,25 +983,33 @@ s/\bels paràmetres de configuració\([^[:alnum:]]\)/les opcions de configuraci�
 # kde-inotify-survey
 s/\bAugment\(a\|\) el límit \(d'instàncies\|de vigilància\)\([^[:alnum:]]\)/Augmenta el límit \2\3/g
 s/\bBaixa capacitat \(d'instàncies\|de vigilància\)\([^[:alnum:]]\)/Baixa la capacitat \1\2/g
-# KDE Connect
+# KDE Connect - kdeconnect
+s/\b\([Aa]\)fegeix ordres a executar-les\([^[:alnum:]]\)/\1fegeix ordres per a executar-les\2/g
+s/\banterior\/següent\([^[:alnum:]]\)/anterior o següent\1/g
 s/\bEnvia notificacions\([^[:alnum:]]\)/Envia les notificacions\1/g
-    s/\bEnvia les notificacions per a les trucades entrants\([^[:alnum:]]\)/Envia notificacions per a les trucades entrants\1/g
+  s/\bEnvia les notificacions per a les trucades entrants\([^[:alnum:]]\)/Envia notificacions per a les trucades entrants\1/g
+s/\bMoveu un dit a la pantalla\([^[:alnum:]]\)/Moveu un dit sobre la pantalla\1/g
+s/\b\([Rr]\)ep entrada remota\([^[:alnum:]]\)/\1ep l'entrada remota\2/g
 # KDE Itinerary
 s/\bArribada a %1\([^[:alnum:]]\)/Arribada a les %1\1/g
+s/\b\([Ff]\)iltra viatges\([^[:alnum:]]\)/\1iltra els viatges\2/g
 s/\bPortabilitat de dades\([^[:alnum:]]\)/Portabilitat de les dades\1/g
-# kdeconnect
-s/\banterior\/següent\([^[:alnum:]]\)/anterior o següent\1/g
-s/\bMoveu un dit a la pantalla\([^[:alnum:]]\)/Moveu un dit sobre la pantalla\1/g
 # kdelibs4support
 # Kdenlive
 s/\bDifuminat i agudització\([^[:alnum:]]\)/Difumineu i aguditzeu\1/g
 s/\bNavegació i reproducció\([^[:alnum:]]\)/Navegueu i reproduïu\1/g
  #
+s/(Animat)/(animat)/g
+s/(Dens)/(dens)/g
+s/(Llarg)/(llarg)/g
+s/(Mini)/(mini)/g
+s/(Mitjà)/(mitjà)/g
+s/(Xicoteta)/(xicoteta)/g
 s/, una llista desplegable de valors possibles que es mostraran en/, apareixerà una llista desplegable de valors possibles que s'oferiran durant/g
 s/, una lli sta de cUna llista separada per salts de línia de valors possibles que s'oferiran en/, apareixerà una llista separada per salts de línia de valors possibles que s'oferiran durant/g
-    s/\bagrupa temporalment els clips separats i crea o elimina\([^[:alnum:]]\)/agruparà temporalment els clips separats i crearà o eliminarà\1/g
-    s/\ballarga o escurça el clip i mou\([^[:alnum:]]\)/allargarà o escurçarà el clip i mourà\1/g
-    s/\bllisca el clip sota la finestra\([^[:alnum:]]\)/farà lliscar el clip sota la finestra\1/g
+  s/\bagrupa temporalment els clips separats i crea o elimina\([^[:alnum:]]\)/agruparà temporalment els clips separats i crearà o eliminarà\1/g
+  s/\ballarga o escurça el clip i mou\([^[:alnum:]]\)/allargarà o escurçarà el clip i mourà\1/g
+  s/\bllisca el clip sota la finestra\([^[:alnum:]]\)/farà lliscar el clip sota la finestra\1/g
 # s/\bAfegeix una seqüència d'imatges\([^[:alnum:]]\)/Afegiu una seqüència d'imatges\1/g
 s/\b\([Aa]\)fecta a tots els clips d'àudio per igual\([^[:alnum:]]\)/\1fectarà a tots els clips d'àudio per igual\2/g
 s/\bArxivament del projecte\([^[:alnum:]]\)/Arxiveu el projecte\1/g
@@ -990,20 +1029,22 @@ s/\bIntroducció del camí de les plantilles\([^[:alnum:]]\)/Introduïu el camí
 s/\bIntroducció del nom dels valors predefinits\([^[:alnum:]]\)/Introduïu el nom dels valors predefinits\1/g
 s/\bLlindar de la lluminositat\([^[:alnum:]]\)/Llindar de la brillantor\1/g
 s/\bLluminositat \(de cada píxel\|de la imatge\|de les àrees\|dels píxels\)\([^[:alnum:]]\)/Brillantor \1\2/g
-    s/\blluminositat \(de cada píxel\|de la imatge\|de les àrees\|dels píxels\)\([^[:alnum:]]\)/brillantor \1\2/g
-    s/\bPunta del pinzell\([^[:alnum:]]\)/Punta de pinzell\1/g
-    s/\bpunta de pinzell\([^[:alnum:]]\)/punta del pinzell\1/g
-    s/\bBrillantor de la imatge de la punta del pinzell\([^[:alnum:]]\)/Lluminositat de la imatge de la punta del pinzell\1/g
-    s/\bbrillantor de la imatge de la punta del pinzell\([^[:alnum:]]\)/lluminositat de la imatge de la punta del pinzell\1/g
-    s/\bconservar la brillantor de la imatge\([^[:alnum:]]\)/conservar la lluminositat de la imatge\1/g
-    s/\bvalors de brillantor de la imatge\([^[:alnum:]]\)/valors de lluminositat de la imatge\1/g
-        s/\bescala els valors de lluminositat de la imatge\([^[:alnum:]]\)/escala els valors de lluminositat de la imatge\1/g
+  s/\blluminositat \(de cada píxel\|de la imatge\|de les àrees\|dels píxels\)\([^[:alnum:]]\)/brillantor \1\2/g
+  s/\bPunta del pinzell\([^[:alnum:]]\)/Punta de pinzell\1/g
+  s/\bpunta de pinzell\([^[:alnum:]]\)/punta del pinzell\1/g
+  s/\bBrillantor de la imatge de la punta del pinzell\([^[:alnum:]]\)/Lluminositat de la imatge de la punta del pinzell\1/g
+  s/\bbrillantor de la imatge de la punta del pinzell\([^[:alnum:]]\)/lluminositat de la imatge de la punta del pinzell\1/g
+  s/\bconservar la brillantor de la imatge\([^[:alnum:]]\)/conservar la lluminositat de la imatge\1/g
+  s/\bvalors de brillantor de la imatge\([^[:alnum:]]\)/valors de lluminositat de la imatge\1/g
+    s/\bescala els valors de lluminositat de la imatge\([^[:alnum:]]\)/escala els valors de lluminositat de la imatge\1/g
 s/\b\([Mm]\)arc actual de clip\([^[:alnum:]]\)/\1arc actual del clip\2/g
 s/\bMostra les estadístiques de la lluminositat\([^[:alnum:]]\)/Mostra les estadístiques de la brillantor\1/g
 s/\b\([Mm]\)ultiplicador d'augment d'escalat de la lluminositat\([^[:alnum:]]\)/\1ultiplicador d'augment d'escalat de la brillantor\2/g
 s/\bno funciona amb diversos subtítols\([^[:alnum:]]\)/no funciona amb múltiples subtítols\1/g
 s/\b\([Nn]\)o s'ha pogut trobar el %1/\1o s'ha pogut trobar el «%1»/g
+s/\bNomés mostra elements\([^[:alnum:]]\)/Mostra només els elements\1/g
 s/\bObre un projecte arxivat\([^[:alnum:]]\)/Obriu un projecte arxivat\1/g
+s/\bOfereix funcions avançades d'edició\([^[:alnum:]]\)/Ofereix característiques avançades d'edició\1/g
 s/\bper a fer activa\/inactiva\([^[:alnum:]]\)/per a fer activa o inactiva\1/g
 s/\bper fer-lo servir\([^[:alnum:]]\)/per a utilitzar-lo\1/g
 s/\bPrimer definiu els punts\([^[:alnum:]]\)/Primer establiu els punts\1/g
@@ -1031,7 +1072,10 @@ s/\bpodeu seleccionar una secció de la pantalla per a obtenir-ne un color mitj�
 s/\bQuan s'ha activat, el Kdenlive\([^[:alnum:]]\)/Quan se selecciona, el Kdenlive\1/g
 s/\bQuan se selecciona, un clic en un recurs de la línia de temps selecciona el recurs\([^[:alnum:]]\)/Quan se selecciona, un clic sobre un recurs de la línia de temps el seleccionarà\1/g
 s/\bReinicialitza efecte\([^[:alnum:]]\)/Reinicialitza l'efecte\1/g
+s/\bsuposadament a causa d'un mostreig dolent\([^[:alnum:]]\)/suposadament a causa d'un submostratge dolent\1/g
 # kdepim-addons
+s/\b\([Oo]\)bt\(é\|enir\) informació d'un calendari\([^[:alnum:]]\)/\1bt\2 informació des d'un calendari\3/g
+s/\b\([Oo]\)bt\(é\|enir\) informació d'usuaris de base de dades\([^[:alnum:]]\)/\1bt\2 informació d'usuaris des de la base de dades\3/g
 s/\bVacuum de l'Akonadi\([^[:alnum:]]\)/Buidatge de l'Akonadi\1/g
 # kdepim-runtime
 s/\bNo s'ha definit cap nom d'usuari\([^[:alnum:]]\)/No s'ha establert cap nom d'usuari\1/g
@@ -1082,6 +1126,7 @@ s/\bLa transferència següent s'ha iniciat\([^[:alnum:]]\)/S'ha iniciat la tran
 s/\bLes transferències següents s'han afegit\([^[:alnum:]]\)/S'han afegit les transferències següents\1/g
 s/\bL\(a\|es\) suprimeixo i torno a baixar-l\(a\|es\)\([^[:alnum:]]\)/L\1 voleu suprimir i tornar a baixar\3/g
 # KGoldrunner
+s/\bcantonada de baix a l'esquerra\([^[:alnum:]]\)/cantonada inferior esquerra\1/g
 s/\bpots anar fins a un diàleg en el qual pots editar els detalls\([^[:alnum:]]\)/pots anar fins a un diàleg en el qual podràs editar els detalls\1/g
 s/\bves cap a dalt a atrapar\([^[:alnum:]]\)/ves cap a dalt per a atrapar\1/g
 # KGpg
@@ -1108,6 +1153,7 @@ s/\bkde; 3, al que substitueix\([^[:alnum:]]\)/kde; 3, al qual substitueix\1/g
 s/, que no té dependències/, el qual no té dependències/g
 # Kig
 s/\bCanvia la part mostrada a pantalla\([^[:alnum:]]\)/Canvia la part mostrada a la pantalla\1/g
+s/\bTrieu el \(primer\|segon\) \(objecte\|polígon\) a intersecar\([^[:alnum:]]\)/Trieu el \1 \2 per a la intersecció\3/g
 # Kile
 s/\"\(«\|\)\(Alt\|Ctrl\|Meta\|Ordre\)\(»\|\) +\(»\|\) \(Ctrl\|Majúscules\|Ordre\)\"/\"\2+\5\"/g
 s/\bConfiguració -> Configura el Kile ->/Configuració -> Configura el Kile… ->/g
@@ -1122,8 +1168,9 @@ s/\bp…er maquinari\([^[:alnum:]]\)/per maquinari\1/g
 # KIO
 s/\bDefineix l'eina predeterminada\([^[:alnum:]]\)/Estableix l'eina predeterminada\1/g
 s/\b\([Ee]\)nllaç nou a una aplicació\([^[:alnum:]]\)/\1nllaç nou amb una aplicació\2/g
+s/\bespecíficament el nom del servidor intermediari\([^[:alnum:]]\)/específicament el nom d'amfitrió del servidor intermediari\1/g
 s/\bindicador està activat\([^[:alnum:]]\)/indicador està establert\1/g
-    s/\bindicador d'apegalós està activat\([^[:alnum:]]\)/indicador d'apegalós està establert\1/g
+  s/\bindicador d'apegalós està activat\([^[:alnum:]]\)/indicador d'apegalós està establert\1/g
 s/\bIntroduïu aquí els arguments a fer servir en iniciar\([^[:alnum:]]\)/Introduïu aquí els arguments que s'usaran quan s'iniciï\1/g
 s/\b\([Nn]\)avegar cap a una ubicació\([^[:alnum:]]\)/\1avegar fins a una ubicació\2/g
 s/\bopenSUSE Bugzilla\([^[:alnum:]]\)/Bugzilla de l'openSUSE\1/g
@@ -1132,7 +1179,7 @@ s/\bquadre del diàleg\([^[:alnum:]]\)/diàleg\1/g
 s/\bquan s'hagi completat la transferència\([^[:alnum:]]\)/una vegada s'hagi completat la transferència\1/g
 s/\buna vegada que la transferència hagi estat completada\([^[:alnum:]]\)/una vegada s'hagi completat la transferència\1/g
 s/\bwww\.example\.com\([^[:alnum:]]\)/www.exemple.com\1/g
-    s/\bgaletes originades a www.exemple.com\([^[:alnum:]]\)/galetes originades des de www.exemple.com\1/g
+  s/\bgaletes originades a www.exemple.com\([^[:alnum:]]\)/galetes originades des de www.exemple.com\1/g
 # kio-extras
 s/, que els permetrà/, el qual els permetrà/g
 # KIPI plugins
@@ -1140,6 +1187,7 @@ s/\bSi està marcada, podeu establir etiquetes extres\([^[:alnum:]]\)/Si està m
 # Kirigami
 s/\ba els nostres\([^[:alnum:]]\)/als nostres\1/g
 s/\b\(Capçalera\|Peu de pàgina\) de full\([^[:alnum:]]\)/\1 del full\2/g
+s/\b\([Dd]\)iàleg de l'indicatiu\([^[:alnum:]]\)/\1iàleg de l'indicador\2/g
 s/\bPer a donar suport al desenvolupament la comunitat\([^[:alnum:]]\)/Per a donar suport al desenvolupament, la comunitat\1/g
 s/\bposar-la a «CardsLayout\([^[:alnum:]]\)/posar-la en una «CardsLayout\1/g
 s/\bS'utilitza %1 i s'ha construït amb %2\([^[:alnum:]]\)/usa la %1 i s'ha construït amb la %2\1/g
@@ -1172,12 +1220,17 @@ s/\bCliqueu a la icona per a més detalls\([^[:alnum:]]\)/Per a més detalls, cl
 s/\bFent servir la clau serà més fiable\([^[:alnum:]]\)/Usant la clau serà més fiable\1/g
 s/\bImporta\/Exporta\([^[:alnum:]]\)/Importa o exporta\1/g
 s/\bQuan es comprovi,/Quan se seleccioni,/g
+s/\bTrencament de línia\([^[:alnum:]]\)/Salt de línia\1/g
+s/\btrencament de línia\([^[:alnum:]]\)/salt de línia\1/g
 s/\bTrieu els certificats que s'hauria\([^[:alnum:]]\)/Trieu els certificats que s'haurien\1/g
 # kmailtransport
 # KMix
 s/\bThe KMix Authors\([^[:alnum:]]\)/Els autors del KMix\1/g
 s/\bUtilitat per a guardar\/restaurar\([^[:alnum:]]\)/Utilitat per a guardar i restaurar\1/g
 # KMuddy
+s/\blínies noves després de l'indicatiu\([^[:alnum:]]\)/línies noves després de l'indicador\1/g
+s/\b\([Mm]\)ostra l'indicatiu\([^[:alnum:]]\)/\1ostra l'indicador\2/g
+s/\b\([Mm]\)o&stra l'indicatiu\([^[:alnum:]]\)/\1o\&stra l'indicador\2/g
 # KMymoney
 s/\bEdició d'institució\([^[:alnum:]]\)/Edició de la institució\1/g
 s/\"Edita el compte\"/\"Editeu un compte\"/g
@@ -1195,7 +1248,7 @@ s/\bEliminació de pressupost\([^[:alnum:]]\)/Elimineu un pressupost\1/g
 s/\bExporta en un directori\([^[:alnum:]]\)/Exporta dins d'un directori\1/g
 s/\bcotització és derivada de\([^[:alnum:]]\)/cotització deriva des de\1/g
 s/\bGestor de llançaments\([^[:alnum:]]\)/Encarregat dels llançaments\1/g
-    s/\bMotor del nucli, Encarregat dels llançaments, administrador del projecte\([^[:alnum:]]\)/Motor del nucli, encarregat dels llançaments i administrador del projecte\1/g
+  s/\bMotor del nucli, Encarregat dels llançaments, administrador del projecte\([^[:alnum:]]\)/Motor del nucli, encarregat dels llançaments i administrador del projecte\1/g
 s/\bmodificar diverses operacions en \(aquesta vista\|comptes\)\([^[:alnum:]]\)/modificar múltiples operacions en \1\2/g
 s/\bNom d'etiqueta duplicat\([^[:alnum:]]\)/Nom duplicat de l'etiqueta\1/g
 s/\bNom de beneficiari duplicat\([^[:alnum:]]\)/Nom duplicat del beneficiari\1/g
@@ -1204,7 +1257,6 @@ s/\bPredeterminat d'operació planificada\([^[:alnum:]]\)/Ometeu l'operació pla
 s/\bquan les operacions desglossades són part de la selecció\([^[:alnum:]]\)/quan les operacions desglossades formen part de la selecció\1/g
 s/\bque es farà servir\([^[:alnum:]]\)/que s'usarà\1/g
 s/\bResolució d'assignació de camp\([^[:alnum:]]\)/Resoleu una assignació de camp\1/g
-s/\bS'ha produït un error en carregar la plantilla\([^[:alnum:]]\)/S'ha produït un error mentre es carregava la plantilla\1/g
 s/\bSupressió d'institució\([^[:alnum:]]\)/Suprimiu una institució\1/g
 s/\bSupressió d'una font de cotitzacions\([^[:alnum:]]\)/Suprimiu una font de cotitzacions\1/g
 s/\bSupressió de categoria\([^[:alnum:]]\)/Suprimiu una categoria\1/g
@@ -1216,17 +1268,24 @@ s/\bPer això, el perfil no es pot usar\([^[:alnum:]]\)/El perfil no es pot util
 s/\bseleccionades perquè algunes d'aquestes\([^[:alnum:]]\)/seleccionades perquè algunes\1/g
 # KNavalBattle
 s/\bHostatja una partida\([^[:alnum:]]\)/Allotja una partida\1/g
+s/\bOrdinador predeterminat per a les partides multijugador\([^[:alnum:]]\)/Nom de l'amfitrió predeterminat per a les partides multijugador\1/g
 # KNewStuff
 s/\bInformeu-ho a la comunitat KDE amb un informe d'error\([^[:alnum:]]\)/Informeu-ne a la comunitat KDE amb un informe d'error\1/g
 # KNotes
 s/\b\([Aa]\)rrossegar al calendari\([^[:alnum:]]\)/\1rrossegar a dins del calendari\2/g
 # Kooka
+s/\bal <envvar>PATH\([^[:alnum:]]\)/a la <envvar>PATH\1/g
+s/\bDesament d'imatge\([^[:alnum:]]\)/Desament de la imatge\1/g
+s/\bescanejades en diverses pàgines\([^[:alnum:]]\)/escanejades en múltiples pàgines\1/g
+s/\bNo s'ha pogut afegir la pàgina\([^[:alnum:]]\)/No s'ha pogut annexar la pàgina\1/g
+s/\bPàgines múltiples\([^[:alnum:]]\)/Múltiples pàgines\1/g
+s/\bpàgines múltiples\([^[:alnum:]]\)/múltiples pàgines\1/g
 # Kommit
 s/\bComet\/\([Pp]\)uja\([^[:alnum:]]\)/Comet i puja\2/g
 s/\bNo s'ha pogut trobar la comissió de destí de l'etiqueta\([^[:alnum:]]\)/No s'ha pogut trobar la comissió de destinació de l'etiqueta\1/g
 s/\bNo seleccionat la comissió\([^[:alnum:]]\)/No s'ha seleccionat la comissió\1/g
 s/\bPujada\/Comissió\([^[:alnum:]]\)/Pujada o comissió\1/g
-s/\bS'ha produït un error en canviar al destí nou\([^[:alnum:]]\)/S'ha produït un error en canviar a la destinació nova\1/g
+s/\bS'ha produït un error mentre es canviava al destí nou\([^[:alnum:]]\)/S'ha produït un error mentre es canviava a la destinació nova\1/g
 # KomoDo
 s/\b\([Tt]\)ornar a carregar-la\([^[:alnum:]]\)/\1ornar-la a carregar\2/g
 # Kompare
@@ -1238,12 +1297,12 @@ s/\bDefinició del temps d'espera\([^[:alnum:]]\)/Establiu el temps d'espera\1/g
 s/\bes troba sobre el que es mostrarà el text predeterminat\([^[:alnum:]]\)/és el que es mostrarà darrere del text predeterminat\1/g
 s/\bhi ha diverses plantilles\([^[:alnum:]]\)/hi ha múltiples plantilles\1/g
 s/\b\([Mm]\)òdul de barra\([^[:alnum:]]\)/\1òdul de la barra\2/g
-    s/\b\([Bb]\)arra lateral d'arbre\([^[:alnum:]]\)/\1arra lateral Arbre\2/g
-    s/\b\([Bb]\)arra lateral d'adreces d'interès\([^[:alnum:]]\)/\1arra lateral Adreces d'interès\2/g
-    s/\b\([Bb]\)arra lateral d'historial\([^[:alnum:]]\)/\1arra lateral Historial\2/g
-    s/\b\([Bb]\)arra lateral de llocs\([^[:alnum:]]\)/\1arra lateral Llocs\2/g
-    s/\b\([Bb]\)arra lateral web\([^[:alnum:]]\)/\1arra lateral Web\2/g
-    s/\b\([Bb]\)arra vertical de pestanyes\([^[:alnum:]]\)/\1arra vertical Pestanyes\2/g
+  s/\b\([Bb]\)arra lateral d'arbre\([^[:alnum:]]\)/\1arra lateral Arbre\2/g
+  s/\b\([Bb]\)arra lateral d'adreces d'interès\([^[:alnum:]]\)/\1arra lateral Adreces d'interès\2/g
+  s/\b\([Bb]\)arra lateral d'historial\([^[:alnum:]]\)/\1arra lateral Historial\2/g
+  s/\b\([Bb]\)arra lateral de llocs\([^[:alnum:]]\)/\1arra lateral Llocs\2/g
+  s/\b\([Bb]\)arra lateral web\([^[:alnum:]]\)/\1arra lateral Web\2/g
+  s/\b\([Bb]\)arra vertical de pestanyes\([^[:alnum:]]\)/\1arra vertical Pestanyes\2/g
 s/\b\([Pp]\)\. ex\. /\1. ex., /g
 s/\bPermet de modificar\([^[:alnum:]]\)/Permet modificar\1/g
 s/\bporta aquest botó a <b>Configuració\([^[:alnum:]]\)/porta aquest botó sota <b>Configuració\1/g
@@ -1252,23 +1311,29 @@ s/\bSi ses marca, s'agrupen\([^[:alnum:]]\)/Si està marcada, s'agruparan\1/g
 s/\bVista de mida de fitxers\([^[:alnum:]]\)/Vista de la mida dels fitxers\1/g
 s/\bVoleu acceptar o rebutjar aquesta galeta\([^[:alnum:]]\)/La voleu acceptar o rebutjar\1/g
 # Konsole
-    s/\buna a Connectors -> Gestor de SSH\([^[:alnum:]]\)/una a «Connectors -> Gestor de SSH»\1/g
-    s/\buna a Connectors -> Ordres\([^[:alnum:]]\)/una a «Connectors -> Ordres»\1/g
+  s/\buna a Connectors -> Gestor de SSH\([^[:alnum:]]\)/una a «Connectors -> Gestor de SSH»\1/g
+  s/\buna a Connectors -> Ordres\([^[:alnum:]]\)/una a «Connectors -> Ordres»\1/g
 s/\b\([Cc]\)om a mínim cal definir el nom\([^[:alnum:]]\)/\1om a mínim cal establir el nom\2/g
 s/\b\([Ll]\)letra negreta\([^[:alnum:]]\)/\1letra en negreta\2/g
 s/\b\([Mm]\)onitors d'una única vegada\([^[:alnum:]]\)/\1onitors d'una sola vegada\2/g
 s/\b\([Nn]\)úmeros de línies\([^[:alnum:]]\)/\1úmeros de línia\2/g
 s/\bSi està informat, no es té en compte\([^[:alnum:]]\)/Si està informat, no es tindrà en compte\1/g
-    s/\btindrà en compte la clau SSH definida més\([^[:alnum:]]\)/tindrà en compte la clau SSH establerta més\1/g
+  s/\btindrà en compte la clau SSH definida més\([^[:alnum:]]\)/tindrà en compte la clau SSH establerta més\1/g
 s/\bzoom-maximització\([^[:alnum:]]\)/zoom i la maximització\1/g
 # Kontact
+s/\b\([Cc]\)omponent Kontact\([^[:alnum:]]\)/\1omponent de Kontact\2/g
 # Kontrast
 # Konversation
+s/\bdel servidor IRC\([^[:alnum:]]\)/del servidor d'IRC\1/g
 s/\bEl fitxer s'està utilitzant per una altra transferència\([^[:alnum:]]\)/El fitxer s'està utilitzant en una altra transferència\1/g
 s/\bEl sobrenom doble clicat\([^[:alnum:]]\)/El sobrenom en el qual s'ha fet doble clic\1/g
 s/\bencarregat de les versions\([^[:alnum:]]\)/encarregat dels llançaments\1/g
+s/\bmitjançat el servidor IRC\([^[:alnum:]]\)/mitjançant el servidor d'IRC\1/g
+s/\bmitjançant el servidor IRC\([^[:alnum:]]\)/mitjançant el servidor d'IRC\1/g
 s/\bper a fer-lo servir\([^[:alnum:]]\)/per a usar-lo\1/g
-    s/\bla configuració actual per a usar-lo\([^[:alnum:]]\)/la configuració actual per a usar-la\1/g
+  s/\bla configuració actual per a usar-lo\([^[:alnum:]]\)/la configuració actual per a usar-la\1/g
+s/\bResposta no esperada de la màquina remota\([^[:alnum:]]\)/Resposta no esperada de l'amfitrió remot\1/g
+s/\bS'està esperant que la màquina remota accepti\([^[:alnum:]]\)/S'està esperant que l'amfitrió remot accepti\1/g
 # Konvex
 s/\bVisualitzador de models 3D\([^[:alnum:]]\)/Visor de models en 3D\1/g
 # Kopete
@@ -1292,13 +1357,16 @@ s/\bExporta\/copia\([^[:alnum:]]\)/Exporta i copia\1/g
 s/\bque aquí s'indica\([^[:alnum:]]\)/que s'indica aquí\1/g
 s/\bSeleccioneu les regions de dies festius\([^[:alnum:]]\)/Trieu les regions de dies festius\1/g
 s/\bSi està activa, les miniatures es construeixen\([^[:alnum:]]\)/Si està activa, les miniatures es construiran\1/g
+# kpmcore
 # Krdc
+s/, a sobre\./, a dalt./g
 s/\b\([Ee]\)scala d'escriptori\([^[:alnum:]]\)/\1scala de l'escriptori\2/g
 # KRegExpEditor
+s/\badmet funcions comunes de sintaxi\([^[:alnum:]]\)/admet característiques comunes de sintaxi\1/g
 # Krfb
 # Krita
 s/https:\/\/docs\.krita\.org\/en\//https:\/\/docs.krita.org\/ca\//g
-    s/https:\/\/docs\.krita\.org\/ca\/untranslatable_pages\//https:\/\/docs.krita.org\/en\/untranslatable_pages\//g
+  s/https:\/\/docs\.krita\.org\/ca\/untranslatable_pages\//https:\/\/docs.krita.org\/en\/untranslatable_pages\//g
 s/, i també capes\([^[:alnum:]]\)/, així com també capes\1/g
 s/\ba dins el pare\([^[:alnum:]]\)/a dins del pare\1/g
 s/\ba dins la capa\([^[:alnum:]]\)/a dins de la capa\1/g
@@ -1310,6 +1378,7 @@ s/\bantic a Configuració->Configura el Krita->General->Eines->Mode de barreja C
 s/\b\([Aa]\)parença no texturada i la texturada\([^[:alnum:]]\)/\1parença sense textura i amb textura\2/g
 s/\b\([Aa]\)rt de píxel\([^[:alnum:]]\)/\1rt de píxels\2/g
 s/\b\([Bb]\)otons de flux de treball\([^[:alnum:]]\)/\1otons del flux de treball\2/g
+s/\b\([Cc]\)omposició de text\([^[:alnum:]]\)/\1omposició del text\2/g
 s/\bde l'Adobe\([^[:alnum:]]\)/d'Adobe\1/g
 s/\bEmplena la selecció activa, o el llenç sencer\([^[:alnum:]]\)/Emplena la selecció activa o tot el llenç\1/g
 s/\ben lloc de totes les direccions\([^[:alnum:]]\)/en lloc de en totes les direccions\1/g
@@ -1319,7 +1388,7 @@ s/\bhttps:\/\/krita.org\/ca\//https:\/\/krita.org\/ca-va\//g
 s/\b\(màxima\|mínima\) velocitat\([^[:alnum:]]\)/velocitat \1\2/g
 s/\bMemòria cau de l'animació\([^[:alnum:]]\)/Memòria cau per a l'animació\1/g
 s/\bMemòria cau \(gran \|\)dels mapes de píxels\([^[:alnum:]]\)/Memòria cau \1per als mapes de píxels\2/g
-    s/\bCanviar la mida de la memòria cau dels mapes de píxels\([^[:alnum:]]\)/Canviar la mida de la memòria cau per als mapes de píxels\1/g
+  s/\bCanviar la mida de la memòria cau dels mapes de píxels\([^[:alnum:]]\)/Canviar la mida de la memòria cau per als mapes de píxels\1/g
 s/\b\([Mm]\)iniatures de la capa\([^[:alnum:]]\)/\1iniatures de les capes\2/g
 s/\bla predefinició de l'esborrador\([^[:alnum:]]\)/l'esborrador predefinit\1/g
 s/\bla predefinició del pinzell\([^[:alnum:]]\)/el pinzell predefinit\1/g
@@ -1329,22 +1398,22 @@ s/\bPaleta en Python\([^[:alnum:]]\)/Paletes en Python\1/g
 s/\b\([Pp]\)atró de moaré de Wolthera\([^[:alnum:]]\)/\1atró de moaré d'en Wolthera\2/g
 s/\b\([Pp]\)inzell de Krita\([^[:alnum:]]\)/\1inzell del Krita\2/g
 s/\b\([Pp]\)remeu %\([1234567890]\)\(\| \)/\1remeu «%\2» /g
-    s/\bTeclegeu %\([1234567890]\)\(\| \)/Premeu «%\1» /g
-    s/\bteclegeu %\([1234567890]\)\(\| \)/premeu «%\1» /g
+  s/\bTeclegeu %\([1234567890]\)\(\| \)/Premeu «%\1» /g
+  s/\bteclegeu %\([1234567890]\)\(\| \)/premeu «%\1» /g
 s/\bQuan se selecciona, clona des de totes\([^[:alnum:]]\)/Quan se selecciona, es clonarà des de totes\1/g
 s/\b\([Rr]\)educció de mostreig\([^[:alnum:]]\)/\1educció del mostreig\2/g
 s/\bS'importarà una imatge aplanada\([^[:alnum:]]\)/S'importarà com una imatge aplanada\1/g
 s/\belecciona píxels similars al que heu fet clic\([^[:alnum:]]\)/Tria els píxels similars al que heu fet clic\1/g
 s/\bTrieu per a emplenar regions oposades\([^[:alnum:]]\)/Activeu per a emplenar regions oposades\1/g
 s/\bSi no, caldrà activar manualment l'script mitjançant\([^[:alnum:]]\)/Si no, caldrà seleccionar-la manualment mitjançant\1/g
-    s/\bSi no està activa, \(les capes es rasteritzaran\)\([^[:alnum:]]\)/Si no està marcada, \1\2/g
+  s/\bSi no està activa, \(les capes es rasteritzaran\)\([^[:alnum:]]\)/Si no està marcada, \1\2/g
 s/\bSi està marcada, exporta\([^[:alnum:]]\)/Si està marcada, s'exportarà\1/g
-    s/\bNo s'aplica el filtratge en bucle\([^[:alnum:]]\)/No s'aplicarà el filtratge en bucle\1/g
+  s/\bNo s'aplica el filtratge en bucle\([^[:alnum:]]\)/No s'aplicarà el filtratge en bucle\1/g
 s/\bSi està marcada, intenta i usa\([^[:alnum:]]\)/Si està marcada, s'intentarà i usarà\1/g
 s/\bSi està marcada, la capa es fixa\([^[:alnum:]]\)/Si està marcada, la capa es fixarà\1/g
 s/\bSi està marcada, les imatges amb canals sobreexposats es processen\([^[:alnum:]]\)/Si està marcada, les imatges amb canals sobreexposats es processaran\1/g
 s/\bSi està marcada, manté els\([^[:alnum:]]\)/Si està marcada, es mantindran els\1/g
-    s/\bAltrament, descarta aquesta\([^[:alnum:]]\)/Altrament, es descartarà aquesta\1/g
+  s/\bAltrament, descarta aquesta\([^[:alnum:]]\)/Altrament, es descartarà aquesta\1/g
 s/\bSi està marcada, permet\([^[:alnum:]]\)/Si està marcada, es permetrà\1/g
 s/\bSi està marcada, redueix l'ús de la memòria (però augmenta\([^[:alnum:]]\)/Si està marcada, es reduirà l'ús de la memòria (però farà augmentar\1/g
 s/\bUsa una memòria cau gran de mapes de píxels\([^[:alnum:]]\)/Usa una memòria cau gran per als mapes de píxels\1/g
@@ -1355,7 +1424,7 @@ s/\bDefiniu una mida nova\([^[:alnum:]]\)/Establiu una mida nova\1/g
 s/\bMou &tot cap a dins de la paperera\([^[:alnum:]]\)/Mou-ho \&tot cap a dins de la paperera\1/g
 s/\b\([Ss]\)i aneu cap a la carpeta pare\([^[:alnum:]]\)/\1i aneu fins a la carpeta pare\2/g
 s/\bSi està marcada, quan cliqueu amb el botó \(dret\|esquerre\) del ratolí, triareu un\([^[:alnum:]]\)/Si està marcada, quan cliqueu amb el botó \1 del ratolí, se seleccionarà un\2/g
-    s/\bun element sense desseleccionar els altres elements\([^[:alnum:]]\)/un element sense desseleccionar els altres\1/g
+  s/\bun element sense desseleccionar els altres elements\([^[:alnum:]]\)/un element sense desseleccionar els altres\1/g
 s/\bSi està marcada, quan es prem la barra\([^[:alnum:]]\)/Si està marcada, quan es premi la barra\1/g
 # KScreen
 s/\b\([Cc]\)alibra\(r\|\) la lluminositat\([^[:alnum:]]\)/\1alibra\2 la brillantor\3/g
@@ -1365,6 +1434,7 @@ s/\bEstableix la lluminositat del contingut\([^[:alnum:]]\)/Estableix la brillan
 s/\bLluminositat \(màxima \|\)de l'SDR\([^[:alnum:]]\)/Brillantor \1de l'SDR\2/g
 s/\bmostrin colors més lluminosos\([^[:alnum:]]\)/mostrin colors més brillants\1/g
 s/\bNo té cap efecte a on apareixeran les notificacions de pantalla o altres finestres\([^[:alnum:]]\)/No té cap efecte sobre a on apareixeran les notificacions de pantalla o les altres finestres\1/g
+s/\bSi ajusteu la lluminositat manualment\([^[:alnum:]]\)/Si ajusteu la brillantor manualment\1/g
 # KService
 # KsirK
 s/\bProbablement aquest serà l'error\([^[:alnum:]]\)/Probablement aquest sigui l'error\1/g
@@ -1378,7 +1448,7 @@ s/\bProbablement aquest serà l'error\([^[:alnum:]]\)/Probablement aquest sigui 
 s/\b2\. Inicia i atura l'Ekos\([^[:alnum:]]\)/2. Inicieu i atureu l'Ekos\1/g
 s/\b3\. Connecta i desconnecta els dispositius\([^[:alnum:]]\)/3. Connecteu i desconnecteu els dispositius\1/g
 s/\bActualització d'elements orbitals dels satèl·lits\([^[:alnum:]]\)/Actualitzeu els elements orbitals dels satèl·lits\1/g
-    s/\bdiàleg Afegeix\/Edita un DSO\([^[:alnum:]]\)/diàleg «Afegiu\/editeu un DSO»\1/g
+  s/\bdiàleg Afegeix\/Edita un DSO\([^[:alnum:]]\)/diàleg «Afegiu\/editeu un DSO»\1/g
 s/\bAfegeix\/edita un DSO\([^[:alnum:]]\)/Afegiu\/editeu un DSO\1/g
 s/\bAfegeix un URL personalitzat a %1\([^[:alnum:]]\)/Afegiu un URL personalitzat a %1\1/g
 s/\bAlineació de fotograma\([^[:alnum:]]\)/Alineeu el fotograma\1/g
@@ -1411,16 +1481,17 @@ s/\bGirona, Espanya\([^[:alnum:]]\)/València, Espanya\1/g
 s/\bNom de fitxer d'imatges de terreny\([^[:alnum:]]\)/Nom de fitxer de les imatges de terreny\1/g
 s/\bNo s'ha pogut processar les\([^[:alnum:]]\)/No s'han pogut processar les\1/g
 s/\bLin\( \|\) Guider\([^[:alnum:]]\)/Lin-Guider\2/g
-    s/ \([Ll]\)in_guider\([^[:alnum:]]\)/ «lin_guider»\2/g
+  s/ \([Ll]\)in_guider\([^[:alnum:]]\)/ «lin_guider»\2/g
 s/\b\([Ss]\)implement\([^[:alnum:]]\)/\1enzillament\2/g
 # KSudoku
 s/\bopció Simetria a «Sense simetria»\([^[:alnum:]]\)/opció «Simetria» a «Sense simetria»\1/g
 s/\btrieu Joc -> Nou,/trieu «Joc -> Nou»,/g
 # KSystemLog
 # KTechlab
+s/\bColor de les línies de la graella\([^[:alnum:]]\)/Color de les línies de la quadrícula\1/g
 # KTextAddons
 s/\bMistral AI\([^[:alnum:]]\)/IA Mistral\1/g
-    s/\bConfigura IA Mistral\([^[:alnum:]]\)/Configura la IA Mistral\1/g
+  s/\bConfigura IA Mistral\([^[:alnum:]]\)/Configura la IA Mistral\1/g
 s/\bMou el cursor fins a \(la dreta\|l'esquerra\)\([^[:alnum:]]\)/Mou el cursor cap a \1\2/g
 s/\bPermet tabulacions\([^[:alnum:]]\)/Permet les tabulacions\1/g
 # KTextEditor
@@ -1481,16 +1552,16 @@ s/\bSímbols-\(A\|B\) matemàtics variats\([^[:alnum:]]\)/Miscel·lània de sím
 s/\bValoració suplementària\([^[:alnum:]]\)/Puntuació addicional\1/g
 # KWin
 s/\b\([Cc]\)oincidència de cadena\([^[:alnum:]]\)/\1oincidència de la cadena\2/g
-    s/\b\([Cc]\)adena d'etiqueta de finestra\([^[:alnum:]]\)/\1adena etiqueta de la finestra\2/g
-    s/\b\([Cc]\)adena de \(classe\|funció\|títol\) de finestra\([^[:alnum:]]\)/\1adena \2 de la finestra\3/g
-    s/\b\([Cc]\)adena de la màquina\([^[:alnum:]]\)/\1adena màquina\2/g
+  s/\b\([Cc]\)adena d'etiqueta de finestra\([^[:alnum:]]\)/\1adena etiqueta de la finestra\2/g
+  s/\b\([Cc]\)adena de \(classe\|funció\|títol\) de finestra\([^[:alnum:]]\)/\1adena \2 de la finestra\3/g
+  s/\b\([Cc]\)adena de la màquina\([^[:alnum:]]\)/\1adena màquina\2/g
 s/\bCom a dalt, més qualsevol\([^[:alnum:]]\)/Com l'anterior, a més de qualsevol\1/g
 s/\bConfiguració dels escriptoris virtuals…/Configura els escriptoris virtuals…/g
 s/\bdrecera de teclat %1\./drecera de teclat «%1»./g
 s/\bÉs en canvi de mode\([^[:alnum:]]\)/És un canvi de mode\1/g
 s/\bespai de color d'entrada\/sortida\([^[:alnum:]]\)/espai de color d'entrada i de sortida\1/g
 s/\besquinçament \(de \|\)pantalla en finestres\([^[:alnum:]]\)/esquinçament de la pantalla a les finestres\2/g
-    s/\b\([Ee]\)squinçament de pantalla\([^[:alnum:]]\)/\1squinçament de la pantalla\2/g
+  s/\b\([Ee]\)squinçament de pantalla\([^[:alnum:]]\)/\1squinçament de la pantalla\2/g
 s/\b\([Mm]\)enú de finestra\([^[:alnum:]]\)/\1enú de la finestra\2/g
 s/\b\([Mm]\)ida de finestres\([^[:alnum:]]\)/\1ida de les finestres\2/g
 s/\bMostra els noms de les pantalles\([^[:alnum:]]\)/Mostra el nom de les pantalles\1/g
@@ -1506,11 +1577,11 @@ s/\bcal que sigui superior a\([^[:alnum:]]\)/cal que sigui més gran que\1/g
 s/\bcanvia la mida de la columna automàticament\([^[:alnum:]]\)/canvia automàticament la mida de la columna\1/g
 s/\bCanvia la mida automàticament\([^[:alnum:]]\)/Canvia automàticament la mida\1/g
 s/ datahora\([^[:alnum:]]\)/ «data i hora»\1/g
-    s/«datahora»\([^[:alnum:]]\)/«data i hora»\1/g
+  s/«datahora»\([^[:alnum:]]\)/«data i hora»\1/g
 s/\bels diagrames del full de treball o reaccionen als esdeveniments\([^[:alnum:]]\)/els diagrames del full de treball no reaccionaran als esdeveniments\1/g
 s/\b\([Ff]\)orma de vora\([^[:alnum:]]\)/\1orma de la vora\2/g
-    s/\b\([Aa]\)mplada de vora\([^[:alnum:]]\)/\1mplada de la vora\2/g
-    s/\b\([Cc]\)olor de vora\([^[:alnum:]]\)/\1olor de la vora\2/g
+  s/\b\([Aa]\)mplada de vora\([^[:alnum:]]\)/\1mplada de la vora\2/g
+  s/\b\([Cc]\)olor de vora\([^[:alnum:]]\)/\1olor de la vora\2/g
 s/\bKaggle CLI\([^[:alnum:]]\)/CLI de Kaggle\1/g
 s/\bNo s'ha definit cap \(destinació\|mode\)\([^[:alnum:]]\)/No s'ha establert cap \1\2/g
 s/\bSi està marcada, connecta\([^[:alnum:]]\)/Si està marcada, connectarà\1/g
@@ -1521,11 +1592,16 @@ s/\bTipus de dades columna\([^[:alnum:]]\)/Tipus de dades de columna\1/g
 s/\b\([Vv]\)isualitza i analitza dades\([^[:alnum:]]\)/\1isualitza i analitza les dades\2/g
 # Latte
 s/\bLes finestres van cap a sota\([^[:alnum:]]\)/Les finestres van a sota\1/g
+# libkcddb
+s/\b\([Ss]\)ervidor CDDB\([^[:alnum:]]\)/\1ervidor de la CDDB\2/g
 # libkeduvocdocument
 # libkleo
 s/\bCertificats pels quals\([^[:alnum:]]\)/Certificats per als quals\1/g
+s/\bIntroduïu un nom de servidor en el format correcte\([^[:alnum:]]\)/Introduïu un nom d'amfitrió en el format correcte\1/g
+s/\bldap\.example\.com\([^[:alnum:]]\)/ldap.exemple.com\1/g
 s/\b\([Ss]\)ignatura no verificada\([^[:alnum:]]\)/\1ignatura sense verificar\2/g
 # licentia
+s/\bdret de patent dels col·laboradors\([^[:alnum:]]\)/dret a la patent dels col·laboradors\1/g
 s/\bpermís a l'usuari per fer el que\([^[:alnum:]]\)/permís a l'usuari per a fer el que\1/g
 # lightdm-kde-greeter
 s/\bConnecto a\([^[:alnum:]]\)/Voleu connectar amb\1/g
@@ -1550,8 +1626,8 @@ s/\bàlbum de destinació per les baixades\([^[:alnum:]]\)/àlbum de destinació
 s/\bbase de dades Lensfun\([^[:alnum:]]\)/base de dades de Lensfun\1/g
 s/\b\([Cc]\)onnector de quadrícula de coordenades\([^[:alnum:]]\)/\1onnector de la quadrícula de coordenades\2/g
 s/\b\([Cc]\)u\(a\|es\) de\(l\|ls\|\) lots\([^[:alnum:]]\)/\1u\2 per lots\4/g
-    s/\bgestor de cues per lots\([^[:alnum:]]\)/gestor de la cua per lots\1/g
-    s/\bLa cua del lot\([^[:alnum:]]\)/La cua per lots\1/g
+  s/\bgestor de cues per lots\([^[:alnum:]]\)/gestor de la cua per lots\1/g
+  s/\bLa cua del lot\([^[:alnum:]]\)/La cua per lots\1/g
 s/\bdigiKam 4 a digiKam nou\([^[:alnum:]]\)/digiKam 4 en un digiKam nou\1/g
 s/\bdissenyat per a deteccions d'objectes\([^[:alnum:]]\)/dissenyat per a detecció d'objectes\1/g
 s/\bdocuments a text que usa l'OCR\([^[:alnum:]]\)/documents a text emprant l'OCR\1/g
@@ -1571,7 +1647,7 @@ s/\bSi s'activa, la BD del nucli sempre es neteja\([^[:alnum:]]\)/Si està marca
 s/\"Manual del Calendar\"/\"Manual del Calendari\"/g
 s/\bMerkuro Calendar\([^[:alnum:]]\)/Calendari del Merkuro\1/g
 s/\bMerkuro Contact\([^[:alnum:]]\)/Contactes del Merkuro\1/g
-    s/\bContacts del Merkuro\([^[:alnum:]]\)/Contactes del Merkuro\1/g
+  s/\bContacts del Merkuro\([^[:alnum:]]\)/Contactes del Merkuro\1/g
 s/\bMerkuro Mail\([^[:alnum:]]\)/Correu del Merkuro\1/g
 # marknote
 # Merkuro
@@ -1602,6 +1678,7 @@ s/\bRestaurar la sessió\([^[:alnum:]]\)/Restaura la sessió\1/g
 s/\btasca en execució ha estat en silenci\([^[:alnum:]]\)/tasca en execució hagi estat en silenci\1/g
 s/\bVoleu retrocedir i desar-los o descartar tots els canvis\([^[:alnum:]]\)/Voleu retrocedir i desar-los o descartar-los tots\1/g
 # Neochat
+s/#new_alias:server\.org/#alies_nou:servidor.org/g
 s/«Espai» nou\([^[:alnum:]]\)/Espai nou\1/g
 s/\"ha definit\([^[:alnum:]]\)/\"ha establert\1/g
 s/\bAixò inclou esdeveniments d'estat\([^[:alnum:]]\)/Això inclou els esdeveniments d'estat\1/g
@@ -1641,15 +1718,21 @@ s/\b\([Ii]\)nhibició d'energia\([^[:alnum:]]\)/\1nhibició de l'energia\2/g
 s/\b\([Ss]\)elector de fons de pantalla\([^[:alnum:]]\)/\1elector del fons de pantalla\2/g
 # plasma-browser-integration
 s/\bComunitat KDE Wiki\([^[:alnum:]]\)/wiki de la comunitat KDE\1/g
+# plasma-camera
+s/\b\([Pp]\)atró de nom\([^[:alnum:]]\)/\1atró del nom\2/g
 # plasma-desktop
 s/\bGestió de plafons i escriptoris\([^[:alnum:]]\)/Gestioneu els plafons i escriptoris\1/g
  #
+s/(Deuteranopia)/(deuteranopia)/g
+s/(Protanopia)/(protanopia)/g
+s/(Tritanopia)/(tritanopia)/g
 s/» però el plafó roman visible\([^[:alnum:]]\)/», però el plafó romandrà visible\1/g
 s/\ba través de diverses pantalles\([^[:alnum:]]\)/a través de múltiples pantalles\1/g
 s/\bAfegeix o gestiona ginys\([^[:alnum:]]\)/Afegeix o gestiona els ginys\1/g
 s/\b\([Aa]\)plicació de terminal predeterminada\([^[:alnum:]]\)/\1plicació predeterminada de terminal\2/g
 s/\b\([Aa]\)questa acció no es pot desfer\([^[:alnum:]]\)/\1questa acció no es podrà desfer\2/g
-    s/; aquesta acció no es podrà desfer\([^[:alnum:]]\)/. Aquesta acció no es podrà desfer\1/g
+  s/; aquesta acció no es podrà desfer\([^[:alnum:]]\)/. Aquesta acció no es podrà desfer\1/g
+s/\bBotó per a definir la drecera\([^[:alnum:]]\)/Botó per a establir la drecera\1/g
 s/\bCanvia l'associació de tipus de fitxer manualment\([^[:alnum:]]\)/Canvia manualment l'associació de tipus de fitxer\1/g
 s/\bcanvis com el volum i el nivell de lluminositat\([^[:alnum:]]\)/canvis com el volum i el nivell de brillantor\1/g
 s/\bconfiguració no té cap efecte en els consells d'eina\([^[:alnum:]]\)/configuració no tindrà cap efecte sobre els consells d'eina\1/g
@@ -1659,15 +1742,16 @@ s/\bel gestor de sessió\([^[:alnum:]]\)/el gestor de la sessió\1/g
 s/\bEl plafó és opac quan el toca\([^[:alnum:]]\)/El plafó serà opac quan el toqui\1/g
 s/\bfinestres emergents petites dels canvis d'estat\([^[:alnum:]]\)/finestres emergents petites per als canvis d'estat\1/g
 s/\bMostra consells grans del plafó i dels ginys\([^[:alnum:]]\)/Mostra un plafó gran i els consells d'eina dels ginys\1/g
-    s/\bmostrin consells d'eina un plafó grans del plafó i dels ginys\([^[:alnum:]]\)/mostrin un plafó gran i els consells d'eina dels ginys\1/g
-    s/\bmostrin consells descriptius quan es passa\([^[:alnum:]]\)/mostrin consells d'eina descriptius quan es passi\1/g
+  s/\bmostrin consells d'eina un plafó grans del plafó i dels ginys\([^[:alnum:]]\)/mostrin un plafó gran i els consells d'eina dels ginys\1/g
+  s/\bmostrin consells descriptius quan es passa\([^[:alnum:]]\)/mostrin consells d'eina descriptius quan es passi\1/g
 s/\bNo es pot definir una etiqueta\([^[:alnum:]]\)/No es pot establir una etiqueta\1/g
 s/\bno oblideu d'aplicar els canvis\([^[:alnum:]]\)/no oblideu aplicar els canvis\1/g
 s/\bno té cap efecte si el plafó està maximitzat\([^[:alnum:]]\)/no tindrà cap efecte si el plafó està maximitzat\1/g
-    s/; no tindrà cap efecte si el plafó està maximitzat\([^[:alnum:]]\)/. No tindrà cap efecte si el plafó està maximitzat\1/g
+  s/; no tindrà cap efecte si el plafó està maximitzat\([^[:alnum:]]\)/. No tindrà cap efecte si el plafó està maximitzat\1/g
 s/\bperò es mostra quan el cursor toca\([^[:alnum:]]\)/però es mostrarà quan el cursor toqui\1/g
 s/\bQuan aquest paràmetre està actiu\([^[:alnum:]]\)/Quan aquesta opció de configuració està activa\1/g
 s/\bqueden sota el plafó com si no existís\([^[:alnum:]]\)/quedaran per sota del plafó com si no existís\1/g
+s/\bRetard d'obrir en passar-hi per sobre de %1 ms\([^[:alnum:]]\)/Retard d'obrir en passar per sobre %1 ms\1/g
 s/\b\([Rr]\)etard de temps d'espera\([^[:alnum:]]\)/\1etard del temps d'espera\2/g
 s/\bS'han fet comprovacions a\([^[:alnum:]]\)/S'han fet comprovacions en\1/g
 s/\bun gest de tocar i arrossegar finalitza quan s'allibera el dit\([^[:alnum:]]\)/un gest de tocar i arrossegar finalitzarà quan s'aixequi el dit\1/g
@@ -1682,11 +1766,13 @@ s/\bAjusteu la lluminositat de la pantalla\([^[:alnum:]]\)/Ajusteu la brillantor
 s/\bes controla separadament\([^[:alnum:]]\)/es controla per separat\1/g
 s/\bgravant…\([^[:alnum:]]\)/escrivint…\1/g
 s/\bMostra les opcions addicionals de %1\([^[:alnum:]]\)/Mostra les opcions addicionals per a %1\1/g
+s/\brestaurarà si ho retrocediu\([^[:alnum:]]\)/restaurarà si retrocediu\1/g
 # plasma-nm
 s/\bArray SSL VPN\([^[:alnum:]]\)/VPN de matriu sobre SSL\1/g
-    s/\bArray Networks\([^[:alnum:]]\)/xarxes de matriu\1/g
+  s/\bArray Networks\([^[:alnum:]]\)/xarxes de matriu\1/g
+s/\b\([Cc]\)onnecta a una xarxa\([^[:alnum:]]\)/\1onnecta amb una xarxa\2/g
 s/\bF5 BIG-IP SSL VPN\([^[:alnum:]]\)/VPN de F5 en BIG-IP sobre SSL\1/g
-    s/\bF5 BIG-IP\([^[:alnum:]]\)/F5 en BIG-IP\1/g
+  s/\bF5 BIG-IP\([^[:alnum:]]\)/F5 en BIG-IP\1/g
 s/\bFortinet SSL VPN\([^[:alnum:]]\)/VPN de Fortinet sobre SSL\1/g
 s/\bopció es desactiva\([^[:alnum:]]\)/opció està desactivada\1/g
 s/\b\([Pp]\)ort\(s\|\) en \(paral·lel\|sèrie\)\([^[:alnum:]]\)/\1ort\2 \3\4/g
@@ -1702,8 +1788,10 @@ s/\bConfiguració;Configuració;\([^[:alnum:]]\)/Configuració;\1/g
 s/\bHistorial (Versió antiga)/Historial (versió antiga)/g
 # plasma-vault
 # plasma-welcome
+s/\bcosa per a aprendre-hi\([^[:alnum:]]\)/cosa per a aprendre'n\1/g
 s/\bExploreu les seves funcions\([^[:alnum:]]\)/Exploreu les seves característiques\1/g
 s/\bmostrar les notes de la versió\([^[:alnum:]]\)/mostrar les notes de llançament\1/g
+# vos fa a vos
 # plasma-workspace
 s/; clic del mig per a tornar-ho a activar\([^[:alnum:]]\)/. Clic del mig per a tornar-ho a activar\1/g
 s/; desplaceu per a canviar-ho\([^[:alnum:]]\)/. Desplaceu per a canviar-ho\1/g
@@ -1728,10 +1816,15 @@ s/\b\([Uu]\)tilitat d'historial de retallar\([^[:alnum:]]\)/\1tilitat de l'histo
 s/\bEstat del teclat i ratolí\([^[:alnum:]]\)/Estat del teclat i del ratolí\1/g
 # plasmatube
 s/\bNo s'ha definit cap descripció d'aquest vídeo\([^[:alnum:]]\)/No s'ha establert cap descripció d'aquest vídeo\1/g
+s/\bNo s'ha proporcionat cap descripció\./No s'ha proporcionat cap descripció del servidor./g
+ # Errors
+20026,/^msgstr / s/\bNo s'ha proporcionat cap descripció del servidor\./No s'ha proporcionat cap descripció./g
+23398,/^msgstr / s/\bNo s'ha proporcionat cap descripció del servidor\./No s'ha proporcionat cap descripció./g
+23442,/^msgstr / s/\bNo s'ha proporcionat cap descripció del servidor\./No s'ha proporcionat cap descripció./g
 # PowerDevil
 s/\bAutenticació per a \(establir\|veure\) el nivell \(màxim \|\)de lluminositat\([^[:alnum:]]\)/Autenticació per a \1 el nivell \2de brillantor\3/g
 s/\b\([Bb]\)loqueig de pantalla\([^[:alnum:]]\)/\1loqueig de la pantalla\2/g
-    s/\b\([Ee]\)stil de pantalla\([^[:alnum:]]\)/\1stil de la pantalla\2/g
+  s/\b\([Ee]\)stil de pantalla\([^[:alnum:]]\)/\1stil de la pantalla\2/g
 s/\bcaigui a aquest nivell\([^[:alnum:]]\)/caigui fns a aquest nivell\1/g
 s/\bCanvia la lluminositat de la p&antalla\([^[:alnum:]]\)/Canvia la brillantor d\&e la pantalla\1/g
 s/\bCanvia la lluminositat del te&clat\([^[:alnum:]]\)/Canvia la brillantor del te\&clat\1/g
@@ -1751,7 +1844,7 @@ s/\bnivell de bateria crítica\([^[:alnum:]]\)/nivell crític de bateria\1/g
 s/\b\([Pp]\)àgina de configuració \(d'\|de \)«/\1àgina de configuració «/g
 s/\bPantalla i lluminositat\([^[:alnum:]]\)/Pantalla i brillantor\1/g
 s/\bportàtil Inclús quan\([^[:alnum:]]\)/portàtil, inclús quan\1/g
-    s/\bquan hi hagi un monitor extern connectat\([^[:alnum:]]\)/quan hi hagi connectat un monitor extern\1/g
+  s/\bquan hi hagi un monitor extern connectat\([^[:alnum:]]\)/quan hi hagi connectat un monitor extern\1/g
 s/\bqueaprecieu\([^[:alnum:]]\)/que aprecieu\1/g
 s/\bTrieu les condicions d'execució…\([^[:alnum:]]\)/Tria les condicions d'execució…\1/g
 s/\bTrieu un fitxer executable…\([^[:alnum:]]\)/Tria un fitxer executable…\1/g
@@ -1765,8 +1858,8 @@ s/\"Informa del problema a %1\"/\"Informeu del problema a %1\"/g
 s/\bconnectades a aquest sistema\([^[:alnum:]]\)/connectades amb aquest sistema\1/g
 s/\bDefineix les opcions predeterminades\([^[:alnum:]]\)/Estableix les opcions predeterminades\1/g
 s/\bdefiniu una altra impressora\([^[:alnum:]]\)/establiu una altra impressora\1/g
-    s/\bescollir el \([Ff]\)abricant\/\([Mm]\)odel/triar-los/g
-    s/\bel \([Ff]\)abricant\/\([Mm]\)odel/el fabricant i el model/g
+  s/\bescollir el \([Ff]\)abricant\/\([Mm]\)odel/triar-los/g
+  s/\bel \([Ff]\)abricant\/\([Mm]\)odel/el fabricant i el model/g
 s/\bEliminació d'impressora[?]/Elimineu la impressora\?/g
 s/\bEliminació de grup[?]/Elimineu el grup\?/g
 s/\bFabricant\/Model:/Fabricant i model:/g
@@ -1821,8 +1914,8 @@ s/\"Desa el vídeo\"/\"Deseu el vídeo\"/g
 s/%1 (Activa)/%1 (activa)/g
 s/\bAquest paràmetre \(atura\|desactiva\|evita\)\([^[:alnum:]]\)/Aquesta opció de configuració \1\2/g
 s/\baugmentar\/disminuir\([^[:alnum:]]\)/augmentar o disminuir\1/g
-    s/\bSales de la base de dades\([^[:alnum:]]\)/Base de dades de les sales\1/g
-    s/\bGlobal de la base de dades\([^[:alnum:]]\)/Base de dades global\1/g
+  s/\bSales de la base de dades\([^[:alnum:]]\)/Base de dades de les sales\1/g
+  s/\bGlobal de la base de dades\([^[:alnum:]]\)/Base de dades global\1/g
 s/\bbotó Obre amb en\([^[:alnum:]]\)/botó «Obre amb» en\1/g
 s/\bclau per a codificar\/descodificar\([^[:alnum:]]\)/clau per a codificar i descodificar\1/g
 s/\bcondensada\/mitjana\/ampliada\([^[:alnum:]]\)/condensada, mitjana o ampliada\1/g
@@ -1865,11 +1958,11 @@ s/\bMostra les pàgines que no apliquin\([^[:alnum:]]\)/Mostra les pàgines que 
 # Skrooge
 s/\bel número de xec, o\([^[:alnum:]]\)/el número de xec o\1/g
 s/\bi processat\([^[:alnum:]]\)/i processament\1/g
-    s/\b\(capturat\|llegit\|s'ha rebut\) i processament\([^[:alnum:]]\)/\1 i processat\2/g
+  s/\b\(capturat\|llegit\|s'ha rebut\) i processament\([^[:alnum:]]\)/\1 i processat\2/g
 s/\bpoder fer aquesta diferència. Per això, cal introduir\([^[:alnum:]]\)/poder fer aquesta diferència. Per a fer això, cal introduir\1/g
 # Smb4K
 s/\bAra anireu fins a la pàgina\([^[:alnum:]]\)/Ara aneu fins a la pàgina\1/g
-    s/\bel la compartició\([^[:alnum:]]\)/la compartició\1/g
+  s/\bel la compartició\([^[:alnum:]]\)/la compartició\1/g
 s/\bdesades prèviament en diferents perfils ja estan disponibles\([^[:alnum:]]\)/desades prèviament en perfils diferents ja estaran disponibles\1/g
 s/\bdesprés ja no poden utilitzar-se en els seus perfils originals\([^[:alnum:]]\)/després ja no es podran utilitzar en els seus perfils originals\1/g
 s/\bseleccionant la regla\([^[:alnum:]]\)/triant la regla\1/g
@@ -1877,6 +1970,7 @@ s/\bsi la transferència s'interromp\([^[:alnum:]]\)/si s'interromp la transfer�
 # snap-kcm
 s/\bconnectar a snapd\([^[:alnum:]]\)/connectar amb snapd\1/g
 s/\bllegir de snapd\([^[:alnum:]]\)/llegir des de snapd\1/g
+s/\bNo s'ha pogut resoldre un nom de servidor durant la sol·licitud\([^[:alnum:]]\)/No s'ha pogut resoldre el nom de l'amfitrió durant la sol·licitud\1/g
 # Spectacle
 s/%\([23]\) %1pt\(s\|\)\([^[:alnum:]]\)/%\1 %1 pt\2\3/g
 s/%1px\([^[:alnum:]]\)/%1 px\1/g
@@ -1906,13 +2000,13 @@ s/\bheu votat ha finalitzat\([^[:alnum:]]\)/heu votat, ha finalitzat\1/g
 s/\bi torneu a iniciar-la\([^[:alnum:]]\)/i torneu-la a iniciar\1/g
 s/\b\(no \|\)estigui executant-se\([^[:alnum:]]\)/\1s'estigui executant\2/g
 s/\bRegla IP nova\([^[:alnum:]]\)/Regla d'IP nova\1/g
-    s/\b\([Rr]\)egla nova d'IP\([^[:alnum:]]\)/\1egla d'IP nova\2/g
+  s/\b\([Rr]\)egla nova d'IP\([^[:alnum:]]\)/\1egla d'IP nova\2/g
 s/\bS'ha desfet el forçat com a confidencial correctament el compte de\([^[:alnum:]]\)/S'ha desfet correctament el forçat com a confidencial del compte\1/g
 s/\bs'ha eliminat del silenci correctament\([^[:alnum:]]\)/s'ha eliminat correctament del silenci\1/g
 s/\bs'ha tret de la suspensió correctament\([^[:alnum:]]\)/s'ha tret correctament de la suspensió\1/g
 # Trojita
 s/, podeu definir l'acció predeterminada\([^[:alnum:]]\)/, podreu establir l'acció predeterminada\1/g
-    s/\bfocus fins en la cerca\([^[:alnum:]]\)/focus fins a la cerca\1/g
+  s/\bfocus fins en la cerca\([^[:alnum:]]\)/focus fins a la cerca\1/g
 s/\bActiveu-la per a afegir\([^[:alnum:]]\)/Marqueu-la per a afegir\1/g
 s/\bConsidereu deixar aquesta opció activa\([^[:alnum:]]\)/Considereu deixar seleccionada aquesta opció\1/g
 s/\bS'està esperant les dades\([^[:alnum:]]\)/S'estan esperant les dades\1/g
@@ -1921,35 +2015,37 @@ s/, crea els «getters» amb el prefix\([^[:alnum:]]\)/, es crearan els «getter
 s/, elimina el prefix «\(\[\|\)a-zA-Z\([^[:alnum:]]\)/, s'eliminarà el prefix «\1a-zA-Z\2/g
 s/, els mètodes d'accés comencen\([^[:alnum:]]\)/, els mètodes d'accés començaran\1/g
 s/\bConfiguració dels continguts\([^[:alnum:]]\)/Configuració del contingut\1/g
+s/\b\([Ee]\)mpra guies d'alineació\([^[:alnum:]]\)/\1mpra les guies d'alineació\2/g
+s/\bo redimensionar ginys\([^[:alnum:]]\)/o redimensionar els ginys\1/g
 # websites
 s/\ba les 1\([0123456789]\):00 UTC\([^[:alnum:]]\)/a les 1\1,00 UTC\2/g
 s/\bKDE Frameworks\([^[:alnum:]]\)/Frameworks del KDE\1/g
-    s/\b\([Dd]\|\)\([Ee]\)l Frameworks de\(l\|\) KDE\([^[:alnum:]]\)/\1\2ls Frameworks del KDE\4/g
-    s/\bFrameworks del KDE&nbsp;5\([^[:alnum:]]\)/Frameworks 5 del KDE\1/g
-    s/\bper a les Frameworks\([^[:alnum:]]\)/pels Frameworks\1/g
+  s/\b\([Dd]\|\)\([Ee]\)l Frameworks de\(l\|\) KDE\([^[:alnum:]]\)/\1\2ls Frameworks del KDE\4/g
+  s/\bFrameworks del KDE&nbsp;5\([^[:alnum:]]\)/Frameworks 5 del KDE\1/g
+  s/\bper a les Frameworks\([^[:alnum:]]\)/pels Frameworks\1/g
  # Google Summer of Code - GSoC
  s/\bGoogle Summer Of Code/Google Summer of Code/g
  s/\bGSOC\([^[:alnum:]]\)/GSoC\1/g
-    s/\bde SoK i GSoC\([^[:alnum:]]\)/del SoK i la GSoC\1/g
-    s/\bdel \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/de la \1Google Summer of Code\2/g
-        s/\bdel \(\[\|«\|\)GSoC\([^[:alnum:]]\)/de la \1GSoC\2/g
-    s/\ba Google Summer of Code\([^[:alnum:]]\)/en la Google Summer of Code\1/g
-    s/\bal Google Summer of Code\([^[:alnum:]]\)/en la Google Summer of Code\1/g
-    s/\bEl \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/La \1Google Summer of Code\2/g
-    s/\bEl \(\[\|«\|\)GSoC\([^[:alnum:]]\)/La \1GSoC\2/g
-    s/\bel \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/la \1Google Summer of Code\2/g
-    s/\bel \(\[\|«\|\)GSoC\([^[:alnum:]]\)/la \1GSoC\2/g
-    s/\bGoogle Summer of Code\(\-\| \)20/Google Summer of Code de 20/g
-    s/\bGSoC\(\-\| \)20/GSoC de 20/g
-    s/\bper al Google Summer of Code\([^[:alnum:]]\)/per a la Google Summer of Code\1/g
-    s/\bque Google Summer of Code\([^[:alnum:]]\)/que la Google Summer of Code\1/g
-    s/\bOrganitzat per Google, la\([^[:alnum:]]\)/Organitzada per Google, la\1/g
+  s/\bde SoK i GSoC\([^[:alnum:]]\)/del SoK i la GSoC\1/g
+  s/\bdel \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/de la \1Google Summer of Code\2/g
+    s/\bdel \(\[\|«\|\)GSoC\([^[:alnum:]]\)/de la \1GSoC\2/g
+  s/\ba Google Summer of Code\([^[:alnum:]]\)/en la Google Summer of Code\1/g
+  s/\bal Google Summer of Code\([^[:alnum:]]\)/en la Google Summer of Code\1/g
+  s/\bEl \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/La \1Google Summer of Code\2/g
+  s/\bEl \(\[\|«\|\)GSoC\([^[:alnum:]]\)/La \1GSoC\2/g
+  s/\bel \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/la \1Google Summer of Code\2/g
+  s/\bel \(\[\|«\|\)GSoC\([^[:alnum:]]\)/la \1GSoC\2/g
+  s/\bGoogle Summer of Code\(\-\| \)20/Google Summer of Code de 20/g
+  s/\bGSoC\(\-\| \)20/GSoC de 20/g
+  s/\bper al Google Summer of Code\([^[:alnum:]]\)/per a la Google Summer of Code\1/g
+  s/\bque Google Summer of Code\([^[:alnum:]]\)/que la Google Summer of Code\1/g
+  s/\bOrganitzat per Google, la\([^[:alnum:]]\)/Organitzada per Google, la\1/g
 s/\bKDE Forums\([^[:alnum:]]\)/Fòrums del KDE\1/g
 # wacomtablet
 # websites-25years-kde-org
 s/\barribar fins a saber\([^[:alnum:]]\)/arribar a saber\1/g
 s/\bfins a on heu\([^[:alnum:]]\)/fins on heu\1/g
-    s/\bdipòsit de GitLab\([^[:alnum:]]\)/repositori de GitLab\1/g
+  s/\bdipòsit de GitLab\([^[:alnum:]]\)/repositori de GitLab\1/g
 s/\brepositori GitLab\([^[:alnum:]]\)/repositori de GitLab\1/g
 s/\btrobeu-vos per fer\([^[:alnum:]]\)/trobeu-vos per a fer\1/g
 s/\bvelocitat extra\([^[:alnum:]]\)/velocitat addicional\1/g
@@ -1987,6 +2083,7 @@ s/\bdimecres 19:00\([^[:alnum:]]\)/dimecres a les 19,00\1/g
 s/\bedició de vídeo professional\([^[:alnum:]]\)/edició professional de vídeo\1/g
 s/\bés \[en curs\([^[:alnum:]]\)/està \[en curs\1/g
 s/\bés important en definir\([^[:alnum:]]\)/és important quan es defineix\1/g
+s/\bfuncionalitats de programari\([^[:alnum:]]\)/característiques de programari\1/g
 s/\bGràcies per prendre's temps per a llegir aquesta actualització\([^[:alnum:]]\)/Gràcies per prendre el temps per a llegir aquesta actualització\1/g
 s/\b\(hora\|KDAB\) Berlín\([^[:alnum:]]\)/\1 de Berlín\2/g
 s/\bmón real de programari\([^[:alnum:]]\)/món real del programari\1/g
@@ -2000,10 +2097,10 @@ s/(\b\([Aa]\)\(ssistència\)\([^[:alnum:]]\)/(a\2\3/g
 s/(\b\([Dd]\)\(esenvolupament\|ivulgació\)\([^[:alnum:]]\)/(d\2\3/g
 s/(\b\([Ee]\)\(quip\|sdeveniments\)\([^[:alnum:]]\)/(e\2\3/g
 s/(\b\([Ll]\)\(loc web\|locs\)\([^[:alnum:]]\)/(l\2\3/g
-    s/(llocs\/esdeveniments)/(llocs i esdeveniments)/g
+  s/(llocs\/esdeveniments)/(llocs i esdeveniments)/g
 s/(\b\([Oo]\)pció verda de KDE)/(opció verda del KDE)/g
 s/(\b\([Tt]\)\(aller\|raducció\)\([^[:alnum:]]\)/(t\2\3/g
-    s/(traducció alemany)/(traducció a l'alemany)/g
+  s/(traducció alemany)/(traducció a l'alemany)/g
 s/\bAjuda la nostra presència\([^[:alnum:]]\)/Ajuda amb la nostra presència\1/g
 s/\bAmb sort, hi ha gent a prop\([^[:alnum:]]\)/Amb sort, hi haurà gent a prop\1/g
 s/\baquest web et pot ajudar\([^[:alnum:]]\)/aquest web t'ajudarà\1/g
@@ -2031,6 +2128,7 @@ s/\binfraestructura. Podeu contactar amb\([^[:alnum:]]\)/infraestructura. Per a 
 s/\bllocs preparats per donar-te\([^[:alnum:]]\)/llocs preparats per a donar-te\1/g
 s/\bnomés passa que el\([^[:alnum:]]\)/passa que el\1/g
 s/\boperatiu Linux pots utilitzar\([^[:alnum:]]\)/operatiu Linux podràs utilitzar\1/g
+s/\boperatiu modern, ple de funcionalitats\([^[:alnum:]]\)/operatiu modern, ple de característiques\1/g
 s/\bportàtil nou costa molts,/portàtil nou costa molts diners,/g
 s/\b\([Pp]\)ot adequat\([^[:alnum:]]\)/\1ot ser adequat\2/g
 s/\bPots obtenir més informació aquí\([^[:alnum:]]\)/Obtindràs més informació aquí\1/g
@@ -2041,7 +2139,7 @@ s/\b\([Ss]\)ovint es pot trobar suport comunitari en els fòrums en línia, tamb
 s/\bTambé \(podràs\|pots\) cercar \[llocs\([^[:alnum:]]\)/També podràs cercar [llocs\2/g
 s/\bTambé \(podràs\|pots\) trobar\([^[:alnum:]]\)/També trobaràs\2/g
 s/\bTambé pots veure\([^[:alnum:]]\)/També veuràs\1/g
-    s/\b\([Ee]\)quip de\(l\|\) «Final de la 10»\([^[:alnum:]]\)/\1quip «End of 10»\3/g
+  s/\b\([Ee]\)quip de\(l\|\) «Final de la 10»\([^[:alnum:]]\)/\1quip «End of 10»\3/g
 # websites-kontact-kde-org
 # websites-gcompris-net
 s/, que vol dir\([^[:alnum:]]\)/, el qual vol dir\1/g
@@ -2049,6 +2147,7 @@ s/\bCamí en\([^[:alnum:]]\)/Camí a\1/g
 s/\bde la seva llengua\([^[:alnum:]]\)/del seu idioma\1/g
 s/\bels baixin del programari\([^[:alnum:]]\)/els baixin des del programari\1/g
 s/\bés omplir una quadrícula\([^[:alnum:]]\)/és emplenar una quadrícula\1/g
+s/\b\([Mm]\)illores en diverses activitats\([^[:alnum:]]\)/\1illores en múltiples activitats\2/g
 s/\bmillores gràfiques en diverses activitats\([^[:alnum:]]\)/millores gràfiques en múltiples activitats\1/g
 s/\bPodeu baixar els recursos extres\([^[:alnum:]]\)/Podeu baixar els recursos addicionals\1/g
 s/\bSón les dues coses. Des del principi\([^[:alnum:]]\)/És ambdues coses. Des del principi\1/g
@@ -2079,7 +2178,7 @@ s/, que ajuda a comprovar\([^[:alnum:]]\)/, el qual ajudarà a comprovar\1/g
 s/, que es \(\[\|\)publiquen\([^[:alnum:]]\)/, els quals es \1publiquen\2/g
 s/, que s'\(\[\|\)actualitzen mensualment\([^[:alnum:]]\)/, els quals s'\1actualitzen mensualment\2/g
 s/) que conté %1 temes\([^[:alnum:]]\)/), el qual conté %1 temes\1/g
-    s/#introduction) per als detalls\./#introduction)./g
+  s/#introduction) per als detalls\./#introduction)./g
 s/\bAneu fins al \(\[\|\)README del repositori del KSyntaxHighlighting\([^[:alnum:]]\)/Per als detalls, aneu fins al \1README del repositori del KSyntaxHighlighting\2/g
 s/\bautomàticament diversos nuclis\([^[:alnum:]]\)/automàticament múltiples nuclis\1/g
 s/\bBug Charts for Kate and KWrite\([^[:alnum:]]\)/Gràfics d'errors per al Kate i el KWrite\1/g
@@ -2113,7 +2212,7 @@ s/\bKDE Bug Tracking System\([^[:alnum:]]\)/Sistema de seguiment d'errors del KD
 s/\bKDE i construir-los\/instal·lar-los\([^[:alnum:]]\)/KDE, construir-los i instal·lar-los\1/g
 s/\bKSyntaxHighlighting Bug Tracker\([^[:alnum:]]\)/Seguidor d'errors del KSyntaxHighlighting\1/g
 s/\bKSyntaxHighlighting repository README\([^[:alnum:]]\)/README en el repositori de KSyntaxHighlighting\1/g
-    s/\bque s'han perdut malaguanyadament\([^[:alnum:]]\)/que malauradament s'han perdut\1/g
+  s/\bque s'han perdut malaguanyadament\([^[:alnum:]]\)/que malauradament s'han perdut\1/g
 s/\bla vista d'eina «Projecte actual» inferior\([^[:alnum:]]\)/la vista inferior de l'eina «Projecte actual»\1/g
 s/\bLes eines CMake\([^[:alnum:]]\)/Les eines del CMake\1/g
 s/\b\([Mm]\)alaguanyadament\([^[:alnum:]]\)/\1alauradament\2/g
@@ -2133,6 +2232,7 @@ s/\bWeekly Summary for Kate\/KWrite\([^[:alnum:]]\)/Resum setmanal per al Kate i
 # websites-kde-org/kde-org.po
 s/\ba les Qt, que proporcionen\([^[:alnum:]]\)/a les Qt, els quals proporcionen\1/g
 s/\bAvui KDE\([^[:alnum:]]\)/Avui, el KDE\1/g
+s/\b\([Cc]\)onnectors de funcionalitats\([^[:alnum:]]\)/\1onnectors de característiques\2/g
 s/\bCorrecció d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/Esmena d'\1errors\3/g
 s/\bcorrecció d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/esmena d'\1errors\3/g
 s/\bCorreccions d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/Esmenes d'\1errors\3/g
@@ -2155,7 +2255,7 @@ s/\bfrom the FSFE\([^[:alnum:]]\)/des dels FSFE\1/g
 s/\bfulls d'estil comuns que s'utilitzen en diversos llocs\([^[:alnum:]]\)/fulls d'estil comuns que s'utilitzen en múltiples llocs\1/g
 s/\bGoogle Play i el logo de Google Play\([^[:alnum:]]\)/Google Play i el seu logo\1/g
 s/ «\([Dd]\)ev\([Oo]\)ps»\([^[:alnum:]]\)/ operacions de desenvolupador\3/g
-    s/\b\([Dd]\)ev\([Oo]\)ps\([^[:alnum:]]\)/operacions de desenvolupador\3/g
+  s/\b\([Dd]\)ev\([Oo]\)ps\([^[:alnum:]]\)/operacions de desenvolupador\3/g
 s/\bincloent-hi suport per a diversos comptes\([^[:alnum:]]\)/incloent-hi suport per a múltiples comptes\1/g
 s/\"KDE per als \(creadors\|desenvolupadors\|jugadors\|viatgers\)\([^[:alnum:]]\)/\"KDE per a \1\2/g
 s/\bKDE \[Season of KDE/KDE, el \[Season of KDE/g
@@ -2170,8 +2270,10 @@ s/\bprivacitat de KDE, que dona\([^[:alnum:]]\)/privacitat de KDE, el qual dona\
 s/\bprogramari de KDE\([^[:alnum:]]\)/programari KDE\1/g
 s/\bque s'adapta a vós\([^[:alnum:]]\)/que s'adapta a tu\1/g
 s/\bs'executa en diversos sistemes\([^[:alnum:]]\)/s'executa en múltiples sistemes\1/g
+s/\bseguiu i informeu-lo\([^[:alnum:]]\)/seguiu i informeu-ne\1/g
 s/\btelemetria, que proporcionen\([^[:alnum:]]\)/telemetria, els quals proporcionen\1/g
 s/\bTokodon admet la majoria de les funcions\([^[:alnum:]]\)/Tokodon admet la majoria de les característiques\1/g
+s/\busuaris que requerixen funcions d'accessibilitat\([^[:alnum:]]\)/usuaris que requerixen característiques d'accessibilitat\1/g
 s/\bvostra posició actual i de qualsevol anunci\([^[:alnum:]]\)/vostra posició actual, així com de qualsevol anunci\1/g
 s/\bvostres viatges amb els vostres amics\([^[:alnum:]]\)/vostres viatges amb els amics\1/g
 # websites-kontact-kde-org
@@ -2202,6 +2304,9 @@ s/\btambé ha estat abordant\([^[:alnum:]]\)/també ha anat abordant\1/g
 s/\b\([Dd]\)rets d'autors\([^[:alnum:]]\)/\1rets d'autor\2/g
 # websites-okular-kde-org
 s/\bCliqueu a l'etiqueta per a trobar més informació\([^[:alnum:]]\)/Per a trobar més informació, cliqueu a l'etiqueta\1/g
+s/\bcorreccions i millores secundàries\([^[:alnum:]]\)/esmenes i característiques petites\1/g
+s/\bpantalla nova de benvinguda i correccions relacionades\([^[:alnum:]]\)/pantalla nova de benvinguda i esmenes relacionades\1/g
+s/\bpetites esmenes d'errors i millores\([^[:alnum:]]\)/esmenes d'error i característiques petites\1/g
 # websites-plasma-bigscreen-org
 s/, als dispositius\([^[:alnum:]]\)/, en els dispositius\1/g
 s/\bactivat a la implementació\([^[:alnum:]]\)/activat sota la implementació\1/g
@@ -2212,6 +2317,8 @@ s/\bempaquetat en diversos repositoris\([^[:alnum:]]\)/empaquetat en múltiples 
 s/\bper a si mateixos, o en els seus productes\([^[:alnum:]]\)/per a si mateixes o en els seus productes\1/g
 s/\bPlasma 6\*\* estan disponibles actualment\([^[:alnum:]]\)/Plasma 6\*\* actualment estan disponibles\1/g
 s/\bWayland, i proporciona\([^[:alnum:]]\)/Wayland, proporciona\1/g
+# websites-rolisteam-org
+s/\bAquest panell té més funcions que això\([^[:alnum:]]\)/Aquest panell té més característiques que això\1/g
 # websites-skrooge-org
 s/, i informeu la vostra distribució/ i informeu a la vostra distribució/g
 s/, que no coincideix/, el qual no coincideix/g
@@ -2255,6 +2362,7 @@ s/\bBarcelona de l'1 al 7 d'octubre\([^[:alnum:]]\)/Barcelona des de l'1 fins al
 s/\bdonant suport el programari\([^[:alnum:]]\)/donant suport al programari\1/g
 s/\bel \[PinePhone KDE Community Edition\([^[:alnum:]]\)/l'\[edicio de la comunitat KDE per a PinePhone\1/g
 s/\bEls Konqis comunitat\([^[:alnum:]]\)/Els Konqis de la comunitat\1/g
+s/\bfuncions molt sol·licitades\([^[:alnum:]]\)/característiques molt sol·licitades\1/g
 s/\bGitLab es pot trobar\([^[:alnum:]]\)/GitLab es troba\1/g
 s/\bi Frameworks\([^[:alnum:]]\)/i els Frameworks\1/g
 s/\bKDE executa dos recaptacions de fons consecutius i els completa tots dos\([^[:alnum:]]\)/El KDE executa dues recaptacions de fons consecutives i les completa totes dues\1/g
@@ -2318,7 +2426,7 @@ s/\bI puc executar això diverses\([^[:alnum:]]\)/I puc executar-ho múltiples\1
 s/\bIndica una mida i fes clic al botó de creació\([^[:alnum:]]\)/Indica una mida i fes clic al botó «Crea»\1/g
 s/\bInicialment Lukas\([^[:alnum:]]\)/Inicialment, en Lukas\1/g
 s/\bjove, Cyrille Berger\([^[:alnum:]]\)/jove, en Cyrille Berger\1/g
-    s/\bperò Cyrille\([^[:alnum:]]\)/però en Cyrille\1/g
+  s/\bperò Cyrille\([^[:alnum:]]\)/però en Cyrille\1/g
 s/\bKate de KDE i vaig copiar-ho\([^[:alnum:]]\)/Kate del KDE i vaig copiar-lo\1/g
 s/\bKDE, que va ser molta feina\([^[:alnum:]]\)/KDE, el qual va ser molta feina\1/g
 s/\bKrita desa el vostre treball en silenci\([^[:alnum:]]\)/Krita desarà el vostre treball en silenci\1/g
@@ -2329,7 +2437,7 @@ s/\bLa selecció de pinzell,/La selecció del pinzell,/g
 s/\bles teves capes amb el que vulguis\([^[:alnum:]]\)/les vostres capes amb el que vulgueu\1/g
 s/\bli ho expliques\([^[:alnum:]]\)/li ho expliqués\1/g
 s/\bmenú Configuració\/Configurar el Krita \/ General \/ Secció/menú «Configuració -> Configura el Krita… -> General/g
-    s/\/Gestió de fitxers i allí/-> pestanya Gestió de fitxers» i allí/g
+  s/\/Gestió de fitxers i allí/-> pestanya Gestió de fitxers» i allí/g
 s/\bmode d'esborrador\([^[:alnum:]]\)/mode esborrador\1/g
 s/\bMoltes gràcies per veure-ho\([^[:alnum:]]\)/Moltes gràcies per veure'l\1/g
 s/\bmotors dels pinzells\([^[:alnum:]]\)/motors de pinzell\1/g
@@ -2359,6 +2467,7 @@ s/\bsigne «+», que també\([^[:alnum:]]\)/signe «+», el qual també\1/g
 s/\bsimulant fallades diverses\([^[:alnum:]]\)/simulant múltiples fallades\1/g
 s/\bsuficients per patrocinar\([^[:alnum:]]\)/suficients per a patrocinar\1/g
 s/\bsuport i tenim un fons de desenvolupament\([^[:alnum:]]\)/suport i que tenim un fons de desenvolupament\1/g
+s/\btasca de funcionalitats en una peça teòrica de\([^[:alnum:]]\)/tasca de característiques en una peça teòrica de\1/g
 s/\btauleta, verifica que la tauleta és compatible\([^[:alnum:]]\)/tauleta, verifica que és compatible\1/g
 s/\bUn cop creis una imatge pots començar a treballar-hi\([^[:alnum:]]\)/Un cop creis una imatge podràs començar a treballar-hi\1/g
 s/\bUna vegada que el Krita es descarrega i has actualitzat els controladors\([^[:alnum:]]\)/Una vegada descarregat el Krita i hagis actualitzat els controladors\1/g
@@ -2392,7 +2501,7 @@ s/\bes mogui sobre ells\([^[:alnum:]]\)/es mogui sobre seu\1/g
 s/\bL'activació d'aquesta opció\([^[:alnum:]]\)/La selecció d'aquesta opció\1/g
 # Zanshin
 s/\bAviat deixarà de sentir aquesta veu queixant-se\([^[:alnum:]]\)/Aviat deixareu de queixar-vos\1/g
-     s/\bo del que haurien de fer\([^[:alnum:]]\)/o del que s'ha de fer\1/g
+   s/\bo del que haurien de fer\([^[:alnum:]]\)/o del que s'ha de fer\1/g
 s/\bper ser completament\([^[:alnum:]]\)/per a ser completament\1/g
 #
 s/\bSi s'activa, el mode dinàmic s'iniciarà, i\([^[:alnum:]]\)/Si està marcada, s'iniciarà el mode dinàmic i\1/g

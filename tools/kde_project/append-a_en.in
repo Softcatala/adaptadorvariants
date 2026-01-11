@@ -47,10 +47,10 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]fecten|
 [Aa]feg(eix|eixe[ns]|eix[io]|eixi[ns]|ida|ides|i[rt]|ir-los|irà|iran|ís|i[mtu]|int|íssi[mu]|issi[ns]|its|iu-l[eo]s?)|
 [Aa]f(egira|egíre[mu]|egire[ns]|g|ig|ige[ns]|ija)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) (%[12345]|@krita_painting\|%1|«\.sha256»|accions de gir|ajustaments predefinits d'openh264|alguns recursos i enllaços cap a guies d'aprenentatge|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|(aquesta|esta) (compartició|funció|pàgina)|àudio|automàticament una traça|cap sagnat|característiques d'IA|carpetes|catàlegs|configuració|controladors INDI remots|correctament %1 objectes?|directament|diversos mètodes|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|ginys|imatges|marques|més (distribucions de partícules|interruptors|suggeriments del diccionari)|nivell de fons la mitjana quadràtica .rms. múltiples vegades|objectes|opcions de conversió de capes que falten|qualsevol acoblador|\*\*showfoto\*\* com a argument|solidesa i profunditat|subelements nous|tantes ubicacions com vulgueu|text|totes les pestanyes)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) (%[12345]|@krita_painting|%1|«\.sha256»|accions de gir|ajustaments predefinits d'openh264|alguns recursos i enllaços cap a guies d'aprenentatge|algunes fotografies|altres directoris|aplicacions|aplicacions a l'escriptori|(aquesta|esta) (compartició|funció|pàgina)|àudio|automàticament una traça|cap sagnat|característiques d'IA|carpetes|catàlegs|configuració|controladors INDI remots|correctament %1 objectes?|directament|diversos mètodes|enllaços personalitzats|fitxers d'imatge JPEG|fotogrames plans|ginys|imatges|marques|més (distribucions de partícules|interruptors|suggeriments del diccionari)|nivell de fons la mitjana quadràtica .rms. múltiples vegades|objectes|opcions de conversió de capes que falten|qualsevol acoblador|\*\*showfoto\*\* com a argument|solidesa i profunditat|subelements nous|tantes ubicacions com vulgueu|text|totes les pestanyes)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) el (directori correcte|nivell de fons la mitjana quadràtica (rms) múltiples vegades|paràmetre de pressió)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) els (controladors remots de l'INDI|objectes visibles esta nit|vostres objectes preferits)|
-[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) l'(enllaç|extensió <literal role=\"extension\">\.part<.literal>|opció «--software-renderer»\|opció «Patró»|opció per a mostrar el resultat)|
+[Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) l'(enllaç|extensió <literal role=\"extension\">\.part<.literal>|opció «--software-renderer»\|opció «Patró»|opció «Inclou les regions del contorn»|opció «Patró»|opció per a mostrar el resultat)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) la (carpeta correcta|carpeta seleccionada|carta d'escales i magnituds|columna «Elevació»|contribució predita|funció \*waitFor\*|funció ressaltada en el navegador de funcions|mateixa informació de data i hora|seua corba)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) les (pestanyes (.marcades|seleccionades)|tasques)|
 [Aa]f(egint|egi[artu]|egien|egint|egiu-l[ao]s|egirà|egirem|ig|ija) un (desplaçament global de la inclinació del llapis|element|element nou observador|emplaçament personalitzat nou|enllaç personalitzat|estabilitzador|farciment d'1 px|formulari de registre bàsic|lot|mode nou|objecte|objecte nou|número|punt)|
@@ -154,6 +154,7 @@ Betelgeuse|
 [Cc]andidata|
 [Cc]anvi(a[rt]?|ada|ant|arà|[eï]|eu)|
 [Cc]anviar? («QStandardPaths»|&khelpcenter;|breument)|
+[Cc]anvi(ar?)? del «Selector de color específic»|
 [Cc]anviar? el nom|
 [Cc]anviar? els segments|
 [Cc]anviar? l'(opció de vista anomenada %1|opció de vista anomenada «%1»)|
@@ -273,7 +274,7 @@ Betelgeuse|
 [Ee]nhorabona a Okular i|
 [Ee]nseny(a[rt]?|arà|e[su])|
 [Ee]ntrar?|
-[Ee]ntreu|
+[Ee]ntre[nu]|
 [Ee]nvi([aeiïo]|ada|ades|ant|a[rt]|arà|ats|és|e[mnsu]|éssi[mu]|essi[ns]|ï[ns])|
 [Ee]nvi(ara|àre[mu]|are[ns])|
 [Ee]nvi(ant|ar|arà|aran|eu)? (ara el correu|cap pols|directament un correu a la Krita Foundation, ni|fitxers|imatges|missatges|(set|sis|nou) imatges|polsos de correcció del guiatge|polsos de guiatge (adequats|directament))|
@@ -614,5 +615,5 @@ rel\.|
 [Vv]isible en un arc|
 [Vv]isites|
 [Vv]istes en arbre|
-[Vv]oten
+[Vv]oten|
 [Zz]oom de la vista|
