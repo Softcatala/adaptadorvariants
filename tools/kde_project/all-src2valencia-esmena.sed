@@ -91,7 +91,9 @@ s/\baquests\([^[:alnum:]]\)/estos\1/g
 # aquí
 s/\b\([Aa]\)quí\([^[:alnum:]]\)/\1cí\2/g
  #
-s/AquíElVostreBotó\([^[:alnum:]]\)/AcíElVostreBotó\1/g
+s/\bAQUÍ\([^[:alnum:]]\)/ACÍ\1/g
+  s/\bINSEREIX\([^[:alnum:]]\)/INSERIX\1/g
+s/\bAquíElVostreBotó\([^[:alnum:]]\)/AcíElVostreBotó\1/g
 s/\bel_nom_especificat_aquí\([^[:alnum:]]\)/el_nom_especificat_ací\1/g
 
 # arrencar i arrancar -> arrancar
@@ -99,7 +101,7 @@ s/\b\([Aa]\)rr\([ae]\)nca\([dv]a\|des\|nt\|nts\|[rt]\|rà\|ran\|ts\|ven\|\)\([^[
 s/\b\([Aa]\)rr\([ae]\)nqués\([^[:alnum:]]\)/\1rrencara\3/g
 s/\b\([Aa]\)rr\([ae]\)nquéssi\([mu]\)\([^[:alnum:]]\)/\1rrencàre\3\4/g
 s/\b\([Aa]\)rr\([ae]\)nquessi\([ns]\)\([^[:alnum:]]\)/\1rrencare\3\4/g
-s/\b\([Aa]\)rr\([ae]\)nqu\(e\|i\)\(m\|n\|s\|u\)\([^[:alnum:]]\)/\1rranque\4/g
+s/\b\([Aa]\)rr\([ae]\)nqu\(e\|i\)\(m\|n\|s\|u\)\([^[:alnum:]]\)/\1rranque\4\5/g
 s/\b\([Aa]\)rr\([ae]\)nqu\([io]\)\([^[:alnum:]]\)/\1rranque\4/g
  #
 s/\ba&rrencar\([^[:alnum:]]\)/a\&rrancar\1/g
@@ -174,6 +176,7 @@ s/\b\([Pp]\)aro\([^[:alnum:]]\)/\1are\2/g
  #
 s/\bATURA\([^[:alnum:]]\)/PARA\1/g
 s/\bS'para la reproducció\([^[:alnum:]]\)/S'ha parat la reproducció\1/g
+s/\bs'pararan\([^[:alnum:]]\)/es pararan\1/g
 s/\bs'parava\([^[:alnum:]]\)/es parava\1/g
 
 # autoria
@@ -209,6 +212,7 @@ s/\"Calces\"/\"Calcis\"/g # greece prefectures
 s/\ba el cantó\([^[:alnum:]]\)/al cantó\1/g
 s/\ba les cantons\([^[:alnum:]]\)/als cantons\1/g
 s/\b\([Cc]\)antó arredonida\([^[:alnum:]]\)/\1antó arredonit\2/g
+s/\b\([Cc]\)antó definida\([^[:alnum:]]\)/\1antó definit\2/g
 s/\b\([Cc]\)antó dreta\([^[:alnum:]]\)/\1antó dret\2/g
 s/\b\([Cc]\)antó esquerra\([^[:alnum:]]\)/\1antó esquerre\2/g
 s/\b\([Cc]\)antó \(inferior\|superior\) dreta\([^[:alnum:]]\)/\1antó \2 dret\3/g
@@ -221,6 +225,7 @@ s/\b\([Cc]\)antó rodona\([^[:alnum:]]\)/\1antó arredonit\2/g
 s/\b\([Cc]\)antons actives\([^[:alnum:]]\)/\1antons actius\2/g
 s/\b\([Cc]\)antons a&rredonides\([^[:alnum:]]\)/\1antons a\&rredonits\2/g
 s/\b\([Cc]\)antons arredonides\([^[:alnum:]]\)/\1antons arredonits\2/g
+s/\b\([Cc]\)antons definides\([^[:alnum:]]\)/\1antons definits\2/g
 s/\b\([Cc]\)antons inferiors arredonides\([^[:alnum:]]\)/\1antons inferiors arredonits\2/g
 s/\b\([Cc]\)antons inverses\([^[:alnum:]]\)/\1antons inversos\2/g
 s/\b\([Cc]\)antons oposades\([^[:alnum:]]\)/\1antons oposats\2/g
@@ -245,11 +250,9 @@ s/\b\([Uu]\)na cantó\([^[:alnum:]]\)/\1n cantó\2/g
 s/\bTallafoc Centre\([^[:alnum:]]\)/\Tallafoc Centri\1/g
 
 # cercar -> buscar
-# cercador
-# cercapersones
-# cercatalents
-s/\bCerca\(ble\|[dv]a\|des\|dor\|dors\|nt\|nts\|[rt]\|rà\|ran\|rem\|talents\|ts\|ven\|\)\([^[:alnum:]]\)/Busca\1\2/g
-s/\bcerca\(ble\|[dv]a\|des\|dor\|dors\|nt\|nts\|[rt]\|rà\|ran\|rem\|talents\|ts\|ven\|\)\([^[:alnum:]]\)/busca\1\2/g
+# cercador / cercapersones / cercatalents
+s/\bCerca\(ble\|[dv]a\|des\|dor\|dors\|nt\|nts\|persones\|[rt]\|rà\|ran\|rem\|talents\|ts\|ven\|\)\([^[:alnum:]]\)/Busca\1\2/g
+s/\bcerca\(ble\|[dv]a\|des\|dor\|dors\|nt\|nts\|persones\|[rt]\|rà\|ran\|rem\|talents\|ts\|ven\|\)\([^[:alnum:]]\)/busca\1\2/g
 s/\bCerco\([^[:alnum:]]\)/Busque\1/g
 s/\bcerco\([^[:alnum:]]\)/busque\1/g
 s/\bCerque\([mnsu]\)\([^[:alnum:]]\)/Busque\1\2/g
@@ -262,8 +265,6 @@ s/\bCerquessi\([ns]\)\([^[:alnum:]]\)/Buscare\1\2/g
 s/\bcerquessi\([ns]\)\([^[:alnum:]]\)/buscare\1\2/g
 s/\bCerqui\([ns]\|\)\([^[:alnum:]]\)/Busque\1\2/g
 s/\bcerqui\([ns]\|\)\([^[:alnum:]]\)/busque\1\2/g
-s/\bCercapersones\([^[:alnum:]]\)/Buscapersones\1/g
-s/\bcercapersones\([^[:alnum:]]\)/buscapersones\1/g
  #
 s/\bBaixe Alentejo\([^[:alnum:]]\)/Baixo Alentejo\1/g
 s/\bSe busca\(rà\|ran\|va\|ven\|\)\([^[:alnum:]]\)/Es busca\1\2/g
@@ -298,6 +299,7 @@ s/\bla commutació\([^[:alnum:]]\)/el canvi\1/g
 
 # comprar
 s/\bCompre&va\([^[:alnum:]]\)/Compro\&va\1/g         # comprovar
+s/\bCompre amb vós\([^[:alnum:]]\)/Compte amb vós\1/g
 s/\bJ'ai compres\([^[:alnum:]]\)/J'ai compris\1/g
 s/\bllegit o comprara\([^[:alnum:]]\)/llegit o comprés\1/g # comprendre
 
@@ -329,6 +331,8 @@ s/\b\([Cc]\)ontabilitzi\([ns]\)\([^[:alnum:]]\)/\1omptabilitz\2\3/g
 s/\bCops\([^[:alnum:]]\)/Vegades\1/g
 s/\bcops\([^[:alnum:]]\)/vegades\1/g
  #
+s/\"any per primer\"/\"any per primera\"/g # websites-video-subtitles/video_subtitles--kde--Making_a_Difference.po
+  s/\"cop que no la farem. I açò\"/\"vegada que no la farem. I açò\"/g
 s/\b\([Cc]\)ada cop\([^[:alnum:]]\)/\1ada vegada\2/g
 s/\b\([Cc]\)op d'ull\([^[:alnum:]]\)/\1olp d'ull\2/g
 s/\b\([Cc]\)op de mà\([^[:alnum:]]\)/\1olp de mà\2/g
@@ -337,15 +341,21 @@ s/\bdarrer cop\([^[:alnum:]]\)/última vegada\1/g
 s/\b\([Dd]\)esfés el cop\([^[:alnum:]]\)/\1esfés el colp\2/g
 s/\bEl primer cop\([^[:alnum:]]\)/La primera vegada\1/g
 s/\bel primer cop\([^[:alnum:]]\)/la primera vegada\1/g
+s/\bEl proper cop\([^[:alnum:]]\)/La propera vegada\1/g
+s/\bel proper cop\([^[:alnum:]]\)/la propera vegada\1/g
 s/\bEl pròxim cop\([^[:alnum:]]\)/La propera vegada\1/g
 s/\bel pròxim cop\([^[:alnum:]]\)/la propera vegada\1/g
+s/\bels vegades de línia\([^[:alnum:]]\)/els cops de línia\1/g
+s/\bels vegades i les temperatures\([^[:alnum:]]\)/els cops i les temperatures\1/g
 s/\b\([Ee]\)ste és el primer cop\([^[:alnum:]]\)/\1sta és la primera vegada\2/g
 s/\b\([Ff]\)orça del cop\([^[:alnum:]]\)/\1orça del colp\2/g
 s/\bmostren de cop totes\([^[:alnum:]]\)/mostren de colp totes\1/g
 s/\b\([Nn]\)ombre màxim de cops\([^[:alnum:]]\)/\1ombre màxim de colps\2/g
 s/\b\([Pp]\)er primer cop\([^[:alnum:]]\)/\1er primera vegada\2/g
+s/\b\([Pp]\)erò aquest cop,/\1erò esta vegada,/g
 s/\b\([Pp]\)roveu-ho un altre cop\([^[:alnum:]]\)/\1roveu-ho una altra vegada\2/g
 s/\b\([Qq]\)ualsevol cop\([^[:alnum:]]\)/\1ualsevol vegada\2/g
+s/\b\([Tt]\)ancat de cop\([^[:alnum:]]\)/\1ancat de colp\2/g
 s/\b\([Úú]\)ltim cop\([^[:alnum:]]\)/\1ltima vegada\2/g
   s/\bdel última\([^[:alnum:]]\)/de la última\1/g
 s/\b\([Uu]\)n altre cop\([^[:alnum:]]\)/\1na altra vegada\2/g
@@ -389,6 +399,7 @@ s/\b\([Dd]\)amunt d'un planeta o al sol\([^[:alnum:]]\)/\1amunt d'un planeta o d
 s/\b\([Dd]\)amunt l'/\1amunt de l'/g
 s/\b\([Dd]\)amunt l\(a\|es\)\([^[:alnum:]]\)/\1amunt de l\2\3/g
   s/\bcontrol damunt de la seua\([^[:alnum:]]\)/control sobre la seua\1/g
+s/\bsobre les ones\([^[:alnum:]]\)/damunt les ones\1/g
 s/\b\([Dd]\)amunt sobre seu\([^[:alnum:]]\)/\1amunt seu\2/g
 s/\"\([Ee]\)n passar\"/\"\1n passar per damunt\"/g
 s/\bfet clic damunt dels moments correctes\([^[:alnum:]]\)/fet clic damunt en els moments correctes\1/g
@@ -438,6 +449,7 @@ s/\b\([Dd]\)el \(\[\|\)guardada\([^[:alnum:]]\)/\1e la \2guardada\3/g
 s/\b\([Dd]\)els \(\[\|\)guardades\([^[:alnum:]]\)/\1e les \2guardades\3/g
 s/\bEl pròxim guardada\([^[:alnum:]]\)/La pròxima guardada\1/g
 s/\bel pròxim guardada\([^[:alnum:]]\)/la pròxima guardada\1/g
+s/\b\([Ee]\)stat dels guardada automàtics\([^[:alnum:]]\)/\1stat de la guardada automàtica\2/g
 s/\b\([Gg]\)uarda base\([^[:alnum:]]\)/\1uarda la base\2/g
 s/\b\([Gg]\)uardada automàtic\([^[:alnum:]]\)/\1uardada automàtica\2/g
   s/\bGuardada &automàtic\([^[:alnum:]]\)/Guardada \&automàtica\1/g
@@ -604,8 +616,8 @@ s/\bs'connecte\(n\|\)\([^[:alnum:]]\)/es connecte\1\2/g
   s/\b\([Dd]\)esendolli\([ns]\)\([^[:alnum:]]\)/\1esconnecte\2\3/g
 
 # enganxar -> apegar
-s/\bEnganxa\(nt\|[rt]\|rà\|ran\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Apega\1\2/g
-s/\benganxa\(nt\|[rt]\|rà\|ran\|ts\|va\|ven\|\)\([^[:alnum:]]\)/apega\1\2/g
+s/\bEnganxa\(da\|des\|nt\|[rt]\|rà\|ran\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Apega\1\2/g
+s/\benganxa\(da\|des\|nt\|[rt]\|rà\|ran\|ts\|va\|ven\|\)\([^[:alnum:]]\)/apega\1\2/g
 s/\bEnganxés\([^[:alnum:]]\)/Apegara\1/g
 s/\benganxés\([^[:alnum:]]\)/apegara\1/g
 s/\bEnganxéssi\([mu]\|\)\([^[:alnum:]]\)/Apegàre\1\2/g
@@ -824,6 +836,8 @@ s/\bescombra\(dor\|ire\)\([^[:alnum:]]\)/agranador\2/g
 s/\bEscombraries\([^[:alnum:]]\)/Brossa\1/g
 s/\bescombraries\([^[:alnum:]]\)/brossa\1/g
   s/\bles brossa\([^[:alnum:]]\)/la brossa\1/g
+ #
+s/\bd'brossa\([^[:alnum:]]\)/de brossa\1/g
 
 # esgarrapar -> arrapar
 s/\bEsgarrapa\(da\|des\|nt\|[rt]\|rà\|ran\|ts\|va\|ven\|\)\([^[:alnum:]]\)/Arrapa\1\2/g
@@ -872,6 +886,7 @@ s/\bA davall podeu definir\([^[:alnum:]]\)/A davall podeu establir\1/g
 s/\bEstableixAcl\([^[:alnum:]]\)/EstablixAcl\1/g
 s/\bEstableixMetaDades\([^[:alnum:]]\)/EstablixMetaDades\1/g
 s/\bEstableixQuota\([^[:alnum:]]\)/EstablixQuota\1/g
+  # preestablir -> predefinir
 
 # estalvi de pantalla -> salvapantalla
 s/\bEstalvi de pantalla\([^[:alnum:]]\)/Salvapantalla\1/g
@@ -1094,6 +1109,8 @@ s/\bA diferència de la llargària\([^[:alnum:]]\)/A diferència de la longitud\
 s/\baltituds, llargàries\([^[:alnum:]]\)/altituds, longituds\1/g
   s/\baltituds, longituds i distàncies\([^[:alnum:]]\)/altituds, llargàries i distàncies\1/g
 s/\banomenat <firstterm>llargària\([^[:alnum:]]\)/anomenat <firstterm>longitud\1/g
+s/\bcanvi de longitud dels controls\([^[:alnum:]]\)/canvi de llargària dels controls\1/g
+s/\bcoincideixin les longituds de les cel·les\([^[:alnum:]]\)/coincideixin les llargàries de les cel·les\1/g
 s/\b\([Ee]\)mpleneu la llargària\([^[:alnum:]]\)/\1mpleneu la longitud\2/g
 s/\bgrau de lluminositat del color\([^[:alnum:]]\)/grau de claredat del color\1/g
 s/\bla llargària, la latitud\([^[:alnum:]]\)/la longitud, la latitud\1/g
@@ -1254,11 +1271,18 @@ s/\b\([Oo]\)brissi\([ns]\)\([^[:alnum:]]\)/\1brire\2\3/g
 s/\bObro\([^[:alnum:]]\)/Òbric\1/g
 s/\bobro\([^[:alnum:]]\)/òbric\1/g
  #
+s/\bapropiar-se de les obris\([^[:alnum:]]\)/apropiar-se de les obres\1/g
 s/\bd'obris com música\([^[:alnum:]]\)/d'obres com música\1/g
+s/\beditar estes obris\([^[:alnum:]]\)/editar estes obres\1/g
 s/\bLes obris\([^[:alnum:]]\)/Les obres\1/g
 s/\bMostra les obris\([^[:alnum:]]\)/Mostra les obres\1/g
+s/\bmostrats per les obris que el contenen\([^[:alnum:]]\)/mostrats per les obres que el contenen\1/g
 s/\bmeues obris\([^[:alnum:]]\)/meues obres\1/g
-s/\b\([Oo]\)bris \(artístiques\|d'art\|dels mestres\|mestres\)\([^[:alnum:]]\)/\1bres \2\3/g
+s/\b\([Oo]\)bris \(amb drets\|artístiques\|basades\|cobertes\|d'art\|de l'agregat\|derivades\|dels mestres\|independents\|individuals\|la finalitat\|mestres\|pràctiques\|publicades\|que es deriven\|separades\)\([^[:alnum:]]\)/\1bres \2\3/g
+s/\bper a executar estes obris\([^[:alnum:]]\)/per a executar estes obres\1/g
+s/\bPer a les obris que,/Per a les obres que,/g
+s/\btipus d'obris\([^[:alnum:]]\)/tipus d'obres\1/g
+s/\btotes les obris que es van\([^[:alnum:]]\)/totes les obres que es van\1/g
 
 # oferir
 s/\b\([Ll]\)es oferides més habituals\([^[:alnum:]]\)/\1es ofertes més habituals\2/g
@@ -1299,6 +1323,9 @@ s/\bPorte Velho\([^[:alnum:]]\)/Porto Velho\1/g
 
 # posicionat -> ubicat
 s/\bposicionat\([^[:alnum:]]\)/ubicat\1/g
+ #
+s/\bconsiderar ubicat el guiatge\([^[:alnum:]]\)/considerar posicionat el guiatge\1/g
+s/\bLa muntura s'ha ubicat a l'inici\([^[:alnum:]]\)/La muntura s'ha posicionat en l'inici\1/g
 
 # pregar -> orar
 # pregària -> oració
@@ -1333,6 +1360,8 @@ s/\bpronunciar\([^[:alnum:]]\)/llegir\1/g
 s/\bquadre\(1\|2\)\([^[:alnum:]]\)/quadro\1\2/g
 s/\bquadreCombinat\([^[:alnum:]]\)/quadroCombinat\1/g
 s/\bquadreDeText\([^[:alnum:]]\)/quadroDeText\1/g
+ #
+s/\b\([Qq]\)uadro lateral utilitzada\([^[:alnum:]]\)/\1uadro lateral utilitzat\2/g
 
 # Quant al -> Quant a
 s/\b\([Qq]\)uant a \(component\|connector\|dorsal\)\([^[:alnum:]]\)/\1uant al \2\3/g
@@ -1565,9 +1594,12 @@ s/\bretorn de carro\([^[:alnum:]]\)/tecla de retorn\1/g
 # sacsejar -> sacsar
 s/\b\([Ss]\)acseja\(da\|des\|nt\|[rt]\|rà\|ran\|ts\|va\|ven\|\)\([^[:alnum:]]\)/\1acsa\2\3/g
 s/\b\([Ss]\)acsege\([mnsu]\)\([^[:alnum:]]\)/\1acse\2\3/g
+s/\b\([Ss]\)acsegés\([^[:alnum:]]\)/\1acsara\2/g
+s/\b\([Ss]\)acsegéssi\([mu]\)\([^[:alnum:]]\)/\1acsàre\2\3/g
+s/\b\([Ss]\)acsegessi\([ns]\)\([^[:alnum:]]\)/\1acsare\2\3/g
 s/\b\([Ss]\)acsegi\([ns]\|\)\([^[:alnum:]]\)/\1acse\2\3/g
-s/\b\([Ss]\)acsejo\([^[:alnum:]]\)/\1acse\2/g
 s/\b\([Ss]\)acseig\([^[:alnum:]]\)/\1acsament\2/g
+s/\b\([Ss]\)acsejo\([^[:alnum:]]\)/\1acse\2/g
 
 # saltar
 s/\"Salte\"/\"Salto\"/g
@@ -1632,6 +1664,8 @@ s/\ba sobre\([^[:alnum:]]\)/damunt\1/g
   s/\bde sobre l'objecte\([^[:alnum:]]\)/damunt de l'objecte\1/g
   s/\bde sobre un pla\([^[:alnum:]]\)/damunt d'un pla\1/g
 s/\bde sobre\([^[:alnum:]]\)/de dalt\1/g
+s/\buns sobre els altres\([^[:alnum:]]\)/uns damunt dels altres\1/g
+  s/\bun sobre l'altre\([^[:alnum:]]\)/un damunt de l'altre\1/g
 s/\binformació damunt seu\([^[:alnum:]]\)/informació sobre seu\1/g
 s/\binformació damunt de la seua\([^[:alnum:]]\)/informació sobre la seua\1/g
 s/\b\([Mm]\)antín sobre\([^[:alnum:]]\)/\1antín damunt\2/g
@@ -1642,6 +1676,7 @@ s/\bper sobre\([^[:alnum:]]\)/per damunt\1/g
   s/\bbotó dret del ratolí sobre la \(barra\|miniatura\)\([^[:alnum:]]\)/botó dret del ratolí damunt de la \1\2/g
   s/\bbotó dret del ratolí sobre seu\([^[:alnum:]]\)/botó dret del ratolí damunt seu\1/g
   s/\bbotó \(dret\|esquerre\) del ratolí sobre una \(línia\|miniatura\)\([^[:alnum:]]\)/botó \1 del ratolí damunt d'una \2\3/g
+  s/\bclic del mig damunt Android\([^[:alnum:]]\)/clic del mig en Android\1/g
   s/\bclic del ratolí sobre les 5\([^[:alnum:]]\)/clic del ratolí damunt de les 5\1/g
   s/\bclicant sobre la \(icona\|pestanya\)\([^[:alnum:]]\)/clicant damunt de la \1\2/g
   s/\bclicar la icona\([^[:alnum:]]\)/clicar damunt de la icona\1/g
@@ -1879,6 +1914,7 @@ s/\([^_&[:alnum:]]\)l'\(UNIX\|Unix\|unix\)/\1el \2/g
 s/\ba el\([^[:alnum:]]\)/al\1/g
 s/\bCliqueu-hi <em>guardar\([^[:alnum:]]\)/Cliqueu-hi per a <em>guardar\1/g
 s/\bd'a l'equip\([^[:alnum:]]\)/de a l'equip\1/g
+s/\bd'a tota\([^[:alnum:]]\)/de a tota\1/g
 s/\bix de temple\([^[:alnum:]]\)/ix del temple\1/g
 # femenins
   # 7.4.3 La formació de sigles i de mots creuats <https://aplicacions.llengua.gencat.cat/llc/AppJava/index.html?input>

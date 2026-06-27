@@ -40,18 +40,31 @@ An explanation of the scripts:
 
 **Note 1:** all-src2valencia sed file are very large, we recommend *closing everything* before opening it.
 
-**Note 2:** multiple sed files (so called '*all-\**' and '*kde-\**') lightens the load, speeds up the workflow and allows you to create reports for improvements.
+**Note 2:** the '*\*-esmena*' files are used to keep updated the major changes (the last review).
+
+**Note 3:** multiple sed files (so called '*all-\**' and '*kde-\**') lightens the load, speeds up the workflow and allows you to create reports for improvements.
 Concatenated into two single files for the adaptation process.
 
-**Note 3:** the '*\*-esmena*' files are used to keep updated the major changes (the last review).
+## posieve rules:
 
-### Dimarts, 16 de juny del 2025
+Works into posieve rules ([Pology](http://pology.nedohodnik.net/) tool, [KDE repo](https://invent.kde.org/sdk/pology)):
 
-The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***4h*** and ***57m*** with 81%CPU.
+Overview: make a tracking of any change for quality maintain.
 
-***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***4 h*** i ***57 m*** amb un 81% de la CPU.
+* `rules/errors.rules`
+* `rules/kstars.rules`
+* `rules/multimedia.rules`
+* `rules/sphinx.rules`
+* `rules/*.rules`
 
-**SVN Message (*with version info*):** Updates to 012.02 (http://avl.gva.es/lexicval/)
+
+### Dissabte, 27 de juny del 2026
+
+The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***5h*** and ***59m*** with 25%CPU.
+
+***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***5 h*** i ***59 m*** amb un 25% de la CPU.
+
+**SVN Message (*with version info*):** Updates to 015.02v (http://avl.gva.es/lexicval/)
 
 
 ## Linguistic resources:

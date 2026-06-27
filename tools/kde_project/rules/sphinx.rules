@@ -1,0 +1,335 @@
+# Personal rules for Catalan translations
+# SPDX-FileCopyrightText: 2017-2026 Antoni Bella Pérez <antonibella5@yahoo.com>
+# by KDE Catalan Team (kde-i18n-ca@kde.org)
+# License: GPLv3
+
+# - Sphinx -
+
+# Remove XML entities.
+# include file="filter.include"
+
+# Remove accelerators inside words.
+addFilterRegex match="&" on="pmsgid,pmsgstr"
+
+{(\b|>)\`_}
+valid msgstr="(\b|>)\`_"
+hint="Segurament manca un enllaç «(NOTA: no funciona en alguns enllaços. Els que s'han canviat...)» (Sphinx)."
+
+{\s\`}
+id="t-acc_obe"
+valid msgid="(^|\s)\`\`"
+valid msgid="\b32 bits Intel CPU APK\b"
+valid msgstr="\bKRITA_DEBUG_TEXTTOOL\b"
+valid msgstr="\\ \`\[[123]\]"
+valid msgstr="\'\`\`"
+valid msgstr="(^|\s)\`([«<]|\b)"
+valid msgstr="\'\`(«|\[|\b)"
+hint="Segurament s'ha d'eliminar l'espai anterior o manca un enllaç (Sphinx)."
+
+{:alt:}
+valid msgstr=":alt:"
+hint="Segurament manca el vincle «:alt:» (Sphinx)."
+
+{:file:}
+valid msgstr=":file:"
+hint="Segurament manca el vincle «:file:» (Sphinx)."
+
+{:guilabel:}
+valid msgstr=":guilabel:"
+hint="Segurament manca el vincle «:guilabel:» (Sphinx)."
+
+{:kbd:}
+valid msgstr=":kbd:"
+hint="Segurament manca el vincle «:kbd:» (Sphinx)."
+
+{:menuselection:}
+valid msgstr=":menuselection:"
+hint="Segurament manca el vincle «:menuselection:» (Sphinx)."
+
+{:program:}
+valid msgstr=":program:"
+hint="Segurament manca el vincle «:program:» (Sphinx)."
+
+{:ref:}
+valid msgstr=":ref:"
+hint="Segurament manca el vincle «:ref:» (Sphinx)."
+
+{:su[bp]:}
+valid msgstr=":su[bp]:"
+hint="Segurament manca el vincle «:sub: o :sup:» (Sphinx)."
+
+{:term:}
+valid msgstr=":term:"
+hint="Segurament manca el vincle «:term:» (Sphinx)."
+
+{:alt:\smouseleft\b}
+valid msgstr=":alt: clic esquerre del ratolí\b"
+hint="Es tradueix per «clic esquerre del ratolí», no trencarà el vincle amb «|mouseleft|» (Sphinx)."
+
+{:alt:\smousemiddle\b}
+valid msgstr=":alt: clic del mig del ratolí\b"
+hint="Es tradueix per «clic del mig del ratolí», no trencarà el vincle amb «|mousemiddle|» (Sphinx)."
+
+{:alt:\smousescroll\b}
+valid msgstr=":alt: roda del ratolí\b"
+hint="Es tradueix per «roda del ratolí», no trencarà el vincle amb «|mousescroll|» (Sphinx)."
+
+{:alt:\smouseright\b}
+valid msgstr=":alt: clic dret del ratolí\b"
+hint="Es tradueix per «clic dret del ratolí», no trencarà el vincle amb «|mouseright|» (Sphinx)."
+
+{:alt:\stoolassistant\b}
+valid msgstr=":alt: eina d'assistent\b"
+hint="Es tradueix per «:alt: eina d'assistent», no trencarà el vincle amb «|toolassistant|» (Sphinx)."
+
+{:alt:\stoolbeziercurve\b}
+valid msgstr=":alt: eina de corbes de Bézier\b"
+hint="Es tradueix per «:alt: eina de corbes de Bézier», no trencarà el vincle amb «|toolbeziercurve|» (Sphinx)."
+
+{:alt:\stoolcalligraphy\b}
+valid msgstr=":alt: eina de cal·ligrafia\b"
+hint="Es tradueix per «:alt: eina de cal·ligrafia», no trencarà el vincle amb «|toolcalligraphy|» (Sphinx)."
+
+{:alt:\stoolcolorizemask\b}
+valid msgstr=":alt: eina de la màscara d'acoloriment\b"
+hint="Es tradueix per «:alt: eina de la màscara d'acoloriment», no trencarà el vincle amb «|toolcolorizemask|» (Sphinx)."
+
+{:alt:\stooldyna\b}
+valid msgstr=":alt: eina de pinzell dinàmic\b"
+hint="Es tradueix per «:alt: eina de pinzell dinàmic», no trencarà el vincle amb «|tooldyna|» (Sphinx)."
+
+{:alt:\stoolellipse\b}
+valid msgstr=":alt: eina d'el·lipse\b"
+hint="Es tradueix per «:alt: eina d'el·lipse», no trencarà el vincle amb «|toolellipse|» (Sphinx)."
+
+{:alt:\stoolfill\b}
+valid msgstr=":alt: eina d'emplenat\b"
+hint="Es tradueix per «:alt: eina d'emplenat», no trencarà el vincle amb «|toolfill|» (Sphinx)."
+
+{:alt:\stoolfreehandbrush\b}
+valid msgstr=":alt: eina de pinzell a mà alçada\b"
+hint="Es tradueix per «:alt: eina de pinzell a mà alçada», no trencarà el vincle amb «|toolfreehandbrush|» (Sphinx)."
+
+{:alt:\stoolfreehandpath\b}
+valid msgstr=":alt: eina de camí a mà alçada\b"
+hint="Es tradueix per «:alt: eina de camí a mà alçada», no trencarà el vincle amb «|toolfreehandpath|» (Sphinx)."
+
+{:alt:\stoolgradient\b}
+valid msgstr=":alt: eina de degradat\b"
+hint="Es tradueix per «:alt: eina de degradat», no trencarà el vincle amb «|toolgradient|» (Sphinx)."
+
+{:alt:\stoolgradientedit\b}
+valid msgstr=":alt: eina vectorial d'edició de degradats\b"
+hint="Es tradueix per «:alt: eina vectorial d'edició de degradats», no trencarà el vincle amb «|toolgradientedit|» (Sphinx)."
+
+{:alt:\stoolgrid\b}
+valid msgstr=":alt: eina de quadrícula\b"
+hint="Es tradueix per «:alt: eina de quadrícula», no trencarà el vincle amb «|toolgrid|» (Sphinx)."
+
+{:alt:\stoolline\b}
+valid msgstr=":alt: eina de línia\b"
+hint="Es tradueix per «:alt: eina de línia», no trencarà el vincle amb «|toolline|» (Sphinx)."
+
+{:alt:\stoolmeasure\b}
+valid msgstr=":alt: eina de mesura\b"
+hint="Es tradueix per «:alt: eina de mesura», no trencarà el vincle amb «|toolmeasure|» (Sphinx)."
+
+{:alt:\stoolmove\b}
+valid msgstr=":alt: eina de moure\b"
+hint="Es tradueix per «:alt: eina de moure», no trencarà el vincle amb «|toolmove|» (Sphinx)."
+
+{:alt:\stoolmultibrush\b}
+valid msgstr=":alt: eina de pinzell múltiple\b"
+hint="Es tradueix per «:alt: eina de pinzell múltiple», no trencarà el vincle amb «|toolmultibrush|» (Sphinx)."
+
+{:alt:\stoolpan\b}
+valid msgstr=":alt: eina de desplaçar\b"
+hint="Es tradueix per «:alt: eina de desplaçar», no trencarà el vincle amb «|toolpan|» (Sphinx)."
+
+{:alt:\stoolpatternedit\b}
+valid msgstr=":alt: eina vectorial d'edició de patrons\b"
+hint="Es tradueix per «:alt: eina vectorial d'edició de patrons», no trencarà el vincle amb «|toolpatternedit|» (Sphinx)."
+
+{:alt:\stoolperspectivegrid\b}
+valid msgstr=":alt: eina de la quadrícula de perspectiva\b"
+hint="Es tradueix per «:alt: eina de la quadrícula de perspectiva», no trencarà el vincle amb «|toolperspectivegrid|» (Sphinx)."
+
+{:alt:\stoolpolygon\b}
+valid msgstr=":alt: eina de polígon\b"
+hint="Es tradueix per «:alt: eina de polígon», no trencarà el vincle amb «|toolpolygon|» (Sphinx)."
+
+{:alt:\stoolpolyline\b}
+valid msgstr=":alt: eina de polilínia\b"
+hint="Es tradueix per «:alt: eina de polilínia», no trencarà el vincle amb «|toolpolyline|» (Sphinx)."
+
+{:alt:\stoolrectangle\b}
+valid msgstr=":alt: eina de rectangle\b"
+hint="Es tradueix per «:alt: eina de rectangle», no trencarà el vincle amb «|toolrectangle|» (Sphinx)."
+
+{:alt:\stoolreference\b}
+valid msgstr=":alt: eina d'imatges de referència\b"
+hint="Es tradueix per «:alt: eina d'imatges de referència», no trencarà el vincle amb «|toolreference|» (Sphinx)."
+
+{:alt:\stoolselectcontiguous\b}
+valid msgstr=":alt: eina de selecció d'àrees contigües\b"
+hint="Es tradueix per «:alt: eina de selecció d'àrees contigües», no trencarà el vincle amb «|toolselectcontiguous|» (Sphinx)."
+
+{:alt:\stoolselectellipse\b}
+valid msgstr=":alt: eina de selecció el·líptica\b"
+hint="Es tradueix per «:alt: eina de selecció el·líptica», no trencarà el vincle amb «|toolselectellipse|» (Sphinx)."
+
+{:alt:\stoolselectoutline\b}
+valid msgstr=":alt: eina de selecció de contorns\b"
+hint="Es tradueix per «:alt: eina de selecció de contorns», no trencarà el vincle amb «|toolselectoutline|» (Sphinx)."
+
+{:alt:\stoolselectpath\b}
+valid msgstr=":alt: eina de selecció de camins\b"
+hint="Es tradueix per «:alt: eina de selecció de camins», no trencarà el vincle amb «|toolselectpath|» (Sphinx)."
+
+{:alt:\stoolselectpolygon\b}
+valid msgstr=":alt: eina de selecció poligonal\b"
+hint="Es tradueix per «:alt: eina de selecció poligonal», no trencarà el vincle amb «|toolselectpolygon|» (Sphinx)."
+
+{:alt:\stoolselectrect\b}
+valid msgstr=":alt: eina de selecció rectangular\b"
+hint="Es tradueix per «:alt: eina de selecció rectangular», no trencarà el vincle amb «|toolselectrect|» (Sphinx)."
+
+{:alt:\stoolselectsimilar\b}
+valid msgstr=":alt: eina de selecció de colors similars\b"
+hint="Es tradueix per «:alt: eina de selecció de colors similars», no trencarà el vincle amb «|toolselectsimilar|» (Sphinx)."
+
+{:alt:\stoolshapeedit\b}
+valid msgstr=":alt: eina d'edició de la forma\b"
+hint="Es tradueix per «:alt: eina d'edició de la forma», no trencarà el vincle amb «|toolshapeedit|» (Sphinx)."
+
+{:alt:\stoolshapeselection\b}
+valid msgstr=":alt: eina de selecció amb formes\b"
+hint="Es tradueix per «:alt: eina de selecció amb formes», no trencarà el vincle amb «|toolshapeselection|» (Sphinx)."
+
+{:alt:\stoolsmartpatch\b}
+valid msgstr=":alt: eina de patró intel·ligent\b"
+hint="Es tradueix per «:alt: eina de patró intel·ligent», no trencarà el vincle amb «|toolsmartpatch|» (Sphinx)."
+
+{:alt:\stooltext\b}
+valid msgstr=":alt: eina de text\b"
+hint="Es tradueix per «:alt: eina de text», no trencarà el vincle amb «|tooltext|» (Sphinx)."
+
+{:alt:\stooltransform\b}
+valid msgstr=":alt: eina de transformació\b"
+hint="Es tradueix per «:alt: eina de transformació», no trencarà el vincle amb «|tooltransform|» (Sphinx)."
+
+{:alt:\stoolzoom\b}
+valid msgstr=":alt: eina de zoom\b"
+hint="Es tradueix per «:alt: eina de zoom», no trencarà el vincle amb «|toolzoom|» (Sphinx)."
+
+{\[.*\]\(<[^<]{1,}>\)}
+valid msgstr="\[.*\]\(<[^<]{1,}>\)\b"
+hint="Sembla que l'URL no està ben format (Sphinx)."
+
+{\].?.?\(}
+valid msgid="\].?\(en/posts/"
+valid msgid="\].?\(en/release-notes/"
+valid msgid="\].?\(https://docs\.krita\.org/en/"
+valid msgid="\[manual\].?\(https://docs.krita.org/en/"
+valid msgid="\].?\(https://dot.kde.org/"
+valid msgid="\].?\({{<bug-url \d{6,7}>}}\)"
+valid msgid="\].?\(https://bugs.kde.org/show_bug.cgi?id=\d{6,7}\)"
+valid msgid="\].?\({{<commit-url \w{10,40}>}}\)"
+valid msgid="\].?\(https://invent.kde.org/graphics/krita/-/commit/\w{10,40}\)"
+valid msgid="\].?\(https://download.kde.org/(un)?stable/krita/"
+valid msgid="\].?\(https://files.kde.org/krita/"
+valid msgid="\].?\((https://krita\.org/)?en/"
+valid msgid="\].?\({{<merge-request-url \d{3,6}>}}\)"
+valid msgid="\].?\(https://invent.kde.org/graphics/krita/-/merge_requests/\d{3,6}\)"
+valid msgid="\].?\(https://krita-artists.org/"
+valid msgstr="\]\("
+hint="Es tradueix per «](» (Sphinx)."
+
+[\x5d.?.?\(]
+valid msgstr="\]\("
+hint="Es tradueix per «](» (Sphinx)."
+
+{\].?.?\(https://docs\.krita\.org/en/}
+valid msgid="\[manual\].?\(https://docs\.krita\.org/en/"
+valid msgid="\].?\(https://docs\.krita\.org/en/untranslatable_pages/"
+valid msgstr="\]\(https://docs\.krita\.org/ca/"
+hint="Es tradueix per «](https://docs.krita.org/ca/» (Sphinx)."
+
+  {\[manual\].?\(https://docs\.krita\.org/en/}
+  valid msgstr="\[manual\]\(https://docs\.krita\.org/ca/"
+  hint="Es tradueix per «\[manual\]\(https://docs.krita.org/ca/» (Sphinx)."
+
+  {\].?.?\(https://docs\.krita\.org/en/untranslatable_pages/}
+  valid msgstr="\]\(https://docs\.krita\.org/en/untranslatable_pages/"
+  hint="Es tradueix per «](https://docs.krita.org/en/untranslatable_pages/» (Sphinx)."
+
+{\].?.?\(https://dot\.kde\.org/}
+valid msgstr="\]\(https://dot\.kde\.org/"
+hint="Es tradueix per «](https://dot.kde.org/» (Sphinx)."
+
+{\].?.?\({{<bug-url \d{6,7}>}}\)}
+valid msgstr="\[(informes|informes? d'error: \d{6,7})\]\({{<bug-url \d{6,7}>}}\)"
+valid msgstr="\[informe d'error crític: \d{6,7}\]\({{<bug-url \d{6,7}>}}\)"
+hint="Es tradueix per «[informe d'error: 123456]({{<bug-url 123456>}})» (Sphinx)."
+
+  {\].?.?\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)}
+  valid msgstr="\[informes? d'error: \b\d{6,7}\]\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)"
+  valid msgstr="\[informe d'error crític: \b\d{6,7}\]\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)"
+  hint="Es tradueix per «[informe d'error: 123456](https://bugs.kde.org/show_bug.cgi?id=12345)» (Sphinx)."
+
+{\].?.?\({{<commit-url \w{10,40}>}}\)}
+valid msgstr="\[(comissió|comissió [12345]|esmena)\]\({{<commit-url \w{10,40}>}}\)"
+hint="Es tradueix per «[comissió]({{<commit-url 97fbf20faf>}})» (Sphinx)."
+
+  {\].?.?\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)}
+  valid msgstr="\[(comissió|comissió [12345]|esmena)\]\({{<commit-url \w{10,40}>}}\)"
+  valid msgstr="\[comissió\]\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)"
+  valid msgstr="\[comissió ([0123456789])\]\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)"
+  hint="Es tradueix per «[comissió](https://invent.kde.org/graphics/krita/-/commit/8ece4acc96)» (Sphinx)."
+
+{\].?.?\(https://download\.kde\.org/stable/krita/}
+valid msgstr="\]\(https://download\.kde\.org/stable/krita/"
+hint="Es tradueix per «](https://download.kde.org/stable/krita/» (Sphinx)."
+
+{\].?.?\(https://download\.kde\.org/unstable/krita/}
+valid msgstr="\]\(https://download\.kde\.org/unstable/krita/"
+hint="Es tradueix per «](https://download.kde.org/unstable/krita/» (Sphinx)."
+
+{\].?.?\(https://files\.kde\.org/krita/}
+valid msgstr="\]\(https://files\.kde\.org/krita/"
+hint="Es tradueix per «](https://files.kde.org/krita/» (Sphinx)."
+
+{\].?.?\((https://krita\.org/)?en/posts/2[0123456789][23456789][3456789]/}
+valid msgstr="\]\(ca(-va)?/"
+hint="Es tradueix per «](ca/» (Sphinx)."
+
+  {\].?.?\((https://krita\.org/)?en/posts/20[012][012]/}
+  valid msgstr="\]\(en/"
+  hint="Es tradueix per «](en/» (Sphinx)."
+
+  {\].?.?\((https://krita\.org/)?en/release-notes/}
+  valid msgid="en/posts/20[012][012]/"
+  valid msgid="\].?\((https://krita\.org/)?en/release-notes/(krita-4-2-release-notes|release-notes-for-krita-3-[12]/|release-notes-for-3-1-[23])"
+  valid msgstr="\]\(ca(-va)?/release-notes/"
+  hint="Es tradueix per «](ca/release-notes/» (Sphinx)."
+
+    {\].?.?\((https://krita\.org/)?en/release-notes/(krita-4-2-release-notes|release-notes-for-krita-3-[12]/|release-notes-for-3-1-[23])}
+    valid msgstr="\]\(en/release-notes/"
+    hint="Es tradueix per «](en/release-notes/» (Sphinx)."
+
+{\].?.?\(https://krita-artists\.org/}
+valid msgstr="\]\(https://krita-artists\.org/"
+hint="Es tradueix per «](https://krita-artists.org/» (Sphinx)."
+
+{\].?.?\({{<merge-request-url \d{3,6}>}}\)}
+valid msgstr="\[sol·licituds? de fusió: \d{3,6}\]\({{<merge-request-url \d{3,6}>}}\)"
+hint="Es tradueix per «[sol·licitud de fusió: 1234]({{<merge-request-url 1234>}})» (Sphinx)."
+
+  {\].?.?\(https://invent\.kde\.org/graphics/krita/-/merge_requests/\d{3,6}\)}
+  valid msgid="(2201|Actions Bar|added|API|Cacko|improved|Krita|patches|properties|PyQt |QML|ready|rotation|solving|that|Wayland|widget)\]"
+  valid msgstr="\[2725\]"
+  valid msgstr="\[sol·licituds? de fusió: \d{3,6}\]\({{<merge-request-url \d{3,6}>}}\)"
+  valid msgstr="\[sol·licituds? de fusió: \b\d{3,6}\]\(https://invent\.kde\.org/graphics/krita/-/merge_requests/\d{3,6}\)"
+  valid msgstr="\[sol·licituds? de fusió: \d{3,6}\]\({{<merge-request-url \d{3,6}>}}\)"
+  hint="Es tradueix per «[sol·licitud de fusió: 1234](https://invent\.kde\.org/graphics/krita/-/merge_requests/1234)» (Sphinx)."
+

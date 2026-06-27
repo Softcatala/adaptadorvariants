@@ -1,22 +1,23 @@
 #!/bin/sed -f
 
-# Recursos:
+# Recursos (els URL per al motor de cerca):
 # ---------
+# <https://dlc.iec.cat/> - https://dlc.iec.cat/Results?DecEntradaText=%s
 # <https://geiec.iec.cat/>
-# <https://giec.iec.cat/conjugacio>
-# <https://www.avl.gva.es/lexicval/>
+# <https://giec.iec.cat/conjugacio> - https://giec.iec.cat/conjugacio?paraula=%s
+# <https://www.avl.gva.es/lexicval/> - https://www.avl.gva.es/lexicval/xhtml/dnv.xhtml?paraula=%s
 
 # #
 # # # # # # # # # # # # # #
 #
 # «tradueix» la capçalera
-1,/^msgid / s/\bCatalan/Catalan (Valencian)/g
+1,/^msgid / s/\bCatalan$/Catalan (Valencian)/g
   s/\bLanguage-Team: kde-i18n-ca@kde.org/Language-Team: Catalan <kde-i18n-ca@kde.org>/g
 s/\bLanguage-Team: kde-i18n-ca/Language-Team: Catalan <kde-i18n-ca@kde.org>/g
 s/\bLanguage: ca/Language: ca-valencia/g
 s/\bX-Pootle-Path: \/ca/X-Pootle-Path: \/ca-valencia/g
 
-# No tradueixis linies que no pertanyin a un msgstr
+# No tradueixis les linies que no pertanyin a un msgstr
 /^msgstr/,/^#/ {
 
 # No tradueixis les linies comentades ni els msgid
@@ -30,6 +31,8 @@ s/\\\([nt]\)/\\\1- /g
 # # # # # # # # # # # # # #
 #
 s/\bAjudeu la vostra llibertat\([^[:alnum:]]\)/Doneu suport a la vostra llibertat\1/g
+s/\bCerca a\([^[:alnum:]]\)/Cerca en\1/g
+  s/\bCerca en \(mesura\|través\)\([^[:alnum:]]\)/Cerca a \1\2/g
 s/\b\([Ee]\)l Tux\([^[:alnum:]]\)/\1n Tux\2/g
 s/\bInforma d'errors o desitjos\([^[:alnum:]]\)/Informeu d'errors o desitjos\1/g
 s/\"Instal·leu al\"/\"Instal·leu a\"/g
@@ -86,17 +89,22 @@ s/\b\([Ee]\)ls \(CSV\|Flatpak\|GIF\|Git\|JPEG\|Metalink\|PDF\|SVG\)\([^[:alnum:]
 # # # # # # # # # # # # # #
 #
 # correccions en els noms
-s/\bDarkTable\([^[:alnum:]]\)/Darktable\1/g
+s/\bAkgregator\([^[:alnum:]]\)/Akregator\1/g
+s/\bBig.?\([Ss]\)creen\([^[:alnum:]]\)/Bigscreen\2/g
+s/\bbohnenspiel\([^[:alnum:]]\)/Bohnenspiel\1/g
+s/\b\([Dd]\)ark\([Tt]\)able\([^[:alnum:]]\)/darktable\3/g
 s/ DB\(us\|US\)\([^[:alnum:]]\)/ D-Bus\2/g
 s/\bDigi\([Kk]\)am\([^[:alnum:]]\)/digiKam\2/g
   s/\bdel «panorama\([^[:alnum:]]\)/de «panorama\1/g
 s/\bDropbox\([^[:alnum:]]\)/DropBox\1/g
 s/\bDuck Duck Go\([^[:alnum:]]\)/DuckDuckGo\1/g
+s/\bEkos Live\([^[:alnum:]]\)/EkosLive\1/g
 s/\bFFMpeg\([^[:alnum:]]\)/FFmpeg\1/g
 s/\bFFProbe\([^[:alnum:]]\)/FFprobe\1/g
 s/\bGatekeeper\([^[:alnum:]]\)/GateKeeper\1/g
 s/\bGithub\([^[:alnum:]]\)/GitHub\1/g
 s/\bGitlab\([^[:alnum:]]\)/GitLab\1/g
+s/\bG'Mic\([^[:alnum:]]\)/G'MIC\1/g
 s/\bGnucash\([^[:alnum:]]\)/GnuCash\1/g
 s/\bGPhoto\([^[:alnum:]]\)/gPhoto\1/g
 s/\bHash-o-matic\([^[:alnum:]]\)/Hash-o-Matic\1/g
@@ -105,6 +113,7 @@ s/\bHomebank\([^[:alnum:]]\)/HomeBank\1/g
 s/\bide-scsi\([^[:alnum:]]\)/IDE-SCSI\1/g
 s/\bKAddressbook\([^[:alnum:]]\)/KAddressBook\1/g
 s/\bK\([Aa][Ii][Cc]\)hat\([^[:alnum:]]\)/KAIChat\2/g
+s/\bkalah\([^[:alnum:]]\)/Kalah\1/g
 s/\bKBibTex\([^[:alnum:]]\)/KBibTeX\1/g
 s/\bKCachgrind\([^[:alnum:]]\)/KCachegrind\1/g
 s/\bKee\([Pp]\)ass\([Xx][Cc]\)\([^[:alnum:]]\)/KeePassXC\3/g
@@ -112,6 +121,7 @@ s/\bKeepsecret\([^[:alnum:]]\)/KeepSecret\1/g
 s/\bKGPG\([^[:alnum:]]\)/KGpg\1/g
 s/\bKInfocenter\([^[:alnum:]]\)/KInfoCenter\1/g
 s/\bKnights\([^[:alnum:]]\)/KNights\1/g
+s/\bKOrganiser\([^[:alnum:]]\)/KOrganizer\1/g
 s/\bKParts\([^[:alnum:]]\)/KPart\1/g
 s/\b\(K[Rr]eg[Ee]xp[Ee]ditor\)\([^[:alnum:]]\)/KRegexpEditor\2/g
 s/\bKrunner\([^[:alnum:]]\)/KRunner\1/g
@@ -121,19 +131,28 @@ s/\bKTExtEditor\([^[:alnum:]]\)/KTextEditor\1/g
 s/\bKUiViewer\([^[:alnum:]]\)/KUIViewer\1/g
 s/\bKUserfeedback\([^[:alnum:]]\)/KUserFeedback\1/g
 s/\bdel ledger\([^[:alnum:]]\)/del Ledger\1/g
+s/\bLibraw\([^[:alnum:]]\)/LibRaw\1/g
 s/\bLytebox\([^[:alnum:]]\)/LyteBox\1/g
 s/\bMacOS\([^[:alnum:]]\)/macOS\1/g
 s/\bMarknote\([^[:alnum:]]\)/MarkNote\1/g
 s/\bMediawiki\([^[:alnum:]]\)/MediaWiki\1/g
 s/\bMyCroft\([^[:alnum:]]\)/Mycroft\1/g
 s/\bNeochat\([^[:alnum:]]\)/NeoChat\1/g
+s/\bOpenColor IO\([^[:alnum:]]\)/OpenColorIO\1/g
+s/\b\([Oo]pen[Ss][Uu][Ss][Ee]\)\([^[:alnum:]]\)/openSUSE\2/g
+  s/\bopenSUSE\.org\([^[:alnum:]]\)/opensuse.org\1/g
+s/\boware\([^[:alnum:]]\)/Oware\1/g
+s/\bpallanguli\([^[:alnum:]]\)/Pallanguli\1/g
 s/\bPeertube\([^[:alnum:]]\)/PeerTube\1/g
+s/\bPhoto\([Ss]\)shop\([^[:alnum:]]\)/Photoshop\2/g
 s/\bPlasma mobile\([^[:alnum:]]\)/Plasma Mobile\1/g
 s/\bPostmarketOS\([^[:alnum:]]\)/postmarketOS\1/g
 s/\bPulseaudio\([^[:alnum:]]\)/PulseAudio\1/g
 s/\b\(Pu[Mm]o[Kk]u\)\([^[:alnum:]]\)/PuMoKu\2/g
 s/\bQpdf\([^[:alnum:]]\)/QPDF\1/g
 s/\bRetropad\([^[:alnum:]]\)/RetroPad\1/g
+s/\bS Pad\([^[:alnum:]]\)/S-Pad\1/g
+s/\bS Pen\([^[:alnum:]]\)/S-Pen\1/g
 s/\bToolbox\([^[:alnum:]]\)/ToolboX\1/g
 s/\bWeb\([Dd][Aa][Vv]\)\([^[:alnum:]]\)/WebDAV\2/g
 s/\bWeb\([Dd][Aa][Vv][Ss]\)\([^[:alnum:]]\)/WebDAVS\2/g
@@ -142,60 +161,61 @@ s/\bXPlanet\([^[:alnum:]]\)/Xplanet\1/g
 s/\bXwayland\([^[:alnum:]]\)/XWayland\1/g
 s/\bYoutube\([^[:alnum:]]\)/YouTube\1/g
 s/\b\([Yy]\)ouTube-dl\([^[:alnum:]]\)/\1outube-dl\2/g
+s/\bVOSK\([^[:alnum:]]\)/Vosk\1/g
 # #
 # # # # # # # # # # # # # #
 #
 s/\b\([Ee]\)l \(<[^<]\{1,\}>\|\[\|«\|\)\(BSD\|Debian\|Haiku\|Linux\|macOS\|MeeGo\|Solaris\|SteamOS\|Windows\)\([^[:alnum:]]\)/\2\3\4/g
 #
-s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bomberman\|Bonsai\|Booth\|Bovo\|Bottles\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|Darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|digiKam\|Digital\|ding\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|fwhm\|G'Mic\|G'MIC-Qt\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GMail\|G'MIC\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|Jitsi\|JetDirect\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\1 \2\3\4\5/g
-s/\b\([Ee]\)l\(s\|\) \(\|\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bomberman\|Bonsai\|Booth\|Bottles\|Bovo\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|Darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|digiKam\|Digital\|ding\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|fwhm\|G'Mic\|G'MIC-Qt\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GMail\|G'MIC\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|JetDirect\|Jitsi\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\3\4\5\6/g
-s/\b\([Dd]\)el\(s\|\) \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bomberman\|Bonsai\|Booth\|Bottles\|Bovo\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|Darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|digiKam\|Digital\|ding\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|fwhm\|G'Mic\|G'MIC-Qt\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GMail\|G'MIC\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|JetDirect\|Jitsi\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\1e \3\4\5\6/g
-s/\b\([Pp]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bomber\|Bomberman\|Bonsai\|Booth\|Bottles\|Bovo\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|Darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|digiKam\|Digital\|ding\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|fwhm\|G'Mic\|G'MIC-Qt\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|\.GlobalEnv\|GlobalEnv\|GMail\|G'MIC\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|JetDirect\|Jitsi\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\1er \2\3\4\5/g
-s/\b\([Ll]\)a \(\|\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(Kubuntu Focus\)\([^[:alnum:]]\)/\2\3\4\5/g
-s/\b\([Pp]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(7z\)\([^[:alnum:]]\)/\1er \2\3\4\5/g
+s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bohnenspiel\|Bomber\|Bomberman\|Bonsai\|Booth\|Bovo\|Bottles\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dc1394\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|Dice\|digiKam\|Digital\|ding\|Direct3D\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|Distrobox\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawpile\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|Fancy\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|Flathub\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|FunctionGemma\|fwhm\|G'MIC\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|GLM\|\.GlobalEnv\|GlobalEnv\|GMail\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|gpt\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|[Hh]omebrew\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|Intuit\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|Jitsi\|JetDirect\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|Kalah\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kapsule\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|KDominate\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|KEMailSettings\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kimi\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\1 \2\3\4\5/g
+s/\b\([Ee]\)l\(s\|\) \(\|\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bohnenspiel\|Bomber\|Bomberman\|Bonsai\|Booth\|Bottles\|Bovo\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dc1394\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|Dice\|digiKam\|Digital\|ding\|Direct3D\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|Distrobox\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawpile\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|Fancy\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|Flathub\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|FunctionGemma\|fwhm\|G'MIC\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|GLM\|\.GlobalEnv\|GlobalEnv\|GMail\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|gpt\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|[Hh]omebrew\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|Intuit\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|JetDirect\|Jitsi\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|Kalah\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kapsule\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|KDominate\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|KEMailSettings\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kimi\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\3\4\5\6/g
+s/\b\([Dd]\)el\(s\|\) \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bohnenspiel\|Bomber\|Bomberman\|Bonsai\|Booth\|Bottles\|Bovo\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dc1394\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|Dice\|digiKam\|Digital\|ding\|Direct3D\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|Distrobox\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawpile\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|Fancy\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|Flathub\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|FunctionGemma\|fwhm\|G'MIC\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|GLM\|\.GlobalEnv\|GlobalEnv\|GMail\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|gpt\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|[Hh]omebrew\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|Intuit\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|JetDirect\|Jitsi\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|Kalah\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kapsule\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|KDominate\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|KEMailSettings\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kimi\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\1e \3\4\5\6/g
+s/\b\([Pp]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|0Ad\|AppSocket\|automodule\|BakLLaVA\|Baloo\|Balsa\|Banner\|Bash\|BAR\|Bas[Kk]et\|Batalla naval\|Bazaar\|Bergamot\|Bespin\|BGE\|BibSearch\|BibTeX\|Bigscreen\|Bitbucket\|Bittorrent\|Blackbox\|Blender\|Blinken\|Blowfish\|Blu-ray\|Blue Angel\|Bluetooth\|bodyParam\|Bohnenspiel\|Bomber\|Bomberman\|Bonsai\|Booth\|Bottles\|Bovo\|Box\|Braindump\|bravenec2nd\|Breakout\|Breeze\|Brisa\|bookworm\|Bugzilla\|Buho\|bup\|Burnfree\|Burnproof\|C++\|Cachegrind\|Calcudoku\|Calindori\|[Cc]allgrind\|Calligra\|Calltree\|Cantor\|CAS\|Catfish\|CCD\|CDDB\|CDS\|cdrdao\|cdrecord\|cdrskin\|CD[SV]\|CEC\|Centre d'informació\|Cervisia\|ChatGPT\|check-config\|checkXML[56]\|Chessament\|Chessbase\|Choqok\|Chrome\|Chromium\|CinePaint\|Cisco\|cjpeg\|Clanbomber\|[Cc]lang\|clangd\|[Cc]lazy\|CLI\|Clip\|clipboard\|[Cc][Mm]ake\|cmap\|cmark\|cnoremap\|CoCreateInstance\|CodeGemma\|Code Llama\|CodeQwen[123456789]\|Codestral\|Cogito\|Cohere\|Command\|commander\|CompteEnrere\|Communicator\|ConnectServer\|CompilerExplorer\|ConsoleKit\|contactprintthemeeditor\|contactthemeeditor\|contentItem\|convert\|convmv\|copy\|cor.test\|Corel\|Coverity\|[Cc]ppcheck\|CRAN\|Crio\|crontab\|Crow\|cryfs\|Crystal\|CTags\|CSound\|CUDA\|CUPS\|CurConv\|curconvd\|Cuttlefish\|D3D9\|D-Bus\|darktable\|data.frame\|[Dd]ataEngine\|DavDroid\|dbus\|dc1394\|dcraw\|dcraw_process\|Debconf\|DBRX\|DebugView\|Deep\|DeepCoder\|DeepL\|Dee[kp]Seek\|DeepMind\|Desfer\|[Dd]esigner\|dev2bitmap\|dev.print\|DH1080_INIT\|Dice\|digiKam\|Digital\|ding\|Direct3D\|dirmngr\|Discount\|Discover\|DiSEqC\|displaycal\|Distrobox\|div\|Django\|DjVuLibre\|DKIM\|dkim\|DMA\|dmesg\|Docker\|Docbook\|Dolphin\|Doxygen\|DPMS\|Dr Konqi\|Dragon\|DrawPerfect\|Drawpile\|Drawy\|DrKonqi\|DrKonqi2\|DropBox\|Drupal\|DuckDuckGo\|dvd+rw-format\|dvips\|DXVK\|en_US\|Era\|Facebook\|Falkon\|Falcon[23456789]\|Fancy\|FastStone\|Fedivers\|ffmpeg\|FFmpeg\|ffprobe\|FFprobe\|Fielding\|Fiery\|Filelight\|FileStash\|Final Fantasy\|Finder\|Firefox\|firewalld\|FireWire\|fish\|Flathub\|[Ff]latpak\|Flickr\|Flick&r\|Flow\|FlowChart\|FluidSynth\|FocusWriter\|Font Management\|Fontmatrix\|Francis\|freedesktop.org\|Freenode\|frei0r\|FreeType\|fsck\|fsync\|FSView\|FunctionGemma\|fwhm\|G'MIC\|g10\|Gadu-Gadu\|Galeon\|GALR\|GAPPS\|Garage\|GateKeeper\|GBR\|GCC\|gcc\|gcompris\|GCompris\|GCstar\|gdb\|GDB\|Gemini\|Gemma\|German\|get\|getAuditLog\|GetHotNewStuff\|[Gg]ettext\|Gherkin\|Ghostscript\|GIH\|Giggle\|Gimp\|GIMP\|[Gg]it\|git[gk]\|GitHub\|GitKlient\|GitLab\|Glaxnimate\|GLM\|\.GlobalEnv\|GlobalEnv\|GMail\|GNOME\|Gnome\|GNU\|GnuCash\|GnuPG\|[Gg]nuplot\|GOCR\|gocryptfs\|Godot\|Gomoku\|Google\|GoogleEart\|GoogleMaps\|_ghostwriter\|ghostwriter\|gop\|GOP\|goto\|GoToSocial\|GParted\|gpasm\|GPG\|gpg\|Gpg4win\|gpg-agent\|GpgConf\|GpgME\|gpgsm\|GpgSM\|gPhoto\|GPodder\|GPSBabel\|gpt\|GPT\|GPT[23456789]\|GPT4o\|Grammalecte\|grammalected\|Granatier\|Granite\|Grantlee\|Graphics\|[Gg]raphviz\|Gravatar\|GreaseMonkey\|grep\|Grisbi\|GroupWise\|growisofs\|Grub\|GSSAPI\|GStreamer\|Gtk\|GUIProfile\|Gwenview\|Gzip\|h5dump\|HAL\|Hana\|Hash-o-Matic\|HDR\|headerthemeeditor\|Healpix\|[Hh]eaptrack\|HEIF\|Helgrind\|Hermes\|HFR\|hg\|High\|HiPS\|HomeBank\|[Hh]omebrew\|HotShots\|HPLIP\|Htop\|[Hh]ugo\|Hunspell\|Hyprland\|Iconexplorer\|IDE-SCSI\|IFrame\|InfinityBook\|Invidious\|inputVectorData\|inputVectorTime\|Intuit\|jAlbum\|Jamendo\|Java\|Java[Ss]cript\|JetDirect\|Jitsi\|jitter\|Jog\|journald\|Jovie\|JPL\|Ju[Kk]\|[Jj]ulia\|Juniper\|Jupyter\|JXL\|K3b\|KAddressBook\|Kadmos\|KADMOS\|Kaffeine\|Kaggle\|KAIChat\|Kaidan\|Kairo\|Kajongg\|Kalah\|KAlarm\|Kalendar\|KAlgebra\|Kalk\|Kalm\|Kalzium\|Kameleon\|Kamera\|Kamoso\|Kanagram\|Kapman\|KAppTemplate\|Kapsule\|Kaption\|Karbon\|Karp\|Kartographer\|Kasts\|Kate\|KAtomic\|KBabel\|KBackup\|KBibTeX\|KBlackBox\|KBlocks\|KBounce\|KBreakOut\|KBruch\|kbuildsycoca[56]\|KBuildSycoca\|KCachegrind\|KCalc\|KCalendarCore\|KCharSelect\|KClock\|KCM\|KColorChooser\|KConfig\|KContact\|KCron\|KDE\|kde4-config\|KDebug\|kdebugdialog[56]\|[Kk][Dd]ebug[Ss]ettings\|kde-builder\|kdeconnectd\|KDED\|kded\|kded[56]\|kded[56]rc\|kdegraphics\|kdeinit\|kdeinit[56]\|[Kk]denlive\|KDEPrint\|KDesktop\|kdesrc-build\|kdesu\|kdesudo\|Kdesvn\|KDevelop\|KDialog\|KDiamond\|KDiff3\|KDing\|KDiskFree\|KDominate\|keditbookmarks\|keditfiletype\|KeePassXC\|KeepSecret\|KEMailSettings\|Kerberos\|KEuroCalc\|Kexi\|KEXI\|Keysmith\|kf[56]-config\|KFileDialog\|KFileMetaDataReader\|KFind\|KFloppy\|KFM\|KFourInLine\|KGameRenderer\|KGamma\|kgendesignerplugin\|KGeography\|KGeoTag\|KGet\|KGoldrunner\|KGpg\|KGraphViewer\|KHangMan\|[Kk][Hh]elp[Cc]enter\|Khipu\|khotkeys\|KHotkeys\|KHTML\|khtml\|Kid3\|Kig\|Kigo\|Kile\|Killbots\|Killer\|KImageMapEditor\|KImageShop\|KInfoCenter\|KIO\|Kio-Extras\|kiod\|KIPI\|Kickstarter\|Kimi\|Kirigami\|Kiriki\|Kirogi\|Kiten\|KItinerary\|KJots\|KJournald\|KJumpingCube\|KLauncher\|Kleopatra\|KLettres\|Klever\|KleverNotes\|Klickety\|Klimbgrades\|KLines\|Klipper\|ksld\|KMag\|KMagnifier\|KMahjongg\|KMail\|KMenu\|KMines\|KMix\|kmix\|KMouseTool\|KMouth\|KMPlayer\|KmPlot\|KMuddy\|KMyMoney\|kmymoney\|KNetWalk\|KNewStuff\|KNights\|KNotes\|KNotify\|Kodaskanna\|KOffice\|Koko\|Kolab\|Kolf\|Kollision\|Kolor Lines\|Kolorfill\|KolourPaint\|Kommit\|KomoDo\|[Kk]ompare\|Kongress\|Konqueror\|Konquest\|[Kk]onsole\|Kontact\|Kontainer\|Kontrast\|Konversation\|Konvex\|Kooka\|Kookbook\|Kopete\|KOrganizer\|KNS\|KPackage\|KPackageType\|KPat\|KPatience\|KPhotoAlbum\|KPipewire\|KPL\|KPlato\|KPresenter\|Krayon\|[Kk]razy2\|KRDC\|KRdp\|krdpserver\|KRegexpEditor\|KRename\|KReport\|KRetro\|KReversi\|K[Rr]fb\|Krita\|Kronometer\|Kross\|KRuler\|KRun\|KRunner\|Krusader\|KSame\|KScreen\|KService\|KSeExpr\|KShisen\|KSIRC\|KsirK\|ksld\|KSnakeDuel\|KSokoban\|Sokoban\|KSpaceDuel\|Kspell\|KSpread\|KSquares\|Ksshaskpass\|[Kk]st\|KStars\|KSudoku\|KSyntaxHighlighter\|KSyntaxHighlighting\|KSysGuard\|KSystemLog\|KTeaTime\|KTechlab\|KTelnetService\|KTextEditor\|KTimer\|KTimeTracker\|KTorrent\|KTouch\|KTP\|KTrip\|KTuberling\|KTurtle\|Kube\|Kubric\|Kubrick\|Kuickshow\|KuickShow\|KUIViewer\|Kup\|KUserFeedback\|KWallet\|kwallet-query\|kwalletd\|KWalletManager\|KWatchGnuPG\|Kwave\|KWeather\|KWidgetsAddons\|KwikDisk\|KWin\|KWord\|KWordQuiz\|KWrite\|KXStitch\)\([^[:alnum:]]\)/\1er \2\3\4\5/g
+s/\b\([Ll]\)a \(\|\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(Kubuntu Focus\)\([^[:alnum:]]\)/\2\3\4\5/g
+s/\b\([Pp]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(7z\)\([^[:alnum:]]\)/\1er \2\3\4\5/g
 #
-s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|MauiKit\|Maui\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|Memcheck\|memcpy\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|msgfmt\|msgmerge\|ms_print\|MTP\|MUD\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|Plasma\|plasma-mobile\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtChart\|QtComponents\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|VOSK\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|Xplanet\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|WeChat\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1 \2\3\4\5/g
-s/\b\([Ee]\)l\(s\|\) \(\|\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|Maui\|MauiKit\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|Memcheck\|memcpy\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|msgfmt\|msgmerge\|ms_print\|MTP\|MUD\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|Plasma\|plasma-mobile\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtChart\|QtComponents\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|VOSK\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|WeChat\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\3\4\5\6/g
-s/\b\([Dd]\)el\(s\|\) \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|Maui\|MauiKit\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|Memcheck\|memcpy\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|msgfmt\|msgmerge\|ms_print\|MTP\|MUD\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|Plasma\|plasma-mobile\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtChart\|QtComponents\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|VOSK\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|WeChat\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1e \3\4\5\6/g
-s/\b\([Pp]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|Maui\|MauiKit\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|memcpy\|Memcheck\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|msgfmt\|msgmerge\|ms_print\|MTP\|MUD\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|Plasma\|plasma-mobile\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtChart\|QtComponents\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|VOSK\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|xjdic\|xmllint\|Xplanet\|XSudoku\|XVideo\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|WeChat\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1er \2\3\4\5/g
+s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|Lcms\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|LFM2\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|LLVM\|LMStudio\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mancala\|MankalaEngine\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|MauiKit\|Maui\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|md4qt\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|Memcheck\|memcpy\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MiniMax\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|ms_print\|mSATA\|msgfmt\|msgmerge\|MTP\|MUD\|Multilink\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|Nix\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|Pallanguli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|[Pp]lasma\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|PSD\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtAVPlayer\|QtChart\|QtComponents\|QtCreator\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|QWebEngine\|QWebView\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|RAID\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rnj\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S-Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemd\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|sysext\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOS\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|Vosk\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|watchgnupg\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|Xiaomi\|xjdic\|xmllint\|Xplanet\|XSudoku\|XVideo\|xwayland\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|Ventoy\|Vulkan\|WeChat\|WinGetUserName\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1 \2\3\4\5/g
+s/\b\([Ee]\)l\(s\|\) \(\|\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|Lcms\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|LFM2\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|LLVM\|LMStudio\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mancala\|MankalaEngine\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|Maui\|MauiKit\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|md4qt\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|Memcheck\|memcpy\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MiniMax\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|ms_print\|mSATA\|msgfmt\|msgmerge\|MTP\|MUD\|Multilink\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|Nix\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|Pallanguli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|[Pp]lasma\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|PSD\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtAVPlayer\|QtChart\|QtComponents\|QtCreator\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|QWebEngine\|QWebView\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|RAID\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rnj\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S-Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemd\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|sysext\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOS\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|Vosk\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|watchgnupg\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|Xiaomi\|xjdic\|xmllint\|XSudoku\|XVideo\|xwayland\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|Ventoy\|Vulkan\|WeChat\|WinGetUserName\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\3\4\5\6/g
+s/\b\([Dd]\)el\(s\|\) \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|Lcms\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|LFM2\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|LLVM\|LMStudio\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mancala\|MankalaEngine\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|Maui\|MauiKit\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|md4qt\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|Memcheck\|memcpy\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MiniMax\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|ms_print\|mSATA\|msgfmt\|msgmerge\|MTP\|MUD\|Multilink\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|Nix\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|Pallanguli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|[Pp]lasma\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|PSD\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtAVPlayer\|QtChart\|QtComponents\|QtCreator\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|QWebEngine\|QWebView\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|RAID\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rnj\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S-Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemd\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|sysext\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOS\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|Vosk\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|watchgnupg\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|Xiaomi\|xjdic\|xmllint\|XSudoku\|XVideo\|xwayland\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|Ventoy\|Vulkan\|WeChat\|WinGetUserName\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1e \3\4\5\6/g
+s/\b\([Pp]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(LabPlot\|LabPlot2\|LAME\|LanguageTool\|lasso\|Last.fm\|latex\|LaTeX\|Latte\|lattice\|Launchpad\|Lcms\|LDAP\|LDAPS\|Ledger\|Libarchive\|LibreOffice\|Libretro\|Licentia\|LDAP\|LDAPS\|LFM2\|Lightroom\|LIGO\|LightDM\|Lilo\|lin_guider\|Lin-Guider\|Linux\|Little\|Livechat\|LLa[MV]A\|Llama\|Llama[23456789]\|LLDB\|lldb-mi\|LLM\|LLVM\|LMStudio\|loca[lt]e\|lock\|lockd\|logcat\|logger\|logind\|Logo\|LoginD\|Lokalize\|Lottie\|LottieFiles\|Lotus\|LSkat\|LSP\|Lua\|Lutris\|LyteBox\|LyX\|LZMA\|Mac\|Magic\|Magicoder\|Magnatune\|Mail\|mailfilteragent\|Mahjongg\|Maildir\|[Mm]ake\|man\|Mancala\|MankalaEngine\|Mangonel\|Maniphest\|MapCrunch\|Marble\|MarkNote\|[Mm]arlin\|[Mm]assif\|Mastodon\|Material\|MathΣtral\|MathJax\|Matlab\|Matrix\|Maui\|MauiKit\|MauiManServer\|Maxima\|MBox\|MBoxImporter\|md4qt\|MediaWiki\|MegaDolphin\|meinproc[56]\|Melon\|MinT\|[Mm]elt\|memcpy\|Memcheck\|mencoder\|Mercurial\|Merkuro\|merge\|Meson\|MesonManager\|Messenger\|Meta Print Spool\|Metalink\|[M̀m]icrobe\|Microsoft\|MiddleClickLoader\|Milou\|MindMap\|Minetest\|MinGW\|minicli\|MiniMax\|MINIX\|Minuet\|Mi[sx]tral\|MistralLite\|mkdir\|mkinitcpio\|mkisofs\|MLT\|mmap\|Mobipocket\|ModemManager\|Money\|monopd\|moondream[23456789]\|[Mm]orse\|move\|Moving\|Mozhi\|Mozilla\|mplayer\|MPlayer\|MPRIS2\|mpv\|MS Project\|ms_print\|mSATA\|msgfmt\|msgmerge\|MTP\|MUD\|Multilink\|MultiMarkdown\|MultiStar\|Muon\|MuseScore\|MusicBrainz\|mutex\|muxer\|Mycroft\|MyPaint\|mysql\|MySQL\|ncdump\|NED\|NeoChat\|Nepomuk\|Netscape\|Netscreen\|NetworkManager\|Next[Cc]loud\|Nexus\|nginx\|[Nn]inja\|Nix\|NKS\|noatun\|normalize\|Nota\|Notae\|note\|Nous Hermes\|p7zip\|Pac-Man\|PackageKit\|Palapeli\|Pallanguli\|[Pp]andoc\|Panorama\|PaperKey\|par2\|Pareto\|Parley\|parsha\|Partitioner\|Pascale\|Patreon\|pdflatex\|pdfpages\|pdfsync\|pdftk\|Peek\|PeerTube\|[Pp]erforce\|Peruse\|PFS\|Phabricator\|PHD2\|phd2logview\|Phi\|Phonon\|Photobash\|Photos\|Photoshop\|PhotoSwipe\|PHPUnit\|Picmi\|Pidgin\|Pikasso\|pimdataexporter\|Pine64\|Pinebook\|Pine[Pp]hone\|PineTab\|ping\|Pinterest\|pip3\|Pipe[dr]\|PipeWire\|Piwigo\|Pix\|Piwik\|Pixelfed\|Plan\|Planck\|PLANCK\|Planner\|PlantUML\|PlanWork\|[Pp]lasma\|PlasmaLogin\|plasmapkg2\|plasmashell\|PlasmaTube\|Plastik\|Playdar\|Plymouth\|pngquant\|PolicyKit\|Pology\|Pomodoro\|pool\|Poppler\|Portable\|Portfolio\|PostgreSQL\|postmarketOS\|[Pp]ost[Ss]cript\|PowerDevil\|Power[Pp]lant\|PowerTop\|preparetips[56]\|prettier\|Progressive\|ProPhotoRGB\|Proton\|ProtonDB\|PS\|PSD\|psselect\|pstops\|PTY\|PulseAudio\|PuMoKu\|Purpose\|pvfViewer\|PyQt\|[Pp]ython\|[Pp]ython[23]\|pyuic[56]\|QADS\|Qalculate\|QApplication\|QCA\|QCommandLineParser\|QEMU\|QFileDialog\|QGit\|QGraphicsView\|QGuiApplication\|QImageWriter\|QKeychain\|QMake\|qmljs\|QObject\|QPDF\|QPGME\|Qrca\|QSaveFile\|Qt\|QtAVPlayer\|QtChart\|QtComponents\|QtCreator\|QtCurve\|QtHelp\|QtQuick\|QtWebEngine\|Quicken\|QuickConnect\|Quickstates\|quota\|Quotient\|QWebEngine\|QWebView\|Qwen\|Qwen[23456789]\|QWidget\|QwQ\|R\|RAID\|Rajce\|Rattlesnake\|Raven\|RawTherapee\|readcd\|Real Media\|Redshift\|Refer\|[Rr]eplicode\|RepRap\|Rest\|reStructuredText\|ReText\|RetroArch\|RetroPad\|REUSE\|Review Board\|reviewboard\|rio\|\.rkward\|RKward\|RKWard\|RMarkdown\|Rnj\|Rocs\|Rocke[rt]\|RocketChat\|Roliserver\|Rolisteam\|Roy\|RPG\|RSIBreak\|rsync\|RTC\|Ruby\|Rufus\|Ruqola\|Runner\|Rust\|S-Pen\|Sage\|Sailor[23456789]\|SAM2\|Samba\|SANE\|Scilab\|scour\|SDDM\|[Ss]dk\|SeamlessM4T\|SecretService\|SecretValue\|sed\|[Ss]elenium\|[Ss]endmail\|sesameResolver\|Sextraction\|Sextractor\|shader\|Sheets\|Shelf\|shell\|ShieldGemma\|Showfoto\|Shutter\|[Ss]ieve\|sieveeditor\|SigG\|Simbad\|SimpleScreenRecorder\|Sink\|systemd\|systemdGenie\|Sixel\|Skanlite\|Skanpage\|Skrooge\|Skladnik\|smb\|Smb4K\|S\/MIME\|SmolLM[23456789]\|SMTP\|SmugMug\|Snore\|SnoreNotify\|Snowflake\|Solid\|Sonicwall\|Soundcloud\|Source\|Spacebar\|Spectacle\|SQLCoder\|Sqlite\|SQLite\|src\|SSH\|ssh-add\|sshfs\|Stage\|Star\|Steam\|SteamOS\|Stellarium\|StellarMate\|StellarSolver\|Step\|Stopmotion\|StretchPlayer\|Strike\|subreddit\|SubRipper\|Substance\|Subtitle Composer\|[Ss]ubversion\|sudo\|SV[GN]\|SymbolEditor\|Symmy\|Synaptic\|sysext\|syslog\|syspath\|[Ss]ystemd\|SystemLog\|Sway\|Tagged\|TAlbum\|Tangram\|TaskJuggler\|teamd\|Technology\|Telegram\|[Tt]elepathy\|Tellico\|Telly\|Template\|Tesseract\|Tetris\|TeX\|TextEditor\|The\|Thunderbird\|Thunderbolt\|TinyLlama\|TLS\|TNamed\|Tok\|Tokodon\|ToolboX\|top\|TOS\|TOTP\|trait\|transcode\|Translate-Toolkit\|trixel\|Trojitá\|Tron\|Tülu\|Tumbleweed\|tun\|TurtleScript\|Tuxpaint\|Twitter\|unarchiver\|unpack_thumb\|unrar\|Vail\|Vakzination\|Valgrind\|VcdImager\|vcdxrip\|Vegastrike\|venv\|[Vv]era++\|[Vv]i\|[Vv]im\|VIPS\|VirtualBox\|virtualenv\|VLC\|VmSize\|VNC\|VokoscreenNG\|Vorbis\|VMap\|Vosk\|vsync\|Vvave\|Wacom\|[Ww]aydroid\|Wake\|WashiPad\|watchgnupg\|Watney\|Wayland\|Weather\|WebEngine\|webhook\|WebKit\|[Ww]eboob\|WebRTC\|Weston\|Will\|Windows\|WINE\|Wine\|winid\|WinPT\|WireGuard\|wireplumber\|Whisper\|Wizard LM\|Wizard Vicuna\|Wolfram\|[Ww]oob\|Word\|WordNet\|WordPerfect\|Words\|x.org\|XDebug\|XFig\|xfreerdp\|Xine\|Xiaomi\|xjdic\|xmllint\|Xplanet\|XSudoku\|XVideo\|xwayland\|XWayland\|Yahtzee\|Yakuake\|YaST\|You[Tt]ube\|ytmusicapi\|Ventoy\|Vulkan\|WeChat\|WinGetUserName\|xdotool\|Xming\|Yi\|Zanshin\|Zephyr\|Zeroconf\|Zotero\|Zstd\)\([^[:alnum:]]\)/\1er \2\3\4\5/g
 
  #
-s/\b\([Dd]\)e l'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(Final Fantasy\|HDR\|mplayer\|Scilab\|Scratchpad\|Scribus\|ScriptEngine\|SDDM\|SDR\|sflphone-client-kde\|Skanlite\|Skanpage\|sketchbook\|[Ss]krooge\|Skype\|SkySafari\|Slack\|SlackBridge\|Slimbook\|SMART\|Smoothie\|[Ss]nap\|Spacebar\|Spectacle\|Spectral\|SPHINX\|Sphinx\|Spirit\|sqcipher\|SQL\|SQLite\|Stable\|Stage\|StarCoder\|StarCoder[23456789]\|Stargate\|Starling\|Station\|Steam\|Stellarium\|StellarMate\|StellarSolver\|Step\|StepCore\|Stockfish\|Stopmotion\|SVN\|X11\|Xming\|XSudoku\)\([^[:alnum:]]\)/\1e \2\3\4\5/g
-s/\b\([Dd]\)e l'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(Ad[Bb]lock\|Academy\|Accerciser\|AccountWizard\|ACDSee\|akonadiserverrc\|Acrobat\|Actiona\|Active\|Adium\|Affinity\|Agrovoc\|Akkoma\|Akonadi\|akonadictl\|Akregator\|Alkimia\|Alligator\|AllowedIP\|Almanac\|Alpaka\|alphagrad\|Amarok\|amarokcollectionscanner\|Amazon\|Amor\|Ampache\|Analitza\|Analyze\|Anbox\|Android\|Angelfish\|ANSVR\|Apache\|AppData\|Apper\|AppImage\|Apple\|Apport\|[Aa]ppstream\|AqBanking\|Arc[ah]\|Arctic\|Ard&uino\|Arduino\|Arianna\|Ark\|Arkade\|ART\|ADSK\|Associated\|ASTAP\|Astrobin\|Athene\|Audioscrobbler\|AudioTube\|Configuració del sistema\|Artikulate\|ask\|Assimp\|Astra\|[Aa]strometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|AUR\|Aura\|Aurorae\|Autocrypt\|automodule\|AVPlayer\|AWS\|Aya\|EDR\|EEPROM\|EFFECT\|Ekiga\|Ekos\|EkosLive\|Elisa\|Eloquens\|Emacs\|eMovix\|en_US\|Enfuse\|EnigMail\|EnviroInfo\|Epic\|ESLint\|Estació\|Etcher\|etesyncItem\|Evolution\|Evolution[123]\|EWS\|EXAONE\|Excel\|Exchange\|[Ee]xif[Tt]ool\|Exiv2\|Explorador d'icones\|Explorer\|extragear\|FTP\|GPG\|Haruna\|Heroic\|Hessiana\|HFR\|High\|HOTP\|Hugo\|iCalendar\|ICC\|Icedove\|ICQ\|IFrame\|Ikona\|ImageMagick\|Image\|Image[Ss]hack\|IMAP\|Imgur\|ImportWizard\|iNaturalist\|Index\|INDI\|INDIHub\|Info-zip\|initramfs\|Inkscape\|inotify\|input\|InputMethod\|inputVectorData\|inputVectorTime\|InSight\|Internet\|InternLM[23456789]\|Invidious\|iPad\|iPhone\|iPod\|IPP\|iptables\|IRIDIUM\|Itinerary\|iTip\|iTunes\|o1\|O3-mini\|OAG\|OAuth2\|OBS\|OCR\|OCRA\|OCRAD\|[OK]RA\|Octave\|Office\|Okteta\|[Oo]kular\|Ollama\|OLMo\|OMEMO\|Onedrive\|OnMyShelf\|Open\|OpenAI\|OpenAstronomyLog\|OpenBabel\|OpenCL\|OpenCode\|rOpenColorIO\|OpenConnect\|OpenDivX\|OpenDocument\|OpenGL\|OpenGLES\|OpenHermes\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|openSUSE\|OpenTimelineIO\|OpenVPN\|Opera\|Operational\|OProfile\|OptiImage\|Orca\|Origin\|OriginLab\|OSCAR\|OscarSocket\|OSD\|OSM\|OSX\|OTR\|Outlook\|output\|outputVectorPeriodogram\|ownCloud\|oxdvi\|Oxygen\|R\|r2\|RTC\|U-Boot\|UberWriter\|Ubuntu\|uiserver\|UFRaw\|ufw\|Umbrello\|UML\|UML2\|unarchiver\|UNIX\|Unicode\|UnifiedPush\|unpack\|[Uu]nrar\|UFRaw\|Umbrello\|Unarchiver\|Unicode\|UnifiedPush\|Unrar\|update-alternatives\|updatedb\|UserFeedback\|USSD\|xBase\|XDebug\|XFig\|XMMS\|[Xx]planet\|XSudoku\|XWayland\)\([^[:alnum:]]\)/\1'\2\3\4\5/g
-s/\b\([Ll]\)'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|Ad[Bb]lock\|Academy\|Accerciser\|AccountWizard\|ACDSee\|akonadiserverrc\|Acrobat\|Actiona\|Active\|Adium\|Affinity\|Agrovoc\|Akkoma\|Akonadi\|akonadictl\|Akregator\|Alkimia\|Alligator\|AllowedIP\|Almanac\|Alpaka\|alphagrad\|Amarok\|amarokcollectionscanner\|Amazon\|Amor\|Ampache\|Analitza\|Analyze\|Anbox\|Android\|Angelfish\|ANSVR\|Apache\|AppData\|Apper\|AppImage\|Apple\|Apport\|[Aa]ppstream\|AqBanking\|Arc[ah]\|Arctic\|Ard&uino\|Arduino\|Arianna\|Ark\|Arkade\|ART\|ADSK\|Associated\|ASTAP\|Astrobin\|Athene\|Audioscrobbler\|AudioTube\|Configuració del sistema\|Artikulate\|ask\|Assimp\|Astra\|[Aa]strometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|AUR\|Aura\|Aurorae\|Autocrypt\|automodule\|AVPlayer\|AWS\|Aya\|EDR\|EEPROM\|EFFECT\|Ekiga\|Ekos\|EkosLive\|Elisa\|Eloquens\|Emacs\|eMovix\|en_US\|Enfuse\|EnigMail\|EnviroInfo\|Epic\|ESLint\|Estació\|Etcher\|etesyncItem\|Evolution\|Evolution[123]\|EWS\|EXAONE\|Excel\|Exchange\|[Ee]xif[Tt]ool\|Exiv2\|Explorador d'icones\|Explorer\|extragear\|FTP\|GPG\|Haruna\|HDR\|Heroic\|Hessiana\|HFR\|High\|HOTP\|HPLIP\|Hugo\|iCalendar\|ICC\|Icedove\|ICQ\|IFrame\|Ikona\|ImageMagick\|Image\|Image[Ss]hack\|IMAP\|Imgur\|ImportWizard\|iNaturalist\|Index\|INDI\|INDIHub\|Info-zip\|initramfs\|Inkscape\|inotify\|input\|InputMethod\|inputVectorData\|inputVectorTime\|InSight\|Internet\|InternLM[23456789]\|Invidious\|iPhone\|iPad\|iPod\|IPP\|iptables\|IRIDIUM\|Itinerary\|iTip\|iTunes\|o1\|O3-mini\|OAG\|OAuth2\|OBS\|OCR\|OCRA\|OCRAD\|[OK]RA\|Octave\|Office\|Okteta\|[Oo]kular\|Ollama\|OLMo\|OMEMO\|Onedrive\|OnMyShelf\|Open\|OpenAI\|OpenAstronomyLog\|OpenBabel\|OpenCL\|OpenCode\|OpenColorIO\|OpenConnect\|OpenDivX\|OpenDocument\|OpenGL\|OpenGLES\|OpenHermes\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|openSUSE\|OpenTimelineIO\|OpenVPN\|Opera\|Operational\|OProfile\|OptiImage\|Orca\|Origin\|OriginLab\|OSCAR\|OscarSocket\|OSD\|OSM\|OSX\|OTR\|Outlook\|output\|outputVectorPeriodogram\|ownCloud\|oxdvi\|Oxygen\|R\|r2\|RTC\|SDDM\|Skanlite\|SkySafari\|Scilab\|Scratchpad\|Scribus\|ScriptEngine\|SDDM\|SDR\|Skanpage\|sketchbook\|[Ss]krooge\|Skype\|Slack\|SlackBridge\|Slimbook\|Smoothie\|[Ss]nap\|Spacebar\|Spectacle\|Spectral\|SPHINX\|Sphinx\|Spirit\|SQL\|SQLite\|Stable\|Stage\|StarCoder\|StarCoder[23456789]\|Stargate\|Starling\|Station\|Steam\|Stellarium\|StellarMate\|StellarSolver\|Step\|StepCore\|Stockfish\|Stopmotion\|U-Boot\|UberWriter\|Ubuntu\|UFRaw\|ufw\|uiserver\|Umbrello\|Unarchiver\|UNIX\|Unicode\|UnifiedPush\|unpack\|[Uu]nrar\|UFRaw\|Umbrello\|UML\|UML2\|Unarchiver\|Unicode\|UnifiedPush\|Unrar\|update-alternatives\|updatedb\|UserFeedback\|USSD\|X11\|xBase\|XDebug\|XFig\|Xming\|XMMS\|[Xx]planet\|XSudoku\|XWayland\)\([^[:alnum:]]\)/\2\3\4\5/g
+s/\b\([Dd]\)e l'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(Final Fantasy\|HDR\|mplayer\|Scilab\|Scratchpad\|Scribus\|ScriptEngine\|SDDM\|SDR\|sflphone-client-kde\|Skanlite\|Skanpage\|sketchbook\|[Ss]krooge\|Skype\|SkySafari\|Slack\|SlackBridge\|Slimbook\|SMART\|Smoothie\|[Ss]nap\|Spacebar\|Spectacle\|Spectral\|SPHINX\|Sphinx\|Spirit\|sqcipher\|SQL\|SQLite\|Stable\|Stage\|StarCoder\|StarCoder[23456789]\|Stargate\|Starling\|Station\|Steam\|Stellarium\|StellarMate\|StellarSolver\|Step\|StepCore\|Stockfish\|Stopmotion\|SVN\|X11\|Xming\|XSudoku\)\([^[:alnum:]]\)/\1e \2\3\4\5/g
+s/\b\([Dd]\)e l'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(Ad[Bb]lock\|Academy\|Accerciser\|AccountWizard\|ACDSee\|ADDisplayName\|ADFirstNameLastName\|ADMail\|akonadiserverrc\|Acrobat\|Actiona\|Active\|Adium\|Affinity\|Agrovoc\|Akkoma\|Akonadi\|akonadictl\|akonadiserver\|Akregator\|Alkimia\|Alligator\|AllowedIP\|Almanac\|Alpaka\|alphagrad\|Amarok\|amarokcollectionscanner\|Amazon\|Amor\|Ampache\|Analitza\|Analyze\|Anbox\|Android\|Angelfish\|ANSVR\|Apache\|AppData\|Apper\|AppImage\|Apple\|Apport\|[Aa]ppstream\|AqBanking\|Arc[ah]\|Arctic\|Ard&uino\|Arduino\|Arianna\|Ark\|Arkade\|ART\|ADSK\|Associated\|ASTAP\|Astrobin\|Athene\|Audioscrobbler\|AudioTube\|Configuració del sistema\|Artikulate\|ask\|Assimp\|Astra\|[Aa]strometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|AUR\|Aura\|Aurorae\|Autocrypt\|automodule\|AVPlayer\|AWS\|Aya\|EDR\|EEPROM\|EFFECT\|Ekiga\|Ekos\|EkosLive\|Elisa\|Eloquens\|Emacs\|eMovix\|en_US\|Enfuse\|EnigMail\|EnviroInfo\|EnvEmail\|Epic\|ESLint\|Estació\|Etcher\|etesyncItem\|Evolution\|Evolution[123]\|EWS\|EXAONE\|Excel\|Exchange\|[Ee]xif[Tt]ool\|Exiv2\|Explorador d'icones\|Explorer\|extragear\|FTP\|GPG\|Haruna\|Heroic\|Hessiana\|HFR\|High\|HOTP\|Hugo\|iCalendar\|ICC\|Icedove\|ICQ\|IFrame\|Ikona\|ImageMagick\|Image\|Image[Ss]hack\|IMAP\|Imgur\|ImportWizard\|iNaturalist\|Index\|INDI\|INDIHub\|indiserver\|Info-zip\|initramfs\|Inkscape\|inotify\|input\|InputMethod\|inputVectorData\|inputVectorTime\|InSight\|Internet\|InternLM[23456789]\|Invidious\|iPad\|iPhone\|iPod\|IPP\|iptables\|IRIDIUM\|Itinerary\|iTip\|iTunes\|LCD\|o1\|O3-mini\|OAG\|OAuth2\|OCIO\|OBS\|OCR\|OCRA\|OCRAD\|[OK]RA\|Octave\|Office\|Okteta\|[Oo]kular\|Ollama\|OLMo\|OMEMO\|Onedrive\|OnePlus\|OnMyShelf\|Open\|OpenAI\|OpenAstronomyLog\|OpenBabel\|OpenCL\|OpenCode\|OpenColorIO\|OpenConnect\|OpenDivX\|OpenDocument\|OpenEXR\|OpenGL\|OpenGLES\|OpenHermes\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|openSUSE\|OpenTimelineIO\|OpenVPN\|Opera\|Operational\|OProfile\|OptiImage\|Orca\|Origin\|OriginLab\|OSCAR\|OscarSocket\|OSD\|OSM\|OSX\|OTR\|Outlook\|output\|outputVectorPeriodogram\|Oware\|ownCloud\|oxdvi\|Oxygen\|R\|r2\|RTC\|U-Boot\|UberWriter\|Ubuntu\|UFRaw\|ufw\|uiserver\|UKI\|Umbrello\|UML\|UML2\|unarchiver\|UNIX\|Unicode\|UnifiedPush\|unpack\|[Uu]nrar\|UFRaw\|Umbrello\|Unarchiver\|Unicode\|UnifiedPush\|Unrar\|update-alternatives\|updatedb\|UserFeedback\|USSD\|xBase\|XDebug\|XFig\|XMMS\|[Xx]planet\|XSudoko\|xwayland\|XWayland\)\([^[:alnum:]]\)/\1'\2\3\4\5/g
+s/\b\([Ll]\)'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(<[^<]\{1,\}>\|\)\(%1\|%2\|Ad[Bb]lock\|Academy\|Accerciser\|AccountWizard\|ACDSee\|ADDisplayName\|ADFirstNameLastName\|ADMail\|akonadiserverrc\|Acrobat\|Actiona\|Active\|Adium\|Affinity\|Agrovoc\|Akkoma\|Akonadi\|akonadictl\|akonadiserver\|Akregator\|Alkimia\|Alligator\|AllowedIP\|Almanac\|Alpaka\|alphagrad\|Amarok\|amarokcollectionscanner\|Amazon\|Amor\|Ampache\|Analitza\|Analyze\|Anbox\|Android\|Angelfish\|ANSVR\|Apache\|AppData\|Apper\|AppImage\|Apple\|Apport\|[Aa]ppstream\|AqBanking\|Arc[ah]\|Arctic\|Ard&uino\|Arduino\|Arianna\|Ark\|Arkade\|ART\|ADSK\|Associated\|ASTAP\|Astrobin\|Athene\|Audioscrobbler\|AudioTube\|Configuració del sistema\|Artikulate\|ask\|Assimp\|Astra\|[Aa]strometry.net\|AtCore\|Atelier\|Atlantik\|Audex\|AUR\|Aura\|Aurorae\|Autocrypt\|automodule\|AVPlayer\|AWS\|Aya\|EDR\|EEPROM\|EFFECT\|Ekiga\|Ekos\|EkosLive\|Elisa\|Eloquens\|Emacs\|eMovix\|en_US\|Enfuse\|EnigMail\|EnviroInfo\|EnvEmail\|Epic\|ESLint\|Estació\|Etcher\|etesyncItem\|Evolution\|Evolution[123]\|EWS\|EXAONE\|Excel\|Exchange\|[Ee]xif[Tt]ool\|Exiv2\|Explorador d'icones\|Explorer\|extragear\|FTP\|GPG\|Haruna\|HDR\|Heroic\|Hessiana\|HFR\|High\|HOTP\|HPLIP\|Hugo\|iCalendar\|ICC\|Icedove\|ICQ\|IFrame\|Ikona\|ImageMagick\|Image\|Image[Ss]hack\|IMAP\|Imgur\|ImportWizard\|iNaturalist\|Index\|INDI\|INDIHub\|indiserver\|Info-zip\|initramfs\|Inkscape\|inotify\|input\|InputMethod\|inputVectorData\|inputVectorTime\|InSight\|Internet\|InternLM[23456789]\|Invidious\|iPhone\|iPad\|iPod\|IPP\|iptables\|IRIDIUM\|Itinerary\|iTip\|iTunes\|LCD\|o1\|O3-mini\|OAG\|OAuth2\|OCIO\|OBS\|OCR\|OCRA\|OCRAD\|[OK]RA\|Octave\|Office\|Okteta\|[Oo]kular\|Ollama\|OLMo\|OMEMO\|Onedrive\|OnePlus\|OnMyShelf\|Open\|OpenAI\|OpenAstronomyLog\|OpenBabel\|OpenCL\|OpenCode\|OpenColorIO\|OpenConnect\|OpenDivX\|OpenDocument\|OpenEXR\|OpenGL\|OpenGLES\|OpenHermes\|OpenOffice\|OpenPGP\|Opensearch\|OpenStreetMap\|openSUSE\|OpenTimelineIO\|OpenVPN\|Opera\|Operational\|OProfile\|OptiImage\|Orca\|Origin\|OriginLab\|OSCAR\|OscarSocket\|OSD\|OSM\|OSX\|OTR\|Outlook\|output\|outputVectorPeriodogram\|Oware\|ownCloud\|oxdvi\|Oxygen\|R\|r2\|RTC\|SDDM\|Skanlite\|SkySafari\|Scilab\|Scratchpad\|Scribus\|ScriptEngine\|SDDM\|SDR\|Skanpage\|sketchbook\|[Ss]krooge\|Skype\|Slack\|SlackBridge\|Slimbook\|Smoothie\|[Ss]nap\|Spacebar\|Spectacle\|Spectral\|SPHINX\|Sphinx\|SPI\|Spirit\|SQL\|SQLite\|Stable\|Stage\|StarCoder\|StarCoder[23456789]\|Stargate\|Starling\|Station\|Steam\|Stellarium\|StellarMate\|StellarSolver\|Step\|StepCore\|Stockfish\|Stopmotion\|U-Boot\|UberWriter\|Ubuntu\|UFRaw\|ufw\|uiserver\|UKI\|Umbrello\|Unarchiver\|UNIX\|Unicode\|UnifiedPush\|unpack\|[Uu]nrar\|UFRaw\|Umbrello\|UML\|UML2\|Unarchiver\|Unicode\|UnifiedPush\|Unrar\|update-alternatives\|updatedb\|UserFeedback\|USSD\|X11\|xBase\|XDebug\|XFig\|Xming\|XMMS\|[Xx]planet\|XSudoku\|xwayland\|XWayland\)\([^[:alnum:]]\)/\2\3\4\5/g
  #
-s/\b\([Ee]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(inputVectorData\|outputVectorPeriodogram\)\([^[:alnum:]]\)/\2\3\4/g
+s/\b\([Ee]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(inputVectorData\|outputVectorPeriodogram\)\([^[:alnum:]]\)/\2\3\4/g
 # #
 # # # # # # # # # # # # # #
 #
 # al -> als
-s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(KF5\)\(;\|\)\([^[:alnum:]]\)/\1ls \2\3\4\5/g
+s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(KF5\)\(;\|\)\([^[:alnum:]]\)/\1ls \2\3\4\5/g
 # regles especifiques (formats de fitxer i altres)
-s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.7z\|7z\|\.bmp\|\.dib\|BMP\|\.bz\|[Bb]zip\|\.bz2\|[Bb]zip2\|\.cb[7rtz]\|CB[RZ]\|CIFS\|CMYK\|\.c\|C\|ClayRGB\|CPP\|\.cc\|\.h\|\.hh\|\.[hc][px+][px+]\|[Cc]pp\|\.csv\|csv\|CSV\|cvs\|CVS\|\.diff\|&diff\|diff\|DIFF\|\.dng\|DN[GS]\|\.dot\|dot\|DOT\|\.dvi\|DVI\|\.exr\|EXR\|\.fits\|FITS\|\.flac\|FLAC\|[Ff]rameworks\|KF5\|GBR\|GeoData\|GeoJSON\|\.gif\|GIF\|\.heif\|\.heifs\|\.heic\|\.heics\|\.avci\|\.avcs\|\.avif\|HE[IV][CF]\|\.jp[eg]\|\.jpeg\|.jif\|\.jfif\|\.jfi\|JPEG\|JPG\|\.json\|JSON\|\.jxl\|JXL\|kde-frameworks\|\.km[lz]\|KML\|KPP\|\.kr[az]\|KR[AZ]\|L\*-RGB\|\.md\|\.markdown\|Markdown\|MCAP\|MIDI\|MIME\|\.mpg\|\.mpeg\|\.m2p\|\.ps\|MPEG\|MPG\|MYB\|\.part\|\.pdf\|PDF\|pdf\|\.p[bgnp]m\|P[BGNP]M\|P[DG]F\|PHP\|PNG\|ProRaw\|ProRes\|PSD\|QML\|\.3fr\|\.ar[iw]\|\.bay\|\.braw\|\.cr[23]\|\.cap\|\.data\|\.dc[sr]\.dng\|\.drf\|\.eip\|\.erf\|\.fff\|\.gpr\|\.iiq\|\.k25\|.kdc\|\.mdc\|\.mef\|\.mos\|\.mrw\|\.nef\|NetCDF\|\.nrw\|\.obm\|\.orf\|\.pef\|\.pkg\|PKG\|\.ptx\|\.pxn\|\.r3d\|\.ra[fw]\|\.rw[l2z]\|\.sr[2fw]\|\.x3f\|RA[RW]\|[Rr]aw\|RGB\|\.Rmd\|\.sql\|SQL\|sRGB\|\.svg\|\.svgz\|SVG\|\.tar\|TAR\|tar\|\.tif\|\.tiff\|TIF\|TIFF\|\.webp\|[W[Ee][Bb]P\|WebP\|\.xcf\|XCF\|\.xml\|XML\|\.xsl\|\.xslt\|XSL\|\.zip\|\.zipx\|ZIP\|zip\)\(;\|\)\([^[:alnum:]]\)/\1 \2\3\4\5/g
-s/\b\([Ee]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.7z\|7z\|\.bmp\|\.dib\|BMP\|\.bz\|[Bb]zip\|\.bz2\|[Bb]zip2\|\.cb[7rtz]\|CB[RZ]\|CIFS\|CMYK\|\.c\|C\|ClayRGB\|CPP\|\.cc\|\.h\|\.hh\|\.[hc][px+][px+]\|[Cc]pp\|\.csv\|csv\|CSV\|cvs\|CVS\|\.diff\|&diff\|diff\|DIFF\|\.dng\|DN[GS]\|\.dot\|dot\|DOT\|\.dvi\|DVI\|\.exr\|EXR\|\.fits\|FITS\|\.flac\|FLAC\|[Ff]rameworks\|KF5\|GBR\|GeoData\|GeoJSON\|\.gif\|GIF\|\.heif\|\.heifs\|\.heic\|\.heics\|\.avci\|\.avcs\|\.avif\|HE[IV][CF]\|\.jp[eg]\|\.jpeg\|.jif\|\.jfif\|\.jfi\|JPEG\|JPG\|\.json\|JSON\|\.jxl\|JXL\|kde-frameworks\|\.km[lz]\|KML\|KPP\|\.kr[az]\|KR[AZ]\|L\*-RGB\|\.md\|\.markdown\|Markdown\|MCAP\|MIDI\|MIME\|\.mpg\|\.mpeg\|\.m2p\|\.ps\|MPEG\|MPG\|MYB\|\.part\|\.pdf\|PDF\|pdf\|\.p[bgnp]m\|P[BGNP]M\|P[DG]F\|PHP\|PNG\|ProRaw\|ProRes\|PSD\|QML\|\.3fr\|\.ar[iw]\|\.bay\|\.braw\|\.cr[23]\|\.cap\|\.data\|\.dc[sr]\.dng\|\.drf\|\.eip\|\.erf\|\.fff\|\.gpr\|\.iiq\|\.k25\|.kdc\|\.mdc\|\.mef\|\.mos\|\.mrw\|\.nef\|NetCDF\|\.nrw\|\.obm\|\.orf\|\.pef\|\.pkg\|PKG\|\.ptx\|\.pxn\|\.r3d\|\.ra[fw]\|\.rw[l2z]\|\.sr[2fw]\|\.x3f\|RA[RW]\|[Rr]aw\|RGB\|\.Rmd\|\.sql\|SQL\|sRGB\|\.svg\|\.svgz\|SVG\|\.tar\|TAR\|tar\|\.tif\|\.tiff\|TIF\|TIFF\|\.webp\|W[Ee][Bb]P\|WebP\|\.xcf\|XCF\|\.xml\|XML\|\.xsl\|\.xslt\|XSL\|\.zip\|\.zipx\|ZIP\|zip\)\(;\|\)\([^[:alnum:]]\)/\2\3\4\5/g
-s/\b\([Dd]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.7z\|7z\|\.bmp\|\.dib\|BMP\|\.bz\|[Bb]zip\|\.bz2\|[Bb]zip2\|\.cb[7rtz]\|CB[RZ]\|CIFS\|CMYK\|\.c\|C\|ClayRGB\|CPP\|\.cc\|\.h\|\.hh\|\.[hc][px+][px+]\|[Cc]pp\|\.csv\|csv\|CSV\|cvs\|CVS\|\.diff\|&diff\|diff\|DIFF\|\.dng\|DN[GS]\|\.dot\|dot\|DOT\|\.dvi\|DVI\|\.exr\|EXR\|\.fits\|FITS\|\.flac\|FLAC\|[Ff]rameworks\|KF5\|GBR\|GeoData\|GeoJSON\|\.gif\|GIF\|\.heif\|\.heifs\|\.heic\|\.heics\|\.avci\|\.avcs\|\.avif\|HE[IV][CF]\|\.jp[eg]\|\.jpeg\|.jif\|\.jfif\|\.jfi\|JPEG\|JPG\|\.json\|JSON\|\.jxl\|JXL\|kde-frameworks\|\.km[lz]\|KML\|KPP\|\.kr[az]\|KR[AZ]\|L\*-RGB\|\.md\|\.markdown\|Markdown\|MCAP\|MIDI\|MIME\|\.mpg\|\.mpeg\|\.m2p\|\.ps\|MPEG\|MPG\|MYB\|\.part\|\.pdf\|PDF\|pdf\|\.p[bgnp]m\|P[BGNP]M\|P[DG]F\|PHP\|PNG\|ProRaw\|ProRes\|PSD\|QML\|\.3fr\|\.ar[iw]\|\.bay\|\.braw\|\.cr[23]\|\.cap\|\.data\|\.dc[sr]\.dng\|\.drf\|\.eip\|\.erf\|\.fff\|\.gpr\|\.iiq\|\.k25\|.kdc\|\.mdc\|\.mef\|\.mos\|\.mrw\|\.nef\|NetCDF\|\.nrw\|\.obm\|\.orf\|\.pef\|\.pkg\|PKG\|\.ptx\|\.pxn\|\.r3d\|\.ra[fw]\|\.rw[l2z]\|\.sr[2fw]\|\.x3f\|RA[RW]\|[Rr]aw\|RGB\|\.Rmd\|\.sql\|SQL\|sRGB\|\.svg\|\.svgz\|SVG\|\.tar\|TAR\|tar\|\.tif\|\.tiff\|TIF\|TIFF\|\.webp\|W[Ee][Bb]P\|WebP\|\.xcf\|XCF\|\.xml\|XML\|\.xsl\|\.xslt\|XSL\|\.zip\|\.zipx\|ZIP\|zip\)\(;\|\)\([^[:alnum:]]\)/\1e \2\3\4\5/g
+s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.7z\|7z\|\.bmp\|\.dib\|BMP\|\.bz\|[Bb]zip\|\.bz2\|[Bb]zip2\|\.cb[7rtz]\|CB[RZ]\|CIFS\|CMYK\|\.c\|C\|ClayRGB\|CPP\|\.cc\|\.h\|\.hh\|\.[hc][px+][px+]\|[Cc]pp\|\.csv\|csv\|CSV\|cvs\|CVS\|\.diff\|&diff\|diff\|DIFF\|\.dng\|DN[GS]\|\.dot\|dot\|DOT\|\.dvi\|DVI\|\.exr\|EXR\|\.fits\|FITS\|\.flac\|FLAC\|[Ff]rameworks\|KF5\|GBR\|GeoData\|GeoJSON\|\.gif\|GIF\|\.heif\|\.heifs\|\.heic\|\.heics\|\.avci\|\.avcs\|\.avif\|HE[IV][CF]\|\.jp[eg]\|\.jpeg\|.jif\|\.jfif\|\.jfi\|JPEG\|JPG\|\.json\|JSON\|\.jxl\|JXL\|kde-frameworks\|\.km[lz]\|KML\|KPP\|\.kr[az]\|KR[AZ]\|L\*-RGB\|\.md\|\.markdown\|Markdown\|MCAP\|MIDI\|MIME\|\.mpg\|\.mpeg\|\.m2p\|\.ps\|MPEG\|MPG\|MYB\|\.part\|\.pdf\|PDF\|pdf\|\.p[bgnp]m\|P[BGNP]M\|P[DG]F\|PHP\|PNG\|ProRaw\|ProRes\|PSD\|QML\|\.3fr\|\.ar[iw]\|\.bay\|\.braw\|\.cr[23]\|\.cap\|\.data\|\.dc[sr]\.dng\|\.drf\|\.eip\|\.erf\|\.fff\|\.gpr\|\.hdr\.iiq\|\.k25\|.kdc\|\.mdc\|\.mef\|\.mos\|\.mrw\|\.nef\|NetCDF\|\.nrw\|\.obm\|\.orf\|\.pef\|\.pkg\|PKG\|\.ptx\|\.pxn\|\.r3d\|\.ra[fw]\|\.rw[l2z]\|\.sr[2fw]\|\.x3f\|RA[RW]\|[Rr]aw\|RGB\|RGBE\|\.Rmd\|\.sql\|SQL\|sRGB\|\.svg\|\.svgz\|SVG\|\.tar\|TAR\|tar\|\.tif\|\.tiff\|TIF\|TIFF\|\.webp\|[W[Ee][Bb]P\|WebP\|\.xcf\|XCF\|\.xml\|XML\|\.xsl\|\.xslt\|XSL\|\.zip\|\.zipx\|ZIP\|zip\)\(;\|\)\([^[:alnum:]]\)/\1 \2\3\4\5/g
+s/\b\([Ee]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.7z\|7z\|\.bmp\|\.dib\|BMP\|\.bz\|[Bb]zip\|\.bz2\|[Bb]zip2\|\.cb[7rtz]\|CB[RZ]\|CIFS\|CMYK\|\.c\|C\|ClayRGB\|CPP\|\.cc\|\.h\|\.hh\|\.[hc][px+][px+]\|[Cc]pp\|\.csv\|csv\|CSV\|cvs\|CVS\|\.diff\|&diff\|diff\|DIFF\|\.dng\|DN[GS]\|\.dot\|dot\|DOT\|\.dvi\|DVI\|\.exr\|EXR\|\.fits\|FITS\|\.flac\|FLAC\|[Ff]rameworks\|KF5\|GBR\|GeoData\|GeoJSON\|\.gif\|GIF\|\.heif\|\.heifs\|\.heic\|\.heics\|\.avci\|\.avcs\|\.avif\|HE[IV][CF]\|\.jp[eg]\|\.jpeg\|.jif\|\.jfif\|\.jfi\|JPEG\|JPG\|\.json\|JSON\|\.jxl\|JXL\|kde-frameworks\|\.km[lz]\|KML\|KPP\|\.kr[az]\|KR[AZ]\|L\*-RGB\|\.md\|\.markdown\|Markdown\|MCAP\|MIDI\|MIME\|\.mpg\|\.mpeg\|\.m2p\|\.ps\|MPEG\|MPG\|MYB\|\.part\|\.pdf\|PDF\|pdf\|\.p[bgnp]m\|P[BGNP]M\|P[DG]F\|PHP\|PNG\|ProRaw\|ProRes\|PSD\|QML\|\.3fr\|\.ar[iw]\|\.bay\|\.braw\|\.cr[23]\|\.cap\|\.data\|\.dc[sr]\.dng\|\.drf\|\.eip\|\.erf\|\.fff\|\.gpr\|\.hdr\.iiq\|\.k25\|.kdc\|\.mdc\|\.mef\|\.mos\|\.mrw\|\.nef\|NetCDF\|\.nrw\|\.obm\|\.orf\|\.pef\|\.pkg\|PKG\|\.ptx\|\.pxn\|\.r3d\|\.ra[fw]\|\.rw[l2z]\|\.sr[2fw]\|\.x3f\|RA[RW]\|[Rr]aw\|RGB\|RGBE\|\.Rmd\|\.sql\|SQL\|sRGB\|\.svg\|\.svgz\|SVG\|\.tar\|TAR\|tar\|\.tif\|\.tiff\|TIF\|TIFF\|\.webp\|W[Ee][Bb]P\|WebP\|\.xcf\|XCF\|\.xml\|XML\|\.xsl\|\.xslt\|XSL\|\.zip\|\.zipx\|ZIP\|zip\)\(;\|\)\([^[:alnum:]]\)/\2\3\4\5/g
+s/\b\([Dd]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.7z\|7z\|\.bmp\|\.dib\|BMP\|\.bz\|[Bb]zip\|\.bz2\|[Bb]zip2\|\.cb[7rtz]\|CB[RZ]\|CIFS\|CMYK\|\.c\|C\|ClayRGB\|CPP\|\.cc\|\.h\|\.hh\|\.[hc][px+][px+]\|[Cc]pp\|\.csv\|csv\|CSV\|cvs\|CVS\|\.diff\|&diff\|diff\|DIFF\|\.dng\|DN[GS]\|\.dot\|dot\|DOT\|\.dvi\|DVI\|\.exr\|EXR\|\.fits\|FITS\|\.flac\|FLAC\|[Ff]rameworks\|KF5\|GBR\|GeoData\|GeoJSON\|\.gif\|GIF\|\.heif\|\.heifs\|\.heic\|\.heics\|\.avci\|\.avcs\|\.avif\|HE[IV][CF]\|\.jp[eg]\|\.jpeg\|.jif\|\.jfif\|\.jfi\|JPEG\|JPG\|\.json\|JSON\|\.jxl\|JXL\|kde-frameworks\|\.km[lz]\|KML\|KPP\|\.kr[az]\|KR[AZ]\|L\*-RGB\|\.md\|\.markdown\|Markdown\|MCAP\|MIDI\|MIME\|\.mpg\|\.mpeg\|\.m2p\|\.ps\|MPEG\|MPG\|MYB\|\.part\|\.pdf\|PDF\|pdf\|\.p[bgnp]m\|P[BGNP]M\|P[DG]F\|PHP\|PNG\|ProRaw\|ProRes\|PSD\|QML\|\.3fr\|\.ar[iw]\|\.bay\|\.braw\|\.cr[23]\|\.cap\|\.data\|\.dc[sr]\.dng\|\.drf\|\.eip\|\.erf\|\.fff\|\.gpr\|\.hdr\.iiq\|\.k25\|.kdc\|\.mdc\|\.mef\|\.mos\|\.mrw\|\.nef\|NetCDF\|\.nrw\|\.obm\|\.orf\|\.pef\|\.pkg\|PKG\|\.ptx\|\.pxn\|\.r3d\|\.ra[fw]\|\.rw[l2z]\|\.sr[2fw]\|\.x3f\|RA[RW]\|[Rr]aw\|RGB\|RGBE\|\.Rmd\|\.sql\|SQL\|sRGB\|\.svg\|\.svgz\|SVG\|\.tar\|TAR\|tar\|\.tif\|\.tiff\|TIF\|TIFF\|\.webp\|W[Ee][Bb]P\|WebP\|\.xcf\|XCF\|\.xml\|XML\|\.xsl\|\.xslt\|XSL\|\.zip\|\.zipx\|ZIP\|zip\)\(;\|\)\([^[:alnum:]]\)/\1e \2\3\4\5/g
  #
-s/\b\([Dd]\)e l'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.aac\|aac\|AAC\|\.aif\|\.aif[cf]\|AIFF\|ARJ\|AV1\|AVIF\|ELF\|EPub\|EXR\|HEIF\|HEVC\|MP3\|MYB\|Ogg\|Opus\|ORA\|XMPP\|XSL\)\(;\|\)\([^[:alnum:]]\)/\1'\2\3\4\5/g
-s/\b\([Ll]\)'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.aac\|aac\|AAC\|\.aif\|\.aif[cf]\|AIFF\|ARJ\|AV1\|AVIF\|Configuració\|ELF\|EPub\|EXR\|HEIF\|HEVC\|MP3\|MYB\|Ogg\|Opus\|ORA\|XMPP\|XSL\)\(;\|\)\([^[:alnum:]]\)/\2\3\4\5/g
+s/\b\([Dd]\)e l'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.aac\|aac\|AAC\|\.aif\|\.aif[cf]\|AIFF\|ARJ\|AV1\|AVIF\|ELF\|EPub\|EXR\|HEIF\|HEVC\|MP3\|MYB\|Ogg\|Opus\|ORA\|XMPP\|XSL\)\(;\|\)\([^[:alnum:]]\)/\1'\2\3\4\5/g
+s/\b\([Ll]\)'\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\(\.aac\|aac\|AAC\|\.aif\|\.aif[cf]\|AIFF\|ARJ\|AV1\|AVIF\|Configuració\|ELF\|EPub\|EXR\|HEIF\|HEVC\|MP3\|MYB\|Ogg\|Opus\|ORA\|XMPP\|XSL\)\(;\|\)\([^[:alnum:]]\)/\2\3\4\5/g
  # el -> la
-s/\"\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\) /\"La \1\2\3 /g
-s/\"La \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\"/\"\1\2\3\"/g
-s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/\1 la \2\3\4\5/g
-s/\bEl \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/La \1\2\3\4/g
-s/\bel \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/la \1\2\3\4/g
-s/\b\([Dd]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/\1e la \2\3\4\5/g
+s/\"\(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\) /\"La \1\2\3 /g
+s/\"La \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\"/\"\1\2\3\"/g
+s/\b\([Aa]\)l \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/\1 la \2\3\4\5/g
+s/\bEl \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/La \1\2\3\4/g
+s/\bel \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/la \1\2\3\4/g
+s/\b\([Dd]\)el \(\[\|\*\|\*\*\|\*\*\*\|\*\*\[\|\[\*\|:doc:`\|:menuselection:`\|:ref:`\|`\|&\|«\|<[^<]\{1,\}>\|\)\([ACV]BR\|CFITSIO\|Eigen3\|FFTW3\|GSL\|HDF5\|KatePart\|KPart\|KUIViewerPart\|libcerf\|liborigin\|Matio\|ORCUS\|QApplication\|QXlsx\|ReadStat\|VoIP\|WebEnginePart\)\(;\|\)\([^[:alnum:]]\)/\1e la \2\3\4\5/g
 # #
 # # # # # # # # # # # # # #
 #
 # entitats
-s/\b\([Aa]\)l \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\1 \2\&\3;\4/g
-s/\b\([Ee]\)l \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\2\&\3;\4/g
-s/\b\([Dd]\)el \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\1e \2\&\3;\4/g
-s/\b\([Pp]\)el \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\1er \2\&\3;\4/g
+s/\b\([Aa]\)l \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\1 \2\&\3;\4/g
+s/\b\([Ee]\)l \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\2\&\3;\4/g
+s/\b\([Dd]\)el \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\1e \2\&\3;\4/g
+s/\b\([Pp]\)el \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&\(appname\|blinken\|blogilo\|bomber\|bovo\|brahms\|BSD\|calligra\|calligraflow\|calligraplan\|calligrasheets\|calligrastage\|calligrawords\|cantor\|catalogmanager\|CD\|CDE\|CD-ROM\|cervisia\|choqok\|cmake\|CMake\|CSS\|CUPS\|DBus\|DCOP\|Debian\|digikam\|documentation.index\|dolphin\|dragon\|drkonqi\|DVD\|elisa\|Emacs\|falkon\|FDL\|filelight\|firefox\|Flash\|flashkard\|folder-cache-location\|folder-config-location\|folder-data-location\|gcc\|gcompris\|GIF\|git\|GMT\|GNU\|gpg\|gpgsm\|GPL\|GPLNotice\|granatier\|GUI\|gwenview\|Handspring\|Hewlett-Packard\|HotSync\|HP\|HP-UX\|HTML\|HTTP\|ical\|IMAP\|infocenter\|irc\|IRIX\|Java\|javascript\|Jini\|jovie\|juk\|kab2\|kaboodle\|kaddressbook\|kaffeine\|kajongg\|kalarm\|kalarmd\|kalgebra\|kalzium\|kamera\|kamoso\|kanagram\|kandy\|kaphorism\|kapman\|kapp\|kappfinder\|kapptemplate\|karbon\|karbon14\|kasteroids\|kate\|katepart\|katomic\|kaudiocreator\|kbabel\|kbabeldict\|kbackgammon\|kbackup\|kbattleship\|kbibtex\|kbiff\|kblackbox\|kblocks\|kbounce\|kbreakout\|kbruch\|kbugbuster\|kcachegrind\|kcalc\|kcharselect\|kchart\|kchat\|kcontrol\|kcron\|kdat\|kdcop\|kde\|kdebugdialog\|kdebugdialog[56]?\|kde-ftp\|kde-http\|kdenlive\|kdepasswd\|kdeprint\|kdesktop\|kdessh\|kdesu\|kdesvn\|kdevelop\|kdiamond\|kdict\|kdiff3\|kdiskfree\|kdm\|kdmrc\|kdvi\|kedit\|keditbookmarks\|keduca\|kenolaba\|kexi\|keystone\|kfax\|kfaxview\|kfeeder\|kfind\|kfloppy\|kfontview\|kformula\|kfouleggs\|kfourinline\|kfract\|kgeo\|kgeography\|kget\|kghostview\|kgoldrunner\|kgpg\|kgpgcertmanager\|kgraphviewer\|khangman\|khelpcenter\|khexedit\|kicker\|kickoff\|kiconedit\|kig\|kigo\|kikbd\|kile\|killbots\|kinfocenter\|Kirigami\|kiriki\|kit\|kitchensync\|kiten\|kivio\|kjots\|kjumpingcube\|klaptop\|klatin\|kleopatra\|klettres\|klickety\|klipper\|kljettool\|klpq\|klprfax\|kmagnifier\|kmahjongg\|kmail\|kmathtool\|kmenuedit\|kmessedwords\|kmid\|kmidi\|kmines\|kmix\|kmoon\|kmousetool\|kmouth\|kmplayer\|kmplot\|kmymoney\|knavalbattle\|knetattach\|knetwalk\|knewsticker\|knewstuff\|knights\|knode\|knorskverbs\|knotes\|kodometer\|koffice\|kolab\|kolf\|kollision\|kolorlines\|kolourpaint\|kompare\|koncd\|konqueror\|konquest\|konsole\|konsolekalendar\|kontact\|kontour\|konversation\|kooka\|kopete\|korganizer\|korn\|koshell\|kotalkd\|kpackage\|kpager\|kpaint\|kpanel\|kparts\|kpatience\|kpercentage\|kpf\|kpilot\|kpm\|kpoker\|kpovmodeler\|kppp\|kpresenter\|kprinter\|krdc\|kreatecd\|krec\|krecipes\|kregexpeditor\|krename\|kreversi\|krfb\|krita\|kronometer\|kruler\|[Kk][Rr]unner\|krusader\|ksame\|kscd\|kscore\|kscreensaver\|ksgmltools\|kshisen\|ksim\|ksirc\|ksirk\|ksirtet\|ksmiletris\|ksmserver\|ksnake\|ksnakeduel\|ksnapshot\|ksokoban\|kspaceduel\|ksplash\|kspread\|ksquares\|kst\|kstars\|kstart\|ksysctrl\|ksysguard\|ksystemlog\|ksysv\|ktalk\|ktalkd\|kteatime\|kthesaurus\|ktimemon\|ktimer\|ktimetracker\|ktip\|ktorrent\|ktouch\|ktron\|ktuberling\|kturtle\|kubrick\|kubuntu\|kugar\|kuickshow\|kuser\|kverbos\|kview\|kviewshell\|kvoctrain\|kwallet[56]?\|kwalletmanager[56]?\|kwatchgnupg\|kwave\|kwin\|kword\|kwordquiz\|kworldclock\|kwrite\|kwuftpd\|kxkb\|kxstitch\|LaserJet\|latex\|LGPL\|LGPLNotice\|Linux\|Linux-Mandrake\|LinuxPPC\|lisa\|lokalize\|lskat\|LZW\|Mac\|macOS\|Mandrake\|marble\|MathML\|mdn\|megami\|Microsoft\|minuet\|moonphase\|Motif\|MRU\|MTU\|multisynk\|MusiXTeX\|Netscape\|NeXTSTEP\|NFS\|nntp\|noatun\|okteta\|okular\|openpgp\|OSD\|package\|palapeli\|PalmOS\|PalmPilot\|parley\|PDF\|phonon\|picmi\|PIM\|plasma\|plasmagik\|plasmoid\|plasmoids\|PMX\|POP3\|PostScript\|PPP\|Qt\|quanta\|quantaplus\|RealAudio\|RealVideo\|RedHat\|reslisa\|rocs\|rsibreak\|Samba\|SDDM\|Sendmail\|SGI\|skanlite\|skrooge\|SMB\|smb4k\|smime\|SMTP\|snake\|Solaris\|solid\|sonnet\|spectacle\|step\|superkaramba\|SuSE\|sweeper\|symboleditor\|systemsettings\|tellico\|ThreeCom\|tkmidi\|trojita\|TrueType\|ubuntu\|umbrello\|UNIX\|URI\|URL\|USB\|Visor\|Wayland\|windowmaker\|Windows\|WordNet\|Wordperfect\|X11\|XEmacs\|XHTML\|XML\|X-Server\|X-Window\|zui\);\([^[:alnum:]]\)/\1er \2\&\3;\4/g
  #
-s/\b\([Dd]\)e l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&\(acl\|AIX\|akonadi\|akregator\|aktion\|amarok\|amor\|appname\|ark\|artikulate\|arts\|arts-builder\|artscontrol\|artsd\|artsdsp\|artsserver\|artsshell\|artswrapper\|arXiv\|ASCII\|ATAPI\|atlantik\|FTP\|systemsettings\)\([^[:alnum:]]\)/\1'\2\&\3\4/g
-s/\b\([Ll]\)'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&\(acl\|AIX\|akonadi\|akregator\|aktion\|amarok\|amor\|appname\|ark\|artikulate\|arts\|arts-builder\|artscontrol\|artsd\|artsdsp\|artsserver\|artsshell\|artswrapper\|arXiv\|ASCII\|ATAPI\|astrometry.net\|atlantik\|FTP\|systemsettings\)\([^[:alnum:]]\)/\2\&\3\4/g
-s/\b\([Ll]\)'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)&IGU;\([^[:alnum:]]\)/\1a \2\&IGU;\3/g
+s/\b\([Dd]\)e l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&\(acl\|AIX\|akonadi\|akregator\|aktion\|amarok\|amor\|appname\|ark\|artikulate\|arts\|arts-builder\|artscontrol\|artsd\|artsdsp\|artsserver\|artsshell\|artswrapper\|arXiv\|ASCII\|ATAPI\|atlantik\|FTP\|systemsettings\)\([^[:alnum:]]\)/\1'\2\&\3\4/g
+s/\b\([Ll]\)'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&\(acl\|AIX\|akonadi\|akregator\|aktion\|amarok\|amor\|appname\|ark\|artikulate\|arts\|arts-builder\|artscontrol\|artsd\|artsdsp\|artsserver\|artsshell\|artswrapper\|arXiv\|ASCII\|ATAPI\|astrometry.net\|atlantik\|FTP\|systemsettings\)\([^[:alnum:]]\)/\2\&\3\4/g
+s/\b\([Ll]\)'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)&IGU;\([^[:alnum:]]\)/\1a \2\&IGU;\3/g
 # -> ja es poden desprotegir
 s/%1, publicat el -%2\([^[:alnum:]]\)/%1, publicat el %2\1/g
 s/\"el -%1\"/\"el %1\"/g
@@ -274,6 +294,8 @@ s/\barri&bin\([^[:alnum:]]\)/arri\&ben\1/g
 s/\ba&rrodonides\([^[:alnum:]]\)/a\&rredonides\1/g
 s/\bar&xiu\([^[:alnum:]]\)/a\&rxiu\1/g
 s/\barxi&u\([^[:alnum:]]\)/a\&rxiu\1/g
+s/\bA&tura\([^[:alnum:]]\)/\&Para\1/g
+s/\bAtu&ra\([^[:alnum:]]\)/\&Para\1/g
 s/&Avui\([^[:alnum:]]\)/H\&ui\1/g
   s/\bA&vui\([^[:alnum:]]\)/H\&ui\1/g
 s/&Cancel·la\([^[:alnum:]]\)/C\&ancel·la\1/g
@@ -522,7 +544,7 @@ s/&Surt\([^[:alnum:]]\)/I\&x\1/g
   s/\bS&urt\([^[:alnum:]]\)/I\&x\1/g
   s/\bs&urt\([^[:alnum:]]\)/i\&x\1/g
   s/\bSur&t\([^[:alnum:]]\)/I\&x\1/g
-s/&Usa\([^[:alnum:]]\)/Utilit\&za\1/g
+s/&Utilitza\([^[:alnum:]]\)/Utilit\&za\1/g
   s/\bU&sa\([^[:alnum:]]\)/Utilit\&za\1/g
 s/&Visualitza\([^[:alnum:]]\)/Vi\&sualitza\1/g
   s/\bVi&sualitza\([^[:alnum:]]\)/Vi\&sualitza\1/g
@@ -556,6 +578,7 @@ s/\bautocomprovacions fallades\([^[:alnum:]]\)/autocomprovacions fallides\1/g
 #
 # continuació
 s/\b\(a\|de\) la llista de sota\([^[:alnum:]]\)/en la llista a continuació\2/g
+  s/\bdes en la llista\([^[:alnum:]]\)/des de la llista\1/g
 s/\bA sota, introduïu la contrasenya\([^[:alnum:]]\)/Introduïu la contrasenya a continuació\1/g
 s/\bA sota, introduïu un nom d'usuari i una contrasenya\([^[:alnum:]]\)/Introduïu un nom d'usuari i una contrasenya a continuació\1/g
 s/\bdes de la llista de sota\([^[:alnum:]]\)/des de la llista a continuació\1/g
@@ -614,30 +637,30 @@ s/\bvisualitzar les icones a un entorn similar\([^[:alnum:]]\)/visualitzar les i
 # # # # # # # # # # # # # #
 #
 # a -> en
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)/\1 en \2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)/\1 en \2/g
 s/\bA «Fris\([^[:alnum:]]\)/En «Fris\1/g
 s/\bA «Nombres adjacents\([^[:alnum:]]\)/En «Nombres adjacents\1/g
 s/\bA «Utilitza una línia graduada\([^[:alnum:]]\)/En «Usa una línia graduada\1/g
 s/\baccés al vostre observatori a \(<[^<]\{1,\}>\)\(<[^<]\{1,\}>\)\(<[^<]\{1,\}>\)indihub.space\([^[:alnum:]]\)/accés al vostre observatori en \1\2\3indihub.space\4/g
-s/\bapareixeran a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Baixades\([^[:alnum:]]\)/apareixeran en \1Baixades\2/g
-s/\bAPI a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)api\([^[:alnum:]]\)/API en \1api\2/g
-s/\b\(antic\|comptes\|per a una categoria\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Configuració\([^[:alnum:]]\)/\1 en \2Configuració\3/g
-s/\bdedicada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)aplicacions KDE\([^[:alnum:]]\)/dedicada en \1Aplicacions KDE\2/g
-s/\belement a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Orígens\([^[:alnum:]]\)/element en \1Orígens\2/g
-s/\bespecificada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)REGEX_FIXUP\([^[:alnum:]]\)/especificada en \1REGEX_FIXUP\2/g
-s/\bestablir a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Preferències\([^[:alnum:]]\)/establir en \1Preferències\2/g
-s/\bexcepció inesperada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(EncryptCommand\|EncryptEMailController\|PrepEncryptCommand\|PrepSignCommand\|SelectCertificateCommand\|SignCommand\|SignEncryptFilesController\)\([^[:alnum:]]\)/excepció inesperada en \1\2\3/g
-s/\binhabilitar aquest límit a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Perfil\([^[:alnum:]]\)/inhabilitar aquest límit en \1Perfil\2/g
-s/\bindicada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Encripta\([^[:alnum:]]\)/indicada en \1Encripta\2/g
-s/\bla lletra a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Ingressos\([^[:alnum:]]\)/la lletra en \1Ingressos\2/g
-s/\blocalitzada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)katedialogs\([^[:alnum:]]\)/localitzada en \1katedialogs\2/g
-s/\bmenú de connectors a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)MainWindow\([^[:alnum:]]\)/menú de connectors en \1MainWindow\2/g
-s/\bpersonalitzat a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Configuracions\([^[:alnum:]]\)/personalitzat en \1Configuracions\2/g
-s/\bque el valor a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Consell\([^[:alnum:]]\)/que el valor en \1Consell\2/g
-s/\breconfigurar a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Imatge\([^[:alnum:]]\)/reconfigurar en \1Imatge\2/g
-s/\bseparat a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Configura\([^[:alnum:]]\)/separat en \1Configura\2/g
-s/\btransicions a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)energies\([^[:alnum:]]\)/transicions en \1energies\2/g
-s/\bvalor a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Posicionament\([^[:alnum:]]\)/valor en \1Posicionament\2/g
+s/\bapareixeran a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Baixades\([^[:alnum:]]\)/apareixeran en \1Baixades\2/g
+s/\bAPI a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)api\([^[:alnum:]]\)/API en \1api\2/g
+s/\b\(antic\|comptes\|per a una categoria\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Configuració\([^[:alnum:]]\)/\1 en \2Configuració\3/g
+s/\bdedicada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)aplicacions KDE\([^[:alnum:]]\)/dedicada en \1Aplicacions KDE\2/g
+s/\belement a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Orígens\([^[:alnum:]]\)/element en \1Orígens\2/g
+s/\bespecificada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)REGEX_FIXUP\([^[:alnum:]]\)/especificada en \1REGEX_FIXUP\2/g
+s/\bestablir a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Preferències\([^[:alnum:]]\)/establir en \1Preferències\2/g
+s/\bexcepció inesperada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(EncryptCommand\|EncryptEMailController\|PrepEncryptCommand\|PrepSignCommand\|SelectCertificateCommand\|SignCommand\|SignEncryptFilesController\)\([^[:alnum:]]\)/excepció inesperada en \1\2\3/g
+s/\binhabilitar aquest límit a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Perfil\([^[:alnum:]]\)/inhabilitar aquest límit en \1Perfil\2/g
+s/\bindicada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Encripta\([^[:alnum:]]\)/indicada en \1Encripta\2/g
+s/\bla lletra a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Ingressos\([^[:alnum:]]\)/la lletra en \1Ingressos\2/g
+s/\blocalitzada a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)katedialogs\([^[:alnum:]]\)/localitzada en \1katedialogs\2/g
+s/\bmenú de connectors a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)MainWindow\([^[:alnum:]]\)/menú de connectors en \1MainWindow\2/g
+s/\bpersonalitzat a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Configuracions\([^[:alnum:]]\)/personalitzat en \1Configuracions\2/g
+s/\bque el valor a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Consell\([^[:alnum:]]\)/que el valor en \1Consell\2/g
+s/\breconfigurar a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Imatge\([^[:alnum:]]\)/reconfigurar en \1Imatge\2/g
+s/\bseparat a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Configura\([^[:alnum:]]\)/separat en \1Configura\2/g
+s/\btransicions a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)energies\([^[:alnum:]]\)/transicions en \1energies\2/g
+s/\bvalor a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Posicionament\([^[:alnum:]]\)/valor en \1Posicionament\2/g
  #
 s/\"%1 %2 a %3\"/\"%1 %2 en %3\"/g
 s/\"%1 a Freenode\"/\"%1 en Freenode\"/g
@@ -714,6 +737,7 @@ s/\bopcions de veu del menú d'eines en gris[?]/opcions de veu en gris en el men
 s/\bper a tancar a cada pestanya\([^[:alnum:]]\)/per a tancar en cada pestanya\1/g
 s/\bprocessador a dispositius\([^[:alnum:]]\)/processador en dispositius\1/g
 s/\bque el text resultant\([^[:alnum:]]\)/que el text que en resulti\1/g
+s/\bsituat a <code>mkosi\([^[:alnum:]]\)/situat en <code>mkosi\1/g
 s/\bSuprimirà totes les entrades de subtítols a <b>%1\([^[:alnum:]]\)/Suprimirà totes les entrades de subtítols en <b>%1\1/g
 s/\btemps a preparar-ho tot\([^[:alnum:]]\)/temps en preparar-ho tot\1/g
 s/\btroben a la &lt;\([^[:alnum:]]\)/troben en la \&lt;\1/g
@@ -726,23 +750,29 @@ s/\bal \(gener\|febrer\|març\|maig\|juny\|juliol\|setembre\|novembre\|desembre\
 # a 192.168.1.50
 s/\ba 192\.168\.1\.50\([^[:alnum:]]\)/en 192.168.1.50\1/g
 # a abordar
-s/\b\(centrar-se\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)abordar\([^[:alnum:]]\)/\1 en \2abordar\3/g
+s/\b\(centrar-se\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)abordar\([^[:alnum:]]\)/\1 en \2abordar\3/g
+# a Adlershof
+s/\b\(utilitza en una estació de control de l'accelerador de partícules\) a Adlershof\([^[:alnum:]]\)/\1 en Adlershof\2/g
+# a Àlbums
+s/\b\(vista d'icones\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Àlbums\([^[:alnum:]]\)/\1 en \2Àlbums\3/g
 # a Amarok
 s/\bA Amarok\([^[:alnum:]]\)/En Amarok\1/g
 s/\b\(MP3tunes\|vista contextual\) a Amarok\([^[:alnum:]]\)/\1 en Amarok\2/g
 # a Amazon
 s/\bA Amazon\([^[:alnum:]]\)/En Amazon\1/g
-s/\b\(disponible\) a Amazon\([^[:alnum:]]\)/\1 en Amazon\2/g
+s/\b\(disponible\|Oppy[»_]\) a Amazon\([^[:alnum:]]\)/\1 en Amazon\2/g
 # a Android
 s/\bA Android\([^[:alnum:]]\)/En Android\1/g
-s/\b\(amb S Pen\|beta\|carregar un àudio\|creació d'imatges\|disponible\|esmenat el desament de fotogrames d'enregistrament com a JPEG\|evitar problemes\|[Ee]xecutant-se\|fallada freqüent\|feina\|funciona\|KDE Connect\|Krita\|mostrar-les\|per a la tauleta\|QAccesibility»\) a Android\([^[:alnum:]]\)/\1 en Android\2/g
+s/\b\(amb S-Pen\|beta\|carregar un àudio\|creació d'imatges\|disponible\|durant l'inici\|[Ee]ditar un camp de text\|encara no és funcional\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|esmenat diversos errors\|esmenat el desament de fotogrames d'enregistrament com a JPEG\|evitar problemes\|[Ee]xecutant-se\|fallada freqüent\|fallades més freqüents\|feina\|funciona\|KDE Connect\|Krita\|mostrar-les\|mostrin les nanses de selecció\|per a la tauleta\|QAccesibility»\|Qt[123456789]\) a Android\([^[:alnum:]]\)/\1 en Android\2/g
 # a Angle
 s/\b\(16 bits\) a Angle\([^[:alnum:]]\)/\1 en Angle\2/g
 # a aquest(a)
 s/\btrob\(a\|eu\) a aquesta\([^[:alnum:]]\)/trob\1 en aquesta\2/g
 # a Arch
 s/\bA Arch\([^[:alnum:]]\)/En Arch\1/g
-s/\b\([Cc]erca paquets\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Arch\([^[:alnum:]]\)/\1 en \2Arch\3/g
+s/\b\([Cc]erca paquets\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Arch\([^[:alnum:]]\)/\1 en \2Arch\3/g
+# a articles
+s/\b\(Final de la 10»\) a articles\([^[:alnum:]]\)/\1 en articles\2/g
 # a Artikulate
 s/\bA Artikulate\([^[:alnum:]]\)/En Artikulate\1/g
 s/\b\(Entrenament\) a Artikulate\([^[:alnum:]]\)/\1 en Artikulate\2/g
@@ -753,7 +783,7 @@ s/\bA Audex\([^[:alnum:]]\)/En Audex\1/g
 s/\b\(Les variables\) a Audex\([^[:alnum:]]\)/\1 en Audex\2/g
 # a AUR
 s/\bA AUR\([^[:alnum:]]\)/En AUR\1/g
-s/\b\(disponible\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)AUR\([^[:alnum:]]\)/\1 en \2AUR\3/g
+s/\b\(disponible\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)AUR\([^[:alnum:]]\)/\1 en \2AUR\3/g
 # a baixar
 s/\b\(interessat\) a baixar\([^[:alnum:]]\)/\1 en baixar\2/g
 # a Baloo
@@ -762,68 +792,97 @@ s/\b\(fetes\) a Baloo\([^[:alnum:]]\)/\1 en Baloo\2/g
 s/\b\(nostre esprint\) a Blender\([^[:alnum:]]\)/\1 en Blender\2/g
 # a Bugzilla
 s/\bA Bugzilla\([^[:alnum:]]\)/En Bugzilla\1/g
-s/\b\([Ee]l nom del producte\|informeu-ne\|tancats\|Trobareu la llista no completa dels errors i característiques\|vàlids\) a\(l\|\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Bb]\)ugzilla\([^[:alnum:]]\)/\1 en \3\4ugzilla\5/g
+s/\b\([Ee]l nom del producte\|informeu-ne\|tancats\|Trobareu la llista no completa dels errors i característiques\|vàlids\) a\(l\|\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Bb]\)ugzilla\([^[:alnum:]]\)/\1 en \3\4ugzilla\5/g
 # a cada
 s/\bA cada torn\([^[:alnum:]]\)/En cada torn\1/g
-s/\b\(amb un objecte\|buida\|buida la memòria cau\|crearà un fitxer «.directory» ocult\|prendre de mitjana\|recordarà la posició d'enfocament del procés d'enfocament automàtic dels fotogrames de llum\) a cada\([^[:alnum:]]\)/\1 en cada\2/g
+s/\b\(acumulada\|amb un objecte\|buida\|buida la memòria cau\|crearà un fitxer «.directory» ocult\|establir el nombre de píxels\|Per tant, el nombre de píxels\|prendre de mitjana\|recordarà la posició d'enfocament del procés d'enfocament automàtic dels fotogrames de llum\) a cada\([^[:alnum:]]\)/\1 en cada\2/g
 # a calligrasheets
 s/\b\(userinput>\) a &calligrasheets\([^[:alnum:]]\)/\1 en \&calligrasheets\2/g
 # a Cantor
 s/\bA Cantor\([^[:alnum:]]\)/En Cantor\1/g
 s/\b\(executeu Pkg\.install(\\"GR\\")\) a Cantor\([^[:alnum:]]\)/\1 en Cantor\2/g
+# a Captura
+s/\b\(activada una seqüència\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Captura\([^[:alnum:]]\)/\1 en \2Captura\3/g
+  s/\ben «Captura» o al «Programador»/en «Captura» o en «Programador»/g
+# a cerca
+s/\b\(filtratge seleccionat\|vista d'icones de l'àlbum\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)erca\([^[:alnum:]]\)/\1 en \2\3erca\4/g
 # a CDS
-s/\b\(resoldre el nom\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)CDS\([^[:alnum:]]\)/\1 en \2CDS\3/g
+s/\b\(resoldre el nom\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)CDS\([^[:alnum:]]\)/\1 en \2CDS\3/g
 # a ChromeOS
 s/\bA ChromeOS\([^[:alnum:]]\)/En ChromeOS\1/g
 s/\b\(Krita\) a ChromeOS\([^[:alnum:]]\)/\1 en ChromeOS\2/g
+# a color
+s/\b\([Pp]ràctica d'un esbós\) a color\([^[:alnum:]]\)/\1 en color\2/g
 # a conf
-s/\b\(especificat\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)conf\([^[:alnum:]]\)/\1 en \2conf\3/g
+s/\b\(especificat\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)conf\([^[:alnum:]]\)/\1 en \2conf\3/g
+# a Configura
+s/\b\(desactivar\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Configura\([^[:alnum:]]\)/\1 en \2Configura\3/g
 # a Configuració
-s/\b\(afegir ordres noves\|canviar,\|Definiu quatre jugadors\|ex\.,\|macOS\|Magnatune\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Configuració\([^[:alnum:]]\)/\1 en \2Configuració\3/g
+s/\b\(activeu l'enfocament adaptatiu\|afegir ordres noves\|canviar,\|[Cc]onfigurar-lo\|Definiu quatre jugadors\|desactivar\|disponible\|disponibles\|[Ee]stablir-lo\|ex\.,\|macOS\|Magnatune\|[Mm]és accions disponibles\|[Oo]pcions d'alineació\|utilitzant les opcions de pantalla completa\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)onfiguració\([^[:alnum:]]\)/\1\2\3 en \4\5onfiguració\6/g
 # a Configureu
-s/\b\([Oo]pcions d'alineació\|[Cc]onfigurar-lo\|macOS\|Magnatune\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Configureu\([^[:alnum:]]\)/\1\2\3 en \4Configureu\5/g
+s/\b\([Cc]onfigurar-lo\|disponible\|disponibles\|[Ee]stablir-lo\|macOS\|Magnatune\|[Oo]pcions d'alineació\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Configureu\([^[:alnum:]]\)/\1\2\3 en \4Configureu\5/g
+# a Connectors
+s/\b\(Podeu afegir-ne una\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Connectors\([^[:alnum:]]\)/\1 en \2Connectors\3/g
 # a coverage
-s/\b\(especificat\|no vàlides\|s'especifiquen\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)coverage\([^[:alnum:]]\)/\1 en \2coverage\3/g
+s/\b\(especificat\|no vàlides\|s'especifiquen\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)coverage\([^[:alnum:]]\)/\1 en \2coverage\3/g
 # a data
-s/\b\(dades sense processar\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)data\([^[:alnum:]]\)/\1 en \2data\3/g
+s/\b\(dades sense processar\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)data\([^[:alnum:]]\)/\1 en \2data\3/g
 # a Debian
 s/\b\(disponibles\) a Debian\([^[:alnum:]]\)/\1 en Debian\2/g
 # a Desa
-s/\b\(esmenat una miniatura incorrecta\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Desa\([^[:alnum:]]\)/\1 en \2Desa\3/g
+s/\b\(esmenat una miniatura incorrecta\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Desa\([^[:alnum:]]\)/\1 en \2Desa\3/g
+# a determinades
+s/\b\([Mm]illor\|[Mm]illora\|[Mm]illores\) a determinades\([^[:alnum:]]\)/\1 en determinades\2/g
 # a digiKam
 s/\bA digiKam\([^[:alnum:]]\)/En digiKam\1/g
-s/\b\(disponible\|disponibles\|Drets»\|Gestió d'actius digitals (DAM)\|sobre tots els menús\|utilitzat\|usen\|utilitzar el gestor de la cua per lots\|utilitzar el menú\|utilitzar l'editor de geolocalització\|utilitzar la barra lateral\|utilitzar la finestra principal\|utilitzar la taula de llum\|utilitzar les eines d'exportació\|utilitzar les eines de manteniment\|utilitzar les eines de postprocessament\|utilitzar les eines de presentació de diapositives\|utilitzar-la\|utilitzen\) a digiKam\([^[:alnum:]]\)/\1 en digiKam\2/g
+s/\b\(Afegeix gra de pel·lícula»\|amb la geolocalització\|amb les etiquetes automàtiques\|arbre d'etiquetes imbricades\|càmera admesos\|Cerca avançada»\|Com que\|configuració del perfil del monitor\|convertidor RAW\|Dates»\|detecció de cares\|detecció de les cares\|diàleg de configuració\|Dibuix al carbonet\*\*\|disponible\|disponibles\|Drets»\|[Ee]ditor de la geolocalització\|Efectes de color\*\*\|emmagatzematge remot\|etiquetatge manual de les cares\|Exploreu la qualitat de les imatges»\|flux de treball de les metadades\|Gestió del color»\|Gestió dels actius digitals (DAM)\|Gestor de la cua per lots»\|gestió de les cares\|gestionant les cares\|Gestor d'etiquetes»\|implementat\|Importació» RAW\|[Ll]'editor d'imatges\|la barra lateral esquerra\|managing_tags>`\|metadata_editor>`\|mostren\|nom dels rètols de color\|Pintura a l'oli\*\*\|processar els negatius\|ProPhotoRGB\|Propietats de l'àlbum»\|Propietats de l'etiqueta»\|Relleu»\|Rètols»\|SmugMug\|sobre tots els menús\|són una eina potent\|superposen les diferents propietats dels elements\|[Tt]aula de llum\|templates_settings>`\|traducció de les etiquetes automàtiques\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitza[rt]\|[Uu]tilitzats\|[Uu]tilitze[ns]\|utilitzar el gestor de la cua per lots\|utilitzar el menú\|utilitzar l'editor de geolocalització\|utilitzar la barra lateral\|utilitzar la finestra principal\|utilitzar la taula de llum\|utilitzar les eines d'exportació\|utilitzar les eines de manteniment\|utilitzar les eines de postprocessament\|utilitzar les eines de presentació de diapositives\|utilitzar-la\|utilitzen\|[Vv]ista prèvia RAW\) a digiKam\([^[:alnum:]]\)/\1 en digiKam\2/g
 # a Discover
 s/\bA Discover\([^[:alnum:]]\)/En Discover\1/g
-s/\b\([Cc]erqueu-ne més\|[Tt]robeu-ne més\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Discover\([^[:alnum:]]\)/\1 en \2Discover\3/g
+s/\b\([Cc]erqueu-ne més\|disponible\|disponibles\|Fcitx5\|[Tt]robeu-ne més\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Discover\([^[:alnum:]]\)/\1 en \2Discover\3/g
+# a Distrobox
+s/\bA Distrobox\([^[:alnum:]]\)/En Distrobox\1/g
+s/\b\(KDE Builder\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Distrobox\([^[:alnum:]]\)/\1 en \2Distrobox\3/g
 # a diversos
-s/\b\(RMarkdown\|traduirà\) a diversos\([^[:alnum:]]\)/\1 en diversos\2/g
+s/\b\(fins i tot\|RMarkdown\|traduirà\) a diversos\([^[:alnum:]]\)/\1 en diversos\2/g
 # a dividir
 s/\b\(centraria\) a dividir\([^[:alnum:]]\)/\1 en dividir\2/g
 # a Dolphin
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Dolphin\([^[:alnum:]]\)/En \1Dolphin\2/g
 s/\b\([Dd]emana confirmació\|[Ee]rror\|[Gg]estió de fitxers\|Samba\) a Dolphin\([^[:alnum:]]\)/\1 en Dolphin\2/g
 # a dot
-s/\b\([Ll]legeix l'article complet\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)dot\([^[:alnum:]]\)/\1 en \2dot\3/g
+s/\b\([Ll]legeix l'article complet\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)dot\([^[:alnum:]]\)/\1 en \2dot\3/g
+# a drac
+s/\b\(participació\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Dd]\)rac\([^[:alnum:]]\)/\1 en \2\3rac\4/g
 # a eBay
 s/\b\(p\. ex\.,\) a eBay\([^[:alnum:]]\)/\1 en eBay\2/g
 # a Ekos
 s/\bA Ekos\([^[:alnum:]]\)/En Ekos\1/g
 s/\b\(adquisició d'imatges i vídeo\|Aquesta és una característica experimental\|inici\|reprendrà el procés de captura\|troba\) a Ekos\([^[:alnum:]]\)/\1 en Ekos\2/g
 # a Enfocament
-s/\b\(damunt d'un segment\|[Dd]esprés,\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Enfocament\([^[:alnum:]]\)/\1 en \2Enfocament\3/g
+s/\b\(damunt d'un segment\|[Dd]esprés,\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzi el «Tren òptic» per primera vegada\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)nfocament\([^[:alnum:]]\)/\1 en \2\3nfocament\4/g
+# a Enganxa
+s/\b\(esmenat l'espai de color que faltava\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)nganxa\([^[:alnum:]]\)/\1 en \2\3nganxa\4/g
 # a Epic Store
 s/\b\(publicar-lo\) a Epic\([^[:alnum:]]\)/\1 en Epic\2/g
+# a esmenar
+s/\b\(en curs i\) a esmenar\([^[:alnum:]]\)/\1 en esmenar\2/g
+# a espais
+s/\b\(operen\) a espais\([^[:alnum:]]\)/\1 en espais\2/g
 # a Exchange
 s/\b\(que existeixin\) a Exchange\([^[:alnum:]]\)/\1 en Exchange\2/g
 # a Explorer
 s/\b\(que l'obriu\) a Explorer\([^[:alnum:]]\)/\1 en Explorer\2/g
+# a Exploreu
+s/\b\(Cerca en»\|Configuració»\|Factors bàsics»\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Exploreu\([^[:alnum:]]\)/\1 en \2Exploreu\3/g
 # a Fedivers
-s/\b\(any\) a Fedivers\([^[:alnum:]]\)/\1 en Fedivers\2/g
+s/\b\(any\|Estem\|trobar\) a Fedivers\([^[:alnum:]]\)/\1 en Fedivers\2/g
 # a finals
 s/\b\(iniciar una versió 5.2.5\) a finals\([^[:alnum:]]\)/\1 en finals\2/g
+# a «findCorrectedPixel
+s/\b\(Ha fallat\) a «findCorrectedPixel\([^[:alnum:]]\)/\1 en «findCorrectedPixel\2/g
 # a FITS
 s/\bA FITS\([^[:alnum:]]\)/En FITS\1/g
-s/\b\([Mm]illores\) a FITS\([^[:alnum:]]\)/\1 en FITS\2/g
+s/\b\([Mm]illora\|[Mm]illores\) a FITS\([^[:alnum:]]\)/\1 en FITS\2/g
 # a Flathub
 s/\bA Flathub\([^[:alnum:]]\)/En Flathub\1/g
 s/\b\([Aa]llotjat\) a Flathub\([^[:alnum:]]\)/\1 en Flathub\2/g
@@ -842,20 +901,23 @@ s/\b\(visibles\) a FSView\([^[:alnum:]]\)/\1 en FSView\2/g
 # a GCompris
 s/\bA GCompris\([^[:alnum:]]\)/En GCompris\1/g
 s/\b\(que tenim\) a GCompris\([^[:alnum:]]\)/\1 en GCompris\2/g
-# a «General
-s/\b\(que tenim\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)General\([^[:alnum:]]\)/\1 en \2General\3/g
+# a General
+s/\b\(que tenim\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)General\([^[:alnum:]]\)/\1 en \2General\3/g
 # a Gentoo
 s/\bA Gentoo\([^[:alnum:]]\)/En Gentoo\1/g
 s/\b\(indicadors «USE»\) a Gentoo\([^[:alnum:]]\)/\1 en Gentoo\2/g
 # a GitHub
 s/\bA GitHub\([^[:alnum:]]\)/En GitHub\1/g
+s/\b\(disponibles\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)GitHub\([^[:alnum:]]\)/\1 en \2GitHub\3/g
 # A GitLab
 s/\bA GitLab\([^[:alnum:]]\)/En GitLab\1/g
-s/\b\([Nn]avegueu per la nostra base de codi\) a GitLab\([^[:alnum:]]\)/\1 en GitLab\2/g
+s/\b\(disponibles\|[Nn]avegueu per la nostra base de codi\) a GitLab\([^[:alnum:]]\)/\1 en GitLab\2/g
 # a Google
 s/\bA Google\([^[:alnum:]]\)/En Google\1/g
 s/\bA \(la \|\)Google Summer of Code\([^[:alnum:]]\)/En la Google Summer of Code\2/g
 s/\b\([Cc]erca\|[Cc]erca<\/replaceable>\|[Cc]erca d'imatges\|Grups\|[Oo]bt[éí]n-lo\) a Google\([^[:alnum:]]\)/\1 en Google\2/g
+# a grup
+s/\b\(fallades\) a grups\([^[:alnum:]]\)/\1 en grups\2/g
 # a Gwenview
 s/\bA Gwenview\([^[:alnum:]]\)/En Gwenview\1/g
 s/\b\(com s'utilitzen\) a Gwenview\([^[:alnum:]]\)/\1 en Gwenview\2/g
@@ -866,23 +928,27 @@ s/\b\(El canvi\) a HFR\([^[:alnum:]]\)/\1 en HFR\2/g
 # a Hollywood
 s/\b\([Uu]tilitzada\) a Hollywood\([^[:alnum:]]\)/\1 en Hollywood\2/g
 # a html
-s/\b\(coincideix amb dos patrons\|copiar un fitxer\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)html\([^[:alnum:]]\)/\1 en \2html\3/g
+s/\b\(coincideix amb dos patrons\|copiar un fitxer\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)html\([^[:alnum:]]\)/\1 en \2html\3/g
 # a HTML
 # s/\b\(\) a \(&\|\)HTML\([^[:alnum:]]\)/\1 en \2HTML\3/g
+# a https
+s/\b\(informe d'error\|troben\|utilitzant l'instal·lador oficial\) a https\([^[:alnum:]]\)/\1 en https\2/g
 # a Identi.ca
 s/\bA Identi\.ca\([^[:alnum:]]\)/En Identi.ca\1/g
 s/\b\(Avisos\|Gent\|Grups\) a Identi\.ca\([^[:alnum:]]\)/\1 en Identi.ca\2/g
 # a include
-s/\b\([Aa]ssegureu-vos que un patró\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)include\([^[:alnum:]]\)/\1 en \2include\3/g
+s/\b\([Aa]ssegureu-vos que un patró\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)include\([^[:alnum:]]\)/\1 en \2include\3/g
 # a INDI
 s/\bA INDI\([^[:alnum:]]\)/En INDI\1/g
+# a inet
+s/\b\([Cc]erqueu\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)inet\([^[:alnum:]]\)/\1 en \2inet\3/g
 # a intersphinx
-s/\b\(no és vàlid\|una altra instància\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)intersphinx\([^[:alnum:]]\)/\1 en \2intersphinx\3/g
+s/\b\(no és vàlid\|una altra instància\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)intersphinx\([^[:alnum:]]\)/\1 en \2intersphinx\3/g
 # a Internet
 s/\bA Internet\([^[:alnum:]]\)/En Internet\1/g
-s/\b\([Cc]erca\|[Cc]erca (res)\|[Cc]erca %1\|[Cc]erca «%1»\|localitzar\|triar paràmetres\|veu més habitualment\) a \([Ii]\)nternet\([^[:alnum:]]\)/\1 en Internet\3/g
+s/\b\([Cc]erca\|[Cc]erca (res)\|[Cc]erca %1\|[Cc]erca «%1»\|localitzar\|posant-les\|triar paràmetres\|veu més habitualment\) a \([Ii]\)nternet\([^[:alnum:]]\)/\1 en Internet\3/g
 # a invent
-s/\b\(crear una petició de fusió\|GitLab\|llista de correu\|sol·licitud de fusió\|trobar\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)invent\([^[:alnum:]]\)/\1 en \2invent\3/g
+s/\b\(crear una petició de fusió\|GitLab\|llista de correu\|sol·licitud de fusió\|sol·licituds de fusió\|trobar\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)invent\([^[:alnum:]]\)/\1 en \2invent\3/g
 # a irc
 s/\b\(kde; i\|unir-vos a #kate\) a irc\([^[:alnum:]]\)/\1 en irc\2/g
 # a JSON
@@ -906,11 +972,11 @@ s/\bA KCachegrind\([^[:alnum:]]\)/En KCachegrind\1/g
 s/\b\(canvia el tipus de cost de tot el mostrat\) a KCachegrind\([^[:alnum:]]\)/\1 en KCachegrind\2/g
 # a KDE
 s/\bA KDE\([^[:alnum:]]\)/En KDE\1/g
-  s/\b\(error\|història\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(bugs\|dot\).kde.org\([^[:alnum:]]\)/\1 en \2\3.kde.org\4/g
-s/\b\(lliure, i\|mostr[ei]n\|Skrooge\|tenim\) a KDE\([^[:alnum:]]\)/\1 en KDE\2/g
-s/\b\(option>\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)kded6rc\([^[:alnum:]]\)/\1 en \2kded6rc\3/g
+  s/\b\(error\|història\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(bugs\|dot\).kde.org\([^[:alnum:]]\)/\1 en \2\3.kde.org\4/g
+s/\b\([Dd]esenvolupar\|[Dd]esenvolupar programari de KDE\|disponible\|disponibles\|El desenvolupament del nucli\|fer coses\|fer tota mena de coses\|funcion[ei]n\|lliure, i\|mostr[ei]n\|realitzar diverses tasques\|sigui de KDE\|Skrooge\|tenim\|utilitzar màquines virtuals\) a KDE\([^[:alnum:]]\)/\1 en KDE\2/g
+s/\b\(option>\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)kded6rc\([^[:alnum:]]\)/\1 en \2kded6rc\3/g
 # a kdegraphics
-s/\b\(Okular\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)kdegraphics\([^[:alnum:]]\)/\1 en \2kdegraphics\3/g
+s/\b\(Okular\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)kdegraphics\([^[:alnum:]]\)/\1 en \2kdegraphics\3/g
 # a kdelibs
 s/\b\(implementada\) a kdelibs\([^[:alnum:]]\)/\1 en la kdelibs\2/g
 # a KDevelop
@@ -927,15 +993,15 @@ s/\b\(cerca\) a &khelpcenter;\([^[:alnum:]]\)/\1 en \&khelpcenter;\2/g
 s/\b\(La primera pàgina\) a Kickstarter\([^[:alnum:]]\)/\1 en Kickstarter\2/g
 # a Kile
 s/\bA Kile\([^[:alnum:]]\)/En Kile\1/g
-s/\b\(es fan servir\|utilitzar-lo\) a Kile\([^[:alnum:]]\)/\1 en Kile\2/g
+s/\b\(es fan servir\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a Kile\([^[:alnum:]]\)/\1 en Kile\2/g
 # a KImageMapEditor
 s/\bA KImageMapEditor\([^[:alnum:]]\)/En KImageMapEditor\1/g
 s/\b\(HTML\) a KImageMapEditor\([^[:alnum:]]\)/\1 en KImageMapEditor\2/g
 # a «KisTimeBasedItemModel | «KisMergeLabeledLayersCommand | KisPerspectiveTransformWorker
-s/\b\(esmenat el problema\|esmenat la fallada\|esmenat un avis de model\|esmenat una fallada\|generar una imatge de referència\|rectangles\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(KisTimeBasedItemModel\|KisMergeLabeledLayersCommand\|KisPerspectiveTransformWorker\)\([^[:alnum:]]\)/\1 en \2\3\4/g
+s/\b\(esmenat el problema\|esmenat la fallada\|esmenat un avis de model\|esmenat una fallada\|generar una imatge de referència\|rectangles\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(KisTimeBasedItemModel\|KisMergeLabeledLayersCommand\|KisPerspectiveTransformWorker\)\([^[:alnum:]]\)/\1 en \2\3\4/g
 # a KMail
 s/\bA KMail\([^[:alnum:]]\)/En KMail\1/g
-s/\b\([Oo]bre\|[Rr]edact[ei]n correus electrònics\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)KMail\([^[:alnum:]]\)/\1 en \2KMail\3/g
+s/\b\([Oo]bre\|[Rr]edact[ei]n correus electrònics\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)KMail\([^[:alnum:]]\)/\1 en \2KMail\3/g
 # a Kleopatra
 s/\bA Kleopatra\([^[:alnum:]]\)/En Kleopatra\1/g
 s/\b\([Cc]ertificat\|[Oo]bre\) a Kleopatra\([^[:alnum:]]\)/\1 en Kleopatra\2/g
@@ -953,7 +1019,7 @@ s/\bA Kontact\([^[:alnum:]]\)/En Kontact\1/g
 s/\b\([Ll]legint fonts\) a Kontact\([^[:alnum:]]\)/\1 en Kontact\2/g
 # a Kopete
 s/\bA Kopete\([^[:alnum:]]\)/En Kopete\1/g
-s/\b\(emoticones\|utilitzar-la\) a Kopete\([^[:alnum:]]\)/\1 en Kopete\2/g
+s/\b\(emoticones\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a Kopete\([^[:alnum:]]\)/\1 en Kopete\2/g
 # a KOrganizer
 s/\bA KOrganizer\([^[:alnum:]]\)/En KOrganizer\1/g
 s/\b\(actualitzar\|mostrar\) \(l'alarma\|les alarmes\) a KOrganizer\([^[:alnum:]]\)/\1 \2 en KOrganizer\3/g
@@ -962,8 +1028,8 @@ s/\bA KRegExpEditor\([^[:alnum:]]\)/En KRegExpEditor\1/g
 s/\b\(treball\) a KRegExpEditor\([^[:alnum:]]\)/\1 en KRegExpEditor\2/g
 # a Krita
 s/\bA Krita\([^[:alnum:]]\)/En Krita\1/g
-  s/\b\(2024-roadmap\\" >}})\|aspecte\|comentaris\|feina\|fil\|imatges destacades\|mensual\) a \(fund\.krita\.org\|KA\|Krita\.org\|krita-artists\.org\)\([^[:alnum:]]\)/\1 en \2\3/g
-s/\b\(2024-roadmap)\|arribaran\|des de zero\|eren lentes\|fil d'eines de text\|krita-5-2-3-released\/)\|polzada\|utilitzar-l[ao]\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Krita\([^[:alnum:]]\)/\1 en \2Krita\3/g
+  s/\b\(2024-roadmap\\" >}})\|aspecte\|comentaris\|feina\|fil\|imatges destacades\|mensual\|Text Tool»\) a \(fund\.krita\.org\|KA\|Krita\.org\|[Kk]rita-[Aa]rtists\)\([^[:alnum:]]\)/\1 en \2\3/g
+s/\b\(2024-roadmap)\|arribaran\|des de zero\|eren lentes\|fallar\|fent ajustos al mateix llenç\|fil d'eines de text\|funciona\|krita-5-2-3-released\/)\|llenç de 3520x1978 px\|memòria intermèdia\|polzada\|s'ha esmenat\|Stable\*\*\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Krita\([^[:alnum:]]\)/\1 en \2Krita\3/g
 # a KService
 s/\bA KService\([^[:alnum:]]\)/En KService\1/g
 s/\b\(per als fitxers d'escriptori\) a KService\([^[:alnum:]]\)/\1 en KService\2/g
@@ -972,7 +1038,7 @@ s/\bA KSquares\([^[:alnum:]]\)/En KSquares\1/g
 s/\b\(Un tauler inicial\) a KSquares\([^[:alnum:]]\)/\1 en KSquares\2/g
 # a KStars
 s/\bA KStars\([^[:alnum:]]\)/En KStars\1/g
-s/\b\(application>\|[Cc]aracterístiques úniques\|carregat\|disponibles\|DS[OS]\|Eina «Ekos»\|emprats\|es troben\|FITS\|implementat\|interessant»\|magnitud -1[02]\|mapa celeste\|mostraran\|mostren\|passes\|posicions dels objectes\|relativitat general\|resum dels catàlegs\|simulació\|telescopis?\|utilitza una biblioteca interna\|utilitzar\|veure exemples de galàxies el·líptiques\|Xplanet\) a KStars\([^[:alnum:]]\)/\1 en KStars\2/g
+s/\b\(application>\|[Cc]aracterístiques úniques\|carregat\|disponibles\|DS[OS]\|Eina «Ekos»\|emprats\|es troben\|FITS\|implementat\|interessant»\|magnitud -1[02]\|mapa celeste\|mostraran\|mostren\|passes\|posicions dels objectes\|relativitat general\|resum dels catàlegs\|si sou nous\|simulació\|telescopis?\|utilitza una biblioteca interna\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|veure exemples de galàxies el·líptiques\|Xplanet\) a KStars\([^[:alnum:]]\)/\1 en KStars\2/g
 # a KWallet
 s/\bA KWallet\([^[:alnum:]]\)/En KWallet\1/g
 s/\b\(dades del formulari\|desar-la\|emmagatzemar les contrasenyes\|[Ee]rror\) a KWallet\([^[:alnum:]]\)/\1 en KWallet\2/g
@@ -986,12 +1052,18 @@ s/\b\(Implementació del ressaltat de la sintaxi XML\) a KWrite\([^[:alnum:]]\)/
   s/\" a Libera.chat\"/\" en Libera.chat\"/g
 s/\b\(IRC\) a Libera\([^[:alnum:]]\)/\1 en Libera\2/g
 # a linkcheck
-s/\b\(compilar expressions regulars\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)linkcheck\([^[:alnum:]]\)/\1 en \2linkcheck\3/g
+s/\b\(compilar expressions regulars\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)linkcheck\([^[:alnum:]]\)/\1 en \2linkcheck\3/g
 # a Linux
-s/\bA Linux\([^[:alnum:]]\)/En Linux\1/g
-s/\() i\|amb les Qt6\|astrometry.net»\|basada\|basat\|digiKam\|disponible\|esteu\|executen sense problemes\|funcionava\|ignora\|[Ii]nstal·lar\|jugar els meus jocs\|KStars\|Per a accedir-hi\|per primera vegada\|s'ignora\|Wayland\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Linux\([^[:alnum:]]\)/\1 en \2Linux\3/g
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Linux\([^[:alnum:]]\)/En \1Linux\2/g
+s/\() i\|amb les Qt6\|astrometry.net»\|basada\|basat\|digiKam\|disponible\|disponible per als usuaris d'Ekos\|especialment\|esteu\|executen sense problemes\|faran la mateixa feina\|funcionava\|ignora\|[Ii]nstal·lar\|[Ii]nstal·lats per l'usuari\|jugar els meus jocs\|Krita [123456789],\|KStars\|Per a accedir-hi\|per primera vegada\|s'ignora\|Wayland\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Linux\([^[:alnum:]]\)/\1 en \2Linux\3/g
 s/\(Ekos\) a &\([Ll]\)inux\([^[:alnum:]]\)/\1 en \&\2inux\3/g
   s/\b\([Aa]\) \(\[\|\)Linux Kongress\([^[:alnum:]]\)/\1l \2Linux Kongress\3/g
+# a Liqüescent
+s/\b\([Mm]illora\|[Mm]illores\|[Pp]roblemes\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Liqüescent\([^[:alnum:]]\)/\1 en \2Liqüescent\3/g
+# a llapis
+s/\b\([Ee]xtracció d'un esbós\) a llapis\([^[:alnum:]]\)/\1 en llapis\2/g
+# a llocs
+s/\b\(emmagatzemen els seus perfils de monitor\) a llocs\([^[:alnum:]]\)/\1 en llocs\2/g
 # a LottieFiles
 s/\b\([Vv]isualitza\) a LottieFiles\([^[:alnum:]]\)/\1 en LottieFiles\2/g
 # a Mac
@@ -999,27 +1071,33 @@ s/\b\([Vv]isualitza\) a LottieFiles\([^[:alnum:]]\)/\1 en LottieFiles\2/g
 s/\bAls Mac\([^[:alnum:]]\)/En els Mac\1/g
 s/\b\(digiKam\|funciona\|i també\) als Mac\([^[:alnum:]]\)/\1 en els Mac\2/g
 # a macOS
-s/\bA macOS\([^[:alnum:]]\)/En macOS\1/g
-s/\b\(digiKam\|esmenat una fallada\|G'Mic\|importar àudio\|importava àudio\|nova\|ora»\|però també\|provada\) a macOS\([^[:alnum:]]\)/\1 en macOS\2/g
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)macOS\([^[:alnum:]]\)/En \1macOS\2/g
+s/\b\(així com el menú d'aplicacions\|digiKam\|disponible\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|esmenes d'errors\|G'MIC\|importar àudio\|importava àudio\|nova\|ora»\|però també\|provada\|Qt[123456789]\) a macOS\([^[:alnum:]]\)/\1 en macOS\2/g
 # a Marble
 s/\bA Marble\([^[:alnum:]]\)/En Marble\1/g
   s/\bEn Marble li cal\([^[:alnum:]]\)/A Marble li cal\1/g
-s/\b\(es fan servir\|mapes nous\|utilitzar-lo\|Viquipèdia\) a Marble\([^[:alnum:]]\)/\1 en Marble\2/g
+s/\b\(es fan servir\|mapes nous\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|Viquipèdia\) a Marble\([^[:alnum:]]\)/\1 en Marble\2/g
 # a Mart
 s/\b\(i els robots\|insight\/)\|Missions\) a Mart\([^[:alnum:]]\)/\1 en Mart\2/g
 # a Mastodon
 s/\b\(any\|publicació\) a Mastodon\([^[:alnum:]]\)/\1 en Mastodon\2/g
+# a Matrix
+s/\b\(desenvolupadors de KDE Linux\|KDE Linux\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Matrix\([^[:alnum:]]\)/\1 en \2Matrix\3/g
 # a millorar
 s/\b\(treball\|treballat contínuament\) a millorar\([^[:alnum:]]\)/\1 en millorar\2/g
+# a molts
+s/\bA molts\([^[:alnum:]]\)/En molts\1/g
 # a moltes
 s/\b\(desplegat\|predeterminada\|trobareu\) a moltes\([^[:alnum:]]\)/\1 en moltes\2/g
 # a neon
-s/\b\(configurarem\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)neon\([^[:alnum:]]\)/\1 en \2neon\3/g
+s/\b\(configurarem\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)neon\([^[:alnum:]]\)/\1 en \2neon\3/g
 # a oferir
 s/\b\(centrat\) a oferir\([^[:alnum:]]\)/\1 en oferir\2/g
 # a Okular
 s/\bA Okular\([^[:alnum:]]\)/En Okular\1/g
 s/\b\(errada\|manuals\) a Okular\([^[:alnum:]]\)/\1 en Okular\2/g
+# a Opcions
+s/\b\(reflectits»\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Opcions\([^[:alnum:]]\)/\1 en \2Opcions\3/g
 # a OpenOffice
 s/\bA OpenOffice\([^[:alnum:]]\)/En OpenOffice\1/g
 s/\b\(com a mínim\) a OpenOffice\([^[:alnum:]]\)/\1 en OpenOffice\2/g
@@ -1034,42 +1112,64 @@ s/\b\(dibuixant\) a pantalla\([^[:alnum:]]\)/\1 en pantalla\2/g
 s/\bA Patreon\([^[:alnum:]]\)/En Patreon\1/g
 s/\b\(GCompris\) a Patreon\([^[:alnum:]]\)/\1 en Patreon\2/g
 # a PHD2
-s/\b\(Establiu els paràmetres de CCD i del telescopi\) a PHD2\([^[:alnum:]]\)/\1 en PHD2\2/g
+s/\b\(Establiu els paràmetres de la càmera i del telescopi\) a PHD2\([^[:alnum:]]\)/\1 en PHD2\2/g
 # a Plasma
 s/\bA Plasma\([^[:alnum:]]\)/En Plasma\1/g
-s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(&\|\)\([Pp]\)lasma\([^[:alnum:]]\)/En \1\2\3lasma\4/g
-s/, a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(&\|\)\([Pp]\)lasma\([^[:alnum:]]\)/, en \1\2\3lasma\4/g
-s/\b\(Configuració\|[Dd]esa la configuració\|Elisa\|Finestra principal\|Finestra principal vertical\|ocultar automàticament els plafons\|sobre l'operació actual\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(&\|\)\([Pp]\)lasma\([^[:alnum:]]\)/\1 en \2\3\4lasma\5/g
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(&\|\)\([Pp]\)lasma\([^[:alnum:]]\)/En \1\2\3lasma\4/g
+s/, a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(&\|\)\([Pp]\)lasma\([^[:alnum:]]\)/, en \1\2\3lasma\4/g
+s/\b\(Configuració\|[Dd]esa la configuració\|Elisa\|Finestra principal\|Finestra principal vertical\|ocultar automàticament els plafons\|sobre l'operació actual\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(&\|\)\([Pp]\)lasma\([^[:alnum:]]\)/\1 en \2\3\4lasma\5/g
+# a portar
+s/\b\(centrat\) a portar\([^[:alnum:]]\)/\1 en portar\2/g
 # a POST
 s/\b\(accés a un port restringit\) a POST\([^[:alnum:]]\)/\1 en POST\2/g
+# a Proporciona
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Proporciona/En \1Proporciona/g
+# a proporcionar
+s/\b\(centrant-se\) a proporcionar\([^[:alnum:]]\)/\1 en proporcionar\2/g
+# a PSD
+s/\b\(desar les etiquetes de color de les capes\) a PSD\([^[:alnum:]]\)/\1 en PSD\2/g
+# a Python
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|seqüència d'escapada no vàlida\) a Python\([^[:alnum:]]\)/\1 en Python\2/g
+# a QFile::copy
+s/\b\(informa d'errors\) a «QFile::copy\([^[:alnum:]]\)/\1 en «QFile::copy\2/g
+# a Qt
+s/\b\(provocant els alentiments\) a Qt\([^[:alnum:]]\)/\1 en Qt\2/g
 # a qt6
-s/\b\(construcció\) a qt6\([^[:alnum:]]\)/\1 en qt6\2/g
+s/\b\(construcció\) a \([Qq]\)t6\([^[:alnum:]]\)/\1 en Qt6\3/g
 # a les qt6
-s/\b\(rendiment\) a les qt6\([^[:alnum:]]\)/\1 en les qt6\2/g
+s/\b\([Aa]coblador\|[Aa]cobladors\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smenes d'errors\|millorar la velocitat dels fotogrames del llenç\|rendiment\|selecció de lletres\|sistema base, o fins i tot\) a les \([Qq]\)t\([123456789]\)\([^[:alnum:]]\)/\1 en les Qt\3\4/g
+# a Quadrícula
+s/\b\([Mm]illora\|[Mm]illores\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Qq]\)uadrícula\([^[:alnum:]]\)/\1 en \2\3uadrícula\4/g
 # a qualsevol
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]oincidència d'etiquetes\|doble toc\|executar-se\|emmagatzemarà les vostres dades confidencials\|és el mateix\|fixar-les\|forma segura\|ignori aquests dos noms de carpeta\|[Pp]remeu\) a qualsevol\([^[:alnum:]]\)/\1 en qualsevol\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a qualsevol\([^[:alnum:]]\)/\1 en qualsevol\2/g
+s/\b\([Cc]oincidència d'etiquetes\|doble toc\|executar-se\|emmagatzemarà les vostres dades confidencials\|és el mateix\|fixar-les\|forma segura\|ignori aquests dos noms de carpeta\|[Pp]remeu\|trob[ei]n\) a qualsevol\([^[:alnum:]]\)/\1 en qualsevol\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a qualsevol\([^[:alnum:]]\)/\1 en qualsevol\2/g
+# a quin
+s/\b\(sigui més clar\) a quin\([^[:alnum:]]\)/\1 en quin\2/g
 # a Qwant
 s/\bA Qwant\([^[:alnum:]]\)/En Qwant\1/g
 s/\b\(Imatges\|Notícies\|Tertúlia\) a Qwant\([^[:alnum:]]\)/\1 en Qwant\2/g
+# a Reductor
+s/\b\(disponibles les subopcions següents\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Reductor\([^[:alnum:]]\)/\1 en \2Reductor\3/g
 # s RMarkdown
-s/\b\(vegeu la documentació\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)rmarkdown\([^[:alnum:]]\)/\1 en \2rmarkdown\3/g
+s/\b\(vegeu la documentació\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)rmarkdown\([^[:alnum:]]\)/\1 en \2rmarkdown\3/g
 # a Ruqola
 s/\bA Ruqola\([^[:alnum:]]\)/En Ruqola\1/g
 s/\b\(nou\) a Ruqola\([^[:alnum:]]\)/\1 en Ruqola\2/g
 # a RKWard
 s/\bA RKWard\([^[:alnum:]]\)/En RKWard\1/g
-s/\b\(opció predeterminada\|s'utilitzaran\) a RKWard\([^[:alnum:]]\)/\1 en RKWard\2/g
+s/\b\(opció predeterminada\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a RKWard\([^[:alnum:]]\)/\1 en RKWard\2/g
 # a S24
  #
-s/\b\(esmenat un problema\) als S24\([^[:alnum:]]\)/\1 en els S24\2/g
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\) als S24\([^[:alnum:]]\)/\1 en els S24\2/g
 # a setImage
-s/\b\(pintar «KisShapeLayerCanvas»\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)setImage\([^[:alnum:]]\)/\1 en \2setImage\3/g
+s/\b\(pintar «KisShapeLayerCanvas»\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)setImage\([^[:alnum:]]\)/\1 en \2setImage\3/g
 # a Showfoto
 s/\bA Showfoto\([^[:alnum:]]\)/En Showfoto\1/g
 s/\b\(Edita la geolocalització…`\|Editeu fotografies\) a Showfoto\([^[:alnum:]]\)/\1 en Showfoto\1/g
 # a Simbad
 s/\b\([Cc]erca\) a Simbad\([^[:alnum:]]\)/\1 en Simbad\2/g
+# a Sky
+s/\b\(Barry Megdal\) a «Sky\([^[:alnum:]]\)/\1 en «Sky\2/g
 # a &systemsettings; (Configuració del sistema)
 s/\bA \(&systemsettings\|Configuració del sistema\)\([^[:alnum:]]\)/En \1\2/g
 s/\ba &systemsettings\([^[:alnum:]]\)/en \&systemsettings\1/g
@@ -1091,47 +1191,66 @@ s/\b\([Ee]rror\|dispositiu\|posició\|selecció oficial\) a StellarSolver\([^[:a
 # a SVG
 s/\bA SVG\([^[:alnum:]]\)/En SVG\1/g
 s/\b\(rebutja una alçada de línia negativa\) a SVG\([^[:alnum:]]\)/\1 en SVG\2/g
+# a sysext
+s/\b\([Cc]rea un fitxer fictici\|[Ii]nstal·lació\|instal·lar el nucli\|[Ii]nstal·len\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)sysext\([^[:alnum:]]\)/\1 en \2sysext\3/g
+# a systemd
+s/\b\(apareixerà com una entrada sense versió\) a systemd\([^[:alnum:]]\)/\1 en systemd\2/g
 # a systemsettings
 s/\bA &systemsettings\([^[:alnum:]]\)/En \&systemsettings\1/g
 s/\b\(establir el nom d'usuari i contrasenya predeterminats\) a &systemsettings\([^[:alnum:]]\)/\1 en \&systemsettings\2/g
+# a Tanca
+s/\b\(Aplica`` i després\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Tt]\)anca\([^[:alnum:]]\)/\1 en \2\3anca\4/g
+# a telèfons
+s/\b\(veure les imatges apilades als navegadors web\) a telèfons\([^[:alnum:]]\)/\1 en telèfons\2/g
 # a Teletekst
 s/\bA Teletekst\([^[:alnum:]]\)/En Teletekst\1/g
 s/\b\(Proveïdor de cerca\) a Teletekst\([^[:alnum:]]\)/\1 en Teletekst\2/g
 # a terra
 s/\bpeus a terra\([^[:alnum:]]\)/peus en terra\1/g
+# a text
+s/\b\(degradats es col·loquen correctament\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Tt]\)ext\([^[:alnum:]]\)/\1 en \2\3ext\4/g
 # a TextEditor
-s/\b\(família de lletres\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)TextEditor\([^[:alnum:]]\)/\1 en \2TextEditor\3/g
+s/\b\(família de lletres\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)TextEditor\([^[:alnum:]]\)/\1 en \2TextEditor\3/g
 # a TIFF
 s/\b\(ignora la resolució\) a TIFF\([^[:alnum:]]\)/\1 en TIFF\2/g
+# a tot
+s/\b\(propietari de la marca\|superíndex\) a tot\([^[:alnum:]]\)/\1 en tot\2/g
 # a tota
-s/\b\(Les opcions de configuració persistents\) a tota\([^[:alnum:]]\)/\1 en tota\2/g
+s/\b\(cercant\|cercant les etiquetes\|Les opcions de configuració persistents\) a tota\([^[:alnum:]]\)/\1 en tota\2/g
 # a totes
-s/\b\([Aa]costa\|[Aa]llunya\|[Aa]propa\|capçalera\|construcció de les biblioteques de suport\|disponible\|estarà ocult\|estarà oculta\|peu de pàgina\|utilitzat\|visualització de metadades ampliades\) a totes\([^[:alnum:]]\)/\1 en totes\2/g
+s/\b\([Aa]costa\|[Aa]llunya\|[Aa]propa\|capçalera\|cercar\|construcció de les biblioteques de suport\|disponible\|estarà ocult\|estarà oculta\|l'editor d'imatges i\|peu de pàgina\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|visualització de metadades ampliades\) a totes\([^[:alnum:]]\)/\1 en totes\2/g
 # a tots
-s/\b\([Aa]costa\|[Aa]llunya\|[Aa]propa\|disponible\|estarà ocult\|estarà oculta\|utilitzat\) a tots\([^[:alnum:]]\)/\1 en tots\2/g
+s/\b\([Aa]costa\|[Aa]llunya\|[Aa]propa\|cercar\|cercant\|desar les imatges escanejades\|disponible\|estarà ocult\|estarà oculta\|garanteix metadades coherents\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a tots\([^[:alnum:]]\)/\1 en tots\2/g
 # a Treballar
-s/\b\(descrites\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Treballar\([^[:alnum:]]\)/\1 en \2Treballar\3/g
+s/\b\(descrites\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Treballar\([^[:alnum:]]\)/\1 en \2Treballar\3/g
+# a Tria
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Tria/En \1Tria/g
 # a trixel
-s/\b\(carregar els objectes del catàleg\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)trixel\([^[:alnum:]]\)/\1 en \2trixel\3/g
+s/\b\(carregar els objectes del catàleg\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)trixel\([^[:alnum:]]\)/\1 en \2trixel\3/g
 # a Troba
-s/\b\([Ee]xecució %[12345]\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Troba\([^[:alnum:]]\)/\1 en \2Troba\3/g
+s/\b\([Ee]xecució %[12345]\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Troba\([^[:alnum:]]\)/\1 en \2Troba\3/g
 # a una
-s/\b\(administració d'empreses\) a una\([^[:alnum:]]\)/\1 en una\2/g
+  s/\b\([Ee]nganxa\) a una\([^[:alnum:]]\)/\1 en una\2/g
+s/\b\(administració d'empreses\|[Ee]nganxa\|feia «Enganxa en una imatge nova»\|sobre múltiples elements\) a una\([^[:alnum:]]\)/\1 en una\2/g
 # a UNIX
 s/\bA \(&\|\)UNIX\([^[:alnum:]]\)/En \1UNIX\2/g
 s/, a \(&\|\)UNIX\([^[:alnum:]]\)/, en \1UNIX\2/g
 s/\b\(líders\) a \(&\|\)UNIX\([^[:alnum:]]\)/\1 en \2UNIX\3/g
 # a Versions
-s/\b\(agrupen\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Versions\([^[:alnum:]]\)/\1 en \2Versions\3/g
+s/\b\(agrupen\) a \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Versions\([^[:alnum:]]\)/\1 en \2Versions\3/g
+# a Vista
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Vista/En \1Vista/g
 # a VobSub
 s/\b\([Ee]rror\) a VobSub\([^[:alnum:]]\)/\1 en VobSub\2/g
 # a Wayland
-s/\b\([Ee]rror\|estaran disponibles\) a Wayland\([^[:alnum:]]\)/\1 en Wayland\2/g
+s/\bA Wayland\([^[:alnum:]]\)/En Wayland\1/g
+s/\b\(admet la gestió del color\|[Ee]rror\|estaran disponibles\|ja no falla\|KWin\|HDR per al llenç\) a Wayland\([^[:alnum:]]\)/\1 en Wayland\2/g
 # a Weston
 s/\b\(estem\) a Weston\([^[:alnum:]]\)/\1 en Weston\2/g
 # a Windows
-s/\bA Windows\([^[:alnum:]]\)/En Windows\1/g
-s/\b\(amb la compressió «Deflate»\|ANGLE\|ANSVR\|AppData\|[Cc]orregeix una icona\|digiKam\|disponible\|esmenes d'errors\|establert el renderitzador gràfic a «direct3d11»\|estarà disponible en alguns ordinadors,\|esteu\|i -\?\|implementació per a la cadena d'eines llvm-mingw\|[Ii]nstal·lació\|instal·lar\|JPEG-XL\|macOS, i possiblement\|millor que\|neochat) i\|només\|presència de «bt2020PQColorSpace»\|requereix\|requerixutilitzar-l[ao]\|utilitzen «Deflate»\) a \(&\|\[\|\)Windows\([^[:alnum:]]\)/\1 en \2Windows\3/g
+s/\bA \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Windows\([^[:alnum:]]\)/En \1Windows\2/g
+s/\b\(amb la compressió «Deflate»\|ANGLE\|ANSVR\|AppData»\|[Cc]lang [123456789][0123456789]\|[Cc]orregeix una icona\|digiKam\|disponible\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|establert el renderitzador gràfic a «direct3d11»\|estarà disponible en alguns ordinadors,\|esteu\|faries servir\|feies\|funciona\|i -\?\|implementació per a la cadena d'eines llvm-mingw\|[Ii]nstal·lació\|instal·lar\|JPEG-XL\|Krita\|Krita [123456789]\|macOS, i possiblement\|millor que\|neochat) i\|només\|presència de «bt2020PQColorSpace»\|Qt[123456789]\|requereix\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzen «Deflate»\) a \(&\|\[\|\)Windows\([^[:alnum:]]\)/\1 en \2Windows\3/g
+  s/\badaptar Krita en Windows\([^[:alnum:]]\)/adaptar Krita a Windows\1/g
   # a la Windows Store
   s/\b\(Krita\) a la Windows Store\([^[:alnum:]]\)/\1 en la Windows Store\2/g
 # a www
@@ -1139,6 +1258,8 @@ s/\b\(amb la compressió «Deflate»\|ANGLE\|ANSVR\|AppData\|[Cc]orregeix una ic
 s/\bA \(&\|\)\(X11\|x86_64\)\([^[:alnum:]]\)/En \1\2\3/g
 s/, a \(&\|\)\(X11\|x86_64\)\([^[:alnum:]]\)/, en \1\2\3/g
 s/\b\(disponible\|inici\|lletres\) a \(&\|\)\(X11\|x86_64\)\([^[:alnum:]]\)/\1 en \2\3\4/g
+# a Xen
+s/\b\(mostra\) a Xen\([^[:alnum:]]\)/\1 en Xen\2/g
 # a Xplanet
 s/\bA Xplanet\([^[:alnum:]]\)/En Xplanet\1/g
 s/\b\(CDV\|Visualitza\) a Xplanet\([^[:alnum:]]\)/\1 en Xplanet\2/g
@@ -1152,10 +1273,16 @@ s/\b\(Creixement\|guies d'aprenentatge\|vídeo\) a YouTube\([^[:alnum:]]\)/\1 en
 # #
 # # # # # # # # # # # # # #
 #
+# a d'
+# a d'altres
+s/\b\(determinades longituds d'ona de llum que\) a d'altres\([^[:alnum:]]\)/\1 en d'altres\2/g
+# #
+# # # # # # # # # # # # # #
+#
 # a l', a la, a les, al(s), a un(a)
 # a l'acció
 s/\bA l'acció\([^[:alnum:]]\)/En l'acció\1/g
-  s/\ba l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Acció\([^[:alnum:]]\)/en l'\1Acció\2/g
+  s/\ba l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Acció\([^[:alnum:]]\)/en l'\1Acció\2/g
 s/\b\([Cc]om\) a l'acció\([^[:alnum:]]\)/\1 en l'acció\2/g
  #
   s/\bel llenç, i a les accions\([^[:alnum:]]\)/el llenç i en les accions\1/g
@@ -1164,8 +1291,9 @@ s/\b\(de prova\) a les accions\([^[:alnum:]]\)/\1 en les accions\2/g
   s/\ba l'acoblable de \(l'esquerra\|la dreta\)\([^[:alnum:]]\)/en l'acoblable de \1\2/g
 s/\b\(seleccionant aquestes parts\) a l'acoblable\([^[:alnum:]]\)/\1 en l'acoblable\2/g
 # a l'acoblador
+s/\bA l'acoblador\([^[:alnum:]]\)/En l'acoblador\1/g
 s/\bA l'aco&blador\([^[:alnum:]]\)/En l'aco\&blador\1/g
-s/\b\(a sota i\|esmenat «TypeError»\|esmenes\|millorat els perfils de FFmpeg\|Tria una màscara\|seleccionats\) a l'acoblador\([^[:alnum:]]\)/\1 en l'acoblador\2/g
+s/\b\(a sota i\|Accions de selecció»\|amb un botó especial\|configurar\|esmenat «TypeError»\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|millorat els perfils de FFmpeg\|[Mm]illora\|[Mm]illores\|ocultar automàticament els controls\|Pinzell múltiple»,\|selecció d'estil de la lletra\|Tria una màscara\|seleccionats\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)acoblador\([^[:alnum:]]\)/\1 en l'\2acoblador\3/g
  #
 s/\b\(barres de títol\) als acobladors\([^[:alnum:]]\)/\1 en els acobladors\2/g
 # a l'activitat
@@ -1181,17 +1309,26 @@ s/\b\(Escolta les connexions de xarxa\|Nota: <\/b>%s\) a l'adreça\([^[:alnum:]]
 s/\b\(que heu indicat\|Sala inclosa\|Sala no inclosa\) a les adreces\([^[:alnum:]]\)/\1 en les adreces\2/g
 # a l'agenda
 s/\b\(seleccionada\) a l'agenda\([^[:alnum:]]\)/\1 en l'agenda\2/g
+# a l'aigua
+s/\b\(cel o\) a l'aigua\([^[:alnum:]]\)/\1 en l'aigua\2/g
+# a l'aïllament
+s/\b\(precisió millor\) a l'aïllament\([^[:alnum:]]\)/\1 en l'aïllament\2/g
 # a l'aixeta
 s/\b\(Òliba comuna\) a l'aixeta\([^[:alnum:]]\)/\1 en l'aixeta\2/g
 # a l'ajuda
 s/\b\(Consulteu els detalls\|per a cercar\) a l'ajuda\([^[:alnum:]]\)/\1 en l'ajuda\2/g
+# a l'Akademy
+s/\bA l'Akademy\([^[:alnum:]]\)/En l'Akademy\1/g
+s/\b\(conèixer el seu prototip de treball\|release-of-kde-linux\/)\) a l'Akademy\([^[:alnum:]]\)/\1 en l'Akademy\2/g
 # a l'àlbum
-s/\b\(l'anterior\|ordenació\|p\. ex\., les imatges\|troba físicament\) a l'àlbum\([^[:alnum:]]\)/\1 en l'àlbum\2/g
+s/\b\(calcular la data mitjana de les imatges\|crear automàticament subàlbums\|l'anterior\|ordenació\|p\. ex\., les imatges\|posar-la\|troba físicament\|troben\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'àlbum\([^[:alnum:]]\)/\1 en l'àlbum\2/g
  #
-s/\b\([Cc]erca\|estan\|estan tant\|estaran\|inclosos\|però no\) als àlbums\([^[:alnum:]]\)/\1 en els àlbums\2/g
+s/\b\([Cc]erca\|estan\|estan tant\|estaran\|explora totes les imatges\|inclosos\|però no\|tinguin un rètol de selecció\) als àlbums\([^[:alnum:]]\)/\1 en els àlbums\2/g
+# a l'alçada
+s/\b\(després\) a l'alçada\([^[:alnum:]]\)/\1 en l'alçada\2/g
 # a l'algorisme
 s/\bA l'algorisme\([^[:alnum:]]\)/En l'algorisme\1/g
-s/\b\(utilitzarà\|utilitzarà\) a l'algorisme\([^[:alnum:]]\)/\1 en l'algorisme\2/g
+s/\b\(disponible\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Aa]\)lgorisme\([^[:alnum:]]\)/\1 en l'\2\3lgorisme\4/g
 # a l'alta
 s/\b\(Transport públic regional\) a l'alta\([^[:alnum:]]\)/\1 en l'alta\2/g
 # a l'altitud
@@ -1201,26 +1338,26 @@ s/, a l'altra part\([^[:alnum:]]\)/, en l'altra part\1/g
 s/, a l'altre costat\([^[:alnum:]]\)/, en l'altre costat\1/g
 s/\bA l'altra banda\([^[:alnum:]]\)/En l'altra banda\1/g
 s/\bA l'altre extrem\([^[:alnum:]]\)/En l'altre extrem\1/g
-s/\b\(agrupi\|canviat a «Alguna CoSA»\|correspon a un fitxer amb el mateix nom\|estàs\|expandit per espais\|Fusió a tres bandes amb base»\|i la imatge final\|suprimit\|té una imatge\) a l'altr\([ae]\)\([^[:alnum:]]\)/\1 en l'altr\2\3/g
+s/\b\(agrupi\|canviat a «Alguna CoSA»\|correspon a un fitxer amb el mateix nom\|estàs\|executarà de forma sincrònica\|expandit per espais\|Fusió a tres bandes amb base»\|i la imatge final\|suprimit\|té una imatge\) a l'altr\([ae]\)\([^[:alnum:]]\)/\1 en l'altr\2\3/g
  #
-s/\b\(establirà l'estat d'aquest diagrama\) als altres\([^[:alnum:]]\)/\1 en els altres\2/g
-s/\b\(trucada de prova\|xat activa i\) a les altres\([^[:alnum:]]\)/\1 en les altres\2/g
+s/\b\(establirà l'estat d'aquest diagrama\|mostrar\|Predefinit esborrador»\) als altres\([^[:alnum:]]\)/\1 en els altres\2/g
+s/\b\(classificar\|mostrar\|trucada de prova\|xat activa i\) a les altres\([^[:alnum:]]\)/\1 en les altres\2/g
 # a l'amfitrió
-s/\b\([Ee]xecuta\|[Ee]xecutant-se\) a l'amfitrió\([^[:alnum:]]\)/\1 en l'amfitrió\2/g
+s/\b\([Ee]xecuta\|[Ee]xecutant-se\|[Ee]xecuteu «indiserver»\) a l'amfitrió\([^[:alnum:]]\)/\1 en l'amfitrió\2/g
 # a l'amplada
-s/\b\(és el límit\) a l'amplada\([^[:alnum:]]\)/\1 en l'amplada\2/g
+s/\b\(és el límit\|primer\) a l'amplada\([^[:alnum:]]\)/\1 en l'amplada\2/g
 # a l'amplada
 s/\b\([Nn]ombre de tessel·les\) a l'\(alçada\|amplada\)\([^[:alnum:]]\)/\1 en l'\2\3/g
 # a l'analitzador
-s/\b\(són BMP\) a l'analitzador\([^[:alnum:]]\)/\1 en l'analitzador\2/g
+s/\b\(esmenat un error de segmentació\|són BMP\) a l'analitzador\([^[:alnum:]]\)/\1 en l'analitzador\2/g
 # a l'anàlisi
-s/\b\(seleccioneu-la\) a l'anàlisi\([^[:alnum:]]\)/\1 en l'anàlisi\2/g
+s/\b\(seleccioneu-la\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'anàlisi\([^[:alnum:]]\)/\1 en l'anàlisi\2/g
 # a l'anell
 s/\b\(disponible\|estan\|gestió dels certificats X.509 i OpenPGP\|present\|trobat\|troben\) a l'anell\([^[:alnum:]]\)/\1 en l'anell\2/g
 # a l'angle
 s/\b\(multiplicador\*\) a l'angle\([^[:alnum:]]\)/\1 en l'angle\2/g
 # a l'animació
-s/\b\(Àudio\|[Cc]anvia la velocitat dels fotogrames\|canviar les unitats per al pas temporal\|esmenat el llenç negre que apareix\|[Ll]imita la mida dels fotogrames\|pausa entre fotogrames\|posar-lo\) a l'animació\([^[:alnum:]]\)/\1 en l'animació\2/g
+s/\b\(Àudio\|[Cc]anvia la velocitat dels fotogrames\|canviar les unitats per al pas temporal\|esmenat el llenç negre que apareix\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|[Ll]imita la mida dels fotogrames\|[Mm]illora\|[Mm]illores\|pausa entre fotogrames\|posar-lo\) a l'animació\([^[:alnum:]]\)/\1 en l'animació\2/g
  #
 s/\b\(maneig del text i l'àudio\) a les animacions\([^[:alnum:]]\)/\1 en les animacions\2/g
 # a l'anterior
@@ -1228,7 +1365,7 @@ s/\b\(Especifica a sota»\) a l'anterior\([^[:alnum:]]\)/\1 en l'anterior\2/g
 # a l'antiga
 s/\b\(va originar\) a l'antiga\([^[:alnum:]]\)/\1 en l'antiga\2/g
 # a l'anunci
-s/\b\(reconéixer i afirmar\) a l'anunci\([^[:alnum:]]\)/\1 en l'anunci\2/g
+s/\b\(reconèixer i afirmar\) a l'anunci\([^[:alnum:]]\)/\1 en l'anunci\2/g
 # a l'any
  #
 s/\b\(aparegué\|febrer\) als anys\([^[:alnum:]]\)/\1 en els anys\2/g
@@ -1237,34 +1374,38 @@ s/\b\(activats\) a l'aparell\([^[:alnum:]]\)/\1 en l'aparell\2/g
 # a l'aparença
 s/\b\(soldat\|tant\) a l'aparença\([^[:alnum:]]\)/\1 en l'aparença\2/g
 # a l'API
-s/\b\(canviar l'estat de «Quadrícula i guies»\|[Cc]erca\|desament automàtic\|obtenir alguna cosa una mica més consistent\) a l'API\([^[:alnum:]]\)/\1 en l'API\2/g
+s/\b\(canviar l'estat de «Quadrícula i guies»\|[Cc]erca\|desament automàtic\|exposen el traç i els estils de l'emplenat\|[Mm]illora\|[Mm]illores\|obtenir alguna cosa una mica més consistent\) a l'API\([^[:alnum:]]\)/\1 en l'API\2/g
+# a l'apilador
+s/\b\(mostren\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Aa]\)pilador\([^[:alnum:]]\)/\1 en l'\2\3pilador\4/g
 # a l'apilament
-s/\b\([Mm]onitor\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Aa]\)pilament\([^[:alnum:]]\)/\1 en l'\2\3pilament\4/g
+s/\b\(agudització\|alineació\|apilament\|desconvolució\|eliminació del degradat\|emprada\|[Ff]otograma fosc mestre\|[Ff]otograma pla mestre\|ImageMM\|Iteracions\|[Mm]onitor\|postprocessament\|provocaran una transició de l'apilament inicial\|reducció de l'escala\|reducció del soroll\|sigma\|sigma alta\|SNR\|subsolucions\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Aa]\)pilament\([^[:alnum:]]\)/\1 en l'\2\3pilament\4/g
 # a l'aplicació
 s/\bA l'aplicació\([^[:alnum:]]\)/En l'aplicació\1/g
-s/\b\(actualització del microprogramari\|ajuda\|apuntat per l'«url»,\|característica\|configuració no predeterminada\|dibuixaran\|disponibles\|es mostra\|feu servir\|oberts\|[Oo]bre\|Obre la carpeta actual\|obriria el fitxer nou\|integrat\|oberts\|quant als enllaços externs\|char \*__lsan_default_suppressions()»\|tal com els veieu\|trobarà\|trobareu el que calgui\|troben\|trobeu\|trobeu a faltar\|utilitzeu\) a l'aplicació\([^[:alnum:]]\)/\1 en l'aplicació\2/g
+s/\b\(actualització del microprogramari\|ajuda\|apuntat per l'«url»,\|característica\|configuració no predeterminada\|dibuixaran\|disponibles\|es mostra\|feu servir\|oberts\|[Oo]bre\|Obre la carpeta actual\|obriria el fitxer nou\|integrat\|oberts\|quant als enllaços externs\|char \*__lsan_default_suppressions()»\|tal com els veieu\|trobarà\|trobareu el que calgui\|trobareu\|troben\|trobeu\|trobeu a faltar\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'aplicació\([^[:alnum:]]\)/\1 en l'aplicació\2/g
  #
 s/\bA les aplicacions\([^[:alnum:]]\)/En les aplicacions\1/g
-s/\b\(accedir al seu contingut\|aplicació\]»\|comentar els fitxers\|emprar\|errors visuals\|gestor de fitxers predeterminat\|oberts\|permetre carpetes virtuals\|posar les icones KDE\|Protocol -PTP-)\|superposar-les directament\|utilitzar\|veure'ls\) a les \([Aa]\)plicacions\([^[:alnum:]]\)/\1 en les \2plicacions\3/g
+s/\b\(accedir al seu contingut\|aplicació\]»\|comentar els fitxers\|[Dd]emana confirmació\|emprar\|errors visuals\|gestor de fitxers predeterminat\|oberts\|permetre carpetes virtuals\|posar les icones KDE\|Protocol -PTP-)\|superposar-les directament\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|veure'ls\) a les \([Aa]\)plicacions\([^[:alnum:]]\)/\1 en les \2plicacions\3/g
 # a l'AppImage
  #
 s/\b\(esmenat la detecció de FFmpeg\) a les \(«\|\)AppImage\([^[:alnum:]]\)/\1 en les AppImage\3/g
 # a l'aproximació
 s/\b\(utilitzat\) a l'aproximació\([^[:alnum:]]\)/\1 en l'aproximació\2/g
 # a l'AR
-s/\b\(Gireu la muntura\|guiatge\|Moviment\) a l'AR\([^[:alnum:]]\)/\1 en l'AR\2/g
+s/\b\(Error RMS\|espaiada uniformement\|Gireu la muntura\|guiatge\|Moviment\|reflecteix les desviacions\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)AR\([^[:alnum:]]\)/\1 en l'\2AR\3/g
+# a l'arc
+s/\b\(Les ondulacions de color\) a l'arc\([^[:alnum:]]\)/\1 en l'arc\2/g
 # a l'arbre
 s/\bA l'arbre\([^[:alnum:]]\)/En l'arbre\1/g
   s/\ba l'arbre de treball i a l'índex\([^[:alnum:]]\)/en l'arbre de treball i en l'índex\1/g
-s/\b\(conflicte\|filtrar\|marcant les caselles respectives\|marqueu una etiqueta\|mostrarà\|optimitzador «peephole»\|pujar\|seleccionant les caselles respectives\|seleccioneu de nou Actualitza\|trobat l'element eliminat\|trobat l'element modificat\|trobat la col·lecció eliminada\|trobat la col·lecció modificada\|trobat la col·lecció pare\|trobat la col·lecció pare «%1»\) a l'arbre\([^[:alnum:]]\)/\1 en l'arbre\2/g
+s/\b\(anar sobre l'etiqueta\|conflicte\|filtrar\|marcant les caselles respectives\|marqueu una etiqueta\|mostrarà\|optimitzador «peephole»\|Pardal\|Produeix la imatge del nucli i els mòduls\|pujar\|seleccionant les caselles respectives\|seleccioneu de nou Actualitza\|sobre l'àlbum\|[Tt]rieu una etiqueta\|trobat l'element eliminat\|trobat l'element modificat\|trobat la col·lecció eliminada\|trobat la col·lecció modificada\|trobat la col·lecció pare\|trobat la col·lecció pare «%1»\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'arbre\([^[:alnum:]]\)/\1 en l'arbre\2/g
 # a l'àrea
 s/\bA l'àrea\([^[:alnum:]]\)/En l'àrea\1/g
-s/\b\(afegir una instrucció\|Ajust de les corbes\*\*\|amb el botó dret\|amb el botó esquerre\|amb el botó del mig\|cerqueu\|cliqueu en una miniatura\|Construeix\|construir\|corresponent\|Deixa una peça d'or\|deixeu-los anar\|disponibles\|editeu l'expressió regular\|El color de la quadrícula\|en blau\|en els punts\|en una miniatura\|escriviu «\/media»\|especifica cap extensió\|especificada\|estendre les partícules\|fes clic sobre\|fins al seu nom corresponent\|Imprimeix els missatges de progrés\|inserit el text <b>%1<\/b>\|intercanviar dos elements\|limita el contingut\|marca les baixades\|mode \*\*Mapa\*\*\|modificar una instrucció\|Mostra el &progrés\|Mostra les baixades\|mostra una imatge\|[Mm]ostrarà\|mostrarà el progrés\|mostrarà missatges detallats\|mostraran\|mostren\|No hi ha prou punts\|Només creus menudes\|quedarà més espai disponible\|[Rr]eproduir la torre de la dreta\|romangui viu\|selecció de 5 miniatures\|seleccionada\|teclejar\|toqueu sobre seu\|Transport local\|Transport públic\|Transport públic local\|trobis\|un quadrat\|vista amb pestanyes dels diagrames\) a l'àrea\([^[:alnum:]]\)/\1 en l'àrea\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'àrea\([^[:alnum:]]\)/\1 en l'àrea\2/g
+s/\b\(afegir una instrucció\|Ajust de les corbes\*\*\|amb el botó del ratolí\|aparegui\|apareix\|aparèixer\|apareixerà sota la miniatura\|cerca\|cerqueu\|cliqueu en una miniatura\|Construeix\|construir\|corresponent\|Deixa una peça d'or\|deixeu-los anar\|disponible com un indicador\|disponible\|disponibles\|editeu l'expressió regular\|El color de la quadrícula\|en blau\|en els punts\|en una miniatura\|es presentarà immediatament\|escriviu «\/media»\|especifica cap extensió\|especificada\|estendre les partícules\|fes clic sobre\|fins al seu nom corresponent\|generarà una barra vertical de punts\|Imprimeix els missatges de progrés\|inserit el text <b>%1<\/b>\|intercanviar dos elements\|limita el contingut\|marca les baixades\|mode \*\*Mapa\*\*\|modificar una instrucció\|Mostra el &progrés\|Mostra les baixades\|mostra una imatge\|mostra totes les imatges sense dades de GPS\|[Mm]ostrar\|[Mm]ostrarà\|mostrarà el progrés\|mostrarà missatges detallats\|mostraran\|mostren\|No hi ha prou punts\|Només creus menudes\|produeix una barra de punts vertical\|quedarà més espai disponible\|[Rr]eproduir la torre de la dreta\|ressaltarà\|ressaltaran\|romangui viu\|selecció de 5 miniatures\|seleccionada\|superposar-se\|teclejar\|toqueu sobre seu\|Transport local\|Transport públic\|Transport públic local\|tres controls lliscants\|trobis\|un quadrat\|Us donem la benvinguda a digiKam\*\*\|veure només aquelles fotografies\|vista amb pestanyes dels diagrames\) a l'àrea\([^[:alnum:]]\)/\1 en l'àrea\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'àrea\([^[:alnum:]]\)/\1 en l'àrea\2/g
  #
 s/\bA les àrees\([^[:alnum:]]\)/En les àrees\1/g
-s/\b\(assolir aquesta quantitat\|evitar defectes\|redueix l'error relatiu\|trobar la subcarpeta de les partides del sistema «\/system\/»\) a les àrees\([^[:alnum:]]\)/\1 en les àrees\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les àrees\([^[:alnum:]]\)/\1 en les àrees\2/g
+s/\b\(amb un contrast alt i més colors\|assolir aquesta quantitat\|controla la saturació de la imatge\|evitar defectes\|produir imatges amb gra, especialment\|redueix l'error relatiu\|ressaltaran\|trobar la subcarpeta de les partides del sistema «\/system\/»\) a les àrees\([^[:alnum:]]\)/\1 en les àrees\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les àrees\([^[:alnum:]]\)/\1 en les àrees\2/g
 # a l'argument
 s/\b\(llistades\) a l'argument\([^[:alnum:]]\)/\1 en l'argument\2/g
  #
@@ -1273,33 +1414,42 @@ s/\b\([Ee]rror de citació\|inclòs un metacaràcter\) als arguments\([^[:alnum:
 s/\b\(snap\) a l'arquitectura\([^[:alnum:]]\)/\1 en l'arquitectura\2/g
 # a l'arrel
   s/\bsituar al directori LICENSES\/ a l'arrel\([^[:alnum:]]\)/situar en el directori LICENSES\/ en l'arrel\1/g
-s/\b\(.txt)\|de GNU[,)]\) a l'arrel\([^[:alnum:]]\)/\1 en l'arrel\2/g
+s/\b\(.txt)\|de GNU[,)]\|mkosi.local.conf<\/code>\) a l'arrel\([^[:alnum:]]\)/\1 en l'arrel\2/g
+# a l'art
+  s/\b\([Ee]stabilitzador\) a l'art\([^[:alnum:]]\)/\1 en l'art\2/g
 # a l'article
-s/\b\(explica\|Per exemple,\|representen la descripció original del model\|tracta\|tractarà\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)article\([^[:alnum:]]\)/\1 en l'\2article\3/g
+s/\b\(explica\|Per exemple,\|representen la descripció original del model\|tracta\|tractarà\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)article\([^[:alnum:]]\)/\1 en l'\2article\3/g
 # a l'arxiu
 s/\bA l'arxiu\([^[:alnum:]]\)/En l'arxiu\1/g
 s/\b\(accedir directament als fitxers\|localitzar els fitxers requerits\|Obre el missatge\|obrir les entrades\|seran incloses\|trobar el fitxer «filters»\|trobar el fitxer «emailidentities»\|trobar el fitxer «mailtransports»\|trobat cap connector\|trobat cap script\) a l'arxiu\([^[:alnum:]]\)/\1 en l'arxiu\2/g
 # a l'ascensió
 s/\b\(dibuixarà una quadrícula de línies cada 2 hores\) a l'ascensió\([^[:alnum:]]\)/\1 en l'ascensió\2/g
 # a l'Assessor
-s/\b\(Ajust aproximat»\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Assessor\([^[:alnum:]]\)/\1 en \2Assessor\3/g
+s/\b\(Ajust aproximat»\|les funcions posteriors\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Assessor\([^[:alnum:]]\)/\1 en l'\2Assessor\3/g
 # a l'assistent
-s/\b\(activar la vista prèvia\|esmenat la lògica\|utilitzar\) a l'assistent\([^[:alnum:]]\)/\1 en l'assistent\2/g
+s/\bA l'assistent\([^[:alnum:]]\)/En l'assistent\1/g
+s/\b\(activar la vista prèvia\|[Cc]onfigureu la zona geogràfica\|esmenat la lògica\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Aa]\)ssistent\([^[:alnum:]]\)/\1 en l'\2\3ssistent\4/g
 # a l'assumpte
 s/\b\(vostra-adreça-correu<\/i>\) a l'assumpte\([^[:alnum:]]\)/\1 en l'assumpte\2/g
+# a l'astrofotografia
+s/\b\(tasques per a un pas particular\) a l'astrofotografia\([^[:alnum:]]\)/\1 en astrofotografia\2/g
 # a l'astronomia
 s/\b\(habituals\) a l'astronomia\([^[:alnum:]]\)/\1 en astronomia\2/g
 # a l'atmosfera
 s/\b\(presència de diversos elements\) a l'atmosfera\([^[:alnum:]]\)/\1 en l'atmosfera\2/g
 # a l'aula
 s/\b\(ús\) a l'aula\([^[:alnum:]]\)/\1 en l'aula\2/g
+# a l'avís
+s/\b\(indiquen\|Seccions invariables»\|Textos de contraportada»\) a l'avís\([^[:alnum:]]\)/\1 en l'avís\2/g
 # a l'eclíptica
-s/\b\(estan\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)eclíptica\([^[:alnum:]]\)/\1 en l'\2eclíptica\3/g
+s/\b\(estan\|troben\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)eclíptica\([^[:alnum:]]\)/\1 en l'\2eclíptica\3/g
+# a l'edifici
+s/\b\(trobareu\) a l'edifici\([^[:alnum:]]\)/\1 en l'edifici\2/g
 # a l'editor
-s/\bA l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ee]\)ditor\([^[:alnum:]]\)/En l'\1\2ditor\3/g
+s/\bA l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)ditor\([^[:alnum:]]\)/En l'\1\2ditor\3/g
   s/\bés controlat a l'editor\([^[:alnum:]]\)/és controlat per l'editor\1/g
-s/\b\(Ajust de les corbes\*\*\|característica «Adjunta el meu certificat»\|característica «Adjunta la meva clau pública»\|carregades\|carregar aquesta imatge\|col·loqueu el cursor\|com a separador\|comportar la tecla de retorn\|configuració actual\|configurats\|corregir automàticament tot el text\|Ctrl+D<\/command>\|De tornada\|definit\|Desa``\|Desa temporalment les deformacions al predefinit»\|desactiva els números de línia\|desar\|desfet\|digiKam o\|disponible\|disponibles\|disposició\|dividir la lògica\|emplaçament\|emprada\|emprat\|errors\|es poden establir\|escrites\|escriviu-lo\|està\|establir\|Executa el fitxer obert\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|i línies noves\|inserció\|inserir caràcters especials\|inserir-lo\|mostra\|mostrar la línia respectiva\|mostrarà automàticament\|mostrats\|mou\|Obre\|Obre aquesta col·lecció de vocabulari\|Obre el fitxer\|Obre els documents de vocabulari\|Obre els fitxers RAW\|Obre l'object\|Obre la carpeta\|obrir\|obrir les imatges RAW\|obrir un fitxer\|ortogràfica\|predeterminats\|renderització d'imatges fosques\|seleccionar (una vegada) un sistema de guiatge\|seleccionat\|taula de llum i\|text de la finestra\|troba\|troba el camp\|ubicació de les tecles addicionals de compleció automàtica\|Utilitza la vista de color gestionat\|utilitzada\|utilitzat\|Veure\|[Zz]oom\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ee]\)ditor\([^[:alnum:]]\)/\1 en l'\2\3ditor\4/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ee]\)ditor\([^[:alnum:]]\)/\1 en l'\2\3ditor\4/g
+s/\b\(Aguditza»\|Ajust de les corbes\*\*\|Ajust de les corbes»\|Ajusta les corbes…`\|Ajustament dels nivells»\|Antivinyetatge»\|Balanç de blancs»\|barra d'eines\|Blanc i negre»\|canviar com a activat\|característica «Adjunta el meu certificat»\|característica «Adjunta la meva clau pública»\|característica d'impressió\|Carbonet»\|carregades\|carregar aquesta imatge\|Clonatge de guariment»\|col·loqueu el cursor\|com a separador\|comportar la tecla de retorn\|configuració actual\|configurats\|contingui el negatiu de pel·lícula\|Contrast local»\|Conversió de l'espai de color»\|Correcció automàtica del color»\|Correcció automàtica de la lent»\|Corregeix els colors»\|Corregeix l'exposició»\|corregir automàticament tot el text\|Ctrl+D<\/command>\|De tornada\|definit\|[Dd]efinint més els detalls\|Desa``\|Desa temporalment les deformacions al predefinit»\|desactiva els números de línia\|desactivar la gestió del color\|desar\|desfet\|Difuminat»\|digiKam o\|disponible\|disponibles\|disposició\|Distorsió de la lent»\|dividir la lògica\|Efectes especials de difuminat»\|Efectes especials de distorsió»\|Eines d'efectes\|Eines de colors\|Eines de decoració\|Eines de transformació\|Eines del flux de treball\|Elimina els ulls vermells»\|emplaçament\|emprada\|emprat\|Equilibri de color»\|errors\|es poden establir\|Escapça amb la relació d'aspecte»\|escrites\|escriviu-lo\|està\|establir\|Executa el fitxer obert\|feu amb una imatge\|G'MIC-Qt\|G'MIC-Qt»\|G'MIC-Qt (capes)»\|Gir lliure»\|Gra de pel·lícula»\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|i línies noves\|Importació» RAW\|Inclina»\|inserció\|Insereix un text»\|inserir caràcters especials\|inserir-lo\|La barra d'eines\|Llampant»\|Lut3D»\|Màscara de desenfocament»\|mentre esteu\|[Mm]illora\|mostra\|mostrar la línia respectiva\|mostrarà automàticament\|mostrats\|mou\|Neó»\|Obre\|Obre aquesta col·lecció de vocabulari\|Obre el fitxer\|Obre els documents de vocabulari\|Obre els fitxers RAW\|Obre l'object\|Obre la carpeta\|obre la imatge seleccionada actualment\|Obre una imatge FITS\|obrir\|obrir les imatges RAW\|obrir un fitxer\|[Oo]briu-la\|[Oo]briu la fotografia que vulgueu\|[Oo]briu una imatge\|ortogràfica\|Mesclador de canals»\|per als formats d'imatge habituals\|Píxels cremats»\|predeterminats\|Perspectiva»\|processar-los junts\|Projecció de pantalla de la barra de miniatures\|prova en pantalla\|Redimensiona»\|Reducció del soroll»\|Reenfoc»\|Relleu»\|renderització d'imatges fosques\|Restauració»\|s'activa\|seleccionar (una vegada) un sistema de guiatge\|seleccionat\|Solaritza»\|taula de llum i\|text de la finestra\|Textura»\|Tria\*\*\|troba\|troba el camp\|Troba les vores»\|ubicació de les tecles addicionals de compleció automàtica\|Utilitza la vista de color gestionat\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitza[rt]\|[Uu]tilitzats\|[Vv]eure\|[Vv]isualitzar\|Vores»\|[Zz]oom\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)ditor\([^[:alnum:]]\)/\1 en l'\2\3ditor\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)ditor\([^[:alnum:]]\)/\1 en l'\2\3ditor\4/g
  #
 s/\b\(mostren\) als editors\([^[:alnum:]]\)/\1 en els editors\2/g
 # a l'educació
@@ -1307,25 +1457,26 @@ s/\b\(donar suport al programari lliure\) a l'educació\([^[:alnum:]]\)/\1 en l'
 # a l'eina
 s/\bA l'eina\([^[:alnum:]]\)/En l'eina\1/g
   s/\"a l'eina\([^[:alnum:]]\)/\"en l'eina\1/g
-s/\b\(apareixerà al menú «CDV» i\|creen fotogrames foscos o mapes de defectes\|esmena la forma següent existent\|esmenat la forma existent\|esmenat la drecera ambigua de «trenca el camí»\|establir la muntura\|estat «habilitada» de les accions\|estigui\|implementa\|implementa l'opció «Separació de tancament»\|[Mm]illores\|mostra\|mostraran\|mostren\|Obre una imatge\|Separació de tancament\|treballant\|Utilitza la vista prèvia de la pila\|[Uu]tilitzat\|[Uu]tilitzen\) a l'eina\([^[:alnum:]]\)/\1 en l'eina\2/g
+s/\b\(apareixerà al menú «CDV» i\|Balanç de blancs\*\*\|[Cc]onfiguració inicial\|[Cc]onfigureu el text\|[Cc]onfigureu la geometria\|[Cc]onfigureu la imatge\|creen fotogrames foscos o mapes de defectes\|[Dd]isponible\|Emplenat» i\|Escapça el llenç»\|esmena la forma següent existent\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenat la forma existent\|esmenat la drecera ambigua de «trenca el camí»\|establir la muntura\|estat «habilitada» de les accions\|estigui\|exactament la mateixa que\|Funció d'energia»\|funcion[ei]n igual que\|implementa\|implementa l'opció «Separació de tancament»\|kbd:`Ctrl+U`)\|millorat les entrades de nombres\|Màscara»\|Mida»\|[Mm]illora\|[Mm]illores\|[Mm]illores als botons de selecció de valors de les dimensions\|[Mm]ostra\|[Mm]ostraran\|[Mm]ostren\|Obre una imatge\|Percentatge»\|realitzar els 4 primers ajustos\|s'utilitza àmpliament\|són majoritàriament les mateixes que\|Tanca la separació»\|treballant\|Utilitza la vista prèvia de la pila\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)ina\([^[:alnum:]]\)/\1 en l'\2\3ina\4/g
 s/\b\(en l'eina d'emplenat i\) a l'eina\([^[:alnum:]]\)/\1 en l'eina\2/g
  #
 s/\bA les eines\([^[:alnum:]]\)/En les eines\1/g
-s/\b\(generació d'esquemes\|tria un pinzell predefinit»\) a les eines\([^[:alnum:]]\)/\1 en les eines\2/g
+s/\b\(diferència de la lluminositat\|funcionin\|generació d'esquemes\|La selecció d'àlbum virtual\|tria un pinzell predefinit»\) a les eines\([^[:alnum:]]\)/\1 en les eines\2/g
 # a l'eix
-s/\b\([Aa]mpliació\|cau\|clicat al gràfic on (\|de l'est\|de l'oest\|del nord\|del sud\|guiatge automàtic\|i l'hora\|mostra\|moure's\|[Rr]educció\|representació gràfica de l'angle de l'altitud\|Utilitza una escala\|[Uu]sat\|[Uu]tilitzat\|Valor\) a l'eix\([^[:alnum:]]\)/\1 en l'eix\2/g
+  s/\bgràfic on (a l'eix\([^[:alnum:]]\)/gràfic on (en l'eix\1/g
+s/\b\(amb la densitat màxima\|[Aa]mpliació\|cau\|clicat al gràfic on (\|de l'est\|de l'oest\|del nord\|del sud\|guiatge automàtic\|i l'hora\|mostra\|moure's\|[Rr]educció\|[Rr]eflecteix les imatges de guiatge\|representació gràfica de l'angle de l'altitud\|Utilitza una escala\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|Valor\) a l'eix\([^[:alnum:]]\)/\1 en l'eix\2/g
  #
 s/\b\([Uu]sat\|[Uu]tilitzat\) als eixos\([^[:alnum:]]\)/\1 en els eixos\2/g
 # a l'elecció
 s/\b\(difereixen únicament\) a l'elecció\([^[:alnum:]]\)/\1 en l'elecció\2/g
 # a l'electrònica
-s/\b\(utilitzada\|utilitzades\) a l'electrònica\([^[:alnum:]]\)/\1 en l'electrònica\2/g
+s/\b\([Uu]tilitza\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitza[rt]\|[Uu]tilitzats\|[Uu]tilitze[ns]\|[Uu]tilitzant\|[Uu]tilitzarà\|[Uu]tilitzaran\) a l'electrònica\([^[:alnum:]]\)/\1 en l'electrònica\2/g
 # a l'element
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|disponible\|disponibles\|llistades\|mitjançant la configuració\|o directament\) a l'element\([^[:alnum:]]\)/\1 en l'element\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'element\([^[:alnum:]]\)/\1 en l'element\2/g
+s/\b\(disponible\|disponibles\|llistades\|mitjançant la configuració\|o directament\) a l'element\([^[:alnum:]]\)/\1 en l'element\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'element\([^[:alnum:]]\)/\1 en l'element\2/g
  #
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\) als elements\([^[:alnum:]]\)/\1 en els elements\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als elements\([^[:alnum:]]\)/\1 en els elements\2/g
+s/\b\(disponible\|disponibles\|gestió dels valors de metadades\) als elements\([^[:alnum:]]\)/\1 en els elements\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als elements\([^[:alnum:]]\)/\1 en els elements\2/g
 # a l'el·lipse
 s/\b\(Es reviu el camí del codi\) a l'el·lipse\([^[:alnum:]]\)/\1 en l'el·lipse\2/g
 
@@ -1339,57 +1490,77 @@ s/\b\([Rr]esultat desconegut\) a l'emparellament\([^[:alnum:]]\)/\1 en l'emparel
 # a l'emplaçament
 s/\"a l'EMPLAÇAMENT\"/\" en l'EMPLAÇAMENT\"/g
 # s/\b\(\) a l'emplaçament\([^[:alnum:]]\)/\1 en l'emplaçament\2/g
+# a l'emplenat
+s/\b\(capes de filtratge i\) a les d'emplenat\([^[:alnum:]]\)/\1 en les d'emplenat\2/g
 # a l'emulador
 s/\b\(AqBanking\|Executa\) a l'emulador\([^[:alnum:]]\)/\1 en l'emulador\2/g
+# a l'emulsió
+s/\b\(utilitzen grans de plata més grans\) a l'emulsió\([^[:alnum:]]\)/\1 en l'emulsió\2/g
 # a l'Enquadrat
-s/\b\(veure les estrelles\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Enquadrat\([^[:alnum:]]\)/\1 en \2Enquadrat\3/g
+s/\b\(veure les estrelles\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Enquadrat\([^[:alnum:]]\)/\1 en \2Enquadrat\3/g
 # a l'enfocament
 s/\bA l'enfocament\([^[:alnum:]]\)/En l'enfocament\1/g
-s/\b\(detectades\|Per tant,\|Polar),\|utilitzant\) a l'enfocament\([^[:alnum:]]\)/\1 en l'enfocament\2/g
+s/\b\(detectades\|Per tant,\|Polar),\|troba\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'enfocament\([^[:alnum:]]\)/\1 en l'enfocament\2/g
+# a l'engegada
+s/\bA l'engegada\([^[:alnum:]]\)/En l'engegada\1/g
 # a l'enllaç
 s/\b\(llegir la nostra política\|veure també els altres dos treballs artístics\) a l'enllaç\([^[:alnum:]]\)/\1 en l'enllaç\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'enllaç\([^[:alnum:]]\)/\1 en l'enllaç\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'enllaç\([^[:alnum:]]\)/\1 en l'enllaç\2/g
  #
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\) als enllaços\([^[:alnum:]]\)/\1 en els enllaços\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als enllaços\([^[:alnum:]]\)/\1 en els enllaços\2/g
+# s/\b\(\) als enllaços\([^[:alnum:]]\)/\1 en els enllaços\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als enllaços\([^[:alnum:]]\)/\1 en els enllaços\2/g
 # a l'entorn
 s/\bA l'entorn\([^[:alnum:]]\)/En l'entorn\1/g
-s/\b\(\\"\|com\|executi\|millores\|partida\|[Pp]artida nova\|utilitza\|útils\) a l'entorn\([^[:alnum:]]\)/\1 en l'entorn\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'entorn\([^[:alnum:]]\)/\1 en l'entorn\2/g
+s/\(\\"\|com\|executi\|[Mm]illora\|millorar dràsticament la fidelitat del color\|[Mm]illores\|partida\|[Pp]artida nova\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|útils\) a l'entorn\([^[:alnum:]]\)/\1 en l'entorn\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'entorn\([^[:alnum:]]\)/\1 en l'entorn\2/g
  #
 s/\bAls entorns\([^[:alnum:]]\)/En els entorns\1/g
 s/\b\(executar\|Les accions més importants\|[Ss]agnat\) als entorns\([^[:alnum:]]\)/\1 en els entorns\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als entorns\([^[:alnum:]]\)/\1 en els entorns\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als entorns\([^[:alnum:]]\)/\1 en els entorns\2/g
 # a l'entrada
   s/\bllegirà a l'entrada estàndard\([^[:alnum:]]\)/llegirà des de l'entrada estàndard\1/g
-s/\b\(Afegiu aquestes aplicacions a continuació\|apareixerà\|assenyala les línies comentades\|canvis\|cap paraula\|[Ee]rror de citació\|la qual pot ser una imatge\|número d'1\|passat\|prenen\|si el nombre d'1\|Skype\|vistos\) a l'entrada\([^[:alnum:]]\)/\1 en l'entrada\2/g
+s/\b\(Afegiu aquestes aplicacions a continuació\|apareixerà\|assenyala les línies comentades\|canvis\|cap paraula\|[Ee]rror de citació\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|la qual pot ser una imatge\|[Ll]legiu-ne més\|número d'1\|passat\|prenen\|presa\|si el nombre d'1\|Skype\|vistos\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)entrada\([^[:alnum:]]\)/\1 en l'\2entrada\3/g
  #
-s/\b\(Mostra el progrés\|Mostra tots els detalls\|per a les expressions matemàtiques\|Utilitza el format de text enriquit\) a les entrades\([^[:alnum:]]\)/\1 en les entrades\2/g
+s/\b\(Mostra el progrés\|Mostra tots els detalls\|per a les expressions matemàtiques\|Utilitza el format de text enriquit\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|xarxes socials,\) a les entrades\([^[:alnum:]]\)/\1 en les entrades\2/g
 # a l'entrenament
 s/\b\(fer una pausa\) a l'entrenament\([^[:alnum:]]\)/\1 en l'entrenament\2/g
 # a l'equació
 s/\b\(utilitzat\) a l'equació\([^[:alnum:]]\)/\1 en l'equació\2/g
+# a l'equip
+  s/\b\([Aa]\) més de a l'equip\([^[:alnum:]]\)/\1 més d'en l'equip\2/g
+s/\b\([Ee]ncendre l'alimentació\) a l'equip\([^[:alnum:]]\)/\1 en l'equip\2/g
+# a l'era
+s/\bA l'era\([^[:alnum:]]\)/En l'era\1/g
 # a l'error
 s/\b\(calcula la deriva a llarg termini\|un canvi més gran\) a l'error\([^[:alnum:]]\)/\1 en l'error\2/g
+# a l'E/S
+s/\b\(redueix la sobrecàrrega\) a l'E\/S\([^[:alnum:]]\)/\1 en l'E\/S\2/g
 # a l'esborrany
 s/\b\(descriu\) a l'esborrany\([^[:alnum:]]\)/\1 en l'esborrany\2/g
 # a l'escala
 s/\bA l'escala\([^[:alnum:]]\)/En l'escala\1/g
 s/, a l'escala\([^[:alnum:]]\)/, en l'escala\1/g
-s/\b\([Cc]ada pas sencer\|mostren les imatges\) a l'escala\([^[:alnum:]]\)/\1 en l'escala\2/g
+s/\b\([Cc]ada pas sencer\|canviar la mida del llapis que està\|mostren les imatges\) a l'escala\([^[:alnum:]]\)/\1 en l'escala\2/g
+# a l'escàner
+s/\b\(col·loqueu dues imatges o fotografies separades\) a l'escàner\([^[:alnum:]]\)/\1 en l'escàner\2/g
 # a l'escapçat
-s/\b\(amb «TypeError»\|esmenat «TypeError»\) a l'escapçat\([^[:alnum:]]\)/\1 en l'escapçat\2/g
+s/\b\(amagades\|amb «TypeError»\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenat «TypeError»\) a l'escapçat\([^[:alnum:]]\)/\1 en l'escapçat\2/g
+# a l'escena
+s/\bA l'escena\([^[:alnum:]]\)/En l'escena\1/g
+s/\b\(estimar els trets locals\) a l'escena\([^[:alnum:]]\)/\1 en l'escena\2/g
 # a l'escenari
 s/\bA l'escenari\([^[:alnum:]]\)/En l'escenari\1/g
 s/, a l'escenari\([^[:alnum:]]\)/, en l'escenari\1/g
-s/\b\(Alexander\|donar la sorpresa\) a l'escenari\([^[:alnum:]]\)/\1 en l'escenari\2/g
+s/\b\(Alexander\|donar la sorpresa\|estaven\) a l'escenari\([^[:alnum:]]\)/\1 en l'escenari\2/g
 # a l'escola
 s/\bA l'escola\([^[:alnum:]]\)/En l'escola\1/g
+ #
+s/\b\(mostrarà\|utilitzat\) a les escoles\([^[:alnum:]]\)/\1 en les escoles\2/g
 # a l'escriptori
 s/\bA l'escriptori /En l'escriptori /g
   s/\bquan el giny és a l'escriptori\([^[:alnum:]]\)/quan el giny es troba en l'escriptori\1/g
   s/\"Vista a l'escriptori\"/\"Vista de l'escriptori\"/g
-s/\(#   \|Alligator\|apareixerà una finestra nova\|Barra de menús global\|Calindori\|classe de finestres\|col·locarà\|composició 3D\|desenvolupar Plasma Mobile\|dibuixar línies\|Fes aparèixer la finestra\|funciona\|funciona bé\|funciona en els mòbils i\|gestionar de forma genèrica tota classe de metadades\|Kasts\|Kongress\|L'Station\|manera\|mostra la posició de les finestres\|ex\.,\|prémer qualsevol tecla\|Presenta les finestres\|Station\|tant\|treballa bé\|troba\|utilitza\|utilitzable\|veieu\|visualitzador de plasmoides\|viuen\) a l'escriptori\([^[:alnum:]]\)/\1 en l'escriptori\2/g
+s/\(#   \|Alligator\|apareixerà una finestra nova\|Barra de menús global\|Calindori\|classe de finestres\|col·locarà\|composició 3D\|desenvolupar Plasma Mobile\|dibuixar línies\|Fes aparèixer la finestra\|funciona\|funciona bé\|funciona en els mòbils i\|gestionar de forma genèrica tota classe de metadades\|Instal·la la KDE Linux»\|Kasts\|Kongress\|L'Station\|manera\|mostra la posició de les finestres\|ex\.,\|prémer qualsevol tecla\|Presenta les finestres\|Station\|tant\|treballa bé\|troba\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|veieu\|visualitzador de plasmoides\|viuen\) a l'escriptori\([^[:alnum:]]\)/\1 en l'escriptori\2/g
  #
 s/\bAls escriptoris\([^[:alnum:]]\)/En els escriptoris\1/g
 s/\b\(utilitza\) als escriptoris\([^[:alnum:]]\)/\1 en els escriptoris\2/g
@@ -1398,12 +1569,12 @@ s/\b\(utilitza\) als escriptoris\([^[:alnum:]]\)/\1 en els escriptoris\2/g
   s/\bno reaccionen als esdeveniments\([^[:alnum:]]\)/no reaccionaran als esdeveniments\1/g
 s/\b\(mostrarà\) als esdeveniments\([^[:alnum:]]\)/\1 en els esdeveniments\2/g
 # a l'esfera
-s/\b\(ai-greatcircle>`\|cercles majors\|Terra\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)esfera\([^[:alnum:]]\)/\1 en l'\2esfera\3/g
+s/\b\(ai-greatcircle>`\|ai-greatcircle>` imaginari\|cercles majors\|Terra\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)esfera\([^[:alnum:]]\)/\1 en l'\2esfera\3/g
 # a l'esglèsia
  #
 s/\b\(roques\) a les esglésies\([^[:alnum:]]\)/\1 en les esglésies\2/g
 # a l'espai
-s/\b\([Cc]om\|Construeix una corba\|crear\|definida\|Deixa la llavor\|Desa els resultats\|emmagatzemar com un objecte nou\|emmagatzemen en una variable diferent\|estalvia uns quants bytes\|Format de fitxer\|instal·lació\|la potència\|laplacià\|Mantén el resultat\|mostren objectes R\|moviment\|moviment constant\|obre a una finestra nova\|posicionat\|presents\|realitzades\) a l'espai\([^[:alnum:]]\)/\1 en l'espai\2/g
+s/\b\([Cc]om\|Construeix una corba\|crear\|definida\|Deixa la llavor\|Delimitat\|Desa els resultats\|editar les imatges\|[Ee]mmagatzemada\|emmagatzemar com un objecte nou\|emmagatzemen en una variable diferent\|estalvia uns quants bytes\|Format de fitxer\|instal·lació\|la potència\|laplacià\|Mantén el resultat\|mostren objectes R\|moviment\|moviment constant\|només tenen significat\|obre a una finestra nova\|posicionat\|presents\|produeix JPEG\|produeix les imatges\|produeix una discrepància\|realitzades\|residirà\|treballar exclusivament\|treballen exclusivament\|treballeu exclusivament\|troba\|vol les imatges\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)espai\([^[:alnum:]]\)/\1 en l'\2espai\3/g
  #
   s/\butilitzar als &plasma-workspaces\([^[:alnum:]]\)/utilitzar en els \&plasma-workspaces\1/g
   s/\bi també als espais de nom dels paquets\([^[:alnum:]]\)/així com també en els espais de nom dels paquets\1/g
@@ -1415,20 +1586,25 @@ s/\b\(definit\) a l'especificació\([^[:alnum:]]\)/\1 en l'especificació\2/g
 # a l'espectre
 s/\b\(dibuixar\) a l'espectre\([^[:alnum:]]\)/\1 en l'espectre\2/g
 # a l'esquema
-s/\b\(es poden canviar\|incloure\|personalitzar\|s'haurien d'incloure\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)esquema\([^[:alnum:]]\)/\1 en l'\2esquema\3/g
+  s/\b\([Dd]esa les dreceres actuals\) a l'esquema\([^[:alnum:]]\)/\1 en l'esquema\2/g
+s/\b\([Dd]esa les dreceres\|es poden canviar\|incloure\|personalitzar\|s'haurien d'incloure\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)esquema\([^[:alnum:]]\)/\1 en l'\2esquema\3/g
 # a l'esquerra
-s/\b\(mostra una imatge i els controls\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)esquerra\([^[:alnum:]]\)/\1 en l'\2esquerra\3/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)esquerra\([^[:alnum:]]\)/\1 en l'\2esquerra\3/g
+s/\b\(mostra una imatge i els controls\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)esquerra\([^[:alnum:]]\)/\1 en l'\2esquerra\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)esquerra\([^[:alnum:]]\)/\1 en l'\2esquerra\3/g
 # a l'estació
 s/\b\(llavors al núvol,\) a l'estació\([^[:alnum:]]\)/\1 en l'estació\2/g
+# a l'estand
+s/\b\(amb la marca de KDE\) a l'estand\([^[:alnum:]]\)/\1 en l'estand\2/g
 # a l'estàndard
 s/\b\(figuren\) a l'estàndard\([^[:alnum:]]\)/\1 en l'estàndard\2/g
 # a l'estimador
 s/\b\(Tolerància\) a l'estimador\([^[:alnum:]]\)/\1 en l'estimador\2/g
+# a l'estirament
+s/\b\([Aa]justos\) a l'estirament\([^[:alnum:]]\)/\1 en l'estirament\2/g
 # a l'estiu
 s/\bA l'estiu\([^[:alnum:]]\)/En l'estiu\1/g
 s/, a l'estiu\([^[:alnum:]]\)/, en l'estiu\1/g
-s/\b\(més directe\|rebent més energia per segon\) a l'estiu\([^[:alnum:]]\)/\1 en l'estiu\2/g
+s/\b\(fotografia a prop del migdia en un dia assolellat\|més directe\|rebent més energia per segon\) a l'estiu\([^[:alnum:]]\)/\1 en l'estiu\2/g
 # a l'estratègia
  #
 s/\b\(esmenat la violació de l'ODR\) a les estratègies\([^[:alnum:]]\)/\1 en les estratègies\2/g
@@ -1437,41 +1613,45 @@ s/\bA l'estrella\([^[:alnum:]]\)/En l'estrella\1/g
 s/\b\(està fix\) a l'estrella\([^[:alnum:]]\)/\1 en l'estrella\2/g
  #
 s/\bA les estrelles\([^[:alnum:]]\)/En les estrelles\1/g
+  s/\bEn les estreles més brillants les anomenà\([^[:alnum:]]\)/A les estreles més brillants les anomenà\1/g
+s/\b\(intentarà ser més resilient\) a les estrelles\([^[:alnum:]]\)/\1 en les estrelles\2/g
 # a l'estri
 s/\b\(establert «updateRect»\) a l'estri\([^[:alnum:]]\)/\1 en l'estri\2/g
 # a l'estructura
 s/\b\(Bolca els missatges de correu electrònic\|[Ee]rror\) a l'estructura\([^[:alnum:]]\)/\1 en l'estructura\2/g
 # a l'estilbly fix ODR violation i
-s/\b\(El fons esdevé opac\|es despatxaran\|es retorna l'adreça\|establiu les opcions adequades\|no es comporten com s'espera quan formen part dels menús de la barra de menús de nivell superior\|utilitza diàlegs\) a l'estil\([^[:alnum:]]\)/\1 en l'estil\2/g
+s/\b\(El fons esdevé opac\|es despatxaran\|es retorna l'adreça\|establiu les opcions adequades\|no es comporten com s'espera quan formen part dels menús de la barra de menús de nivell superior\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitza diàlegs\) a l'estil\([^[:alnum:]]\)/\1 en l'estil\2/g
  #
 s/\b\(mode de barreja «mescla forta més suau»\) als estils\([^[:alnum:]]\)/\1 en els estils\2/g
 # a l'etapa
 s/\b\(encara es troba\) a l'etapa\([^[:alnum:]]\)/\1 en l'etapa\2/g
 # a l'etiqueta
 s/\b\(anterior, a\|i també\|especificar el text\|mostrar el temps restant de la peça\|mostraran\|Valor no vàlid\) a l'etiqueta\([^[:alnum:]]\)/\1 en l'etiqueta\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'etiqueta\([^[:alnum:]]\)/\1 en l'etiqueta\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'etiqueta\([^[:alnum:]]\)/\1 en l'etiqueta\2/g
  #
   s/\bDistància a les etiquetes\([^[:alnum:]]\)/Distància fins a les etiquetes\1/g
-s/\b\(com\|desaran\|detecció del joc de caràcters\|Elimina els e&spais finals\|emmagatzema\|emmagatzemar el rètol de color de l'element\|emmagatzemar el rètol de selecció de l'element\|emmagatzemar la data i hora de l'element\|emmagatzemar la informació de geolocalització\|emmagatzemar la plantilla de les metadades\|emmagatzemar la valoració de l'element\|emmagatzemar les etiquetes de l'element\|emmagatzemen\|estaran\|Mostra el contingut de la barra de títol\|mostrin noms llargs\|mostraran noms llargs (noms comuns)\|seleccionats però no\) a les etiquetes\([^[:alnum:]]\)/\1 en les etiquetes\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les etiquetes\([^[:alnum:]]\)/\1 en les etiquetes\2/g
+s/\b\(com\|desaran\|detecció del joc de caràcters\|Elimina els e&spais finals\|emmagatzema\|emmagatzemar el rètol de color de l'element\|emmagatzemar el rètol de selecció de l'element\|emmagatzemar la data i hora de l'element\|emmagatzemar la informació de geolocalització\|emmagatzemar la plantilla de les metadades\|emmagatzemar la valoració de l'element\|emmagatzemar les etiquetes de l'element\|emmagatzemen\|estaran\|Mostra el contingut de la barra de títol\|mostrar els pinzells\|mostrin noms llargs\|mostraran noms llargs (noms comuns)\|seleccionats però no\) a les etiquetes\([^[:alnum:]]\)/\1 en les etiquetes\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les etiquetes\([^[:alnum:]]\)/\1 en les etiquetes\2/g
 # a l'execució
-s/\b\(estrelles detectades\|generar múltiples parts\|pausa\) a l'execució\([^[:alnum:]]\)/\1 en l'execució\2/g
+s/\b\(estrelles detectades\|generar múltiples parts\|[Mm]illora\|[Mm]illores\|pausa\|registra\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ee]\)xecució\([^[:alnum:]]\)/\1 en l'\2\3xecució\4/g
 # a l'executable
 s/\b\([Ee]rror de citació\|inclòs un metacaràcter\) a l'executable\([^[:alnum:]]\)/\1 en l'executable\2/g
 # a l'exemple
 s/\bA l'exemple\([^[:alnum:]]\)/En l'exemple\1/g
-s/\b\(com\|haureu notat\|Lum \*»\) a l'exemple\([^[:alnum:]]\)/\1 en l'exemple\2/g
+s/\b\(com\|haureu notat\|L'orientació\|Lum \*»\) a l'exemple\([^[:alnum:]]\)/\1 en l'exemple\2/g
 # a l'exercici
 s/\bA l'exercici\([^[:alnum:]]\)/En l'exercici\1/g
-s/\b\(inclosa\|inclouran\) a l'exercici\([^[:alnum:]]\)/\1 en l'exercici\2/g
+s/\b\(imposar més restriccions\|inclosa\|inclouran\) a l'exercici\([^[:alnum:]]\)/\1 en l'exercici\2/g
  #
 s/\bAls exercicis\([^[:alnum:]]\)/En els exercicis\1/g
+# a l'Exif
+s/\b\([Ee]scriu el nom del document\) a l'Exif\([^[:alnum:]]\)/\1 en l'Exif\2/g
 # a l'explorador
-s/\b\(el fitxer actual\) a l'explorador\([^[:alnum:]]\)/\1 en l'explorador\2/g
+s/\b\(el fitxer actual\|[Mm]ostra\|[Mm]ostren\) a l'explorador\([^[:alnum:]]\)/\1 en l'explorador\2/g
 # a l'exportació
-s/\b\(esmenat línies\|mantenir l'últim fotograma\) a l'exportació\([^[:alnum:]]\)/\1 en l'exportació\2/g
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenat línies\|mantenir l'últim fotograma\) a l'exportació\([^[:alnum:]]\)/\1 en l'exportació\2/g
 # a l'exportador
-s/\b\(esmenat l'error\|esmenat un error\) a l'exportador\([^[:alnum:]]\)/\1 en l'exportador\2/g
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\) a l'exportador\([^[:alnum:]]\)/\1 en l'exportador\2/g
 # a l'exposició
 # a l'extensió
 s/\b\([Ee]rror\) a l'extensió\([^[:alnum:]]\)/\1 en l'extensió\2/g
@@ -1492,9 +1672,9 @@ s/\b\(Aquí\|emplaçaments\|final de l'hivern\|tardor\|viviu\) a l'hemisferi\([^
 # a l'hiperespai
 s/\b\([Uu]na carrera\) a l'hiperespai\([^[:alnum:]]\)/\1 en l'hiperespai\2/g
 # a l'histograma
-s/\b\([Uu]n cursor\) a l'histograma\([^[:alnum:]]\)/\1 en l'histograma\2/g
+s/\b\(evitar forats\|i la seva barra de posició\|mostrar\|superposada\|[Uu]n cursor\) a l'histograma\([^[:alnum:]]\)/\1 en l'histograma\2/g
 # a l'historial
-s/\b\([Aa]nterior\|cap entrada\|[Cc]erca\|Cerca llocs web visitats\|[Cc]ercar\|com a sobrenom\|desant l'últim diagrama\|desat\|desats\|emmagatzema automàticament\|emmagatzemar\|emmagatzemarà\|emmagatzemarà automàticament «en el lloc»\|emmagatzemarà cap diagrama més\|emmagatzemat\|emmagatzemats\|endavant\|endavant un pas\|enrere\|mancar\|Manté la notificació\|mantenir\|mantindran\|totes<\/span> les accions\|màxim d'elements\|Mostra\|posició corresponent\|posició del diagrama actual\|retrocedir\|[Ss]egüent\|seleccionades\|tindreu una entrada\|un pas enrere\) a l'historial\([^[:alnum:]]\)/\1 en l'historial\2/g
+s/\b\([Aa]nterior\|cap entrada\|[Cc]erca\|Cerca llocs web visitats\|[Cc]ercar\|com a sobrenom\|desant l'últim diagrama\|desat\|desats\|emmagatzema automàticament\|emmagatzemar\|emmagatzemarà\|emmagatzemarà automàticament «en el lloc»\|emmagatzemarà cap diagrama més\|emmagatzemat\|emmagatzemats\|endavant\|endavant un pas\|enrere\|mancar\|Manté la notificació\|mantenir\|mantindran\|[Mm]illora\|[Mm]illores\|totes<\/span> les accions\|màxim d'elements\|[Mm]illora\|[Mm]illores\|Mostra\|posició corresponent\|posició del diagrama actual\|retrocedir\|[Ss]egüent\|seleccionades\|tindreu una entrada\|un pas enrere\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Hh]\)istorial\([^[:alnum:]]\)/\1 en l'\2\3istorial\4/g
 # a l'hivern
 s/\bA l'hivern\([^[:alnum:]]\)/En l'hivern\1/g
 s/\(,\|que\) a l'hivern\([^[:alnum:]]\)/\1 en l'hivern\2/g
@@ -1513,11 +1693,11 @@ s/\b\(traduït completament\|traduït parcialment\) als idiomes\([^[:alnum:]]\)/
 # a l'IGU
   s/\bd'IGU\([^[:alnum:]]\)/de la IGU\1/g
 s/\bA l'IGU\([^[:alnum:]]\)/En la IGU\1/g
-s/\b\([Mm]illores\|està\|troba\) a l'IGU\([^[:alnum:]]\)/\1 en la IGU\2/g
+s/\b\([Mm]illora\|[Mm]illores\|està\|troba\) a l'IGU\([^[:alnum:]]\)/\1 en la IGU\2/g
 # a l'incubador
-s/\b\(gcompris-joins-kde-incubator-and-launches-fundraiser)\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)incubador\([^[:alnum:]]\)/\1 en l'\2incubador\3/g
+s/\b\(gcompris-joins-kde-incubator-and-launches-fundraiser)\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)incubador\([^[:alnum:]]\)/\1 en l'\2incubador\3/g
 # a l'índex
-s/\b\(llisten\) a l'índex\([^[:alnum:]]\)/\1 en l'índex\2/g
+s/\b\(llista\|llisten\|esmenat un munt de fallades potencials\) a l'índex\([^[:alnum:]]\)/\1 en l'índex\2/g
  #
 s/\b\([Cc]erca\) als índexs\([^[:alnum:]]\)/\1 en els índexs\2/g
 # a l'indicador
@@ -1528,28 +1708,32 @@ s/\bA l'indicatiu\([^[:alnum:]]\)/En l'indicatiu\1/g
 # a l'informe
 s/\b\(cap operació\|disponible\|estaven\|Inclou o no els ingressos\|Inclou o no les despeses\|Inclou o no les operacions agrupades\|Inclou o no les operacions seguides\|Inclou o no les transferències\|Mostra la versió\|tenen en compte\) a l'informe\([^[:alnum:]]\)/\1 en l'informe\2/g
  #
-s/\b\(cap operació\|en un valor\|damunt d'un valor\|impacte\|inclòs\|mostrat\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)informes\([^[:alnum:]]\)/\1 en els \2informes\3/g
+s/\b\(cap operació\|en un valor\|damunt d'un valor\|impacte\|inclòs\|mostrat\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)informes\([^[:alnum:]]\)/\1 en els \2informes\3/g
 # a l'infraroig
 s/\b\(emeti principalment\) a l'infraroig\([^[:alnum:]]\)/\1 en l'infraroig\2/g
 # a l'inici
 s/\bA l'inici\([^[:alnum:]]\)/En l'inici\1/g
   s/\bEn l'inici de bloc\([^[:alnum:]]\)/A l'inici de bloc\1/g
-s/\b\(ajustar-se\|fallada\|[Ff]inestra INDI\|[Ii]nicia automàticament el temporitzador d'aparcament\|[Ii]nicialitzat\|Krita\|[Mm]antén\) a l'inici\([^[:alnum:]]\)/\1 en l'inici\2/g
+s/\b\(ajustar-se\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenat l'entrada de velocitat incorrecta\|falla la càrrega d'una lletra\|fallada\|[Ff]inestra INDI\|[Ii]nicia automàticament el temporitzador d'aparcament\|[Ii]nicialitzat\|Krita\|[Mm]antén\|provocaven un error de base de dades\|s'ha ubicat\|tecla «Alt»\|ubicat\) a l'inici\([^[:alnum:]]\)/\1 en l'inici\2/g
 # a l'insegur
   s/\bcartera; <br \/>voleu\([^[:alnum:]]\)/cartera\. <br \/>Voleu\1/g
-s/\b\(desar-la\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)insegur\([^[:alnum:]]\)/\1 en l'\2insegur\3/g
+s/\b\(desar-la\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)insegur\([^[:alnum:]]\)/\1 en l'\2insegur\3/g
 # a l'inspector
-s/\b\(Corba V»\|Gràfic en 3D»\|Posició del divisor horitzontal\|Posició del divisor vertical\|[Tt]aula\|utilitzarà\) a l'\([Ii]\)nspector\([^[:alnum:]]\)/\1 en l'\2nspector\3/g
+s/\b\(Corba V»\|Gràfic en 3D»\|Posició del divisor horitzontal\|Posició del divisor vertical\|[Tt]aula\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'\([Ii]\)nspector\([^[:alnum:]]\)/\1 en l'\2nspector\3/g
+# a l'intent
+s/\b\(correcció d'aquest eix\) a l'intent\([^[:alnum:]]\)/\1 en l'intent\2/g
+# a l'International
+s/\b\(Un article de 2018\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)International\([^[:alnum:]]\)/\1 en l'\2International\3/g
 # a l'intèrpret
 s/\bA l'intèrpret\([^[:alnum:]]\)/En l'intèrpret\1/g
-s/\b\([Ee]rror de citació\|Executa la línia actual\|executarà\|inclòs un metacaràcter\) a l'intèrpret\([^[:alnum:]]\)/\1 en l'intèrpret\2/g
+s/\b\([Ee]ntrada\|[Ee]rror de citació\|esteu\|Executa la línia actual\|executarà\|inclòs un metacaràcter\) a l'\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)intèrpret\([^[:alnum:]]\)/\1 en l'\2intèrpret\3/g
  #
 s/\bAls intèrprets\([^[:alnum:]]\)/En els intèrprets\1/g
 # a l'interval
-s/\b\(contingut\|Converteix els bytes\|descarregar\|disponible\|estar\|hi ha\|hi ha plafons\|pèrdua significativa\|produir\|suma tots els valors\|tots els bytes\|utilitza\) a l'interval\([^[:alnum:]]\)/\1 en l'interval\2/g
+s/\b\(contingut\|Converteix els bytes\|d'èxit o un nombre enter\|descarregar\|disponible\|estar\|hi ha\|hi ha plafons\|pèrdua significativa\|pot variar\|produir\|[Rr]ecull les actualitzacions iteratives\|suma tots els valors\|tots els bytes\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'interval\([^[:alnum:]]\)/\1 en l'interval\2/g
 # a l'IU
 s/\bA l'IU\([^[:alnum:]]\)/En la IU\1/g
-s/\b\([Mm]illores\|visualitza\) a l'IU\([^[:alnum:]]\)/\1 en la IU\2/g
+s/\b\([Mm]illora\|[Mm]illores\|visualitza\) a l'IU\([^[:alnum:]]\)/\1 en la IU\2/g
 # a l'obertura
 s/\b\(mal format\) a l'obertura\([^[:alnum:]]\)/\1 en l'obertura\2/g
 # a l'objecte
@@ -1558,8 +1742,9 @@ s/\b\(manca l'atribut %s\|fets\|trobat l'atribut «%1»\) a l'objecte\([^[:alnum
 s/\b\(Desa els canvis\) als objectes\([^[:alnum:]]\)/\1 en els objectes\2/g
 # a l'objectiu
   s/\b\(camí i que\|la temperatura del llit\|Tux\) arribi a l'objectiu\([^[:alnum:]]\)/\1 arribi fins a l'objectiu\2/g
-s/\b\(centrat\|instal·lat\) a l'objectiu\([^[:alnum:]]\)/\1 en l'objectiu\2/g
+s/\b\(centrat\|començat a treballar\|instal·lat\|per a cada quadrat de color\) a l'objectiu\([^[:alnum:]]\)/\1 en l'objectiu\2/g
 # a l'obra
+s/A l'obra\([^[:alnum:]]\)/En l'obra\1/g
 # s/\b\(\) a l'obra\([^[:alnum:]]\)/\1 en l'obra\2/g
 # a l'observatori
 s/\b\(Programa d'observació avançat\) a l'\([Oo]\)bservatori\([^[:alnum:]]\)/\1 en l'\2bservatori\3/g
@@ -1569,11 +1754,16 @@ s/\b\(emprada\) a l'obtenció\([^[:alnum:]]\)/\1 en l'obtenció\2/g
 s/\b\(veu l'objecte\) a l'ocular\([^[:alnum:]]\)/\1 en l'ocular\2/g
 # a l'ocurrència
 s/\bA l'ocurrència\([^[:alnum:]]\)/En l'ocurrència\1/g
+# a l'oficina
+s/\b\(es produeixen a casa o\) a l'oficina\([^[:alnum:]]\)/\1 en l'oficina\2/g
+# a l'ombra
+ #
+s/\b\(llum intensa que\|sobretot\|tenen tan pocs tons\) a les ombres\([^[:alnum:]]\)/\1 en les ombres\2/g
 # a l'opció
-s/\b\(disponible\|especificar\|especificat\|manca «+» o «-»\|manca l'atribut esmentat\|inclou\|Trieu «Altres»\) a l'opció\([^[:alnum:]]\)/\1 en l'opció\2/g
+s/\b\(disponible\|especificar\|especificat\|manca «+» o «-»\|manca l'atribut esmentat\|inclou\|Trieu «Altres»\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a l'opció\([^[:alnum:]]\)/\1 en l'opció\2/g
  #
   s/\bVerifiqueu a les opcions\([^[:alnum:]]\)/Verifiqueu les opcions\1/g
-s/\(»\|activació\|activar-ho\|activar-la\|Ajusteu el termini de lliurament\|Calcula automàticament HFR``\|canviar qualsevol preferència\|canvieu\|configuren\|desactiveu l'opció del rotor\|es pot ajustar\|especificat\|establert\|habilitada\|HFR<\/guilabel>\|L'accés\|màx. de fotogrames d'enfocament<\/span>\|modificar\|mostrades\|nom i el port de l'amfitrió\|port\|presenten\|rotor»,\|tasca<\/guilabel>\|Utilitza els desplaçaments de l'alba i la posta\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Oo]\)pcions\([^[:alnum:]]\)/\1 en les \2\3pcions\4/g
+s/\(»\|activació\|activar-ho\|activar-la\|Ajusteu el termini de lliurament\|Calcula automàticament HFR``\|canviar qualsevol preferència\|canvieu\|configuren\|desactiveu l'opció del rotor\|es pot ajustar\|especificat\|està marcada\|establert\|habilitada\|HFR<\/guilabel>\|L'accés\|màx. de fotogrames d'enfocament<\/span>\|modificar\|mostrades\|nom i el port de l'amfitrió\|port\|presenten\|Recorda el progrés de la tasca``\|rotor»,\|Suposem que\|tasca<\/guilabel>\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|Utilitza els desplaçaments de l'alba i la posta\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Oo]\)pcions\([^[:alnum:]]\)/\1 en les \2\3pcions\4/g
 # a l'operant
 s/\b\(Falta un operador o espai\) a l'operant\([^[:alnum:]]\)/\1 en l'operant\2/g
 # a l'òptica
@@ -1581,11 +1771,11 @@ s/\b\(obstruccions\) a l'òptica\([^[:alnum:]]\)/\1 en l'òptica\2/g
 # a l'ordenació
 s/\b\(Pes\) a l'ordenació\([^[:alnum:]]\)/\1 en l'ordenació\2/g
 # a l'ordinador
-s/\b\(cap a aquests programes\|Compartiu fitxers i URL\|comprimida\|Desa aquest perfil individual a un fitxer separat\|desades\|desar la imatge\|desaran localment\|desen\|detectar aquestes eines\|eliminant\|emmagatzemades\|executant\|executant-se\|executar\|fitxers d'índex de l'astrometria\|gestiona la impressió\|instal·lada\|hi ha\|instal·lades\|[Ii]nstal·lar\|instal·lar digiKam\|instal·lar l'aplicació\|instal·lar KDE Connect\|instal·lat\|instal·lat correctament\|instal·lats\|invoca un programa &FTP;\|localitzar el programa <em>dvips<\/em>\|Mostra les notificacions del dispositiu\|obtenir una vista prèvia del flux\|que ho feu\|qu[eè] s'està reproduint\|que s'està reproduint actualment\|suprimir totes les contrasenyes\|trobar el programa <em>dvipdfm<\/em>\|troben\|VirtualBox<\/a>\|visualitzar l'ús del disc\) a l'ordinador\([^[:alnum:]]\)/\1 en l'ordinador\2/g
+s/\b\(cap a aquests programes\|cap a les col·leccions d'imatges\|[Cc]omenceu amb la llum del dia\|Compartiu fitxers i URL\|comprimida\|convertir amb facilitat\|Desa aquest perfil individual a un fitxer separat\|desades\|desar la imatge\|desaran localment\|desen\|detectar aquestes eines\|eliminant\|emmagatzemades\|emmagatzemar-les\|estan\|executant\|executant-se\|executar\|fa localment\|fer localment\|fitxers d'índex de l'astrometria\|gestiona la impressió\|instal·lada\|hi ha\|instal·lades\|[Ii]nstal·lar\|instal·lar digiKam\|instal·lar l'aplicació\|instal·lar KDE Connect\|instal·lat\|instal·lat correctament\|instal·lats\|instal·leu\|invoca un programa &FTP;\|ja existeix[ei]n\|localitzar el programa <em>dvips<\/em>\|Mostra les notificacions del dispositiu\|obtenir una vista prèvia del flux\|que ho feu\|qu[eè] s'està reproduint\|que s'està reproduint actualment\|s'executen\|sobreescriuràs totes les dades\|suprimir totes les contrasenyes\|teniu més de 1.000 fotografies\|trobar el programa <em>dvipdfm<\/em>\|troben\|una fotografia que ja teniu\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzeu múltiples pantalles\|VirtualBox<\/a>\|visualitzar l'ús del disc\|Windows 10\) a l'ordinador\([^[:alnum:]]\)/\1 en l'ordinador\2/g
  #
 s/\b\(en l'escriptori Linux i\) als ordinadors\([^[:alnum:]]\)/\1 en els ordinadors\2/g
 # a l'ordre
-s/\b\(emprat\|error\|errònia\|[Ee]rror de sintaxi\|indicat\|Paràmetre incorrecte\|proporcionada\|subministrat\|Un <placeholder>&#37;s<\/placeholder>\|utilitzar les variables <b>%1, %2… %9<\/b>\|utilitza[rt]\) a l'ordre\([^[:alnum:]]\)/\1 en l'ordre\2/g
+s/\b\(emprat\|error\|errònia\|[Ee]rror de sintaxi\|indicat\|Paràmetre incorrecte\|proporcionada\|subministrat\|Un <placeholder>&#37;s<\/placeholder>\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar les variables <b>%1, %2… %9<\/b>\|utilitza[rt]\) a l'ordre\([^[:alnum:]]\)/\1 en l'ordre\2/g
  #
 s/\b\(supressió dels espais\|retard\) a les ordres\([^[:alnum:]]\)/\1 en les ordres\2/g
 # a l'orientació
@@ -1595,19 +1785,19 @@ s/\b\(afegir el projecte %1\|incloses les traduccions buides\) a l'origen\([^[:a
   s/\bdisponible als orígens següents\([^[:alnum:]]\)/disponible per als orígens següents\1/g
 # a l'script
   s/\"a l'script\([^[:alnum:]]\)/\"en l'script\1/g
-s/\b\([Dd]esar\|[Ee]rror de citació\|errors\|estigui desat\|inclòs un metacaràcter\|pausa\|posició\|presents\|pujarà una posició\) a l'script\([^[:alnum:]]\)/\1 en l'script\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a l'script\([^[:alnum:]]\)/\1 en l'script\2/g
+s/\b\([Dd]esar\|[Ee]rror de citació\|errors\|estigui desat\|Gestor de la cua per lots»\|inclòs un metacaràcter\|pausa\|posició\|presents\|pujarà una posició\) a l'script\([^[:alnum:]]\)/\1 en l'script\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a l'script\([^[:alnum:]]\)/\1 en l'script\2/g
  #
   s/\"als scripts\([^[:alnum:]]\)/\"en els scripts\1/g
 s/\b\(cercar en l'ajuda d'R per al símbol sota el cursor\) als scripts\([^[:alnum:]]\)/\1 en els scripts\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als scripts\([^[:alnum:]]\)/\1 en els scripts\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als scripts\([^[:alnum:]]\)/\1 en els scripts\2/g
 # als ulls
 s/\b\(danys permanents\) als ulls\([^[:alnum:]]\)/\1 en els ulls\2/g
 # a l'última
 s/\bA l'últim\(a\|\)\([^[:alnum:]]\)/En l'últim\1\2/g
   s/\"Apunta a l'última carpeta\"/\"Focus en l'última carpeta\"/g
   s/\bMou el cursor a l'últim\([^[:alnum:]]\)/Mou el cursor fins a l'últim\1/g
-s/\b\(ancoratge\|arribaria\|peu de pàgina\) a l'última\([^[:alnum:]]\)/\1 en l'última\2/g
+s/\b\(ancoratge\|arribaria\|peu de pàgina\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\) a l'última\([^[:alnum:]]\)/\1 en l'última\2/g
  #
 s/\b\(primers períodes que\) als últims\([^[:alnum:]]\)/\1 en els últims\2/g
 s/\b\(disponibles per a la prova\) a les últimes\([^[:alnum:]]\)/\1 en les últimes\2/g
@@ -1634,14 +1824,14 @@ s/\b\(anàlisi\) a la «libical»\([^[:alnum:]]\)/\1 en la «libical»\2/g
 s/\b\([Dd]ocumentació\) a la %1\([^[:alnum:]]\)/\1 en la %1\2/g
   s/\banàlisi XML a %1\([^[:alnum:]]\)/anàlisi XML en %1\1/g
 # a la 5...
-s/\b\(es pot provar\|regressió\|regressió present\) a la \([123456789]\)\([^[:alnum:]]\)/\1 en la \2\3/g
+s/\b\(es pot provar\|[Ee]smena\|[Ee]smenes\|regressió\|regressió present\) a la \([123456789]\)\([^[:alnum:]]\)/\1 en la \2\3/g
 # a la Baixa
 s/\bpúblic a la Baixa\([^[:alnum:]]\)/públic en la Baixa\1/g
 # a la banda
 s/\bA la banda\([^[:alnum:]]\)/En la banda\1/g
   s/\bCorre a la banda \(dreta\|esquerra\|més llarga\)\([^[:alnum:]]\)/Corre damunt la banda \1\2/g
   s/\bel nom indicat a la banda esquerra\([^[:alnum:]]\)/el nom establert en la banda esquerra\1/g
-s/\b\(addicional\|cap a directoris\|creació de fitxers nous\|desmastegui els enllaços simbòlics\|duplicat correctament\|enroca\|error\|existeixen\|generats automàticament\|Implementa el filtratge Sieve\|invocant\|mesura\|missatges d'avís\|modifiqui tots els enllaços simbòlics\|Mostra els números de les línies\|presents\|seleccioneu valors no-SD\|Suprimeix els fitxers\|suprimeixi qualsevol fitxer\|suprimir els fitxers\|Toc\|treball»\|troba\|troben\|utilitza\|utilitzarà\) a la banda\([^[:alnum:]]\)/\1 en la banda\2/g
+s/\b\(addicional\|cap a directoris\|creació de fitxers nous\|desmastegui els enllaços simbòlics\|duplicat correctament\|enroca\|error\|existeixen\|generats automàticament\|Implementa el filtratge Sieve\|invocant\|mesura\|missatges d'avís\|modifiqui tots els enllaços simbòlics\|Mostra els números de les línies\|presents\|seleccioneu valors no-SD\|Suprimeix els fitxers\|suprimeixi qualsevol fitxer\|suprimir els fitxers\|Toc\|treball»\|troba\|troben\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la banda\([^[:alnum:]]\)/\1 en la banda\2/g
  #
   s/\bCorre a les bandes \(més amples\)\([^[:alnum:]]\)/Corre damunt les bandes \1\2/g
 s/\b\(perforat\) a les bandes\([^[:alnum:]]\)/\1 en les bandes\2/g
@@ -1649,33 +1839,33 @@ s/\b\(perforat\) a les bandes\([^[:alnum:]]\)/\1 en les bandes\2/g
 s/\b\(Apareixerà una lletra\|Mostra l'etiqueta\|que hi ha\) a la bandera\([^[:alnum:]]\)/\1 en la bandera\2/g
 # a la barra
 s/\bA la barra\([^[:alnum:]]\)/En la barra\1/g
-  s/\b\(apareixen\|descrita\|o\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Barra\([^[:alnum:]]\)/\1 en la \2Barra\3/g
+  s/\b\(apareixen\|descrita\|o\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Barra\([^[:alnum:]]\)/\1 en la \2Barra\3/g
   s/\barribar a la barra\([^[:alnum:]]\)/arribar fins a la barra\1/g
   s/\barrossegant-la a la barra\([^[:alnum:]]\)/arrossegant-la des de dins de la barra\1/g
-  s/\b\(Ekos\|gt;\|kate\|programari\|Redueix\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)a la barra\([^[:alnum:]]\)/\1\2 en la barra\3/g
+  s/\b\(Ekos\|gt;\|kate\|programari\|Redueix\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)a la barra\([^[:alnum:]]\)/\1\2 en la barra\3/g
   s/\bINDI a la &barra\([^[:alnum:]]\)/INDI en la \&barra\1/g
-  s/\b\(botó d'augment\|botó enrere\|creu blanca\|L'historial\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) a la barra\([^[:alnum:]]\)/\1 \2\3 en la barra\4/g
+  s/\b\(botó d'augment\|botó enrere\|creu blanca\|L'historial\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) a la barra\([^[:alnum:]]\)/\1 \2\3 en la barra\4/g
   s/\bla seva entrada a la barra de tasques es ressaltarà\([^[:alnum:]]\)/es ressaltarà la seva entrada en la barra de tasques\1/g
   s/\bs'hauria de visualitzar a la barra\([^[:alnum:]]\)/s'hauria de mostrar en la barra\1/g
-s/\b\([Aa]maga\|amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|generar les icones dels caràcters\|Adreces d'interès\|alineació del text\|amb l'època actual\|amb l'època estàndard\|ambdós també\|apareixeran\|Botó\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|botó \*\*Editor d'imatges\*\*\|cada element individual\|canviar el text\|Centra les pestanyes\|clic amb el botó dret del ratolí\|clic amb el botó esquerre del ratolí\|clic del ratolí sobre les 5 estrelles\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\|Cliqueu amb el botó dret del ratolí\|cliqueu sobre l'etiqueta de \*color\*\|Color només\|com un cursor ocupat o\|Commuta la visualització dels missatges INDI\|dels elements individuals\|disponible\|disponibles\|donarà color\|editeu-los\|Eines\*\*\|Ekos\|Ekos o\|Elements\|en aquesta icona\|Endavant<\/guiicon> (fletxa a la dreta)\|escriviu-la\|Espera\|espera a dalt esquerra (o millor a la dreta)\|Esperat\|Estableix el focus\|executi una expressió de substitució de «sed»\|Focus\|Funció mos&trada\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|hi ha\|i de vegades\|icones de precisió d'increment o decrement\|Icones incoherents\|identificat\|kate<\/userinput>\|Incrusta una categoria\|La finestra no surt\|La pestanya :ref:`Mapes <mapsearch_view>`\|La pestanya \*\*Mapes\*\*\|llista de la cua per lots i\|Mapa en miniatura\|[Mm]arca l'entrada\|marcades\|marcar aquesta etiqueta\|Mida de les columnes de l'histograma\|Missatges INDI\|Modifiqueu el text\|[Mm]ostra\|Mo&stra el camí\|[Mm]ostra el camí sencer\|Mostra el control lliscant del zoom\|Mostra el menú d'&usuari\|Mostra el percentatge de bateria\|Mostra el progrés de càrrega\|Mostra el títol de la finestra\|Mostra els articles sense llegir\|Mostra els consells dels botons\|Mostra els correus sense llegir\|Mostra els missatges d'estat d'INDI\|Mostra els missatges entrants d'estat d'INDI\|Mostra els no llegits\|Mostra icones grans\|Mostra icones normals\|Mostra icones petites\|Mostra l'indicador\|Mostra la informació sobre l'espai\|Mostra la nota\|Mostra les identitats\|Mostra només les adreces marcades\|Mostra només les etiquetes de cara per a assignar noms\|mostra sempre el camí sencer\|Mostra un mapa en miniatura\|Mostra una icona\|Mostra una icona addicional\|mostra una imatge, i\|Mostra una vista prèvia\|Mostra vistes prèvies dels entorns\|mostrades\|mostrar\|mostrat\|mostrin els missatges d'INDI\|mostrin les coordenades «Alt» i «Az»\|mostrin les coordenades «AR» i «Dec»\|mostrin les coordenades «AR» i «Dec» del J2000\.0\|mostrar o no els missatges de l'estat INDI\|mostrarà\|mostrarà al costat del botó de recàrrega\|mostrarà &kstars;\|mostrarà marques\|mostrarà un camí editable\|mostrarà un mapa en miniatura\|mostrarà un mapa en miniatura de tot el document\|mostraran\|mostraran aquelles fotografies de la selecció\|mostraran els articles sense llegir\|Nova\*\*\|nova»\|[Oo]culta\|oculta el comptador de línies\|oculta el comptador de paraules\|oculta el mapa en miniatura\|del cursor del ratolí\|oculta les marques\|ocultar els camps de coordenades tant AR\/Dec com Alt\/Az\|ordenació dels elements\|ocupar espai\|Pas temporal``\|pestanya Filtre\|pestanyes»\|Planificador de l'Ekos o\|Redueix<\/guibutton>\|prement el botó \*\*Taula\*\*\|prement la icona ``Temps``\|programari<\/userinput>\|Redueix``\|representa una unitat i cada quadre\|ressaltar un URL\|s'actualitzen\|s'identificarà\|seguiment``\|seguiu les instruccions\|selecció\|seleccionar un àlbum\|seleccionar una etiqueta\|Trieu els botons habilitats\|seleccioni l'element corresponent\|situar\|sobre aquesta ubicació\|teclegeu fonts:\/\|teclejant fonts:\/\|teclejar <i>«audiocd:\/»<\/i>\|tenir un botó <interface>Menú d'hamburguesa<\/interface>\|Terra``\|tipus diferents de filtres\|Trieu els botons habilitats\|ubicada\|ubicat\|utilitzar aquesta ajuda\|utilitzar la icona Moneda\|utilitzar la icona de tant per cent\|veure el full de trucs\|veure el progrés\|visitar\|[Vv]ista d'eines\|[Vv]ista de colors\|[Vv]ista de filtres\|[Vv]ista de llegendes\|[Vv]ista de mapa\|[Vv]ista de metadades\|[Vv]ista de propietats\|[Vv]ista de versions\|vista en arbre\|[Vv]ista general\) a la \([Bb]\)arra\([^[:alnum:]]\)/\1 en la \2arra\3/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la \([Bb]\)arra\([^[:alnum:]]\)/\1 en la \2arra\3/g
+s/\b\(Afegeix\*\|Àlbums\*\*\|[Aa]maga\|Adreces d'interès\|alineació del text\|amb l'època actual\|amb l'època estàndard\|ambdós també\|apareix\|apareixerà\|apareixeran\|Botó\|botó \*\*Editor d'imatges\*\*\|cada element individual\|canviar el text\|Centra les pestanyes\|clic del ratolí sobre les 5 estrelles\|cliqueu sobre l'etiqueta de \*color\*\|cliqueu sobre un rètol\|Color només\|com un cursor ocupat o\|Colors»\|Commuta la visualització dels missatges INDI\|comparació de la vista prèvia\|Complements\*\|Configura l'exercici»\|criteri de selecció directament des dels filtres ràpids\|dels elements individuals\|Desconeguda\*\*\|desfer o refer\|disponible\|disponibles\|donarà color\|editeu-los\|Eines»\|Eines\*\*\|Eines» de digiKam\|Ekos\|Ekos o\|[Ee]l filtre d'etiquetes\|Elements\|eliminat la commutació de pantalla completa\|en aquesta icona\|Endavant<\/guiicon> (fletxa a la dreta)\|Envia una ubicació»\|es mostr[ei]n\|es proporciona\|escriviu-la\|Espera\|espera a dalt esquerra (o millor a la dreta)\|Esperat\|Estableix el focus\|etiqueta de \*color\*\|Etiquetes\*\*\|executi una expressió de substitució de «sed»\|Filtre»\|Filtre» específica\|Focus\|Funció mos&trada\|generar les icones dels caràcters\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|hi ha\|i de vegades\|icones de precisió d'increment o decrement\|Icones incoherents\|identificat\|kate<\/userinput>\|Incrusta una categoria\|independentment del contingut\|La finestra no surt\|La pestanya :ref:`Mapes <mapsearch_view>`\|les de la imatge dreta\|Línia de temps»\|Llegendes»\|Llegendes\*\|llista d'imatges\|llista de la cua per lots i\|Mapa\*\*\|Mapa»\|Mapa <maps_view>`»\|Mapa en miniatura\|[Mm]arca l'entrada\|marcades\|marcar aquesta etiqueta\|Mida de les columnes de l'histograma\|Missatges INDI\|Modifiqueu el text\|[Mm]ostra\|Mo&stra el camí\|[Mm]ostra el camí sencer\|Mostra el control lliscant del zoom\|Mostra el menú d'&usuari\|Mostra el percentatge de bateria\|[Mm]ostra el progrés\|Mostra el progrés de càrrega\|Mostra el retallat``\|Mostra el títol de la finestra\|Mostra els articles sense llegir\|Mostra els consells dels botons\|Mostra els correus sense llegir\|Mostra els missatges d'estat d'INDI\|Mostra els missatges entrants d'estat d'INDI\|Mostra els no llegits\|Mostra icones grans\|Mostra icones normals\|Mostra icones petites\|Mostra l'indicador\|Mostra la informació sobre l'espai\|Mostra la nota\|Mostra les identitats\|Mostra només les adreces marcades\|Mostra només les etiquetes de cara per a assignar noms\|mostra sempre el camí sencer\|Mostra un mapa en miniatura\|Mostra una icona\|Mostra una icona addicional\|mostra una imatge, i\|Mostra una vista prèvia\|Mostra vistes prèvies dels entorns\|mostrades\|mostrar\|mostrar o no els missatges d'estat INDI\|mostrat\|mostrarà un avís\|mostrin els missatges d'INDI\|mostrin les coordenades «Alt» i «Az»\|mostrin les coordenades «AR» i «Dec»\|mostrin les coordenades «AR» i «Dec» del J2000\.0\|mostrar o no els missatges de l'estat INDI\|mostrarà\|mostrarà KStars\|mostrarà al costat del botó de recàrrega\|mostrarà &KStars\|mostrarà marques\|mostrarà un camí editable\|mostrarà un mapa en miniatura\|mostrarà un mapa en miniatura de tot el document\|mostraran\|mostraran aquelles fotografies de la selecció\|mostraran els articles sense llegir\|Nova\*\*\|nova»\|[Oo]culta\|oculta el comptador de línies\|oculta el comptador de paraules\|oculta el mapa en miniatura\|del cursor del ratolí\|o els botons\|obrir una pestanya «Filtre» específica\|oculta les marques\|ocultar els camps de coordenades tant AR\/Dec com Alt\/Az\|ordenació dels elements\|ocupar espai\|Pas temporal``\|Persones\*\*\|pestanya Filtre\|pestanyes»\|Planificador de l'Ekos o\|Redueix<\/guibutton>\|prement el botó \*\*Taula\*\*\|prement la icona ``Temps``\|programari<\/userinput>\|Propietats»\|Redueix``\|representa una unitat i cada quadre\|ressaltar un URL\|s'actualitzen\|s'identificarà\|seguiment``\|seguiu les instruccions\|selecció\|seleccionar un àlbum\|seleccionar una etiqueta\|Set botons de color\|Taula\*\*\|Teclat\*\|Trieu els botons habilitats\|selecciona una etiqueta\|seleccioni l'element corresponent\|situar\|sobre aquesta ubicació\|teclegeu fonts:\/\|teclejant fonts:\/\|teclejar <i>«audiocd:\/»<\/i>\|tenir un botó <interface>Menú d'hamburguesa<\/interface>\|Terra``\|tipus diferents de filtres\|[Tt]riar un àlbum\|Trieu els botons habilitats\|ubicada\|ubicat\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzant els botons de navegació\|utilitzar aquesta ajuda\|utilitzar la icona Moneda\|utilitzar la icona de tant per cent\|Versions»\|veure el full de trucs\|veure el progrés\|visitar\|[Vv]ista d'eines\|[Vv]ista de colors\|[Vv]ista de filtres\|[Vv]ista de llegendes\|[Vv]ista del mapa\|[Vv]ista de metadades\|[Vv]ista de propietats\|[Vv]ista de versions\|vista en arbre\|[Vv]ista general\|vista prèvia\|vistes d'etiquetes\|Xarxa»\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Bb]\)arra\([^[:alnum:]]\)/\1 en la \2\3arra\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \([Bb]\)arra\([^[:alnum:]]\)/\1 en la \2arra\3/g
  #
 s/\bA les barres\([^[:alnum:]]\)/En les barres\1/g
-s/\b\(amb el text\|aparèixer\|aplicar als botons\|canviar l'aparença del text\|dibuixa una vora\|ombra clara de les ratlles\|vista en arbre\) a les barres\([^[:alnum:]]\)/\1 en les barres\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les barres\([^[:alnum:]]\)/\1 en les barres\2/g
+s/\b\(amb el text\|aparèixer\|aplicar als botons\|canviar l'aparença del text\|dibuixa una vora\|Llegenda\*\* disponible\|ombra clara de les ratlles\|vista en arbre\|vistes d'etiquetes\) a les barres\([^[:alnum:]]\)/\1 en les barres\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les barres\([^[:alnum:]]\)/\1 en les barres\2/g
 # a la base
   s/\bAquest fitxer se sol trobar a\"/Aquest fitxer se sol trobar en\"/g
   s/\bError a la base de dades\([^[:alnum:]]\)/S'ha produït un error en la base de dades\1/g
-s/\b\(actualitzant l'orientació\|aplicada a l'URL dels elements\|[Cc]erca\|Cerca marques de llocs\|cercant els duplicats\|Clau\|corrupció\|crear la taula\|data d'aleshores\|desades\|desar\|desar-les\|desat\|[Ee]mmagatzema\|Emmagatzema el missatge\|[Ee]mmagatzema el missatge\|[Ee]mmagatzema els missatges\|emmagatzema els resultats\|emmagatzema les seves adreces d'interès\|emmagatzemada\|emmagatzemades\|emmagatzemar\|emmagatzemarà\|emmagatzemarà més dades\|emmagatzemaran els resultats\|emmagatzemen\|escriptura\|estigui\|existeix\|existia\|existís anteriorment\|exploració d'elements nous\|inserir\|Llegeix les metadades des del fitxer\|Manca la taula de ciutats\|ocupa espai\|ordenar-les\|registrada\|registrades\|registrats\|registrar els elements nous\|registrar tots els elements\|reparat incoherències\|seleccionat\|seleccionats\|tenen magnituds conegudes\|totes les imatges\|tots<\/em> els fitxers\|troba\|trobar %1 objecte\|trobar %1 objectes\|trobar elements nous\|trobar la informació del dispositiu de la càmera pertinent\|trobar la informació pertinent a la lent\|trobat\|trobat cap actualització\|trobat dades\|trobat la càmera\|trobat la informació de la pista\|trobat lents\|trobat taules\) a la base\([^[:alnum:]]\)/\1 en la base\2/g
+s/\b\(actualitzant l'orientació\|aplicada a l'URL dels elements\|calcular les empremtes digitals de cada imatge\|[Cc]erca\|Cerca marques de llocs\|cercant els duplicats\|cerques globals\|Clau\|corrupció\|crear la taula\|crearà una entrada \*\*ja baixada\*\*\|data d'aleshores\|desades\|desar\|desar-les\|desat\|[Ee]mmagatzema\|Emmagatzema el missatge\|[Ee]mmagatzema el missatge\|[Ee]mmagatzema els missatges\|emmagatzema els resultats\|emmagatzema les seves adreces d'interès\|emmagatzemada\|emmagatzemades\|emmagatzemar\|emmagatzemarà\|emmagatzemarà més dades\|emmagatzemaran els resultats\|emmagatzemen\|enregistra les àrees de la cara\|enregistrada\|enregistrades\|escriptura\|establir les etiquetes\|estigui\|existeix\|existeixi ja\|existia\|existís anteriorment\|exploració d'elements nous\|inserir\|Llegeix les metadades des del fitxer\|localitzant diversos elements\|Manca la taula de ciutats\|ocupa espai\|ordenar-les\|registrada\|registrades\|registrats\|registrar els elements nous\|registrar tots els elements\|reparat incoherències\|romanen\|segons les propietats\|seleccionat\|seleccionats\|tenen magnituds conegudes\|totes les imatges\|tots<\/em> els fitxers\|troba\|trobar %1 objecte\|trobar %1 objectes\|trobar elements nous\|trobar la informació del dispositiu de la càmera pertinent\|trobar la informació pertinent a la lent\|trobat\|trobat cap actualització\|trobat dades\|trobat la càmera\|trobat la informació de la pista\|trobat lents\|trobat taules\|troben\) a la base\([^[:alnum:]]\)/\1 en la base\2/g
   s/\baccés d'escriptura en la base\([^[:alnum:]]\)/accés d'escriptura a la base\1/g
  #
 s/\b\(Cerca dades d'entrades bibliogràfiques\|tenen magnituds conegudes\|trobat l'objecte\) a les bases\([^[:alnum:]]\)/\1 en les bases\2/g
 # a la beta
-s/\b\(millores\) a la beta \([12]\)\([^[:alnum:]]\)/\1 en la beta \2\3/g
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smenes d'errors\|esmenat una regressió\|[Mm]illora\|[Mm]illores\) a la beta \([12345]\)\([^[:alnum:]]\)/\1 en la beta \2\3/g
 # a la bibliografia
 s/\b\(duplicades\|Vista prèvia de les entrades\) a la bibliografia\([^[:alnum:]]\)/\1 en la bibliografia\2/g
 # a la biblioteca
-s/\b\(anàlisi\|desar crearà símbols addicionals\|desar-lo actualitzarà aquest símbol\|desaran automàticament\|Deseu el símbol actual com a nou\|disponibles\|existeix\|existeixen\|Introduïu un nom per al clip\) a la biblioteca\([^[:alnum:]]\)/\1 en la biblioteca\2/g
+s/\b\(anàlisi\|desar crearà símbols addicionals\|desar-lo actualitzarà aquest símbol\|desaran automàticament\|desen automàticament\|Deseu el símbol actual com a nou\|disponibles\|existeix\|existeixen\|integrada\|Introduïu un nom per al clip\|utilitzada per a prendre la imatge\) a la \([Bb]\)iblioteca\([^[:alnum:]]\)/\1 en la \2iblioteca\3/g
  #
 s/\b\(disponible\|explorar amb facilitat les dades i funcions\|resultant\) a les biblioteques\([^[:alnum:]]\)/\1 en les biblioteques\2/g
 # a la bombolla
@@ -1683,50 +1873,57 @@ s/\b\(botó «Veure»\|visualitzada\) a la bombolla\([^[:alnum:]]\)/\1 en la bom
  #
 s/\b\(botó «I&gnora»\) a les bombolles\([^[:alnum:]]\)/\1 en les bombolles\2/g
 # a la botiga
-s/\b\(comprar alguns articles\|disponible\|disponible aviat\|estan\|He dit que\|ingressés\|Krita\|repositori de F-Droid i\|tenir en compte que \*\*no\*\*\) a la botiga\([^[:alnum:]]\)/\1 en la botiga\2/g
+s/\b\(cerqueu «client RDP»\|comprar alguns articles\|disponible\|disponible aviat\|estan\|He dit que\|ingressés\|Krita\|repositori de F-Droid i\|tenir en compte que \*\*no\*\*\) a la botiga\([^[:alnum:]]\)/\1 en la botiga\2/g
  #
 s/\b\(Krita\) a les botigues\([^[:alnum:]]\)/\1 en les botigues\2/g
 # a la branca
-s/\b\(al cau com\|Comet els canvis a <b>%1<\/b>\|comissió\|[Ee]steu\|trobeu\) a la branca\([^[:alnum:]]\)/\1 en la branca\2/g
+s/\bA la branca\([^[:alnum:]]\)/En la branca\1/g
+s/\b\(al cau com\|Comet els canvis a <b>%1<\/b>\|comissió\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenat dues fallades\|[Ee]steu\|problemes amb l'entrada tàctil\|trobeu\|versió 3\.6\.4\.1\) a la branca\([^[:alnum:]]\)/\1 en la branca\2/g
+# a la brillantor
+s/\b\(evitar salts bruscos\) a la brillantor\([^[:alnum:]]\)/\1 en la brillantor\2/g
 # a la butxaca
 s/\b\(Plasma,\) a la butxaca\([^[:alnum:]]\)/\1 en la butxaca\2/g
 # a la cadena
-s/\b\(Caràcter no vàlid\|Comproveu la línia %1 columna %2\|eliminat\|és l'únic certificat\|Inclou enllaços\|Pols\|Retorna el nombre d'àrees\|Testimonis del &procés\|troba un element amb el títol igual (sense distingir entre minúscules i majúscules)\) a la cadena\([^[:alnum:]]\)/\1 en la cadena\2/g
+s/\b\(Caràcter no vàlid\|Comproveu la línia %1 columna %2\|eliminat\|emprada per la carpeta\|és l'únic certificat\|Inclou enllaços\|Pols\|Retorna el nombre d'àrees\|seleccionar la ubicació emprada pel directori\|També es pot incloure text arbitrari\|Testimonis del &procés\|troba un element amb el títol igual (sense distingir entre minúscules i majúscules)\) a la cadena\([^[:alnum:]]\)/\1 en la cadena\2/g
  #
 s/\b\(Cometes\) a les cadenes\([^[:alnum:]]\)/\1 en les cadenes\2/g
 # a la caixa
 s/\b\(seleccionada\) a la caixa\([^[:alnum:]]\)/\1 en la caixa\2/g
 # a la calculadora
 s/\b\(determinades entrades\|especificat prèviament\) a la calculadora\([^[:alnum:]]\)/\1 en la calculadora\2/g
+# a la cambra
+s/\b\(efectuat\|produeixen\) a la cambra\([^[:alnum:]]\)/\1 en la cambra\2/g
 # a la càmera
-s/\b\(Agrupament\|disponibles\) a la càmera\([^[:alnum:]]\)/\1 en la càmera\2/g
+s/\b\(Agrupament\|desen totes les seves imatges com a JPEG\|disponible\|disponibles\|emmagatzemada\|emmagatzemades\|emmagatzemat\|emmagatzemats\|poseu la tapa de la lent\|produïts\) a la càmera\([^[:alnum:]]\)/\1 en la càmera\2/g
  #
 s/\b\(selecciona el mode lectura\|disponibles\) a les càmeres\([^[:alnum:]]\)/\1 en les càmeres\2/g
 # a la cantonada
 s/\bA la cantonada\([^[:alnum:]]\)/En la cantonada\1/g
   s/, que està a la cantonada\([^[:alnum:]]\)/, el qual es troba en la cantonada\1/g
   s/\bSi vas a la cantonada inferior dreta\([^[:alnum:]]\)/Si vas fins a la cantonada inferior dreta\1/g
-s/\b\(Amb els botons\|Amb els tres botons\|botó «Focus»\|botó «Hemingway»\|botons de configuració\|col·locarà la finestra\|dibuixat\|Els botons\|en el quadre verd\|giny d'informació\|hi ha\|icona d'ajuda principal\|icona «descalç \/ sabata esportiva»\|marcaran amb un petit triangle vermell\|Mostra el rendiment de KWin\|mostra una etiqueta\|mostrarà un petit triangle blau\|mostrarà una etiqueta\|posa el ratolí\|Punt\|quart botó\|situa\|situat\|Tetris\|troba\|trobar un camí\|trobareu un resum del tauler de joc\|veureu una barra de progrés\) a la cantonada\([^[:alnum:]]\)/\1 en la cantonada\2/g
+s/\b\(Activa el servidor RDP\*\|Amb els botons\|Amb els tres botons\|amb una estrella\|amb una \*\*estrella\*\*\|botó «Focus»\|botó «Hemingway»\|botons de configuració\|cliqueu al botó de persones |icon_showfacetags|\|col·locarà la finestra\|dibuixat\|Els botons\|en el quadre verd\|és l'angle actual en graus\|es mostra permanentment\|giny d'informació\|hi ha\|icona d'ajuda principal\|icona «descalç \/ sabata esportiva»\|La barra d'eines\|marcaran amb un petit triangle vermell\|Mostra el rendiment de KWin\|mostra una etiqueta\|mostrarà un indicador de progrés\|mostrarà un petit triangle blau\|mostrarà una etiqueta\|posa el ratolí\|Punt\|quart botó\|situa\|situat\|tenen una marca de selecció\|Tetris\|troba\|trobar un camí\|trobareu un resum del tauler de joc\|veureu una barra de progrés\) a la cantonada\([^[:alnum:]]\)/\1 en la cantonada\2/g
  #
 s/\bA les cantonades\([^[:alnum:]]\)/En les cantonades\1/g
-s/\b\(ajusta la brillantor\|amb un camp no pla\|especialment\|[Ss]i les aberracions\) a les cantonades\([^[:alnum:]]\)/\1 en les cantonades\2/g
+s/\b\(ajusta la brillantor\|amb un camp no pla\|apareixeran \*forats\* triangulars desagradables\|arrossegueu les àrees quadrades\|disminueixen la brillantor\|és transparent\|especialment\|mostra vinyetes\|produir una vora negra\|[Ss]i les aberracions\|subexposició\) a les cantonades\([^[:alnum:]]\)/\1 en les cantonades\2/g
 # a la capa
-s/\b\(exploració en blocs de dades d'usuari\) a la capa\([^[:alnum:]]\)/\1 en la capa\2/g
+s/\b\(Els canvis d'opacitat\|exploració en blocs de dades d'usuari\|[Mm]illora\|[Mm]illores\) a la capa\([^[:alnum:]]\)/\1 en la capa\2/g
  #
-s/\b\(escala + inclinació\|problema amb les màscares de transformació\|que increment[ei]\|renderització de les pells de ceba\) a les capes\([^[:alnum:]]\)/\1 en les capes\2/g
+s/\b\(ajust entre canals»\|escala + inclinació\|HDR i la velocitat\|problema amb les màscares de transformació\|[Mm]illora\|[Mm]illores\|que increment[ei]\|renderització de les pells de ceba\) a les capes\([^[:alnum:]]\)/\1 en les capes\2/g
 # a la capçalera
-s/\b\(aparegui\|amb el botó dret\|amb el botó esquerre\|amb el botó dret del ratolí\|amb el botó esquerre del ratolí\|desada\|[Dd]ocumenta la icona de configuració\|emmagatzemar\|figuri\|mida de la imatge perquè s'adapti\|pestanya d'informació o\|s'especifica\|trobat cap informació\|visualitzarà\) a la capçalera\([^[:alnum:]]\)/\1 en la capçalera\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la capçalera\([^[:alnum:]]\)/\1 en la capçalera\2/g
+s/\b\(aparegui\|desada\|clicar en l'OR subratllat\|cliqueu en l'OR subratllat\|[Dd]ocumenta la icona de configuració\|Elimina el grup\*\*\|emmagatzemar\|figuri\|Lligams de tecla\*\|mida de la imatge perquè s'adapti\|pestanya d'informació o\|s'especifica\|trobat cap informació\|visualitzarà\) a la capçalera\([^[:alnum:]]\)/\1 en la capçalera\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la capçalera\([^[:alnum:]]\)/\1 en la capçalera\2/g
  #
 s/\bdefinit cap codificació explícita a la pàgina a les capçaleres\([^[:alnum:]]\)/establert cap codificació explícita a la pàgina en les capçaleres\1/g
 # a la captura
 s/\bA la captura\([^[:alnum:]]\)/En la captura\1/g
 s/, a la captura\([^[:alnum:]]\)/, en la captura\1/g
-s/\b\(4656x3520\|Error\|exclou les decoracions\|exclou les ombres\|feu\|inclou el punter\|més recentment emprat\|[Mm]ostra\|mostra't\|Per exemple,\|s'inclou\|s'inclouen\|tal com s'il·lustra\) a la captura\([^[:alnum:]]\)/\1 en la captura\2/g
+s/\b\(4656x3520\|com es ressalta\|Error\|exclou les decoracions\|exclou les ombres\|feu\|inclou el punter\|més recentment emprat\|[Mm]ostra\|mostra't\|Per exemple,\|s'inclou\|s'inclouen\|tal com s'il·lustra\) a la captura\([^[:alnum:]]\)/\1 en la captura\2/g
  #
 s/\bA les captures\([^[:alnum:]]\)/En les captures\1/g
+s/\b\(situats als mateixos llocs que\) a les captures\([^[:alnum:]]\)/\1 en les captures\2/g
 # a la cara
 s/\bA la cara\([^[:alnum:]]\)/En la cara\1/g
+s/\b\(excepte\|taques no desitjades\) a la cara\([^[:alnum:]]\)/\1 en la cara\2/g
  #
 s/\ba les cares marcades però encara no confirmades\([^[:alnum:]]\)/en les cares marcades però encara no confirmades\1/g
 # a la característica
@@ -1739,13 +1936,17 @@ s/\bA la carpeta\([^[:alnum:]]\)/En la carpeta\1/g
   s/\bTria-ho tot a la &carpeta\([^[:alnum:]]\)/Tria-ho tot en la \&carpeta\1/g
   s/\bNo s'ha pogut subscriure's\([^[:alnum:]]\)/No s'ha pogut subscriure\1/g
   s/\bsense llegir a la paperera i a la carpeta\([^[:alnum:]]\)/sense llegir en la paperera i en la carpeta\1/g
-s/\b\(amb el mateix nom\|amb permisos d'escriptura\|anar fins al següent missatge sense llegir\|anomenada «backgroundMusic»\|anomenada «voices-codecName»\|anomenada «words»\|arxivat del correu\|baixar un missatge\|Callgrind\|[Cc]erca\|Còmics\|Controla els canvis\|Crea en&llaços simbòlics\|Crea fitxers desencriptats temporals\|creació d'elements\|creació de carpetes\|crear carpetes\|crear una col·lecció arrel nova\|Desa aquest missatge\|Desa el correu\|desa una còpia\|desant els escanejats\|desar aquest missatge\|desar una còpia\|desarà els fitxers\|desarà un fitxer de registre\|desat una captura de pantalla com a «%1»\|desen\|desen localment al disc\|determinar l'espai lliure\|emmagatzema les seves adreces d'interès\|enllaçar el fitxer temporal\|[Ee]rror de permisos\|estan\|estant\|executa un informe\|executar ordres\|existeix\|existeixen\|Expandeix totes les converses\|Fa una còpia de seguretat de totes les vostres etiquetes\|Fa una còpia de seguretat del fitxer actual\|Falta el Makefile\|Fes parpelleig\|hi ha\|hi ha prou espai lliure\|hi ha un fitxer amb el mateix nom («%1»)\|instal·leu\|L'espai lliure\|modificació d'elements\|modificació de carpetes\|modificar el correu\|modificar els correus\|Mostra\|No es permet un nom buit\|Nombre total d'imatges\|obrir un fitxer temporal\|obriu una terminal\|OE-Import»\|permisos de fitxer\|permisos del fitxer\|Posa el clip\|Poseu els fitxers de model «.xml» i «.bin»\|Redueix totes les converses\|requereix permisos d'escriptura\|s'emplaçarà\|Tria tots els fitxers\|situar la carpeta «gsc»\|supressió d'elements\|supressió de carpetes\|Sylpheed-Import»\|troba\|trobar cap fitxer de codi font\|trobat %1 coincidències (%3)\|trobat cap fitxer de codi font\|trobat un missatge no vàlid\|trobat una coincidència (%3)\|trobat una entrada no vàlida\|troben\|utilitzarà un fitxer FIFO\|voleu <b>totes les fonts\) a la carpeta\([^[:alnum:]]\)/\1 en la carpeta\2/g
+s/\b\(amb el mateix nom\|amb permisos d'escriptura\|anar fins al següent missatge sense llegir\|anomenada «backgroundMusic»\|anomenada «voices-codecName»\|anomenada «words»\|arxivat del correu\|baixar un missatge\|Callgrind\|[Cc]erca\|Còmics\|Controla els canvis\|Crea en&llaços simbòlics\|Crea fitxers desencriptats temporals\|creació d'elements\|creació de carpetes\|crear carpetes\|crear una col·lecció arrel nova\|crearà\|Desa aquest missatge\|Desa el correu\|desa una còpia\|desant els escanejats\|desar aquest missatge\|desar una còpia\|desarà els fitxers\|desarà un fitxer de registre\|desat una captura de pantalla com a «%1»\|desen\|desen localment al disc\|determinar l'espai lliure\|emmagatzema les seves adreces d'interès\|emmagatzemada\|emmagatzemades\|enllaçar el fitxer temporal\|[Ee]rror de permisos\|Establiu «Vermell»\|estan\|estant\|executa el procés d'apilament de qualsevol subsolució\|executa un informe\|executar ordres\|existeix\|existeixen\|Expandeix totes les converses\|Fa una còpia de seguretat de totes les vostres etiquetes\|Fa una còpia de seguretat del fitxer actual\|Falta el Makefile\|Fes parpelleig\|[Ff]es una comparació visual\|hi ha\|hi ha prou espai lliure\|hi ha un fitxer amb el mateix nom («%1»)\|instal·leu\|L'espai lliure\|mateixos noms\|modificació d'elements\|modificació de carpetes\|modificar el correu\|modificar els correus\|Mostra\|No es permet un nom buit\|Nombre total d'imatges\|[Oo]bre un fitxer\|obrir un fitxer temporal\|obriu una terminal\|OE-Import»\|permisos de fitxer\|permisos del fitxer\|Posa el clip\|Poseu els fitxers de model «.xml» i «.bin»\|Redueix totes les converses\|requereix permisos d'escriptura\|s'emmagatzemen\|s'emplaçarà\|s'ha creat\|s'ha pogut crear\|Tria tots els fitxers\|situar la carpeta «gsc»\|supressió d'elements\|supressió de carpetes\|Sylpheed-Import»\|troba\|trobar cap fitxer de codi font\|trobareu les fotografies amb marca d'aigua\|trobat\|trobat %1 coincidències (%3)\|trobat cap fitxer de codi font\|trobat un missatge no vàlid\|trobat una coincidència (%3)\|trobat una entrada no vàlida\|troben\|utilitzarà un fitxer FIFO\|Verd» i «Blau»\|voleu <b>totes les fonts\) a la carpeta\([^[:alnum:]]\)/\1 en la carpeta\2/g
  #
 s/\bA les carpetes\([^[:alnum:]]\)/En les carpetes\1/g
   s/\bque heu fet als fitxers o a les carpetes\([^[:alnum:]]\)/que heu fet en els fitxers o en les carpetes\1/g
-s/\b\(aplicar efectes\|canvis\|[Cc]erca\|cerca perfils ICC\|Cerca recursiva\|deixa anar\|hi ha missatges sense llegir\|Permet les etiquetes locals\|trobat cap fitxer d'índex\) a les carpetes\([^[:alnum:]]\)/\1 en les carpetes\2/g
+s/\b\(aplicar efectes\|canvis\|[Cc]erca\|cerca perfils ICC\|Cerca recursiva\|deixa anar\|hi ha missatges sense llegir\|mostra una quadrícula amb 1 fila per a cada subsolució\|Permet les etiquetes locals\|trobat cap fitxer d'índex\) a les carpetes\([^[:alnum:]]\)/\1 en les carpetes\2/g
 # a la càrrega
 s/\b\(regressió\) a la càrrega\([^[:alnum:]]\)/\1 en la càrrega\2/g
+# a la carretera
+s/\b\(ús\) a la carretera\([^[:alnum:]]\)/\1 en la carretera\2/g
+# a la carta
+s/\b\(determinades posicions\) a la carta\([^[:alnum:]]\)/\1 en la carta\2/g
 # a la cartera
 s/\b\(Desa la contrasenya de text\|Desa les contrasenyes\|desarà les contrasenyes\|el valor de l'entrada\|emmagatzemades\|emmagatzemar\|Indiqueu la carpeta\|obtenir tota la informació continguda\|programar els projectes\|sobreescriurà el valor previ de l'entrada\) a la \([Cc]\)artera\([^[:alnum:]]\)/\1 en la \2artera\3/g
 # a la casa
@@ -1753,11 +1954,12 @@ s/\b\(capturarà les llavors\|col·locaran\) a la casa\([^[:alnum:]]\)/\1 en la 
  #
 s/\b\(esglésies\) a les cases\([^[:alnum:]]\)/\1 en les cases\2/g
 # a la casella
+s/\b\([Cc]anvieu el valor\|emprarà\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la casella\([^[:alnum:]]\)/\1 en la casella\2/g
  #
-s/\b\(col·locarà una `x`\|utilitzarà\|utilitzarà\) a les caselles\([^[:alnum:]]\)/\1 en les caselles\2/g
+s/\b\(col·locarà una `x`\|emprarà\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a les caselles\([^[:alnum:]]\)/\1 en les caselles\2/g
 # a la categoria
   s/\(%1, \|\"\)a la categoria\([^[:alnum:]]\)/\1en la categoria\2/g
-s/\b\(202[0123456789]\|Activa la condició\|despeses\|ingressos\|menuchoice>\|troba\|trobat\|Store<\/link>,\|systemsettings;,\) a la categoria\([^[:alnum:]]\)/\1 en la categoria\2/g
+s/\b\(202[0123456789]\|Activa la condició\|despeses\|ingressos\|menuchoice>\|No s'ha assignat cap valoració\*\*\|troba\|trobat\|Store<\/link>,\|systemsettings;,\) a la categoria\([^[:alnum:]]\)/\1 en la categoria\2/g
 #
 s/\b\(Totes\) a les categories\([^[:alnum:]]\)/\1 en les categories\2/g
 # a la CDDB
@@ -1766,17 +1968,19 @@ s/\b\([Cc]erca\|ID del disc\) a la CDDB\([^[:alnum:]]\)/\1 en la CDDB\2/g
 # a la cel·la
   s/\bper a configurar-la a la cel·la actual\([^[:alnum:]]\)/per a establir-la en la cel·la actual\1/g
 s/\b\(alternen el seu objectiu respectiu\|Començant\|configurar-la\|hi haurà\|mostrarà\|posició del contingut\|Reproduïu el caràcter sol·licitat\|teniu un nombre\) a la cel·la\([^[:alnum:]]\)/\1 en la cel·la\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la cel·la\([^[:alnum:]]\)/\1 en la cel·la\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la cel·la\([^[:alnum:]]\)/\1 en la cel·la\2/g
  #
 s/\b\(editar una AR o una Dec d'un punt concret directament\|Esquitxades en mescla\|Esquitxades humides\|mostrarà la fórmula real\) a les cel·les\([^[:alnum:]]\)/\1 en les cel·les\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les cel·les\([^[:alnum:]]\)/\1 en les cel·les\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les cel·les\([^[:alnum:]]\)/\1 en les cel·les\2/g
 # a la cerca
 s/\bA la cerca\([^[:alnum:]]\)/En la cerca\1/g
   s/\bMou el focus a la cerca\([^[:alnum:]]\)/Mou el focus fins a la cerca\1/g
-s/\b\(coincideixen\|consideraran els participants amb els rols seleccionats\|consideraran totes les incidències\|empraran\|error\|Focus\|Inclou el nom de les peces\|Inclou el nom dels àlbums\|Inclou el nom dels gèneres\|Inclou els noms dels artistes\|Inclou els noms dels compositors\|Inclou els anys\|Inclou les etiquetes\|incloure\|incloure les alarmes actives\|incloure les alarmes arxivades\|incloure les alarmes d'àudio\|incloure les alarmes d'ordre\|incloure les alarmes de correu\|incloure les alarmes de fitxer\|alarmes de missatge de text\|la interfície d'usuari i\|s'inclouran\|salti»\|trobat cap resultat\|utilitzaran\|verificar\) a la cerca\([^[:alnum:]]\)/\1 en la cerca\2/g
+s/\b\(coincideixen\|consideraran els participants amb els rols seleccionats\|consideraran totes les incidències\|empraran\|error\|Focus\|Inclou el nom de les peces\|Inclou el nom dels àlbums\|Inclou el nom dels gèneres\|Inclou els noms dels artistes\|Inclou els noms dels compositors\|Inclou els anys\|Inclou les etiquetes\|incloure\|incloure les alarmes actives\|incloure les alarmes arxivades\|incloure les alarmes d'àudio\|incloure les alarmes d'ordre\|incloure les alarmes de correu\|incloure les alarmes de fitxer\|alarmes de missatge de text\|la interfície d'usuari i\|s'inclouran\|salti»\|trobat cap resultat\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|verificar\) a la cerca\([^[:alnum:]]\)/\1 en la cerca\2/g
  #
 s/\bA les cerques\([^[:alnum:]]\)/En les cerques\1/g
-s/\b\(Coincidències de majúscules\|Concorda les caixes\|Oculta la imatge\) a les cerques\([^[:alnum:]]\)/\1 en les cerques\2/g
+s/\b\(Coincidències de majúscules\|conèixer\|Concorda les caixes\|Oculta la imatge\) a les cerques\([^[:alnum:]]\)/\1 en les cerques\2/g
+# a la cinta
+s/\b\(Els sistemes de còpia de seguretat\) a la cinta\([^[:alnum:]]\)/\1 en la cinta\2/g
 # a la cistella
 s/\b\(Enganxa el contingut del porta-retalls\|Enganxa la selecció\|enganxar el contingut del porta-retalls\|enganxar el porta-retalls o la selecció\|enganxar la selecció del porta-retalls\|Enregistra una àrea de la pantalla com a una imatge\) a la cistella\([^[:alnum:]]\)/\1 en la cistella\2/g
  #
@@ -1785,23 +1989,30 @@ s/\b\(Mo&stra consells\) a les cistelles\([^[:alnum:]]\)/\1 en les cistelles\2/g
 s/\b\([Nn]o es fa referència\) a la citació\([^[:alnum:]]\)/\1 en la citació\2/g
 # a la clau
 s/\b\(trobat l'adreça de correu\) a la clau\([^[:alnum:]]\)/\1 en la clau\2/g
+# a la coberta
+ #
+s/\b\(amb canvis només\|Pàgina de títol» (i\) a les cobertes\([^[:alnum:]]\)/\1 en les cobertes\2/g
 # a la coincidència
 s/\b\(ometen els caràcters de format Unicode (Cf)\) a la coincidència\([^[:alnum:]]\)/\1 en la coincidència\2/g
 # a la combinació
+s/\bA la combinació\([^[:alnum:]]\)/En la combinació\1/g
  #
 s/\b\(esmenat més actualitzacions cícliques\) a les combinacions\([^[:alnum:]]\)/\1 en les combinacions\2/g
 # a la comissió
 s/\b\(està\) a la comissió\([^[:alnum:]]\)/\1 en la comissió\2/g
+# a la compartició
+ #
+s/\b\(utilitzeu habitualment qualsevol d'aquestes aplicacions amb fitxers\) a les comparticions\([^[:alnum:]]\)/\1 en les comparticions\2/g
 # a la compleció
 s/\b\([Nn]ombre de suggeriments\) a la compleció\([^[:alnum:]]\)/\1 en la compleció\2/g
 # a la comunitat
 s/\b\(com\|Contingut recent\|tant\) a la comunitat\([^[:alnum:]]\)/\1 en la comunitat\2/g
  #
-s/\b\(augmentar el nombre de dones\|Fes de voluntari\) a les comunitats\([^[:alnum:]]\)/\1 en les comunitats\2/g
+s/\b\(augmentar el nombre de dones\|debats i treball col·laboratiu\|Fes de voluntari\) a les comunitats\([^[:alnum:]]\)/\1 en les comunitats\2/g
 # a la col·lecció
   s/\"a la col·lecció actual\([^[:alnum:]]\)/\"en la col·lecció actual\1/g
   s/\bFusiona el contingut del fitxer importat a la col·lecció actual\([^[:alnum:]]\)/Fusiona el contingut del fitxer importat amb la col·lecció actual\1/g
-s/\b\(canvien els camps\|cerqueu el seu nom\|[Cc]erca\|Crea un àlbum buit nou\|creant l'element\|Executa filtres de vista definits per l'usuari\|hi ha\|ID de les llistes de tasques\|ID dels calendaris\|la carpeta de paperera «.dtrash»\|la carpeta de paperera «%2»\|massa imatges grans\|reproduir-les\|teniu imatges amb aquests formats\|trobat cap forma\) a la col·lecció\([^[:alnum:]]\)/\1 en la col·lecció\2/g
+s/\b\(canvien els camps\|cerqueu el seu nom\|[Cc]erca\|classificar els continguts\|Crea un àlbum buit nou\|creant l'element\|Executa filtres de vista definits per l'usuari\|hi ha\|ID de les llistes de tasques\|ID dels calendaris\|la carpeta de paperera «.dtrash»\|la carpeta de paperera «%2»\|massa imatges grans\|reproduir-les\|teniu imatges amb aquests formats\|trobat cap forma\|veure només rostres humans\) a la col·lecció\([^[:alnum:]]\)/\1 en la col·lecció\2/g
  #
 s/\b\(cerques\) a les col·leccions\([^[:alnum:]]\)/\1 en les col·leccions\2/g
 # a la col·limació
@@ -1819,60 +2030,68 @@ s/\bA les compilacions\([^[:alnum:]]\)/En les compilacions\1/g
 s/\b\(múltiples nuclis\|realitzar proves\) a les compilacions\([^[:alnum:]]\)/\1 en les compilacions\2/g
 # a la configuració
 s/\bA la configuració\([^[:alnum:]]\)/En la configuració\1/g
-  s/\b\(activat\|ajustar\|definit\|inhabilitar aquesta característica\|modificar la mida màxima de la pila de desfer\/refer\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)configuració\([^[:alnum:]]\)/\1 en la \2configuració\3/g
-  s/\bAugmenta les imatges petites\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) a la configuració\([^[:alnum:]]\)/Augmenta les imatges petites\1 \2en la configuració\3/g
+  s/\b\(activat\|ajustar\|definit\|inhabilitar aquesta característica\|modificar la mida màxima de la pila de desfer\/refer\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)configuració\([^[:alnum:]]\)/\1 en la \2configuració\3/g
+  s/\bAugmenta les imatges petites\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) a la configuració\([^[:alnum:]]\)/Augmenta les imatges petites\1 \2en la configuració\3/g
+  s/\bdisponibles a «Configuració\([^[:alnum:]]\)/disponibles en «Configuració\1/g
   s/\bDisposició a la configuració actual del Plasma\([^[:alnum:]]\)/Disposició des de la configuració actual del Plasma\1/g
-  s/\b\(seleccionar un CCD del sistema de guiatge\|valor d'ampliació anterior\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)a la configuració\([^[:alnum:]]\)/\1 \2en la configuració\3/g
-s/\b\(activat\|activat el resolutor d'Internet\|Ajusteu-lo\|amb l'angle de posició\|amb un commutador\|canvia[rt]\|canviar el tema\|configuració de la gestió del color\|configurar\|configurar a través de la interfície de <i>Dreceres de teclat<\/i>\|configurar accions similars\|configurar un APN\|configurat\|configurats\|configureu aquestes opcions\|definir un altre port\|definir un servidor de claus\|desactivada\|desactivades\|desactiva[rt]\|desactivar completament la característica\|directori de treball\|desactiveu l'agent GnuPG\|disponibles\|disponibles en la càmera\|ajustant dos paràmetres\|durada del bloqueig automàtic\|emmagatzema\|Equip d'idioma de l'usuari\|especificar un altre fitxer\|especificat\|esquema de color\|establerta\|establir el camí correcte\|establir-la\|Establiu el fitxer del terreny\|Establiu els detalls del propietari del calendari\|Establiu els paràmetres d'importació\|fitxers<\/span>\|gestionar els proveïdors de l'escriptori social\|habilitat\|Habiliteu «Mostra els errors»\|habiliteu-lo\|hi hagi\|indicat\|indicat cap servidor\|indicats\|inhabilitat l'opció «Notifica sempre»\|inhabilitats\|introduir la vostra clau d'encriptatge\|introduïu la vostra clau d'encriptatge\|CLI de Kaggle\|Krita»\|Krita, i no\|marcada\|metadades\|obriu la pàgina «Programes»\|partició o\|perdeu\|persistir\|Proporcioneu el camí correcte\|[Qq]ualsevol canvi\|reduint la mida de l'historial\|reduint la mida de la memòria intermèdia per programari\|secció\|seleccionar\|seleccionar un CCD del sistema de guiatge\|Trieu un perfil QIF\|Servidor buit\|sol·licitar un reinici\|suprimir\|Tipus no vàlid de còpia de seguretat\|trieu un altre port\|una opció\|Us perdeu\|utilitzar\|utilitzarà\|utilitzaran\|Utilitzeu l'editor de perfil QIF\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Cc]\)onfiguració\([^[:alnum:]]\)/\1 en la \2\3onfiguració\4/g
+  s/\b\(seleccionar un CCD del sistema de guiatge\|valor d'ampliació anterior\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)a la configuració\([^[:alnum:]]\)/\1 \2en la configuració\3/g
+s/\b\(activació d'algunes eines\|activat\|activat el resolutor d'Internet\|Ajusteu-lo\|amb l'angle de posició\|amb un commutador\|canvia[rt]\|canviar el tema\|Color de fons d'avui de la vista d'avui»\|configuració de la gestió del color\|configurar\|configurar a través de la interfície de <i>Dreceres de teclat<\/i>\|configurar accions similars\|configurar un APN\|configurat\|configurats\|configureu aquestes opcions\|configureu un dispositiu meteorològic autònom\|definir un altre port\|definir un servidor de claus\|desactivada\|desactivades\|desactiva[rt]\|desactivar completament la característica\|desar els desplaçaments dels filtres\|directori de treball\|desactiveu l'agent GnuPG\|disponibles\|disponibles en la càmera\|ajustant dos paràmetres\|durada del bloqueig automàtic\|emmagatzema\|Equip d'idioma de l'usuari\|estan preestablerts\|mostren els símbols de la clau modificadora de macOS\|especificar un altre fitxer\|especificat\|esquema de color\|establerta\|establir el camí correcte\|establir-la\|Establiu el fitxer del terreny\|Establiu els detalls del propietari del calendari\|Establiu els paràmetres d'importació\|estan predefinits\|fitxers<\/span>\|gestionar els proveïdors de l'escriptori social\|habilitat\|Habiliteu «Mostra els errors»\|habiliteu-lo\|hi hagi\|indicat\|indicat cap servidor\|indicats\|inhabilitat l'opció «Notifica sempre»\|inhabilitats\|introduir la vostra clau d'encriptatge\|introduïu la vostra clau d'encriptatge\|CLI de Kaggle\|Krita»\|Krita, i no\|marcada\|metadades\|obriu la pàgina «Programes»\|partició o\|perdeu\|persistir\|predefinits\|Proporcioneu el camí correcte\|[Qq]ualsevol canvi\|reduint la mida de l'historial\|reduint la mida de la memòria intermèdia per programari\|secció\|seleccionar\|seleccionar un CCD del sistema de guiatge\|Trieu un perfil QIF\|Servidor buit\|sol·licitar un reinici\|suprimir\|Tipus no vàlid de còpia de seguretat\|Tria les capes des del menú»\|trieu un altre port\|una opció\|Us perdeu\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|Utilitzeu l'editor de perfil QIF\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)onfiguració\([^[:alnum:]]\)/\1 en la \2\3onfiguració\4/g
 # a la connexió
 s/\b\([Ee]rror\) a la connexió\([^[:alnum:]]\)/\1 en la connexió\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la connexió\([^[:alnum:]]\)/\1 en la connexió\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la connexió\([^[:alnum:]]\)/\1 en la connexió\2/g
 # a la consola
   s/(a la consola)\([^[:alnum:]]\)/(en la consola)\1/g
   s/\bMostra l'indicador a la &consola\([^[:alnum:]]\)/Mostra l'indicador en la \&consola\1/g
-s/\b\(help.start ()»\|calcular expressions matemàtiques\|des d'aquest directori\|Des d'un indicador\|Descriu les característiques i els paràmetres referits\|després\|en els scripts i\|escrivint les ordres següents\|[Ee]xecuteu\|[Ee]xecuteu les línies següents\|funciona\|hi ha una altra ordre activa\|imprimeix missatges\|introduïu «base::pa»\|introduïu -per exemple- «print»\|mostra\|mostrar\|mostraran\|mostraran més que aquest nombre total de línies (ordres i sortida)\|Ordres entrades\|però no\|teclejar-los directament\|visualització d'ordres\|visualització dels missatges del sistema\) a la consola\([^[:alnum:]]\)/\1 en la consola\2/g
+s/\b\(help.start ()»\|calcular expressions matemàtiques\|des d'aquest directori\|Des d'un indicador\|Descriu les característiques i els paràmetres referits\|després\|en els scripts i\|escrivint les ordres següents\|[Ee]xecuteu\|[Ee]xecuteu les línies següents\|funciona\|hi ha una altra ordre activa\|[Ii]mprimeix\|imprimeix missatges\|introduïu «base::pa»\|introduïu -per exemple- «print»\|loquacitat de la depuració\|mostra\|mostrar\|mostraran\|mostraran més que aquest nombre total de línies (ordres i sortida)\|Ordres entrades\|però no\|teclejar-los directament\|visualització d'ordres\|visualització dels missatges del sistema\) a la consola\([^[:alnum:]]\)/\1 en la consola\2/g
 # a la constel·lació
 s/\bA la constel·lació\([^[:alnum:]]\)/En la constel·lació\1/g
 # a la construcció
 s/\bA la construcció\([^[:alnum:]]\)/En la construcció\1/g
-s/\b\(coincideix amb un patró d'exclusió %r\|Esmena dels errors de regressió\|[Pp]roblema inesperat\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Cc]\)onstrucció\([^[:alnum:]]\)/\1 en la \2\3onstrucció\4/g
+s/\b\(coincideix amb un patró d'exclusió %r\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|Esmena dels errors de regressió\|[Pp]roblema inesperat\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)onstrucció\([^[:alnum:]]\)/\1 en la \2\3onstrucció\4/g
  #
 s/\bA les construccions\([^[:alnum:]]\)/En les construccions\1/g
-s/\b\([Cc]anvis notables\|disponibles per a la prova\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Cc]\)onstruccions\([^[:alnum:]]\)/\1 en les \2\3onstruccions\4/g
+s/\b\([Cc]anvis notables\|[Dd]esenvolupament\|disponibles per a la prova\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)onstruccions\([^[:alnum:]]\)/\1 en les \2\3onstruccions\4/g
 # a la consulta
-s/\b\(existeix\|valor»\) a la consulta\([^[:alnum:]]\)/\1 en la consulta\2/g
+s/\b\(existeix\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar la cerca ràpida\|valor»\) a la consulta\([^[:alnum:]]\)/\1 en la consulta\2/g
+# a la contraportada
+s/\b\(Textos de contraportada»\) a la contraportada\([^[:alnum:]]\)/\1 en la contraportada\2/g
 # a la conversa
 s/\b\([Ee]rror d'invitació\) a la conversa\([^[:alnum:]]\)/\1 en la conversa\2/g
 # a la conversió
-s/\b\(esmenen els errors d'arr[eo]doniment\) a la conversió\([^[:alnum:]]\)/\1 en la conversió\2/g
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenen els errors d'arr[eo]doniment\) a la conversió\([^[:alnum:]]\)/\1 en la conversió\2/g
 # a les coordenades
-s/\b\(centra la muntura\|Les coordenades celestes dels mapes WCS\) a les coordenades\([^[:alnum:]]\)/\1 en les coordenades\2/g
+s/\b\(centra la muntura\|[Cc]entra la vista sobre un punt específic\|Les coordenades celestes dels mapes WCS\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)coordenades\([^[:alnum:]]\)/\1 en les \2coordenades\3/g
 # a la còpia
 s/\b\(enregistrada\|hi ha actualitzacions\|inclosa\|incloure\|se suprimirà de la carpeta\|Tria els canvis\|substituït amb zeros\|substituït per zeros\) a la còpia\([^[:alnum:]]\)/\1 en la còpia\2/g
  #
 s/\b\(llista\) a les còpies\([^[:alnum:]]\)/\1 en les còpies\2/g
 # a la corba
-s/\b\(ajustar l'enfocament i l'efecte\|amb la solució\|canvia les etiquetes del punt d'enfocament\|dibuixa\|dibuixarà la ZCE\|marcat\|marcats\|[Mm]ostra\|[Mm]ostrar\|mostrar la ZCE\|mostrar la ZCE calculada\|mostrarà\|seleccionat\|situar el punt nou o\|troben\|visualitzar la ZCE\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Cc]\)orba\([^[:alnum:]]\)/\1 en la \2\3orba\4/g
+s/\b\(70,000 (punt 1\|ajustar l'enfocament i l'efecte\|amb la solució\|canvia les etiquetes del punt d'enfocament\|dibuixa\|dibuixarà la ZCE\|impacte de la gamma\|marcat\|marcats\|[Mm]ostra\|[Mm]ostrar\|mostrar la ZCE\|mostrar la ZCE calculada\|mostrarà\|seleccionat\|situar el punt nou o\|troben\|valors dels píxels de la imatge\|visualitzar la ZCE\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)orba\([^[:alnum:]]\)/\1 en la \2\3orba\4/g
  #
-s/\b\(Su&bstituïx\|Substitueix\) a les corbes\([^[:alnum:]]\)/\1 en les corbes\2/g
+s/\b\(posicionament dels punts\|&Substitueix\|Su&bstituïx\|Substitueix\) a les corbes\([^[:alnum:]]\)/\1 en les corbes\2/g
+# a la costura
+ #
+s/\b\(donar una ponderació negativa\|prendre els píxels\) a les costures\([^[:alnum:]]\)/\1 en les costures\2/g
 # a la CPU
 s/\b\(executar el connector\|més ràpid que\) a la CPU\([^[:alnum:]]\)/\1 en la CPU\2/g
 # a la crida
 s/\b\(com a arg(1)\) a la crida\([^[:alnum:]]\)/\1 en la crida\2/g
 # a la cua
-s/\b\(2\|dels blocs\|enviant el missatge (1 element\|enviant els missatges (%1 elements\|enviar el missatge\|esperant\|hi ha elements\|Hi ha %1 treballs d'impressió\|Hi ha un treball d'impressió\|Mou cap avall un torrent\|Mou cap amunt un torrent\|Nombre de treballs\|Ordre d'un torrent\|processar\|queden %1 tasques\|queden tasques\|queden tasques interrompudes\|s'especifica\|troben\) a la cua\([^[:alnum:]]\)/\1 en la cua\2/g
+s/\b\(2\|Cada tasca\|[Cc]ontinua amb la tasca següent\|dels blocs\|editeu una tasca\|enviant el missatge (1 element\|enviant els missatges (%1 elements\|enviar el missatge\|esperant\|estiguin\|executar amb les imatges\|hi ha elements\|Hi ha %1 treballs d'impressió\|Hi ha un treball d'impressió\|Mou cap avall un torrent\|Mou cap amunt un torrent\|Nombre de treballs\|Ordre d'un torrent\|per a cada element\|processar\|processar simultàniament els elements\|queden %1 tasques\|queden tasques\|queden tasques interrompudes\|s'especifica\|sobre cada imatge\|[Tt]rieu el dispositiu\|troben\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|XMP\*\* dels fitxers\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Cc]\)ua\([^[:alnum:]]\)/\1 en la \2\3ua\4/g
  #
 s/\b\(hi ha cap element per a processar\) a les cues\([^[:alnum:]]\)/\1 en les cues\2/g
 # a les dades
-s/\b\(causa del soroll\|farciran amb valors buits\|haurà algun soroll\|Té una validesa desconeguda\) a les dades\([^[:alnum:]]\)/\1 en les dades\2/g
-# a les darreres
-s/\b\(disponibles per a la prova\) a les darreres\([^[:alnum:]]\)/\1 en les darreres\2/g
+s/\b\(causa del soroll\|desen\|farciran amb valors buits\|haurà algun soroll\|Té una validesa desconeguda\) a les dades\([^[:alnum:]]\)/\1 en les dades\2/g
+# a la darrera
+s/\b\([Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\) a la darrera\([^[:alnum:]]\)/\1 en la darrera\2/g
+ #
+s/\b\(disponibles per a la prova\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\) a les darreres\([^[:alnum:]]\)/\1 en les darreres\2/g
 # a la data
   s/\"a la data de venciment\([^[:alnum:]]\)/\"en la data de venciment\1/g
   s/\bdes de la data1 a la data2\([^[:alnum:]]\)/des de la data1 fins a la data2\1/g
-s/\b\(Caràcter inesperat %1\|Centra el diagrama de Gantt\|Finalitza la tasca\|[Ii]nicia la tasca\|posició dels planetes principals\) a la data\([^[:alnum:]]\)/\1 en la data\2/g
+s/\b\(Caràcter inesperat %1\|Centra el diagrama de Gantt\|Finalitza la tasca\|[Ii]nicia la tasca\|posició dels planetes principals\|representació del sistema solar\) a la data\([^[:alnum:]]\)/\1 en la data\2/g
 # a la Dec
-s/\b\(Blau``\|guiatge\|Moviment\) a la Dec\([^[:alnum:]]\)/\1 en la Dec\2/g
+s/\b\(Blau``\|Error RMS\|guiatge\|Moviment\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Dec\([^[:alnum:]]\)/\1 en la \2Dec\3/g
 # a la dècada
 s/\b\(Apple Computer\) a la dècada\([^[:alnum:]]\)/\1 en la dècada\2/g
 # a la declaració
@@ -1888,35 +2107,37 @@ s/\b\(ajuda\) a la depuració\([^[:alnum:]]\)/\1 en la depuració\2/g
 # a la depuradora
 s/\ba la depuradora d'aigües residuals\([^[:alnum:]]\)/en la depuradora d'aigües residuals\1/g
 # a la desconvolució
-s/\b\(utilitzarà\) a la desconvolució\([^[:alnum:]]\)/\1 en la desconvolució\2/g
+s/\b\(aplicarà\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la desconvolució\([^[:alnum:]]\)/\1 en la desconvolució\2/g
 # a la descripció
 s/\b\([Tt]ambé\) a la descripció\([^[:alnum:]]\)/\1 en la descripció\2/g
 # a la destinació
-s/\b\(escriure\|Executeu «aplicació»\|Executeu «gdbserver … aplicació»\|existeixin\|ocupin menys espai\|Sobreescriu els elements existents\|Utilitza el camí d'àlbum dels elements\) a la destinació\([^[:alnum:]]\)/\1 en la destinació\2/g
+s/\b\(deixeu anar el fitxer `.raw`\|escriure\|Executeu «aplicació»\|Executeu «gdbserver … aplicació»\|existeixin\|ocupin menys espai\|Sobreescriu els elements existents\|Utilitza el camí d'àlbum dels elements\) a la destinació\([^[:alnum:]]\)/\1 en la destinació\2/g
  #
 s/\b\(escriure\) a les destinacions\([^[:alnum:]]\)/\1 en les destinacions\2/g
 # a les diferències
  #
 s/\b\([Hh]i ha massa línies\) a les diferències\([^[:alnum:]]\)/\1 en les diferències\2/g
 # a la direcció
-s/\b\(canvi gradual\) a la direcció\([^[:alnum:]]\)/\1 en la direcció\2/g
+s/\b\(canvi gradual\|degradat de brillantor\|degradat de luminància\) a la direcció\([^[:alnum:]]\)/\1 en la direcció\2/g
+ #
+s/\b\(especifiquen el marge des de la vora\) a les direccions\([^[:alnum:]]\)/\1 en les direccions\2/g
 # a la disposició
 s/\b\(canvis\|fet els canvis\|Mostra les &línies de la nota\|parpelleig\|presents\) a la disposició\([^[:alnum:]]\)/\1 en la disposició\2/g
  #
-s/\b\(Mostra\|utilitzades\) a les disposicions\([^[:alnum:]]\)/\1 en les disposicions\2/g
+s/\b\(Mostra\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a les disposicions\([^[:alnum:]]\)/\1 en les disposicions\2/g
 # a la dissolució
 s/\b\(especificar la quantitat de solut\|especificar les unitats de la quantitat de dissolvent\|especificar les unitats de la quantitat de solut\) a la dissolució\([^[:alnum:]]\)/\1 en la dissolució\2/g
 # a la distància
 s/\b\(poseu el mateix valor\) a la distància\([^[:alnum:]]\)/\1 en la distància\2/g
 # a la distribució
-s/\b\(disponibles\) a la distribució\([^[:alnum:]]\)/\1 en la distribució\2/g
+s/\b\(disponibles\|eliminar les restriccions\) a la distribució\([^[:alnum:]]\)/\1 en la distribució\2/g
 # a la documentació
-s/\b\(es descriu com «més lògic»\|falten\|obtenir la mida del pas\|troben\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)a la documentació\([^[:alnum:]]\)/\1 \2en la documentació\3/g
+s/\b\(es descriu com «més lògic»\|falten\|obtenir la mida del pas\|troben\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)a la documentació\([^[:alnum:]]\)/\1 \2en la documentació\3/g
 # a la drecera
  #
 s/\b\(detectar conflictes\) a les dreceres\([^[:alnum:]]\)/\1 en les dreceres\2/g
 # a la dreta
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)dreta\([^[:alnum:]]\)/\1 en la \2dreta\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)dreta\([^[:alnum:]]\)/\1 en la \2dreta\3/g
 # a la dutxa
 s/\b\(estigui\) a la dutxa\([^[:alnum:]]\)/\1 en la dutxa\2/g
 # a les escates
@@ -1925,44 +2146,49 @@ s/\b\(a continuació,\) a les escates\([^[:alnum:]]\)/\1 en les escates\2/g
 s/\b\(desplegant\) a les escoles\([^[:alnum:]]\)/\1 en les escoles\2/g
 # a la famosa
 s/\b\(posats per escrit\) a la famosa\([^[:alnum:]]\)/\1 en la famosa\2/g
-# a la Figura
-s/\b\(s'il·lustra\|il·lustrat\) a la \([Ff]\)igura\([^[:alnum:]]\)/\1 en la \2igura\3/g
+# a la figura
+s/\bA la figura\([^[:alnum:]]\)/En la figura\1/g
+s/\b\(il·lustra\|il·lustrat\|mostra\|ubicació de les zones comunes\) a la \([Ff]\)igura\([^[:alnum:]]\)/\1 en la \2igura\3/g
 # a la fila
   s/\bel valor a la «fila»\([^[:alnum:]]\)/el valor en la «fila»\1/g
-s/\b\(alinea\|columnes apropiades\) a la fila\([^[:alnum:]]\)/\1 en la fila\2/g
+s/\b\(alinea\|Carrega les imatges obtingudes``\|columnes apropiades\|En iniciar la sessió»\) a la fila\([^[:alnum:]]\)/\1 en la fila\2/g
  #
 s/\b\(des de l'u fins al nou\) a les files\([^[:alnum:]]\)/\1 en les files\2/g
 # a la finestra
 s/\bA la finestra\([^[:alnum:]]\)/En la finestra\1/g
   s/\ba la finestra del Kig\([^[:alnum:]]\)/en la finestra del Kig\1/g
   s/\b\(arrossegar una imatge\) a la finestra\([^[:alnum:]]\)/\1 fins a la finestra\2/g
-  s/\bcoincideix a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)finestra\([^[:alnum:]]\)/coincideix en la \1finestra\2/g
+  s/\bcoincideix a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)finestra\([^[:alnum:]]\)/coincideix en la \1finestra\2/g
   s/\bes mostrarà a la «finestra\([^[:alnum:]]\)/es mostrarà en la «finestra\1/g
   s/\bconfigurar el que s'ocultarà mentre vos desplaceu cap a la finestra\([^[:alnum:]]\)/configurar el que s'ocultarà mentre vos desplaceu en la finestra\1/g
   s/\bsi s'engega a\([^[:alnum:]]\)/si s'engega en\1/g
-s/\b\(a dins de la taula\|a l'esquerra del control lliscant de progrés\|A més,\|[Aa]fegint objectes\|agafades de les opcions\|ajustar l'alçada de la pàgina\|ajustar l'amplada de la pàgina\|ajustar la pàgina\|anar fins al seu codi font\|animació\|aplicació KDE<\/replaceable>\|barra de zoom\|barres d'eines i botons\|canviant els valors\|canvieu primer a coordenades equatorials\|capturada per la rèflex digital\|Cerca les pestanyes del navegador\|cliqueu «Envia»\|Columnes visibles\|Commuta l'efecte d'inversió\|configuració\|configurar-la\|crear un parell de claus\|definir el vostre propi\|des del menú <i>Carpeta<\/i>\|desactivar aquesta característica\|desactivar la bombolla d'ajuda\|disposició de la interfície\|el tanca\|emplaçament\|Emplaçament:<\/guilabel>\|Enganxament especial…<\/i>\|es tracta\|especificar un valor constant per a algun dels paràmetres\|Executa l'script\|executar l'script actual\|executar una ordre\|executarà l'script\|Explica les regles DST»\|Focus\|generar la sortida\|hi ha\|hi ha text seleccionat\|i apliqueu l'operació resultant\|I&gnora la sortida\|independent del rellotge\|introduïu les coordenades desitjades\|La barra d'eines\|La barra d'estat\|La vista de persones\|llistats\|Lluentor\|millores\|mode «Taula»\|mode «Vista prèvia»\|Mo&stra\|Mostra cada imatge capturada en seqüència\|Mostra cada imatge capturada per la rèflex digital\|Mostra la imatge\|Mostra la informació emergent\|Mostra la música que esteu escoltant\|Mostra la pestanya de vista dels fragments baixats\|Mostra la pestanya de vista dels parells\|Mostra la pestanya de vista dels seguidors\|Mostra les imatges FITS rebudes\|mostrar el contingut de la carpeta\|mostrar el temps restant de les peces en comptes del temps transcorregut\|mostrar-les totes\|mostraran\|mostri\|Obre el document\|[Oo]bre un fitxer addicional de traça\|Obre una carpeta CVS de treball\|obrir aquest fitxer\|per als esdeveniments\|rebut un missatge entrant\|replegats\|Representa fórmules LaTeX\|representar fórmules LaTeX\|s'afegiran automàticament\|trieu la pestanya «Permisos»\|seleccioneu part de l'expressió regular\|seleccioneu un objecte i una propietat\|sense animació\|sota el diagrama\|Tipus de lletra base\|Transicions del canvi d'estat\|visualitzar les imatges\|vora el camp d'edició\|veure el diagrama exportat\|vista d'imatges\) a la finestra\([^[:alnum:]]\)/\1 en la finestra\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la finestra\([^[:alnum:]]\)/\1 en la finestra\2/g
+s/\b\(a dins de la taula\|a l'esquerra del control lliscant de progrés\|A més,\|[Aa]fegint objectes\|agafades de les opcions\|Ajusta la data i hora`\|ajustar l'alçada de la pàgina\|ajustar l'amplada de la pàgina\|ajustar la pàgina\|Àlbums»\|anar fins al seu codi font\|animació\|aplicació KDE<\/replaceable>\|barra de zoom\|barres d'eines i botons\|canviant els valors\|canvieu primer a coordenades equatorials\|capturada per la rèflex digital\|Cerca»\|Cerca al mapa»\|Cerca les pestanyes del navegador\|cliqueu «Envia»\|Columnes visibles\|Commuta l'efecte d'inversió\|configuració\|configurar-la\|Consell d'eina\|crear un parell de claus\|Dates»\|de les fotografies seleccionades\|definir el vostre propi\|des del menú <i>Carpeta<\/i>\|desactivar aquesta característica\|desactivar la bombolla d'ajuda\|[Dd]isponible\|disposició de la interfície\|el tanca\|emplaçament\|Emplaçament:``\|Enganxament especial…<\/i>\|es tracta\|especificar un valor constant per a algun dels paràmetres\|Etiquetes»\|Executa l'script\|executar l'script actual\|executar una ordre\|executarà l'script\|Explica les regles DST»\|Focus\|generar la sortida\|hi ha\|hi ha text seleccionat\|i apliqueu l'operació resultant\|I&gnora la sortida\|independent del rellotge\|introduïu les coordenades desitjades\|La barra d'eines\|La barra d'estat\|La vista de persones\|Línia de temps»\|llistats\|Lluentor\|[Mm]illora\|[Mm]illores\|mode «Taula»\|mode «Vista prèvia»\|Mo&stra\|Mostra cada imatge capturada en seqüència\|Mostra cada imatge capturada per la rèflex digital\|Mostra la imatge\|Mostra la informació emergent\|Mostra la música que esteu escoltant\|Mostra la pestanya de vista dels fragments baixats\|Mostra la pestanya de vista dels parells\|Mostra la pestanya de vista dels seguidors\|Mostra les imatges FITS rebudes\|mostrar el contingut de la carpeta\|mostrar el temps restant de les peces en comptes del temps transcorregut\|mostrar-les totes\|mostrarà\|mostraran\|mostri\|Munta i obre\*\|Obre el document\|[Oo]bre un fitxer addicional de traça\|Obre una carpeta CVS de treball\|obrir aquest fitxer\|on es troba el cursor del ratolí\|per als esdeveniments\|Persones»\|punter del ratolí\|rebut un missatge entrant\|replegats\|Representa fórmules LaTeX\|representar fórmules LaTeX\|Rètols»\|s'afegiran automàticament\|seleccionades\|són diferents\|trieu la pestanya «Permisos»\|seleccioneu part de l'expressió regular\|seleccioneu un objecte i una propietat\|sense animació\|Similitud»\|sota el diagrama\|Tipus de lletra base\|Transicions del canvi d'estat\|una miniatura\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|visualitzar les imatges\|vora el camp d'edició\|veure el diagrama exportat\|vista d'imatges\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)finestra\([^[:alnum:]]\)/\1 en la \2finestra\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la finestra\([^[:alnum:]]\)/\1 en la finestra\2/g
   s/\ba la finestra de Kig\([^[:alnum:]]\)/en la finestra de Kig\1/g
  #
 s/\bA les finestres\([^[:alnum:]]\)/En les finestres\1/g
-s/\b\(esquinçament de la pantalla\|Mostra una pàgina de benvinguda\|mostrarà un document sense títol\|utilitza\) a les finestres\([^[:alnum:]]\)/\1 en les finestres\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les finestres\([^[:alnum:]]\)/\1 en les finestres\2/g
+s/\b\(esquinçament de la pantalla\|Mostra una pàgina de benvinguda\|mostrarà un document sense títol\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a les finestres\([^[:alnum:]]\)/\1 en les finestres\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les finestres\([^[:alnum:]]\)/\1 en les finestres\2/g
 # a la fitxa
 s/\b\(Escriviu el número\) a la fitxa\([^[:alnum:]]\)/\1 en la fitxa\2/g
  #
-s/\b\(Un gran ocell carnívor\|utilitzar imatges en lloc de paraules\) a les fitxes\([^[:alnum:]]\)/\1 en les fitxes\2/g
+s/\b\(Un gran ocell carnívor\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar imatges en lloc de paraules\) a les fitxes\([^[:alnum:]]\)/\1 en les fitxes\2/g
 # a la fletxa
 # s/\b\(\) a la fletxa\([^[:alnum:]]\)/\1 en la fletxa\2/g
 # a la floració
 s/\b\(doneu una mica de color\) a la floració\([^[:alnum:]]\)/\1 en la floració\2/g
 # a la font
-s/\b\(màscara de transformació»\) a la font\([^[:alnum:]]\)/\1 en la font\2/g
+s/\b\(màscares de transformació»\) a la font\([^[:alnum:]]\)/\1 en la font\2/g
+# a la forma
+s/\b\([Tt]ext\) a la forma\([^[:alnum:]]\)/\1 en la forma\2/g
+ #
+s/\b\(es produeix\) a les formes\([^[:alnum:]]\)/\1 en les formes\2/g
 # a la fórmula
 s/\b\(emprats\) a la fórmula\([^[:alnum:]]\)/\1 en la fórmula\2/g
 # a la fotografia
-s/\b\(causar una certa pèrdua de qualitat\|icones de gir\) a la fotografia\([^[:alnum:]]\)/\1 en la fotografia\2/g
+s/\b\(causar una certa pèrdua de qualitat\|compleixen el mateix paper que els negatius de pel·lícula\|determinar el balanç de blancs correcte\|disminuir els detalls de les ombres\|es veu sovint\|icones de gir\|imprimeix\|incrustada\|incrustades\|incrustat\|incrustats\|inundacions\|troba les vores de color\|ubicació dels motius principals\) a la fotografia\([^[:alnum:]]\)/\1 en la fotografia\2/g
  #
-s/\b\(incrustades\) a les fotografies\([^[:alnum:]]\)/\1 en les fotografies\2/g
+s/\b\(cercar qualsevol cosa\|habitual\|imprimeix\|incrustada\|incrustades\|incrustat\|incrustats\|perdre les cares petites\|[Pp]roporcionen un context i significat\|reduir els defectes\|ressaltar els detalls i els colors de mides diferents\|resultats captivadors\) a les fotografies\([^[:alnum:]]\)/\1 en les fotografies\2/g
 # a la frase
 s/\b\(Majúscules\/minúscules\) a la frase\([^[:alnum:]]\)/\1 en la frase\2/g
 # a la funció
@@ -1973,17 +2199,22 @@ s/\b\(conserva durant tot el procés i\) a les funcions\([^[:alnum:]]\)/\1 en le
 s/\b\(haver-hi una massa\) a la galàxia\([^[:alnum:]]\)/\1 en la galàxia\2/g
 # a la galeria
 s/\b\(estan\|troben\|visualitzarà\) a la galeria\([^[:alnum:]]\)/\1 en la galeria\2/g
+# a la gamut
+s/\b\(defineix el punt neutre\|mostra\) a la gamut\([^[:alnum:]]\)/\1 en la gamut\2/g
 # a la gestió
   s/\bDes de les opcions del tema a la gestió de dispositiu\([^[:alnum:]]\)/Des de les opcions del tema fins a la gestió de dispositius\1/g
-s/\b\([Mm]illores\) a la gestió\([^[:alnum:]]\)/\1 en la gestió\2/g
+s/\b\(La vista d'icones\|[Mm]illora\|[Mm]illores\) a la gestió\([^[:alnum:]]\)/\1 en la gestió\2/g
 # a les golfes
-s/\b\(digiKam\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)golfes\([^[:alnum:]]\)/\1 en les \2golfes\3/g
+s/\b\(digiKam\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)golfes\([^[:alnum:]]\)/\1 en les \2golfes\3/g
 # a la Google
-s/\b\(aterr[ei]\|ChromeOS\|compte de la comunitat KDE\|Ken Lo\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Google\([^[:alnum:]]\)/\1 en la \2Google\3/g
+s/\b\(aterr[ei]\|ChromeOS\|compte de la comunitat KDE\|Ken Lo\|temes dels projectes\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Google\([^[:alnum:]]\)/\1 en la \2Google\3/g
+# a la GSoC
+s/\ba la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)GSoC\([^[:alnum:]]\)/en la \1GSoC\2/g
+  s/\bper en la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)GSoC\([^[:alnum:]]\)/per a la \1GSoC\2/g
 # a la guia
 s/\b\(Proveïdor de cerques\) a la guia\([^[:alnum:]]\)/\1 en la guia\2/g
 # a la GPU
-s/\b\(transformació\) a la GPU\([^[:alnum:]]\)/\1 en la GPU\2/g
+s/\b\(executar-se\|transformació\) a la GPU\([^[:alnum:]]\)/\1 en la GPU\2/g
 # a la gràfica
 s/\b\(amb l'excepció de l'eix del temps\|enfocament\|[Mm]ode de selecció\|mostrar la zona crítica de l'enfocament\|mostrar les etiquetes\|tant\|Visualitza el traçat AR\|Visualitza el traçat de correccions AR\|Visualitza el traçat d'error RMS\|Visualitza el traçat de correccions Dec\|Visualitza el traçat Dec\|Visualitza el traçat SNR\) a la gràfica\([^[:alnum:]]\)/\1 en la gràfica\2/g
 # a la gropa
@@ -1995,35 +2226,41 @@ s/\b\(animacions\|carpeta anomenada KDE.trash,\|Mostra el nombre de notes\|Mostr
   s/\bd'afegir un sobrenom com a mínim\([^[:alnum:]]\)/d'afegir com a mínim un sobrenom\1/g
 s/\b\(configurar la carpeta de correu brossa\|definit\|donat\) a la identitat\([^[:alnum:]]\)/\1 en la identitat\2/g
 # a la IGU
-s/\b\(crear-ne un de nou\|[Mm]illores\|[Tt]roba\) a la \(GUI\|IGU\)\([^[:alnum:]]\)/\1 en la IGU\3/g
+s/\b\(crear-ne un de nou\|[Mm]illora\|[Mm]illores\|representada\|[Tt]roba\) a la \(GUI\|IGU\)\([^[:alnum:]]\)/\1 en la IGU\3/g
 # a la il·lustració
 s/\b\([Mm]ostrada\) a la il·lustració\([^[:alnum:]]\)/\1 en la il·lustració\2/g
 # a la imatge
 s/\bA la imatge\([^[:alnum:]]\)/En la imatge\1/g
-s/\b\(aconseguir la mateixa relació temps a soroll\|aconseguir un interval dinàmic més gran\|ajust\|alineat amb el nord\|aquests paràmetres\|augmentar el contrast\|cautilitzarà cap canvi\|centrat\|conserva la saturació dels colors\|Detecta les estrelles\|detectades\|determina la mida de les parts copiades\|dibuixa un espectre de l'àudio\|dibuixa un nivell d'àudio\|El nombre de píxels\|Emmagatzema la configuració de la provatura suau\|emmagatzemar aquesta paleta\|emplenar al punt vermell de l'exemple\|establir l'escala de magnituds de les estrelles\|Etiquetes\|Fes parpelleig\|[Hh]i ha un canal alfa\|hi hagi estrelles suficients\|[Ii]matge\|inserit\|marca les estrelles\|més soroll quedarà\|Mostra els objectes\|mostrar el blanc sobreacolorit\|mostrar el negre sobreacolorit\|nombre d'estrelles\|[Oo]bjectes\|pel soroll calculat\|posició del píxel\|proporciona un interval dinàmic major\|reconstrucció des de Bayer\|se superposin\|seleccionada (o amb la selecció automàtica)\|seleccioneu el punt d'origen\|sobreposa un triangle\|superposats\|troba el nord\|troba les vores de color\|trobada\|trobar estrelles\|trobi\|valors de color\) a la imatge\([^[:alnum:]]\)/\1 en la imatge\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la imatge\([^[:alnum:]]\)/\1 en la imatge\2/g
+s/\b\(100) dels colors\|aconseguir la mateixa relació temps a soroll\|aconseguir un marge dinàmic més gran\|ajust\|ajustar els colors\|al llarg de la línia de l'espiral\|alineat amb el nord\|amplificarà el soroll\|anàlisi de les intensitats dels píxels\|aquests paràmetres\|augmentar el contrast\|cautilitzarà cap canvi\|centrat\|conserva la saturació dels colors\|conservació dels trets\|contingut\|Detecta les estrelles\|detectades\|detectar automàticament les cares\|determina la mida de les parts copiades\|dibuixa un espectre de l'àudio\|dibuixa un nivell d'àudio\|disminuir la densitat de les vores\|distribueix\|dona més espai de pantalla\|doni un gir creatiu\|El nombre de píxels\|Emmagatzema la configuració de la prova en pantalla\|emmagatzemar aquesta paleta\|emplenar al punt vermell de l'exemple\|Escriu les etiquetes de la base de dades\|establir l'escala de magnituds de les estrelles\|Etiquetes\|Fes parpelleig\|[Ff]es una comparació visual\|fetes\|generalment de color vermell, blau o verd\|generar una etiqueta de cara per a cada persona\|hi ha molt de soroll\|[Hh]i ha un canal alfa\|hi hagi estrelles suficients\|[Ii]matge\|incrustat inadvertidament un perfil equivocat\|inserit\|la claredat\|marca les estrelles\|més soroll quedarà\|Mostra els objectes\|mostrar el blanc sobreacolorit\|mostrar el negre sobreacolorit\|mostr[ei][ns]\|nivell de soroll\|nombre d'estrelles\|noves a les etiquetes existents\|[Oo]bjectes\|pel soroll calculat\|posa gotes de pluja boniques\|posició del píxel\|present\|presents\|produeix un píxel negre\|proporciona un marge dinàmic major\|reconstrucció des de Bayer\|reflectit\|reflectits\|representat\|representats\|se superposin\|segons els nivells de soroll\|seleccionada (o amb la selecció automàtica)\|seleccioneu el punt d'origen\|Sense confirmació\*\*\|sobreposa un triangle\|subsolucions i\|superposats\|troba el nord\|troba les vores de color\|trobada\|trobar estrelles\|trobar objectes\|troben fora de la gamut\|trobi\|valors de color\|vertical o horitzontal\|veure on es troben els diferents valors dels píxels\|visible\|visibles\) a la imatge\([^[:alnum:]]\)/\1 en la imatge\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la imatge\([^[:alnum:]]\)/\1 en la imatge\2/g
  #
 s/\bA les imatges\([^[:alnum:]]\)/En les imatges\1/g
-s/\b\(ajustar l'hora\|calcular els nivells de la ADU\|amb un intercanvi sense costures\|codificar les coordenades AR\/Dec\|corregir els píxels cremats\|[Dd]etecció de text\|Detecta la quantitat de compressió\|Detecta la quantitat de difuminat\|Detecta la quantitat de soroll\|[Dd]etect[ai] les cares\|detecti cares\|detectades\|Realitza l'estirament automàtic\|manté l'èmfasi\|reconeixerà automàticament les persones\|reduir el soroll\|reduir l'efecte de l'ull vermell\|Traça el valor de la mediana de la mostra\|Traça l'excentricitat mediana de les estrelles\|trobar estrelles i coordenades\) a les imatges\([^[:alnum:]]\)/\1 en les imatges\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les imatges\([^[:alnum:]]\)/\1 en les imatges\2/g
-# a la implementació
+s/\b\(ajustar l'hora\|amb un intercanvi sense costures\|àrea de la imatge\|calcular els nivells de la ADU\|codificar les coordenades AR\/Dec\|corregir els defectes\|corregir els píxels cremats\|[Dd]etecció de text\|detecta automàticament les cares\|Detecta la quantitat de compressió\|Detecta la quantitat de difuminat\|Detecta la quantitat de soroll\|[Dd]etect[ai] les cares\|detectar altres cares no humanes\|detecti cares\|detectades\|Gestor de la cua per lots»\|Realitza l'estirament automàtic\|manté l'èmfasi\|minimitzar aproximadament HFR de les estrelles\|pinzellades que es congelen breument\|realitzar moltes edicions\|reconèixer les cares\|reconeixerà automàticament les persones\|reduir el soroll\|reduir l'efecte de l'ull vermell\|reparar inconsistències\|Rètols de selecció\*\*\|Sense confirmació\*\*\|Traça el valor de la mediana de la mostra\|Traça l'excentricitat mediana de les estrelles\|trob[ei]n\|trobar estrelles i coordenades\|trobar objectes\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|visible\|visibles\) a les imatges\([^[:alnum:]]\)/\1 en les imatges\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les imatges\([^[:alnum:]]\)/\1 en les imatges\2/g
 # a la implementació
 # a la importació
 s/\b\(Separador decimal incorrecte\) a la importació\([^[:alnum:]]\)/\1 en la importació\2/g
 # a la impressió
 s/\b\(Fa una pausa\|mostraran\) a la impressió\([^[:alnum:]]\)/\1 en la impressió\2/g
 # a la impressora
+s/\b\(mostrar-la\) a la impressora\([^[:alnum:]]\)/\1 en la impressora\2/g
+ #
 s/\b\(publicar dades\) a les impressores\([^[:alnum:]]\)/\1 en les impressores\2/g
 # a la incidència
 s/\b\(trobat cap adjunt anomenat «%1»\) a la incidència\([^[:alnum:]]\)/\1 en la incidència\2/g
+# a la Inclinació
+s/\b\([Aa]justos\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Inclinació\([^[:alnum:]]\)/\1 en la \2Inclinació\3/g
 # a la indexació
 s/\b\(fallat\) a la indexació\([^[:alnum:]]\)/\1 en la indexació\2/g
 # a la indústria
+s/\bA la indústria\([^[:alnum:]]\)/En la indústria\1/g
 s/\b\(professió\) a la indústria\([^[:alnum:]]\)/\1 en la indústria\2/g
+# a la inferior
+s/\b\(troba\) a la inferior\([^[:alnum:]]\)/\1 en la inferior\2/g
 # a la informació
 s/\b\(es proporcionen\|hi ha un error\|propietari\|troben\) a la informació\([^[:alnum:]]\)/\1 en la informació\2/g
 # a la interfície
-s/\b\(admissió de pestanyes\|Configureu els connectors\|desactivar l'autenticació\|esmenes\|esmenes d'errors\|esmenes secundàries\|Implementació de dreta a esquerra\|integrades\|ja heu seleccionat\|[Mm]illores\|seleccionat\|té la seva pròpia pestanya i icona\|Utilitza un tipus de lletra personalitzat\|utilitzat\|utilitzeu un dispositiu\|visualitzar-la\) a la interfície\([^[:alnum:]]\)/\1 en la interfície\2/g
+s/\b\(admissió de pestanyes\|Configureu els connectors\|de la barra lateral dreta\|decisions imprudents\|desactivar l'autenticació\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenes secundàries\|esteu\|Implementació de dreta a esquerra\|integrades\|ja heu seleccionat\|[Mm]illora\|[Mm]illores\|seleccionat\|té la seva pròpia pestanya i icona\|Utilitza un tipus de lletra personalitzat\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzeu un dispositiu\|visualitzar-la\) a la interfície\([^[:alnum:]]\)/\1 en la interfície\2/g
  #
 s/\b\(serveis que proporcionen notificacions d'estat\) a les interfícies\([^[:alnum:]]\)/\1 en les interfícies\2/g
 # a la instal·lació
@@ -2037,22 +2274,25 @@ s/\b\(disponible\|troba\) a la instància\([^[:alnum:]]\)/\1 en la instància\2/
 s/\b\(com es descriu\|utilitzar l'script d'augment de dades\) a les instruccions\([^[:alnum:]]\)/\1 en les instruccions\2/g
 # a la invent
 s/\b\(documentat\) a la invent\([^[:alnum:]]\)/\1 en la invent\2/g
-  s/\b\(actualitzada\|defineixen\|descriuen\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)documentació\([^[:alnum:]]\)/\1 en la \2\3documentació\4/g
-s/\b\([Cc]erca\|busqueu els termes de llicència\|documentat\|Més informació\|Vegeu l'article «Static Image Export»\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)documentació\([^[:alnum:]]\)/\1 en la \2documentació\3/g
+  s/\b\(actualitzada\|defineixen\|descriuen\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)documentació\([^[:alnum:]]\)/\1 en la \2\3documentació\4/g
+s/\b\([Cc]erca\|busqueu els termes de llicència\|documentat\|Més informació\|Vegeu l'article «Static Image Export»\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)documentació\([^[:alnum:]]\)/\1 en la \2documentació\3/g
 # a la invitació
 s/\b\(Hi ha adjunta una resposta\) a la invitació\([^[:alnum:]]\)/\1 en la invitació\2/g
 # a la IU
-s/\b\([Mm]illores\|visualitza\) a la IU\([^[:alnum:]]\)/\1 en la IU\2/g
+s/\b\([Mm]illora\|[Mm]illores\|visualitza\) a la IU\([^[:alnum:]]\)/\1 en la IU\2/g
 # a la jerarquia
 s/\b\(existeix\|mouen cap amunt\) a la jerarquia\([^[:alnum:]]\)/\1 en la jerarquia\2/g
 # a la jungla
 s/\b\(divertir-se\) a la jungla\([^[:alnum:]]\)/\1 en la jungla\2/g
 # a la KDE
-s/\b\(existent\|explorar les seves creacions\|publicar la pestanya personalitzada\|Substituït amb &DBus;\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(&kde\|KDE\)\([^[:alnum:]]\)/\1 en la \2\3\4/g
+s/\bA la KDE Linux\([^[:alnum:]]\)/En la KDE Linux\1/g
+s/\b\(desenvolupament del nucli\|[Dd]esenvolupar\|[Dd]esenvolupar programari KDE\|disponible\|disponibles\|existent\|explorar les seves creacions\|fer coses\|fer tota mena de coses\|funciona\|funcionen\|[Hh]i ha només un requisit específic\|instal·lar\|preinstal·lat\|publicar la pestanya personalitzada\|realitzar diverses tasques\|recomanada\|sigui de KDE\|solucionar aquesta incidència\|Substituït amb &DBus;\|treballar\|utilitzar màquines virtuals\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(&kde\|KDE\)\([^[:alnum:]]\)/\1 en la \2\3\4/g
 # a la «KoPathTool
 s/\b\(ignorar els esdeveniments del ratolí\) a la «KoPathTool\([^[:alnum:]]\)/\1 en la «KoPathTool\2/g
 # a la LaKademy
 s/\b\(Fotografia de grup\) a la LaKademy\([^[:alnum:]]\)/\1 en la LaKademy\2/g
+# a la lent
+s/\b\(causats per brossa com la pols o pèls\|Groc»\|Taronja»\|Verd»\|Vermell»\) a la lent\([^[:alnum:]]\)/\1 en la lent\2/g
 # a la línia
   s/\bsaltar a la línia\([^[:alnum:]]\)/saltar fins a la línia\1/g
 s/\bA la línia\([^[:alnum:]]\)/En la línia\1/g
@@ -2066,21 +2306,23 @@ s/\bA la línia\([^[:alnum:]]\)/En la línia\1/g
   s/\bemplaçarà a la <b>Línia\([^[:alnum:]]\)/emplaçarà en la <b>Línia\1/g
   s/\btrobat un error a la línia %1 del fitxer %2\([^[:alnum:]]\)/trobat un error a la línia %1 en el fitxer %2\1/g
   s/\bvisualització dels fotogrames clau en el clip a la línia de temps\([^[:alnum:]]\)/visualització dels fotogrames clau en el clip sobre la línia de temps\1/g
-s/\b\(Afegeix un cursor (accent circumflex)\|anàlisi sintàctica de l'XML\|anàlisi sintàctica de l'XML des de «CDS Sesame»: %1\|Atribut %1 buit\|cap altre\|caràcter no en blanc\|Característica de subtítols (GSoC), colors\|carregar els punts\|Clip\|Codi\|col·locarà\|declarat a %2\|Enganxa clips\|enganxar els elements\|error d'anàlisi fatal: %1\|Error en analitzar l'XML\|error en l'anàlisi sintàctica XML\|error ha estat: «%1»\|es netejarà la selecció actual de la data\|escrivint «fuser -v %1»\|escriviu\|especificar-se\|especificat\|Estableix el focus\|establert\|executar «gpgconf %3»\|farà la seva acció\|Fitxer LDIF no vàlid\|Focus\|hi ha text\|Hi ha un nombre incorrecte de camps\|hi ha una crida\|indicat\|Insereix els blocs seleccionats\|Insereix una zona del clip\|inserirà una altra línia\|introduint «tipus:nom»\|introduir una opció\|ja s'ha declarat a %2\|La icona copia |copy|,\|llegir el fitxer de plantilla <b>%1<\/b>\|llegir el fitxer en XML\|Manca l'atribut %1\|Mantén el focus\|minúscules)\|Mostra %1\|Mostra els fotogrames clau\|Mostra les etiquetes de color\|Mostra els segons\|mostrar els segons\|mostrarà\|no permet cap URL\|Nombre no vàlid de columnes\|Oculta els fotogrames clau\|orbitarà al voltant d'un punt de gravitació estable\|Part real de la funció digamma\|Permet 1.000 fotogrames\|[Pp]odeu ometre l'adreça\|proporcionats\|punt gravitacional estable\|reduir l'error\|romandran\|s'indica\|seleccionades\|selecciona[rt]\|seleccioneu un fitxer de dades\|Sobreescriu la zona del clip\|substituir només el component d'àudio d'aquest clip\|substituir només el component de v[ií]deo d'aquest clip\|Substitueix\|Substitueix un clip\|suprimir l'última pista\|també és possible\|teclegi el contingut d'aquest quadre\|troba\|trobar l'ID del compte amb l'expressió regular «%1»\|trobat el preu per a «%1» amb l'expressió regular «%2»\|trobat un error\|utilitzats\|valor del text «%1»\|visualització dels subtítols\) a la línia\([^[:alnum:]]\)/\1 en la línia\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la línia\([^[:alnum:]]\)/\1 en la línia\2/g
+s/\b\(Afegeix un cursor (accent circumflex)\|anàlisi sintàctica de l'XML\|anàlisi sintàctica de l'XML des de «CDS Sesame»: %1\|Atribut %1 buit\|cap altre\|caràcter no en blanc\|Característica de subtítols (GSoC), colors\|carregar els punts\|Clip\|Codi\|coincideixin amb la configuració\|col·locarà\|declarat a %2\|Enganxa clips\|enganxar els elements\|error d'anàlisi fatal: %1\|Error en analitzar l'XML\|error en l'anàlisi sintàctica XML\|error ha estat: «%1»\|es netejarà la selecció actual de la data\|escrivint «fuser -v %1»\|escriviu\|especificar-se\|especificat\|Estableix el focus\|establert\|executar «gpgconf %3»\|farà la seva acció\|fluctuacions petites\|Fitxer LDIF no vàlid\|Focus\|hi ha text\|Hi ha un nombre incorrecte de camps\|hi ha una crida\|indicat\|Insereix els blocs seleccionats\|Insereix una zona del clip\|inserirà una altra línia\|introduint «tipus:nom»\|introduir una opció\|ja s'ha declarat a %2\|La icona copia |copy|,\|llegir el fitxer de plantilla <b>%1<\/b>\|llegir el fitxer en XML\|Manca l'atribut %1\|Mantén el focus\|minúscules)\|marqueu ``No importa``\|Mostra %1\|Mostra els fotogrames clau\|Mostra les etiquetes de color\|Mostra els segons\|mostrar el nom principal, el tipus d'objecte i la mida de l'objecte\|mostrar els segons\|mostrarà\|no permet cap URL\|Nombre no vàlid de columnes\|Oculta els fotogrames clau\|orbitarà al voltant d'un punt de gravitació estable\|Part real de la funció digamma\|Permet 1.000 fotogrames\|[Pp]odeu ometre l'adreça\|proporcionats\|punt gravitacional estable\|reduir l'error\|romandran\|s'indica\|seleccionades\|selecciona[rt]\|seleccioneu un fitxer de dades\|Sobreescriu la zona del clip\|substituir només el component d'àudio d'aquest clip\|substituir només el component de v[ií]deo d'aquest clip\|Substitueix\|Substitueix un clip\|suprimir l'última pista\|també és possible\|tancar les separacions\|teclegi el contingut d'aquest quadre\|troba\|trobar l'ID del compte amb l'expressió regular «%1»\|trobat el preu per a «%1» amb l'expressió regular «%2»\|trobat un error\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|valor del text «%1»\|visualització dels subtítols\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ll]\)ínia\([^[:alnum:]]\)/\1 en la \2\3ínia\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la línia\([^[:alnum:]]\)/\1 en la línia\2/g
  #
 s/\bA les línies\([^[:alnum:]]\)/En les línies\1/g
   s/\ba les línies de temps\([^[:alnum:]]\)/en les línies de temps\1/g
   s/\bDesplaça a les línies\([^[:alnum:]]\)/Desplaça fins a les línies\1/g
   s/\bDesplaça o no a les línies\([^[:alnum:]]\)/Desplaça o no fins a les línies\1/g
 s/\b\(apareixerà una icona de creu\|Commuta l'atribut de cursiva\|Commuta l'atribut de negreta\|Commuta l'atribut de subratllat\|Commuta l'atribut de ratllat\|Commuta la marca\|Comprova els errors\|[Hh]i ha errors\|La clau de text «%1»\|mostrar\|Neteja els errors\|provocaran bucles\|Verifica l'ortografia\) a les línies\([^[:alnum:]]\)/\1 en les línies\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a les línies\([^[:alnum:]]\)/\1 en les línies\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a les línies\([^[:alnum:]]\)/\1 en les línies\2/g
 # a la literatura
 s/\b\(aparegut diverses teories\) a la literatura\([^[:alnum:]]\)/\1 en la literatura\2/g
 # a la llar
 s/\b\(Xats\|xerrades\) a la llar\([^[:alnum:]]\)/\1 en la llar\2/g
 # a la llegenda
-s/\b\(Mostra el camí complet cap al document\) a la llegenda\([^[:alnum:]]\)/\1 en la llegenda\2/g
+s/\b\(descrit\|Mostra el camí complet cap al document\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ll]\)legenda\([^[:alnum:]]\)/\1 en la \2\3legenda\4/g
+# a la lletra
+s/\b\(poden estar presents\) a la lletra\([^[:alnum:]]\)/\1 en la lletra\2/g
 # a la llibreta
   s/\"a la llibreta\([^[:alnum:]]\)/\"en la llibreta\1/g
   s/\b\(contacte nou\) a la Llibreta\([^[:alnum:]]\)/\1 en la Llibreta\2/g
@@ -2094,16 +2336,17 @@ s/\bA la llista\([^[:alnum:]]\)/En la llista\1/g
   s/\bcercar progressivament a la llista\([^[:alnum:]]\)/cercar progressivament a través de la llista\1/g
   s/\bestà a la «llista\([^[:alnum:]]\)/està en la «llista\1/g
   s/lement \(anterior\|següent\) a la llista\([^[:alnum:]]\)/lement \1 en la llista\2/g
-  s/\b\(podeu demanar ajuda\|Un element\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
-  s/\bseleccioneu \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Cap\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) a la llista\([^[:alnum:]]\)/seleccioneu \1Cap\2 en la llista\3/g
-  s/\btenen lloc a la \[llista\([^[:alnum:]]\)/tenen lloc en la \[llista\1/g
-s/\b\(Activa el desplaçament suau\|apareguin\|apareix\|apareix o no\|apareixen\|apareixen els esquemes\|aparèixer\|apareixerà\|apareixerà aquí\|apareixerà el contacte\|apareixeran\|Aplica les operacions pendents\|Aquesta opció oculta\|Aquesta opció ocultarà\|artistes\|baixant-l[ao]\|calcular la data mitjana de totes les imatges\|canviant la tasca\|cap amunt\|cap avall\|[Cc]erca\|cerca l'estrella més propera\|[Cc]erca\|cercar\|cercar consell\|Codifica a UTF-8\|Codificació del text\|Comes al final, al principi o duplicades\|conserven\|Contactes\|creades per una altra aplicació\|crear una tasca nova\|d'un interval d'opcions\|definit un conjunt d'expressions URL\|dependents de l'estat de les claus\|desactiva la selecció\|desaran els canvis\|desfer\|després seleccioneu un element\|donada\|El nom d'aquesta entrada\|El nombre màxim d'elements\|Element anterior\|Element següent\|Elimina l'adjunt seleccionat\|està present\|està\|establerta per a aquest contacte\|estat de les clau\|esteu\|estiguin\|existeix\|Falta una «,» entre cadenes\|Falta una «,» entre tests\|fer clic doble sobre una entrada d'un assistent\|feu clic sobre el dia corresponent de la setmana\|feu clic sobre un element\|fica\|hi ha cap certificat adequat\|hi ha cap destinatari\|hi ha cap sala %1\|hi ha una coincidència\|incloure\|incloure'l\|Inicia el disseny de l'objecte\|Inicia el disseny de l'objecte seleccionat\|inserir els fulls seleccionats\|Introduïu el camí\|L'últim element\|La col·lecció\|Llista de correus\|mantenir\|mantenir inicialment\|mantindran\|mantindran inicialment\|menú Scripts o\|Mida dels elements\|moguin les fonts\|mostra\|Mostra algunes planificacions\|Mostra els correus electrònics\|Mostra els grups buits\|Mostra els usuaris fora de línia\|Mostra la columna Remitent\/Destinatari\|Mida de les miniatures\|Mostra la màscara de &xarxa\|Mostra més planificacions\|[Mm]ostrades\|[Mm]ostra[rt]\|[Mm]ostrar informació sobre un element\|[Mm]ostrats\|[Mm]ostren\|[Mm]ou cap amunt la imatge actual\|[Mm]ou cap amunt la peça seleccionada\|[Mm]ou cap avall la imatge actual\|[Mm]ou cap avall la peça seleccionada\|[Mm]ou cap endavant i cap avall\|[Mm]ou cap enrere i cap amunt\|[Mm]ou la dependència seleccionada cap amunt\|[Mm]ou la dependència seleccionada cap avall\|moure-la cap amunt o avall\|Nombre màxim d'entrades\|[Oo]cultar-l[ao]\|Ofusca parcialment el nom de domini\|ordeni pel percentatge d'altitud\|ordenen els fitxers\|passar per sobre d'un element\|passi per sobre del giny\|posar-l[ao]\|prefereixen les imatges de l'Sloan Digital Sky Survey\|preguntar\|pujant-l[ao]\|Qualsevol canvi\|Repeteix totes les pistes\|ressalteu una ciutat\|ressalteu-lo\|restituir\|s'inclourà\|s'inclouran\|s'inserirà\|s'ocultaran\|seguir els debats\|Tria un nombre\|selecciona un objecte\|seleccionada actualment\|seleccionant-l[ao]\|seleccionat\|seleccionats\|seleccioneu\|seleccioneu <guilabel>Cap<\/guilabel>\|seleccioneu senzillament el tipus de paraula\|seleccioneu un certificat sota una organització\|seleccioneu un element\|seleccioneu-l[ao]\|Situeu\|sobre la desitjada\|són tots els sobrenoms\|Substitueix l'element actual ressaltat\|Suprimeix tots els tipus seleccionats\|Tanca la vista seleccionada\|Tots els objectius concrets\|Tria el color del text\|trieu \*\*Personalitzat\*\*\|troba\|trobar %1 (%2)\|trobar la substitució correcta\|trobat massa errors\|trobat una ordre de byte incorrecta\|troben\|Un element\|Una entrada\|Utilitza la navegació amb el ratolí només\|Utilitza camins de fitxer absoluts\|Utilitza un c&amí absolut per als fitxers\|Utilitza un camí &relatiu per als fitxers\|utilitzant un dels elements\|versió %2<br\/>1 model\|versió %2<br\/>%1 models\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
+  s/\b\(podeu demanar ajuda\|Un element\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
+  s/\bseleccioneu \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Cap\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) a la llista\([^[:alnum:]]\)/seleccioneu \1Cap\2 en la llista\3/g
+s/\b\(Activa el desplaçament suau\|anar sobre l'etiqueta seleccionada\|apareguin\|apareix\|apareix o no\|apareixen\|apareixen els esquemes\|aparèixer\|apareixerà\|apareixerà aquí\|apareixerà el contacte\|apareixeran\|Aplica les operacions pendents\|Aquesta opció oculta\|Aquesta opció ocultarà\|artistes\|baixant-l[ao]\|calcular la data mitjana de totes les imatges\|canviant la tasca\|cap amunt\|cap avall\|[Cc]erca\|cerca l'estrella més propera\|[Cc]erca\|cercar\|cercar consell\|Codifica a UTF-8\|Codificació del text\|col·loqueu l'eina\|Comes al final, al principi o duplicades\|conserven\|Contactes\|creades per una altra aplicació\|crear una tasca nova\|d'un interval d'opcions\|definit un conjunt d'expressions URL\|deixeu anar aquestes icones\|dependents de l'estat de les claus\|desactiva la selecció\|desaran els canvis\|desfer\|després seleccioneu un element\|donada\|El nom d'aquesta entrada\|El nombre màxim d'elements\|Element anterior\|Element següent\|Elimina l'adjunt seleccionat\|està present\|està\|establerta per a aquest contacte\|estat de les clau\|esteu\|estiguin\|existeix\|Falta una «,» entre cadenes\|Falta una «,» entre tests\|fer clic doble sobre una entrada d'un assistent\|feu clic sobre el dia corresponent de la setmana\|feu clic sobre un element\|fica\|Filtres disponibles\*\*\|hi ha cap certificat adequat\|hi ha cap destinatari\|hi ha cap sala %1\|hi ha una coincidència\|incloure\|incloure'l\|Inicia el disseny de l'objecte\|Inicia el disseny de l'objecte seleccionat\|inserir els fulls seleccionats\|Introduïu el camí\|L'últim element\|La col·lecció\|Llista de correus\|mantenir\|mantenir inicialment\|mantindran\|mantindran inicialment\|menú Scripts o\|Mida dels elements\|moguin les fonts\|mostra\|Mostra algunes planificacions\|Mostra els correus electrònics\|Mostra els grups buits\|Mostra els usuaris fora de línia\|Mostra la columna Remitent\/Destinatari\|Mida de les miniatures\|Mostra la màscara de &xarxa\|Mostra més planificacions\|[Mm]ostrades\|[Mm]ostra[rt]\|[Mm]ostrar cada propietat\|[Mm]ostrar informació sobre un element\|mostrarà la icona de carpeta habitual\|[Mm]ostrats\|[Mm]ostren\|[Mm]ou cap amunt la imatge actual\|[Mm]ou cap amunt la peça seleccionada\|[Mm]ou cap avall la imatge actual\|[Mm]ou cap avall la peça seleccionada\|[Mm]ou cap endavant i cap avall\|[Mm]ou cap enrere i cap amunt\|[Mm]ou la dependència seleccionada cap amunt\|[Mm]ou la dependència seleccionada cap avall\|moure-la cap amunt o avall\|Nombre màxim d'entrades\|[Oo]cultar-l[ao]\|Ofusca parcialment el nom de domini\|ordeni pel percentatge d'altitud\|ordenen els fitxers\|passar per sobre d'un element\|passi per sobre del giny\|Per categoria\*\*\|posar-l[ao]\|prefereixen les imatges de l'Sloan Digital Sky Survey\|preguntar\|pujant-l[ao]\|Qualsevol canvi\|reduir seccions de l'arbre\|Repeteix totes les pistes\|ressalteu una ciutat\|ressalteu-lo\|restituir\|s'inclourà\|s'inclouran\|s'inserirà\|s'ocultaran\|seguir els debats\|Tria un nombre\|selecciona un objecte\|seleccionada actualment\|seleccionant-l[ao]\|seleccionar amb facilitat l'element correcte\|seleccionat\|seleccionats\|seleccioneu\|seleccioneu <guilabel>Cap<\/guilabel>\|seleccioneu senzillament el tipus de paraula\|seleccioneu un certificat sota una organització\|seleccioneu un element\|seleccioneu-l[ao]\|Situeu\|sobre la desitjada\|són tots els sobrenoms\|Substitueix l'element actual ressaltat\|Suprimeix tots els tipus seleccionats\|Tanca la vista seleccionada\|tenen lloc\|Tots els objectius concrets\|Tria el color del text\|trieu el disc\|trieu \*\*Personalitzat\*\*\|troba\|trobar %1 (%2)\|trobar la substitució correcta\|trobat massa errors\|trobat una ordre de byte incorrecta\|troben\|Un element\|Una entrada\|Utilitza la navegació amb el ratolí només\|Utilitza camins de fitxer absoluts\|Utilitza un c&amí absolut per als fitxers\|Utilitza un camí &relatiu per als fitxers\|utilitzant un dels elements\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|versió %2<br\/>1 model\|versió %2<br\/>%1 models\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
  #
 s/\bA les llistes\([^[:alnum:]]\)/En les llistes\1/g
-s/\b\(expressats\|fòrum de &kdevelop;,\|indicats\|millores\|Nombre màxim d'entrades\|Ombreja la columna orde&nada\|permeten cadenes\|permeten tests\|seu nom no es permeten\|trobi\) a les llistes\([^[:alnum:]]\)/\1 en les llistes\2/g
+s/\b\(expressats\|fòrum de &kdevelop;,\|indicats\|[Mm]illora\|[Mm]illores\|Nombre màxim d'entrades\|Ombreja la columna orde&nada\|permeten cadenes\|permeten tests\|seu nom no es permeten\|trobi\) a les llistes\([^[:alnum:]]\)/\1 en les llistes\2/g
 # a la llum
-s/\b\(ex\.,\) a la llum\([^[:alnum:]]\)/\1 en la llum\2/g
+s/\b\(disponible\|disponibles\|ex\.,\|presa\) a la llum\([^[:alnum:]]\)/\1 en la llum\2/g
+# a la lluminositat
+s/\b\(reducció de 2\) a la lluminositat\([^[:alnum:]]\)/\1 en la lluminositat\2/g
 # a la Lluna
 s/\b\(perfectament notables\) a la Lluna\([^[:alnum:]]\)/\1 en la Lluna\2/g
 # a la maduresa
@@ -2112,13 +2355,17 @@ s/\b\(perfectament notables\) a la Lluna\([^[:alnum:]]\)/\1 en la Lluna\2/g
 s/\b\(com a calendari estàndard\) a la major\([^[:alnum:]]\)/\1 en la major\2/g
 # a la majoria
 s/\bA la majoria\([^[:alnum:]]\)/En la majoria\1/g
-s/\b\(acceptat com el punt de longitud zero\|disponible\|estimació HFR\|falta\|funciona\|funcionarà\|inclòs\|manca\|present\|són molt habituals\|troba\) a la majoria\([^[:alnum:]]\)/\1 en la majoria\2/g
+s/\b\(acceptat com el punt de longitud zero\|disponible\|estimació HFR\|falta\|funciona\|funcionarà\|inclòs\|manca\|mostrar-les\|present\|són molt habituals\|troba\) a la majoria\([^[:alnum:]]\)/\1 en la majoria\2/g
 # a la Mandrake
 s/\b\(executant-se aquí\) a la Mandrake\([^[:alnum:]]\)/\1 en la Mandrake\2/g
 # a la manera
-s/\b\(repetits\) a la manera\([^[:alnum:]]\)/\1 en la manera\2/g
+s/\b\(alinea els modes de barreja\|repetits\) a la manera\([^[:alnum:]]\)/\1 en la manera\2/g
 # a la màquina
-s/\b\(disponible <application>Perl<\/application>\|iniciar un servidor INDI\|instal·lar-lo\) a la màquina\([^[:alnum:]]\)/\1 en la màquina\2/g
+s/\b\(disponible <application>Perl<\/application>\|iniciar un servidor INDI\|instal·lar-lo\|s'executa\|ús de RDP\) a la màquina\([^[:alnum:]]\)/\1 en la màquina\2/g
+ #
+s/\b\(configurar\|instal·lar-lo\|s'executa\) a les màquines\([^[:alnum:]]\)/\1 en les màquines\2/g
+# a la mar
+s/\bA la mar\([^[:alnum:]]\)/En la mar\1/g
 # a la marca
 s/\b\(exemple,\|teniu\) a la marca\([^[:alnum:]]\)/\1 en la marca\2/g
  #
@@ -2128,46 +2375,52 @@ s/\b\(sobre el canvi de propietats\) a la màscara\([^[:alnum:]]\)/\1 en la màs
  #
 s/\b\(esmenat l'arrodoniment\|permès el filtre d'ona\|pintar\) a les màscares\([^[:alnum:]]\)/\1 en les màscares\2/g
 # a la mateixa
-s/\b\(carpetes\|compte\|Connect\|connectat i\|està endollat i\|grups de missatges\|mantindrà el llenç\|mateix grup\|metacontacte\|poseu les imatges\|treballant\|trobaran\|troben\|vistes prèvies\) a la mateixa\([^[:alnum:]]\)/\1 en la mateixa\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
+s/\b\(carpetes\|compte\|Connect\|connectat i\|disponible\|disponibles\|està endollat i\|grups de missatges\|mantindrà el llenç\|mateix grup\|metacontacte\|moure-vos entre les fotografies\|poseu les imatges\|produiran\|s'executa\|treballant\|trobaran\|troben\|vistes prèvies\) a la mateixa\([^[:alnum:]]\)/\1 en la mateixa\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)llista\([^[:alnum:]]\)/\1 en la \2llista\3/g
 # a la memòria
-s/\b\(cercar coincidències\|claus secretes\|[Cc]omprova només les parts de contingut\|dades\|desades\|desaran\|desen\|desis els inodes\|[Ee]mmagatzema\|emmagatzemar\|emmagatzemar les imatges de HiPS\|emmagatzemaran\|emmagatzematge\|emmagatzemen\|espai\|manté\|mantenen\|mantindran\|mentre està\|mida dels fotogrames\|mostra la sortida\|Nombre de línies que s'han de mantenir\|posar els objectes en ordre d'observació i emmagatzemar les imatges DSS\|seleccionades\|sortida\|Subsolucions\|tenir-les\|tinguin còpies\) a la memòria\([^[:alnum:]]\)/\1 en la memòria\2/g
+s/\b\(cercar coincidències\|claus secretes\|[Cc]omprova només les parts de contingut\|dades\|desades\|desarà\|desaran\|desen\|desis els inodes\|[Ee]mmagatzema\|emmagatzemar\|emmagatzemar les imatges de HiPS\|emmagatzemaran\|emmagatzematge\|emmagatzemen\|espai\|manté\|mantenen\|mantindran\|mantindran menys subsolucions\|mentre està\|mida dels fotogrames\|mostra la sortida\|No hi ha cap dispositiu\|Nombre de línies que s'han de mantenir\|posar els objectes en ordre d'observació i emmagatzemar les imatges DSS\|seleccionades\|sortida\|Subsolucions\|tenir-les\|tinguin còpies\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzen els dispositius\|utilitzen els dispositius\) a la memòria\([^[:alnum:]]\)/\1 en la memòria\2/g
+s/\b\(memòria i\) a la memòria\([^[:alnum:]]\)/\1 en la memòria\2/g
 # a la ment
 s/\b\(romangui\) a la ment\([^[:alnum:]]\)/\1 en la ment\2/g
+# a la més
+ #
+s/\b\(primera magnitud» i,\) a les més\([^[:alnum:]]\)/\1 en les més\2/g
 # a la mescla
 # a les metadades
-s/\b\(alternatiu\|emmagatzematge\|escriure la informació de geolocalització\) a les metadades\([^[:alnum:]]\)/\1 en les metadades\2/
+s/\b\(alternatiu\|aplicant ajustos\|comparació visual de les diferències\|emmagatzematge\|escriure la informació de geolocalització\|pràctica dels estàndards\|traduint cadenes\) a les metadades\([^[:alnum:]]\)/\1 en les metadades\2/
 # a la meva
-s/\b\(invitació\|Jesper<\/b>\|resposta\) a la meva\([^[:alnum:]]\)/\1 en la meva\2/g
+s/\b\(hi ha grups\|invitació\|Jesper<\/b>\|resposta\) a la meva\([^[:alnum:]]\)/\1 en la meva\2/g
 # a la Microsoft Store
 s/\b\(preu\|ven\) a la Microsoft Store\([^[:alnum:]]\)/\1 en la Microsoft Store\2/g
 # a la mida
-s/\b\(Visualitza\) a la mida\([^[:alnum:]]\)/\1 en la mida\2/g
+s/\b\(mostrar els píxels\|Visualitza\) a la mida\([^[:alnum:]]\)/\1 en la mida\2/g
 # a la migració
 s/\b\(pausa\) a la migració\([^[:alnum:]]\)/\1 en la migració\2/g
 # a la miniatura
-s/\b\(icones de gir\) a la miniatura\([^[:alnum:]]\)/\1 en la miniatura\2/g
+s/\b\(icones de gir\|la data\) a la miniatura\([^[:alnum:]]\)/\1 en la miniatura\2/g
 # a la molècula
 s/\b\(exemple,\) a la molècula\([^[:alnum:]]\)/\1 en la molècula\2/g
 # a la mostra
 s/\b\(amb èxit\) a la mostra\([^[:alnum:]]\)/\1 en la mostra\2/g
 # a la motobomba
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\) a la motobomba\([^[:alnum:]]\)/\1 en la motobomba\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la motobomba\([^[:alnum:]]\)/\1 en la motobomba\2/g
+# s/\b\(\) a la motobomba\([^[:alnum:]]\)/\1 en la motobomba\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la motobomba\([^[:alnum:]]\)/\1 en la motobomba\2/g
 # a la muntanya
-s/\b\(amb el telescopi Oschin Schmidt\) a la muntanya\([^[:alnum:]]\)/\1 en la muntanya\2/g
+s/\b\(amb el telescopi Oschin Schmidt\|[Pp]osta de sol\) a la muntanya\([^[:alnum:]]\)/\1 en la muntanya\2/g
 # a la muntura
 s/\b\(ajustant els poms de correcció d'altitud i azimut\) a la muntura\([^[:alnum:]]\)/\1 en la muntura\2/g
 # a la música
 s/\b\([Cc]erca\|pausa\) a la \([Mm]\)úsica\([^[:alnum:]]\)/\1 en la \2úsica\3/g
 # a la nit
 s/\b\(feta\) a la nit\([^[:alnum:]]\)/\1 en la nit\2/g
+# a les Nominacions
+s/\b\(es va votar\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Nn]\)ominacions\([^[:alnum:]]\)/\1 en les \2\3ominacions\4/g
 # a la nostra
-s/\b\(col·laboració\|conversa\|dir hola\|emprar\|esforç\|fer-les\|llistats\|produeixen\|vosaltres mateixos\) a la nostra\([^[:alnum:]]\)/\1 en la nostra\2/g
+s/\b\(col·laboració\|conversa\|dir hola\|emprar\|esforç\|fer-les\|Inclourem el vostre esdeveniment\|llistats\|produeixen\|vosaltres mateixos\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)nostra\([^[:alnum:]]\)/\1 en la \2nostra\3/g
 # a la nota
-s/\b\([Nn]o es fa referència\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)nota\([^[:alnum:]]\)/\1 en la \2nota\3/g
+s/\b\([Cc]erca\|[Nn]o es fa referència\|veu una paraula\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)nota\([^[:alnum:]]\)/\1 en la \2nota\3/g
  #
-s/\b\(apareixen al costat de la seva contribució\|referència\|treballem\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)notes\([^[:alnum:]]\)/\1 en les \2notes\3/g
+s/\b\(apareixen al costat de la seva contribució\|referència\|treballem\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)notes\([^[:alnum:]]\)/\1 en les \2notes\3/g
 # a les notícies
 s/\b\(KDE Eco\|Sprint\) a les notícies\([^[:alnum:]]\)/\1 en les notícies\2/g
 # a la notificació
@@ -2175,24 +2428,27 @@ s/\b\([Cc]lic esquerre\) a la notificació\([^[:alnum:]]\)/\1 en la notificació
 # a la pàgina
 s/\bA la pàgina\([^[:alnum:]]\)/En la pàgina\1/g
   s/\ba la pàgina d'inici per a crear\([^[:alnum:]]\)/en la pàgina d'inici per a crear\1/g
-s/\b\(25è aniversari\|Actualitzeu-l[eo]s\|Alineació de taula\|aquí<\/link>)\|canviar el seu comportament\|capçalera\|CSS)\|[Cc]erca\|cerques «i\/o»\|Configura digiKam…\|Configura digiKam…`\|configuració de les actualitzacions :ref:\`\|contingudes\|continua\|correcta\|definit cap operació planificada\|definit cap operació ressaltada\|dibuixar aquestes corbes\|disponible\|disponibles\|[Ee]rror\|[Ee]xecuta una acció\|explicació detallada de les opcions\|fer el terra invisible\|fitxers de so»\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|Habilita les baixades o actualitzacions automàtiques de recursos externs»\|Hi ha alguns controls més\|horària\|instal·lar\|interessants\|Les opcions importants\|límit del compte\|línies\|llista de fitxers recents\|macOS\|més ràpid)\*\*\|[Mm]ida de les icones\|[Mm]ostra\|[Mm]ostra el fons\|[Mm]ostra les imatges\|netegeu el calibratge\|opció\|pantalla\*\*\|proporcionen\|Raspberry Pi\|saldo zero\|serveis de xarxa local\|Text\|tornar el terra invisible\|Traçat del calibratge``\|trieu\|trobar el text\|troben inclosos\|última conciliació\|Vegeu també la configuració de les actualitzacions\|visualitzaran\)\(`\|\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)pàgina\([^[:alnum:]]\)/\1\2 \3en la \4pàgina\5/g
+s/\b\(25è aniversari\|activeu els seguiments de depuració\|Actualitzeu-l[eo]s\|Alineació de taula\|Android\|aparegui\|aquí<\/link>)\|Baixa les dades binàries requerides\*\*\|canviar el seu comportament\|capçalera\|CSS)\|[Cc]erca\|cerques «i\/o»\|Configura digiKam…\|Configura digiKam…`\|configuració de les actualitzacions :ref:\`\|contingudes\|continua\|correcta\|definit cap operació planificada\|definit cap operació ressaltada\|Desa les metadades\*\*\|developer>`\|dibuixar aquestes corbes\|disponible\|disponibles\|Emmagatzematge extern\*\|enganxar imatges\|[Ee]rror\|[Ee]xecuta una acció\|explicació detallada de les opcions\|fer el terra invisible\|fitxers de so»\|fus horari\|gestió de paquets\|Habilita les baixades o actualitzacions automàtiques de recursos externs»\|Hi ha alguns controls més\|Indiqueu\|instal·lar\|interessants\|Les opcions importants\|límit del compte\|línies\|llista de fitxers recents\|[Ll]ocalitzeu l'aplicació o el procés\|[Ll]ocalitzeu el joc\|macOS\|[Mm]és informació\|més ràpid)\*\*\|[Mm]ida de les icones\|miniatures de fitxers recents\|[Mm]ostra\|[Mm]ostra el fons\|[Mm]ostra les imatges\|netegeu el calibratge\|opció\|pantalla\*\*\|proporcionen\|[Pp]ublicat\|[Pp]ublicats\|Raspberry Pi\|Relacioneu\|s'indica\|saldo zero\|serveis de xarxa local\|Text\|tornar el terra invisible\|Traçat del calibratge``\|trieu\|trobar el text\|troben inclosos\|última conciliació\|utilitzant l'script d'instal·lació\|[Uu]tilitzeu\|Vegeu també la configuració de les actualitzacions\|visualitzaran\)\(`\|\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)àgina\([^[:alnum:]]\)/\1\2 \3en la \4\5àgina\6/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)pàgina\([^[:alnum:]]\)/\1 en la \2pàgina\3/g
   s/, a la pàgina\([^[:alnum:]]\)/, en la pàgina\1/g
  #
 s/\bA les pàgines\([^[:alnum:]]\)/En les pàgines\1/g
-s/\b\(capçalera\|peu de pàgina\|publicar el document\|utilitzarà\|utilitzarà\) a les pàgines\([^[:alnum:]]\)/\1 en les pàgines\2/g
+s/\b\(capçalera\|crear plafons basats en vectors\|emprarà\|peu de pàgina\|publicar el document\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a les pàgines\([^[:alnum:]]\)/\1 en les pàgines\2/g
 # a la paleta
-s/\b\(canviat l'historial de colors\|seleccionava un color\|suport per a l'acoblador\) a la paleta\([^[:alnum:]]\)/\1 en la paleta\2/g
+s/\b\(activada\|canviat l'historial de colors\|desen als documents les modificacions\|[Mm]illora\|[Mm]illores\|seleccionava un color\|suport per a l'acoblador\) a la paleta\([^[:alnum:]]\)/\1 en la paleta\2/g
+ #
+s/\b\(desen als documents les modificacions\) a les paletes\([^[:alnum:]]\)/\1 en les paletes\2/g
 # a la pantalla
 s/\bA la pantalla\([^[:alnum:]]\)/En la pantalla\1/g
   s/\bt- a la pantalla.<br\/>/t- en la pantalla.<br\/>/g
   s/\bTria un color a la pantalla\([^[:alnum:]]\)/Tria un color de la pantalla\1/g
-s/\b\(activeu la característica nova «Notícies recents»\|apareixen\|API d'escriure scripts\|assenyalar coses\|botons\|cada animal\|canvis pendents\|centra\|centrat\|col·loca un triangle groc, verd i violeta\|[Cc]olor del fons\|[Cc]olor dels dígits\|com vulgueu\|contingut no HDR\|corresponent\|creixent\|Criatura\|dibuixarà un cercle\|disponible\|entre píxels\|és un regle\|Fons\|ignoreu la posició del cursor\|[Ii]mprimix\|informació\|kstars;, i també\|mateixa mida que\|mateixa mida que es veu\|[Mm]ostra\|mostrades\|mostrar la forma\|mostrar-la\|mostrarà\|nombre de contactes\|oberta\|píxel\|premeu el botó <guibutton>Inspector<\/guibutton>\|qualitat\|que es mostra\|rect»\|seleccionant \*\*Allotja una partida de xarxa\*\*\|seleccionar un color\|Tons\|veu\|visibles\|vista de pista\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Pp]\)antalla\([^[:alnum:]]\)/\1 en la \2\3antalla\4/g
+s/\b\(activada\|activeu la característica nova «Notícies recents»\|aparegu[it]\|apareixen\|API d'escriure scripts\|assenyalar coses\|botons\|cada animal\|canvis pendents\|caràcters adequats\|centra\|centrat\|col·loca un triangle groc, verd i violeta\|[Cc]olor del fons\|[Cc]olor dels dígits\|com vulgueu\|contingut no HDR\|corresponent\|creixent\|Criatura\|dibuixarà un cercle\|disponible\|entre píxels\|és un regle\|Fons\|ignoreu la posició del cursor\|[Ii]mprimix\|informació\|KStars, i també\|mateixa mida que\|mateixa mida que es veu\|Millores al generador de tons\|mirant un patró de blanc pur\|[Mm]ostra\|mostrades\|mostrar la forma\|mostrar la imatge\|mostrar-la\|mostrarà\|nombre de contactes\|oberta\|obtenir una vista prèvia\|píxel\|premeu el botó <guibutton>Inspector<\/guibutton>\|produeix\|projectat\|projectats\|qualitat\|que es mostra\|què hi ha\|rect»\|seleccionant \*\*Allotja una partida de xarxa\*\*\|seleccionar un color\|Tons\|veu\|veure un píxel gris, negre o blanc\|visible\|visibles\|vista de pista\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)antalla\([^[:alnum:]]\)/\1 en la \2\3antalla\4/g
  #
-s/\b\(windows-10-users\/)\) a les pantalles\([^[:alnum:]]\)/\1 en les pantalles\2/g
+s/\b\(adoptats posteriorment\|mostra una pantalla de presentació més gran\|s'omet\|windows-10-users\/)\) a les pantalles\([^[:alnum:]]\)/\1 en les pantalles\2/g
 # a la paperera
 s/\b\(llista\|Restaura només la darrera entrada\|restaurar només la darrera entrada\|romandre\) a la paperera\([^[:alnum:]]\)/\1 en la paperera\2/g
 # a la paret
-s/\b\(La font de llum és un panell\) a la paret\([^[:alnum:]]\)/\1 en la paret\2/g
+s/\b\([Ll]a font de llum és un panell\) a la paret\([^[:alnum:]]\)/\1 en la paret\2/g
 # a la part
 s/\bA la part \(inferior\|superior\)\([^[:alnum:]]\)/En la part \1\2/g
 s/(a la part \(inferior\|superior\)\([^[:alnum:]]\)/(en la part \1\2/g
@@ -2218,10 +2474,11 @@ s/\b\(Restableix per a l'opacitat\) a les pells\([^[:alnum:]]\)/\1 en les pells\
 # a la pestanya
 s/\bA la pestanya\([^[:alnum:]]\)/En la pestanya\1/g
 s/(a la pestanya\([^[:alnum:]]\)/(en la pestanya\1/g
-s/\()\|a causa d'un valor de precisió incorrecte\|Activa GPG\|activeu l'enfocament adaptatiu\|Activeu l'enregistrament de l'alineació\|Afegiu un camí cap a FFmpeg\|cada imatge\|canviar aquests paràmetres\|carregada\|carregar l'adreça\|carregat\|[Cc]erca el text\|Coincideix automàticament els caràcters mentre escriviu»\|colors\|configura\|configurar\|detalls\|edita\|editar\|editar aquest fitxer directament\|Ekos<\/guilabel> i\|específic\|especifica\|especificar el nom del lloc\|[Ee]stableix els paràmetres\|establir un «Límit R²»\|Finalment,\|Focus\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|llistats\|més paràmetres\|Mida del pas inicial``\|mostra\|mostraran\|[Oo]bre\|Perfil d'opcions``\|similar a la corba V\|un port\|ús\|utilitzat\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)pestanya\([^[:alnum:]]\)/\1 en la \2pestanya\3/g
+s/\()\|a causa d'un valor de precisió incorrecte\|A més,\|Activa GPG\|activeu l'enfocament adaptatiu\|Activeu l'enregistrament de l'alineació\|Afegiu un camí cap a FFmpeg\|cada imatge\|canviar aquests paràmetres\|canvieu el port\|carregada\|carregar l'adreça\|carregat\|[Cc]erca el text\|certs àlbums o etiquetes\|clic dret sobre una entrada\|Coincideix automàticament els caràcters mentre escriviu»\|colors\|configura\|configurar\|desar la vostra cerca que\|detalls\|disponible\|disponibles\|edita\|editar\|editar aquest fitxer directament\|Ekos<\/guilabel> i\|específic\|especifica\|especificar el nom del lloc\|[Ee]stableix els paràmetres\|establir un «Límit R²»\|explorar totes les imatges seleccionades\|Finalment,\|Focus\|Llegendes\*\* de la barra lateral dreta i després\|llistats\|més paràmetres\|Mida del pas inicial``\|mostra\|mostraran\|[Oo]bre\|Perfil d'opcions``\|opcions que heu seleccionat\|seleccionada\|seleccionades\|seleccionat\|seleccionats\|similar a la corba V\|suprimir els amfitrions\|té tres propietats identificades\|un port\|ús\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzeu la icona\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)pestanya\([^[:alnum:]]\)/\1 en la \2pestanya\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)pestanya\([^[:alnum:]]\)/\1 en la \2pestanya\3/g
  #
 s/\bA les pestanyes\([^[:alnum:]]\)/En les pestanyes\1/g
-s/\b\(estadístiques en directe\) a les pestanyes\([^[:alnum:]]\)/\1 en les pestanyes\2/g
+s/\b\(estadístiques en directe\|[Mm]ostra el botó de tancament\|[Mm]ostra al botó de &tancar\|Vistes de propietats\) a les pestanyes\([^[:alnum:]]\)/\1 en les pestanyes\2/g
 # a la petició
 s/\b\(prova\) a la petició\([^[:alnum:]]\)/\1 en la petició\2/g
 # a la pila
@@ -2236,19 +2493,25 @@ s/\b\(introducció\|troba\) a la planificació\([^[:alnum:]]\)/\1 en la planific
 s/\b\(proporciona la informació requerida\) a la plantilla\([^[:alnum:]]\)/\1 en la plantilla\2/g
 # a la plataforma
 s/\bA la plataforma\([^[:alnum:]]\)/En la plataforma\1/g
-s/\b\(Arribada a %1\|Arribada a les %1\|de %1\|itinerari\|JavaScript\|mateix sentit que\|notificacions\|utilitzat en el mateix sentit que\) a la plataforma\([^[:alnum:]]\)/\1 en la plataforma\2/g
+s/\b\(Arribada a %1\|Arribada a les %1\|de %1\|itinerari\|JavaScript\|mateix sentit que\|notificacions\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzat en el mateix sentit que\) a la plataforma\([^[:alnum:]]\)/\1 en la plataforma\2/g
  #
 s/\bA les plataformes\([^[:alnum:]]\)/En les plataformes\1/g
+# a la platja
+s/\b\(diverteix\) a la platja\([^[:alnum:]]\)/\1 en la platja\2/g
 # a la Play
-s/\b\(aterri\|distribueix\|implementant la 5.2.8\|llançament\|publiquem\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Play\([^[:alnum:]]\)/\1 en la \2Play\3/g
+s/\b\(aterri\|distribueix\|implementant la 5.2.8\|llançament\|publiquem\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Play\([^[:alnum:]]\)/\1 en la \2Play\3/g
+# a la PMF
+s/\b\([Mm]ira\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)PMF\([^[:alnum:]]\)/\1 en la \2PMF\3/g
 # a la Política
-s/\b\(descriu\|[Vv]egeu tots els detalls\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Pp]\)olítica\([^[:alnum:]]\)/\1 en la \2\3olítica\4/g
+s/\b\(descriu\|[Vv]egeu tots els detalls\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)olítica\([^[:alnum:]]\)/\1 en la \2\3olítica\4/g
 # a la portada
-s/\b\(aparèixer per primera vegada en el 2013\|trobava\) a la portada\([^[:alnum:]]\)/\1 en la portada\2/g
+s/\b\(aparèixer per primera vegada en el 2013\|debutar el 2013\|Textos de portada»\|trobava\) a la portada\([^[:alnum:]]\)/\1 en la portada\2/g
 # a la porteria
 s/\b\(toc\) a la porteria\([^[:alnum:]]\)/\1 en la porteria\2/g
 # a la posició
-s/\b\(abordava un salt\|Bloqueja les fonts\|centrar la pantalla\|dibuixi un punt de mira\|El radi\|fonts\|prendran\|salt\|sigui (a)\) a la posició\([^[:alnum:]]\)/\1 en la posició\2/g
+s/\b\(abordava un salt\|Bloqueja les fonts\|centrar la pantalla\|dibuixi un punt de mira\|El radi\|esmenat la regressió\|fonts\|prendran\|salt\|sigui (a)\) a la posició\([^[:alnum:]]\)/\1 en la posició\2/g
+# a la possible
+s/\b\(es troba\) a la possible\([^[:alnum:]]\)/\1 en la possible\2/g
 # a la pràctica
 s/\bA la pràctica\([^[:alnum:]]\)/En la pràctica\1/g
 s/\b\(però\) a la pràctica\([^[:alnum:]]\)/\1 en la pràctica\2/g
@@ -2258,29 +2521,36 @@ s/\b\([Dd]ibuix\|negra\) a la presentació\([^[:alnum:]]\)/\1 en la presentació
 s/\bA la primera\([^[:alnum:]]\)/En la primera\1/g
 s/\bAl primer\([^[:alnum:]]\)/En el primer\1/g
   s/\b\(prement un botó del ratolí\) a la primera\([^[:alnum:]]\)/\1 sobre la primera\2/g
-s/\b\([Aa]quí\|Cada fruita\|capçalera\|cerca»\|coincident\|columnes\|detectar el delimitador de camp\|energia\|files\|Nombre màxim de càpsules d'energia\|normals\|obri «Executa la sessió»\|peu de pàgina\|ràpids\) a la primera\([^[:alnum:]]\)/\1 en la primera\2/g
+s/\b\([Aa]quí\|Cada fruita\|capçalera\|cerca»\|coincident\|columnes\|detectar el delimitador de camp\|energia\|Estrella en moviment\* és que\|files\|Nombre màxim de càpsules d'energia\|normals\|obri «Executa la sessió»\|peu de pàgina\|ràpids\) a la primera\([^[:alnum:]]\)/\1 en la primera\2/g
 # a la prioritat
 s/\b\(canvis\) a la prioritat\([^[:alnum:]]\)/\1 en la prioritat\2/g
 # a la profunditat
-s/\b\(té lloc\) a les profunditats\([^[:alnum:]]\)/\1 en les profunditats\2/g
-# a les propietats
+ #
+s/\b\(Naixement\|té lloc\) a les profunditats\([^[:alnum:]]\)/\1 en les profunditats\2/g
+# a la propera
+s/\b\([Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smenes d'errors\) a la propera\([^[:alnum:]]\)/\1 en la propera\2/g
+# a la propietat
+s/\b\(escriu el valor\) a la propietat\([^[:alnum:]]\)/\1 en la propietat\2/g
+ #
 s/\b\(comentaris\) a les propietats\([^[:alnum:]]\)/\1 en les propietats\2/g
 # a la prova
 s/\b\(fallat\) a la prova\([^[:alnum:]]\)/\1 en la prova\2/g
  #
-s/\b\(participeu](https:\/\/krita\.org\/ca-va\/get-involved\/)\|s'utilitza\) a les proves\([^[:alnum:]]\)/\1 en les proves\2/g
+s/\b\(participeu\](ca-va\/get-involved\/)\|s'utilitza\) a les proves\([^[:alnum:]]\)/\1 en les proves\2/g
 # a la província
 s/\b\(Ejiri\) a la província\([^[:alnum:]]\)/\1 en la província\2/g
 # a la pròxima
-s/\b\(activarà\|aplicaran\|utilitzarà\) a la pròxima\([^[:alnum:]]\)/\1 en la pròxima\2/g
+s/\b\(activarà\|aplicaran\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smenes d'errors\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la pròxima\([^[:alnum:]]\)/\1 en la pròxima\2/g
 # a la publicació
-s/\b\(seves capacitats\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)publicació\([^[:alnum:]]\)/\1 en la \2publicació\3/g
+s/\b\(seves capacitats\|[Mm]és informació\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)publicació\([^[:alnum:]]\)/\1 en la \2publicació\3/g
 # a la punta
  #
 s/\b\(introdueix un petit canvi\|introduir els modes per a l'opció de textura\) a les puntes\([^[:alnum:]]\)/\1 en les puntes\2/g
 # a la quadrícula
-s/\b\([Dd]ibuixeu la imatge\|emplaçats\|[Mm]ida dels elements\|mostrada\|mostren\) a la quadrícula\([^[:alnum:]]\)/\1 en la quadrícula\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la quadrícula\([^[:alnum:]]\)/\1 en la quadrícula\2/g
+s/\b\(desactivar les línies horitzontals o verticals\|[Dd]ibuixeu la imatge\|emplaçats\|[Mm]ida dels elements\|mostrada\|mostren\) a la quadrícula\([^[:alnum:]]\)/\1 en la quadrícula\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la quadrícula\([^[:alnum:]]\)/\1 en la quadrícula\2/g
+ #
+s/\b\(La configuració del color\|[Mm]illora\|[Mm]illores\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Qq]\)uadrícules\([^[:alnum:]]\)/\1 en les \2\3uadrícules\4/g
 # a la qual
 s/\b\([Aa]justa la velocitat\|mostra la velocitat\|o en la corba\|[Pp]osició relativa\|ubicació\) a la qual\([^[:alnum:]]\)/\1 en la qual\2/g
 # a la Raspberry
@@ -2292,6 +2562,8 @@ s/\b\(Corregeix els GIF animats\) a les reaccions\([^[:alnum:]]\)/\1 en les reac
 s/\bA la realitat/En realitat/g
 # a la recepció
   s/\"a la recepció\([^[:alnum:]]\)/\"en la recepció\1/g
+# a la recerca
+s/\b\(Explora la col·lecció\) a la recerca\([^[:alnum:]]\)/\1 en la recerca\2/g
 # a la recta
 s/\b\([Rr]eflecteix\) a la recta\([^[:alnum:]]\)/\1 en la recta\2/g
 # a la regió
@@ -2300,16 +2572,20 @@ s/\b\([Mm]ostra\|públic local\|troba\) a la regió\([^[:alnum:]]\)/\1 en la reg
 s/\b\(impossibles %2\/%3\) a la regla\([^[:alnum:]]\)/\1 en la regla\2/g
 # a la regressió
 s/\b\(cada x\) a la regressió\([^[:alnum:]]\)/\1 en la regressió\2/g
+# a la relació
+s/\b\(troben\) a la relació\([^[:alnum:]]\)/\1 en la relació\2/g
 # a la renderització
 s/\b\([Hh]i ha errors coneguts\|hi haurà errors coneguts\) a la renderització\([^[:alnum:]]\)/\1 en la renderització\2/g
 # a la repetició
 s/\b\(guany\) a la repetició\([^[:alnum:]]\)/\1 en la repetició\2/g
 # a la representació
-s/\b\(afegir corbes\|afegir la corba per al vostre objecte personalitzat\|mostra la data, hora i fus horari\) a la representació\([^[:alnum:]]\)/\1 en la representació\2/g
+s/\b\(afegir corbes\|afegir la corba per al vostre objecte personalitzat\|mostra la data, hora i fus horari\|no té cap efecte\) a la representació\([^[:alnum:]]\)/\1 en la representació\2/g
 # a la reproducció
 s/\b\([Pp]ausa\) a la reproducció\([^[:alnum:]]\)/\1 en la reproducció\2/g
+# a la rereguarda
+s/\b\(trobar errors\) a la rereguarda\([^[:alnum:]]\)/\1 en la rereguarda\2/g
 # a la resolució
-s/\b\(utilitzar-lo\|utilitzarà\|utilitzar\) a la resolució\([^[:alnum:]]\)/\1 en la resolució\2/g
+s/\b\([Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la resolució\([^[:alnum:]]\)/\1 en la resolució\2/g
 # a la resta
 s/\b\(utilitzats\) a la resta\([^[:alnum:]]\)/\1 en la resta\2/g
 # a la reunió
@@ -2322,39 +2598,45 @@ s/\b\(observat\|observat algunes\) a la rodalia\([^[:alnum:]]\)/\1 en la rodalia
 s/\b\(fa pausa\) a la rutina\([^[:alnum:]]\)/\1 en la rutina\2/g
 # a la safata
 s/\bA la safata\([^[:alnum:]]\)/En la safata\1/g
-s/\b\([Aa]cobla\|[Aa]coblat\|activat\|àudio\|automàtica\|automàticament\|Clip\|contextual\|continuarà\|Desa la part del clip\|emergents\|execució\|executant-se\|funcionant\|icona\|KAlarm\|KAlarm<\/application>\|Kopete\|KOrganizer\|[Mm]antén\|mantindrà\|[Mm]ostra\|[Mm]ostra el progré\|s[Mm]ostra la icona\|[Mm]ostrar sempre la icona\|[Nn]otificació\|ocultes\|principal\|recordatoris\|RSIBreak\|s'ha seleccionat cap clip\|S'ha trobat un clip de seqüència no vàlid\|[Tt]riat cap clip\|[Tt]rieu un clip\|tasca %1\|trobat\|velocitat\) a la safata\([^[:alnum:]]\)/\1 en la safata\2/g
+s/\b\([Aa]cobla\|[Aa]coblat\|activat\|aparegut una icona de teclat\|àudio\|automàtica\|automàticament\|Clip\|contextual\|continuarà\|Desa la part del clip\|emergents\|execució\|executant-se\|funcionant\|icona\|KAlarm\|KAlarm<\/application>\|Kopete\|KOrganizer\|[Mm]antén\|mantindrà\|[Mm]ostra\|[Mm]ostra el progré\|s[Mm]ostra la icona\|[Mm]ostrar sempre la icona\|[Nn]otificació\|ocultes\|principal\|recordatoris\|RSIBreak\|s'ha seleccionat cap clip\|S'ha trobat un clip de seqüència no vàlid\|símbol del mètode d'entrada actiu\|[Tt]riat cap clip\|[Tt]rieu un clip\|tasca %1\|trobat\|velocitat\|veuràs una icona discreta\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ss]\)afata\([^[:alnum:]]\)/\1 en la \2\3afata\4/g
   s/\bMostra a la &safata\([^[:alnum:]]\)/Mostra en la \&safata\1/g
   s/\bmoure la tasca %1 en la safata\([^[:alnum:]]\)/moure la tasca %1 a la safata\1/g
 s/\b\([Gg]\)estor a la safata del sistema\([^[:alnum:]]\)/\1estor en la safata del sistema\2/g
 # a la sala
-s/\b\(acceptats\|escriure missatges\|KDE\|llegir missatges\|o\|[Oo]rdinadors\|tenir\|trobeu\|utilitza\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)sala\([^[:alnum:]]\)/\1 en la \2sala\3/g
+s/\b\(acceptats\|escriure missatges\|KDE\|llegir missatges\|o\|[Oo]rdinadors\|tenir\|trobeu\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)sala\([^[:alnum:]]\)/\1 en la \2sala\3/g
  #
-s/\b\(disponible\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)sales\([^[:alnum:]]\)/\1 en les \2sales\3/g
+s/\b\(disponible\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)sales\([^[:alnum:]]\)/\1 en les \2sales\3/g
 # a la secció
 s/\bA la secció\([^[:alnum:]]\)/En la secció\1/g
-s/\b\(activat\|artístiques destacades\|clau i el nom\|com botons\|continuació,\|del sistema\|descrit\|descrits\|descriu\|desitjat\|detall\|disponible\|disponibles\|[Ee]mpleneu els valors de les coordenades\|[Ee]mpleneu les dades necessàries\|[Ee]stableix els paràmetres\|establir\|explicades\|fopen<\/command>\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|ID de la clau\|imatge de dalt\|introduïu les coordenades del catàleg\|literal>\|[Mm]ostra\|mostrades\|ocultar\|Orienta cap a l'objectiu``\|prendre com a valors d'entrada\|presentades\|s'esmenta\|selecció i valoració\|seleccioneu la configuració preferida\|Taula<\/link> i\|títol de l'element\|treballs artístics destacats\|troba a continuació\|troben\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)secció\([^[:alnum:]]\)/\1 en la \2secció\3/g
+  s/\bd'acord amb els termes exposades a la secció\([^[:alnum:]]\)/d'acord amb els termes exposats en la secció\1/g
+s/\b\(activat\|analitza\|artístiques destacades\|Carrega les imatges obtingudes``\|carregat\|Cerca un objecte``\|clau i el nom\|com botons\|continuació,\|Coordenades cartesianes`` o\|del sistema\|descrit\|descrits\|descriu\|desitjat\|detall\|detalls sobre aquesta pestanya\|disponible\|disponibles\|[Ee]mpleneu els valors de les coordenades\|empleneu les coordenades d'entrada\|[Ee]mpleneu les dades necessàries\|[Ee]stableix els paràmetres\|establir\|explicades\|fopen<\/command>\|han d'estar detallades\|ID de la clau\|imatge de dalt\|inclou un còpia de la Llicència\|introduïu les coordenades del catàleg\|literal>\|llistat\|llistats\|[Mm]ostra\|mostrades\|n'hi ha més llistades\|No confirmis en aplicar canvis des de la barra lateral dreta\*\*\|ocultar\|Orienta cap a l'objectiu``\|prendre com a valors d'entrada\|presentades\|presentaran\|que es poden incloure\|s'esmenta\|s'explica\|selecció i valoració\|segons la qualitat de la imatge\|triar els dispositius remots\|seleccioneu la configuració preferida\|Taula<\/link> i\|títol de l'element\|treballs artístics destacats\|troba a continuació\|troben\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)secció\([^[:alnum:]]\)/\1 en la \2secció\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)secció\([^[:alnum:]]\)/\1 en la \2secció\3/g
+ #
+s/\b\(es descriuen\|es mostra\) a les seccions\([^[:alnum:]]\)/\1 en les seccions\2/g
 # a la segona
 s/\b\(marcades com a preferides\|mostren\) a la segona\([^[:alnum:]]\)/\1 en la segona\2/g
 # a la següent
 s/\bA la següent\([^[:alnum:]]\)/En la següent\1/g
 # a la selecció
 s/\bA la selecció\([^[:alnum:]]\)/En la selecció\1/g
-s/\b\(Afegeix un marcador\|codi de temps\|resultat un submostratge\) a la selecció\([^[:alnum:]]\)/\1 en la selecció\2/g
+s/\b\(al voltant del motiu\|[Cc]entra el mapa celeste\|codi de temps\|resultat un submostratge\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la selecció\([^[:alnum:]]\)/\1 en la selecció\2/g
  #
 s/\b\(fer seleccions\) a les seleccions\([^[:alnum:]]\)/\1 en les seleccions\2/g
 # a la seqüència
-s/\b\([Aa]lgorisme per a la comprovació d'HFR\|[Ee]xecuta la comprovació d'HFR\|Imatges capturades\|inicia el reenfocament basat en HFR\|valor present\) a la seqüència\([^[:alnum:]]\)/\1 en la seqüència\2/g
+s/\b\([Aa]lgorisme per a la comprovació d'HFR\|es previsualitzarà com a imatge 1\|[Ee]xecuta la comprovació d'HFR\|Imatges capturades\|inicia el reenfocament basat en HFR\|valor present\) a la seqüència\([^[:alnum:]]\)/\1 en la seqüència\2/g
 # a la sèrie
-s/\b\(temps i diners,\) a la sèrie\([^[:alnum:]]\)/\1 en la sèrie\2/g
+s/\b\(inherent\|temps i diners,\) a la sèrie\([^[:alnum:]]\)/\1 en la sèrie\2/g
 # a la sessió
-s/\b\(execució\|executant\|[Mm]ostra\|[Oo]bre'l\|registrat\) a la sessió\([^[:alnum:]]\)/\1 en la sessió\2/g
+s/\b\(carregat l'última vegada\|disponible\|disponibles\|encara es poden seleccionar\|esteu\|execució\|executant\|[Mm]ostra\|[Oo]bre'l\|registrat\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ss]\)essió\([^[:alnum:]]\)/\1 en la \2\3essió\4/g
+ #
+s/\b\(disponible\|disponibles\) a les sessions\([^[:alnum:]]\)/\1 en les sessions\2/g
 # a la setmana
 s/\b\(dia\) a la setmana\([^[:alnum:]]\)/\1 en la setmana\2/g
 # a la seva
-s/\b\(Aprofundiu en la història de KDE\|disponibles\|necessita\|[Pp]atrocina crèdits gratuïts\|posa la documentació per a cada mòdul\|trobaràs\) a la seva\([^[:alnum:]]\)/\1 en la seva\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la seva\([^[:alnum:]]\)/\1 en la seva\2/g
+s/\b\(Aprofundiu en la història de KDE\|calcular les coordenades dels píxels de tots els objectes\|disponibles\|necessita\|mostrar el llenç\|[Pp]atrocina crèdits gratuïts\|posa la documentació per a cada mòdul\|s'indica\|trobaràs\) a la seva\([^[:alnum:]]\)/\1 en la seva\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la seva\([^[:alnum:]]\)/\1 en la seva\2/g
  #
-s/\b\(afectats per components de programari no desitjats\|configura\|en base\|especificat\|prenia mesures\|tenen la paraula clau\|tinguin la paraula clau\|tinguin la paraula clau (distingeix entre majúscules i minúscules)\|varien en brillantor\) a les seves\([^[:alnum:]]\)/\1 en les seves\2/g
+s/\b\(afectats per components de programari no desitjats\|configura\|en base\|especificat\|GCompris\|prenia mesures\|tenen la paraula clau\|tinguin la paraula clau\|tinguin la paraula clau (distingeix entre majúscules i minúscules)\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|varien en brillantor\) a les seves\([^[:alnum:]]\)/\1 en les seves\2/g
 # a la signatura
 s/\b\(incrusten el contingut\) a la signatura\([^[:alnum:]]\)/\1 en la signatura\2/g
 # a la sintaxi
@@ -2363,12 +2645,13 @@ s/\b\(definit\|establert\) a la sintaxi de ressaltat\([^[:alnum:]]\)/\1 en la si
 s/\b\(forma mixta\) a la solució\([^[:alnum:]]\)/\1 en la solució\2/g
 # a la sortida
 s/\bA la sortida\([^[:alnum:]]\)/En la sortida\1/g
-s/\b\(acolorits\|automàticament\|[Cc]erqueu qualsevol error\|codi font\|com a atribut XML\|detalls\|d'un altre\|depuració\|disponibles\|emprada\|etiquetes\|fitxer actual\|impedància\|interbloqueig\|mallat\|mida\|nou\|SD\|tabulacions a espais\|tecleig\|valor\) a la sortida\([^[:alnum:]]\)/\1 en la sortida\2/g
+s/\b\(acolorits\|automàticament\|[Cc]erqueu qualsevol error\|codi font\|com a atribut XML\|detalls\|d'un altre\|depuració\|disponibles\|emprada\|etiquetes\|fitxer actual\|impedància\|interbloqueig\|mallat\|mida\|nou\|registr[ei]n els missatges\|SD\|tabulacions a espais\|tecleig\|valor\) a la sortida\([^[:alnum:]]\)/\1 en la sortida\2/g
  #
 s/\b\(escriure els seus resultats\) a la stdout\([^[:alnum:]]\)/\1 en la stdout\2/g
-s/\b\(emprada\|utilitzada\|utilitzar-se\|utilitzat\) a les sortides\([^[:alnum:]]\)/\1 en les sortides\2/g
+s/\b\(emprada\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a les sortides\([^[:alnum:]]\)/\1 en les sortides\2/g
 # a la subcarpeta
 s/\bA la subcarpeta\([^[:alnum:]]\)/En la subcarpeta\1/g
+s/\b\(troben amb rapidesa pel nom de la ubicació\) a la subcarpeta\([^[:alnum:]]\)/\1 en la subcarpeta\2/g
  #
 s/\bA les subcarpetes\([^[:alnum:]]\)/En les subcarpetes\1/g
 s/\b\(tenir en compte que les imatges aparellades\) a les subcarpetes\([^[:alnum:]]\)/\1 en les subcarpetes\2/g
@@ -2378,26 +2661,39 @@ s/\b\(equilibri relatiu entre les dues fonts de soroll\) a la subexposició\([^[
 s/\b\(prioritzarà un soroll baix de lectura\) a les subexposicions\([^[:alnum:]]\)/\1 en les subexposicions\2/g
 # a la subfinestra
 s/\bA la subfinestra\([^[:alnum:]]\)/En la subfinestra\1/g
-s/\b\(Augmenta la mida del text\|carregar perfils de configuració\|imatges de fons\|mathgroups»\|Minva la mida del text\|[Mm]oure cap amunt\|png»\|seleccionada\) a la subfinestra\([^[:alnum:]]\)/\1 en la subfinestra\2/g
+s/\b\(Augmenta la mida del text\|carregar perfils de configuració\|disponible\|disponibles\|imatges de fons\|mathgroups»\|Minva la mida del text\|[Mm]oure cap amunt\|png»\|seleccionada\) a la subfinestra\([^[:alnum:]]\)/\1 en la subfinestra\2/g
+# a la subsecció
+s/\b\(descriu\) a la subsecció\([^[:alnum:]]\)/\1 en la subsecció\2/g
+# a la subsolucio
+ #
+s/\b\(activar els càlculs de la SNR\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a les subsolucions\([^[:alnum:]]\)/\1 en les subsolucions\2/g
 # a la superfície
-s/\b\(aparèixer una \*curvatura del camp\*\|emplaçament\|emprat\|estimar la temperatura\|rep\|resultarà en un cercle\|Tracen cercles\|utilitzat\) a la superfície\([^[:alnum:]]\)/\1 en la superfície\2/g
+s/\b\(aparèixer una \*curvatura del camp\*\|creació de taques\|emplaçament\|emprat\|estimar la temperatura\|rep\|resultarà en un cercle\|Tracen cercles\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) a la superfície\([^[:alnum:]]\)/\1 en la superfície\2/g
+# a la superior
+s/\b\(troba\) a la superior\([^[:alnum:]]\)/\1 en la superior\2/g
 # a la superposició
 s/\b\(per a les imatges\|per a una imatge\|referència és sòlida i més brillant\) a la superposició\([^[:alnum:]]\)/\1 en la superposició\2/g
 # a la tapa
 s/\b\([Ee]rror\) a la tapa\([^[:alnum:]]\)/\1 en la tapa\2/g
+# a la tardor
+s/\b\(Carrer\) a la tardor\([^[:alnum:]]\)/\1 en la tardor\2/g
 # a la targeta
-s/\b\(activat\|desactivat\|emmagatzemada\|emmagatzemades\|emmagatzemat\|Fitxers\|genera les subclaus\|generar directament claus noves\|hi ha\|[Ss]uprimix un fitxer\|utilitzar les claus\) a la targeta\([^[:alnum:]]\)/\1 en la targeta\2/g
+s/\b\(activat\|desactivat\|emmagatzema\|emmagatzemada\|emmagatzemades\|emmagatzemarà el fitxer JPEG\|emmagatzemat\|Fitxers\|genera les subclaus\|generar directament claus noves\|hi ha\|[Ss]uprimix un fitxer\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar les claus\) a la targeta\([^[:alnum:]]\)/\1 en la targeta\2/g
+# a la tasca
+s/\b\([Ll]lista de totes les accions\|[Pp]assa a l'acció següent\) a la tasca\([^[:alnum:]]\)/\1 en la tasca\2/g
+ #
+# s/\b\(\) a les tasques\([^[:alnum:]]\)/\1 en les tasques\2/g
 # a la taula
 s/\bA la taula\([^[:alnum:]]\)/En la taula\1/g
-s/\b\(1 element\|1 elements\|canviar l'ordre de les files\|[Cc]erca un objecte\|cerqueu una imatge\|col·lisions de peces\|com un camp\|configureu els paràmetres de cada filtre\|Configureu les opcions de cada filtre\|creat\|creat 8 columnes addicionals\|editor d'imatges i\|emprada\|falten\|filtre en passos directament\|Genera automàticament el nombre especificat de punts d'alineació\|gràfica com\|hagi\|[Hh]i ha un espai\|[Ii]nclou\|línia\|llista la tasca\|llistats\|[Mm]ostra\|mostrades\|mostrar la barra d'estat\|mostraran\|mostraran igualment\|[Oo]bre\|[Pp]rem\|previsualització i\|previstes per a totes les tasques\|propietat donada d'un element\|punts\|ressalten\|selecciona-les\|seleccionada\|seleccioneu una fila\|veure la durada de cada esdeveniment\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Tt]\)aula\([^[:alnum:]]\)/\1 en la \2\3aula\4/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Tt]\)aula\([^[:alnum:]]\)/\1 en la \2\3aula\4/g
+s/\b\(1 element\|1 elements\|Àlbums\*\* i\|ambdues barres laterals\|canviar l'ordre de les files\|[Cc]erca un objecte\|cerqueu una imatge\|col·lisions de peces\|col·locat\|col·locats\|com un camp\|Comparant dos fitxers RAW un al costat de l'altre\|comparar la informació sobre les imatges esquerra i dreta\|configureu els paràmetres de cada filtre\|Configureu les opcions de cada filtre\|creat\|creat 8 columnes addicionals\|damunt de l'objecte\|durant la revisió dels elements\|editor d'imatges i\|emprada\|està seleccionada\|està seleccionat\|estan visibles\|[Ee]xpandiu una tasca\|falten\|feu clic dret en l'objecte\|filtre en passos directament\|Genera automàticament el nombre especificat de punts d'alineació\|Gestioneu els actius\|gràfica com\|hagi\|[Hh]i ha un espai\|[Ii]nclou\|línia\|llenç de vista prèvia\|llista la tasca\|llistats\|[Mm]ostra\|mostra el nombre de files\|mostrades\|mostrar la barra d'estat\|mostr[ei]n\|mostraran\|mostraran igualment\|[Oo]bre\|[Pp]rem\|previsualització i\|previstes per a totes les tasques\|propietat donada d'un element\|punts\|registra a la 1a execució\|ressalten\|selecciona-les\|seleccionada\|seleccioneu una fila\|[Tt]rieu una tasca\|troba\|veure la durada de cada esdeveniment\|veure'ls\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Tt]\)aula\([^[:alnum:]]\)/\1 en la \2\3aula\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Tt]\)aula\([^[:alnum:]]\)/\1 en la \2\3aula\4/g
  #
 s/\bA les taules\([^[:alnum:]]\)/En les taules\1/g
 s/\b\([Dd]esats\) a les taules\([^[:alnum:]]\)/\1 en les taules\2/g
 # a la tauleta
 s/\b\(error\|[Pp]remeu ara el botó «%1»\) a la tauleta\([^[:alnum:]]\)/\1 en la tauleta\2/g
  #
-s/\b\(Krita\) a les tauletes\([^[:alnum:]]\)/\1 en les tauletes\2/g
+s/\b\(Chromebook i\|Krita\|millora de la interfície d'usuari\|ús\) a les tauletes\([^[:alnum:]]\)/\1 en les tauletes\2/g
 # a la temperatura
 s/\b\(augment\|quan el canvi\) a la temperatura\([^[:alnum:]]\)/\1 en la temperatura\2/g
 # a la temporada
@@ -2405,12 +2701,14 @@ s/\b\(fosca, _Dexter_\|va entrar al quarter general\) a la temporada\([^[:alnum:
 # A la tercera
 s/\bA la tercera\([^[:alnum:]]\)/En la tercera\1/g
 # a la Terra
-s/\b\(des d'un punt arbitrari\|emplaçament\|emplaçaments\|està fix\|punt de vista\|sembla\) a la Terra\([^[:alnum:]]\)/\1 en la Terra\2/g
+s/\b\(des d'un punt arbitrari\|emplaçament\|emplaçaments\|està fix\|punt de vista\|sembla\|trobeu\) a la Terra\([^[:alnum:]]\)/\1 en la Terra\2/g
 # a les tessel·les
  #
 s/\b\(mostrar les etiquetes del sensor\) a les tessel·les\([^[:alnum:]]\)/\1 en les tessel·les\2/g
 # a la teva
-s/\b\(compartir aquest vídeo\|escoles, etc\.\|hi haurà gent\) a les teves\([^[:alnum:]]\)/\1 en les teves\2/g
+s/\b\(involucrar-te en un col·lectiu de reparació\|trobar comunitats\|viu\) a la teva\([^[:alnum:]]\)/\1 en la teva\2/g
+ #
+s/\b\(compartir aquest vídeo\|escoles, etc\.\|hi haurà gent\|on-social-media)\) a les teves\([^[:alnum:]]\)/\1 en les teves\2/g
 # a la TOC
 s/\b\(mostraran\) a la TOC\([^[:alnum:]]\)/\1 en la TOC\2/g
 # a la traça
@@ -2424,7 +2722,7 @@ s/\b\([Ee]rror\) a la transferència\([^[:alnum:]]\)/\1 en la transferència\2/g
 # a les tres
 s/\bA les tres\([^[:alnum:]]\)/En les tres\1/g
 # a la ubicació
-s/\b\([Cc]erca\|escriure\|fitxers i carpetes\|porta-retalls\|toqueu\|trobat cap fitxer de configuració\|trobat tots els fitxers\|troben\) a la ubicació\([^[:alnum:]]\)/\1 en la ubicació\2/g
+s/\b\([Cc]erca\|desaran periòdicament\|escriure\|fitxers i carpetes\|porta-retalls\|toqueu\|trobat cap fitxer de configuració\|trobat tots els fitxers\|troben\) a la ubicació\([^[:alnum:]]\)/\1 en la ubicació\2/g
  #
 s/\b\([Cc]erca\|emmagatzemades\) a les ubicacions\([^[:alnum:]]\)/\1 en les ubicacions\2/g
 # a la Ubuntu
@@ -2433,66 +2731,87 @@ s/\b\(emmagatzemades\|executant l'ordre següent\) a la \(&\|\)\([Uu]\)buntu\([^
 # a la unitat
 s/\b\(CD\|CD-ROM\|correcció d'errors\|ECC\/EDC\|sobreescriurà tot\|teniu un CD\) a la unitat\([^[:alnum:]]\)/\1 en la unitat\2/g
 # a la utilitat
-s/\b\(mostrades\|mostrats\|utilitzar l'enfocament adaptatiu\) a la utilitat\([^[:alnum:]]\)/\1 en la utilitat\2/g
+s/\b\(mostrades\|mostrats\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar l'enfocament adaptatiu\) a la utilitat\([^[:alnum:]]\)/\1 en la utilitat\2/g
 # a la variable
-s/\b\(estar\|llistat\|ordre és o no\|regla\|s'ha de trobar\|troba o no\|utilitzar el jre\) a la variable\([^[:alnum:]]\)/\1 en la variable\2/g
+s/\b\(estar\|llistat\|ordre és o no\|regla\|s'ha de trobar\|troba o no\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar el jre\) a la variable\([^[:alnum:]]\)/\1 en la variable\2/g
+# a la velocitat
+s/\b\(esmenat les sacsejades\) a la velocitat\([^[:alnum:]]\)/\1 en la velocitat\2/g
 # a la venda
  #
 s/\b\(descens gran\) a les vendes\([^[:alnum:]]\)/\1 en les vendes\2/g
 # a la versió
-s/\bA la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)versió\([^[:alnum:]]\)/En la \1versió\2/g
-s/\b\(anunciat\|eliminat\|esmenat diversos errors en l'edició de les paletes de colors\|necessita l'extensió %s almenys\|utilitzades\) a la versió\([^[:alnum:]]\)/\1 en la versió\2/g
+s/\bA la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)versió\([^[:alnum:]]\)/En la \1versió\2/g
+s/\b\(A més,\|anunciat\|eliminat\|esmenat diversos errors en l'edició de les paletes de colors\|ja està inclòs amb KStars\|necessita l'extensió %s almenys\|no es poden incloure\|que es poden incloure\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar-los tant\) a la \([Vv]\)ersió\([^[:alnum:]]\)/\1 en la \2ersió\3/g
 # a la Via
 s/\b\(cúmuls globulars\) a la Via\([^[:alnum:]]\)/\1 en la Via\2/g
 # a la vida
-s/\b\(descobrir la bellesa\) a la vida\([^[:alnum:]]\)/\1 en la vida\2/g
+s/\b\(amb textura\|descobrir la bellesa\) a la vida\([^[:alnum:]]\)/\1 en la vida\2/g
 # a la Viquipèdia / Wikipedia
   s/\btroben a la &lt;https:\/\/www\.wikipedia\.org\([^[:alnum:]]\)/troben en la \&lt;https:\/\/www\.wikipedia\.org\1/g
-s/\b\(Contaminació lumínica\|descripció completa d'aquests formats\|descriu\|finestra\|perfil del col·laborador\|sobre això\|Trobareu una descripció completa d'estos formats\|[Vv]isiteu les útils guies\) \(`\|\)a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(Viquipèdia\|Wikipedia\)\([^[:alnum:]]\)/\1 \2en la \3\4\5/g
+s/\b\(Brillantor del cel\|Contaminació lumínica\|descripció completa d'aquests formats\|descriu\|finestra\|obre una finestra del navegador\|perfil del col·laborador\|sobre això\|Trobareu una descripció completa d'estos formats\|[Vv]isiteu les útils guies\) \(`\|\)a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(Viquipèdia\|Wikipedia\)\([^[:alnum:]]\)/\1 \2en la \3\4\5/g
 # a la vista
 s/\bA la vista\([^[:alnum:]]\)/En la vista\1/g
-s/\(,\|»\|<\/b>\|)TeX\|abc\|actualitza automàticament\|alhora\|apareixerà\|artefacte\|bibitems\|canviar-ho\|canviar-la\|categories\|cel·la\|[Cc]entra aquest objecte\|columnes\|conciliades\|contextual\|cppcheck»\|definides\|desar-la\|diaris\|dibuixar contorns de depuració de les formes de text\|disponibles\|El mode agrupat\|elements\|els fitxers\|entrades\|[Ee]rror\|erronis\|esdeveniments\|espai\|esquerre\|esteu\|etiqueta\|etiquetes\|expansió\|festiu\|finalitzades\|fitxer\|fitxers\|flotants\|fracció\|gràfic\|hi ha sobre la miniatura o\|hora actual\|horari\|hores\|i\|icones\|imatges\|línia\|llista\|llistaran\|llistats\|mantindran\|manual\|manualment)\|marcar\|miniatures\|[Mm]ostra\|[Mm]ostra el títols dels àlbums i els artistes\|[Mm]ostra la barra d'accions\|[Mm]ostra la llista de tasques pendents\|mostrar\|mostrar una setmana individual\|mostrarà\|mostraran\|mostrats\|mostren\|mourà un cursor\|moveu el cursor\|navegar\|nombres\|només\|normals\|nou\|objecte\|[Oo]bre\|obrir-l[ao]\|oculta\|operació\|ordenen\|part inferior\|part superior\|peces\|pendents\|pòdcast\|preferit\|projecte\|registre\|resource>\|resultat\|que\|[Ss]eleccions\|s'utilitzarà\|s'utilitzarà per als esdeveniments\|seleccionada\|seleccionat\|seleccionats\|Trieu aquí el color de fons de les hores laborables\|Trieu aquí el color de les hores laborables\|Trieu aquí el color de fons per a les hores laborables\|Trieu aquí el color per a les hores laborables\|[Tt]ris\|sencera com\|sostracció fosca\|subtasques\|tapades<\/span>\|temps\|temps actual\|[Uu]tilitzarà\|valor\|vista prèvia\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Vv]\)ista\([^[:alnum:]]\)/\1 en la \2\3ista\4/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Vv]\)ista\([^[:alnum:]]\)/\1 en la \2\3ista\4/g
+s/\(,\|»\|<\/b>\|)TeX\|abc\|actualitza automàticament\|alhora\|allotjada\|apareixerà\|artefacte\|bibitems\|canviar-ho\|canviar-la\|categories\|cel·la\|[Cc]entra aquest objecte\|columnes\|conciliades\|contextual\|cppcheck»\|definides\|desar-la\|Desconeguda\*\*\|diaris\|dibuixar contorns de depuració de les formes de text\|disponible\|disponibles\|editar un filtre de G'MIC\|El mode agrupat\|elements\|els fitxers\|entrades\|[Ee]rror\|erronis\|és el motor principal de tres característiques\|esdeveniments\|esmenat el centrat del contorn\|espai\|esquerre\|esteu\|etiqueta\|etiqueta \*\*auto\*\*\|etiquetes\|expansió\|Exploreu la qualitat de les imatges\*\*\|festiu\|finalitzades\|fitxer\|fitxers\|flotants\|fracció\|G'MIC-Qt\|gràfic\|hi ha sobre la miniatura o\|hora actual\|horari\|hores\|i\|icones\|imatges\|la mateixa entrada del menú\|les opcions dels rètols\|línia\|llista\|llistaran\|llistats\|mantindran\|manual\|manualment)\|marcar\|miniatures\|[Mm]ostra\|[Mm]ostra el títols dels àlbums i els artistes\|[Mm]ostra la barra d'accions\|[Mm]ostra la llista de tasques pendents\|mostrar\|mostrar els subàlbums\|mostrar una setmana individual\|mostrarà\|mostraran\|mostraran totes les imatges amb un rètol coincident\|mostrats\|mostren\|mourà un cursor\|moveu el cursor\|navegar\|nombres\|només\|normals\|nou\|objecte\|[Oo]bre\|obrir-l[ao]\|oculta\|operació\|optimitzar el procés de la conversió RAW\|ordenen\|part inferior\|part superior\|peces\|pendents\|pòdcast\|Precisió:\*\* de la detecció\|preferit\|projecte\|registre\|resource>\|resultat\|Rètols de color\*\* directament\|[Ss]elecció\|[Ss]eleccions\|s'utilitzarà per als esdeveniments\|seleccionada\|seleccionat\|seleccionats\|seran més fines que\|També és útil\|Trieu aquí el color de fons de les hores laborables\|Trieu aquí el color de les hores laborables\|Trieu aquí el color de fons per a les hores laborables\|Trieu aquí el color per a les hores laborables\|[Tt]ris\|sencera com\|sostracció fosca\|subtasques\|tapades<\/span>\|temps\|temps actual\|Totes les configuracions d'eina personalitzades\|[Uu]tilitz[aio]\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\|[Uu]tilitze[ns]\|[Uu]tilitzant\|[Uu]tilitzarà\|[Uu]tilitzaran\|valor\|vista prèvia\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Vv]\)ista\([^[:alnum:]]\)/\1 en la \2\3ista\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Vv]\)ista\([^[:alnum:]]\)/\1 en la \2\3ista\4/g
   s/\bicones en els elements en la vista mensual\([^[:alnum:]]\)/icones d'element en la vista mensual\1/g
  #
 s/\bA les vistes\([^[:alnum:]]\)/En les vistes\1/g
 s/\b\(Activa la navegació de llocs\|elements\|miniatures\|[Mm]ostra\|[Mm]ostra els festius\|[Mm]ostra les tasques\|[Mm]ostra les subtasques\|[Mm]ostren\|ocultar les invitacions rebutjades\|pestanyes\|repetitius\|s'ignora\|s'ignorarà\|seleccionats\|subtasques\|text\) a les vistes\([^[:alnum:]]\)/\1 en les vistes\2/g
 # a la visualització
-s/\b\(6\|ocultarà\|visible\) a la visualització\([^[:alnum:]]\)/\1 en la visualització\2/g
+s/\b\(6\|es poden centrar automàticament\|ocultarà\|visible\) a la visualització\([^[:alnum:]]\)/\1 en la visualització\2/g
 # a la vora
-s/\b\(acceleròmetre\|ancorat\|consistirà en una sola barra\|desviació\|estar\|horitzontal\|mostra una etiqueta\|tenia un àlies\|tenir el plafó\|text plegat\|vertical\) a la vora\([^[:alnum:]]\)/\1 en la vora\2/
+s/\b\(acceleròmetre\|ancorat\|consistirà en una sola barra\|desviació\|estar\|horitzontal\|Liqüescent»\|mostra una etiqueta\|tenia un àlies\|tenia un pixelat\|tenir el plafó\|text plegat\|vertical\) a la vora\([^[:alnum:]]\)/\1 en la vora\2/
  #
-s/\b\(ancorat\|excloent els quadrats\|representar fora del vídeo,\|teniu cap camp pla\) a les vores\([^[:alnum:]]\)/\1 en la vores\2/g
+s/\b\(ancorat\|descartin les estrelles\|[Ee]ficaç\|enganxaran»\|excloent els quadrats\|mantenir una mica de definició\|representar fora del vídeo,\|teniu cap camp pla\) a les vores\([^[:alnum:]]\)/\1 en la vores\2/g
 # a la vostra
-s/\b\(ajudar en la traducció de la documentació de &kde;\|aniversaris dels contactes\|[Cc]erca\|com a «%1»\|configurat\|[Cc]onstruïu la petició de fusió\|desi\|disponible\|eines d'empaquetat noves\|entrada nova\|esdevingut un canvi\|establert\|establerta\|forma segura\|grup de treball\|identificar una plantilla\|incloure\|llista\|[Oo]bteniu el programari KDE\|paquet\|problema\|processarà localment\|ràpides\|s'instal·la\|trobareu el nom de l'amfitrió\|trobat\) a la vostra\([^[:alnum:]]\)/\1 en la vostra\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la vostra\([^[:alnum:]]\)/\1 en la vostra\2/g
+s/\b\(ajudar en la traducció de la documentació de &kde;\|allotjat\|aniversaris dels contactes\|[Cc]erca\|cerca de \*similitud\*\|com a «%1»\|configurat\|[Cc]onstruïu la petició de fusió\|desi\|disponible\|eines d'empaquetat noves\|entrada nova\|es troba\|esdevingut un canvi\|establert\|establerta\|forma segura\|grup de treball\|identificar una plantilla\|incloure\|instal·lar\|llista\|[Oo]bteniu el programari KDE\|paquet\|problema\|processarà localment\|ràpides\|s'instal·la\|trobareu el nom de l'amfitrió\|trobat\|utilitzeu Btrfs\) a la vostra\([^[:alnum:]]\)/\1 en la vostra\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la vostra\([^[:alnum:]]\)/\1 en la vostra\2/g
   s/\b\([Nn]\)o \(és\|està\) a la vostra\([^[:alnum:]]\)/\1o es troba en la vostra\3/g
     s/\bcontacte\( ja\|\) \(és\|està\) a la vostra\([^[:alnum:]]\)/contacte\1 es troba en la vostra\3/g
   s/\b\([Nn]\)o \(estan\|són\) a la vostra\([^[:alnum:]]\)/\1o es troben en la vostra\3/g
  #
-s/\b\(reconéixer persones\) a les vostres\([^[:alnum:]]\)/\1 en les vostres\2/g
+s/\b\(cerca de \*similitud\*\|reconèixer persones\) a les vostres\([^[:alnum:]]\)/\1 en les vostres\2/g
 # a la web
-s/\b\(calendari, per exemple calendaris\|[Cc]erca\|publicar-les\|ubiqueu les imatges\|una adreça\) a la \([Ww]\)eb\([^[:alnum:]]\)/\1 en la \2eb\3/g
+s/\b\(calendari, per exemple calendaris\|[Cc]erca\|[Cc]ercar programari\|buscar programari\|intercanvi fàcil de coneixements\|mostrar-la\|mostreu\|oferir gammes de color ample i HDR\|publicar-les\|ubiqueu les imatges\|una adreça\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzeu l'espai d'emmagatzematge\) a la \([Ww]\)eb\([^[:alnum:]]\)/\1 en la \2eb\3/g
 # a la wiki
-s/\b\(sistemes Debian\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)wiki\([^[:alnum:]]\)/\1 en la \2wiki\3/g
+s/\b\(sistemes Debian\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)wiki\([^[:alnum:]]\)/\1 en la \2wiki\3/g
 # a la Wikipedia
 s/\b\([Cc]erca l'objecte seleccionat\) a la Wikipedia\([^[:alnum:]]\)/\1 en la Wikipedia\2/g
 # a la xarxa
-s/\b\(Aranya\|baixi qualsevol fitxer\|[Aa]nuncia el servei\|[Cc]erca\|[Cc]erca dispositius\|compartir elements\|comparteixin\|kde-<projectname\\\\>\|kde-devel)\|disponibles\|Monopoly®\|[Pp]arla amb amics\|problema\|reconeixement de les cares\|repositoris\|són nodes propis\|transparents\|transport\|únics\|utilitzar\|Usuaris actuals\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)xarxa\([^[:alnum:]]\)/\1 en la \2xarxa\3/g
+  s/(a la xarxa hi ha moltes\([^[:alnum:]]\)/(en la xarxa hi ha moltes\1/g
+s/\b\(Aranya\|baixi qualsevol fitxer\|[Aa]nuncia el servei\|[Cc]erca\|[Cc]erca dispositius\|compartir elements\|comparteixin\|digitalitzar-les amb una rèflex digital\|kde-<projectname\\\\>\|kde-devel)\|des d'un ordinador remot\|disponibles\|Monopoly®\|[Pp]arla amb amics\|problema\|reconeixement de les cares\|repositoris\|són nodes propis\|transparents\|transport\|únics\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|Usuaris actuals\) a la \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)xarxa\([^[:alnum:]]\)/\1 en la \2xarxa\3/g
  #
-s/\b\(activa\|difusió\|Llista de 10»\|presència de Krita\|publicacions\) a les xarxes\([^[:alnum:]]\)/\1 en les xarxes\2/g
+s/\b\(activa\|difusió\|impulsarem el projecte\|Kiki\|Llista de 10»\|presència de Krita\|publica l'esdeveniment\|publicacions\) a les \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)xarxes\([^[:alnum:]]\)/\1 en les \2xarxes\3/g
 # a la zona
-s/\b\(anteriors\|troben\) a la zona\([^[:alnum:]]\)/\1 en la zona\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) a la zona\([^[:alnum:]]\)/\1 en la zona\2/g
+s/\b\(anteriors\|disponible\|disponibles\|troben\) a la zona\([^[:alnum:]]\)/\1 en la zona\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) a la zona\([^[:alnum:]]\)/\1 en la zona\2/g
+ #
+s/\b\(disponible\|disponibles\) a les zones\([^[:alnum:]]\)/\1 en les zones\2/g
 # #
 # # # # # # # # # # # # # #
 #
+# al <link url='%2'> del
+s/\bal \(<[^<]\{1,\}>\) del\([^[:alnum:]]\)/en el \1 del\2/g
 # al bàner
-s/\b\(lloc d'honor\|un lloc\) al bàner\([^[:alnum:]]\)/\1 en el bàner\2/g
+s/\b\(apareguessin\|aparèixer\|lloc d'honor\|mostrarà\|un lloc\) al bàner\([^[:alnum:]]\)/\1 en el bàner\2/g
+# al Best
+s/\b\(Cabana\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Best\([^[:alnum:]]\)/\1 en el \2Best\3/g
 # al blog
-s/\b\(teniu una entrada\) al blog\([^[:alnum:]]\)/\1 en el blog\2/g
+s/\b\(escrit diverses entrades tècniques\|[Pp]ublicació\|teniu una entrada\) al blog\([^[:alnum:]]\)/\1 en el blog\2/g
+# al bosc
+s/\b\(Cabana\) al bosc\([^[:alnum:]]\)/\1 en el bosc\2/g
+# al botó
+s/\bAl botó\([^[:alnum:]]\)/En el botó\1/g
+s/\b\(<\/em>\|dies\|estableix\|lambda\|[Pp]ulsació llarga\|repetidament\|text\) al botó\([^[:alnum:]]\)/\1 en el botó\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al botó\([^[:alnum:]]\)/\1 en el botó\2/g
+ #
+s/\bAls botons\([^[:alnum:]]\)/En els botons\1/g
+s/\(<\/em>\|estableix\|[Mm]illora\|[Mm]illores\|repetidament\|text\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar com a entrada\) als botons\([^[:alnum:]]\)/\1 en els botons\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als botons\([^[:alnum:]]\)/\1 en els botons\2/g
 # al BTS
 s/\b\([Cc]erca d'errors\) al BTS\([^[:alnum:]]\)/\1 en el BTS\2/g
+# als busos
+s/\b\(produeixen errors\) als busos\([^[:alnum:]]\)/\1 en els busos\2/g
 # al càlcul
 s/\b\(combinaran\|[Cc]ombineu aquest nombre de files\|[Uu]sat\|[Uu]tilitzat\) al càlcul\([^[:alnum:]]\)/\1 en el càlcul\2/g
  #
@@ -2501,14 +2820,19 @@ s/\b\([Uu]sat\|[Uu]tilitzat\) als càlculs\([^[:alnum:]]\)/\1 en els càlculs\2/
 s/\b\(accions prèvies\) al calibratge\([^[:alnum:]]\)/\1 en el calibratge\2/g
 # al cantó
 s/\b\(Transport públic local\) al cantó\([^[:alnum:]]\)/\1 en el cantó\2/g
+# al canvi
+s/\b\(configuració del suavitzat\) al canvi\([^[:alnum:]]\)/\1 en el canvi\2/g
 # al caràcter
 s/\bAl caràcter\([^[:alnum:]]\)/En el caràcter\1/g
+# al carbonet
 # al catàleg
-s/\b\(existeix\) al catàleg\([^[:alnum:]]\)/\1 en el catàleg\2/g
+s/\b\(existeix\|mostra el nombre de files en la taula i el nombre total d'objectes\) al catàleg\([^[:alnum:]]\)/\1 en el catàleg\2/g
  #
 s/\b\(equatorials <ai-skycoords-equatorial>`\) als catàlegs\([^[:alnum:]]\)/\1 en els catàlegs\2/g
 # al cau
 s/\b\(simulació\) al cau\([^[:alnum:]]\)/\1 en el cau\2/g
+# al CI
+s/\b\(disponibles\) al CI\([^[:alnum:]]\)/\1 en el CI\2/g
 # al CMS
 s/\bAl CMS\([^[:alnum:]]\)/En el CMS\1/g
 s/\bal CMS\([^[:alnum:]]\)/en el CMS\1/g
@@ -2517,150 +2841,131 @@ s/\bal CMS\([^[:alnum:]]\)/en el CMS\1/g
 s/\b\(saber\) als comentaris\([^[:alnum:]]\)/\1 en els comentaris\2/g
 # al compartiment
 s/\b\(La bateria no està\) al compartiment\([^[:alnum:]]\)/\1 en el compartiment\2/g
+# al compositor
+ #
+s/\b\(s'obria la configuració\) als compositors\([^[:alnum:]]\)/\1 en els compositors\2/g
 # al comptador
 s/\b\(relació temps a soroll\) al comptador\([^[:alnum:]]\)/\1 en el comptador\2/g
 # al compte
  #
 s/\b\([Oo]culta els comptes amb saldo zero\|Routing Number)\) als comptes\([^[:alnum:]]\)/\1 en els comptes\2/g
+# al correu
+s/\b\(inclogueu números de targeta de crèdit\) al correu\([^[:alnum:]]\)/\1 en el correu\2/g
+# al cos
+ #
+s/\b\(direcció oposada a la que és normal\) als cossos\([^[:alnum:]]\)/\1 en els cossos\2/g
 # al costat
 s/\bAl costat \(del servidor\|dret\|esquerre\)\([^[:alnum:]]\)/En el costat \1\2/g
   s/\b\(arrossegueu qualsevol peça\|Moveu-vos\) al costat\([^[:alnum:]]\)/\1 fins al costat\2/g
   s/\bvista costat al costat\([^[:alnum:]]\)/vista costat a costat\1/g
-s/\b\(construir un patró idèntic\|De manera predeterminada és\|desades\|doble toc\|hi ha\|Hi ha literals\|implementat caselles de selecció addicionals\|mètode estadístic,\|[Mm]ostra l'escala i el desplaçament\|Mostra la barra de desplaçament\|mostrarà els números de les línies\|mostrarà una vora per a les icones\|número d'equació\|penja\|propostes\|reproduir simètricament el patró\|Sense vores\|sis botons\|veus\) al costat\([^[:alnum:]]\)/\1 en el costat\2/g
+s/\b\(construir un patró idèntic\|De manera predeterminada és\|desades\|disponibles\|doble toc\|hi ha\|Hi ha literals\|implementat caselles de selecció addicionals\|mètode estadístic,\|[Mm]ostra l'escala i el desplaçament\|Mostra la barra de desplaçament\|mostrarà els números de les línies\|mostrarà una vora per a les icones\|número d'equació\|penja\|propostes\|reproduir simètricament el patró\|Sense vores\|sis botons\|veus\) al costat\([^[:alnum:]]\)/\1 en el costat\2/g
  #
-s/\b\(funciona\) als costats\([^[:alnum:]]\)/\1 en els costats\2/g
+s/\b\(disponibles\|funciona\) als costats\([^[:alnum:]]\)/\1 en els costats\2/g
 # al fòrum
-s/\b\([Cc]erqueu l'aplicació %1\|[Dd]ebateu\|debat\|debatre-ho\|feu preguntes\|informa en kaichi1342\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ff]\)òrum\([^[:alnum:]]\)/\1 en el \2\3òrum\4/g
+s/\b\(103720)\|106882)\|cerca d'errors\|[Cc]erqueu l'aplicació %1\|connector amb artistes\|[Dd]ebateu\|debat\|debatre-ho\|entrada\] ()\|feu preguntes\|informa en kaichi1342\|treballs artístics destacats\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ff]\)òrum\([^[:alnum:]]\)/\1 en el \2\3òrum\4/g
  #
-s/\b\([Ee]rrors\|suport\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ff]\)òrums\([^[:alnum:]]\)/\1 en els \2\3òrums\4/g
+s/\b\([Ee]rrors\|suport\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ff]\)òrums\([^[:alnum:]]\)/\1 en els \2\3òrums\4/g
 # al fstab
-s/\b\(definida\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)fstab\([^[:alnum:]]\)/\1 en el \2fstab\3/g
+s/\b\(definida\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)fstab\([^[:alnum:]]\)/\1 en el \2fstab\3/g
 # al giny
 s/\b\(indiquen\|llistar els idiomes alternatius\/traduïts preferits\|traducció\|traduccions en línia\|verificació ortogràfica\) al giny\([^[:alnum:]]\)/\1 en el giny\2/g
  #
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\) als ginys\([^[:alnum:]]\)/\1 en els ginys\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als ginys\([^[:alnum:]]\)/\1 en els ginys\2/g
+s/\b\(desactiva la pulsació perllongada\) als ginys\([^[:alnum:]]\)/\1 en els ginys\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als ginys\([^[:alnum:]]\)/\1 en els ginys\2/g
 # al grup
-s/\b\(animació»\|estan\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)grup\([^[:alnum:]]\)/\1 en el \2grup\3/g
+s/\b\(animació»\|estan\|posar \*aquest\* usuari\|[Pp]oseu el vostre compte d'usuari\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)grup\([^[:alnum:]]\)/\1 en el \2grup\3/g
  #
-s/\b\(qüestions\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)grups\([^[:alnum:]]\)/\1 en els \2grups\3/g
-# al J2000
-s/\b\(declinació (Dec)\) al J2000\([^[:alnum:]]\)/\1 en el J2000\2/g
-# al manual
-s/\b\(AstroInfo\|disponible\|[Ll]legiu-ne els detalls\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Mm]\)anual\([^[:alnum:]]\)/\1 en el \2\3anual\4/g
-# al mapa
-s/\bAl mapa\([^[:alnum:]]\)/En el mapa\1/g
-s/\b\(apareixerà\|aquestes sis ciutats\|arrossegant el centre del mosaic\|asteroides\|CDV)\|cel profund\|cel profund»\|[Cc]entra\|[Cc]entra %1\|centrar amb facilitat un objecte\|centrat\|[Cc]ol·loca temporalment\|com a imatges\|cometes\|constel·lacions\|dibuixar\|dibuixarà el terreny\|dibuixarà un contorn\|dibuix[ei]n\|disponible\|Júpiter\|Lluna\|Mart\|Mercuri\|Neptú\|Plutó\|Saturn\|Sol\|Urà\|Venus\|eclíptica\|enfocament\|equador\|equador celeste\|equatorials\|estrelles\|etiqueta\|etiquetes\|etiqueta acolorida de nom\|etiquetar\|girar la vista de manera que el nord\|HiPS\|horitzó\|horitzó local\|horitzontals\|i les corbes eclíptiques\|incloure\|indicadors\|localitzar-los\|marcats automàticament\|meridià local\|Mostra els punts d'alineació\|mosaic\|Mostra una marca de telescopi\|mostrarà\|mostraran\|mostraran imatges incloses\|mostren els seus punts\|mostri la mida angular del sensor CCD\|objecte\|objectes\|objectes addicionals\|objectes resolts\|planetes\|posició actual de la imatge\|posició apuntada pel telescopi\|posició correcta\|qualsevol objectere\|flectirà\|representen\|representi el terreny\|ressaltaran amb un símbol\|ressalti\|satèl·lit\|satèl·lits\|seleccionant-los\|seleccionat\|simulada\|situades\|situats\|Sol i la Lluna)\|solucionador\|supernova\|supernoves\|superposarà les imatges\|[Ss]uperposicions d'imatges\|terra opac\|Via Làctia\|visibles\|[Vv]isualitza\|visualitzar-les directament\) al mapa\([^[:alnum:]]\)/\1 en el mapa\2/g
-# al marge
-  s/\bquote>al marge<\/quote>/quote>en el marge<\/quote>/g
-s/\b\(està\|nanes\) \((«\|\)al marge\([^[:alnum:]]\)/\1 \2en el marge\3/g
-# al mateix
-s/\b\(cau sempre\|incidir sempre\|s'executen\|sortida\) al mateix\([^[:alnum:]]\)/\1 en el mateix\2/g
-# al melic
-s/\b\([Pp]oseu una mà\) al melic\([^[:alnum:]]\)/\1 en el melic\2/g
-# al mercat
-  s/\bTORRE AL MERCAT\([^[:alnum:]]\)/TORRE EN EL MERCAT\1/g
-s/\b\(ser la millor marca\) al mercat\([^[:alnum:]]\)/\1 en el mercat\2/g
-# al meridià
-s/\b\(troba en aquest moment\|trobava\) al meridià\([^[:alnum:]]\)/\1 en el meridià\2/g
-# al moll
-s/\b\([Pp]osta de sol\) al moll\([^[:alnum:]]\)/\1 en el moll\2/g
-# al món
-s/\b\(contactes\) al món\([^[:alnum:]]\)/\1 en el món\2/g
-# al monitor
-s/\b\(és una polzada real\|[Nn]o s'ha seleccionat cap clip\|Treballs de clip de superposició\) al monitor\([^[:alnum:]]\)/\1 en el monitor\2/g
-# al mosaic
-s/\b\(amb l'orientació desitjada\) al mosaic\([^[:alnum:]]\)/\1 en el mosaic\2/g
-# al nariu
-s/\b\(dit anular\) al nariu\([^[:alnum:]]\)/\1 en el nariu\2/g
-# al navegador
-s/\b\(apareguin\|Bu&sca\|inici de sessió\|Jitsi\|l'agenda i\|[Oo]bre el Gestor web\|ressalta una funció\|veure els fitxers de Krita\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Nn]\)avegador\([^[:alnum:]]\)/\1 en el \2\3avegador\4/g
-# al núvol
-s/\b\(conflicte amb una adreça d'interès\|emmagatzemar les vostres dades\|executat\|llavors\|Shells\) al núvol\([^[:alnum:]]\)/\1 en el núvol\2/g
+s/\b\(qüestions\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)grups\([^[:alnum:]]\)/\1 en els \2grups\3/g
 # al calaix
 s/\b\(mostrar els elements multimèdia remots\) al calaix\([^[:alnum:]]\)/\1 en el calaix\2/
 # al calendari
-s/\b\([Ee]mmagatzema una còpia de l'adjunt\) al calendari\([^[:alnum:]]\)/\1 en el calendari\2/
-# al canal
-s/\b\(Corregeix el missatge de traducció\|publica[rt] un vídeo nou\|tenen lloc\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)canal\([^[:alnum:]]\)/\1 en el \2canal\3/g
- #
-s/\b\(aconseguir actualitzacions\) als canals\([^[:alnum:]]\)/\1 en els canals\2/g
-# al cau
-s/\b\(simulació\) al cau\([^[:alnum:]]\)/\1 en el cau\2/g
-# al Chromebook
- #
-s/\b\(trobava\) als Chromebook\([^[:alnum:]]\)/\1 en els Chromebook\2/g
-# al codi
-  s/\b\"o al codi\([^[:alnum:]]\)/\"o en el codi\1/g
-s/\b\(avís\|default_arch»\) al codi\([^[:alnum:]]\)/\1 en el codi\2/g
-# al bosc
-s/\b\(Cabana\) al bosc\([^[:alnum:]]\)/\1 en el bosc\2/g
-# al botó
-s/\bAl botó\([^[:alnum:]]\)/En el botó\1/g
-s/\b\(<\/em>\|dies\|estableix\|lambda\|[Pp]ulsació llarga\|repetidament\|text\) al botó\([^[:alnum:]]\)/\1 en el botó\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al botó\([^[:alnum:]]\)/\1 en el botó\2/g
- #
-s/\bAls botons\([^[:alnum:]]\)/En els botons\1/g
-s/\(<\/em>\|estableix\|repetidament\|text\) als botons\([^[:alnum:]]\)/\1 en els botons\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als botons\([^[:alnum:]]\)/\1 en els botons\2/g
+s/\b\(coneix els equinoccis de primavera i de tardor com a dates\|[Ee]mmagatzema una còpia de l'adjunt\|i hores de la seva posta per a qualsevol data\) al calendari\([^[:alnum:]]\)/\1 en el calendari\2/
 # al camí
-s/\b\(àlbum\|[Cc]erca\|[Cc]erca[rt]\|dades existents\|disc\|el nom de cada carpeta\|[Ii]nstal·la el paquet\|percnt;1\|situar\|troba\|una fita important\) al \(llarg \|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)camí\([^[:alnum:]]\)/\1 en el \2\3camí\4/g
+s/\b\(àlbum\|[Cc]erca\|[Cc]erca[rt]\|dades existents\|desament correcte de l'element de títol\|disc\|disponible\|disponibles\|el nom de cada carpeta\|[Ii]nstal·la el paquet\|percnt;1\|situar\|[Tt]ext\|troba\|troben\|una altra versió de PyQt\|una fita important\) al \(llarg \|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)camí\([^[:alnum:]]\)/\1 en el \2\3camí\4/g
  #
-s/\b\([Cc]erca\|[Cc]erca[rt]\) als camins\([^[:alnum:]]\)/\1 en els camins\2/g
+s/\b\([Cc]erca\|[Cc]erca[rt]\|desament correcte de l'element de títol\) als camins\([^[:alnum:]]\)/\1 en els camins\2/g
 # al camp
-s/\b\(addicionals\|[Aa]dreça\|[Cc]ognom\|compressió\|contacte\|correu\|[Dd]ensitat d'estrelles\|entrada\|és superior\|escollint\|fosc\|[Nn]om\|número»\|objectiu\|pregunta\|res\|salts de línia\|teclejar\) al camp\([^[:alnum:]]\)/\1 en el camp\2/g
+s/\bAl camp\([^[:alnum:]]\)/En el camp\1/g
+s/\b\(addicionals\|[Aa]dreça\|apareixerà\|[Aa]pareixerà\|[Cc]ognom\|compressió\|contacte\|contenen la cadena\|correu\|[Dd]ensitat d'estrelles\|entrada\|és superior\|escollint\|escriure el nom de fitxer de l'script\|escriviu un nom per a la cerca\|fosc\|[Ii]ntroduïu el nom d'amfitrió o l'adreça IP del servidor\|[Nn]om\|nombre de tics definit\|número»\|objectiu\|pregunta\|res\|salts de línia\|teclejar\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar un protocol\) al camp\([^[:alnum:]]\)/\1 en el camp\2/g
 s/\bal camp de sota\([^[:alnum:]]\)/en el camp de sota\1/g
  #
-s/\b\(angle CDV de l'ocular\|copiaran\|paraules\) als camps\([^[:alnum:]]\)/\1 en els camps\2/g
+s/\b\(angle CDV de l'ocular\|copiaran\|introduir els valors de longitud i latitud manualment\|paraules\|proporcionar un ajust fi\) als camps\([^[:alnum:]]\)/\1 en els camps\2/g
+# al canal
+s/\b\(Corregeix el missatge de traducció\|indicant el valor del nivell de color\|publica[rt] un vídeo nou\|tenen lloc\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)canal\([^[:alnum:]]\)/\1 en el \2canal\3/g
+ #
+s/\b\(aconseguir actualitzacions\|maximitza l'abast tonal\) als canals\([^[:alnum:]]\)/\1 en els canals\2/g
 # al capítol
 s/\b\(digiKam\) al capítol\([^[:alnum:]]\)/\1 en el capítol\2/g
 # al CAS
 s/\bA CAS\([^[:alnum:]]\)/En CAS\1/g
+# al cau
+s/\b\(simulació\) al cau\([^[:alnum:]]\)/\1 en el cau\2/g
 # al cel
-s/\b\(actual\|cada estrella\|dibuix[ei]n\|és el punt\|és un cercle més gran\|establerts a un angle de 23,5 graus\|estan aquests objectes\|estaria alt\|estigués\|gira\|girar\|[Ii]magineu dues estrelles\|incloses\|indica l'ascensió recta\|La línia\|localitzar-lo\|moviment\|[Oo]bjecte\|objecte feble\|[Oo]bjectes\|posició\|posició del Sol\|posició nova\|posicions\|posta d'un objecte\|ser molt més gran\|simular la vista\|veiem\|veure's\|visible\|visibles\) al cel\([^[:alnum:]]\)/\1 en el cel\2/g
+s/\b\(actual\|cada estrella\|cara, defectes\|conèixer la ubicació, la mida i l'orientació\|converteix les \*coordenades del catàleg\* d'un punt\|creada per l'estrella\|Dec`` aproximada\|dibuix[ei]n\|és el punt\|és un cercle més gran\|establerts a un angle de 23,5 graus\|estan aquests objectes\|estaria alt\|estigués\|gira\|girar\|[Ii]magineu dues estrelles\|incloses\|indica l'ascensió recta\|La línia\|localitzar-lo\|millorar els detalls\|mirant en comparació amb la seva posició real\|mostrarà\|moviment\|[Oo]bjecte\|objecte feble\|[Oo]bjectes\|orientació desitjada al mosaic\|posició\|posició del Sol\|posició nova\|posicions\|posta d'un objecte\|presenta les dades avançades disponibles quant a un objecte específic\|ser molt més gran\|simular la vista\|veiem\|veure's\|visible\|visibles\) al cel\([^[:alnum:]]\)/\1 en el cel\2/g
 # al centre
 s/\bAl centre\([^[:alnum:]]\)/En el centre\1/g
-s/\b\(alterna els punts de mira\|casella de selecció\|centrat\|col·loca\|comparació d'estrelles\|descartin les estrelles\|dibuixa\|dibuixa com a un punt groc\|dibuixarà un símbol de camp de visió\|i l'objecte\|i l'objecte actual\|L'àrea d'imatges\|mostrarà la quadrícula 3x3 de mosaic\|mostrat\|produeixen\|relativament alta\|té dues àrees\) al centre\([^[:alnum:]]\)/\1 en el centre\2/g
+s/\b\(alterna els punts de mira\|àrea de la imatge\|casella de selecció\|centrat\|col·loca\|comparació d'estrelles\|desactiva l'ajustament predeterminat\|descartin les estrelles\|dibuixa\|dibuixa com a un punt groc\|dibuixarà un símbol de camp de visió\|en text blanc\|i l'objecte\|i l'objecte actual\|L'àrea d'imatges\|mostra una vista prèvia de l'efecte d'inclinació\|mostrarà la quadrícula 3x3 de mosaic\|mostrat\|produeixen\|relativament alta\|té dues àrees\) al centre\([^[:alnum:]]\)/\1 en el centre\2/g
+# al cercle
+s/\b\(selecciona un to\) al cercle\([^[:alnum:]]\)/\1 en el cercle\2/g
 # al CERN
 s/\b\(s'utilitza àmpliament\) al CERN\([^[:alnum:]]\)/\1 en el CERN\2/g
 # al certificat
 s/\b\(especificat\) al certificat\([^[:alnum:]]\)/\1 en el certificat\2/g
+# al Chromebook
+ #
+s/\b\(executar-se únicament\|trobava\) als Chromebook\([^[:alnum:]]\)/\1 en els Chromebook\2/g
+# al codi
+  s/\b\"o al codi\([^[:alnum:]]\)/\"o en el codi\1/g
+s/\b\(avís\|default_arch»\|està inclòs\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al codi\([^[:alnum:]]\)/\1 en el codi\2/g
 # al color
   s/\bNo s'ha trobat cap entrada anomenada %1 al «colors\([^[:alnum:]]\)/No s'ha trobat cap entrada anomenada %1 en el «colors\1/g
 # al còmic
-s/\b\([Cc]lic del mig\) al còmic\([^[:alnum:]]\)/\1 en el còmic\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al còmic\([^[:alnum:]]\)/\1 en el còmic\2/g
 # al concurs
 s/\b\([Pp]articiparan\) al concurs\([^[:alnum:]]\)/\1 en el concurs\2/g
 # al connector
-s/\b\(IP-Country utilitzada\|utilitzar-l[eo]s\) al connector\([^[:alnum:]]\)/\1 en el connector\2/g
+s/\b\([Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al connector\([^[:alnum:]]\)/\1 en el connector\2/g
 # al consell
 s/\b\(alarmes\|[Mm]ostra els controls multimèdia i del volum\|mostrar el camí complet només\) al consell\([^[:alnum:]]\)/\1 en el consell\2/g
  #
 s/\b\(fitxer\|mostrar el camí complet només\|mostraran\) als consells\([^[:alnum:]]\)/\1 en els consells\2/g
+# al contenidor
+s/\b\([Ee]mmagatzemada\|[Ee]mmagatzemades\|[Ee]mmagatzemat\|[Ee]mmagatzemats\|fer una còpia de seguretat de les metadades originals del fitxer RAW\|incrustada\|incrustades\|incrustat\|incrustats\) al contenidor\([^[:alnum:]]\)/\1 en el contenidor\2/g
+# al contorn
+s/\b\(evita una divisió per 0\) al contorn\([^[:alnum:]]\)/\1 en el contorn\2/g
 # al control
-s/\b\(botons amunt i avall\|botons dret i esquerre\) al control\([^[:alnum:]]\)/\1 en el control\2/g
+s/\b\(botons amunt i avall\|botons dret i esquerre\|reflecteix\|reflecteixen\) al control\([^[:alnum:]]\)/\1 en el control\2/g
+ #
+s/\b\(botons amunt i avall\|botons dret i esquerre\|reflecteix\|reflecteixen\) als controls\([^[:alnum:]]\)/\1 en els controls\2/g
+# al controlador
+s/\b\(establir qualsevol propietat\) al controlador\([^[:alnum:]]\)/\1 en el controlador\2/g
 # al costat
 s/\b\(apareix\) al costat\([^[:alnum:]]\)/\1 en el costat\2/g
 # al «Creador
-s/\b\(esmenat les regressions\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Creador\([^[:alnum:]]\)/\1 en el \2Creador\3/g
+s/\b\(esmenat les regressions\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Creador\([^[:alnum:]]\)/\1 en el \2Creador\3/g
 # al cursor
-s/\b\([Cc]entra la vista\) al cursor\([^[:alnum:]]\)/\1 en el cursor\2/g
+s/\b\([Cc]entra la vista\|ginys emergents\) al cursor\([^[:alnum:]]\)/\1 en el cursor\2/g
 # al darrer
 s/\b\(interès que s'ha de pagar\) al darrer\([^[:alnum:]]\)/\1 en el darrer\2/g
 # al davant
 s/\b\(posant un punt\) al davant\([^[:alnum:]]\)/\1 en el davant\2/g
-# al diagrama
-s/\b\([Uu]sat\|[Uu]tilitzat\) al diagrama\([^[:alnum:]]\)/\1 en el diagrama\2/g
+# al defecte
  #
-s/\b\([Uu]sat\|[Uu]tilitzat\) als diagrames\([^[:alnum:]]\)/\1 en els diagrames\2/g
+s/\b\(detectar píxels cremats i blocats nous\) als defectes\([^[:alnum:]]\)/\1 en els defectes\2/g
+# al departament
+s/\b\(\) al departament\([^[:alnum:]]\)/\1 en el departament\2/g
+# al diagrama
+s/\b\(Per tant,\|[Uu]tilitzat\) al diagrama\([^[:alnum:]]\)/\1 en el diagrama\2/g
+ #
+s/\b\(vostre oncle no tècnic o\|[Uu]tilitzat\) als diagrames\([^[:alnum:]]\)/\1 en els diagrames\2/g
 # al diàleg
 s/\bAl diàleg\([^[:alnum:]]\)/En el diàleg\1/g
-s/\b\(interface>\|actualització\|aplica\|assumpte\|barreja\|canvis fets\|canvis realitzats\|carpeta\|clar\|col·lecció\|colors>`\|completar\|comprovar la compatibilitat\|[Cc]onfiguració\|configuració d'Ekos<\/link>,\|[Cc]onfiguració predeterminada\|[Cc]onfigureu-[hl][ao]\|context\|data\|definir-ne de pròpies\|definiu\|destinatari\|disponible\|disponibles\|Empleneu els camps adequats\|emprant els botons\|es pot trobar\|Especifica l'amplària del camp del receptor\|especificada\|especificat\|establert\|establerta\|establida\|[Ee]stabliu-la\|executar\|fer\|fitxers\|fitxers, si no s'ha canviat\|[Gg]estor de connectors»\|icones\|identitats\|intermediari\|introduïu la drecera web\|introduïts\|KStars\|La llista dels carregadors d'imatges\|maneres\*\*\|mostra les distàncies a moltes estrelles\|o\|OCR\|Obre el disseny d'informe\|opció\|opcions\|obrir fitxers d'àudio\|obrir fitxers d'imatge\|ordre\|perfil\|pestanya\|present\|que trieu\|realitza en l'ordre dels ginys\|recordatori\|recordatoris\|recurrència\|remitent\|seleccionada més recentment\|seleccionat\|Si és cert,\|so\|so predeterminat\|suprimir\|TLS\|utilitzarà\|utilitzar-lo\|[Vv]alor predeterminat\) al diàleg\([^[:alnum:]]\)/\1 en el diàleg\2/g
+s/\b\(interface>\|activar\|actualització\|aplica\|assumpte\|barreja\|canvis fets\|canvis realitzats\|carpeta\|clar\|col·lecció\|colors>`\|completar\|comprovar la compatibilitat\|[Cc]onfiguració\|configuració d'Ekos<\/link>,\|[Cc]onfiguració predeterminada\|[Cc]onfigurar\|[Cc]onfigureu-[hl][ao]\|context\|data\|definir-ne de pròpies\|definiu\|destinatari\|disponible\|disponibles\|ekos>`,\|Empleneu els camps adequats\|emprant els botons\|es configura\|es pot trobar\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|Especifica l'amplària del camp del receptor\|especificada\|especificat\|establert\|establerta\|establida\|[Ee]stabliu el port correcte\|[Ee]stabliu-la\|executar\|fer\|fitxers\|fitxers, si no s'ha canviat\|[Gg]estor de connectors»\|icones\|identitats\|INDI``\|intermediari\|introduïda\|introduïdes\|introduït\|introduïts\|introduïu la drecera web\|introduïts\|KStars\|La llista dels carregadors d'imatges\|La taula de resultats\|[Ll]ocalitzeu les fonts desitjades\|maneres\*\*\|[Mm]illora\|[Mm]illores\|mostra les distàncies a moltes estrelles\|mostrarà un codi QR\|o\|OCR\|Obre el disseny d'informe\|opció\|opcions\|obrir fitxers d'àudio\|obrir fitxers d'imatge\|ordre\|perfil\|pestanya\|present\|que trieu\|realitza en l'ordre dels ginys\|recordatori\|recordatoris\|recurrència\|remitent\|seleccionada més recentment\|seleccionat\|seleccioneu l'objectiu\|Si és cert,\|so\|so predeterminat\|suprimir\|TLS\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|[Vv]alor predeterminat\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)diàleg\([^[:alnum:]]\)/\1 en el \2diàleg\3/g
     s/\bdiàleg\(s\|\) d'edició d'alarma\([^[:alnum:]]\)/diàleg\1 d'edició d'una alarma\2/g
     s/\bdiàleg\(s\|\) de selecció de \(la \|\)carpeta\([^[:alnum:]]\)/diàleg\1 de selecció d'una carpeta\3/g
  #
 s/\bAls diàlegs\([^[:alnum:]]\)/En els diàlegs\1/g
-s/\b\([Cc]onfiguració predeterminada\|horària\|mostri\|reproducció de sons\|[Vv]alor predeterminat\|visualització de la imatge\) als diàlegs\([^[:alnum:]]\)/\1 en els diàlegs\2/g
+s/\b\([Cc]onfiguració predeterminada\|fus horari\|mostri\|reproducció de sons\|[Vv]alor predeterminat\|visualització de la imatge\) als diàlegs\([^[:alnum:]]\)/\1 en els diàlegs\2/g
 # al diccionari
 s/\b\([Nn]o\) al diccionari\([^[:alnum:]]\)/\1 en el diccionari\2/g
 # al directori
@@ -2668,33 +2973,39 @@ s/\b\(addicionals\|adreces\|augmentarà les dades\|cap %1\|carpeta «gsc»\|cerc
  #
 s/\b\([Cc]anvis\|cercaran\|fitxer d'índex\|trobat cap fitxer d'índex\) als directoris\([^[:alnum:]]\)/\1 en els directoris\2/g
 # al disc
-s/\b\(apuntar cap a un estil\|canviï\|capturades\|dades\|desa[rt]\|desaran\|desin\|desin les imatges de l'enfocament automàtic\|dispositiu\|editar els fitxers «.esl»\|emmagatzemant-les\|emmagatzemar les contrasenyes i altra informació personal\|emmagatzemats\|emmagatzemen\|Error durant l'escriptura\|escenes\|escriptura\|espai\|es[lq]<\/literal>\|imatges\|les imatges de les carpetes\|[Mm]antén la còpia\|mantenir\|memòria cau\|ni un fitxer «.esq»\|[Ss]uprimeix la còpia\) al disc\([^[:alnum:]]\)/\1 en el disc\2/g
+s/\bAl disc\([^[:alnum:]]\)/En el disc\1/g
+s/\b\(Apilador en directe»\|apuntar cap a un estil\|canviï\|capturades\|cercant-les\|[Cc]rea una imatge\|dades\|desa[rt]\|[Dd]esa el mapa de defectes\|[Dd]esa la imatge\|[Dd]esa la llista d'observacions actual\|desar-l[ao]\|desaran\|des[ei]n localment\|desin\|desin les imatges de l'enfocament automàtic\|disposició de carpetes\|dispositiu\|editar els fitxers «.esl»\|emmagatzemant-les\|emmagatzemar les contrasenyes i altra informació personal\|emmagatzemats\|emmagatzemen\|Error durant l'escriptura\|escenes\|escriptura\|escriptura actual de la taula del programador\|escriptures excessives\|espai\|es[lq]<\/literal>\|estructura de carpetes\|idèntic al nom de la carpeta\|imatges\|les imatges de les carpetes\|[Mm]antén la còpia\|mantenir\|memòria cau\|ni un fitxer «.esq»\|span> també\|[Ss]uprimeix la còpia\) al disc\([^[:alnum:]]\)/\1 en el disc\2/g
  #
+s/\bAls discs\([^[:alnum:]]\)/En els discs\1/g
 s/\b\(és molt activa\) als discs\([^[:alnum:]]\)/\1 en els discs\2/g
 # al dispositiu
-s/\b\(activat\|desactivat\|desaran\|emmagatzemar les imatges\|habilitar el mode de desenvolupador\|INDI\|instal·lar-la de forma manual\|[Nn]o hi ha cap suport\|[Rr]egistra els missatges de depuració\|sector %1\) al dispositiu\([^[:alnum:]]\)/\1 en el dispositiu\2/g
+s/\b\(activat\|desactivat\|desar les imatges només\|desaran\|emmagatzemar les imatges\|habilitar el mode de desenvolupador\|INDI\|instal·lar-la de forma manual\|[Nn]o hi ha cap suport\|[Rr]egistra els missatges de depuració\|sector %1\|succeeix\) al dispositiu\([^[:alnum:]]\)/\1 en el dispositiu\2/g
  #
-s/\b\(augment de velocitat\|com\|emmagatzemar imatges\|i\|ja no s'ignora\|oferir una experiència &kde; nova\) als dispositius\([^[:alnum:]]\)/\1 en els dispositius\2/g
+s/\b\(augment de velocitat\|com\|compartir la configuració i els recursos\|emmagatzemar imatges\|es vegi\|gestos multitàctils\|i\|ja no s'ignora\|oferir una experiència &kde; nova\|parpelleja\|succeeix\) als dispositius\([^[:alnum:]]\)/\1 en els dispositius\2/g
+# al disseny
+s/\b\(especificar els tipus de fonts de llum correctes\|[Mm]illora\|[Mm]illores\) al disseny\([^[:alnum:]]\)/\1 en el disseny\2/g
 # al document
 s/\bAl document\([^[:alnum:]]\)/En el document\1/g
-s/\b\(anàlisi\|canvia\|canvis\|canvis posteriors\|centrar la pantalla\|cercarà\|conjunts de marc\|definit\|definits\|error\|establertes\|Desa\|paleta\|present\|seleccionat\|text\) al document\([^[:alnum:]]\)/\1 en el document\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al document\([^[:alnum:]]\)/\1 en el document\2/g
+s/\b\(anàlisi\|canvia\|canvis\|canvis posteriors\|centrar la pantalla\|cercarà\|conjunts de marc\|definit\|definits\|desa\|error\|establertes\|Desa\|paleta\|present\|seleccionat\|text\) al document\([^[:alnum:]]\)/\1 en el document\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al document\([^[:alnum:]]\)/\1 en el document\2/g
   s/\bL'adreça al document\([^[:alnum:]]\)/L'adreça del document\1/g
+ #
 s/\bAls documents\([^[:alnum:]]\)/En els documents\1/g
-s/\b\(esmenes\|inserir\|inserits\|JavaScript\|nivell més gran\|pàgines\|text\) als documents\([^[:alnum:]]\)/\1 en els documents\2/g
+s/\b\(des[ei]n\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|inserir\|inserits\|JavaScript\|nivell més gran\|pàgines\|text\) als documents\([^[:alnum:]]\)/\1 en els documents\2/g
 # al dorsal
 s/\b\(completar\|entrada %1\|gestionat\|sintaxi\|un error\|xarxa\) al dorsal\([^[:alnum:]]\)/\1 en el dorsal\2/g
+ #
 s/\b\(fallades\|secundàries\|xarxa\) als dorsals\([^[:alnum:]]\)/\1 en els dorsals\2/g
 # als DVI
 s/\b\(cerca inversa «latex-synctex»\) als DVI\([^[:alnum:]]\)/\1 en els DVI\2/g
 # al fil
-s/\b\(132)\|[Ii]nformeu de les vostres troballes i comentaris\) al fil\([^[:alnum:]]\)/\1 en el fil\2/g
+s/\b\(132)\|Aquest mes\|deixar comentaris\|es va votar\|[Ii]nformeu de les vostres troballes i comentaris\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)fil\([^[:alnum:]]\)/\1 en el \2fil\3/g
 # al filtratge
-s/\b\(tingui en compte\) al filtratge\([^[:alnum:]]\)/\1 en el filtratge\2/g
+s/\b\(seleccionades\|tingui en compte\) al filtratge\([^[:alnum:]]\)/\1 en el filtratge\2/g
 # al filtre
-s/\b\(Activa les expressions regulars\|camps de número i de duració\|esmenat el mal comportament\|incloure en la busca i el grup de valoració\|roig\*\*\|seleccioneu JPG\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ff]\)iltre\([^[:alnum:]]\)/\1 en el \2\3iltre\4/g
+s/\b\(Activa les expressions regulars\|camps de número i de duració\|cerca i el grup de valoració\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\|esmenat el mal comportament\|incloure en la busca i el grup de valoració\|trieu JPG\|vermell\*\*\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ff]\)iltre\([^[:alnum:]]\)/\1 en el \2\3iltre\4/g
  #
-s/\b\([Cc]ontrols lliscants HSV\) als filtres\([^[:alnum:]]\)/\1 en els filtres\2/g
+s/\b\([Cc]ontrols lliscants HSV\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar la vectorització\) als filtres\([^[:alnum:]]\)/\1 en els filtres\2/g
 # al final
 s/\b\(l'any 2015 i,\) al final\([^[:alnum:]]\)/\1 en el final\2/g
 # al fitxer
@@ -2702,23 +3013,28 @@ s/\bAl fi&txer\([^[:alnum:]]\)/En el fi\&txer\1/g
 s/\bAl fitxer\([^[:alnum:]]\)/En el fitxer\1/g
   s/\berror de lectura al fitxer\([^[:alnum:]]\)/error de lectura des del fitxer\1/g
   s/\bal fitxer XML\([^[:alnum:]]\)/en el fitxer XML\1/g
-s/\(,\|1»\|1<\/b>\|a X11)\|afegir un fitxer de vista prèvia\|afegiran com a referències\|anàlisi\|amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|Camps\|aparèixer\|aquesta funció\|àudio\/vídeo\|bandera\|bloqueig\|canviades\|canvis\|canvis des de l'exterior\|cap canvi\|cap figura\|caràtula\|caràtules\|[Cc]erca\|[Cc]lau\|codi\|configuració\|continuar\|contrasenyes\|control de canvis\|corresponents\|crear el registre del catàleg\|crides\|dades\|dades de connexió\|definides\|[Dd]esa\|[Dd]esa els resultats\|[Dd]esa la imatge\|desades\|desant-la\|desar\|desar el calendari\|desar la bibliografia\|desar la contrasenya\|desar la imatge\|desat\|desa[rt] la melodia\|desarà\|desaran\|desen\|dibuix:oficina\|diferents\|dins del registre\|disponible\|Element arrel no vàlid\|emmagatzemada\|emmagatzemades\|emmagatzema[rt]\|emmagatzemar la frase de pas\|emmagatzemaran\|enllaç\|enllestides\|entrades\|[Ee]rror\|error d'anàlisi\|es definia\|es definien\|es mostren\|escriptura\|escriptura de dades del porta-retalls\|Escriu les estadístiques\|escrit\|escriu\|escriurà\|escriure\|1\|escriure els certificats\|escriure els grups\|escriure la clau\|escriure la plantilla de llicència personalitzada\|escriure les subclaus\|[Ee]specifica el temps local\|especificat\|esperat\|establert\|establert la drecera correcta per a ampliar\|establerta\|estrelles)\|estigui\|etiqueta\|1<\/b>\|etiquetes\|falten (SD)\|1<\/filename>\|fitxers\|forma diferent\|format de fitxer\|funcions\|Guar&da\|implementació d'àudio\/vídeo\|incrusta\|incrustat\|informació del canal\|instruccions\|interpretaven algunes línies\|llicència\|MANSECT<\/envar>\|metadades\|[Mm]ostra\|mostren\|muntatge\|nivell\|o\|opcions diferents\|pàgines\|paraules\|particions\|pistes que\|preferències\|present\|problemes\|rectificació múltiple\|SD)\|[Tt]ria els camps\|[Tt]ria els paràmetres\|subclau\|traducció\|troba\|trobat formes\|tros\|ubicacions corresponents\|URL de baixada\|utilitzat\|vectors\) al fitxer\([^[:alnum:]]\)/\1 en el fitxer\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al fitxer\([^[:alnum:]]\)/\1 en el fitxer\2/g
-  s/\b\(Executa l'script\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)fitxer\([^[:alnum:]]\)/\1 en el \2fitxer\3\1/g
+s/\(,\|1»\|1<\/b>\|a X11)\|anàlisi\|Camps\|aparèixer\|aquesta funció\|àudio\/vídeo\|bandera\|bloqueig\|canviades\|canvis\|canvis des de l'exterior\|cap canvi\|cap figura\|caràtula\|caràtules\|[Cc]erca\|[Cc]lau\|codi\|configuració\|continuar\|contrasenyes\|control de canvis\|corresponents\|creant entrades permanents per a elles\|crear el registre del catàleg\|crides\|dades\|dades de connexió\|definides\|[Dd]esa\|[Dd]esa els resultats\|[Dd]esa la imatge\|desades\|desant-la\|desar\|desar el calendari\|desar la bibliografia\|desar la contrasenya\|desar la imatge\|desat\|desa[rt] la melodia\|desarà\|desaran\|desen\|dibuix:oficina\|diferents\|dins del registre\|disponible\|Element arrel no vàlid\|Elimina VDI d'aquesta MV\*\|emmagatzemada\|emmagatzemades\|emmagatzema[rt]\|emmagatzemar la frase de pas\|emmagatzemaran\|enllaç\|enllestides\|entrades\|[Ee]rror\|error d'anàlisi\|es definia\|es definien\|es mostren\|escriptura\|escriptura de dades del porta-retalls\|Escriu les estadístiques\|escrit\|escriu\|escriurà\|escriure\|1\|escriure els certificats\|escriure els grups\|escriure la clau\|escriure la plantilla de llicència personalitzada\|escriure les subclaus\|escrivia\|esmenat la gestió dels grups\|[Ee]specifica el temps local\|especificat\|esperat\|establert\|establert la drecera correcta per a ampliar\|establerta\|estrelles)\|estigui\|etiqueta\|1<\/b>\|etiquetes\|experimental-features<\/code>\|falten (SD)\|1<\/filename>\|fitxers\|forma diferent\|format de fitxer\|funcions\|Guar&da\|implementació d'àudio\/vídeo\|incrusta\|incrustat\|informació del canal\|instruccions\|interpretaven algunes línies\|llicència\|MANSECT<\/envar>\|metadades\|[Mm]ostra\|mostren\|muntatge\|nivell\|o\|opcions diferents\|pàgines\|paraules\|particions\|per exemple\|pistes que\|preferències\|present\|problemes\|realitzarà\|rectificació múltiple\|SD)\|s'especifiquen\|[Tt]ria els camps\|[Tt]ria els paràmetres\|subclau\|traducció\|troba\|trobat formes\|tros\|ubicacions corresponents\|URL de baixada\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|vectors\) al fitxer\([^[:alnum:]]\)/\1 en el fitxer\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al fitxer\([^[:alnum:]]\)/\1 en el fitxer\2/g
+  s/\b\(Executa l'script\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)fitxer\([^[:alnum:]]\)/\1 en el \2fitxer\3\1/g
   s/\berror de lectura al fitxer\([^[:alnum:]]\)/error de lectura des del fitxer\1/g
   s/\bmida del caràcter al fitxer\([^[:alnum:]]\)/mida del caràcter per al fitxer\1/g
   s/\bno al fitxer o al lateral\([^[:alnum:]]\)/no en el fitxer o en el lateral\1/g
+ #
 s/\bAls [Ff]itxers\([^[:alnum:]]\)/En els fitxers\1/g
   s/(als fitxers\([^[:alnum:]]\)/(en els fitxers\1/g
   s/\b\([Nn]omés\|restricció<\/a>\) als fitxers locals\([^[:alnum:]]\)/\1 en els fitxers locals\2/g
-s/\b\(canvi del propietari\|canvi dels atributs\|canvis\|canvis des de l'exterior\|canvis fets\|[Cc]erca\|corresponents\|emmagatzemades\|escriuen\|etiquetes\|implementació d'àudio\/vídeo\|línies\|metadades\|o\|que heu fet\|utilitzar-lo\) als fitxers\([^[:alnum:]]\)/\1 en els fitxers\2/g
+s/\b\(canvi del propietari\|canvi dels atributs\|canvis\|canvis des de l'exterior\|canvis fets\|[Cc]erca\|com ara la secció <code>\[Packages\]<\/code>\|corresponents\|emmagatzemades\|escriuen\|esmenat la gestió dels grups\|etiquetes\|implementació d'àudio\/vídeo\|línies\|metadades\|o\|que heu fet\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) als fitxers\([^[:alnum:]]\)/\1 en els fitxers\2/g
   s/\bi als fitxers RAW\([^[:alnum:]]\)/i en els fitxers RAW\1/g
   s/\bmonitorar els canvis dels fitxers\([^[:alnum:]]\)/monitorar els canvis en els fitxers\1/g
   s/\bals fitxers de capçalera\([^[:alnum:]]\)/en els fitxers de capçalera\1/g
+# al flux
+s/\b\([Ee]mmagatzemada\|[Ee]mmagatzemades\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ff]\)lux\([^[:alnum:]]\)/\1 en el \2\3lux\4/g
 # al fotograma
-s/\b\([Aa]ctiva la detecció de píxels cremats\|[Aa]ctiva la detecció de píxels freds\|centre de les estrelles\|detectades\|detectar\|Mostra HFR de les estrelles\) al fotograma\([^[:alnum:]]\)/\1 en el fotograma\2/g
+s/\b\([Aa]ctiva la detecció de píxels cremats\|[Aa]ctiva la detecció de píxels freds\|centre de les estrelles\|detectades\|detectar\|Mostra HFR de les estrelles\|reduir el soroll\) al fotograma\([^[:alnum:]]\)/\1 en el fotograma\2/g
+ #
+s/\b\(reduir el soroll\) als fotogrames\([^[:alnum:]]\)/\1 en els fotogrames\2/g
 # al fons
-s/\b\(dibuixarà superposat\|dibuixaran com a àrees ombrejades\|dispersa\|ocult[ei] el color de les traces\) al fons\([^[:alnum:]]\)/\1 en el fons\2/g
+s/\b\(dibuixarà superposat\|dibuixaran com a àrees ombrejades\|dispersa\|fotografies de grup o\|indica la il·luminació de la lluna\|ocult[ei] el color de les traces\|reduint les distraccions\) al fons\([^[:alnum:]]\)/\1 en el fons\2/g
 # al forat
 s/\bAl forat\([^[:alnum:]]\)/En el forat\1/g
 s/\b\(atrapa'ls\|bala\|caigui\|caure\|desar\|estigui\|presents\) al forat\([^[:alnum:]]\)/\1 en el forat\2/g
@@ -2727,18 +3043,24 @@ s/\bAls forats\([^[:alnum:]]\)/En els forats\1/g
 s/\b\(posar\|situar-les\) als forats\([^[:alnum:]]\)/\1 en els forats\2/g
 # al formulari
 s/\b\(emplenada\) al formulari\([^[:alnum:]]\)/\1 en el formulari\2/g
+# als Fonaments
+s/\b\(menus-help>`__\|menus-settings>`__\) als Fonaments\([^[:alnum:]]\)/\1 en els Fonaments\2/g
 # als Frameworks
-s/\b\(utilitzar\) als \(&plasma-workspaces;\|Frameworks\)\([^[:alnum:]]\)/\1 en els \2\3/g
+s/\b\([Uu]tilitza\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\|[Uu]tilitze[ns]\|[Uu]tilitzant\|[Uu]tilitzarà\|[Uu]tilitzaran\) als \(&plasma-workspaces;\|Frameworks\)\([^[:alnum:]]\)/\1 en els \2\3/g
 # al full
 s/\b\([Vv]egeu la sortida del vostre treball directament\) al full\([^[:alnum:]]\)/\1 en el full\2/g
+# al generador
+s/\b\([Mm]illora\|[Mm]illores\) al generador\([^[:alnum:]]\)/\1 en el generador\2/g
 # al gestor
-s/\b\(blocat\|calendaris\|Desa o\|destinació\|directori actual\|disponible\|Emmagatzema el perfil\|en &konqueror;,\|esmenat la relació d'aspecte dels consells d'eina\|[Ii]matges\|iniciant el perfil\|iniciar el perfil\|[Mm]ostra\|[Oo]bre\|obrir un àlbum\|ombres\|recuperat el botó «Neteja»\|visibles\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Gg]\)estor\([^[:alnum:]]\)/\1 en el \2\3estor\4/g
+s/\b\(assignació d'eines a una cua\|blocat\|calendaris\|Configureu la cua»\|convertir des de RAW a DNG\|Desa o\|destinació\|directori actual\|[Dd]isponible\|[Dd]isponibles\|Eines base»\|Eines base» de digiKam\|El flux de treball\|Emmagatzema el perfil\|en &konqueror;,\|esmenat la relació d'aspecte dels consells d'eina\|Flux de treball nou»\|[Ii]matges\|iniciant el perfil\|iniciar el perfil\|iniciava el perfil\|maintenance_quality>` i\|Marca d'aigua»\|menú contextual del flux de treball\|[Mm]ostra\|[Oo]bre\|obrir un àlbum\|ombres\|qualitat de la captura\|recuperat el botó «Neteja»\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar el convertidor RAW\|utilitzar el processador de G'MIC\|visibles\|vista en arbre de l'eina G'MIC\|vista en arbre dels filtres de G'MIC\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Gg]\)estor\([^[:alnum:]]\)/\1 en el \2\3estor\4/g
 # al giny
-s/\b\(Enfocament»\|s'indiquen\) al giny\([^[:alnum:]]\)/\1 en el giny\2/g
+s/\b\(desactivat el menú contextual\|Enfocament»\|s'indiquen\) al giny\([^[:alnum:]]\)/\1 en el giny\2/g
 # al gràfic
-s/\b\(apareixerà\|dibuixa\|Estableix el valor màxim\|Estableix el valor mínim\|[Mm]ode de selecció\|[Mm]ostra\|Mostra els sensors\|Mostra la zona crítica d'enfocament\|Mostra les etiquetes\|Mostra les etiquetes «Màx.» i «Mín.»\|Mostra la «Zona crítica de l'enfocament»\|mostrar la «Zona crítica de l'enfocament»\|mostrar les etiquetes\|mostren\|netejar el desordre, tant\|ocultar les etiquetes\|Petzval\|selecciona un guany a prop d'un «pas»\|Valor màxim\|Valor mínim\|visualitzada\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Gg]\)ràfic\([^[:alnum:]]\)/\1 en el \2\3ràfic\4/g
+s/\b\(apareixerà\|dibuixa\|Estableix el valor màxim\|Estableix el valor mínim\|[Mm]ode de selecció\|[Mm]ostra\|Mostra els sensors\|Mostra la zona crítica d'enfocament\|Mostra les etiquetes\|Mostra les etiquetes «Màx.» i «Mín.»\|Mostra la «Zona crítica de l'enfocament»\|mostrar la «Zona crítica de l'enfocament»\|mostrar les etiquetes\|mostren\|netejar el desordre, tant\|ocultar les etiquetes\|Petzval\|selecciona un guany a prop d'un «pas»\|Valor màxim\|Valor mínim\|visualitzada\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Gg]\)ràfic\([^[:alnum:]]\)/\1 en el \2\3ràfic\4/g
  #
-s/\b\([Vv]isualitza el traçat AR\|[Vv]isualitza el traçat d'error RMS\|[Vv]isualitza el traçat de correccions AR\|[Vv]isualitza el traçat de correccions Dec\|[Vv]isualitza el traçat Dec\|[Vv]isualitza el traçat de correccions Dec\|[Vv]isualitza el traçat SNR\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Gg]\)ràfics\([^[:alnum:]]\)/\1 en els \2\3ràfics\4/g
+s/\b\([Vv]isualitza el traçat AR\|[Vv]isualitza el traçat d'error RMS\|[Vv]isualitza el traçat de correccions AR\|[Vv]isualitza el traçat de correccions Dec\|[Vv]isualitza el traçat Dec\|[Vv]isualitza el traçat de correccions Dec\|[Vv]isualitza el traçat SNR\) als \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Gg]\)ràfics\([^[:alnum:]]\)/\1 en els \2\3ràfics\4/g
+# al J2000
+s/\b\(declinació (Dec)\) al J2000\([^[:alnum:]]\)/\1 en el J2000\2/g
 # als jardins
 s/\b\(Okular\) als jardins\([^[:alnum:]]\)/\1 en els jardins\2/g
 # al laboratori
@@ -2752,153 +3074,217 @@ s/\b\(visibles\) als lectors\([^[:alnum:]]\)/\1 en els lectors\2/g
 # al límit
 s/\b\(enfocament automàtic\) al límit\([^[:alnum:]]\)/\1 en el límit\2/g
 # al llapis
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\) al llapis\([^[:alnum:]]\)/\1 en el llapis\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al llapis\([^[:alnum:]]\)/\1 en el llapis\2/g
+# s/\b\(\) al llapis\([^[:alnum:]]\)/\1 en el llapis\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al llapis\([^[:alnum:]]\)/\1 en el llapis\2/g
 # al llenç
-s/\b\(amb text enriquit\|dibuixar objectes i altres coses\|dibuixen assistents directament\|[Dd]receres d'entrada\|edició de text\|funciona\) al llenç\([^[:alnum:]]\)/\1 en el llenç\2/g
+s/\b\(amb text enriquit\|anul·lar l'arrossegament\|dibuixar objectes i altres coses\|dibuixen assistents directament\|dominant» directament\|[Dd]receres d'entrada\|edició de text\|editar el text\|editar el text directament\|editar diverses propietats\|funciona\|pintar les màscares\|substituirà l'editor de pinzells\) al llenç\([^[:alnum:]]\)/\1 en el llenç\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\|trieu prèviament una àrea\) al llenç\([^[:alnum:]]\)/\1 en el llenç\2/g
 # al llibre
 s/\b\(amb la data i el saldo\|recollida\) al llibre\([^[:alnum:]]\)/\1 en el llibre\2/g
+# al llindar
+s/\b\(detectat píxels cremats i freds\) al llindar\([^[:alnum:]]\)/\1 en el llindar\2/g
 # al lloc
 s/\bAl lloc\([^[:alnum:]]\)/En el lloc\1/g
-s/\b\(apareixerà\|canvieu al mode de Coordenades equatorials\|cercant\|cercar-la\|de manera que l'opció\|[Ii]nformeu de tots els errors\|[Ll]legiu l'entrevista completa\|nacional\|PREFERIDA\\\\>\|[Ss]e cerca\|traducció,\|trobeu cap documentació\|unió\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)lloc\([^[:alnum:]]\)/\1 en el \2lloc\3/g
+s/\b\(afegint les etiquetes adequades\|apareixerà\|canvieu al mode de Coordenades equatorials\|cercant\|cercar-la\|de manera que l'opció\|[Dd]isponible\|[Dd]isponibles\|entrades dels blogs o\|esdeveniment llistat\|fer\|[Ii]nformeu de tots els errors\|[Ll]legiu l'entrevista completa\|nacional\|PREFERIDA\\\\>\|publiquen\|[Ss]e cerca\|seleccionen les imatges per al bàner de treballs artístics destacats\|traducció,\|trobeu cap documentació\|unió\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)lloc\([^[:alnum:]]\)/\1 en el \2lloc\3/g
  #
 s/\b\(apareixerà\|descripcions\|emmagatzemat en fitxers\|plantilles\) als llocs\([^[:alnum:]]\)/\1 en els llocs\2/g
+# al manual
+s/\b\(AstroInfo\|disponible\|[Ll]legiu-ne els detalls\|s'il·lustra\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Mm]\)anual\([^[:alnum:]]\)/\1 en el \2\3anual\4/g
+# al mapa
+s/\bAl mapa\([^[:alnum:]]\)/En el mapa\1/g
+s/\b\(apareixerà\|Apilador en directe»\|Apilador en directe…»\|aquestes sis ciutats\|arrossegant el centre del mosaic\|asteroides\|CDV)\|cel profund\|cel profund»\|[Cc]entra\|[Cc]entra %1\|centrar\|centrar amb facilitat un objecte\|centrat\|[Cc]erca\|[Cc]ol·loca temporalment\|col·locar un bon exemple finalitzat d'un objectiu que esteu considerant\|com a imatges\|cometes\|constel·lacions\|definint una regió\|dibuixar\|dibuixarà el terreny\|dibuixarà un contorn\|dibuix[ei]n\|disponible\|Júpiter\|Lluna\|Mart\|Mercuri\|Neptú\|Plutó\|Saturn\|Sol\|Urà\|Venus\|eclíptica\|enfocament\|equador\|equador celeste\|equatorials\|estrelles\|etiqueta\|etiquetes\|etiqueta acolorida de nom\|etiquetar\|girar la vista de manera que el nord\|HiPS\|horitzó\|horitzó local\|horitzontals\|i les corbes eclíptiques\|incloure\|indicadors\|localitzar-los\|marcats automàticament\|meridià local\|Mostra els punts d'alineació\|mosaic\|Mostra una marca de telescopi\|mostrarà\|mostraran\|mostraran imatges incloses\|mostren els seus punts\|mostri la mida angular del sensor CCD\|objecte\|objectes\|objectes addicionals\|objectes resolts\|planetes\|posició actual de la imatge\|posició apuntada pel telescopi\|posició correcta\|qualsevol objectere\|flectirà\|representen\|representi el terreny\|ressaltaran amb un símbol\|ressalti\|satèl·lit\|satèl·lits\|seleccionant-los\|seleccionat\|simulada\|situades\|situats\|Sol i la Lluna)\|solucionador\|supernova\|supernoves\|superposarà les imatges\|[Ss]uperposicions d'imatges\|terra opac\|Via Làctia\|visibles\|[Vv]isualitza\|visualitzar-les directament\) al mapa\([^[:alnum:]]\)/\1 en el mapa\2/g
+# al marge
+  s/\bquote>al marge<\/quote>/quote>en el marge<\/quote>/g
+s/\b\(està\|nanes\) \((«\|\)al marge\([^[:alnum:]]\)/\1 \2en el marge\3/g
+# al mateix
+s/\b\(cau sempre\|fent ajustos\|Hi ha dues opcions possibles:\|incidir sempre\|s'executen\|sortida\) al mateix\([^[:alnum:]]\)/\1 en el mateix\2/g
+ #
+s/\b\(situats\) als mateixos\([^[:alnum:]]\)/\1 en els mateixos\2/g
+# al melic
+s/\b\([Pp]oseu una mà\) al melic\([^[:alnum:]]\)/\1 en el melic\2/g
 # al menú
 s/\bAl menú\([^[:alnum:]]\)/En el menú\1/g
   s/\bals elements especials del menú d'adreces\([^[:alnum:]]\)/als elements especials en el menú d'adreces\1/g
   s/\bl'etiqueta al menú emergent\([^[:alnum:]]\)/l'etiqueta en el menú emergent\1/g
-s/\(»\|accions»\|Anotacions<\/i>\|aparegués\|aparegui\|apareixen\|apareixerà\|apareixeran\|canviar la unitat dels botons de selecció de valors decimals\|Canvieu-ho a això\|capturadora\|cel·les\|Centra i segueix``\|cerqueu aquesta acció\|columnes\|compartir\|completa»\|d'usuari\|Detalls``\|disponible\|disponibles\|eines\|Els darrers elements\|entrades\|especifiqueu el dispositiu de la roda de filtres\|falten\|finestra\|fitxer»\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitar el bloqueig\|hi ha\|Hi ha una opció de casella de selecció\|i aquestes opcions\|Importa<\/b>\|interface>\|Kdesvn\|KGoldrunner\|laterals<\/b>\|menú contextual i\|[Mm]ostra\|mostrarà\|mostrarà l'entrada corresponent\|nom\|ocultar tots simultàniament\|opacitat\|possibles\|pot fer\|Potencia la funcionalitat de cerca\|preseleccionats\|Quan canviem d'idioma\|ratlles\|retalls»\|segur)\|seleccionada\|seleccionat\|subcircuit»\|trobar\|trobareu\|[Tt]robareu aquestes dues característiques\|trobareu la característica de zoom\|troben\|usuari\|Vegeu l'element de l'horitzó artificial\|veieu\|veure amb \*\*Agrupa les imatges\*\*\|vista»\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Mm]\)enú\([^[:alnum:]]\)/\1 en el \2\3enú\4/g
-s/\b\(en el menú contextual i\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Mm]\)enú\([^[:alnum:]]\)/\1 en el \2\3enú\4/g
+s/\(»\|accions»\|Anotacions<\/i>\|aparegués\|aparegui\|apareixen\|apareixerà\|apareixeran\|canviar la unitat dels botons de selecció de valors decimals\|Canvieu-ho a això\|capturadora\|cel·les\|Centra i segueix``\|cerqueu aquesta acció\|clicava en les lletres\|columnes\|Comença a resoldre immediatament``\|compartir\|completa»\|d'usuari\|desactivat\|Detalls``\|disponible\|disponibles\|eines\|Els darrers elements\|Endavant\*\*\|entrades\|especifiqueu el dispositiu de la roda de filtres\|falten\|finestra\|fitxer»\|funcions d'ordenació i agrupació\|habilitar el bloqueig\|hi ha\|Hi ha una opció de casella de selecció\|i aquestes opcions\|Importa`\|Importa<\/b>\|interface>\|Kdesvn\|KGoldrunner\|labels_view>`,\|laterals<\/b>\|menú contextual i\|[Mm]ostra\|mostrarà\|mostrarà l'entrada corresponent\|nom\|ocultar tots simultàniament\|oculteu la visualització del terreny\|opacitat\|possibles\|pot fer\|Potencia la funcionalitat de cerca\|preseleccionats\|Quan canviem d'idioma\|ratlles\|retalls»\|segur)\|seleccionada\|seleccionat\|Simula la vista de l'ocular``\|subcircuit»\|trobar\|trobareu\|[Tt]robareu aquestes dues característiques\|trobareu la característica de zoom\|troben\|Una altra cosa important a fer, també\|usuari\|Vegeu l'element de l'horitzó artificial\|veieu\|veure amb \*\*Agrupa les imatges\*\*\|vista»\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Mm]\)enú\([^[:alnum:]]\)/\1 en el \2\3enú\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)menú\([^[:alnum:]]\)/\1 en el \2menú\3/g
+  s/\b\(en el menú contextual i\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Mm]\)enú\([^[:alnum:]]\)/\1 en el \2\3enú\4/g
   s/\bfuncions estan al menú\([^[:alnum:]]\)/funcions es troben en el menú\1/g
+ #
   s/\bsímbols als suggeriments i als menús\([^[:alnum:]]\)/símbols en els suggeriments i en els menús\1/g
 s/\bAls menús\([^[:alnum:]]\)/En els menús\1/g
-s/\b\(cerqueu aquesta acció\|icones\|interface>\|seva acció\|trobar\|troben\|veieu\) als menús\([^[:alnum:]]\)/\1 en els menús\2/g
+s/\b\(cerqueu aquesta acció\|icones\|interface>\|seleccionada\|seva acció\|trobar\|troben\|veieu\) als menús\([^[:alnum:]]\)/\1 en els menús\2/g
 s/\bAfegeix eina al menú\([^[:alnum:]]\)/Afegeix l'eina al menú\1/g
   s/\bmostrar al menú tradueix\([^[:alnum:]]\)/mostrar en el menú Tradueix\1/g
+# al mercat
+  s/\bTORRE AL MERCAT\([^[:alnum:]]\)/TORRE EN EL MERCAT\1/g
+s/\b\(romanguin\|ser la millor marca\) al mercat\([^[:alnum:]]\)/\1 en el mercat\2/g
+# al meridià
+s/\b\(troba en aquest moment\|trobava\) al meridià\([^[:alnum:]]\)/\1 en el meridià\2/g
 # al meu
 s/\b\(Bigscreen\|dibuixar un mapa per a una novel·la fantàstica\|està\) al meu\([^[:alnum:]]\)/\1 en el meu\2/g
 # al mig
 s/\bAl mig\([^[:alnum:]]\)/En el mig\1/g
-s/\b\(els tons mitjans\|mostra\|mostr[ei]n\|tenen una roda\|[Uu]n quadre de cerca en temps real\|utilitzar accents greus\) al mig\([^[:alnum:]]\)/\1 en el mig\2/g
+s/\b\(col·locar-lo\|els tons mitjans\|mostra\|mostr[ei]n\|tenen una roda\|[Uu]n quadre de cerca en temps real\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzar accents greus\) al mig\([^[:alnum:]]\)/\1 en el mig\2/g
   s/\bclicant en el mig\([^[:alnum:]]\)/clicant al mig\1/g
 # al mirall
 s/\b\(fet\) al mirall\([^[:alnum:]]\)/\1 en el mirall\2/g
 # al missatge
-s/\b\(canvis\|[Cc]erca\|Enllaç\|mencionat\|mostrar\|temps\) al missatge\([^[:alnum:]]\)/\1 en el missatge\2/g
+s/\b\(canvis\|[Cc]erca\|Enllaç\|mencionat\|mostrava el seu nom\|mostrar\|temps\) al missatge\([^[:alnum:]]\)/\1 en el missatge\2/g
   s/\bfitxer %1 al missatge %2\([^[:alnum:]]\)/fitxer %1 per al missatge %2\1/g
  #
 s/\b\(acolorit\|activades\|Bu&sca\|[Cc]erca\|compartició de fitxers\|Enllaços\|inserir\|signatures\|temps\|total\) als missatges\([^[:alnum:]]\)/\1 en els missatges\2/g
+# Als mitjans
+s/\bAls mitjans\([^[:alnum:]]\)/En els mitjans\1/g
 # al mòbil
 s/\b\(Calindori\|en l'escriptori,\|en l'escriptori i\|estigui habilitat\|Kongress\|Kontrast\|[Vv]ista\|[Vv]ista dinàmica\|[Vv]ista plana\) al mòbil\([^[:alnum:]]\)/\1 en el mòbil\2/g
 # al mode
-s/\b\(només\) al mode\([^[:alnum:]]\)/\1 en el mode\2/g
+s/\b\(només\|obtenir\|OpenRaster: les capes de grup predeterminades\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al mode\([^[:alnum:]]\)/\1 en el mode\2/g
 # al mòdul
   s/\(ja existeix\|%s\)\(()\|\) (al mòdul\([^[:alnum:]]\)/\1\2 (en el mòdul\3/g
 s/\bAl mòdul\([^[:alnum:]]\)/En el mòdul\1/g
-s/\b\(Acció del solucionador``\|AR\|Biblioteca fosca»\|Captura i resol``\|[Cc]arregarà el fitxer de seqüències\|CDV\|Dec\|eina Biblioteca fosca\|emmagatzema\|fotogrames capturats\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\|localitzadors de mailto\|Opcions``\|orienta…<\/span>\|Remot``\|resoldre imatges\|resolent la placa\|resoleu una imatge\|suport de baixada\|també\|tasca del planificador\|utilitzant la configuració\|utilitzats\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)mòdul\([^[:alnum:]]\)/\1 en el \2mòdul\3/g
+s/\b\(a una de les vistes\|Acció del solucionador``\|AR\|Biblioteca fosca»\|Captura i resol``\|[Cc]arregarà el fitxer de seqüències\|CDV\|Dec\|eina Biblioteca fosca\|ekos-align-polar-align>` d'Ekos\|emmagatzema\|fotogrames capturats\|habilitat\|les capes de grup predeterminades\|localitzadors de mailto\|Opcions``\|orienta…<\/span>\|Remot``\|resoldre imatges\|resolent la placa\|resoleu una imatge\|suport de baixada\|també\|tasca del planificador\|utilitzant la configuració\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)mòdul\([^[:alnum:]]\)/\1 en el \2mòdul\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al mòdul\([^[:alnum:]]\)/\1 en el mòdul\2/g
  #
 s/\bAls mòduls\([^[:alnum:]]\)/En els mòduls\1/g
+# al moll
+s/\b\([Pp]osta de sol\) al moll\([^[:alnum:]]\)/\1 en el moll\2/g
+# al món
+s/\b\(contactes\|veiem\|visibles per a les persones reals\) al món\([^[:alnum:]]\)/\1 en el món\2/g
+# al monitor
+s/\b\(creant colors indesitjats\|és una polzada real\|mostr[ei]n\|[Nn]o s'ha seleccionat cap clip\|Treballs de clip de superposició\|visualització\) al monitor\([^[:alnum:]]\)/\1 en el monitor\2/g
+# al mosaic
+s/\b\(amb l'orientació desitjada\) al mosaic\([^[:alnum:]]\)/\1 en el mosaic\2/g
+# al nariu
+s/\b\(dit anular\) al nariu\([^[:alnum:]]\)/\1 en el nariu\2/g
 # al navegador
-s/\b\(1<\/b>\|agenda i\|àlbums\|autenticació\|[Cc]erca\|diària\|diaris\|directament\|etiquetes\|festiu\|frame»\|geoposició\|grup\|incrustat\|mensual i\|[Mm]ostra\|laborables\|mostren\|pendents\|perfil\|predeterminats<\/i>\|seleccionades\|seleccionats\|setmanal\|valor de la força\|visualitzarà\|web\) al navegador\([^[:alnum:]]\)/\1 en el navegador\2/g
+s/\b\(1<\/b>\|agenda i\|àlbums\|apareguin\|autenticació\|[Cc]erca\|diària\|diaris\|directament\|etiquetes\|festiu\|frame»\|geoposició\|grup\|incrustat\|inici de sessió\|Jitsi\|l'agenda i\|laborables\|mensual i\|[Mm]ostra\|mostrant la documentació curta sobre cada funció ressaltada\|mostren\|[Oo]bre el Gestor web\|obriran\|pendents\|perfil\|predeterminats<\/i>\|ressalta una funció\|seleccionades\|seleccionats\|setmanal\|valor de la força\|veure els fitxers de Krita\|visualitzarà\|web\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Nn]\)avegador\([^[:alnum:]]\)/\1 en el \2\3avegador\4/g
+ #
+s/\b\(veure les imatges apilades\) als navegadors\([^[:alnum:]]\)/\1 en els navegadors\2/g
 # al nivell
-s/\b\(Inserix\) al nivell\([^[:alnum:]]\)/\1 en el nivell\2/g
+s/\b\(Inserix\|posar-la\|Projectes\*\) al nivell\([^[:alnum:]]\)/\1 en el nivell\2/g
 # al nom
 s/\b\([*]»\|d'R\|[Ee]rror\|espais\|tabuladors\) al nom\([^[:alnum:]]\)/\1 en el nom\2/g
   s/\bCerca al Nominatim d'OpenStreetMap\([^[:alnum:]]\)/Cerca en el Nominatim d'OpenStreetMap\1/g
   s/\bnomés al Nom\([^[:alnum:]]\)/només en el Nom\1/g
  #
-s/\([_.]»\|barres\|[Cc]ometes\|espais\|icones\|són vàlids\|títols i\|utilitzen\) als noms\([^[:alnum:]]\)/\1 en els noms\2/g
+s/\([_.]»\|barres\|[Cc]ometes\|espais\|feia que els parèntesis\|icones\|són vàlids\|títols i\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) als noms\([^[:alnum:]]\)/\1 en els noms\2/g
   s/\bals noms d'R\([^[:alnum:]]\)/en els noms d'R\1/g
   s/\bals títols i en els noms\([^[:alnum:]]\)/als títols i als noms\1/g
 # al nombre
 s/\b\([Pp]osa límits\) al nombre\([^[:alnum:]]\)/\1 en el nombre\2/g
 # al nostre
-s/\b\(centrats en Krita\|connector MLT de Krita\|[Ee]ntreu\|escriviu un suggeriment\|informeu-ne\|ofereixen GNU\/Linux\|publicar l'última versió de Krita\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)nostre\([^[:alnum:]]\)/\1 en el \2nostre\3/g
+s/\b\(centrats en Krita\|connector MLT de Krita\|[Ee]ntreu\|escriviu un suggeriment\|informeu-ne\|ofereixen GNU\/Linux\|publicar l'última versió de Krita\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)nostre\([^[:alnum:]]\)/\1 en el \2nostre\3/g
+ #
+s/\b\(produïts per les nostres càmeres HDR\) als nostres\([^[:alnum:]]\)/\1 en els nostres\2/g
+# al nucli
+s/\b\([Uu]tilitzada\) al nucli\([^[:alnum:]]\)/\1 en el nucli\2/g
 # al número
  #
 s/\b\(cliqu[ei]\) als números\([^[:alnum:]]\)/\1 en els números\2/g
+# al núvol
+s/\b\(conflicte amb una adreça d'interès\|creiem que l'emmagatzematge\|emmagatzemar les vostres dades\|executat\|L'emmagatzematge\|llavors\|Shells\) al núvol\([^[:alnum:]]\)/\1 en el núvol\2/g
 # al paquet
 s/\b\(s'exclou meson\|[Tt]roba\|trobat\|trobat cap carpeta de dades predeterminada\) al paquet\([^[:alnum:]]\)/\1 en el paquet\2/g
+# al pas
+s/\b\(obtingut des de la màquina \*servidor\*\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al pas\([^[:alnum:]]\)/\1 en el pas\2/g
+ #
+s/\b\(utilitzat\) als passos\([^[:alnum:]]\)/\1 en els passos\2/g
 # al patró
-s/\b\(configurar els modificadors\|[Ee]rror\) al patró\([^[:alnum:]]\)/\1 en el patró\2/g
+s/\b\(configurar els modificadors\|[Ee]rror\|seran els colors RGB\) al patró\([^[:alnum:]]\)/\1 en el patró\2/g
+ #
+s/\b\(seran els colors RGB\) als patrons\([^[:alnum:]]\)/\1 en els patrons\2/g
+# al PCS
+s/\b\(veureu les dades\) al PCS\([^[:alnum:]]\)/\1 en el PCS\2/g
 # al perfil
-s/\b\(ajustar els paràmetres\|seleccionat\) al perfil\([^[:alnum:]]\)/\1 en el perfil\2/g
+s/\b\(ajustar els paràmetres\|amb el mode «Esborrador»\|cap dispositiu compatible\|seleccionar els paràmetres d'inici del port sèrie i de comunicació de la xarxa dels dispositius\|seleccionat\) al perfil\([^[:alnum:]]\)/\1 en el perfil\2/g
 # al pinzell
-s/\b\(activava el filtre «Índex del color»\|activava el filtre «Semi to»\|esmenat una fallada\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Pp]\)inzell\([^[:alnum:]]\)/\1 en el \2\3inzell\4/g
+s/\b\(activava el filtre «Índex del color»\|activava el filtre «Semi to»\|configurar els efectes de diversos sensors\|[Ee]smena\|[Ee]smenes\|[Ee]smena l'error\|[Ee]smenat l'error\|[Ee]smena un error\|[Ee]smenat un error\|[Ee]smena una fallada\|[Ee]smenat una fallada\|[Ee]smena un problema\|[Ee]smenat un problema\|[Ee]smena una regressió\|[Ee]smenat una regressió\|[Ee]smenes d'errors\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)inzell\([^[:alnum:]]\)/\1 en el \2\3inzell\4/g
+ #
+s/\b\(treballar amb textures\) als pinzells\([^[:alnum:]]\)/\1 en els pinzells\2/g
+# al pla
+s/\b\(inclouen les dades de cada píxel físic\) al pla\([^[:alnum:]]\)/\1 en el pla\2/g
 # al plafó
 s/\bAl plafó\([^[:alnum:]]\)/En el plafó\1/g
-s/\b\(acoblador Capes\|alterna la vista de l'histograma\|alterna la visualització de les estadístiques FITS\|[Aa]mplada\|apareixerà\|aplicacions i\|baixats\|barra d'eines\|buit\|cares<\/u>\|carpeta\|carregar perfils de configuració\|d'ajuda\|duplicades\|elements\|emergents\|especificar un valor simple per a qualsevol d'aquestes quatre coordenades\|[Ee]specifiqueu un camí absolut\|està buit\|establir aquí o\|executant\|executant-se\|existents\|gestor de fitxers\|icona\|mostra\|mostren\|Oculta els elements nous\|posició<\/b>\|ressalteu\|transparència\|veurà\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Pp]\)lafó\([^[:alnum:]]\)/\1 en el \2\3lafó\4/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Pp]\)lafó\([^[:alnum:]]\)/\1 en el \2\3lafó\4/g
-  s/\b\(modificar\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)plafó\([^[:alnum:]]\)/\1 en el \2plafó\3/g
+s/\b\(acoblador Capes\|alterna la vista de l'histograma\|alterna la visualització de les estadístiques FITS\|[Aa]mplada\|apareixerà\|aplicacions i\|baixats\|barra d'eines\|buit\|cares<\/u>\|carpeta\|carregar perfils de configuració\|com l'acoblador «Capes»\|Connecta`` sota la pestanya del dispositiu\|d'ajuda\|Diguem que\|duplicades\|elements\|emergents\|es reflecteixen automàticament\|especificar un valor simple per a qualsevol d'aquestes quatre coordenades\|[Ee]specifiqueu un camí absolut\|està buit\|establert el valor de la propietat\|establir aquí o\|[Ee]stabliu els valors\|executant\|executant-se\|existents\|gestor de fitxers\|[Hh]i ha una eina nova\|icona\|mostra\|mostren\|Oculta els elements nous\|ocupa una pestanya\|posició<\/b>\|ressalteu\|transparència\|[Tt]rieu un tipus d'objecte\|veurà\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)lafó\([^[:alnum:]]\)/\1 en el \2\3lafó\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)lafó\([^[:alnum:]]\)/\1 en el \2\3lafó\4/g
+  s/\b\(modificar\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)plafó\([^[:alnum:]]\)/\1 en el \2plafó\3/g
   s/\btroba al Plafó d'eines\([^[:alnum:]]\)/troba en el Plafó d'eines\1/g
  #
 s/\bAls plafons\([^[:alnum:]]\)/En els plafons\1/g
-s/\(\\\n-\|[Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als plafons\([^[:alnum:]]\)/\1 en els plafons\2/g
+s/\(\\\n-\|[Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als plafons\([^[:alnum:]]\)/\1 en els plafons\2/g
 # al planificador
 s/\bAl planificador\([^[:alnum:]]\)/En el planificador\1/g
-s/\b\(Afegeix per lots»\|[Cc]erca en Astrobin\|[Oo]culta el gràfic d'altitud\|[Oo]culta la secció «Filtres»\|[Oo]culta la secció imatges\|[Pp]er a fer canvis\|prémer el quart botó en la cantonada superior esquerra de la finestra\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Pp]\)lanificador\([^[:alnum:]]\)/\1 en el \2\3lanificador\4/g
+s/\b\(Afegeix per lots»\|[Cc]erca en Astrobin\|Configureu l'alineació\|Configureu els scripts\|Configureu les tasques\|escriure un registre curt\|[Oo]culta el gràfic d'altitud\|[Oo]culta la secció «Filtres»\|[Oo]culta la secció imatges\|[Pp]er a fer canvis\|prémer el quart botó en la cantonada superior esquerra de la finestra\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)lanificador\([^[:alnum:]]\)/\1 en el \2\3lanificador\4/g
+# al poble
+s/\b\([Hh]ivern\) al poble\([^[:alnum:]]\)/\1 en el poble\2/g
 # al pòdcast
-s/\b\([Mm]illores\) als pòdcast\([^[:alnum:]]\)/\1 en els pòdcast\2/g
+s/\b\([Mm]illora\|[Mm]illores\) als pòdcast\([^[:alnum:]]\)/\1 en els pòdcast\2/g
 # al pol
-s/\b\(i tampoc\|no té sentit\) al pol\([^[:alnum:]]\)/\1 en el pol\2/g
+s/\b\(Bloqueja\|i tampoc\|no té sentit\) al pol\([^[:alnum:]]\)/\1 en el pol\2/g
 # al port
 s/\b\(amfitrió INDI a %1\|amfitrió PHD2: %1,\|els vaixells\|iniciat els serveis INDI\|Mòdem\|servidor INDI %1\) al port\([^[:alnum:]]\)/\1 en el port\2/g
 # al porta-retalls
-s/\b\(certificat\|dades útils\|dades vàlides\|de la imatge\|ha actualment\|ha dades\|ha informació\|hi ha\|hi ha cap dada vàlida de fotograma clau\|hi ha cap element\|pantalla\|posa'l\|si n'hi ha,\|[Ss]ubstitueix\|text\) al porta-retalls\([^[:alnum:]]\)/\1 en el porta-retalls\2/g
+s/\b\(certificat\|dades útils\|dades vàlides\|de la imatge\|enganxar imatges amb múltiples orígens\|ha actualment\|ha dades\|ha informació\|hi ha\|hi ha cap dada vàlida de fotograma clau\|hi ha cap element\|pantalla\|posa'l\|si n'hi ha,\|[Ss]ubstitueix\|text\) al porta-retalls\([^[:alnum:]]\)/\1 en el porta-retalls\2/g
 # al primer
-s/\b\(és que\) al primer\([^[:alnum:]]\)/\1 en el primer\2/g
+s/\b\(és que\|Valoració\*\*\) al primer\([^[:alnum:]]\)/\1 en el primer\2/g
  #
 s/\b\(dona més\) als primers\([^[:alnum:]]\)/\1 en els primers\2/g
 # al prismàtic
 s/\b\(especificar CDV lineal tal com es menciona\) al prismàtic\([^[:alnum:]]\)/\1 en el prismàtic\2/g
 # al procés
-s/\b\([Cc]ercar fitxers d'imatge\|escriptura\|escriure\|utilitzen ponderacions\) al procés\([^[:alnum:]]\)/\1 en el procés\2/g
+s/\b\([Cc]ercar fitxers d'imatge\|escriptura\|escriure\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|utilitzen ponderacions\) al procés\([^[:alnum:]]\)/\1 en el procés\2/g
 # al programa
-s/\b\(errada\) al programa\([^[:alnum:]]\)/\1 en el programa\2/g
+s/\b\(emprada\|emprades\|errada\) al programa\([^[:alnum:]]\)/\1 en el programa\2/g
+ #
 s/\b\(parpelleig de text\|Rust\) als programes\([^[:alnum:]]\)/\1 en els programes\2/g
 # al programador
-s/\(»\|[Mm]illores\) al programador\([^[:alnum:]]\)/\1 en el programador\2/g
+s/\(»\|[Mm]illora\|[Mm]illores\|Planificador del mosaic``\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Pp]\)rogramador\([^[:alnum:]]\)/\1 en el \2\3rogramador\4/g
 # al programari
-s/\b\(descobert un error\|descobert un problema de seguretat\) al programari\([^[:alnum:]]\)/\1 en el programari\2/g
+s/\b\(descobert un error\|descobert un problema de seguretat\|Els problemes\|sense aguditzar\*\) al programari\([^[:alnum:]]\)/\1 en el programari\2/g
 # al projecte
 s/\bAl projecte\([^[:alnum:]]\)/En el projecte\1/g
-s/\b\(object_name»\|[Aa]justa el zoom\|[Cc]anvis\|canvis fets\|canvis realitzats\|[Cc]lips utilitzats\|configuració\|[Dd]esa la imatge\|enllaç simbòlic\|enllaços simbòlics\|explicada\|horària\|1\|trobat cap intermediari\|URL\|utilitzats\) al projecte\([^[:alnum:]]\)/\1 en el projecte\2/g
+s/\b\(object_name»\|[Aa]justa el zoom\|[Cc]anvis\|canvis fets\|canvis realitzats\|[Cc]lips utilitzats\|configuració\|[Dd]esa la imatge\|enllaç simbòlic\|enllaços simbòlics\|explicada\|fus horari\|1\|trobat cap intermediari\|URL\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al projecte\([^[:alnum:]]\)/\1 en el projecte\2/g
  #
 s/\bAls projectes\([^[:alnum:]]\)/En els projectes\1/g
+# als PSD
+s/\b\([Dd]esar text\) als PSD\([^[:alnum:]]\)/\1 en els PSD\2/g
 # al punt
 s/\b\([Cc]entra la vista\|emplenar\|mostrarà\) al punt\([^[:alnum:]]\)/\1 en el punt\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al punt\([^[:alnum:]]\)/\1 en el punt\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al punt\([^[:alnum:]]\)/\1 en el punt\2/g
  #
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\) als punts\([^[:alnum:]]\)/\1 en els punts\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als punts\([^[:alnum:]]\)/\1 en els punts\2/g
+# s/\b\(\) als punts\([^[:alnum:]]\)/\1 en els punts\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als punts\([^[:alnum:]]\)/\1 en els punts\2/g
 # al quadrat
 s/\b\(naus en un \*\*planeta\*\*\) al quadrat\([^[:alnum:]]\)/\1 en el quadrat\2/g
 # al quadre
   s/\bal quadre del terminal\([^[:alnum:]]\)/en el quadre del terminal\1/g
 s/\(<\/b>\) al quadre\([^[:alnum:]]\)/\1 en el quadre\2/g
-s/\b\(200202\|aleatòria\|[Aa]mplada\|apareixerà\|aplicacions i\|buit\|calcular\|camí absolut\|cares<\/u>\|carpeta\|cercar\|correcta\|Creu vermella petita»\|d'ajuda\|Després,\|escriure\|escriviu «art»\|especificat\|[Ee]specifiqueu un camí absolut\|està buit\|estableix\|establir aquí o\|executant\|executant-se\|existents\|giny Posició actual i\|icona\|incloure en la vostra llista d'observacions\|introduir el nom del satèl·lit\|introduir un patró d'intèrpret d'ordres\|introduïu-l[ao]\|mida\|[Mm]illores\|[Mm]ostra[rt]\|[Mm]ostrarà\|nom\|nous\|observació\|[Oo]culta els elements nous\|ordres\|paraules\|proporciona l'usuari\|proveïda\|Resol``\|ressaltada\|s'introdueix\|se substituïxen els valors\|seleccionada\|selecciona[rt]\|seleccionar el model\|text\|transparència\|vegades\|vista de l'histograma\|visualització de les estadístiques FITS\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Qq]\)uadre\([^[:alnum:]]\)/\1 en el \2\3uadre\4/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Qq]\)uadre\([^[:alnum:]]\)/\1 en el \2\3uadre\4/g
-  s/\bes classifiquen en \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)Certificats\([^[:alnum:]]\)/es classifiquen en \1Certificats\2/g
+s/\b\(200202\|aleatòria\|[Aa]mplada\|apareix\|apareixerà\|aplicacions i\|buit\|calcular\|camí absolut\|cares<\/u>\|carpeta\|cercar\|com l'acoblador «Capes»\|correcta\|Creu vermella petita»\|d'ajuda\|Després,\|Diguem que\|es mostraran\|esmenat el decalatge d'1\|escriure\|escriviu «art»\|especificat\|[Ee]specifiqueu un camí absolut\|està buit\|establert el valor de la propietat\|establert el valor de la propietat\|estableix\|establir aquí o\|[Ee]stabliu els valors\|executant\|executant-se\|existents\|faci\|giny Posició actual i\|ha una eina nova\|i \*\*EUA\*\*\|icona\|incloure en la vostra llista d'observacions\|introduir el nom del satèl·lit\|introduir un patró d'intèrpret d'ordres\|introduït \*\*Te\*\*\|introduïu-l[ao]\|[Ii]ntroduïu el nom de l'objecte desitjat\|[Ii]ntroduïu una cadena\|mida\|[Mm]illora\|[Mm]illores\|mostra l'«Eina d'edició de plafons de còmics»\|[Mm]ostra[rt]\|[Mm]ostrarà\|Navegador de funcions»\|nom\|nous\|observació\|[Oo]culta els elements nous\|ordres\|paraules\|proporciona l'usuari\|proveïda\|quadres de còmics»\|Resol``\|ressalta una funció\|ressaltada\|s'introdueix\|se seleccionarà\|se substitueixen els valors\|seleccionada\|selecciona[rt]\|seleccionar el model\|text\|Torna a carregar\*\* la llista\|transparència\|[Tt]rieu un tipus d'objecte\|vegades\|vista de l'histograma\|visualització de les estadístiques FITS\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Qq]\)uadr\([eo]\)\([^[:alnum:]]\)/\1 en el \2\3uadr\4\5/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Qq]\)uadre\([^[:alnum:]]\)/\1 en el \2\3uadre\4/g
+  s/\bes classifiquen en \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)Certificats\([^[:alnum:]]\)/es classifiquen en \1Certificats\2/g
  #
-s/\b\(introduïu\|[Mm]illores\|[Mm]ostren\|realitzarà\|substituiran els valors\|utilitzar\) als quadres\([^[:alnum:]]\)/\1 en els quadres\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) als quadres\([^[:alnum:]]\)/\1 en els quadres\2/g
+s/\b\(es mostra\|introduint algun text\|introduïu\|[Mm]illora\|[Mm]illores\|[Mm]ostren\|realitzarà\|substituiran els valors\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) als quadres\([^[:alnum:]]\)/\1 en els quadres\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) als quadres\([^[:alnum:]]\)/\1 en els quadres\2/g
 # al qual
-# s/\b\(\) al qual\([^[:alnum:]]\)/\1 en el qual\2/g
+s/\b\(basant-se en el port físic\) al qual\([^[:alnum:]]\)/\1 en el qual\2/g
 # al «Què
 s/\b\([Vv]isualitza\) al «Què\([^[:alnum:]]\)/\1 en el «Què\2/g
 # al que
 s/\b\(moure's cap a un nivell inferior\) al que\([^[:alnum:]]\)/\1 en el que\2/g
+ #
+s/\b\(es prenen plans del cel\) als que\([^[:alnum:]]\)/\1 en els que\2/g
 # al README
 s/\b\(events)\) al README\([^[:alnum:]]\)/\1 en el README\2/g
 # al registre
 s/\b\(Nivell de detall\|Vegeu els detalls\) al registre\([^[:alnum:]]\)/\1 en el registre\2/g
 # al repositori
-s/\b\([Cc]rea un fragment nou\|data)\|mantenen\) al repositori\([^[:alnum:]]\)/\1 en el repositori\2/g
+s/\b\([Cc]rea un fragment nou\|data)\|disponible\|implementeu com a paquet\|issues\/32)\|mantenen\|obrint una sol·licitud\|troben\) al repositori\([^[:alnum:]]\)/\1 en el repositori\2/g
 # al reproductor
 s/\b\(proveu-los\) al reproductor\([^[:alnum:]]\)/\1 en el reproductor\2/g
 # al respectiu
-s/\b\(amb el botó dret\|amb el botó esquerre\|amb el botó del mig\|proveu-los\) al respectiu\([^[:alnum:]]\)/\1 en el respectiu\2/g
-s/\b\([Aa]mb el botó del mig\|[Aa]mb el botó dret\|[Aa]mb el botó esquerre\|[Aa]mb el &B[DEM]R;\|[Aa]mb un clic del mig\|[Aa]mb un clic dret\|[Aa]mb un clic esquerre\|[Aa]mb el botó dret del ratolí\|[Aa]mb el botó esquerre del ratolí\|[Aa]mb el botó del mig del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|clic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) al respectiu\([^[:alnum:]]\)/\1 en el respectiu\2/g
+s/\b\(proveu-los\) al respectiu\([^[:alnum:]]\)/\1 en el respectiu\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic del ratolí\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lic simultani\|[Cc]lica\|[Cc]lica successivament\|[Cc]licar successivament\|[Cc]liqueu successivament\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\|guibutton>\|guiicon>\|guilabel>\|guimenuitem>\|guisubmenu>\|link>\|habilitat\|link>\) al respectiu\([^[:alnum:]]\)/\1 en el respectiu\2/g
 # al resultat
 s/\b\(visibles\) al resultat\([^[:alnum:]]\)/\1 en el resultat\2/g
 s/\bals resultats\([^[:alnum:]]\)/en els resultats\1/g
@@ -2906,36 +3292,49 @@ s/\bals resultats\([^[:alnum:]]\)/en els resultats\1/g
 # al resum
  #
 s/\b\([Cc]erca\) als resums\([^[:alnum:]]\)/\1 en els resums\2/g
+# al retall
+s/\b\(amagades\) al retall\([^[:alnum:]]\)/\1 en el retall\2/g
+# al rètol
+s/\b\(mostrat per KStars\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Rr]\)ètol\([^[:alnum:]]\)/\1 en el \2\3ètol\4/g
+# al rodet
+s/\b\([Uu]tilitza\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\|[Uu]tilitze[ns]\|[Uu]tilitzant\|[Uu]tilitzarà\|[Uu]tilitzaran\) al rodet\([^[:alnum:]]\)/\1 en el rodet\2/g
+# al rotor
+s/\b\([Aa]cobla la càmera de guiatge\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Rr]\)otor\([^[:alnum:]]\)/\1 en el \2\3otor\4/g
 # al sector
 s/\b\(cercant\|Troba les estrelles»\) al sector\([^[:alnum:]]\)/\1 en el sector\2/g
 # al segon
-s/\b\(van empatar\) al segon\([^[:alnum:]]\)/\1 en el segon\2/g
+s/\b\([Ii]nstal·leu el sistema operatiu\|Valoració\*\* en el primer camp i dues estrelles\|van empatar\) al segon\([^[:alnum:]]\)/\1 en el segon\2/g
 # al Seguidor
-s/\b\(error\|error oberts\|informeu-ne\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ss]\)eguidor\([^[:alnum:]]\)/\1 en el \2\3eguidor\4/g
+s/\b\(error\|error oberts\|informeu-ne\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ss]\)eguidor\([^[:alnum:]]\)/\1 en el \2\3eguidor\4/g
 # al Selector
 s/\bAl selector\([^[:alnum:]]\)/En el selector\1/g
-s/\b\(desat\|esmenat la renderització de la icona d'avís\|mostrarà una vista prèvia\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Ss]\)elector\([^[:alnum:]]\)/\1 en el \2\3elector\4/g
+s/\b\(desat\|esmenat la renderització de la icona d'avís\|[Mm]illora\|[Mm]illores\|mostrarà una vista prèvia\|premuda llarga inútil\|sigui la predeterminada\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Ss]\)elector\([^[:alnum:]]\)/\1 en el \2\3elector\4/g
  #
 s/\bAls selectors\([^[:alnum:]]\)/En els selectors\1/g
 # al sensor
   s/\bLlisqueu\([^[:alnum:]]\)/Feu lliscar\1/g
 s/\b\(esmenat el desplaçament de l'angle\|\(Feu lliscar\|Poseu\) repetidament el vostre \(dit anular\|dit auricular (petit)\|dit índex\|dit mitger\|polze\) \(dret\|esquerre\)\) al sensor\([^[:alnum:]]\)/\1 sobre el sensor\5/g
 # al servidor
-s/\b\(acronym>\|deixar els missatges\|[Ee]rror intern\|és suficient el nom d'usuari\|[Hh]a caducat\|iniciar la sessió\|iniciar-se\|obrir\|pertanyents a les claus de targeta intel·ligent\|utilitzada\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)servidor\([^[:alnum:]]\)/\1 en el \2servidor\3/g
+s/\b\(acronym>\|compartició de xarxa desitjada\|deixar els missatges\|[Ee]rror intern\|és suficient el nom d'usuari\|[Hh]a caducat\|iniciar la sessió\|iniciar-se\|iniciava\|obrir\|pertanyents a les claus de targeta intel·ligent\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)servidor\([^[:alnum:]]\)/\1 en el \2servidor\3/g
+ #
+s/\b\([Mm]entre que\) als servidors\([^[:alnum:]]\)/\1 en els servidors\2/g
 # al seu
   s/\banar al seu codi font\([^[:alnum:]]\)/anar fins al seu codi font\1/g
-s/\b\(bulb esfèric i brillant d'estrelles\|cerca\|disponibles\|diverses il·lustracions\|estiguessin\|forat negre supermassiu\|forats negres supermassius\|incloguin el nom de l'objecte\|n'abriga un\|necessita\|ofereixen belles imatges\|tenir una «barra» d'estrelles\) al seu\([^[:alnum:]]\)/\1 en el seu\2/g
+s/\b\(bulb esfèric i brillant d'estrelles\|cerca\|disponibles\|diverses il·lustracions\|escriure\|estiguessin\|forat negre supermassiu\|forats negres supermassius\|[Hh]i ha un botó situat\|incloguin el nom de l'objecte\|mantenint els píxels clonats\|mostrarà les fotografies\|n'abriga un\|necessita\|ofereixen belles imatges\|quan l'hidrogen\|tenir una «barra» d'estrelles\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al seu\([^[:alnum:]]\)/\1 en el seu\2/g
   s/\b\(cerca en el seu nom de fitxer o\) al seu\([^[:alnum:]]\)/\1 en el seu\2/g
  #
 s/\b\(com\|contenen moltes de joves\|forats negres supermassius\|plasma-mobile)\|reaccions de fusió termonuclear\) als seus\([^[:alnum:]]\)/\1 en els seus\2/g
 # al sistema
 s/\bAl sistema\([^[:alnum:]]\)/En el sistema\1/g
-s/\b\(%1 no s'ha trobat\|accepten executables\|altre compte d'administrador\|en l'enfocament automàtic o\|està implementada\|existeix\|i petites esmenes\|instal·lar l'aplicació\|instal·lat\|Llocs\|suport d'àudio\|s'utilitza extensament\|teniu coses prou recents\|trobat\) al sistema\([^[:alnum:]]\)/\1 en el sistema\2/g
+s/\b\(%1 no s'ha trobat\|accepten executables\|altre compte d'administrador\|en l'enfocament automàtic o\|està implementada\|existeix\|habilitació d'un tercer mètode de gestió del color\|i petites esmenes\|instal·lar l'aplicació\|instal·lat\|Llocs\|preinstal·lat\|quedarà\|s'executarà\|suport d'àudio\|s'utilitza extensament\|teniu coses prou recents\|trobat\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al sistema\([^[:alnum:]]\)/\1 en el sistema\2/g
  #
 s/\bAls sistemes\([^[:alnum:]]\)/En els sistemes\1/g
-s/\b\(està implementada\|Plasma Mobile\) als sistemes\([^[:alnum:]]\)/\1 en els sistemes\2/g
+s/\b\(és el vostre amic\|està implementada\|freqüència dels atacs\|Plasma Mobile\) als sistemes\([^[:alnum:]]\)/\1 en els sistemes\2/g
 # Al SoK
 s/\bAl SoK\([^[:alnum:]]\)/En el SoK\1/g
+# al submarc
+ #
+s/\b\(visibles\) als submarcs\([^[:alnum:]]\)/\1 en els submarcs\2/g
 # al submenú
 s/\b\([Tt]rieu un esquema de color diferent\|trieu Coordenades horitzontals i,\|Zenit cap avall``\) al submenú\([^[:alnum:]]\)/\1 en el submenú\2/g
 # al subsistema
@@ -2947,6 +3346,8 @@ s/\bAls subsistemes\([^[:alnum:]]\)/En els subsistemes\1/g
 s/\b\(troba\) al sufix\([^[:alnum:]]\)/\1 en el sufix\2/g
 # al suggeriment
 s/\b\(símbols\) als suggeriments\([^[:alnum:]]\)/\1 en els suggeriments\2/g
+# al suport
+s/\b\(emmagatzemades\) al suport\([^[:alnum:]]\)/\1 en el suport\2/g
 # al tauler
 s/\b\(esmenat un retard extrem\|establert el valor de la propietat\|[Ee]stabliu els valors\|hipotecades\|més\|propietari\) al tauler\([^[:alnum:]]\)/\1 en el tauler\2/g
 # al teclat
@@ -2957,6 +3358,8 @@ s/\b\(escanejar-lo ràpidament\|mirar\|no trobats\) al telèfon\([^[:alnum:]]\)/
 s/\b\([Cc]entra\|centrar amb facilitat un objecte en el mapa o\|emprant una càmera\|múltiples missions\|muntada la pantalla del mapa celeste\|Pantalla muntada\) al telescopi\([^[:alnum:]]\)/\1 en el telescopi\2/g
 # al televisor
 s/\b\(Plasma,\) al televisor\([^[:alnum:]]\)/\1 en el televisor\2/g
+# al tema
+s/\b\(s'expliquen detalladament\) al tema\([^[:alnum:]]\)/\1 en el tema\2/g
 # al temps
 s/\b\(rellotge\) al temps\([^[:alnum:]]\)/\1 en el temps\2/g
 # al terminal
@@ -2965,12 +3368,14 @@ s/\b\(canviarà la carpeta actual\) al terminal\([^[:alnum:]]\)/\1 en el termina
 # al terrat
 s/\b\([Uu]n estiu\) al terrat\([^[:alnum:]]\)/\1 en el terrat\2/g
 # al teu
-s/\b\(funcionar sense problemes\|impulsa fins al nivell següent\|instal·lar Linux\) al teu\([^[:alnum:]]\)/\1 en el teu\2/g
+s/\b\(funcionar sense problemes\|impulsa fins al nivell següent\|instal·lar Linux\|[Pp]enja cartells\) al teu\([^[:alnum:]]\)/\1 en el teu\2/g
 # al text
-s/\b\([Cc]anvia\|[Cc]erca\|[Cc]erca una cadena\|conté un enllaç que diu «%1»\|[Hh]i ha «%n» parts\|[Hh]i ha massa caràcters\|[Hh]i ha massa caràcters per línia\|[Hh]i ha massa línies\|La relació de forma\|Mida del punt\|Paraules\|utilitzada\) al text\([^[:alnum:]]\)/\1 en el text\2/g
+s/\b\([Cc]anvia\|[Cc]erca\|[Cc]erca una cadena\|col·loquen correctament\|conté un enllaç que diu «%1»\|fent doble clic\*\*\|fer les modificacions\|[Hh]i ha «%n» parts\|[Hh]i ha massa caràcters\|[Hh]i ha massa caràcters per línia\|[Hh]i ha massa línies\|La relació de forma\|Mida del punt\|Paraules\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Tt]\)ext\([^[:alnum:]]\)/\1 en el \2\3ext\4/g
 # als TIFF
  #
 s/\b\(utilitzar dades PSD\) als TIFF\([^[:alnum:]]\)/\1 en els TIFF\2/g
+# al tipus
+s/\b\(repeteixi de forma aleatòria\|repeteixi moltes vegades\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Tt]\)ipus\([^[:alnum:]]\)/\1 en el \2\3ipus\4/g
 # al títol
 s/\b\(camí complet\|cerca de la paraula\|fitxers\|minúscules\|s'inclourà\|velocitat total\|velocitats\) al títol\([^[:alnum:]]\)/\1 en el títol\2/g
   s/\bprimera lletra als &títols\([^[:alnum:]]\)/primera lletra en els \&títols\1/g
@@ -2979,24 +3384,41 @@ s/\b\(Estableix la precisió desitjada del guiatge\|Mostra el costat del moll (�
 # al tren
 s/\b\(Barlow\|caps de setmana, i\|límit de resolució)\|s'inclou un filtre\) al tren\([^[:alnum:]]\)/\1 en el tren\2/g
 # als vaixells
-s/\b\(utilitzar\) als vaixells\([^[:alnum:]]\)/\1 en els vaixells\2/g
+s/\b\([Uu]tilitza\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzat\|[Uu]tilitzats\|[Uu]tilitze[ns]\|[Uu]tilitzant\|[Uu]tilitzarà\|[Uu]tilitzaran\) als vaixells\([^[:alnum:]]\)/\1 en els vaixells\2/g
 # al valor
-s/\b\(canvi notable\) al valor\([^[:alnum:]]\)/\1 en el valor\2/g
+s/\b\(canvi notable\|esmenat el nombre de píxels\) al valor\([^[:alnum:]]\)/\1 en el valor\2/g
  #
-s/\b\(veure aquest eix\) als valors\([^[:alnum:]]\)/\1 en els valors\2/g
+s/\b\(reassignar els valors d'entrada del canal seleccionat\|veure aquest eix\) als valors\([^[:alnum:]]\)/\1 en els valors\2/g
+# al vespre / a la vesprada
+  s/\bés a dir, «al vespre»/és a dir, «en la vesprada»/g
 # al vídeo
 s/\b\(s'inclou\) al vídeo\([^[:alnum:]]\)/\1 en el vídeo\2/g
-# al visualitzador / visor
-s/\b\(com a retallats\|controls d'estirament\|cursor\|Ekos o\|estirament automàtic a les imatges\|fitxer\|imatge\|imatges\|imatges capturades\|imatges carregades\|La lupa\|Marca les estrelles»\|[Mm]ostra\|Mostra automàticament les imatges rebudes\|[Mm]ostra el fitxer\|Mostra les imatges DSLR rebudes\|[Mm]ostrar els noms dels objectes\|[Mm]ostrar els vídeos\|mostrarà\|mostraran les imatges\|mostren\|[Oo]bre\|pantalla d'estat\|paràmetre d'estirament\|pestanya amb l'UID %1\|ratolí\|rebudes\|recursos\|rèflex digital\|s'obriran\|seleccion[ei] manualment\|utilitzar\|utilitzarà\|veu\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([Vv]\)is\(or\|ualitzador\)\([^[:alnum:]]\)/\1 en el \2\3isor\5/g
+# al visor
+# al visualitzador
+s/\b\(Afegeix a partir d'una plantilla\*\*\|com a retallats\|controls d'estirament\|cursor\|Ekos» o\|es pot veure\|estirament automàtic a les imatges\|fitxer\|imatge\|imatges\|imatges capturades\|imatges carregades\|Inicia\*\*\|La lupa\|Marca les estrelles»\|[Mm]illora\|[Mm]illores\|[Mm]ostra\|Mostra automàticament les imatges rebudes\|[Mm]ostra el fitxer\|Mostra les imatges DSLR rebudes\|[Mm]ostrar els noms dels objectes\|[Mm]ostrar els vídeos\|mostrarà\|mostraran les imatges\|mostren\|[Oo]bre\|pantalla d'estat\|paràmetre d'estirament\|pestanya amb l'UID %1\|ratolí\|rebudes\|recursos\|rèflex digital\|s'obriran\|seleccion[ei] manualment\|[Uu]tilitz[aio]\|[Uu]tilitzable\|[Uu]tilitzada\|[Uu]tilitzades\|[Uu]tilitzant\|[Uu]tilitza[rt]\|[Uu]tilitzar-l[ao]\|[Uu]tilitzar-l[eo]s\|[Uu]tilitzar-se\|[Uu]tilitzarà\|[Uu]tilitzaran\|[Uu]tilitzats\|[Uu]tilitzaven\|[Uu]tilitze[nsu]\|veu\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([Vv]\)is\(or\|ualitzador\)\([^[:alnum:]]\)/\1 en el \2\3isor\5/g
+# al vol
+s/\b\(cancel·larà qualsevol operació d'apilament\) al vol\([^[:alnum:]]\)/\1 en el vol\2/g
+# al voltant
+ #
+s/\b\(camps d'estrelles atapeïts o\) als voltants\([^[:alnum:]]\)/\1 en els voltants\2/g
 # al vostre
   s/\bhi estiguessin\([^[:alnum:]]\)/estiguessin\1/g
-s/\b\(aplicable\|astrometry\.net»\|[Cc]erca\|configurada\|configurades\|configurat\|configurats\|des d'una llista de fonts\|desats\|disponible\|disponibles\|emmagatzemant una galeta\|especificar una carpeta local\|estarà\|estiguessin\|executant\|hi ha\|instal·lada\|instal·lades\|instal·lar cap còdec de vídeo addicional\|instal·lar el mòdul d'impressora\|instal·lat\|instal·lat el &frameworks;\|instal·lats\|KDE\|mostrar els noms dels objectes\|Photos\|recursos\|referir-se a un recurs tal com un fitxer\|Responeu a missatges de text del telèfon\|[Tt]rieu la versió disponible\|ser un nom\|tal com un fitxer\|teniu un port sèrie\|teniu una\|traduir l'aplicació %1\|troba\|troben els controladors INDI\|Vegeu les notificacions del telèfon\) al vostre\([^[:alnum:]]\)/\1 en el vostre\2/g
+s/\b\(a mesura que les metadades\|Acceptat\*\*\|aplicable\|astrometry\.net»\|[Cc]erca\|configurada\|configurades\|configurat\|configurats\|des d'una llista de fonts\|desats\|disponible\|disponibles\|emmagatzemada\|emmagatzemades\|emmagatzemat\|emmagatzemats\|emmagatzemant una galeta\|es mantenen \*\*exclusivament\|especificar una carpeta local\|estarà\|estiguessin\|executant\|executar KStars\|hi ha\|instal·lada\|instal·lades\|instal·lar cap còdec de vídeo addicional\|instal·lar el mòdul d'impressora\|instal·lar un mòdul d'impressora\|instal·lat\|instal·lat el &frameworks;\|instal·lats\|KDE\|mostrar els noms dels objectes\|mostrar-la\|Photos\|recursos\|referir-se a un recurs tal com un fitxer\|Responeu a missatges de text del telèfon\|[Tt]rieu la versió disponible\|ser un nom\|tal com un fitxer\|teniu un port sèrie\|teniu una\|traduir l'aplicació %1\|troba\|troben els controladors INDI\|ubicació exacta\|ús d'aquest tipus d'eines\|Vegeu les notificacions del telèfon\|veuen actualment\) al vostre\([^[:alnum:]]\)/\1 en el vostre\2/g
+ #
+s/\b\(mostrar-la\) als vostres\([^[:alnum:]]\)/\1 en els vostres\2/g
 # al wiki
   s/\bComunitat KDE Wiki\([^[:alnum:]]\)/wiki de la comunitat KDE\1/g
-s/\b\(disponibles\|el vostre compte\|Hi ha disponible una llista d'aquests\|informació genèrica\|present\|quant a aquest projecte\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)wiki\([^[:alnum:]]\)/\1 en el \2wiki\3/g
+s/\b\(disponibles\|el vostre compte\|Hi ha disponible una llista d'aquests\|informació genèrica\|present\|quant a aquest projecte\|vegeu la pàgina «Distribucions»\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)wiki\([^[:alnum:]]\)/\1 en el \2wiki\3/g
+# al YCrBr
+s/\b\(AVIF\) al YCrBr\([^[:alnum:]]\)/\1 en el YCrBr\2/g
 # al xat
 s/\bAl xat\([^[:alnum:]]\)/En el xat\1/g
 s/\b\(Color dels enllaços\|Mostra efectes sofisticats\) al xat\([^[:alnum:]]\)/\1 en el xat\2/g
+# al xip
+ #
+s/\b\(busos interns de l'ordinador\) als xips\([^[:alnum:]]\)/\1 en els xips\2/g
+# al ZCE
+s/\b\(Enfocament»\) al \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)ZCE\([^[:alnum:]]\)/\1 en el \2ZCE\3/g
 # #
 # # # # # # # # # # # # # #
 #
@@ -3008,10 +3430,16 @@ s/\b\([Cc]liquem\) a un botó\([^[:alnum:]]\)/\1 en un botó\2/g
 s/\b\(estigui\) a un directori\([^[:alnum:]]\)/\1 en un directori\2/g
 # a una aplicació
 s/\b\(estan oberts\) a una aplicació\([^[:alnum:]]\)/\1 en una aplicació\2/g
+# a una capa
+s/\b\(creava\) a una capa\([^[:alnum:]]\)/\1 en una capa\2/g
+# a una de les vistes
+s/\b\(Visualitza el perfil de l'estrella``\) a una de les vistes\([^[:alnum:]]\)/\1 en una de les vistes\2/g
 # a una cel·la
 s/\b\(clic del mig\|clic dret\|clic esquerre\) a una cel·la\([^[:alnum:]]\)/\1 en una cel·la\2/g
 # a una finestra
 s/\b\(obrirà explícitament\|seleccionats\) a una finestra\([^[:alnum:]]\)/\1 en una finestra\2/g
+# a una imatge
+s/\b\(detectar més objectes\) a una imatge\([^[:alnum:]]\)/\1 en una imatge\2/g
 # a una latitud
 s/\b\([Ss]itua l'observador\) a una latitud\([^[:alnum:]]\)/\1 en una latitud\2/g
 # a una paraula
@@ -3020,6 +3448,8 @@ s/\b\(Converteix el missatge\) a una paraula\([^[:alnum:]]\)/\1 en una paraula\2
 s/\b\(troben\) a una pila\([^[:alnum:]]\)/\1 en una pila\2/g
 # a una ubicació
 s/\b\(oberta una finestra del navegador\) a una ubicació\([^[:alnum:]]\)/\1 en una ubicació\2/g
+# a una unitat
+s/\b\(p\. ex\.,\) a una unitat\([^[:alnum:]]\)/\1 en una unitat\2/g
 # a una vista
 s/\b\(sortida\) a una vista\([^[:alnum:]]\)/\1 en una vista\2/g
 # #
@@ -3037,42 +3467,42 @@ s/\bdel·líptiques\([^[:alnum:]]\)/d'el·líptiques\1/g
 #
 # damunt
 s/\bClicant en l'àrea central\([^[:alnum:]]\)/Clicant a l'àrea central\1/g
-s/\b\([Cc]\)liqueu\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(a sobre\|damunt\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1liqueu\2 damunt d'un\4\5/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([mst]eu\)/\1 damunt \3\4/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(això\|algun\|algun[as]\|algunes\|aquest\|aquest[as]\|aquestes\|ell\|ell[as]\|elles\)/\1 damunt d'\3\4/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(cada\|fitxers\|qualsevol\|totes\)/\1 damunt de \3\4/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) de\(l\|\)\(s\|\)\([^[:alnum:]]\)/\1 damunt de\3\4\5/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) el\(s\|\)\([^[:alnum:]]\)/\1 damunt del\3\4/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) l'/\1 damunt de l'/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) l\(a\|es\)\([^[:alnum:]]\)/\1 damunt de l\3\4/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1 damunt d'un\3\4/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(al\|damunt el\|en el\|sobre el\)\([^[:alnum:]]\)/\1 damunt del\3/g
+s/\b\([Cc]\)liqueu\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(a sobre\|damunt\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1liqueu\2 damunt d'un\4\5/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([mst]eu\)/\1 damunt \3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(això\|algun\|algun[as]\|algunes\|aquest\|aquest[as]\|aquestes\|ell\|ell[as]\|elles\)/\1 damunt d'\3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(cada\|fitxers\|qualsevol\|totes\)/\1 damunt de \3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) de\(l\|ls\|\)\([^[:alnum:]]\)/\1 damunt de\3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) el\(s\|\)\([^[:alnum:]]\)/\1 damunt del\3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) l'/\1 damunt de l'/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) l\(a\|es\)\([^[:alnum:]]\)/\1 damunt de l\3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1 damunt d'un\3\4/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(al\|damunt el\|en el\|sobre el\)\([^[:alnum:]]\)/\1 damunt del\3/g
 s/\bclicar o no a \([<«]\)/clicar o no en \1/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(Actualitza\|Importa\|Introducció\|Següent\)\([^[:alnum:]]\)/\1 damunt \3\4\5/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(AbstractCard\)\([^[:alnum:]]\)/\1 damunt d'una \3\4\5/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([mst]eu\)/\1mb el botó \2 damunt \4\5/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(això\|aquest\|aquest[as]\|aquestes\)/\1mb el botó \2 damunt d'\4\5/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(cada\|fitxers\|qualsevol\|totes\)\([^[:alnum:]]\)/\1mb el botó \2 damunt de \4\5\6/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) del\([^[:alnum:]]\)/\1mb el botó \2 damunt del\4/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) el\(s\|\)\([^[:alnum:]]\)/\1mb el botó \2 damunt del\4\5/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) l\(a\|es\)\([^[:alnum:]]\)/\1mb el botó \2 damunt de l\4\5/g
-  s/\b\([Aa]\)mb el botó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1mb el botó \2 damunt d'un\4\5/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\([mst]eu\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt \6\7\8/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(això\|aquest\|aquest[as]\|aquestes\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt d'\6\7\8/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(a\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(cada\|fitxers\|qualsevol\|totes\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt de \6\7\8/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(en\|sobre\) del\([^[:alnum:]]\)/\1lic \2\3\4 damunt del\6/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(en\|sobre\) el\(s\|\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt del\6\7/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(en\|sobre\) l\(a\|es\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt de l\6\7/g
-  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\) \(a\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt d'un\6\7/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(Actualitza\|Importa\|Introducció\|Següent\)\([^[:alnum:]]\)/\1 damunt \3\4\5/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(AbstractCard\)\([^[:alnum:]]\)/\1 damunt d'una \3\4\5/g
+  s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([mst]eu\)/\1 damunt \3\4/g
+  s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(això\|aquest\|aquest[as]\|aquestes\)/\1 damunt d'\3\4/g
+  s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(cada\|fitxers\|qualsevol\|totes\)\([^[:alnum:]]\)/\1 damunt de \3\4\5/g
+#   s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) del\([^[:alnum:]]\)/\1 damunt del\3/g
+  s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) el\(s\|\)\([^[:alnum:]]\)/\1 damunt del\3\4/g
+  s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) l\(a\|es\)\([^[:alnum:]]\)/\1 damunt de l\3\4/g
+  s/\b\([Bb]\)otó \(central\|del mig\|dret\|esquerre\) \(a sobre\|damunt\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1 damunt d'un\3\4/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\([mst]eu\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt \6\7\8/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(això\|aquest\|aquest[as]\|aquestes\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt d'\6\7\8/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(a\|en\|sobre\) \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(cada\|fitxers\|qualsevol\|totes\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt de \6\7\8/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(en\|sobre\) del\([^[:alnum:]]\)/\1lic \2\3\4 damunt del\6/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(en\|sobre\) el\(s\|\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt del\6\7/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(en\|sobre\) l\(a\|es\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt de l\6\7/g
+  s/\b\([Cc]\)lic \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)\(central\|del mig\|dret\|esquerre\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\) \(a\|en\|sobre\) un\(a\|\)\([^[:alnum:]]\)/\1lic \2\3\4 damunt d'un\6\7/g
 #
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) en on\([^[:alnum:]]\)/\1 a on\2/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) damunt de l'\(<[^<]\{1,\}>\|\)esquerra\([^[:alnum:]]\)/\1 a l'\2esquerra\3/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) damunt de la \(<[^<]\{1,\}>\|\)dreta\([^[:alnum:]]\)/\1 a la \2dreta\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) en on\([^[:alnum:]]\)/\1 a on\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) damunt de l'\(<[^<]\{1,\}>\|\)esquerra\([^[:alnum:]]\)/\1 a l'\2esquerra\3/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) damunt de la \(<[^<]\{1,\}>\|\)dreta\([^[:alnum:]]\)/\1 a la \2dreta\3/g
 #
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) en \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|:doc:`\|:ref:`\|``\|`\|\)/\1 damunt \2/g
-s/\b\(amb el botó del mig\|amb el botó dret\|amb el botó esquerre\|amb el &B[DEM]R;\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]liqu[ei]\|[Cc]liqueu\) en \([^[:alnum:]]\)/\1 damunt\2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) en \(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)/\1 damunt \2/g
+s/\b\([Bb]otó del mig\|[Bb]otó del mig del ratolí\|[Bb]otó dret\|[Bb]otó dret del ratolí\|[Bb]otó esquerre\|[Bb]otó esquerre del ratolí\|el &B[DEM]R;\|el &B[DEM]R; del ratolí\|[Cc]lic del mig\|[Cc]lic dret\|[Cc]lic esquerre\|[Cc]lic\|[Cc]lica\|[Cc]licada\|[Cc]licant\|[Cc]lica[rt]\|[Cc]licava\|[Cc]liqu[ei]\|[Cc]liqueu\) en \([^[:alnum:]]\)/\1 damunt\2/g
  #
-s/\b\([Cc]\)lic damunt \(<[^<]\{1,\}>\|«\|\*\*\|\[\|:doc:`\|:ref:`\|`\)\(central\|del mig\|dret\|esquerre\)\([^[:alnum:]]\)/\1lic \2\3\4/g
+s/\b\([Cc]\)lic damunt \(<[^<]\{1,\}>\|«\|\*\*\|\[\|(\[\«\|(\[\|:doc:`\|:menuselection:`\|:ref:`\|`\)\(central\|del mig\|dret\|esquerre\)\([^[:alnum:]]\)/\1lic \2\3\4/g
 s/\bclicar accidentalment en elements\([^[:alnum:]]\)/clicar accidentalment damunt d'elements\1/g
 s/\bd'un fitxer d'un arxiu\([^[:alnum:]]\)/d'un fitxer en un arxiu\1/g
 s/\bdamunt dins\([^[:alnum:]]\)/dins\1/g
@@ -3085,10 +3515,12 @@ s/\bdamunt dins\([^[:alnum:]]\)/dins\1/g
 s/\ba \(Adlershof\|Arnsberg\|Berlín\|Berna\|Erlangen\|Nuremberg\|Tübingen\), Alemanya\([^[:alnum:]]\)/en \1, Alemanya\2/g
 s/\ba l'\(Índia\)\([^[:alnum:]]\)/en l'\1\2/g
   s/\b\([Aa]\)rrib\(a\|en\) en l'Índia\([^[:alnum:]]\)/\1rrib\2 a l'Índia\3/g
-s/\ba la \(Corunya\|República Txeca\|UE\)\([^[:alnum:]]\)/en la \1\2/g
+s/\ba la \(Corunya\|Normandia\|República Txeca\|UE\|Xina\)\([^[:alnum:]]\)/en la \1\2/g
 s/\ba Trysil, Noruega\([^[:alnum:]]\)/en Trysil, Noruega\1/g
   s/\ba Trysill\([^[:alnum:]]\)/en Trysil\1/g
-s/\ba \(Alemanya\|Amèrica\|Anglaterra\|Barcelona\|Bengaluru\|Berlin\|Brasil\|Deventer\|Dublín\|Gran Canària\|Holanda\|Kerala\|Letònia\|Lituània\|Ludwigsburg\|Montenegro\|Munic\|Negril\|Porto Alegre\|Randa\|San Diego\|San Francisco\|São Paulo\|Salvador\|Sèrbia\|València\|Vancouver\|West Potomac Park\|Williams Bay\)\([^[:alnum:]]\)/en \1\2/g
+s/\bA \(Alemanya\|Amèrica\|Anglaterra\|Arnsberg\|Barcelona\|Bengaluru\|Berlin\|Brasil\|Coupvray\|Deventer\|Dublín\|Europa\|França\|Gran Canària\|Graz\|Holanda\|Kerala\|Letònia\|Lituània\|Ludwigsburg\|Montenegro\|Munic\|Negril\|Porto Alegre\|Randa\|San Diego\|San Francisco\|São Paulo\|Salvador\|Sèrbia\|València\|Vancouver\|West Potomac Park\|Williams Bay\)\([^[:alnum:]]\)/En \1\2/g
+s/\ba \(Alemanya\|Amèrica\|Anglaterra\|Arnsberg\|Barcelona\|Bengaluru\|Berlin\|Brasil\|Coupvray\|Deventer\|Dublín\|Europa\|França\|Gran Canària\|Graz\|Holanda\|Kerala\|Letònia\|Lituània\|Ludwigsburg\|Montenegro\|Munic\|Negril\|Porto Alegre\|Randa\|San Diego\|San Francisco\|São Paulo\|Salvador\|Sèrbia\|València\|Vancouver\|West Potomac Park\|Williams Bay\)\([^[:alnum:]]\)/en \1\2/g
+  s/\bper en \(Alemanya\|Amèrica\|Anglaterra\|Barcelona\|Bengaluru\|Berlin\|Brasil\|Deventer\|Dublín\|Europa\|Gran Canària\|Holanda\|Kerala\|Letònia\|Lituània\|Ludwigsburg\|Montenegro\|Munic\|Negril\|Porto Alegre\|Randa\|San Diego\|San Francisco\|São Paulo\|Salvador\|Sèrbia\|València\|Vancouver\|West Potomac Park\|Williams Bay\)\([^[:alnum:]]\)/per a \1\2/g
   s/\bllei de marques a Alemanya\([^[:alnum:]]\)/llei de marques en Alemanya\1/g
 s/\bal \(Brasil\|RU\)\b/en \1/g
 s/\bals \(Alps\|Estats Units\|EUA\|Països Baixos\)\([^[:alnum:]]\)/en els \1\2/g
@@ -3096,4 +3528,6 @@ s/\bals \(Alps\|Estats Units\|EUA\|Països Baixos\)\([^[:alnum:]]\)/en els \1\2/
   s/\bPer en els \(Estats Units\|EUA\)\([^[:alnum:]]\)/Pels \1\2/g
 s/\bdia a la zona oest\([^[:alnum:]]\)/dia en la zona oest\1/g
 s/\bzones horàries a l'Oceà\([^[:alnum:]]\)/zones horàries en l'Oceà\1/g
+ # Errors
+s/\ben honor en Europa\([^[:alnum:]]\)/en honor a Europa\1/g
 

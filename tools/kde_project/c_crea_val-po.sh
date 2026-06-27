@@ -1,5 +1,22 @@
 #!/bin/bash --debug
 
+# Best practices for robustness
+# set -euo pipefail
+
+# Configuration & Paths
+DIR1="$(pwd)"
+DIR0="$(cd ../../../../ ; pwd)"
+cd $DIR1
+STABLE="stable/l10n-kf5"
+TRUNK="trunk/l10n-kf5"
+STABLE6="stable/l10n-kf6"
+TRUNK6="trunk/l10n-kf6"
+MEM_DIR="/run/user/$(id -u)"
+MSG='msgstr'
+SOURCE_0='ca@valencia'
+TEXT="$2"
+
+# Dependency Validation
 msg_exit() {
   echo "Error: Penseu a instal·lar $1"
   exit 0
@@ -13,30 +30,18 @@ msg_exit() {
 [ $(command -v sed)      ] || msg_exit "el paquet «sed» de GNU: apt install sed"
 [ $(command -v svn)      ] || msg_exit "el paquet «subversion»: apt install subversion"
 
-DIR1="$(echo $PWD)"
-DIR0="$(cd ../../../.. ; echo $PWD)"
-cd $DIR1
-STABLE="stable/l10n-kf5"
-TRUNK="trunk/l10n-kf5"
-STABLE6="stable/l10n-kf6"
-TRUNK6="trunk/l10n-kf6"
-MEM_DIR="$(echo /run/user/$(id -u))"
-MSG='msgstr'
-SOURCE_0='ca@valencia'
-TEXT="$2"
-
 # Per a trobar els resultats amb un enllaç o caràcter especial (p. ex., va rebre el [premi a -en aquest cas «[»-)
 TEMPORAL=':(alt|command|dfn|doc|file|guilabel|kbd|literal|menuselection|program|ref|su[bp]|term):`|``|`'
-APPEND="\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\]|[,&»]|<[^<]{1,}>"
+APPEND="\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\]|\[|\(\[||\(\[«|«?\$|[,&«»]|<[^<]{1,}>"
 # Es descarten les paraules annexades abans (p. ex., accedint recentment a la -en aquest cas «accedint recentment»-)
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="[0123456789]|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|Fourier|freqüències|hores d'ara|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|mida|motius|nivell intern|nord|oest|partir|penes|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|vegades|voluntat"
-APPEND_A_L="escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés.|instant|oest de Greenwich"
-APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|manera de fer|manera tradicional|millor|normal|part|posició (apuntada|d'enfocament)|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
-APPEND_A_LES="dotze del migdia"
+APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|faltar|fer|Fourier|freqüències|hores d'ara|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|motius|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
+APPEND_A_L="aire lliure|escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés|instant|oest de Greenwich|oli"
+APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|llarga|manera de fer|manera tradicional|millor|nit seleccionada|normal|part|posició (apuntada|d'enfocament)|pèrdua|posta de sol|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
+APPEND_A_LES="00:00|23,59|dotze del migdia|persones|quals"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdavant|començament,|començament d'(aqu)?esta secció|començament del fitxer|costat|darrere|desenvolupadors de KDE|Dhanab|efectes del càlcul|final de l'(agranat|escombrat)|final del text|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|migdia|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seus valors predeterminats|Shuja|Thalimain|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdamunt|capdavant|carbonet|començament|costat|darrere|davant|desenvolupadors?|Dhanab|dia|efectes del càlcul|espectadors|fet|final|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|màxim|mig del gris|migdia|millors artistes|moment d'escriure|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seu (torn|voltant)|seus valors predeterminats|Shuja|sis anys|Thalimain|ultraviolats|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -150,15 +155,22 @@ sortida_po() {
   • all-src2valencia-esmena.sed
 
   \033[1;37mLLEGENDA\n  --------\e[0m
-  * (Opcions que només es poden executar des de la carpeta base de l'script).\n"
+  * (Opcions que només es poden executar des de la carpeta base de l'script).\n
+
+  \033[1;37mRETALLS\n  --------\e[0m
+  * Primer obriu la IGU del Lokalize:
+    posieve check-rules -s lokalize ca-mod/messages/websites-krita-org/\n
+  * Verificar amb les regles del pology:
+    posieve check-rules -s rfile:$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/multimedia.rules ca@valencia/messages/digikam-doc/
+  * Comprovar les capçaleres:
+    ../../../l10n-support/ca/scripts/set_kde_copyright.sh l10n-kf5 copyright trunk"
   exit 0
 }
 
 comprova_lloc() {
   # Comprova que es crida des de la ubicació correcta
-  echo $DIR0
   [ -d $DIR0/$STABLE ] || sortida_po
-  [ -d $DIR0/$TRUNK ]  || sortida_po
+  [ -d $DIR0/$TRUNK  ] || sortida_po
 }
 
 [ -z $1 ] && sortida_po
@@ -183,7 +195,10 @@ sed_files() {
       cp  $DIRTR/all-src2valencia-adapta.sed    all-src2valencia.sed
       cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
       cat $DIRTR/all-src2valencia-esmena.sed >> all-src2valencia.sed
-      [ "$(pidof -c cpulimit)" ] || cpulimit --background --quiet --path=/bin/sed --limit=75 2&>/dev/null
+      # Performance: Limit CPU usage for sed background tasks
+      if ! pidof -x cpulimit >/dev/null; then
+          cpulimit --background --quiet --path=/bin/sed --limit=75 2>/dev/null || true
+      fi
   fi
 }
 
@@ -368,20 +383,20 @@ prompt_1() {
         read -p "Voleu procedir? (Sí/no) " sn
         case $sn in
           no )
-            echo " - Se surt..."
+            echo " - Se surt…"
             exit 1
           ;;
           *)
             if   [ "$TEXT2" ]; then
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b$TEXT2/ and not msgstr/\b$APPEND_B/" $SOURCE/${DOC}messages/$DIR
+                posieve find-messages -s fexpr:"msgstr/$TEXT1/ and not msgstr/$TEXT2/ and not msgstr/$APPEND_B/" $SOURCE/${DOC}messages/$DIR
             elif [ "$TEXT3" ]; then
                 echo -e "\n\n - Doc:\n   ****"
                 [ -d "$SOURCE/docmessages/$DIR" ] && \
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_0) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/docmessages/$DIR
+                posieve find-messages -s fexpr:"msgstr/$TEXT1/ and not msgstr/$TEXT2/ and not msgstr/$APPEND_B/" $SOURCE/docmessages/$DIR
                 echo -e "\n\n - IGU:\n   ****"
-                posieve find-messages -s fexpr:"msgstr/\b$TEXT/ and not msgstr/\b($APPEND_0) $TEXT/ and not msgstr/\b$APPEND_B/" $SOURCE/messages/$DIR
+                posieve find-messages -s fexpr:"msgstr/$TEXT1/ and not msgstr/$TEXT2/ and not msgstr/$APPEND_B/" $SOURCE/messages/$DIR
               else
-                posieve find_messages -s$MSG:"$TEXT" $SOURCE/${DOC}messages/$DIR
+                posieve find_messages -s$MSG:"$TEXT1" $SOURCE/${DOC}messages/$DIR
             fi
             TEXT2=
             TEXT3=
@@ -407,11 +422,11 @@ pregunta() {
   read -p "Voleu procedir? (Sí/no) " sn
   case $sn in
     no)
-      echo "Se surt..."
+      echo "Se surt…"
       exit 0
 	;;
     *)
-      echo "Es procedeix..."
+      echo "Es procedeix…"
     ;;
   esac
 }
@@ -457,104 +472,131 @@ case $1 in
     SOURCE='ca@valencia'
     DIR="$2"
     DOC="$3"
-    MISSATGE1="Possible canvi:"
+    MISSATGE1="Canvi possible:"
     TEXT2=
     TEXT3=
+#     python3 -c "import re"
 # valencià
-    TEXT="[?]( |$)"
-    MISSATGE="$MISSATGE1 ** Voleu ...? **"
-    prompt_1
-    TEXT="[!]( |$)"
-    MISSATGE="$MISSATGE1 ** _esborrar el signe d'exclamació?_ **"
-    prompt_1
-    TEXT=", que "
-    MISSATGE="$MISSATGE1 ** , el qual **"
-    prompt_1
-    WORD='2,'
-    TEXT="\ba l'($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a l'($APPEND|)\w{$WORD}"
-    APPEND_B="a l'($APPEND|)($APPEND_A_L)"
+#     TEXT="[\e[33;5;46m?\e[0m\e[38;1;33m]( |$)"
+#     TEXT1="[?]( |$)"
+#     MISSATGE="$MISSATGE1 ** Voleu …? **"
+#     prompt_1
+#     TEXT="[\e[33;5;46m!\e[0m\e[38;1;33m]( |$)"
+#     TEXT1="[!]( |$)"
+#     MISSATGE="$MISSATGE1 ** _esborrar el signe d'exclamació?_ **"
+#     prompt_1
+#     TEXT="\e[33;5;46m, que \e[0m"
+#     TEXT1=", que "
+#     MISSATGE="$MISSATGE1 ** , el qual **"
+#     prompt_1
+    WORD='1,'
+    CATALAN_RULE="a-zA-Z0-9-·'ÀàÉéÈèÍíÏïÓóÒòÚúÜüÇç"
+    TEXT="\\\b\e[33;5;46ma l'\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT1="($APPEND|)\ba ($APPEND|)l'($APPEND|)[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) ($APPEND|)a ($APPEND|)l'($APPEND|)[$CATALAN_RULE]{$WORD}"
+    APPEND_B="($APPEND|)\ba ($APPEND|)l'($APPEND|)($APPEND_A_L)"
     MISSATGE="$MISSATGE1 ** amb / en l' **"
     prompt_1
-    WORD='3,'
-    TEXT="a ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a ($APPEND|)\w{$WORD}"
-    APPEND_B="a ($APPEND|)($APPEND_A)"
+    TEXT="\\\b\e[33;5;46ma (d'|del? |)\e[0m\e[38;1;33m\w{2,}[$CATALAN_RULE]{$WORD}"
+    TEXT1="($APPEND|)\ba (d'|del? |)($APPEND|)\w{2}[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) ($APPEND|)a (d'|del? |)($APPEND|)\w{2}[$CATALAN_RULE]{$WORD}"
+    APPEND_B="($APPEND|)\ba (d'|del? |)($APPEND|)($APPEND_A)"
     MISSATGE="$MISSATGE1 ** a inserir -> que cal inserir / que s'ha d'inserir / que s'inserirà **"
     prompt_1
-    TEXT="\ba la ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a la ($APPEND|)\w{$WORD}"
-    APPEND_B="\ba la ($APPEND|)($APPEND_A_LA)"
+    TEXT="\\\b\e[33;5;46ma la (d'|del?s? |)\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT1="($APPEND|)\ba ($APPEND|)la (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) ($APPEND|)a ($APPEND|)la (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
+    APPEND_B="($APPEND|)\ba ($APPEND|)la (d'|del?s? |)($APPEND|)($APPEND_A_LA)"
     MISSATGE="$MISSATGE1 ** amb / en la **"
     prompt_1
-    TEXT="\ba les ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a les ($APPEND|)\w{$WORD}"
-    APPEND_B="a les ($APPEND|)($APPEND_A_LES)"
+    TEXT="\\\b\e[33;5;46ma les (d'|del?s? |)\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT1="($APPEND|)\ba ($APPEND|)les (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) ($APPEND|)a ($APPEND|)les (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
+    APPEND_B="($APPEND|)\ba ($APPEND|)les (d'|del?s? |)($APPEND|)($APPEND_A_LES)"
     MISSATGE="$MISSATGE1 ** amb / en les **"
     prompt_1
-    TEXT="\bals? ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) als? ($APPEND|)\w{$WORD}"
-    APPEND_B="als? ($APPEND|)($APPEND_ALS)"
+    TEXT="\\\b\e[33;5;46mals? (d'|del?s? |)\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT1="($APPEND|)\bals? (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) ($APPEND|)als? (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
+    APPEND_B="($APPEND|)\bals? (d'|del?s? |)($APPEND|)($APPEND_ALS)"
     MISSATGE="$MISSATGE1 ** amb / en els? **"
     prompt_1
     APPEND_B=""
-    TEXT="\ba on "
-    TEXT2="($APPEND_0) a on ($APPEND|)\w{$WORD}"
+    TEXT="\\\b\e[33;5;46ma on \e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT1=" a on ($APPEND|)[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) a on ($APPEND|)[$CATALAN_RULE]{$WORD}"
     MISSATGE="$MISSATGE1 ** a on cal / s'ha(n) **"
     prompt_1
-    TEXT="\ba un ($APPEND|)\w{$WORD}"
-    TEXT2="($APPEND_0) a un ($APPEND|)\w{$WORD}"
+    TEXT="\\\b\e[33;5;46ma un \e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT1=" a un ($APPEND|)[$CATALAN_RULE]{$WORD}"
+    TEXT2="\b($APPEND_0) a un ($APPEND|)[$CATALAN_RULE]{$WORD}"
     MISSATGE="$MISSATGE1 ** amb / en un **"
     prompt_1
-    TEXT="\b(activ|desactiv|habilit|inhabilit|marc|marqu)[aei]"
+    TEXT="\\\b\e[33;5;46m(activ|desactiv|habilit|inhabilit|marc|marqu)[aei]s?.\e[0m\b"
+    TEXT1="\b(activ|desactiv|habilit|inhabilit|marc|marqu)[aei]s?\b"
     MISSATGE="$MISSATGE1 ** Quan se selecciona aquesta opció, / Quan no està seleccionada, / Si se selecciona, / Si no se selecciona, **"
     prompt_1
-    TEXT="\bcàrreg(a|ues)"
+    TEXT="\\\b\e[33;5;46mcàrreg(a|ues).\e[0m\b"
+    TEXT1="\bcàrreg(a|ues)\b"
     MISSATGE="$MISSATGE1 ** carrega(ues) **"
     prompt_1
-    TEXT="\bdest(í|inació|inacions|ins)"
+    TEXT="\\\b\e[33;5;46mdest(í|inació|inacions|ins).\e[0m\b"
+    TEXT1="\bdest(í|inació|inacions|ins)\b"
     MISSATGE="$MISSATGE1 ** destinació / destí **"
     prompt_1
-    TEXT="^Error"
+    TEXT="\\\e[33;5;46m^Error.\e[0m\b"
+    TEXT1="^Error\b"
     MISSATGE="$MISSATGE1 ** S'ha produït un error **"
     prompt_1
-    TEXT="\bextr(a|es)\b"
+    TEXT="\\\b\e[33;5;46mextr(a|es).\e[0m\b"
+    TEXT1="\bextr(a|es)\b"
     MISSATGE="$MISSATGE1 ** addicional(s) **"
     prompt_1
-    TEXT="\bgraell(a|es)"
+    TEXT="\\\b\e[33;5;46mgraell(a|es).\e[0m\b"
+    TEXT1="\bgraell(a|es)\b"
     MISSATGE="$MISSATGE1 ** quadrícula(es) **"
     prompt_1
-    TEXT="\bHa fallat"
+    TEXT="\\\b\e[33;5;46mHa fallat.\e[0m\b"
+    TEXT1="\bHa fallat\b"
     MISSATGE="$MISSATGE1 ** No s'ha(n) pogut **"
     prompt_1
-    TEXT="\bper defecte"
+    TEXT="\\\b\e[33;5;46mper defecte.\e[0m\b"
+    TEXT1="\bper defecte\b"
     MISSATGE="$MISSATGE1 ** predeterminat(da), de manera predeterminada **"
     prompt_1
-    TEXT="\bPer favor"
+    TEXT="\\\b\e[33;5;46mPer favor.\e[0m\b"
+    TEXT1="\bPer favor\b"
     MISSATGE="$MISSATGE1 ** _esborrar-ho?_ **"
     prompt_1
-    TEXT="\bsimple(ment)?"
+    TEXT="\\\b\e[33;5;46msimple(ment)?.\e[0m\b"
+    TEXT1="\bsimple(ment)?\b"
     MISSATGE="$MISSATGE1 ** senzill(ament) **"
     prompt_1
 # anglès
     MSG="msgid"
-    TEXT="\bas "
+    TEXT="\\\b\e[33;5;46mas \e[0m"
+    TEXT1="\bas "
     MISSATGE="$MISSATGE1 ** anomena i guarda **"
     prompt_1
-    TEXT="\bin(\s)?to "
+    TEXT="\\\b\e[33;5;46min(\s)?to \e[0m"
+    TEXT1="\bin(\s)?to "
     MISSATGE="$MISSATGE1 ** a dins, en **"
     prompt_1
-    TEXT="\bhosts?"
-    MISSATGE="$MISSATGE1 ** amfitrió(ons) **"
-    prompt_1
-    TEXT="\bmultiple"
+    TEXT="\\\b\e[33;5;46mmultiples?\e[0m\b"
+    TEXT1="\bmultiples?\b"
     MISSATGE="$MISSATGE1 ** múltiple(s) **"
     prompt_1
-    TEXT="\bon(\s)?to "
+    TEXT="\\\b\e[33;5;46mon(\s)?to \e[0m"
+    TEXT1="\bon(\s)?to "
     MISSATGE="$MISSATGE1 ** «és molt variable»: a sobre, **"
     prompt_1
-    TEXT="\bunder "
+    TEXT="\\\b\e[33;5;46munder \e[0m"
+    TEXT1="\bunder "
     MISSATGE="$MISSATGE1 ** a sota, d'acord amb **"
+    prompt_1
+    TEXT="\\\b\e[33;5;46mwithin \e[0m"
+    TEXT1="\bwithin "
+    MISSATGE="$MISSATGE1 ** dins de **"
     prompt_1
   ;;
   cerca_dir)
@@ -680,7 +722,7 @@ case $1 in
         read -p "Voleu procedir? (Sí/no) " sn
         case $sn in
           no )
-            echo " - Se surt..."
+            echo " - Se surt…"
             exit 1
           ;;
           *)
@@ -964,7 +1006,6 @@ case $1 in
     for arg in ${ARRAY[@]}
       do
         commits_num "$arg"
-        echo $arg
         FITXERST="$FITXERST $FITXERS"
       done
 

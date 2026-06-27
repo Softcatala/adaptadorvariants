@@ -41,51 +41,50 @@ addFilterRegex match="(_|~|&)" on="pmsgid,pmsgstr"
 
 # i18n: ectx: property (placeholderText)
 
+{\bdirectory\b}i
+valid msgid="-directory-"
+valid msgid="\bActive Directory\b"
+valid msgstr="\bhome\sdirectory\b"
+valid msgstr="\bsub.?directory\b"
+valid msgstr="\bcarpeta\b"
+hint="Es tradueix per «carpeta» (multimèdia)."
+
+  {\bhome\sdirectory\b}i
+  valid msgstr="\bcarpeta d'inici\b"
+  hint="Es tradueix per «carpeta d'inici» (multimèdia)."
+
+  {\bsub.?directory\b}i
+  valid msgstr="\bsubcarpeta\b"
+  hint="Es tradueix per «subcarpeta» (multimèdia)."
+
+{\bdirectorys\b}i
+valid msgstr="\bsub.?directorys\b"
+valid msgstr="\bcarpetes\b"
+hint="Es tradueix per «carpetes» (multimèdia)."
+
+  {\bsub.?directorys\b}i
+  valid msgstr="\bsubcarpetes\b"
+  hint="Es tradueix per «subcarpetes» (multimèdia)."
+
+[\bdirectori\b]i
+valid msgstr="\bcarpeta\b"
+hint="Es tradueix per «carpeta»."
+
+  [\bdirectoris\b]i
+  valid msgstr="\bdirectoris\smundials\b"
+  valid msgstr="\bcarpetes\b"
+  hint="Es tradueix per «carpetes»."
+
+  [\bsubdirectori\b]i
+  valid msgstr="\bsubcarpeta\b"
+  hint="Es tradueix per «subcarpeta»."
+
+  [\bsubdirectoris\b]i
+  valid msgstr="\bsubcarpetes\b"
+  hint="Es tradueix per «subcarpetes»."
+
 [\bestablits?\b]i
 hint="Es traduix per «establert(s)»."
-
-# {\bhigh.?lights?\b}i
-# valid msgid="\bhighlight tone\b"
-# valid msgid="\b(Highlights|Shadow) saturation\b"
-# valid msgstr="llums? intens(a|es)"
-# hint="Es tradueix per «llum/s intensa/es»."
-#
-#   {\bhighlight tone\b}i
-#   valid msgstr="to més lluminós"
-#   hint="Es tradueix per «to més lluminós»."
-#
-#   {\bhighlights saturation\b}i
-#   valid msgstr="saturació de les zones lluminoses"
-#   hint="Es tradueix per «saturació de les zones lluminoses»."
-#
-#   {\bshadow saturation\b}i
-#   valid msgstr="saturació de l'ombra"
-#   hint="Es tradueix per «saturació de l'ombra»."
-
-{\bsets?\b}i
-valid msgid="\bcharacter set\b"
-valid msgid="\bset (of\scalipers|point|up)\b"
-valid msgstr="\bconjunts?\b"
-valid msgstr="\bestableixi?\b"
-valid msgstr="\bestablert([as]?|es)\b"
-valid msgstr="\bestabli(ment|[ru]|rà|ran|x)\b"
-valid msgstr="\bestablida\b"
-valid msgstr="\bpon(drà|ent)?\b"
-valid msgstr="\bpost(a|es)\b"
-valid msgstr="\brestarà\b"
-hint="Es tradueix per «conjunt/s, estableix/i, establert/s, establerta/es, establiment, establir/à, establiran, establiu» o «pon, pondrà, ponent, posta/es, restarà»."
-
-  {\bcharacter\sset\b}i
-  valid msgstr="\bjoc de caràcters\b"
-  hint="Es tradueix per «joc de caràcters»."
-
-  {\bset\sof\scalipers\b}i
-  valid msgstr="\bjoc de peus de rei\b"
-  hint="Es tradueix per «joc de peus de rei»."
-
-  {\bset\sup\b}i
-  valid msgstr="\bconfigur(ada|ar|at|in)\b"
-  hint="Es tradueix per «configurat/da, configurar, configurin»."
 
 # Krita
 # {\brigger\b}i

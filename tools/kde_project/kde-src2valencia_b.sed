@@ -1,6 +1,6 @@
+# #
+# # # # # # # # # # # # # #
 #
-# # #
-# # #
 # Millores en el valencià
 #
 s/\"ID d'usuaris\(:\|\)\"/\"Els ID d'usuari\1\"/g
@@ -274,7 +274,7 @@ s/\baquesta \(casella\|opció\) està marcada\([^[:alnum:]]\)/es marca aquesta \
 s/\bSi aquesta \(casella\|opció\) \(no \|\)està \(des\|\)marcada\([^[:alnum:]]\)/Si \2es \3marca aquesta \1\4/g
 s/\bQuan es marca aquesta opció /Quan es marca aquesta opció, /g
 s/\b\([Ss]\)i aquesta opció està establerta\([^[:alnum:]]\)/\1i s'ha establert aquesta opció\2/g
-s/\bDesactiveu-ho\([^[:alnum:]]\)/Desactiveu-la\1/g
+s/Desactiveu-ho\([^[:alnum:]]\)/Desactiveu-la\1/g
 s/\bActiveu-ho\([^[:alnum:]]\)/Activeu-la\1/g
 s/\bd'marcar aquesta\([^[:alnum:]]\)/de marcar aquesta\1/g
 
@@ -396,6 +396,7 @@ s/\bError mentre\([^[:alnum:]]\)/S'ha produït un error mentre\1/g
 s/\bError no gestionat\([^[:alnum:]]\)/S'ha produït un error no gestionat\1/g
 s/\b\([Ee]\)rror obtingut\([^[:alnum:]]\)/\1rror reportat\2/g
 s/\bError total\([^[:alnum:]]\)/S'ha produït un error total\1/g
+s/\bfallada en canviar\([^[:alnum:]]\)/fallada mentre es canviava\1/g
 s/\bHi ha \(hagut \|\)un error\([^[:alnum:]]\)/S'ha produït un error\2/g
 s/\bL'error informat ha estat\([^[:alnum:]]\)/S'ha informat de l'error\1/g
 s/\bInforma d'un \(error\|problema\)\([^[:alnum:]]\)/Informeu d'un \1\2/g
@@ -419,6 +420,7 @@ s/\bCancel·lo\([? ]\)/Voleu cancel·lar\1/g
 s/\bCanvio\([? ]\)/Voleu canviar\1/g
 s/\bCarrego\([? ]\)/Voleu carregar\1/g
 s/\bCerco\([? ]\)/Voleu cercar\1/g
+s/\bCertifico\([? ]\)/Voleu certificar\1/g
 s/\bComparteixo\([? ]\)/Voleu compartir\1/g
 s/\bCondueixo\([? ]\)/Voleu conduir\1/g
 s/\bConfio\([? ]\)/Voleu confiar\1/g
@@ -587,12 +589,21 @@ s/\b\([Ll]\)lista de fonts a l'Alligator a l'escriptori\([^[:alnum:]]\)/\1lista 
 s/\bConfiguració->Configura Amarok->Connectors\([^[:alnum:]]\)/Configuració -> Configura Amarok… -> Connectors\1/g
 s/\bConfirmació de moure\([^[:alnum:]]\)/Confirmeu el moure\1/g
 s/\bConfirmació de la supressió\([^[:alnum:]]\)/Confirmeu la supressió\1/g
+s/\"Consola de script\"/\"Consola de scripts\"/g
+s/\"Mostra els consells\"/\"Mostra els consells d'eina\"/g
 s/\bMoure fitxers\"/Moveu els fitxers\"/g
  #
 s/\bActiva\/\([Dd]es\|[Ii]n\)activa\([^[:alnum:]]\)/Activa o desactiva\2/g
+s/\bAfegeix «The» als noms\([^[:alnum:]]\)/Annexa «The» als noms\1/g
+s/\b\([Aa]\)fegeix fitxers i URL a la llista\([^[:alnum:]]\)/\1fegeix els fitxers i URL a la llista\2/g
+s/\bafegirà «, The» als noms\([^[:alnum:]]\)/annexarà «, The» als noms\1/g
 s/\bdiàleg per les transferències futures\([^[:alnum:]]\)/diàleg per a les transferències futures\1/g
-s/\bFitxers de predefinicions\([^[:alnum:]]\)/Fitxers de predefinits\1/g
+s/\bEstableix el nom d'usuari i contrasenya\([^[:alnum:]]\)/Configura el nom d'usuari i la contrasenya\1/g
+s/\b\([Ff]\)itxer\(s\|\) de predefinicions\([^[:alnum:]]\)/\1itxer\2 d'ajustaments preestablerts\3/g
+s/\bimportar les predefinicions des de\([^[:alnum:]]\)/importar els ajustaments preestablerts des de\1/g
 s/\bperò ha fallat la transferència d'altres peces\([^[:alnum:]]\)/però ha fallat la transferència d'altres\1/g
+s/\bPredefinicions de format\([^[:alnum:]]\)/Ajustaments preestablerts de format\1/g
+s/\bPredefinits del GALR\([^[:alnum:]]\)/Ajustaments preestablerts del GALR\1/g
 s/\b\([Ss]\)'estan executant diverses tasques\([^[:alnum:]]\)/\1'estan executant múltiples tasques\2/g
 s/\bSi està marcada, afegeix els\([^[:alnum:]]\)/Si està marcada, s'afegiran els\1/g
 s/\bSi està marcada, converteix els\([^[:alnum:]]\)/Si està marcada, es convertiran els\1/g
@@ -610,6 +621,8 @@ s/, que actualment no s'admet\([^[:alnum:]]\)/, el qual actualment no s'admet\1/
 s/\bQuan es cliqui a un fitxer en un arxiu\([^[:alnum:]]\)/Quan es cliqui a un fitxer d'un arxiu\1/g
 # Artikulate
 s/\bReprodueix una gravació emmagatzemat\([^[:alnum:]]\)/Reprodueix una gravació emmagatzemada\1/g
+# Atelier
+s/\bque la impressora estigui encesa i s'usi la velocitat de BAUD correcte\([^[:alnum:]]\)/que la impressora estigui encesa i que s'usi la velocitat de BAUD correcta\1/g
 # Atlantik
 # Audex
 s/\"Definiu un esquema\"/\"Establiu un esquema\"/g
@@ -658,6 +671,7 @@ s/\bDesament dels documents\"/Deseu els documents\"/g
 s/\bEdita|\(Afegeix\|Elimina\)\([^[:alnum:]]\)/Edita -> \1\2/g
 s/\bEdita la dependència\"/Editeu la dependència\"/g
 s/\bEnvia els paquets de feina\"/Envieu els paquets de feina\"/g
+s/\bfinestra emergent que té les opcions\([^[:alnum:]]\)/finestra emergent que allotja les opcions\1/g
 s/\bIPTV broadcast server\([^[:alnum:]]\)/Servidor de difusió IPTV\1/g
 s/\bModifica l'\(entrada\|URL\)\"/Modifiqueu l'\1\"/g
 s/\bque ara ja s'haurien\([^[:alnum:]]\)/que ja s'haurien\1/g
@@ -684,6 +698,48 @@ s/\bAfegeix un compte enrere\"/Afegiu un compte enrere\"/g
 s/\bEdita el compte enrere\"/Editeu el compte enrere\"/g
 s/\bElimina tots els comptes enrere\"/Elimineu tots els comptes enrere\"/g
 # digiKam
+s/\"Crea directoris\"/\"Crea les carpetes\"/g
+s/\"Directori\"/\"Carpeta\"/g
+s/«%1» i «%2» del directori «%3»/«%1» i «%2» de la carpeta «%3»/g
+s/\bAfegeix el nom del directori\([^[:alnum:]]\)/Afegeix el nom de la carpeta\1/g
+s/\bcap al directori de destinació\([^[:alnum:]]\)/cap a la carpeta de destinació\1/g
+s/\bconfiguració de directoris ignorats\([^[:alnum:]]\)/configuració de les carpetes ignorades\1/g
+s/\bcrea a cada directori un subdirectori\([^[:alnum:]]\)/crea a cada carpeta una subcarpeta\1/g
+s/\bCreació de directoris:/Creació de carpetes:/g
+s/\bcrear el directori %1\([^[:alnum:]]\)/crear la carpeta %1\1/g
+s/\bcrea\([rt]\) en el directori temporal\([^[:alnum:]]\)/crea\1 a la carpeta temporal\2/g
+s/\bcrear un directori temporal\([^[:alnum:]]\)/crear una carpeta temporal\1/g
+s/\bcrearà en el directori\([^[:alnum:]]\)/crearà a la carpeta\1/g
+s/\bcreava el directori «%1»/creava la carpeta «%1»/g
+s/\bcreava el directori temporal\([^[:alnum:]]\)/creava la carpeta temporal\1/g
+s/\bDirectori de destinació:/Carpeta de destinació:/g
+s/\bDirectori de sortida: %1\([^[:alnum:]]\)/Carpeta de sortida: %1\1/g
+s/\bDirectoris addicionals\([^[:alnum:]]\)/Carpetes addicionals\1/g
+s/\bDirectoris ignorats\([^[:alnum:]]\)/Carpetes ignorades\1/g
+s/\beina de clonatge de guariment\([^[:alnum:]]\)/eina «Clonatge de guariment»\1/g
+s/\bel seu directori superior, o és un directori\([^[:alnum:]]\)/la seva carpeta pare, o és una carpeta\1/g
+s/\bEls directoris que comencen amb un punt s'ignoren\([^[:alnum:]]\)/Les carpetes que comencen amb un punt s'ignoraran\1/g
+s/\bExploració de cares\([^[:alnum:]]\)/Exploració de les cares\1/g
+s/\bIntroduïu els directoris que voleu ignorar per a afegir a\([^[:alnum:]]\)/Introduïu les carpetes que voleu ignorar per a afegir-les a\1/g
+s/\bjerarquia de directoris\([^[:alnum:]]\)/jerarquia de carpetes\1/g
+s/\b\([Mm]\)ar\(ca\|ques\) horàri\(a\|es\)\([^[:alnum:]]\)/\1ar\2 de temps\4/g
+s/\bMostra la capa \(d'ombra nocturna\|de marques de lloc de ciutat\|de quadrícula de coordenades\|de relleu\)\([^[:alnum:]]\)/Mostra una superposició de la capa \1\2/g
+s/\bMou %1 al directori final %2\([^[:alnum:]]\)/Mou %1 a la carpeta final %2\1/g
+s/\bNom del directori del pare\([^[:alnum:]]\)/Nom de la carpeta pare\1/g
+  s/\bNom del directori\([^[:alnum:]]\)/Nom de la carpeta\1/g
+s/\bnoms dels directoris que voleu ignorar\([^[:alnum:]]\)/noms de les carpetes que voleu ignorar\1/g
+s/\bObre el directori de destinació\([^[:alnum:]]\)/Obre la carpeta de destinació\1/g
+s/\bObre el directori local utilitzat per a\([^[:alnum:]]\)/Obre la carpeta local emprada per a\1/g
+s/\bpels fitxers del directori principal\([^[:alnum:]]\)/pels fitxers de la carpeta principal\1/g
+s/\bperfils de color addicionals al directori establert\([^[:alnum:]]\)/perfils de color addicionals a la carpeta establerta\1/g
+s/\b\([Pp]\)rovatur\(a\|es\) suau\([^[:alnum:]]\)/\1rov\2 en pantalla\3/g
+s/\bTrieu un directori on desar\([^[:alnum:]]\)/Trieu una carpeta on desar\1/g
+s/\bSupressió de directoris:/Supressió de carpetes:/g
+s/\bTorna al directori d'inici\([^[:alnum:]]\)/Torna a la carpeta d'inici\1/g
+s/\btornar a incloure els directoris que s'ignoren\([^[:alnum:]]\)/tornar a incloure les carpetes que s'ignoren\1/g
+s/\btrobat al directori «dir»/trobat a la carpeta «dir»/g
+s/\btrobat el directori de la base\([^[:alnum:]]\)/trobat la carpeta de la base\1/g
+ #
 s/\"Aplica metadades\"/\"Aplica les metadades\"/g
 s/\"FastStone Image Viewer\"/\"Visor d'imatges FastStone\"/g
 s/\bActiveu això si voleu un fons emplenant\([^[:alnum:]]\)/Marqueu-la si voleu un fons emplenant\1/g
@@ -719,7 +775,6 @@ s/\bLa terra vista des de l'espai\([^[:alnum:]]\)/La Terra vista des de l'espai\
 # docs.digikam.org
 s/` està desactivada,/` està desseleccionada,/g
 s/\baquesta opció activarà l'algorisme\([^[:alnum:]]\)/aquesta opció cridarà l'algorisme\1/g
-s/\bdocs\.digikam\.org\/ca\/epub\([^[:alnum:]]\)/docs.digikam.org\/ca-va\/epub\1/g
 s/\bes fa automàticament a l'inici\([^[:alnum:]]\)/es fa automàticament durant l'inici\1/g
 s/\bLa nostra recomanació és deixar-lo desactivat\([^[:alnum:]]\)/La nostra recomanació és deixar-la desseleccionada\1/g
 s/\bLa nostra recomanació és deixar-la desactivada\([^[:alnum:]]\)/La nostra recomanació és deixar-la desseleccionada\1/g
@@ -773,6 +828,9 @@ s/\bObre una finestra nova de terminal per a veure la sortida de fer el «make»
 s/\bS'ha produït un error mentre s'intentava fer «make» de l'objectiu «%1»\([^[:alnum:]]\)/S'ha produït un error mentre s'intentava fer l'objectiu «%1»\1/g
 # Dragon
 s/\bReproducció de fitxer multimèdia\([^[:alnum:]]\)/Reproduïu un fitxer multimèdia\1/g
+# Drawy
+s/\bMou cap a dalt de tot\([^[:alnum:]]\)/Mou fins a dalt de tot\1/g
+s/\b\([Tt]\)riangle omplert\([^[:alnum:]]\)/\1riangle emplenat\2/g
 # drkonqi
 s/\bés molt limitada\([^[:alnum:]]\)/està molt limitada\1/g
 s/\bLa depuració no és possible per a fallades de programari que s'executen dins d'un espai aïllat \(Flatpak\|Snap\) en aquest moment\([^[:alnum:]]\)/En aquest moment, la depuració no és possible per a fallades de programari que s'executen dins d'un espai aïllat \1\2/g
@@ -781,7 +839,9 @@ s/\bper generar\([^[:alnum:]]\)/per a generar\1/g
 s/\"Cerca i filtre\"/\"Cerca i filtratge\"/g
   s/\b\([Bb]\)arra d'eines de cerca i filtre\([^[:alnum:]]\)/\1arra d'eines de cerca i filtratge\2/g
 # eventviews
+s/\bcasella per a mostrar un consell amb el resum\([^[:alnum:]]\)/casella per a mostrar un consell d'eina amb el resum\1/g
 s/\b\(des\|\)seleccioneu-la per a seleccionar\([^[:alnum:]]\)/\1seleccioneu-la per a triar\2/g
+s/\bconsells que mostren els resums\([^[:alnum:]]\)/consells d'eina que mostren els resums\1/g
 # Falkon
 s/\bactualitza la vista de la carpeta\([^[:alnum:]]\)/actualitza la vista de carpetes\1/g
 s/\bcoincidirà amb la vista de la carpeta de manera\([^[:alnum:]]\)/coincidirà amb la vista de carpetes, de manera\1/g
@@ -798,12 +858,15 @@ s/\b\([Ff]\)itxers de sistema\([^[:alnum:]]\)/\1itxers del sistema\2/g
 s/\b\([Rr]\)enderització directa de gràfics\([^[:alnum:]]\)/\1enderització directa dels gràfics\2/g
 # GCompris
 s/, podeu traduir el GCompris\([^[:alnum:]]\)/, el podeu traduir\1/g
+s/\balliberat sota la GPL\([^[:alnum:]]\)/distribuït segons la GPL\1/g
 s/\barrossega'ls al punt corresponent\([^[:alnum:]]\)/arrossega'ls fins al punt corresponent\1/g
 s/\bbaixades\/actualitzacions\([^[:alnum:]]\)/baixades o actualitzacions\1/g
 s/\bcorreccions d'errors en diverses activitats\([^[:alnum:]]\)/correccions d'errors en múltiples activitats\1/g
+s/\bde la subfinestra de control\([^[:alnum:]]\)/del plafó de control\1/g
 s/\b\(dividir\|multiplicar\) de l'1 al 10\([^[:alnum:]]\)/\1 des de l'1 fins al 10\2/g
 s/\bEquip de traducció de KDE al català\([^[:alnum:]]\)/Equip de traducció de KDE al català (valencià)\1/g
 s/\bGraduació a trobar\([^[:alnum:]]\)/Graduació que s'ha de trobar\1/g
+s/\bla subfinestra lateral\([^[:alnum:]]\)/el plafó lateral\1/g
 s/\bnatura actual a la paraula actual\([^[:alnum:]]\)/natura seleccionada a la paraula actual\1/g
 s/\bnúmeros entre -10 i -1\([^[:alnum:]]\)/números entre el -10 i el -1\1/g
 s/\bnúmeros entre -10 i 10\([^[:alnum:]]\)/números entre el -10 i el 10\1/g
@@ -832,7 +895,9 @@ s/\bel «stash\([^[:alnum:]]\)/l'«stash\1/g
 s/\bés en aquesta etiqueta\([^[:alnum:]]\)/està en aquesta etiqueta\1/g
 s/\bés a la comissió\([^[:alnum:]]\)/està a la comissió\1/g
 # Glaxnimate
+s/\"Valors predefinits\"/\"Ajustaments preestablerts\"/g
 s/\bCanvia el nom del color de la mostra\([^[:alnum:]]\)/Canvia el nom de la mostra de color\1/g
+s/\bconnectar-vos a una aplicació del servidor\([^[:alnum:]]\)/connectar-vos a una aplicació pare\1/g
 s/\bDe la paleta…/Des de la paleta…/g
 s/\b\([Dd]\)esenllaça \(el color\|el traç\|l'emplenament\)\([^[:alnum:]]\)/\1esvincula \2\3/g
 s/\bEnllaça \(el color\|el traç\|l'emplenament\|les formes\)\([^[:alnum:]]\)/Vincula \1\2/g
@@ -840,7 +905,9 @@ s/\benllaça \(el color\|el traç\|l'emplenament\|les formes\)\([^[:alnum:]]\)/v
   s/\b\([Vv]\)incula el color de %1\([^[:alnum:]]\)/\1incula amb el color %1\2/g
   s/\b\([Vv]\)incula les formes a la mostra\([^[:alnum:]]\)/\1incula les formes amb la mostra\2/g
 s/\bLes imatges ràster s'han de traçar en vectors\([^[:alnum:]]\)/Les imatges ràster s'han de traçar a dins de vectors\1/g
-s/\bPredefinits de degradat\([^[:alnum:]]\)/Predefinits amb degradats\1/g
+s/\bper a connectar-vos a una aplicació pare\([^[:alnum:]]\)/per a connectar-vos amb una aplicació amfitriona\1/g
+s/\bPredefinits de degradat\([^[:alnum:]]\)/Ajustaments preestablerts amb degradats\1/g
+s/\bseleccioni un document a afegir com un objecte\([^[:alnum:]]\)/seleccioni un document que s'annexarà com un objecte\1/g
 # Ghostwriter
 s/\bCoincideix &automàticament els caràcters\([^[:alnum:]]\)/Fes coincidir \&automàticament els caràcters\1/g
 s/\bFitxer de &còpia de seguretat en desar\([^[:alnum:]]\)/Fes una \&còpia de seguretat del fitxer en desar\1/g
@@ -854,6 +921,7 @@ s/\b\([Ff]\)inestra principal amb diversos fitxers\([^[:alnum:]]\)/\1inestra pri
 # Haruna
 s/, l'estat (visible\/ocult) de la llista de reproducció es recorda en els reinicis\([^[:alnum:]]\)/, es recordarà l'estat (visible\/ocult) de la llista de reproducció en els reinicis\1/g
 s/\bComproveu els paràmetres de «Reproducció» per a més detalls\([^[:alnum:]]\)/Per a més detalls, comproveu les opcions de configuració de «Reproducció»\1/g
+s/\bconsell de la barra de cerca\([^[:alnum:]]\)/consell d'eina de la barra de cerca\1/g
 s/\bQuan se selecciona, els subtítols es poden representar\([^[:alnum:]]\)/Quan se selecciona, els subtítols es podran representar\1/g
 s/\bvídeo ric en funcions\([^[:alnum:]]\)/vídeo ric en característiques\1/g
 # Hash-o-Matic
@@ -868,14 +936,21 @@ s/\bExploració i navegació\([^[:alnum:]]\)/Exploreu i navegueu\1/g
 s/\b\([Mm]\)arques de peça\([^[:alnum:]]\)/\1arques de la peça\2/g
 # K3b
 s/\bAfegeix fitxer de subtítols\([^[:alnum:]]\)/Afegeix un fitxer de subtítols...\1/g
-s/\bdades a gravar\([^[:alnum:]]\)/dades que es gravaran\1/g
 s/\bD'aquesta manera els sectors que són illegibles de manera intencionada es poden llegir\([^[:alnum:]]\)/D'aquesta manera es podran llegir els sectors que són illegibles de manera intencionada\1/g
+s/\bdades a gravar\([^[:alnum:]]\)/dades que es gravaran\1/g
+s/\b\(Defineixo\|Voleu definir\) el calendari predeterminat de\([^[:alnum:]]\)/Voleu establir el calendari predeterminat de\2/g
+s/\bDefinir un calendari predeterminat\([^[:alnum:]]\)/Establir un calendari predeterminat\1/g
+s/\bEncara no heu definit cap calendari\([^[:alnum:]]\)/Encara no heu establert cap calendari\1/g
 s/\bEscull fitxer d'imatge\([^[:alnum:]]\)/Escolliu un fitxer d'imatge\1/g
 s/\besborrarà automàticament els CD-RW i formatarà els DVD-RW abans de l'escriptura es troba un suport no buit\([^[:alnum:]]\)/esborrarà automàticament els CD-RW i els formatarà abans de l'escriptura si troba un suport no buit\1/g
 s/\bFormata\/esborra\([^[:alnum:]]\)/Formata i esborra\1/g
 s/\bGrava imatge…\([^[:alnum:]]\)/Grava la imatge…\1/g
+s/\bha trobat opcions preestablertes\([^[:alnum:]]\)/ha trobat ajustaments preestablerts\1/g
 s/\bImporta sessió…\([^[:alnum:]]\)/Importa la sessió…\1/g
+s/\bper tal de permetre afegir més sessions\([^[:alnum:]]\)/per tal de permetre annexar més sessions\1/g
+s/\bpermet que s'afegeixin més sessions\([^[:alnum:]]\)/permet que s'annexin més sessions\1/g
 s/\brendiment de lectura\/escriptura\([^[:alnum:]]\)/rendiment de lectura i escriptura\1/g
+s/\bS'està afegint la sessió a\(l\|\)\([^[:alnum:]]\)/S'està annexant la sessió a\1\2/g
 s/\bseguir enllaços a carpetes\([^[:alnum:]]\)/seguir enllaços cap a carpetes\1/g
 s/\bSi es marca aquesta opció, el K3b fa servir un espai\([^[:alnum:]]\)/Si es marca aquesta opció, el K3b usarà un espai\1/g
 s/\bun servidor CDDB informació\([^[:alnum:]]\)/un servidor de la CDDB per a informació\1/g
@@ -900,6 +975,8 @@ s/\bja està executant-se\([^[:alnum:]]\)/ja s'està executant\1/g
 # Kalarm
 s/\b\([Cc]\)om enviar els correus electrònics\([^[:alnum:]]\)/\1om s'enviarà el correu electrònic\2/g
   s/\bquan s'activa una alarma\([^[:alnum:]]\)/quan s'activi una alarma\1/g
+s/\b\([Cc]\)onsell de la safata del sistema\([^[:alnum:]]\)/\1onsell d'eina de la safata del sistema\2/g
+s/\bdefinit al diàleg\([^[:alnum:]]\)/establert al diàleg\1/g
 s/\bMarqueu\(-la\|\) \(per a executar\|perquè es demani\|perquè se us requereixi\)\([^[:alnum:]]\)/Trieu\1 \2\3/g
 s/\bSi està marcada, la finestra serà una finestra normal amb una barra de títol, que quan es mostra, captura l'entrada de teclat\([^[:alnum:]]\)/Si està marcada, la finestra serà una normal amb una barra de títol, que quan es mostri, capturarà l'entrada del teclat\1/g
 # Kalendar
@@ -909,6 +986,7 @@ s/\"Kalendar Mail\"/\"Correu del Kalendar\"/g
 s/\bamb el Calendar\([^[:alnum:]]\)/amb el Calendari\1/g
 s/\bamb el Contacts del Kalendar\([^[:alnum:]]\)/amb els Contactes del Kalendar\1/g
 s/\bConfiguració de publicació de lliure\/ocupat\([^[:alnum:]]\)/Configuració de la publicació de lliure\/ocupat\1/g
+s/\bProporciona una facilitat per ometre les\([^[:alnum:]]\)/Proporciona una facilitat per a ometre les\1/g
 s/\bPublica la informació de lliure\/ocupat automàticament\([^[:alnum:]]\)/Publica automàticament la informació de lliure\/ocupat\1/g
 # KAlgebraposició vertical i relaxat
 # Kalm
@@ -956,6 +1034,7 @@ s/\bHa finalitzat l'anàlisi de %\([12]\) fitxer\./Ha finalitzat l'anàlisi d'%\
 s/\bJa està construint-se\([^[:alnum:]]\)/Ja s'està construint\1/g
 s/\b\([Pp]\)arèntesis acolorits\([^[:alnum:]]\)/\1arèntesis en color\2/g
   s/\bper a l'acoloriment dels parèntesis\([^[:alnum:]]\)/per a donar color als parèntesis\1/g
+s/\b\([Pp]\)atró de reemplaçament\([^[:alnum:]]\)/\1atró de substitució\2/g
 s/\bportar a terme diverses operacions a múltiples projectes\([^[:alnum:]]\)/portar a terme diverses operacions a través de múltiples projectes\1/g
 s/\bRessalta la línia de destí quan s'hi salta\([^[:alnum:]]\)/Ressalta la línia de destinació quan s'hi salta\1/g
 s/\bSi està marcada, això permet desplaçar\([^[:alnum:]]\)/Si està marcada, es permetrà desplaçar\1/g
@@ -991,20 +1070,18 @@ s/\bEnvia notificacions\([^[:alnum:]]\)/Envia les notificacions\1/g
 s/\bMoveu un dit a la pantalla\([^[:alnum:]]\)/Moveu un dit sobre la pantalla\1/g
 s/\b\([Rr]\)ep entrada remota\([^[:alnum:]]\)/\1ep l'entrada remota\2/g
 # KDE Itinerary
+s/\baquest \(aero\|\)port no és exactament on el seu nom indica que és\([^[:alnum:]]\)/aquest \1port no es troba exactament on el seu nom indica que està\2/g
 s/\bArribada a %1\([^[:alnum:]]\)/Arribada a les %1\1/g
+s/«Control» més fi\([^[:alnum:]]\)/Control més fi\1/g
 s/\b\([Ff]\)iltra viatges\([^[:alnum:]]\)/\1iltra els viatges\2/g
 s/\bPortabilitat de dades\([^[:alnum:]]\)/Portabilitat de les dades\1/g
 # kdelibs4support
+# kdenetwork-filesharing
+s/\"Crear carpetes \/ afegir dades\"/\"Crear carpetes \/ annexar dades\"/g
 # Kdenlive
 s/\bDifuminat i agudització\([^[:alnum:]]\)/Difumineu i aguditzeu\1/g
 s/\bNavegació i reproducció\([^[:alnum:]]\)/Navegueu i reproduïu\1/g
  #
-s/(Animat)/(animat)/g
-s/(Dens)/(dens)/g
-s/(Llarg)/(llarg)/g
-s/(Mini)/(mini)/g
-s/(Mitjà)/(mitjà)/g
-s/(Xicoteta)/(xicoteta)/g
 s/, una llista desplegable de valors possibles que es mostraran en/, apareixerà una llista desplegable de valors possibles que s'oferiran durant/g
 s/, una lli sta de cUna llista separada per salts de línia de valors possibles que s'oferiran en/, apareixerà una llista separada per salts de línia de valors possibles que s'oferiran durant/g
   s/\bagrupa temporalment els clips separats i crea o elimina\([^[:alnum:]]\)/agruparà temporalment els clips separats i crearà o eliminarà\1/g
@@ -1215,8 +1292,9 @@ s/\bhttps:\/\/www\.example\.com/https:\/\/www.exemple.com/g
 s/\bMostra\/oculta\([^[:alnum:]]\)/Mostra o oculta\1/g
 # KMail
 s/\bbiblioteca adblock rust nova\([^[:alnum:]]\)/biblioteca adblock nova escrita en Rust\1/g
-s/\bDefiniu la vostra adreça\([^[:alnum:]]\)/Configureu la vostra adreça\1/g
 s/\bCliqueu a la icona per a més detalls\([^[:alnum:]]\)/Per a més detalls, cliqueu a la icona\1/g
+s/\bConsells de les carpetes:/Consells d'eina de les carpetes:/g
+s/\bDefiniu la vostra adreça\([^[:alnum:]]\)/Configureu la vostra adreça\1/g
 s/\bFent servir la clau serà més fiable\([^[:alnum:]]\)/Usant la clau serà més fiable\1/g
 s/\bImporta\/Exporta\([^[:alnum:]]\)/Importa o exporta\1/g
 s/\bQuan es comprovi,/Quan se seleccioni,/g
@@ -1303,6 +1381,7 @@ s/\b\([Mm]\)òdul de barra\([^[:alnum:]]\)/\1òdul de la barra\2/g
   s/\b\([Bb]\)arra lateral de llocs\([^[:alnum:]]\)/\1arra lateral Llocs\2/g
   s/\b\([Bb]\)arra lateral web\([^[:alnum:]]\)/\1arra lateral Web\2/g
   s/\b\([Bb]\)arra vertical de pestanyes\([^[:alnum:]]\)/\1arra vertical Pestanyes\2/g
+s/\b\(Mostra\|Oculta\) la barra d'eines, substituint la configuració predeterminada\([^[:alnum:]]\)/\1 la barra de pestanyes, substituint la configuració predeterminada\2/g
 s/\b\([Pp]\)\. ex\. /\1. ex., /g
 s/\bPermet de modificar\([^[:alnum:]]\)/Permet modificar\1/g
 s/\bporta aquest botó a <b>Configuració\([^[:alnum:]]\)/porta aquest botó sota <b>Configuració\1/g
@@ -1346,7 +1425,18 @@ s/\bSi està marcada, les imatges previsualitzades s'amiden\([^[:alnum:]]\)/Si e
 s/\bSi està marcada, només es descarrega la quantitat d'imatges seleccionada i es mostren\([^[:alnum:]]\)/Si està marcada, només es descarregarà la quantitat d'imatges seleccionada i es mostraran\1/g
 s/\b\([Tt]\)ransferència de fitxer entrant de\([^[:alnum:]]\)/\1ransferència de fitxer entrant des de\2/g
 # KOrganizer
-s/\bVistes->Vistes d'agenda\([^[:alnum:]]\)/«Vistes -> Vistes d'agenda»\1/g
+s/\bConfigura->Vistes\([^[:alnum:]]\)/«Configuració -> Vistes»\1/g
+s/>Configuració->Barra lateral->Mostra el gestor de calendaris\([^[:alnum:]]\)/>Configuració -> Barra lateral -> Mostra el gestor de calendaris\1/g
+s/\bConfiguració->Colors i lletres\([^[:alnum:]]\)/«Configuració -> Colors i lletres»\1/g
+s/>Data i hora->Regional\([^[:alnum:]]\)/>Data i hora -> Regional\1/g
+s/\bData i hora->Valors predeterminats\([^[:alnum:]]\)/«Data i hora -> Valors predeterminats»\1/g
+s/\bja no creen consells enormes\([^[:alnum:]]\)/ja no creen consells d'eina enormes\1/g
+  s/\bVistes d'agenda\([^[:alnum:]]\)/Vista d'agenda\1/g
+s/ pestanya \(Vistes\|Visualitza\)->\(General\|Vista mensual\|Vista d'agenda\)\([^[:alnum:]]\)/ «Vistes -> pestanya \2»\3/g
+    s/>Vistes->General\([^[:alnum:]]\)/>Vistes -> General\1/g
+  s/\bVistes->General\([^[:alnum:]]\)/«Vistes -> General»\1/g
+  s/\bVistes->\(General\|Vista mensual\|Vista d'agenda\)\([^[:alnum:]]\)/«Vistes -> \1»\2/g
+  s/\ba la «Vistes\([^[:alnum:]]\)/a «Vistes\1/g
 # KPhotoAlbum
 s/\bdescripció per defecte\([^[:alnum:]]\)/descripció predeterminada\1/g
 s/\bespai extra\([^[:alnum:]]\)/espai addicional\1/g
@@ -1365,8 +1455,51 @@ s/\b\([Ee]\)scala d'escriptori\([^[:alnum:]]\)/\1scala de l'escriptori\2/g
 s/\badmet funcions comunes de sintaxi\([^[:alnum:]]\)/admet característiques comunes de sintaxi\1/g
 # Krfb
 # Krita
-s/https:\/\/docs\.krita\.org\/en\//https:\/\/docs.krita.org\/ca\//g
-  s/https:\/\/docs\.krita\.org\/ca\/untranslatable_pages\//https:\/\/docs.krita.org\/en\/untranslatable_pages\//g
+s/(Transformació de perspectiva)/(transformació en perspectiva)/g
+s/\b\([Aa]\)just de color\([^[:alnum:]]\)/\1just del color\2/g
+  s/\bAlfabet:/Estil cal·ligràfic:/g
+s/\balfabet \(grec\|khmer\|matemàtic\)\([^[:alnum:]]\)/estil cal·ligràfic \1\2/g
+s/\balfabet unit per\([^[:alnum:]]\)/estil cal·ligràfic unit per\1/g
+s/\balfabets bràmics\([^[:alnum:]]\)/estils cal·ligràfics bràmics\1/g
+s/\balfabets \(CJK\|índics\)\([^[:alnum:]]\)/estils cal·ligràfics \1\2/g
+s/\bals alfabets que\([^[:alnum:]]\)/als estils cal·ligràfics que\1/g
+s/\balfabet horitzontal\([^[:alnum:]]\)/estil cal·ligràfic horitzontal\1/g
+  s/\bAdmet diversos idiomes i sistemes d'escriptura\([^[:alnum:]]\)/Admet múltiples idiomes i estils cal·ligràfics\1/g
+  s/\b\([Ee]\)scriptura kitan petita\([^[:alnum:]]\)/\1stil cal·ligràfic kitan petit\2/g
+  s/\borientació i del sistema d'escriptura\([^[:alnum:]]\)/orientació i de l'estil cal·ligràfic\1/g
+s/\b\([Cc]\)orba Hybrid Log Gamma\([^[:alnum:]]\)/\1orba amb interval de registres híbrid\2/g
+s/\b\([Ee]\)stil\(s\|\) de cap\(a\|es\)\([^[:alnum:]]\)/\1stil\2 de l\3 cap\3\4/g
+  s/\bActiva el mode de composició de text\([^[:alnum:]]\)/Activa el mode «Configuració del tipus»\1/g
+  s/\bQuan el mode de composició de text estigui actiu\([^[:alnum:]]\)/Quan el mode «Configuració del tipus» estigui actiu\1/g
+  s/\b\(Força\|Permet\) les comes «hanging»/\1 les comes amb sagnat/g
+  s/\bNo Hanging\([^[:alnum:]]\)/Sense sagnat\1/g
+  s/\b\(Primer\|Últim\) Hang\([^[:alnum:]]\)/\1 sagnat\2/g
+  s/\b\([Pp]\)untuació \(«hanging»\|[Hh]anging\)/\1untuació del sagnat/g
+s/\bHanging\([^[:alnum:]]\)/Sagnat\1/g
+s/\b\([Mm]\)ode de composició de text\([^[:alnum:]]\)/\1ode «Configuració del tipus»\2/g
+s/\bMostra de color\([^[:alnum:]]\)/Color de mostra\1/g
+s/ Opcions de l'eina / «Opcions de l'eina» /g
+s/\bPetició de fusió\([^[:alnum:]]\)/Sol·licitud de fusió\1/g
+s/\bpetició de fusió\([^[:alnum:]]\)/sol·licitud de fusió\1/g
+s/\bPeticions de fusió\([^[:alnum:]]\)/Sol·licituds de fusió\1/g
+s/\bpeticions de fusió\([^[:alnum:]]\)/sol·licituds de fusió\1/g
+  s/\bAquest estil predefinit\([^[:alnum:]]\)/Aquest preajust d'estil\1/g
+  s/\bel predefinit d'estil\([^[:alnum:]]\)/el preajust d'estil\1/g
+  s/\bPredefinit d'estil nou\([^[:alnum:]]\)/Preajust d'estil nou\1/g
+  s/\bun predefinit d'estil\([^[:alnum:]]\)/un preajust d'estil\1/g
+s/\b\([Pp]\)redefinits d'estil\([^[:alnum:]]\)/\1reajustos d'estil\2/g
+s/\bPurga les dades no utilitzades d'imatges\([^[:alnum:]]\)/Purga les dades sense emprar de les imatges\1/g
+s/\bReinicia el transparent\([^[:alnum:]]\)/Reinicia la transparència\1/g
+s/\bSeparació de tancament\([^[:alnum:]]\)/Tanca el buit\1/g
+s/\bseparació de tancament\([^[:alnum:]]\)/tanca el buit\1/g
+s/\bSeparacions de tancament\([^[:alnum:]]\)/Tanca els buits\1/g
+s/\bseparacions de tancament\([^[:alnum:]]\)/tanca els buits\1/g
+s/\btext en un camí\([^[:alnum:]]\)/text al camí\1/g
+  s/\bCanvi del text a les propietats del camí\([^[:alnum:]]\)/Canvia les propietats del text al camí\1/g
+  s/\bCanvia el text a la posició del camí\([^[:alnum:]]\)/Canvia la posició del text al camí\1/g
+  s/\bcaracterístiques de text en camí\([^[:alnum:]]\)/característiques text al camí\1/g
+  s/\bPosa text en un camí\([^[:alnum:]]\)/Posa text al camí\1/g
+ #
 s/, i també capes\([^[:alnum:]]\)/, així com també capes\1/g
 s/\ba dins el pare\([^[:alnum:]]\)/a dins del pare\1/g
 s/\ba dins la capa\([^[:alnum:]]\)/a dins de la capa\1/g
@@ -1379,12 +1512,14 @@ s/\b\([Aa]\)parença no texturada i la texturada\([^[:alnum:]]\)/\1parença sens
 s/\b\([Aa]\)rt de píxel\([^[:alnum:]]\)/\1rt de píxels\2/g
 s/\b\([Bb]\)otons de flux de treball\([^[:alnum:]]\)/\1otons del flux de treball\2/g
 s/\b\([Cc]\)omposició de text\([^[:alnum:]]\)/\1omposició del text\2/g
+s/\b\([Cc]\)ompressió de JPEG\([^[:alnum:]]\)/\1ompressió JPEG\2/g
+  s/\b\([Oo]\)pcions de compressió JPEG\([^[:alnum:]]\)/\1pcions de la compressió JPEG\2/g
 s/\bde l'Adobe\([^[:alnum:]]\)/d'Adobe\1/g
 s/\bEmplena la selecció activa, o el llenç sencer\([^[:alnum:]]\)/Emplena la selecció activa o tot el llenç\1/g
 s/\ben lloc de totes les direccions\([^[:alnum:]]\)/en lloc de en totes les direccions\1/g
 s/\bEspereu que es completi el procés de generació dels fotogrames\([^[:alnum:]]\)/Espereu que es completi el procés de generació de fotogrames\1/g
 s/\bfa una renderització prèvia de la memòria cau de l'animació en segon pla\([^[:alnum:]]\)/fa una renderització prèvia en segon pla de la memòria cau de l'animació\1/g
-s/\bhttps:\/\/krita.org\/ca\//https:\/\/krita.org\/ca-va\//g
+s/\bKrita es publica sota la Llicència\([^[:alnum:]]\)/Krita es publica d'acord amb la Llicència\1/g
 s/\b\(màxima\|mínima\) velocitat\([^[:alnum:]]\)/velocitat \1\2/g
 s/\bMemòria cau de l'animació\([^[:alnum:]]\)/Memòria cau per a l'animació\1/g
 s/\bMemòria cau \(gran \|\)dels mapes de píxels\([^[:alnum:]]\)/Memòria cau \1per als mapes de píxels\2/g
@@ -1403,7 +1538,8 @@ s/\b\([Pp]\)remeu %\([1234567890]\)\(\| \)/\1remeu «%\2» /g
 s/\bQuan se selecciona, clona des de totes\([^[:alnum:]]\)/Quan se selecciona, es clonarà des de totes\1/g
 s/\b\([Rr]\)educció de mostreig\([^[:alnum:]]\)/\1educció del mostreig\2/g
 s/\bS'importarà una imatge aplanada\([^[:alnum:]]\)/S'importarà com una imatge aplanada\1/g
-s/\belecciona píxels similars al que heu fet clic\([^[:alnum:]]\)/Tria els píxels similars al que heu fet clic\1/g
+s/\bSelecciona píxels similars al que heu fet clic\([^[:alnum:]]\)/Tria els píxels similars al que heu fet clic\1/g
+s/\bTracta les tecles amunt\/avall\([^[:alnum:]]\)/Tracta les tecles «Amunt» i «Avall»\1/g
 s/\bTrieu per a emplenar regions oposades\([^[:alnum:]]\)/Activeu per a emplenar regions oposades\1/g
 s/\bSi no, caldrà activar manualment l'script mitjançant\([^[:alnum:]]\)/Si no, caldrà seleccionar-la manualment mitjançant\1/g
   s/\bSi no està activa, \(les capes es rasteritzaran\)\([^[:alnum:]]\)/Si no està marcada, \1\2/g
@@ -1420,12 +1556,16 @@ s/\bUsa una memòria cau gran de mapes de píxels\([^[:alnum:]]\)/Usa una memòr
 # krunner
 # Krusader
 s/\bclicant a «Ctrl»/prement «Ctrl»/g
+s/\bcorruptes a causa d'una penjada\([^[:alnum:]]\)/corruptes a causa d'una fallada\1/g
+s/\bd'un consell que es mostrarà\([^[:alnum:]]\)/d'un consell d'eina que es mostrarà\1/g
 s/\bDefiniu una mida nova\([^[:alnum:]]\)/Establiu una mida nova\1/g
+s/\bEl <i>consell<.i> apareix\([^[:alnum:]]\)/El <i>consell d'eina<\/i> apareix\1/g
 s/\bMou &tot cap a dins de la paperera\([^[:alnum:]]\)/Mou-ho \&tot cap a dins de la paperera\1/g
 s/\b\([Ss]\)i aneu cap a la carpeta pare\([^[:alnum:]]\)/\1i aneu fins a la carpeta pare\2/g
 s/\bSi està marcada, quan cliqueu amb el botó \(dret\|esquerre\) del ratolí, triareu un\([^[:alnum:]]\)/Si està marcada, quan cliqueu amb el botó \1 del ratolí, se seleccionarà un\2/g
   s/\bun element sense desseleccionar els altres elements\([^[:alnum:]]\)/un element sense desseleccionar els altres\1/g
 s/\bSi està marcada, quan es prem la barra\([^[:alnum:]]\)/Si està marcada, quan es premi la barra\1/g
+s/\bvisualitzador de la barra pestanyes\([^[:alnum:]]\)/visor de la barra de pestanyes\1/g
 # KScreen
 s/\b\([Cc]\)alibra\(r\|\) la lluminositat\([^[:alnum:]]\)/\1alibra\2 la brillantor\3/g
 s/\bcontrol lliscant normal de lluminositat\([^[:alnum:]]\)/control lliscant normal de brillantor\1/g
@@ -1434,10 +1574,12 @@ s/\bEstableix la lluminositat del contingut\([^[:alnum:]]\)/Estableix la brillan
 s/\bLluminositat \(màxima \|\)de l'SDR\([^[:alnum:]]\)/Brillantor \1de l'SDR\2/g
 s/\bmostrin colors més lluminosos\([^[:alnum:]]\)/mostrin colors més brillants\1/g
 s/\bNo té cap efecte a on apareixeran les notificacions de pantalla o altres finestres\([^[:alnum:]]\)/No té cap efecte sobre a on apareixeran les notificacions de pantalla o les altres finestres\1/g
+s/\bReferència luminància\([^[:alnum:]]\)/Luminància de referència\1/g
 s/\bSi ajusteu la lluminositat manualment\([^[:alnum:]]\)/Si ajusteu la brillantor manualment\1/g
 # KService
 # KsirK
 s/\bProbablement aquest serà l'error\([^[:alnum:]]\)/Probablement aquest sigui l'error\1/g
+s/\btravés de missatges i consells que\([^[:alnum:]]\)/través de missatges i consells d'eina que\1/g
 # KSquares
 # KStars
 # append - afegir
@@ -1490,6 +1632,7 @@ s/\btrieu Joc -> Nou,/trieu «Joc -> Nou»,/g
 # KTechlab
 s/\bColor de les línies de la graella\([^[:alnum:]]\)/Color de les línies de la quadrícula\1/g
 # KTextAddons
+s/\bAfegir un servidor…/Afegeix un servidor…/g
 s/\bMistral AI\([^[:alnum:]]\)/IA Mistral\1/g
   s/\bConfigura IA Mistral\([^[:alnum:]]\)/Configura la IA Mistral\1/g
 s/\bMou el cursor fins a \(la dreta\|l'esquerra\)\([^[:alnum:]]\)/Mou el cursor cap a \1\2/g
@@ -1515,6 +1658,7 @@ s/\b\([Aa]\)dreça IP personalitzada o \(un \|\)nom de màquina\([^[:alnum:]]\)/
 s/\bAmb això activat, el gestor\([^[:alnum:]]\)/Amb això seleccionat, el gestor\1/g
 s/\bcal tenir activada aquesta opció\([^[:alnum:]]\)/cal tenir seleccionada aquesta opció\1/g
 s/\bConfigura el KTorrent»\([^[:alnum:]]\)/Configura el KTorrent…»\1/g
+s/\bConsells de la barra\([^[:alnum:]]\)/Consell d'eina de la barra\1/g
 s/\bd'acabar el torrent\([^[:alnum:]]\)/de finalitzar el torrent\1/g
 s/\bEs pot desactivar si no voleu el trànsit\([^[:alnum:]]\)/Es pot desseleccionar si no voleu el trànsit\1/g
 s/\bllicència Creative Commons Attribution 4.0 International License\([^[:alnum:]]\)/llicència Creative Commons Reconeixement 4.0 Internacional\1/g
@@ -1536,6 +1680,12 @@ s/\b\([Dd]\)eseu diverses ubicacions\([^[:alnum:]]\)/\1eseu múltiples ubicacion
 # kwidgetsaddons
 s/\bCJK suplementaris\([^[:alnum:]]\)/CJK addicionals\1/g
 s/\bDingbats\([^[:alnum:]]\)/Ornaments d'impressió\1/g
+s/\bEscriptures africanes\([^[:alnum:]]\)/Estils cal·ligràfics africans\1/g
+s/\bEscriptures americanes\([^[:alnum:]]\)/Estils cal·ligràfics americans\1/g
+s/\bEscriptures d'Indonèsia i Oceania\([^[:alnum:]]\)/Estils cal·ligràfics d'Indonèsia i Oceania \1/g
+s/\bEscriptures de l'\(Àsia central\|est d'Àsia\|Orient Mitjà\)\([^[:alnum:]]\)/Estils cal·ligràfics de l'\1\2/g
+s/\bEscriptures del \(sud-est asiàtic\|sud d'Àsia\)\([^[:alnum:]]\)/Estils cal·ligràfics del \1\2/g
+s/\bEscriptures europees\([^[:alnum:]]\)/Estils cal·ligràfics europeus\1/g
 s/\b\([Hh]\)exagrames\([^[:alnum:]]\)/\1exagrams\2/g
 s/\bIdeogrames unificats del CJK\([^[:alnum:]]\)/Ideogrames unificats CJK\1/g
 s/\bItàlic antic\([^[:alnum:]]\)/Cursiva antiga\1/g
@@ -1572,6 +1722,13 @@ s/\bseguretat del i permetrà\([^[:alnum:]]\)/seguretat del sistema i permetrà\
 # KWordQuiz
 s/\bNeteja l'enllaç cap \(a la imatge\|al so\) de les entrades seleccionades\([^[:alnum:]]\)/Neteja l'enllaç cap \1 a les entrades seleccionades\2/g
 # Labplot
+s/\bcreava el directori %1 per a\([^[:alnum:]]\)/creava la carpeta %1 per a\1/g
+s/\bdes d'un directori\([^[:alnum:]]\)/des d'una carpeta\1/g
+s/\bDes del directori…/Des de la carpeta…/g
+s/\bEl directori %1 no existeix\([^[:alnum:]]\)/La carpeta %1 no existeix\1/g
+s/\bllegir el directori %1\([^[:alnum:]]\)/llegir la carpeta %1\1/g
+s/\bTrieu el directori d'origen de dades\([^[:alnum:]]\)/Trieu la carpeta d'origen de les dades\1/g
+ #
 s/\bamb valors que manquen\([^[:alnum:]]\)/amb els valors que manquen\1/g
 s/\bcal que sigui superior a\([^[:alnum:]]\)/cal que sigui més gran que\1/g
 s/\bcanvia la mida de la columna automàticament\([^[:alnum:]]\)/canvia automàticament la mida de la columna\1/g
@@ -1592,6 +1749,7 @@ s/\bTipus de dades columna\([^[:alnum:]]\)/Tipus de dades de columna\1/g
 s/\b\([Vv]\)isualitza i analitza dades\([^[:alnum:]]\)/\1isualitza i analitza les dades\2/g
 # Latte
 s/\bLes finestres van cap a sota\([^[:alnum:]]\)/Les finestres van a sota\1/g
+s/\bTítols fins dels consells en passar-hi per sobre\([^[:alnum:]]\)/Títols fins dels consells d'eina en passar-hi per sobre\1/g
 # libkcddb
 s/\b\([Ss]\)ervidor CDDB\([^[:alnum:]]\)/\1ervidor de la CDDB\2/g
 # libkeduvocdocument
@@ -1600,6 +1758,12 @@ s/\bCertificats pels quals\([^[:alnum:]]\)/Certificats per als quals\1/g
 s/\bIntroduïu un nom de servidor en el format correcte\([^[:alnum:]]\)/Introduïu un nom d'amfitrió en el format correcte\1/g
 s/\bldap\.example\.com\([^[:alnum:]]\)/ldap.exemple.com\1/g
 s/\b\([Ss]\)ignatura no verificada\([^[:alnum:]]\)/\1ignatura sense verificar\2/g
+# libksysguard
+s/\b\(Carrega uns\|Desa la configuració com a\|Suprimeix aquests\) valors predefinits\([^[:alnum:]]\)/\1 ajustaments preestablerts\2/g
+s/\bEl consell emergent\([^[:alnum:]]\)/El consell d'eina\1/g
+s/\bObtén valors predefinits nous\([^[:alnum:]]\)/Obtén ajustaments preestablerts nous\1/g
+s/\bValors predefinits:/Ajustaments preestablerts:/g
+s/\bValors predefinits del sensor\([^[:alnum:]]\)/Ajustaments preestablerts del sensor\1/g
 # licentia
 s/\bdret de patent dels col·laboradors\([^[:alnum:]]\)/dret a la patent dels col·laboradors\1/g
 s/\bpermís a l'usuari per fer el que\([^[:alnum:]]\)/permís a l'usuari per a fer el que\1/g
@@ -1666,6 +1830,7 @@ s/\bDefineix l'ordre de l'editor extern\([^[:alnum:]]\)/Estableix l'ordre de l'e
 # OptiImage
 s/\bNivell d'optimització predeterminat d'optimització\([^[:alnum:]]\)/Nivell d'optimització predeterminat\1/g
 s/\bOptimitzador d'imatges per a reduir la mida de les imatges\([^[:alnum:]]\)/Optimitzador d'imatges per a reduir-ne la mida\1/g
+s/\bSufix que s'ha d'afegir al final del fitxer nou\([^[:alnum:]]\)/Sufix que s'annexarà al final del fitxer nou\1/g
 # Oxygen
 # Marble
 # Maui
@@ -1696,6 +1861,7 @@ s/\bNo s'ha definit cap àlies canònic\([^[:alnum:]]\)/No s'ha establert cap à
 s/\bNo s'ha pogut unir-se a la sala\([^[:alnum:]]\)/No s'ha pogut unir a la sala\1/g
 s/\bNotificacions de tota sala\([^[:alnum:]]\)/Notificacions de tota la sala\1/g
 s/\bper cada sala\([^[:alnum:]]\)/per a cada sala\1/g
+s/\bpeticions de funcionalitats\([^[:alnum:]]\)/peticions de característiques\1/g
 s/\bQualsevol en els espais seleccionats ho pot trobar i unir-se\([^[:alnum:]]\)/Qualsevol persona dels espais seleccionats ho pot trobar i unir-se\1/g
 s/\bs'ha convidat en aquesta sala\([^[:alnum:]]\)/se l'ha convidat a aquesta sala\1/g
 s/\bsi no s'ha indicat cap\([^[:alnum:]]\)/si no se n'ha indicat cap\1/g
@@ -1715,6 +1881,8 @@ s/\bAparença i comportament de la Big Screen del Plasma del Mycroft\([^[:alnum:
 s/\b\([Dd]\)recera definida actualment a\([^[:alnum:]]\)/\1recera establerta actualment a\2/g
 s/\bEls fons de les fitxes s'acoloriran\([^[:alnum:]]\)/El fons de les fitxes s'acolorirà\1/g
 s/\b\([Ii]\)nhibició d'energia\([^[:alnum:]]\)/\1nhibició de l'energia\2/g
+s/\bINICI inclús quan s'ha suprimit\([^[:alnum:]]\)/INICI fins i tot quan s'ha suprimit\1/g
+s/\bno està executant-se\([^[:alnum:]]\)/no s'està executant\1/g
 s/\b\([Ss]\)elector de fons de pantalla\([^[:alnum:]]\)/\1elector del fons de pantalla\2/g
 # plasma-browser-integration
 s/\bComunitat KDE Wiki\([^[:alnum:]]\)/wiki de la comunitat KDE\1/g
@@ -1731,12 +1899,14 @@ s/\ba través de diverses pantalles\([^[:alnum:]]\)/a través de múltiples pant
 s/\bAfegeix o gestiona ginys\([^[:alnum:]]\)/Afegeix o gestiona els ginys\1/g
 s/\b\([Aa]\)plicació de terminal predeterminada\([^[:alnum:]]\)/\1plicació predeterminada de terminal\2/g
 s/\b\([Aa]\)questa acció no es pot desfer\([^[:alnum:]]\)/\1questa acció no es podrà desfer\2/g
-  s/; aquesta acció no es podrà desfer\([^[:alnum:]]\)/. Aquesta acció no es podrà desfer\1/g
+  s/\(\.\|; [Aa]\)questa acció es pot desfer\([^[:alnum:]]\)/. Aquesta acció es podrà desfer\2/g
+  s/\(\.\|; [Aa]\)questa acció no es podrà desfer\([^[:alnum:]]\)/. Aquesta acció no es podrà desfer\2/g
 s/\bBotó per a definir la drecera\([^[:alnum:]]\)/Botó per a establir la drecera\1/g
 s/\bCanvia l'associació de tipus de fitxer manualment\([^[:alnum:]]\)/Canvia manualment l'associació de tipus de fitxer\1/g
 s/\bcanvis com el volum i el nivell de lluminositat\([^[:alnum:]]\)/canvis com el volum i el nivell de brillantor\1/g
 s/\bconfiguració no té cap efecte en els consells d'eina\([^[:alnum:]]\)/configuració no tindrà cap efecte sobre els consells d'eina\1/g
 s/\bConsells del plafó i dels ginys\([^[:alnum:]]\)/Un plafó i els consells d'eina dels ginys\1/g
+s/\bdepenent del nombre de fitxers a indexar\([^[:alnum:]]\)/depenent de la quantitat de fitxers que hi hagi\1/g
 s/\b\([Dd]\)esar elements baixats\([^[:alnum:]]\)/\1esar els elements baixats\2/g
 s/\bel gestor de sessió\([^[:alnum:]]\)/el gestor de la sessió\1/g
 s/\bEl plafó és opac quan el toca\([^[:alnum:]]\)/El plafó serà opac quan el toqui\1/g
@@ -1770,6 +1940,7 @@ s/\brestaurarà si ho retrocediu\([^[:alnum:]]\)/restaurarà si retrocediu\1/g
 # plasma-nm
 s/\bArray SSL VPN\([^[:alnum:]]\)/VPN de matriu sobre SSL\1/g
   s/\bArray Networks\([^[:alnum:]]\)/xarxes de matriu\1/g
+s/\b\([Cc]\)ertificats extres\([^[:alnum:]]\)/\1ertificats addicionals\2/g
 s/\b\([Cc]\)onnecta a una xarxa\([^[:alnum:]]\)/\1onnecta amb una xarxa\2/g
 s/\bF5 BIG-IP SSL VPN\([^[:alnum:]]\)/VPN de F5 en BIG-IP sobre SSL\1/g
   s/\bF5 BIG-IP\([^[:alnum:]]\)/F5 en BIG-IP\1/g
@@ -1785,6 +1956,7 @@ s/\btambé proporciona un connector per al Kate i el KDevelop per a ser\([^[:aln
 # plasma-settings
 s/\bConfiguració;Configuració;\([^[:alnum:]]\)/Configuració;\1/g
 # plasma-systemmonitor
+s/\bDefinició de la prioritat\([^[:alnum:]]\)/Establiment de la prioritat\1/g
 s/\bHistorial (Versió antiga)/Historial (versió antiga)/g
 # plasma-vault
 # plasma-welcome
@@ -1908,6 +2080,9 @@ s/\btornant a activar això. En activar-ho, el RKWard intenta\([^[:alnum:]]\)/to
 s/\b\([Dd]\)au 3D\([^[:alnum:]]\)/\1au en 3D\2/g
 s/\bVoleu continuar i compartir el PDF\([^[:alnum:]]\)/Voleu continuar i compartir-lo\1/g
 # Ruqola
+s/\balguns directoris de la memòria cau\([^[:alnum:]]\)/algunes carpetes de la memòria cau\1/g
+s/\bEl directori «%1»/La carpeta «%1»/g
+ #
 s/\"Baixa el \(so\|vídeo\)\"/\"Baixeu el \1\"/g
 s/\"Còpia de contrasenya\"/\"Copieu la contrasenya\"/g
 s/\"Desa el vídeo\"/\"Deseu el vídeo\"/g
@@ -2112,10 +2287,6 @@ s/\bcontacta amb nosaltres per a poder\([^[:alnum:]]\)/contacta'ns per a poder\1
 s/\bde fa 10-20 anys\([^[:alnum:]]\)/de fa 10 o 20 anys\1/g
 s/\bdivulgació a Llatinoamèrica\([^[:alnum:]]\)/divulgació a Amèrica Llatina\1/g
 s/\ben fòrums en línia\([^[:alnum:]]\)/als fòrums en línia\1/g
-s/\bendof10\.org\/ca\"/endof10.org\/ca-va\"/g
-s/\bendof10\.org\/ca\//endof10.org\/ca-va\//g
-s/\bendof10\.org\/ca)/endof10.org\/ca-va\/)/g
-s/\bendof10\.org\/)/endof10.org\/ca-va\/)/g
 s/\bEquip del «Final del 10»\([^[:alnum:]]\)/Equip darrere d'«End of 10»\1/g
 s/\bEs pot trobar suport comunitari\([^[:alnum:]]\)/Trobaràs suport comunitari\1/g
 s/\bestà llicenciat segons la\([^[:alnum:]]\)/està llicenciat d'acord amb la\1/g
@@ -2233,23 +2404,18 @@ s/\bWeekly Summary for Kate\/KWrite\([^[:alnum:]]\)/Resum setmanal per al Kate i
 s/\ba les Qt, que proporcionen\([^[:alnum:]]\)/a les Qt, els quals proporcionen\1/g
 s/\bAvui KDE\([^[:alnum:]]\)/Avui, el KDE\1/g
 s/\b\([Cc]\)onnectors de funcionalitats\([^[:alnum:]]\)/\1onnectors de característiques\2/g
-s/\bCorrecció d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/Esmena d'\1errors\3/g
-s/\bcorrecció d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/esmena d'\1errors\3/g
-s/\bCorreccions d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/Esmenes d'\1errors\3/g
-s/\bcorreccions d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/esmenes d'\1errors\3/g
-s/\bCorrecció de seguretat\([^[:alnum:]]\)/Esmena de seguretat\1/g
-s/\bcorrecció de seguretat\([^[:alnum:]]\)/esmena de seguretat\1/g
-s/\bCorreccions de seguretat\([^[:alnum:]]\)/Esmenes de seguretat\1/g
-s/\bcorreccions de seguretat\([^[:alnum:]]\)/esmenes de seguretat\1/g
 s/\bnous voluntaris i col·laboradors\([^[:alnum:]]\)/voluntaris i col·laboradors nous\1/g
 s/\bVeure totes les aplicacions\([^[:alnum:]]\)/Vegeu totes les aplicacions\1/g
 # websites-kde-org/promo.po
 s/\ba vells i nous problemes\([^[:alnum:]]\)/a problemes vells i nous\1/g
 s/\babans d'anar fins al llit\([^[:alnum:]]\)/abans d'anar al llit\1/g
 s/\bactualitzeu-vos tan bon punt\([^[:alnum:]]\)/actualitzeu-los tan bon punt\1/g
+s/\bafegir més aplicacions KDE a les botigues\([^[:alnum:]]\)/afegir més aplicacions KDE dins de les botigues\1/g
 s/\bcol·lecció de fotos\([^[:alnum:]]\)/col·lecció de fotografies\1/g
 s/\bcompartir fotos i fitxers RAW\([^[:alnum:]]\)/compartir fotografies i fitxers RAW\1/g
+s/\bDes de notes de xerrades a grans idees\([^[:alnum:]]\)/Des de notes de xerrades fins a grans idees\1/g
 s/\bFins i tot podeu ampliar el monitor del sistema\([^[:alnum:]]\)/Fins i tot podeu estendre el monitor del sistema\1/g
+s/\bFomentem el Programari lliure a les institucions\([^[:alnum:]]\)/Fomentem el Programari lliure dins de les institucions\1/g
 s/\bfons de pantalla d'escriptori\([^[:alnum:]]\)/fons de pantalla de l'escriptori\1/g
 s/\bfrom the FSFE\([^[:alnum:]]\)/des dels FSFE\1/g
 s/\bfulls d'estil comuns que s'utilitzen en diversos llocs\([^[:alnum:]]\)/fulls d'estil comuns que s'utilitzen en múltiples llocs\1/g
@@ -2257,6 +2423,7 @@ s/\bGoogle Play i el logo de Google Play\([^[:alnum:]]\)/Google Play i el seu lo
 s/ «\([Dd]\)ev\([Oo]\)ps»\([^[:alnum:]]\)/ operacions de desenvolupador\3/g
   s/\b\([Dd]\)ev\([Oo]\)ps\([^[:alnum:]]\)/operacions de desenvolupador\3/g
 s/\bincloent-hi suport per a diversos comptes\([^[:alnum:]]\)/incloent-hi suport per a múltiples comptes\1/g
+s/\binjecta habitualment anuncis a l'escriptori\([^[:alnum:]]\)/injecta habitualment anuncis dintre de l'escriptori\1/g
 s/\"KDE per als \(creadors\|desenvolupadors\|jugadors\|viatgers\)\([^[:alnum:]]\)/\"KDE per a \1\2/g
 s/\bKDE \[Season of KDE/KDE, el \[Season of KDE/g
 s/\bllengua noruega Bokmål i Nynorsk, que no era\([^[:alnum:]]\)/llengua noruega Bokmål i Nynorsk, el qual no era\1/g
@@ -2285,8 +2452,8 @@ s/\bservidors LDAP, que després\([^[:alnum:]]\)/servidors LDAP, els quals despr
 s/\bSincronització del correu, el calendari, les llibretes d'adreces a servidors remots\([^[:alnum:]]\)/Sincronització del correu, el calendari, les llibretes d'adreces amb servidors remots\1/g
 s/\bSuport per a calendaris múltiples\([^[:alnum:]]\)/Suport per a múltiples calendaris\1/g
 # websites-krita-org
-s/\bca\/index.xml)\([^[:alnum:]]\)/ca-va\/index.xml)\1/g
 s/\ba través de distintius comunitaris\([^[:alnum:]]\)/mitjançant distintius comunitaris\1/g
+s/\bConnectors que afegeixen característiques noves\([^[:alnum:]]\)/Connectors que afegeixen funcionalitats noves\1/g
 s/\bde 32-Bits\([^[:alnum:]]\)/de 32 bits\1/g
 s/\bde Windows Store\([^[:alnum:]]\)/de la Windows Store\1/g
 s/\bDiversos tipus de pinzells\([^[:alnum:]]\)/Múltiples tipus de pinzells\1/g
@@ -2300,6 +2467,46 @@ s/\bper no fer el seguiment\([^[:alnum:]]\)/per a no fer el seguiment\1/g
 s/\bPodeu modificar la selecció difuminant-la i invertint-la\([^[:alnum:]]\)/Es pot modificar difuminant-la i invertint-la\1/g
 s/\bquin donatiu era vostre\([^[:alnum:]]\)/quin donatiu era el vostre\1/g
 s/\btambé ha estat abordant\([^[:alnum:]]\)/també ha anat abordant\1/g
+# websites-linux-kde-org
+s/\bA \*\(Avançat\|Discs\|Informació\)\*,/Sota \*\1\*,/g
+s/\bA \*\(Configuració\|Usuaris\)/Sota \*\1/g
+s/\bA \*Performance\*,/Sota \*Rendiment\*,/g
+s/\bA la pàgina d'Actualitzacions\([^[:alnum:]]\)/A la pàgina «Actualitzacions»\1/g
+s/\bapuntant QEMU al microprogramari\([^[:alnum:]]\)/apuntant QEMU cap al microprogramari\1/g
+s/\bAquest sistema mantindrà diverses versions\([^[:alnum:]]\)/Aquest sistema mantindrà múltiples versions\1/g
+s/\barrossegueu \*Disc dur\* a la part\([^[:alnum:]]\)/arrossegueu \*Disc dur\* fins a la part\1/g
+s/\bAvançat\*, i a \*Ordre\([^[:alnum:]]\)/Avançat\*, i sota \*Ordre\1/g
+s/\bbiblioteca utilitzada per diverses aplicacions\([^[:alnum:]]\)/biblioteca utilitzada per múltiples aplicacions\1/g
+s/\bComparació de la KDE Linux a alternatives\([^[:alnum:]]\)/Comparació de la KDE Linux amb les alternatives\1/g
+s/\bconnectar a la KDE Linux\([^[:alnum:]]\)/connectar amb la KDE Linux\1/g
+s/\bdesprés seleccioneu-lo a \*Camí\([^[:alnum:]]\)/després seleccioneu-lo en \*Camí\1/g
+s/\bdistribueix al sistema base, o fins i tot a les Qt\([^[:alnum:]]\)/distribueix en el sistema base, o fins i tot en les Qt\1/g
+s/\bel vostre ordinador inclou diversos discs\([^[:alnum:]]\)/el vostre ordinador inclou múltiples discs\1/g
+s/\bestigui definit a \*\*UEFI\*\*/estigui establert a \*\*UEFI\*\*/g
+s/\bformats de fitxer normals a utilitzar per\([^[:alnum:]]\)/formats de fitxer normals que s'utilitzaran per\1/g
+s/\bfusionen al sistema\([^[:alnum:]]\)/fusionen dins del sistema\1/g
+s/\bHi ha \[diversos problemes coneguts\([^[:alnum:]]\)/Hi ha [múltiples problemes coneguts\1/g
+s/\bi molt més a \*Configuració\([^[:alnum:]]\)/i molt més sota \*Configuració\1/g
+s/\bicona de la compartició de xarxa, o al fons\([^[:alnum:]]\)/icona de la compartició de xarxa, o sobre el fons\1/g
+s/\b\([Ii]\)nici de sessió remotament al sistema\([^[:alnum:]]\)/\1nici de sessió remot dins del sistema\2/g
+s/\binseriu un disc a la unitat\([^[:alnum:]]\)/inseriu un disc dins de la unitat\1/g
+s/\bInstal·la l'UKI generat a la partició\([^[:alnum:]]\)/Instal·la l'UKI generat dins de la partició\1/g
+s/\bInstal·leu els mòduls del nucli a la superposició\([^[:alnum:]]\)/Instal·leu els mòduls del nucli dins de la superposició\1/g
+s/\bintegrada al Plasma\([^[:alnum:]]\)/integrada dins del Plasma\1/g
+s/\bKDE Linux d'ús diari o poseu-lo\([^[:alnum:]]\)/KDE Linux d'ús diari o poseu-la\1/g
+s/\bKDE Linux ofereix diverses maneres:/KDE Linux ofereix múltiples maneres:/g
+s/\bla marca del vostre ordinador a la columna\([^[:alnum:]]\)/la marca del vostre ordinador sota la columna\1/g
+s/\bMàquina virtual nova», o bé al botó\([^[:alnum:]]\)/Màquina virtual nova», o bé sobre el botó\1/g
+s/\bmuntarà automàticament a l'inici\([^[:alnum:]]\)/muntarà automàticament durant l'inici\1/g
+s/\bNo s'ha pogut connectar a libvirt\([^[:alnum:]]\)/No s'ha pogut connectar amb libvirt\1/g
+s/\bopcions llistades a «Xinès\([^[:alnum:]]\)/opcions llistades sota «Xinès\1/g
+s/\bpermanents per elles\([^[:alnum:]]\)/permanents per a elles\1/g
+s/\bperò limitat a emoji\([^[:alnum:]]\)/però limitat als emoji\1/g
+s/\bproblema, informeu-lo a\([^[:alnum:]]\)/problema, informeu-ne a\1/g
+s/\bque heu creat a l'inici\([^[:alnum:]]\)/que heu creat durant l'inici\1/g
+s/\bseleccionar a l'inici següent\([^[:alnum:]]\)/seleccionar durant l'inici següent\1/g
+s/\bsincronització del porta-retalls des de la MV a l'amfitrió\([^[:alnum:]]\)/sincronització del porta-retalls des de la MV amb l'amfitrió\1/g
+s/\btradueix les pulsacions de tecles físiques en els caràcters\([^[:alnum:]]\)/tradueix les pulsacions de tecles físiques als caràcters\1/g
 # websites-manifesto-kde-org
 s/\b\([Dd]\)rets d'autors\([^[:alnum:]]\)/\1rets d'autor\2/g
 # websites-okular-kde-org
@@ -2319,6 +2526,8 @@ s/\bPlasma 6\*\* estan disponibles actualment\([^[:alnum:]]\)/Plasma 6\*\* actua
 s/\bWayland, i proporciona\([^[:alnum:]]\)/Wayland, proporciona\1/g
 # websites-rolisteam-org
 s/\bAquest panell té més funcions que això\([^[:alnum:]]\)/Aquest panell té més característiques que això\1/g
+s/\bel rolistream i el rsce\([^[:alnum:]]\)/«rolistream» i «rsce»\1/g
+s/\btecla \(\*\*\)Esquerra\*\* o \*\*Dreta\*\*\([^[:alnum:]]\)/tecla \1Fletxa esquerra\1 o \1Fletxa dreta\1\2/g
 # websites-skrooge-org
 s/, i informeu la vostra distribució/ i informeu a la vostra distribució/g
 s/, que no coincideix/, el qual no coincideix/g
@@ -2440,7 +2649,6 @@ s/\bmenú Configuració\/Configurar el Krita \/ General \/ Secció/menú «Confi
   s/\/Gestió de fitxers i allí/-> pestanya Gestió de fitxers» i allí/g
 s/\bmode d'esborrador\([^[:alnum:]]\)/mode esborrador\1/g
 s/\bMoltes gràcies per veure-ho\([^[:alnum:]]\)/Moltes gràcies per veure'l\1/g
-s/\bmotors dels pinzells\([^[:alnum:]]\)/motors de pinzell\1/g
 s/\bNo ho faria. No ho faré\([^[:alnum:]]\)/Jo no ho faria. No ho faré\1/g
 s/\bpensa a dir-nos que t'agrada\([^[:alnum:]]\)/pensa a dir-nos-ho\1/g
 s/\bper Kross, que és el que va\([^[:alnum:]]\)/per Kross, el qual és el que va\1/g
@@ -2485,6 +2693,8 @@ s/\bVen el Krita en diverses\([^[:alnum:]]\)/Es ven el Krita en diverses\1/g
 s/\bAnem al Sway\([^[:alnum:]]\)/Anem cap al Sway\1/g
 s/\bPodem saltar al Gnome\([^[:alnum:]]\)/Podem saltar fins al Gnome\1/g
 s/\bPuc anar al Hyprland\([^[:alnum:]]\)/Puc anar fins al Hyprland\1/g
+# websites-wiki-rolisteam-org
+
 # welcome-app
 s/\btant com ho vam gaudir fent-lo\([^[:alnum:]]\)/tant com vam gaudir fent-lo\1/g
 # xdg-desktop-portal-kde

@@ -1,12 +1,18 @@
-#
-#
+# Personal rules for Catalan translations
+# SPDX-FileCopyrightText: 2025-2026 Antoni Bella Pérez <antonibella5@yahoo.com>
+# by KDE Catalan Team (kde-i18n-ca@kde.org)
+# License: GPLv3
+
+# - general -
 
 # Remove XML entities.
 # include file="filter.include"
 
-# Remove accelerator and  hyphen inside words.
-addFilterRegex match="(_|~|&)" on="pmsgid,pmsgstr"
+# Remove accelerators inside words.
+addFilterRegex match="&" on="pmsgid,pmsgstr"
 
+## varis ##
+###########
   {\(Bright\)}
   valid msgstr="\(animat\)"
   hint="Es tradueix per «(animat)»."
@@ -42,8 +48,8 @@ hint="Es tradueix per «&Space;», «<key>Espai</key>(Gnome)/<keysym>Espai</keys
 # Start -> Inici
 {(\*\*|<key(cap|sym)?>).?Start.?(</key(cap|sym)?>|\*\*)}
 id="k-Start"
-valid msgstr="(\*\*|<key(cap)?>)Inici(</key(cap)?>|\*\*)"
-hint="Es tradueix per «<key>Inici</key>(Gnome)/<keycap>Inici</keycap>(KDE)», «**Inici**» (keys)"
+valid msgstr="(\*\*|<key(cap)?>)Inicia?(</key(cap)?>|\*\*)"
+hint="Es tradueix per «<key>Inici</key>(Gnome)/<keycap>Inici</keycap>(KDE)», «**Inici/a**» (keys)"
 
 # Cursor keys
 # Down Arrow -> Fletxa avall
@@ -76,7 +82,7 @@ valid msgstr="(\*\*|<key(cap|sym)?>)Fletxa dreta(</key(cap|sym)?>|\*\*)"
 hint="Es tradueix per «&Right;», «<key>Fletxa dreta</key>(Gnome)/<keysym>Fletxa dreta</keysym>(KDE)», «**Fletxa dreta**» (keys)"
 
 {(\*\*|\b)Rights(\b|\*\*)}i
-valid msgid="\b(patent|trademark)\srights\b"
+valid msgid="\b(game\smaster|human|patent|trademark)\srights\b"
 valid msgid="\brights\sin\sthe\spatents\b"
 valid msgid="(\*\*|)Rights(|\*\*) tab\b"
 valid msgstr="(«|\*\*)Drets(\*\*|»)"
@@ -84,9 +90,17 @@ valid msgstr="^drets(:|)$"
 valid msgstr="\ball rights reserved\b"
 valid msgstr="\bdrets (d'accés|d'administració|d'administrador|del document|legals|segons)\b"  # documentation-kstars-docs-kde-org/kstars_docs_user_manual___gpl-3.0.po
 valid msgstr="\bLlicència/Drets:"
-valid msgstr="\bpermisos (d'accés|d'administrador|de lectura|necessaris)\b"
+valid msgstr="\bpermisos (a l'ordinador|d'accés|d'administrador|de lectura|necessaris)\b"
 valid msgstr="\b(dels|els|necessiten|seus|vostres) drets\b" # digikam-doc/docs_digikam_org_getting_started___introduction.po
-hint="Es tradueix per ««Drets», **Drets**»"
+hint="Es tradueix per « «Drets», **Drets**»"
+
+  {\bgame\smaster\srights\b}i
+  valid msgstr="\bdrets de director de joc\b"
+  hint="Es tradueix per «drets de director de joc»"
+
+  {\bhuman\srights\b}i
+  valid msgstr="\bdrets humans\b"
+  hint="Es tradueix per «drets humans»"
 
   {\bpatent\srights\b}i
   valid msgstr="\bdrets? de patents?\b"
@@ -104,6 +118,38 @@ hint="Es tradueix per ««Drets», **Drets**»"
   valid msgstr="\bdret de marca comercial\b"
   valid msgstr="\bdrets de marca registrada\b"
   hint="Es tradueix per «dret de marca comercial, drets de marca registrada»"
+
+{-?->}
+valid msgid=":menuselection:"
+valid msgid="-->\n"
+valid msgid="[})!]-->"
+valid msgid="\.-->"
+valid msgstr="→"
+hint="Es tradueix per « → »."
+
+[-?->]
+valid msgstr=":menuselection:"
+valid msgstr="[})!]-->"
+valid msgstr="\.-->"
+valid msgstr="-->\n"
+valid msgstr="→"
+hint="Es tradueix per « → »."
+
+{ - }
+valid msgstr="\b.?:?\*\*:? "
+valid msgstr="\b.?: "
+valid msgstr="\(opcional,"
+valid msgstr="«-»"
+valid msgstr="\bfins a l'\b"
+valid msgstr="\bfins al\b"
+valid msgstr="«–»"
+valid msgstr=" -\b\w"
+valid msgstr=" – "
+hint="Es tradueix per « – »."
+
+[ - ]
+valid msgstr=" – "
+hint="Es tradueix per « – »."
 
 {\.\.\.}i
 valid msgid="\s\.\.\.( |)etc\b"
@@ -124,6 +170,71 @@ hint="Se substitueix per «…»."
   valid msgstr=", etc\."
   hint="Se substitueix per «, etc.»."
 
+## general ##
+#############
+{\bappend\b}i
+valid msgid="--append\b"
+valid msgid="\bappend\sit\b"
+valid msgid="\b(simply|to|will\sbe|would)\sappend\b"
+valid msgstr="\bannex(a|ar|arà|eu)\b"
+hint="Es traduix per «annexa/r, annexarà, annexeu»."
+
+  {\bappended\b}i
+  valid msgid="\bcan\sbe\sappended\b"
+  valid msgstr="\bannexa(da|[rt])\b"
+  valid msgstr="\bannex[ei]n\b"
+  hint="Es traduix per «annexar, annexin»."
+
+  {\bappend\sit\b}i
+  valid msgstr="\bannexeu-l([ao])\b"
+  hint="Es traduix per «annexar»."
+
+  {\bappending\b}i
+  valid msgstr="\bannexant\b"
+  hint="Es traduix per «annexant»."
+
+  {\bcan\sbe\sappended\b}i
+  valid msgstr="\bpoden annexar\b"
+  hint="Es traduix per «poden annexar»."
+
+  {\bsimply\sappend\b}i
+  valid msgstr="\bsenzillament annexaran\b"
+  hint="Es traduix per «senzillament annexaran»."
+
+  {\bto\sappend\b}i
+  valid msgstr="\bannex(ar|arà|i)\b"
+  hint="Es traduix per «annexar, annexarà, annexi»."
+
+  {\bwill\sbe\sappend\b}i
+  valid msgstr="\bs'annexarà\b"
+  hint="Es traduix per «s'annexarà»."
+
+  {\bwould\sappend\b}i
+  valid msgstr="\bannexaven\b"
+  hint="Es traduix per «annexaven»."
+
+{\bbanner\b}i
+valid msgid="\bbanner\sand\sicon\sartwork\b"
+valid msgstr="\bbàner\b"
+valid msgstr="\bpancarta\b"
+valid msgstr="\brètol\b"
+hint="Es tradueix per «bàner, pancarta, rètol»."
+
+{\bbanners\b}i
+valid msgstr="\bbàners\b"
+valid msgstr="\bpancartes\b"
+valid msgstr="\brètols\b"
+hint="Es tradueix per «bàners, pancartes, rètols»."
+
+{\bbooklet\b}i
+valid msgid="\bbooklet\scover\b"
+valid msgstr="\bfulletó\b"
+hint="Es tradueix per «fulletó»."
+
+  {\bbooklet\scover\b}i
+  valid msgstr="\bportada del fulletó\b"
+  hint="Es tradueix per «portada del fulletó»."
+
 {\bbright\b}i
 valid msgid="\(Bright\)"
 valid msgid="\bThe Bright Star Catalogue\b"
@@ -131,33 +242,33 @@ valid msgid="\bbright\s(coloured|text)\b"
 valid msgid="\bamb colors vius\b"
 valid msgstr="\bbrillants?\b"
 valid msgstr="\blloro gran i colorit\b" # gcompris_qt.po
-hint="Es traduix per «brillant(s)»."
+hint="Es tradueix per «brillant(s)»."
 
   {\bbright\scoloured\b}i
   valid msgstr="\bcolors vius\b"
-  hint="Es traduix per «colors vius»."
+  hint="Es tradueix per «colors vius»."
 
   {\bbright\stext\b}i
   valid msgstr="\btext clar\b"
-  hint="Es traduix per «text clar»."
+  hint="Es tradueix per «text clar»."
 
 {\bbrightness\b}i
 valid msgstr="\bbrillantor\b"
-hint="Es traduix per «brillantor»."
+hint="Es tradueix per «brillantor»."
 
 {\bbrightnesses\b}i
 valid msgid="\bbrightnesses of visible stars\b" # documentation-kstars-docs-kde-org/kstars_docs_user_manual___ai-magnitude.po
 valid msgid="\bintrinsic\sbrightnesses\b"
 valid msgstr="\bbrillantors\b"
-hint="Es traduix per «brillantors»."
+hint="Es tradueix per «brillantors»."
 
   {\bintrinsic\sbrightnesses\b}i
   valid msgstr="\bbrillantor intrínseca\b"
-  hint="Es traduix per «brillantor intrínseca»."
+  hint="Es tradueix per «brillantor intrínseca»."
 
 {\bbrightest\b}i
 valid msgstr="\bbrillants?\b"
-hint="Es traduix per «brillant(s)»."
+hint="Es tradueix per «brillant(s)»."
 
 # {\bcaptions?\b}i
 # valid msgstr="<.?caption>"
@@ -182,7 +293,7 @@ hint="Es tradueix per «part/s de la informació»."
 
 {\bcorners?\b}i
 valid msgid="\b(beveled|(bottom|lower).?left|(bottom|lower).?right|boundary|(top|upper).?left|(top|upper).?right)\scorner\b"
-valid msgid="\bCorner Brook\b"
+valid msgid="\bCorner (Brook|cases)\b"
 valid msgid="\bShabaqua Corners\b"
 valid msgstr="\bcant(ó|ons)\b"
 valid msgstr="\bcantonad(a|es)\b"
@@ -210,6 +321,10 @@ hint="Es tradueix per «cantó(ons), cantonada(es) racó(ons), vèrtex(s)»."
   valid msgstr="\bvores del contorn\b"
   hint="Es tradueix per «vores del contorn»."
 
+  {\bcorner\scases\b}i
+  valid msgstr="\bcasos extrems\b"
+  hint="Es tradueix per «casos extrems»."
+
   {\b(top|upper).?left\scorner\b}i
   valid msgstr="\bcantó superior esquerre\b"
   valid msgstr="\bcantonada superior esquerra\b"
@@ -221,6 +336,83 @@ hint="Es tradueix per «cantó(ons), cantonada(es) racó(ons), vèrtex(s)»."
   valid msgstr="\bcantonada superior dreta\b"
   valid msgstr="\bextrem superior dret\b"
   hint="Es tradueix per «cantó superior dret, cantonada superior dreta, extrem superior dret»."
+
+{\bcrash\b}i
+valid msgid="\bcrash\s(damage|detection|fixes|log)\b"
+valid msgid="\b(sound|to)\scrash\b"
+valid msgstr="\bfall(ada|ades|ar|arà|[ie])\b"
+valid msgstr="\bja no falla\b"
+hint="Es tradueix per «fallada/es, fallar, fallarà, falli»."
+
+  {\bcrash\sdamage\b}i
+  valid msgstr="\bdany en xocar\b"
+  hint="Es tradueix per «dany en xocar»."
+
+  {\bcrash\sdetection\b}i
+  valid msgstr="\bdetecció de fallades\b"
+  hint="Es tradueix per «detecció de fallades»."
+
+  {\bcrash\sfixes\b}i
+  valid msgstr="\besmenes de fallades\b"
+  hint="Es tradueix per «esmenes de fallades»."
+
+  # # crash handler
+
+  {\bcrash\slog\b}i
+  valid msgid="\bKrita\scrash\slog\b"
+  valid msgstr="\bregistre de fallades\b"
+  hint="Es tradueix per «registre de fallades»."
+
+    {\bKrita\scrash\slog\b}i
+    valid msgstr="\bregistre de fallada de Krita\b"
+    hint="Es tradueix per «registre de fallada de Krita»."
+
+  {\bsound\scrash\b}i
+  valid msgstr="\bso de patacada\b"
+  hint="Es tradueix per «so de patacada»."
+
+  {\bto\scrash\b}i
+  valid msgstr="\bfallava\b"
+  hint="Es tradueix per «fallava»."
+
+{\bcrashes\b}i
+valid msgid="\bairplane\scrashes\b"
+valid msgstr="\bfalla(da|des|r)?\b"
+hint="Es tradueix per «falla, fallada/es, fallar»."
+
+  {\bairplane\scrashes\b}i
+  valid msgstr="\baccidents d'avió\b"
+  hint="Es tradueix per «accidents d'avió»."
+
+{\bcutting\b}i
+valid msgid="\bcutting.?(edge|power)\b"
+valid msgstr="\bretallant\b"
+valid msgstr="\bretalla[rt]\b"
+hint="Es tradueix per «retallant, retallar, retallat»."
+
+  {\bcutting.?edge\b}i
+  valid msgid="\bcutting.?edge\sfeatures\b"
+  valid msgstr="\bavançades\b"
+  valid msgstr="\bavantguarda\b"
+  valid msgstr="\búltima fornada\b"
+  hint="Es tradueix per «avançades, avantguarda, última fornada»."
+
+    {\bcutting.?edge\sfeatures\b}i
+    valid msgstr="\bcaracterístiques d'avantguarda\b"
+    hint="Es tradueix per «característiques d'avantguarda»."
+
+  {\bcutting\spower\b}i
+  valid msgstr="\btallar el corrent\b"
+  hint="Es tradueix per «tallar el corrent»."
+
+{\bdata.?sets?\b}i
+valid msgid="\bnew\sdata.?set\b"
+valid msgstr="\bconjunts? de dades\b"
+hint="Es tradueix per «conjunt/s de dades»."
+
+  {\bnew\sdata.?set\b}i
+  valid msgstr="\bconjunt nou de dades\b"
+  hint="Es tradueix per «conjunt nou de dades»."
 
 {\bdown.?sampl(e|ing)\b}i
 valid msgstr="\breducció del mostreig\b"
@@ -261,6 +453,59 @@ hint="Es tradueix per «capacitats, característica, característiques, compta, 
     {\bsmall\sfeatures\sand\sfixes\b}i
     valid msgstr="\baltres característiques i esmenes (petites|xicotetes)\b"
     hint="Es tradueix per «altres característiques i esmenes petites»."
+
+{\bfinger.?prints?\b}i
+valid msgid="\banimal\sfinger.?prints?\b"
+valid msgstr="\bempremt(a|es) digitals?\b"
+hint="Es tradueix per «empremta/es digital/s»."
+
+  {\banimal\sfinger.?prints?\b}i
+  valid msgstr="\bpetjades d'animals\b"
+  hint="Es tradueix per «petjades d'animals»."
+
+{\bflow\b}i
+valid msgid="\bflow\sarea\b"
+valid msgid="\bsub.?flow\b"
+valid msgid="\btext\sflow\b"
+valid msgstr="\bflu(eix|ir|ïx|x)\b"
+valid msgstr="\b(Visio|WPG) de Flow\b"
+hint="Es tradueix per «flueix, fluir, flux»."
+
+  {\bsub.?flow\b}i
+  valid msgstr="\bsubflux\b"
+  hint="Es tradueix per «subflux»."
+
+  {\btext\sflow\b}i
+  valid msgid="\b(from|selected)\stext\sflow\b"
+  valid msgid="\btext\sflow\sarea\b"
+  valid msgstr="\btext flueixiper «text flu(eixi|ïsca)\b"
+  hint="Es tradueix per «text flueixi»."
+
+    {\bfrom\stext\sflow\b}i
+    valid msgstr="\bdel flux de text\b"
+    hint="Es tradueix per «del flux de text»."
+
+    {\bselected\stext\stflow\b}i
+    valid msgstr="\btext seleccionat flu(eixi|ïsca)\b"
+    hint="Es tradueix per «text seleccionat flueixi»."
+
+    {\btext\sflow\sarea\b}i
+    valid msgstr="\bàrea on flu(eix|ïx) el text\b"
+    hint="Es tradueix per «àrea on flueix el text»."
+
+  {\bflow\sarea\b}i
+  valid msgid="\bfinal\sflow\sarea\b"
+  valid msgstr="\bàrea on flu(eix|ïx)\b"
+  hint="Es tradueix per «àrea on flueix»."
+
+    {\bfinal\sflow\sarea\b}i
+    valid msgstr="\bàrea final on flu(eix|ïx)\b"
+    hint="Es tradueix per «àrea final on flueix»."
+
+{\bfuzzy.?search\b}i
+valid msgstr="\b(busca|cerca) difusa\b"
+hint="Es tradueix per «cerca difusa»."
+
 # {\bGPS\sdata\b}i
 # valid msgid="\bGPS data taken\b"
 # valid msgstr="\bdades GPS\b"
@@ -282,9 +527,13 @@ hint="S'en diu «quadrícula»."
 [\bgraelles\b]
  hint="S'en diu «quadrícules»."
 
+{\bhang(ing)?\b}i
+valid msgstr="\bsuspe(ndre|ns|nsió|sa|ses)\b"
+hint="Es tradueix per «suspendre, suspens, suspesa/es, Suspensió»."
+
 {\bhost\b}i
 valid msgid="\bA host of tools\b"
-valid msgid="\bhost.?(application|computers?|name)\b"
+valid msgid="\bhost.?(application|computers?|names?|pool)\b"
 valid msgid="\bhost.?s.?\b"
 valid msgid="\bIRC\shost\sserver\b"
 valid msgid="\b(proxy|proxy('s)?|remote|server|unknown)\shost\b"
@@ -301,132 +550,150 @@ valid msgstr="\bamfitriona\b"
 valid msgstr="\bhostatgem\b"
 valid msgstr="\bhostatja\b"
 valid msgstr="\bsituar\b"
-hint="Es traduix per «acollir, acolliu, allotgen, allotgeu, allotja, amfitrió, amfitriona, hostatgem, hostatja, situar»."
+hint="Es tradueix per «acollir, acolliu, allotgen, allotgeu, allotja, amfitrió, amfitriona, hostatgem, hostatja, situar»."
 
   {\bcustom\shost.?name\b}i
   valid msgstr="\bnom personalitzat de l'amfitrió\b"
-  hint="Es traduix per «nom personalitzat de l'amfitrió»."
+  hint="Es tradueix per «nom personalitzat de l'amfitrió»."
+
+  {\bhost.?application\b}i
+  valid msgstr="\baplicació amfitriona\b"
+  hint="Es tradueix per «aplicació amfitriona»."
 
   {\bhost\scomputer\b}i
   valid msgstr="\bordinador amfitrió\b"
-  hint="Es traduix per «ordinador amfitrió»."
+  hint="Es tradueix per «ordinador amfitrió»."
 
     {\bhost\scomputers\b}i
     valid msgstr="\bordinadors amfitrions\b"
-    hint="Es traduix per «ordinadors amfitrions»."
+    hint="Es tradueix per «ordinadors amfitrions»."
 
   {\bhost.?name\b}i
-  valid msgid="\b(custom|invalid|IP\s(address\s)?or|remote|server|unknown|valid)\shost.?name\b"
-  valid msgid="\bhost.?name\s(address|and\sport|of\sthe)\b"
+  valid msgid="\(session.hostname\)"
+  valid msgid="\b(custom|invalid|IP\s(address\s)?or|remote|server|this|unknown|valid)\shost.?name\b"
+  valid msgid="\bhost.?name(\s|/)(address|and\sport|of\sthe)\b"
   valid msgid="\bhost.?name(\sor\s|/)IP\saddress\b"
   valid msgid="\bproxy('s)?\shost.?(device|name)\b"
   valid msgstr="\bcap nom d'amfitrió\b"
   valid msgstr="\bnom d'amfitrió de la passarel·la\b" # plasma-nm/plasmanetworkmanagement_vpncui.po
-  valid msgstr="\bnom d'amfitrió (del|en)\b"
+  valid msgstr="\bnom d'amfitrió (del|en|que)\b"
   valid msgstr="\bnom de l'amfitrió\b"
-  hint="Es traduix per «cap nom d'amfitrió, nom d'amfitrió de, nom de l'amfitrió»."
+  hint="Es tradueix per «cap nom d'amfitrió, nom d'amfitrió de/del/en/que, nom de l'amfitrió»."
 
     {\bcustom\shost.?name\b}i
     valid msgstr="\bnom personalitzat de l'amfitrió\b"
-    hint="Es traduix per «nom personalitzat de l'amfitrió»."
+    hint="Es tradueix per «nom personalitzat de l'amfitrió»."
 
-    {\bhost.?name\saddress\b}i
+    {\bhost.?name(\s|/)address\b}i
     valid msgstr="\bnom d'amfitrió o adreça\b"
-    hint="Es traduix per «nom d'amfitrió o adreça»."
+    hint="Es tradueix per «nom d'amfitrió o adreça»."
 
     {\bhost.?name\sand\sport\b}i
+    valid msgid="\bIP\s(address\s)?or\shost.?name\b"
     valid msgstr="\bnom i el port de l'amfitrió\b"
     valid msgstr="\bnom d'amfitrió i el número de port\b"
-    hint="Es traduix per «nom d'amfitrió i el número de port, nom i el port de l'amfitrió»."
+    hint="Es tradueix per «nom d'amfitrió i el número de port, nom i el port de l'amfitrió»."
 
     {\bhost.?name\sof\sthe\b}i
     valid msgstr="\bnom d'amfitrió de l'"
     valid msgstr="\bnom d'amfitrió del\b"
     valid msgstr="\bnom de l'amfitrió que fa\b"
-    hint="Es traduix per «nom d'amfitrió de l', nom d'amfitrió del, nom de l'amfitrió que fa»."
+    hint="Es tradueix per «nom d'amfitrió de l', nom d'amfitrió del, nom de l'amfitrió que fa»."
 
     {\bhost.?name(\sor\s|/)IP\saddress\b}i
     valid msgstr="\bel nom de l'amfitrió o l'adreça IP\b"
     valid msgstr="\bnom d'amfitrió/adreça IP\b"
     valid msgstr="\bnom d'amfitrió o l'adreça IP\b"
-    hint="Es traduix per «nom d'amfitrió o l'adreça IP»."
+    hint="Es tradueix per «nom d'amfitrió o l'adreça IP»."
 
     {\binvalid\shost.?name\b}i
     valid msgstr="\bnom no vàlid de l'amfitrió\b"
-    hint="Es traduix per «nom no vàlid de l'amfitrió»."
+    hint="Es tradueix per «nom no vàlid de l'amfitrió»."
 
     {\bIP\s(address\s)?or\shost.?name\b}i
-    valid msgstr="\b(adreça )?IP o (el |un )?nom d'amfitrió\b"
-    hint="Es traduix per «adreça IP o nom d'amfitrió»."
+    valid msgstr="\b(adreça )?IP o el nom de l'amfitrió\b"
+    valid msgstr="\b(adreça )?IP o un nom d'amfitrió\b"
+    valid msgstr="\badreça IP o el nom d'amfitrió del (parell|servidor)\b"
+    valid msgstr="\badreça IP o el nom de l'amfitrió i el número\b"
+    hint="Es tradueix per «adreça IP o el nom de l'amfitrió, adreça IP o un nom d'amfitrió, adreça IP o el nom d'amfitrió del servidor»."
 
     {\bremote\shost.?name\b}i
     valid msgstr="\bnom de l'amfitrió remot\b"
-    hint="Es traduix per «nom de l'amfitrió remot»."
+    hint="Es tradueix per «nom de l'amfitrió remot»."
+
+    {\bthis\shost.?name\b}i
+    valid msgstr="\b(aquest|este) nom d'amfitrió\b"
+    hint="Es tradueix per «aquest nom d'amfitrió»."
 
     {\bunknown\shost.?name\b}i
     valid msgstr="\bnom d'amfitrió desconegut\b"
-    hint="Es traduix per «nom d'amfitrió desconegut»."
+    hint="Es tradueix per «nom d'amfitrió desconegut»."
 
     {\bvalid\shost.?name\b}i
     valid msgstr="\bnom d'amfitrió vàlid\b"
-    hint="Es traduix per «nom d'amfitrió vàlid»."
+    hint="Es tradueix per «nom d'amfitrió vàlid»."
 
   {\bhost.?names\b}i
   valid msgstr="\bnoms d'amfitrió\b"
-  hint="Es traduix per «noms d'amfitrió»."
+  hint="Es tradueix per «noms d'amfitrió»."
 
-  {\bhost.?application\b}i
-  valid msgstr="\baplicació pare\b"
-  hint="Es traduix per «aplicació pare»."
+  {\bhost.?pool\b}i
+  valid msgstr="\bgrup d'amfitrions\b"
+  hint="Es tradueix per «grup d'amfitrions»."
 
   {\bproxy\shost\b}i
   valid msgid="\bproxy('s)?\shost.?(device|name)\b"
   valid msgstr="\bservidor intermediari\b"
-  hint="Es traduix per «servidor intermediari»."
+  hint="Es tradueix per «servidor intermediari»."
 
     {\binvalid\sproxy\shost.?device\b}i
     valid msgstr="\bnom no vàlid de l'amfitrió intermediari\b"
-    hint="Es traduix per «nom no vàlid de l'amfitrió intermediari»."
+    hint="Es tradueix per «nom no vàlid de l'amfitrió intermediari»."
 
     {\bproxy('s)?\shost.?name\b}i
     valid msgid="\binvalid\sproxy\shost.?name\b"
     valid msgstr="\bnom d'amfitrió del servidor intermediari\b"
-    hint="Es traduix per «nom d'amfitrió del servidor intermediari»."
+    hint="Es tradueix per «nom d'amfitrió del servidor intermediari»."
 
   {\bremote\shost\b}i
   valid msgid="\bremote\shost.?(device|name)\b"
   valid msgstr="\bamfitrió remot\b"
-  hint="Es traduix per «amfitrió remot»."
+  hint="Es tradueix per «amfitrió remot»."
 
     {\bremote\shost\/device\b}i
     valid msgstr="\bamfitrió o del dispositiu remot\b"
-    hint="Es traduix per «amfitrió o del dispositiu remot»."
+    hint="Es tradueix per «amfitrió o del dispositiu remot»."
 
   {\bserver\shost\b}i
-  valid msgid="\bserver\shost\sand\sport\b"
+  valid msgid="\bserver\shost\s(and\sport|or\saddress)\b"
   valid msgid="\bserver\shost.?name\b"
   valid msgstr="\bservidor amfitrió\b"
-  hint="Es traduix per «servidor amfitrió»."
+  hint="Es tradueix per «servidor amfitrió»."
 
     {\bserver\shost\sand\sport\b}i
     valid msgstr="\bamfitrió i el port del servidor\b"
-    hint="Es traduix per «amfitrió i el port del servidor»."
+    hint="Es tradueix per «amfitrió i el port del servidor»."
+
+    {\bserver\shost\sor\saddress\b}i
+    valid msgstr="\bamfitrió o adreça del servidor\b"
+    hint="Es tradueix per «amfitrió o adreça del servidor»."
 
     {\bserver\shost.?name\b}i
     valid msgstr="\bnom d'amfitrió del servidor\b"
-    hint="Es traduix per «nom d'amfitrió del servidor»."
+    hint="Es tradueix per «nom d'amfitrió del servidor»."
 
 {\bhost.?s.?\b}i
 valid msgid="\bremote\shost\b"
 valid msgstr="\bacull([ai])?\b"
 valid msgstr="\ballotja\b"
 valid msgstr="\bamfitrions\b"
-hint="Es traduix per «acull/a, allotja, amfitrions»."
+hint="Es tradueix per «acull/a, allotja, amfitrions»."
 
   {\bserver\b}i
   valid msgid="\b(CDDB|IMAP|IRC|SMTP)\sserver\b"
   valid msgid="\bhost.?name\sof\sthe\sserver\b"
-  valid msgid="bIRC\shost\sserver\b"
+  valid msgid="\bIRC\shost\sserver\b"
+  valid msgstr="\bParticipant Server Requirements\b"
   valid msgid="\bproxy\sserver\b"
   valid msgid="\bserver\s(host|host.?name|infrastructure|list|locations|monitoring|URLs)\b"
   valid msgid="\bserver.?s.?\b"
@@ -435,86 +702,81 @@ hint="Es traduix per «acull/a, allotja, amfitrions»."
   valid msgid="-SERVER\b"
   valid msgstr="\bPermet servidors SSL\b" # konversation/org.kde.konversation.appdata.po
   valid msgstr="\bservidor\b"
-  hint="Es traduix per «servidor»."
+  hint="Es tradueix per «servidor»."
 
     {\bCDDB\sserver\b}i
     valid msgid="\bCDDB\sserver\sadministrator\b"
     valid msgstr="\bservidor de la CDDB\b"
-    hint="Es traduix per «servidor de la CDDB»."
+    hint="Es tradueix per «servidor de la CDDB»."
 
       {\bCDDB\sserver\sadministrator\b}i
       valid msgstr="\badministrador de la CDDB\b"
-      hint="Es traduix per «administrador de la CDDB»."
+      hint="Es tradueix per «administrador de la CDDB»."
 
     {\bIMAP\sserver\b}i
     valid msgid="\bIMAP\sserver\shost.?name\b"
     valid msgstr="\bservidor IMAP\b"
-    hint="Es traduix per «servidor IMAP»."
+    hint="Es tradueix per «servidor IMAP»."
 
       {\bIMAP\sserver\shost.?name\b}i
       valid msgstr="\bnom d'amfitrió del servidor IMAP\b"
-      hint="Es traduix per «nom d'amfitrió del servidor IMAP»."
+      hint="Es tradueix per «nom d'amfitrió del servidor IMAP»."
 
     {\bIRC\sserver\b}i
     valid msgstr="\bservidor d'IRC\b"
-    hint="Es traduix per «servidor d'IRC»."
+    hint="Es tradueix per «servidor d'IRC»."
 
       {\bIRC\shost\sserver\b}i
       valid msgstr="\bservidor amfitrió d'IRC\b"
-      hint="Es traduix per «servidor amfitrió d'IRC»."
+      hint="Es tradueix per «servidor amfitrió d'IRC»."
 
     {\bserver\shost.?name\b}i
     valid msgid="\b(IMAP|SMTP)\sserver\shost.?name\b"
     valid msgstr="\bnom d'amfitrió del servidor\b"
-    hint="Es traduix per «nom d'amfitrió del servidor»."
+    hint="Es tradueix per «nom d'amfitrió del servidor»."
 
     {\bserver\sinfrastructure\b}i
     valid msgstr="\binfraestructura dels servidors\b"
-    hint="Es traduix per «infraestructura dels servidors»."
+    hint="Es tradueix per «infraestructura dels servidors»."
 
     {\bserver\slist\b}i
     valid msgstr="\bllista de servidors\b"
-    hint="Es traduix per «llista de servidors»."
+    hint="Es tradueix per «llista de servidors»."
 
     {\bserver\slocations\b}i
     valid msgstr="\bubicacions dels servidors\b"
-    hint="Es traduix per «ubicacions dels servidors»."
+    hint="Es tradueix per «ubicacions dels servidors»."
 
     {\bserver\smonitoring\b}i
     valid msgstr="\bmonitoratge de servidors\b"
-    hint="Es traduix per «monitoratge de servidors»."
+    hint="Es tradueix per «monitoratge de servidors»."
 
     {\bSMTP\sserver\b}i
     valid msgid="\bSMTP\sserver\shost.?name\b"
     valid msgstr="\bservidor SMTP\b"
-    hint="Es traduix per «servidor SMTP»."
+    hint="Es tradueix per «servidor SMTP»."
 
       {\bSMTP\sserver\shost.?name\b}i
       valid msgstr="\bnom d'amfitrió del servidor SMTP\b"
-      hint="Es traduix per «nom d'amfitrió del servidor SMTP»."
+      hint="Es tradueix per «nom d'amfitrió del servidor SMTP»."
 
     {\bunknown\shost\b}i
     valid msgstr="\bamfitrió desconegut\b"
-    hint="Es traduix per «amfitrió desconegut»."
+    hint="Es tradueix per «amfitrió desconegut»."
 
-{\bserver.?s.?\b}i
-valid msgid="\bany\sremote\sservers\b"
-valid msgid="\bserver's\b"
-valid msgstr="\bcap servidor\b"
-valid msgstr="\bFes saber als llocs web\b" # falkon/falkon_qt.po
-valid msgstr="\bservidors\b"
-valid msgstr="\bseu servidor corresponent\b" # incidenceeditor/libincidenceeditors6.po
-hint="Es traduix per «cap servidor, servidors»."
+{\bicon.?view\b}i
+valid msgid="\bicon.?view\sand\sfolder.?view\b"
+valid msgid="\blist\sand\sicon.?view\b"
+valid msgstr="\bvista d'icones\b"
+hint="Es tradueix per «vista d'icones» (multimèdia)."
 
-  {\bany\sremote\sservers\b}i
-  valid msgstr="\bcap servidor remot\b"
-  hint="Es traduix per «cap servidor remot»."
+  {\bicon.?view\sand\sfolder.?view\b}i
+  valid msgstr="\bvistes d'icones i de carpetes\b"
+  hint="Es tradueix per «vistes d'icones i de carpetes» (multimèdia)."
 
-{\bserver's\b}i
-valid msgstr="\bconnexió amb el servidor\b"
-valid msgstr="\b(capacitats|connexió|lloc web|política|port|resposta|sòcol local) del servidor\b"
-valid msgstr="\bNom del servidor que s'utilitzarà\b" # kexi/kexi.po
-hint="Es traduix per «capacitats del servidor, connexió amb el servidor, lloc web del servidor, política del servidor, port del servidor, resposta del servidor, sòcol local del servidor»."
+  {\blist\sand\sicon.?view\b}i
+  valid msgstr="\bvista de llista i d'icones\b"
+  hint="Es tradueix per «vista de llista i d'icones» (multimèdia)."
 
 {\bintegers?\b}i
 valid msgid="\binteger\s(division|part|portion)\b"
@@ -564,6 +826,26 @@ hint="Es tradueix per «intersecció»."
 #   valid msgstr="\bseguidor de tasques\b"
 #   hint="Es tradueix per «eguidor de tasques»."
 
+{\blag\b}i
+valid msgid="\b(encounter|for)\slag\b"
+valid msgstr="\bLag BaOmer\b"
+valid msgstr="\bquedeu (arrere|enrere)\b"
+valid msgstr="\bretard\b"
+hint="Es tradueix per «quedeu arrere/enrere, retard»."
+
+  {\bencounter\slag\b}i
+  valid msgstr="\btrobeu amb retards\b"
+  hint="Es tradueix per «trobeu amb retards»."
+
+  {\bfor\slag\b}i
+  valid msgstr="\bde retards\b"
+  hint="Es tradueix per «de retards»."
+
+{\blags\b}i
+valid msgstr="\bendarrerint\b"
+valid msgstr="\bretards\b"
+hint="Es tradueix per «endarrerint, retards»."
+
 {\blengths?\b}i
 valid msgid="\b(edge|file|filename|focal|Full|Half|l|line|path|Rubber).?lengths?\b"
 valid msgid="\blength\sof\stime\b"
@@ -578,63 +860,84 @@ valid msgstr="\bllargament\b"
 valid msgstr="\bllargàri(a|es)\b"
 valid msgstr="\bmida de zero bytes\b"
 valid msgstr="\bDo not translate, it's a waste of time\b"
-hint="Es traduix per «duració, durada(es), grandària, grandàries, llargament, llargària, llargàries»."
+hint="Es tradueix per «duració, durada(es), grandària, grandàries, llargament, llargària, llargàries»."
 
   {\bedge\slength\b}i
   valid msgstr="\b(llargària|longitud) de l'aresta\b"
   valid msgstr="\b(llargària|longitud) de vora\b"
-  hint="Es traduix per «llargària de l'aresta, longitud de vora»."
+  hint="Es tradueix per «llargària de l'aresta, longitud de vora»."
 
   {\bfocal\slengths?\b}i
   valid msgstr="\bfocal\slengths?\b"
   valid msgstr="\bdistància focal\b"
   valid msgstr="\bdistàncies focals\b"
-  hint="Es traduix per «distància focal, distàncies focals»."
+  hint="Es tradueix per «distància focal, distàncies focals»."
 
   {\blength\sscale\b}i
   valid msgstr="\bescala de (llargària|longitud)\b"
-  hint="Es traduix per «escala de longitud»."
+  hint="Es tradueix per «escala de longitud»."
 
 {\blightness\b}i
 valid msgid="\bhue\/colorfulness\/lightness\b"
 valid msgstr="\baclarir\b"
 valid msgstr="\bClaredat\b"
 valid msgstr="\blleugeresa\b"
-hint="Es traduix per «aclarir, (Eina:) Claredat» (multimèdia)"
+hint="Es tradueix per «aclarir, (Eina:) Claredat» (multimèdia)"
 
   {\bhue\/colorfulness\/lightness\b}i
   valid msgstr="\bto\/color\/claredat\b"
-  hint="Es traduix per «to\/color\/claredat, (Eina: Claredat)» (multimèdia)"
+  hint="Es tradueix per «to\/color\/claredat, (Eina: Claredat)» (multimèdia)"
+
+{\blist.?view\b}i
+valid msgid="\bto.?do\slist.?view\b"
+valid msgstr="\bvista de llista\b"
+hint="Es tradueix per «vista de llista» (multimèdia)."
+
+  {\bto.?do\slist.?view\b}i
+  valid msgstr="\bvista de la llista de tasques pendents\b"
+  hint="Es tradueix per «vista de la llista de tasques pendents» (multimèdia)."
 
 {\blongitude\b}i
 valid msgid="\blongitude\/latitude database\b"
 valid msgstr="\bllibre «Longitude»"
 valid msgstr="\b(llargària|longitud)\b"
-hint="Es traduix per «llargària, longitud»."
+hint="Es tradueix per «llargària, longitud»."
 
   {\blongitude\/latitude database\b}i
   valid msgstr="\bbases de dades de (llargàries|longituds)\b"
-  hint="Es traduix per «bases de dades de longituds»."
+  hint="Es tradueix per «bases de dades de longituds»."
 
   {\blongitudes\b}i
   valid msgstr="\b(llargàries|longituds)\b"
-  hint="Es traduix per «llargàries, longituds»."
+  hint="Es tradueix per «llargàries, longituds»."
 
 #   {\blong\b}i
 #   valid msgstr="long"
-#   hint="Es traduix per «long (de longitud)»."
+#   hint="Es tradueix per «long (de longitud)»."
 {\bluminance\b}i
 valid msgstr="\bluminància\b"
-hint="Es traduix per «luminància»."
+hint="Es tradueix per «luminància»."
 
 {\bluminosity\b}i
 valid msgstr="\bimages/luminosity\b"
 valid msgstr="\blluminositat\b"
-hint="Es traduix per «lluminositat»."
+hint="Es tradueix per «lluminositat»."
 
-# predeterminat
-  [\bper\s(defecte|omissió)\b]i
-  hint="Es traduix per «predeterminada(des), predeterminat(s)»."
+{\bmerge\srequests?\b}i
+valid msgstr="\bsol·licituds? de fusió\b"
+hint="Es tradueix per «sol·licitud/s de fusió»."
+
+# {\bmerge\srequests\b}i
+# valid msgstr="\bsol·licituds de fusió\b"
+# hint="Es tradueix per «sol·licituds de fusió»."
+
+{\bmessage.?type\b}i
+valid msgstr="\btipus de missatge\b"
+hint="Es tradueix per «tipus de missatge»."
+
+  {\bstate.?type\b}i
+  valid msgstr="\btipus d'estat\b"
+  hint="Es tradueix per «tipus d'estat»."
 
 # {\bpicks?\b}i
 # valid msgid="\bpick.?up\b"
@@ -646,14 +949,69 @@ hint="Es traduix per «lluminositat»."
 #   {\bpick.?up\b}i
 #   valid msgstr="\breprendrà\b"
 #   hint="Es tradueix per «reprendrà»."
+
+# predeterminat
+  [\bper\s(defecte|omissió)\b]i
+  hint="Es tradueix per «predeterminada(des), predeterminat(s)»."
+
+# presets
+  {\bpre.?defined\b}i
+  valid msgstr="\bpredefinid(a|es)\b"
+  valid msgstr="\bpredefinits?\b"
+  hint="Es tradueix per «predefinida/es, predefinit/s»."
+
+  {\bpreset\ssetting\b}i
+  valid msgstr="\bajustament preestablert\b"
+  valid msgstr="\bambient\b"
+  hint="Es tradueix per «ajustament preestablert, ambient (Amarok)»."
+
+    {\bpreset\ssettings\b}i
+    valid msgid="\bbrush\spreset\ssettings\b"
+    valid msgstr="\bajustaments pre(definits|establerts)\b"
+    hint="Es tradueix per «ajustaments preestablerts»."
+
+      {\bpresets?\b}i
+      valid msgid="\b(brush|exposure|list\sof|stretch|style)\spresets\b"
+      valid msgid="\bpresets\svalues\b"
+      valid msgstr="\bajustaments pre(definits|establerts)\b"
+      valid msgstr="\bambients\b"
+      hint="Es tradueix per «ajustaments preestablerts, ambients (Amarok)»."
+
+        {\bexposure\spresets\b}i
+        valid msgstr="\bexposicions pre(definides|establertes)\b"
+        hint="Es tradueix per «exposicions preestablertes»."
+
+        {\blist\sof\spresets\b}i
+        valid msgstr="\bllista d'ajustaments pre(definits|establerts)\b"
+        hint="Es tradueix per «llista d'ajustaments preestablerts»."
+
+        {\bpresets\svalues\b}i
+        valid msgstr="\bvalors d'ambient\b"
+        hint="Es tradueix per «valors d'ambient»."
+
+        {\bstretch\spresets\b}i
+        valid msgstr="\bajustaments pre(definits|establerts) de l'estirament\b"
+        hint="Es tradueix per «ajustaments preestablerts de l'estirament»."
+
+  {\bstyle\spresets\b}i
+  valid msgstr="\bpreajust(os)? d'estil\b"
+  hint="Es tradueix per «preajust/os d'estil»."
+
 {\bPicture.?in.?Picture\b}i
 valid msgstr="\bimatge en la imatge\b"
 hint="Es tradueix per «imatge en la imatge»."
 
 {\bprofiled\b}i
+valid msgid="\bprogram\sprofiled\b"
+valid msgstr="\bamb (el |un )?perfil\b"
+valid msgstr="\banàlisi de(l|) rendiment\b"
 valid msgstr="\bcrea[rt] un perfil\b"
 valid msgstr="\bperfil creat\b"
-hint="Es tradueix per «crear/t un perfil, perfil creat»."
+hint="Es tradueix per «anàlisi de/l rendiment, crear/t un perfil, perfil creat»."
+
+  {\bprogram\sprofiled\b}i
+  valid msgstr="\bprograma analitzat\b"
+  hint="Es tradueix per «programa analitzat»."
 
 {\bprompt\b}i
 valid msgid="\b(authentication|command|password|save|text|will)\sprompt\b"
@@ -663,29 +1021,34 @@ valid msgstr="\bdeman[ei]\b"
 valid msgstr="\bdetecció d'a&vís d'ordres\b"
 valid msgstr="\bindicador\b"
 valid msgstr="\bpetició\b"
-hint="Es traduix per «indicador»."
+hint="Es tradueix per «indicador»."
 
   {\bauthentication\sprompt\b}i
   valid msgstr="\bindicador d'autenticació\b"
-  hint="Es traduix per «indicador d'autenticació»."
+  hint="Es tradueix per «indicador d'autenticació»."
 
   {\bcommand\sprompt\b}i
   valid msgstr="\bindicador d'ordres\b"
-  hint="Es traduix per «indicador d'ordres»."
+  hint="Es tradueix per «indicador d'ordres»."
 
   {\bpassword\sprompt\b}i
   valid msgstr="\bdemandes de contrasenya\b"
   valid msgstr="\bsol·licitar la contrasenya\b"
-  hint="Es traduix per «demandes de contrasenya, sol·licitar la contrasenya»."
+  hint="Es tradueix per «demandes de contrasenya, sol·licitar la contrasenya»."
 
   {\bprompt\severy\b}i
   valid msgstr="\b(demanarà|pregunta) cada vegada\b"
-  hint="Es traduix per «demanarà cada vegada, pregunta cada vegada»."
+  hint="Es tradueix per «demanarà cada vegada, pregunta cada vegada»."
 
   {\btext\sprompt\b}i
+  valid msgid="\btext\sprompt\sinput\sand\stext\soutput\sresponses\b"
   valid msgstr="\bindicador de text\b"
   valid msgstr="missatge de text"
-  hint="Es traduix per «indicador de text, missatge de text»."
+  hint="Es tradueix per «indicador de text, missatge de text»."
+
+    {\btext\sprompt\sinput\sand\stext\soutput\sresponses\b}i
+    valid msgstr="\bpeticions d'entrada i de les respostes de text d'eixida\b"
+    hint="Es tradueix per «peticions d'entrada i de les respostes de text d'eixida»."
 
   {\bwill\sprompt\b}i
   valid msgstr="\b(la|us|vos) demanarà\b"
@@ -699,22 +1062,22 @@ valid msgid="\b(password|text)\sprompts\b"
 valid msgstr="\bindicadors «>"
 valid msgstr="\bindicadors del text\b"
 valid msgstr="\bindicadors\b"
-hint="Es traduix per «indicadors»."
+hint="Es tradueix per «indicadors»."
 
   {\bpassword\sprompts\b}i
   valid msgstr="\bdemandes de contrasenya\b"
-  hint="Es traduix per «demandes de contrasenya»."
+  hint="Es tradueix per «demandes de contrasenya»."
 
   {\bprompts\sand\/or\sresponses\b}i
   valid msgstr="\bindicacions i\/o respostes\b"
   valid msgstr="\bpeticions i\/o respostes\b"
-  hint="Es traduix per «indicacions i/o respostes, peticions i/o respostes»."
+  hint="Es tradueix per «indicacions i/o respostes, peticions i/o respostes»."
 
   {\btext\sprompts\b}i
   valid msgstr="\bindicacions de text\b"
   valid msgstr="\bpeticions d'entrada\b"
   valid msgstr="\bpeticions de text\b"
-  hint="Es traduix per «indicacions de text, peticions d'entrada, peticions de text»."
+  hint="Es tradueix per «indicacions de text, peticions d'entrada, peticions de text»."
 
 # {\branges?\b}i
 # valid msgid="\b(altitude|broad|dynamic|fullest|long|short|tonal|wide|within\sthe).?range\b"
@@ -778,6 +1141,7 @@ hint="Es traduix per «indicadors»."
 
 {\brelease\b}i
 valid msgid="([-])release\b"
+valid msgid="/release-notes\b"
 valid msgid="\b(button|drag and|feature|key|press|preview|public)\srelease\b"
 valid msgid="\bpre-release\b"
 valid msgid="\brelease\s(announcement|cycle|date|history|manager|notes|repository|time|Vixen|year)\b"
@@ -788,29 +1152,25 @@ valid msgstr="\ballibere(s|u-lo)?\b"
 valid msgstr="\bdeix(a[rt]?|ar-la|e[su]) anar\b"
 valid msgstr="\bllançaments?\b"
 valid msgstr="\bllança([rt])(em)?\b"
-valid msgstr="\bpublicació\b"
+valid msgstr="\bpublicaci(ó|ons)\b"
 valid msgstr="\bpublica([rt])?\b"
 valid msgstr="\bpubliquen\b"
 valid msgstr="\bsolta'ls\b"
 valid msgstr="\btraurà\b"
 valid msgstr="\bversió\b"
-hint="Es traduix per «allibera(r), allibere(s), allibereu-lo, deix(a)(eu)(es) anar, llançament, llançar, llançat, llançarem, publicació, publica(rt), publiquen, solta'ls, versió»."
+hint="Es tradueix per «allibera(r), allibere(s), allibereu-lo, deix(a)(eu)(es) anar, llançament, llançar, llançat, llançarem, publicació, publica(rt), publiquen, solta'ls, versió»."
 
   {\bbutton\srelease\b}i
   valid msgstr="\bbotó (alliberat|deixat anar)\b"
-  hint="Es traduix per «botó alliberat, botó deixat anar»."
+  hint="Es tradueix per «botó alliberat, botó deixat anar»."
 
   {\bdrag\sand\srelease\b}i
   valid msgstr="\barrossegueu i deixeu(-lo)?\b"
-  hint="Es traduix per «arrossegueu i deixeu(-lo)»."
+  hint="Es tradueix per «arrossegueu i deixeu(-lo)»."
 
   {\bkey\srelease\b}i
   valid msgstr="\btecla alliberada\b"
-  hint="Es traduix per «tecla alliberada»."
-
-  {\bButton\sRelease\b}i
-  valid msgstr="\bbotó alliberat\b"
-  hint="Es traduix per «botó alliberat»."
+  hint="Es tradueix per «tecla alliberada»."
 
   {\bpre.?release\b}i
   valid msgid="\bnew\spre.?release\sversion\b"
@@ -818,82 +1178,82 @@ hint="Es traduix per «allibera(r), allibere(s), allibereu-lo, deix(a)(eu)(es) a
   valid msgstr="\bconstrucci(ó|ons) preliminars?\b"
   valid msgstr="\bprellançaments?\b"
   valid msgstr="\bversi(ó|ons) (preliminars?|prèvi(a|es))\b"
-  hint="Es traduix per «construcció(ons) preliminar(s), prellançament(s), versió(ons) preliminar(s), versió(ons) prèvia(es)»."
+  hint="Es tradueix per «construcció(ons) preliminar(s), prellançament(s), versió(ons) preliminar(s), versió(ons) prèvia(es)»."
 
     {\bnew\spre.?release\sversion\b}i
     valid msgstr="\bversió nova preliminar\b"
-    hint="Es traduix per «versió nova preliminar»."
+    hint="Es tradueix per «versió nova preliminar»."
 
     {\bpre.?release\sdate\b}i
     valid msgstr="\bdata de prellançament\b"
-    hint="Es traduix per «data de prellançament»."
+    hint="Es tradueix per «data de prellançament»."
 
     {\bpre.?release\sversions\b}i
     valid msgstr="\bversions (preliminars|prèvies al llançament)\b"
-    hint="Es traduix per «versions preliminars, versions prèvies al llançament»."
+    hint="Es tradueix per «versions preliminars, versions prèvies al llançament»."
 
   {\bpress\srelease\b}i
   valid msgstr="\bnota de premsa\b"
-  hint="Es traduix per «nota de premsa»."
+  hint="Es tradueix per «nota de premsa»."
 
   {\bpreview\srelease\b}i
   valid msgstr="\bversió de vista prèvia\b"
-  hint="Es traduix per «versió de vista prèvia»."
+  hint="Es tradueix per «versió de vista prèvia»."
 
   {\bpublic\srelease\b}i
   valid msgstr="\bdivulgar públicament\b"
   valid msgstr="\bllançament públic\b"
-  hint="Es traduix per «divulgar públicament, llançament públic»."
+  hint="Es tradueix per «divulgar públicament, llançament públic»."
 
   {\brelease\sannouncement\b}i
   valid msgstr="\banunci de llançament\b"
-  hint="Es traduix per «anunci de llançament»."
+  hint="Es tradueix per «anunci de llançament»."
 
   {\brelease\scycle\b}i
   valid msgstr="\bcicle de llançaments?\b"
-  hint="Es traduix per «cicle de llançament(s)»."
+  hint="Es tradueix per «cicle de llançament(s)»."
 
   {\brelease\sdate\b}i
   valid msgid="\bpre.?release\sdate\b"
   valid msgstr="\bdata de llançament del CD\b"
   valid msgstr="\bdata de publicació\b"
-  hint="Es traduix per «data de publicació»."
+  hint="Es tradueix per «data de publicació»."
 
   {\brelease\shistory\b}i
   valid msgstr="\bhistorial de llançaments\b"
-  hint="Es traduix per «historial de llançaments»."
+  hint="Es tradueix per «historial de llançaments»."
 
   {\brelease\smanager\b}i
   valid msgstr="\bencarregat dels llançaments\b"
-  hint="Es traduix per «encarregat dels llançaments»."
+  hint="Es tradueix per «encarregat dels llançaments»."
 
   {\brelease\snotes\b}i
   valid msgid="\bfull\srelease\snotes\b"
   valid msgstr="\bnotes de llançament\b"
-  hint="Es traduix per «notes de llançament»."
+  hint="Es tradueix per «notes de llançament»."
 
     {\bfull\srelease\snotes\b}i
     valid msgstr="\bnotes completes del llançament\b"
-    hint="Es traduix per «notes completes del llançament»."
+    hint="Es tradueix per «notes completes del llançament»."
 
   {\brelease\srepository\b}i
   valid msgstr="\brepositori de llançaments\b"
-  hint="Es traduix per «repositori de llançaments»."
+  hint="Es tradueix per «repositori de llançaments»."
 
   {\brelease\stime\b}i
   valid msgstr="\bhora de publicació\b"
-  hint="Es traduix per «hora de publicació»."
+  hint="Es tradueix per «hora de publicació»."
 
   {\brelease\syear\b}i
   valid msgid="\boriginal\srelease\syear\b"
   valid msgstr="\bany d'edició\b"
   valid msgstr="\bany de llançament\b"
-  hint="Es traduix per «any d'edició, any de llançament»."
+  hint="Es tradueix per «any d'edició, any de llançament»."
 
     {\boriginal\srelease\syear\b}i
     valid msgstr="\bAny del llançament original\b"
     valid msgstr="\bany de llançament\b"
-    hint="Es traduix per «any d'edició, any de llançament»."
+    hint="Es tradueix per «any d'edició, any de llançament»."
 
 {\breleased\b}i
 valid msgid="([/-])released\b"
@@ -905,22 +1265,23 @@ valid msgstr="\bdistribuï([tx])\b"
 valid msgstr="\bes (deixa anar|llança|publica)\b"
 valid msgstr="\bl'han llicenciat\b"
 valid msgstr="\bllançà\b"
-valid msgstr="\bllança(da|ment|r[aà]|r-se|t)\b"
+valid msgstr="\bllança(da|ment|r[aà]|r-se|ts?)\b"
 valid msgstr="\bllancem\b"
 valid msgstr="\bpublica(ció|da|t|ts)\b"
 valid msgstr="\bpubliquen\b"
 valid msgstr="\bs'allibera\b"
 valid msgstr="\btornarà a publicar\b"
-valid msgstr="\b(va[mn]?|varem) (llançar|publicar)\b"
-hint="Es traduix per «acaba de publicar, alliberat(da), alliberava, allibere, distribuït(x), es deixa anar, es llança, es publica, llançà, llançada, llançament, llançar-se, llançarà, llançat, llancem, publicació, publicat(da), publiquen, tornarà a publicar, va(m) o varem publicar»."
+valid msgstr="\b(va[mn]?|vàre[mu]) (iniciar|llançar|publicar)\b"
+hint="Es tradueix per «acaba de publicar, alliberat(da), alliberava, allibere, distribuït(x), es deixa anar, es llança, es publica, llançà, llançada, llançament, llançar-se, llançarà, llançat, llancem, publicació, publicat(da), publiquen, tornarà a publicar, va(m) o vàrem iniciar, va(m) o vàrem publicar»."
 
   {\breleased\sunder\b}i
   valid msgstr="\bdistribu(eix|ï[tx]|ïts) (d'acord|segons)\b"
   valid msgstr="\bpublica([rt]) amb la\b"
   valid msgstr="\bpublica d'acord\b"
-  hint="Es traduix per «distribueix segons, distribuïts segons, publica d'acord»."
+  hint="Es tradueix per «distribueix segons, distribuïts segons, publica d'acord»."
 
 {\breleases\b}i
+valid msgid="\bcategory: releases\b"
 valid msgid="\bpress releases?\b"
 valid msgid="([/-])releases\b"
 valid msgstr="\ballibera\b"
@@ -930,11 +1291,141 @@ valid msgstr="\bdesprés d'haver-les premut\b"
 valid msgstr="\bllançaments?\b"
 valid msgstr="\bpublicacions\b"
 valid msgstr="\bversions\b"
-hint="Es traduix per «allibera, cap llançament, després d'haver-les premut, llançament(s), publicacions, versions»."
+hint="Es tradueix per «allibera, cap llançament, després d'haver-les premut, llançament(s), publicacions, versions»."
 
   {\bpress\sreleases?\b}i
   valid msgstr="\bnot(a|es) de premsa\b"
-  hint="Es traduix per «nota de premsa, notes de premsa»."
+  hint="Es tradueix per «nota de premsa, notes de premsa»."
+
+{\bsandboxing\b}i
+valid msgstr="\bespai aïllat\b"
+hint="Es tradueix per «espai aïllat»."
+
+{\bscript\b}i
+valid msgid="\bbatch\sscript\b"
+valid msgid="\bscript\s(builder|console|editor|library|manager|package|starter|tool.?bar|types?|variables)\b"
+valid msgid="\b(sub|super).?script\b"
+valid msgstr="\bestil cal·ligràfic\b"
+valid msgstr="\bordre següent per a fer-ho\b"
+valid msgstr="\bscripts com el devanagari\b"
+valid msgstr="\bScript\b"
+hint="Es tradueix per «Script (al Krita és un acoblador), estil cal·ligràfic»."
+
+  {\bbatch\sscript\b}i
+  valid msgstr="\bfitxer de processament per lots\b"
+  hint="Es tradueix per «fitxer de processament per lots»."
+
+  {\bscript\sbuilder\b}i
+  valid msgstr="^|(.*?)|$"
+  valid msgstr="\bconstructor de scripts\b"
+  hint="Es tradueix per «constructor de scripts»."
+
+  {\bscript\sconsole\b}i
+  valid msgstr="\bconsola de scripts\b"
+  hint="Es tradueix per «consola de scripts»."
+
+  {\bscript\seditor\b}i
+  valid msgstr="\beditor de scripts\b"
+  hint="Es tradueix per «editor de scripts»."
+
+  {\bscript\slibrary\b}i
+  valid msgstr="\bbiblioteca de scripts\b"
+  hint="Es tradueix per «biblioteca de scripts»."
+
+  {\bscript\smanager\b}i
+  valid msgstr="\bgestor de scripts\b"
+  hint="Es tradueix per «gestor de scripts»."
+
+  {\bscript\spackage\b}i
+  valid msgstr="\bpaquet de scripts\b"
+  hint="Es tradueix per «paquet de scripts»."
+
+  {\bscript\sstarter\b}i
+  valid msgstr="\biniciador de scripts\b"
+  hint="Es tradueix per «iniciador de scripts»."
+
+  {\bscript\stool.?bar\b}i
+  valid msgstr="\bbarra d'eines de scripts\b"
+  hint="Es tradueix per «barra d'eines de scripts»."
+
+  {\bscript\stypes?\b}i
+  valid msgstr="\btipus de scripts?\b"
+  hint="Es tradueix per «tipus de script/s»."
+
+  {\bscript\svariables\b}i
+  valid msgstr="\bvariables dels scripts\b"
+  hint="Es tradueix per «variables dels scripts»."
+
+  {\bsub.?script\b}i
+  valid msgstr="\bsubíndex\b"
+  hint="Es tradueix per «subíndex»."
+
+  {\bsuper.?script\b}i
+  valid msgstr="\bsuperíndex\b"
+  hint="Es tradueix per «superíndex»."
+
+{\bscripts\b}i
+valid msgstr="\bestils cal·ligràfics\b"
+valid msgstr="\bscripts\b"
+hint="Es tradueix per «scripts, (Script: al Krita és un acoblador), estils cal·ligràfics»."
+
+{\bserver.?s.?\b}i
+valid msgid="\bany\sremote\sservers\b"
+valid msgid="\bserver.?s\b"
+valid msgstr="\bcap servidor\b"
+valid msgstr="\bFes saber als llocs web\b" # falkon/falkon_qt.po
+valid msgstr="\brequerit pel servidor\b" # plasma-nm/plasmanetworkmanagement_openconnectui.po
+valid msgstr="\bservidors\b"
+valid msgstr="\bseu servidor corresponent\b" # incidenceeditor/libincidenceeditors6.po
+hint="Es tradueix per «cap servidor, servidors»."
+
+  {\bany\sremote\sservers\b}i
+  valid msgstr="\bcap servidor remot\b"
+  hint="Es tradueix per «cap servidor remot»."
+
+{\bserver's\b}i
+valid msgid="\bserver.?s\saddress\b"
+valid msgstr="\barxiu del servidor\b"
+valid msgstr="\bconnexió amb el servidor\b"
+valid msgstr="\b(capacitats|connexió|lloc web|política|port|resposta|sòcol local) del servidor\b"
+valid msgstr="\bNom del servidor que s'utilitzarà\b" # kexi/kexi.po
+hint="Es tradueix per «arxiu del servidor, capacitats del servidor, connexió amb el servidor, lloc web del servidor, política del servidor, port del servidor, resposta del servidor, sòcol local del servidor»."
+
+  {\bserver.?s\saddress\b}i
+  valid msgstr="\badreça del servidor\b"
+  hint="Es tradueix per «adreça del servidor»."
+
+{\bsets?\b}i
+valid msgid="-set-"
+valid msgid="\b(character|we'd) set\b"
+valid msgid="\bset (of\scalipers|point|up)\b"
+valid msgid="\bSET or EVALUATE\b"
+valid msgstr="^|(.*?)|$"
+valid msgstr="«brushFade get/set»"
+valid msgstr="\bconjunts?\b"
+valid msgstr="\bestableixi?\b"
+valid msgstr="\bestablert([as]?|es)\b"
+valid msgstr="\bestabli(da|des|ment|[artu]|rà|ran|sca|ts?|x|xen)\b"
+valid msgstr="\bpon(drà|ent)?\b"
+valid msgstr="\bpost(a|es)\b"
+valid msgstr="\brestarà\b"
+hint="Es tradueix per «conjunt/s, estableix/i, establert/s, establerta/es, establiment, establir/à, establiran, establiu» o «pon, pondrà, ponent, posta/es, restarà»."
+
+  {\bcharacter\sset\b}i
+  valid msgstr="\bjoc de caràcters\b"
+  hint="Es tradueix per «joc de caràcters»."
+
+  {\bset\sof\scalipers\b}i
+  valid msgstr="\bjoc de peus de rei\b"
+  hint="Es tradueix per «joc de peus de rei»."
+
+  {\bset\sup\b}i
+  valid msgstr="\bconfigur(ada|ar|at|in)\b"
+  hint="Es tradueix per «configurat/da, configurar, configurin»."
+
+  {\bwe'd\sset\b}i
+  valid msgstr="\bfixàvem\b"
+  hint="Es tradueix per «fixàvem»."
 
 # {\bspecify\b}i
 # valid msgstr="\bespecifi(ca|car|qu[ei]|queu)\b"
@@ -991,108 +1482,70 @@ hint="Es tradueix per «eriçó, pic/s -en un gràfic-, puntes»."
 # valid msgstr="\bmotius?\b"
 # hint="Es tradueix per «assumpte/s, motiu/s»."
 
-# {\btool.?tip\b}i
-# valid msgstr="\bconsell d'eina\b"
-# hint="Es tradueix per «consell d'eina»."
-#
-#   {\btool.?tips\b}i
-#   valid msgstr="\bconsells d'eina\b"
-#   hint="Es tradueix per «consells d'eina»."
+{\btab.?bar\b}i
+valid msgid="\beach tab in the tab bar\b"
+valid msgid="\bvertical\stab.?bar\b"
+valid msgstr="\bbarra de pestanyes\b"
+hint="Es tradueix per «barra de pestanyes»."
 
-# #
-# # # # # # # # # # # # # #
-#
-# digiKam
-{\bImage\sArea\b}i
-valid msgstr="\bàrea de la imatge\b"
-hint="Es tradueix per «àrea de la imatge»."
+  {\b[Vv]ertical\s[Tt]ab.?[Bb]ar\b}
+  valid msgstr="\b([Bb])arra vertical Pestanyes\b"
+  hint="Es tradueix per «barra vertical Pestanyes»."
 
-# {\btrash.?bin\b}i
-# valid msgstr="\bpaperera interna\b"
-# hint="Es tradueix per «paperera interna»."
+{\btable.?view\b}i
+valid msgstr="\bvista de taula\b"
+hint="Es tradueix per «vista de taula» (multimèdia)."
 
-  # Views
-  {\b[Aa][Ll][Bb][Uu][Mm][Ss]?.?[Vv][Ii][Ee][Ww]\b}
-  valid !msgid="albums_view"
-  valid msgstr="\bvista d'àlbums\b"
-  hint="Es tradueix per «vista d'àlbums»."
+{\btime.?zone\b}i
+valid msgid="\btime.?zone\sboundaries\b"
+valid msgstr="\bfus horari\b"
+hint="Es tradueix per «fus horari»."
 
-  {\bIcon.?View\b}i
-  valid msgid="\bicon.?view\sand\sfolder.?view\b"
-  valid msgstr="\bvista d'icones\b"
-  hint="Es tradueix per «vista d'icones»."
+  {\btime.?zone\sboundaries\b}i
+  valid msgstr="\blímits dels fusos horaris\b"
+  hint="Es tradueix per «límits dels fusos horaris»."
 
-    {\bicon.?view\sand\sfolder.?view\b}i
-    valid msgstr="\bvistes d'icones i de carpetes\b"
-    hint="Es tradueix per «vistes d'icones i de carpetes»."
+{\btime.?zones\b}i
+valid msgid="\bai-timezones\b"
+valid msgstr="\bfusos horaris\b"
+hint="Es tradueix per «fusos horaris»."
 
-  {\bColors?.?View\b}i
-  valid !msgid="colors_view"
-  valid msgstr="\bvista de colors\b"
-  hint="Es tradueix per «vista de colors»."
+{\btool.?bar\b}i
+valid msgid="\btool.?bar\spositions\b"
+valid msgstr="^|(.*?)|$"
+valid msgstr="\bbarra d'eines\b"
+hint="Es tradueix per «barra d'eines»."
 
-  {\bFilters.?View\b}i
-  valid !msgid="filters_view"
-  valid msgstr="\bvista de filtres\b"
-  hint="Es tradueix per «vista de filtres»."
+  {\btool.?bar\spositions\b}i
+  valid msgstr="\bposicions de les barres d'eines\b"
+  hint="Es tradueix per «posicions de les barres d'eines»."
 
-  {\bfolder.?view\b}i
-  valid msgid="\bicon.?view\sand\sfolder.?view\b"
-  valid msgstr="\bvista de carpetes\b"
-  hint="Es tradueix per «vista de carpetes»."
+{\btool.?tip\b}i
+valid msgid="\btool.?tip\ssettings\b"
+valid msgstr="\bconsell d'eina\b"
+hint="Es tradueix per «consell d'eina»."
 
-  {\bCaptions.?View\b}i
-  valid !msgid="captions_view"
-  valid msgstr="\bvista de llegendes\b"
-  hint="Es tradueix per «vista de llegendes»."
+  {\btool.?tip\ssettings\b}i
+  valid msgstr="\bConfigur(ació|eu) d?els consells d'eina\b"
+  hint="Es tradueix per «Configuració dels consells d'eina»."
 
-  {\bMaps?.?View\b}i
-  valid !msgid="maps_view"
-  valid msgstr="\bvista de mapa\b"
-  hint="Es tradueix per «vista de mapa»."
+  {\btool.?tips\b}i
+  valid msgstr="\bconsells d'eina\b"
+  hint="Es tradueix per «consells d'eina»."
 
-  {\bMetadata.?View\b}i
-  valid !msgid="metadata_view"
-  valid msgstr="\bvista de metadades\b"
-  hint="Es tradueix per «vista de metadades»."
+{\btree.?view\b}i
+valid msgstr="\bvist(a|es) en arbre\b"
+hint="Es tradueix per «vista/es en arbre» (multimèdia)."
 
-  {\bThumbnail.?View\b}i
-  valid msgstr="\bvista de miniatures\b"
-  hint="Es tradueix per «vista de miniatures»."
+[\bvare[mu]\b]i
+valid msgstr="\bvàre[mu]\b"
+hint="Es tradueix per «vàrem, vàreu»."
 
-  {\btrash.?bin.?view\b}i
-  valid msgstr="\bvista de paperera\b"
-  hint="Es tradueix per «vista de paperera»."
+{\bwrapped\stext}i
+valid msgstr="\btext ajustat\b"
+hint="Es tradueix per «text ajustat»."
 
-  {\bProperties.?View\b}i
-  valid !msgid="properties_view"
-  valid msgstr="\bvista de propietats\b"
-  hint="Es tradueix per «vista de propietats»."
+{\bwrapping\sarea\b}i
+valid msgstr="\bàrea d'ajust\b"
+hint="Es tradueix per «àrea d'ajust»."
 
-  {\btable.?view\b}i
-  valid msgstr="\bvista de taula\b"
-  hint="Es tradueix per «vista de taula»."
-
-  {\bVersions.?View\b}i
-  valid !msgid="versions_view"
-  valid msgstr="\bvista de versions\b"
-  hint="Es tradueix per «vista de versions»."
-
-  {\btree.?view\b}i
-  valid msgstr="\bvist(a|es) en arbre\b"
-  hint="Es tradueix per «vista en arbre»."
-
-#   {\boverview\b}i
-#   valid msgid="\boverview\smap\b"
-#   valid msgid="\bREADME\.overview\b"
-#   valid msgstr="\bvista general\b"
-#   hint="Es tradueix per «vista general»."
-#
-#     {\boverview\smap\b}i
-#     valid msgstr="\bmapa general\b"
-#     hint="Es tradueix per «mapa general»."
-
-#   {\bpreview(ing|s)?\b}i
-#   valid msgstr="\bprevisualitz(a|ació|ar|e|eu)\b"
-#   valid msgstr="\bvist(a|es) prèvi(a|es)\b"
-#   hint="Es tradueix per «previsualitzar, previsualització, vista prèvia, vistes prèvies»."

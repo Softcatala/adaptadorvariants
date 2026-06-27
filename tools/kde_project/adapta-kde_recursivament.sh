@@ -32,7 +32,7 @@ capçalera() {
     BRANCA="trunk"
     ESCRIPTORI="l10n-kf5 (SVN local)"
   fi
-  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RVINICI:$RVFINAL\n  ****************$([[ "$ESCRIPTORI" = "l10n-kf5"@(-plasma-lts| \(SVN local\)) ]] && echo "************")\n$1"
+  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RVINICI:$RVFINAL\n  ****************$([[ "$ESCRIPTORI" = "l10n-kf5"@(-plasma-lts| \(SVN local\)) ]] && echo "************")\n"
 }
 
 genera_copia() {
@@ -65,15 +65,16 @@ genera_copia() {
       [ "$(pidof -c cpulimit)" ] || cpulimit --background --quiet --path=/bin/sed --limit=75 2&>/dev/null
   fi
   # Executem la conversió del fitxer PO
+  TARGET_FILE="missatges_2-$FITX"
   ./kde-src2valencia.sed < missatges-$FITX   > missatges_1-$FITX
-  ./all-src2valencia.sed < missatges_1-$FITX > missatges_2-$FITX
+  ./all-src2valencia.sed < missatges_1-$FITX > $TARGET_FILE
   [ -f "missatges-$FITX"   ] && rm -f missatges-$FITX
   [ -f "missatges_1-$FITX" ] && rm -f missatges_1-$FITX
 
   # S'afegeixen els crèdits per al valencià
   TOCAT=$(head -20 $DIRTR/ca/$PO | grep "$USUARIS_VAL0")
   if [ "$TOCAT" ]; then
-    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_2-$FITX | grep msgstr)" ]; then
+    if [ "$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $TARGET_FILE | grep msgstr)" ]; then
       for usuari_val in $USUARIS_VAL1
         do
           if [ "$(echo $TOCAT | grep $usuari_val)" ]; then
@@ -85,19 +86,19 @@ genera_copia() {
           fi
         done
       echo "$USUARIS_VAL_EMAIL"
-      LINE1="$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" missatges_2-$FITX | grep msgstr)"
+      LINE1="$(posieve find_messages -smsgctxt:"NAME OF TRANSLATORS" $TARGET_FILE  | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" missatges_2-$FITX
-      LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" missatges_2-$FITX | grep msgstr)"
+      sed --in-place -e "s/$LINE1/$LINE2/" $TARGET_FILE
+      LINE1="$(posieve find_messages -smsgctxt:"EMAIL OF TRANSLATORS" $TARGET_FILE | grep msgstr)"
       LINE2="$(echo $LINE1 | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL_EMAIL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" missatges_2-$FITX
+      sed --in-place -e "s/$LINE1/$LINE2/" $TARGET_FILE
       USUARIS_VAL=""
       USUARIS_VAL_EMAIL=""
     fi
   fi
 
   # Es torna a donar el format amb 78 files
-  msgmerge --silent --previous --width=79 --lang=ca@valencia missatges_2-$FITX $DIRTR/templates/${PO}t --output-file=missatges_2-$FITX
+  msgmerge --silent --previous --width=79 --lang=ca@valencia $TARGET_FILE $DIRTR/templates/${PO}t --output-file=$TARGET_FILE
 
   if  [[ "$FITX" = *@(appdata.po|_qt.po|metainfo.po) ]]; then
         LBUGS=""
@@ -111,39 +112,45 @@ genera_copia() {
       fi
 
       if [[ "$FITX" = @(docs_digikam_org_|kstars_docs_)* ]]; then
-          grep --silent "^\"Plural-Forms: nplurals=2; plural=n != 1;"  missatges_2-$FITX || posieve set-header -sfield:"Plural-Forms:nplurals=2; plural=n != 1;" -screate -safter:'X-Generator:' -sreorder missatges_2-$FITX
+          grep --silent "^\"Plural-Forms: nplurals=2; plural=n != 1;"  $TARGET_FILE || posieve set-header -sfield:"Plural-Forms:nplurals=2; plural=n != 1;" -screate -safter:'X-Generator:' -sreorder $TARGET_FILE
       fi
   fi
   if [ -n "$LBUGS" ]; then
-      posieve set-header -sfield:"Report-Msgid-Bugs-To:$LBUGS" -screate -safter:'Project-Id-Version' -sreorder missatges_2-$FITX
+      posieve set-header -sfield:"Report-Msgid-Bugs-To:$LBUGS" -screate -safter:'Project-Id-Version' -sreorder $TARGET_FILE
 #   elif  [[ "$FITX" = *@(appdata.po|metainfo.po) ]]; then
-#       posieve set-header -sremove:"Report-Msgid-Bugs-To:" -sreorder missatges_2-$FITX
+#       posieve set-header -sremove:"Report-Msgid-Bugs-To:" -sreorder $TARGET_FILE
   fi
 
   # Es realitza un avís per si la nova traducció conté missatges sense fer
-  msgfmt --statistics missatges_2-$FITX
+  msgfmt --statistics $TARGET_FILE
 
   # Esborrem els missatges obsolets (en silenci)
-  posieve --quiet remove-obsolete missatges_2-$FITX
+  posieve --quiet remove-obsolete $TARGET_FILE
 
   # Es convida a algun col·laborador/a de valència
   if [ $FITX = "gcompris_qt.po" ]; then
     echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper a convidar a traductors valencians.\n"
-    sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta siga correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" missatges_2-$FITX
+    sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta siga correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" $TARGET_FILE
   fi
 
-  # es fa el seguiment de les esmenes en regressió
-  posieve check-rules -s rfile:$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/errors.rules missatges_2-$FITX
-  if   [[ $DIR = "messages/"@(digikam|digikam-doc) ]]; then
+  # es fa el seguiment local de les esmenes en regressió
+  PO_RULES="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
+    echo -e " \033[1;37m* Es comproven les regles globals:\e[0m"
+    posieve check-rules -s rfile:$PO_RULES/errors.rules     $TARGET_FILE
+  if   [[ $DIR = "messages/"@(digikam-doc|websites-krita-org) ]]; then
     echo -e " \033[1;37m* Es comproven les regles multimedia:\e[0m"
-#     posieve check-rules -s rfile:$HOME/Documents/Treball/svn/kde/pology/lang/ca/rules/apps-multimedia.rules.disabled missatges_2-$FITX
+    posieve check-rules -s rfile:$PO_RULES/multimedia.rules $TARGET_FILE
   elif [[ $DIR = "messages/"@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
     echo -e " \033[1;37m* Es comproven les regles del KStars:\e[0m"
-    posieve check-rules -s rfile:$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules/kstars.rules missatges_2-$FITX
+    posieve check-rules -s rfile:$PO_RULES/kstars.rules     $TARGET_FILE
+  fi
+  if   [[ $DIR = "messages/"@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
+    echo -e " \033[1;37m* Es comproven les regles per a Sphinx:\e[0m"
+    posieve check-rules -s rfile:$PO_RULES/sphinx.rules     $TARGET_FILE
   fi
 
   # Ja s'escriu al disc
-  mv -f missatges_2-$FITX $DIRTR/ca@valencia/$PO
+  mv -f $TARGET_FILE $DIRTR/ca@valencia/$PO
   cd $DIRTR
 }
 
@@ -216,6 +223,9 @@ case $ACTION in
     CANVIA='1'
     PO="$2"
     DIR=$(dirname $PO)
+    # S'estableixen a zero (no s'usen)
+    RVINICI="0"
+    RVFINAL="0"
 
     capçalera
     if [ -f ca/$PO ]; then
@@ -283,24 +293,20 @@ for PO in $FITXERSPO
       # Es desactiven les traduccions següents:
       [ "$DIR"  = "messages/documentation-develop-kde-org" ]     && message_removed && continue # https://develop.kde.org/ca/docs/
       [ "$DIR"  = "messages/documentation-docs-kdenlive-org" ]   && message_removed && continue # https://docs.kdenlive.org/ca/
-      [ "$DIR"  = "messages/documentation-kstars-docs-kde-org" ] && message_removed && continue # https://kstars-docs.kde.org/ca/
       # messages/websites-kde-org:
       [ "$FITX" = "release_announcements.po" ]                   && message_removed && continue # https://kde.org/ca/announcements/
       [ "$FITX" = "www_www.po" ]                                 && message_removed && continue
       [ "$DIR"  = "messages/websites-planet-kde-org" ]           && message_removed && continue # https://planet.kde.org/ca/
-      [ "$DIR"  = "messages/websites-docs-glaxnimate-org" ]      && message_removed && continue #
-      [ "$DIR"  = "messages/websites-glaxnimate-org" ]           && message_removed && continue #
+      [ "$DIR"  = "messages/websites-docs-glaxnimate-org" ]      && message_removed && continue # https://docs.glaxnimate.org/ca/
+      [ "$DIR"  = "messages/websites-glaxnimate-org" ]           && message_removed && continue # https://glaxnimate.org/ca/
       [ "$DIR"  = "messages/websites-kdenlive-org" ]             && message_removed && continue # https://kdenlive.org/ca/
       [ "$DIR"  = "messages/websites-kdevelop-org" ]             && message_removed && continue # https://kdevelop.org/ca/
-      # desactivades temporalment (a l'espera de temps per a revisar):
-      [ "$DIR"  = "messages/digikam-doc" ]                       && message_removed && continue
       # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
       # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
       # Fet! - https://krita.org/ca/
       [ "$DIR"  = "messages/documentation-docs-krita-org" ]      && message_removed && continue # https://docs.krita.org/ca/
       # Es desactiven les traduccions revisades per l'equip valencià (ja no s'empra):
-      # kdeutils
-#       [[ "$DIR" = "messages/"@(ark|filelight) ]] && VAL='1' && message_removed && continue
+      [[ "$DIR" = "messages/"@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]] && VAL='1' && message_removed && continue
       genera_copia
     fi
   done

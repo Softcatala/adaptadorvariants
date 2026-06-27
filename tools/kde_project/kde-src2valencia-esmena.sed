@@ -1,3 +1,20 @@
+
+# S'esmenen les fletxes
+s/ -> / → /g
+# #
+# # # # # # # # # # # # # #
+#
+# enllaços
+s/\bdocs\.krita\.org\/en\//docs.krita.org\/ca\//g
+  s/\bdocs\.krita\.org\/ca-va\//docs.krita.org\/ca\//g
+  s/\bdocs\.krita\.org\/ca\/untranslatable_pages\//docs.krita.org\/en\/untranslatable_pages\//g
+s/(ca\//(ca-va\//g
+  s/\bdocs\.digikam\.org\/ca-va\([^[:alnum:]]\)/docs.digikam.org\/ca\1/g
+s/\bendof10\.org\/ca\"/endof10.org\/ca-va\"/g
+s/\bendof10\.org\/ca\//endof10.org\/ca-va\//g
+s/\bendof10\.org\/ca)/endof10.org\/ca-va\/)/g
+s/\bendof10\.org\/)/endof10.org\/ca-va\/)/g
+s/\bkrita\.org\/ca\/posts\//krita\.org\/ca-va\/posts\//g
 # #
 # # # # # # # # # # # # # #
 #
@@ -95,12 +112,14 @@ s/2\.2-120 b/2.2 amb 120 b/g
  #
 s/\"%1h%2 m/\"%1h%2m/g
 s/\"%1 m%2/\"%1m%2/g
+s/%5 B%5D/%5B%5D/g
 s/=128 M/=128M/g
 s/\(BT\.\|-\)\(170\|240\|470\) M/\1\2M/g
 s/1 B-\(12\) B/1B-\1B/g
 s/2 b)/2b)/g
 s/ 2\.4 B\([^[:alnum:]]\)/ 2,4 B\1/g
 s/2.5 K QHD/2,5K QHD/g
+s/(\([48]\) K)/(\1K)/g
 s/4 K UHD/4K UHD/g
 s/4 K DCI/4K DCI/g
 s/5 K (Wide/5K (Wide/g
@@ -147,6 +166,70 @@ s/\banàlisi sintàctica XML\([^[:alnum:]]\)/anàlisi de l'XML\1/g
 s/\bdurant l'anàlisi l'\(OPML\|XML\)\([^[:alnum:]]\)/durant l'anàlisi de l'\1\2/g
 # #
 # # # # # # # # # # # # # #
+# s/\b\([^[:alnum:]]\)/\1/g
+#
+# carpeta / carpetes
+s/\bcarpeta %1 no existeix, voleu crear-lo\([^[:alnum:]]\)/carpeta %1 no existeix, voleu crear-la\1/g
+s/\bcarpeta «%1» ha estat afegit\([^[:alnum:]]\)/carpeta «%1» ha estat afegida\1/g
+s/\bcarpeta «%1» ja existeix\. Voleu sobreescriure'l\([^[:alnum:]]\)/carpeta «%1» ja existeix. Voleu sobreescriure-la\1/g
+s/\bcarpeta «%1» no està buit\([^[:alnum:]]\)/carpeta «%1» no està buida\1/g
+s/\bdirectoris actualment ignorats\([^[:alnum:]]\)/carpetes actualment ignorades\1/g
+s/\bemprar com un directori\([^[:alnum:]]\)/emprar com una carpeta\1/g
+s/\bsigui un directori\([^[:alnum:]]\)/sigui una carpeta\1/g
+  s/\bsigui una carpeta absolut\([^[:alnum:]]\)/sigui una carpeta absoluta\1/g
+  s/\bsigui una carpeta de construcció ja configurat\([^[:alnum:]]\)/sigui una carpeta de construcció ja configurada\1/g
+ #
+s/\bImporta diversos fitxers des d'una carpeta\([^[:alnum:]]\)/Importa múltiples fitxers des d'una carpeta\1/g
+# #
+# # # # # # # # # # # # # #
+#
+# consell d'eina
+# krita/krita.po
+22371,/^msgstr / s/\"Consell\"/\"Consell d'eina\"/g
+22402,/^msgstr / s/\"Consell\"/\"Consell d'eina\"/g
+22415,/^msgstr / s/\"Consell\"/\"Consell d'eina\"/g
+# krusader/krusader.po
+275,/^msgstr / s/\"Consell:\"/\"Consell d'eina:\"/g
+# #
+# # # # # # # # # # # # # #
+#
+# esmenes
+s/+ correcció automàtica\([^[:alnum:]]\)/+ esmena automàtica\1/g
+s/\bCorrecció d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/Esmena d'\1errors\3/g
+s/\bcorrecció d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/esmena d'\1errors\3/g
+  s/\bCorrecció de l'\(&\|\)error\([^[:alnum:]]\)/Esmena de l'\1error\2/g
+  s/\bcorrecció de l'\(&\|\)error\([^[:alnum:]]\)/esmena de l'\1error\2/g
+s/\bCorrecció núm\([^[:alnum:]]\)/Esmena núm\1/g
+  s/(Esmena núm\./(esmena núm./g
+s/\bCorreccions d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/Esmenes d'\1errors\3/g
+s/\bcorreccions d'\(&\|\)error\(s\|\)\([^[:alnum:]]\)/esmenes d'\1errors\3/g
+s/\bCorrecció de seguretat\([^[:alnum:]]\)/Esmena de seguretat\1/g
+s/\bcorrecció de seguretat\([^[:alnum:]]\)/esmena de seguretat\1/g
+s/\bcorreccions de codi\([^[:alnum:]]\)/esmenes de codi\1/g
+s/\bCorreccions de fallades\([^[:alnum:]]\)/Esmenes de fallades\1/g
+s/\bcorreccions de fallades\([^[:alnum:]]\)/esmenes de fallades\1/g
+s/\bCorreccions de seguretat\([^[:alnum:]]\)/Esmenes de seguretat\1/g
+s/\bcorreccions de seguretat\([^[:alnum:]]\)/esmenes de seguretat\1/g
+s/\bCorrecció del Dice\([^[:alnum:]]\)/Esmena del Dice\1/g
+s/\bcorreccions i característiques\([^[:alnum:]]\)/esmenes i característiques\1/g
+s/\bcorreccions o inquietuds\([^[:alnum:]]\)/esmenes o inquietuds\1/g
+s/\bcorreccions secundàries\([^[:alnum:]]\)/esmenes secundàries\1/g
+s/\bcorregit un error\([^[:alnum:]]\)/esmenat un error\1/g
+s/\bcorregit una fallada\([^[:alnum:]]\)/esmenat una fallada\1/g
+s/\bdiverses correccions\([^[:alnum:]]\)/diverses esmenes\1/g
+s/\b\([Ss]\)'ha corregit el\([^[:alnum:]]\)/\1'ha esmenat el\2/g
+s/\b\([Ss]\)'han corregit els\([^[:alnum:]]\)/\1'han esmenat els\2/g
+ #
+s/\bAquesta característica simplifica la gestió\([^[:alnum:]]\)/Aquesta funcionalitat simplifica la gestió\1/g
+s/\bCorrecció: \(Actualitza\|Consell\|Còpia\|Documenta\|Elimina\|Esmena\|Fallada\|Falten\|Filtratge\|Icones\|L'exportació\|Migració\|Quan\|Rendiment\|Substitueix\)\([^[:alnum:]]\)/Esmena: \1\2/g
+  s/\bCorrecció: Corregeix \(diversos\|problemes\)\([^[:alnum:]]\)/Esmena: Esmena \1\2/g
+  s/: Corregeix la disposició\([^[:alnum:]]\)/: Esmena la disposició\1/g
+s/\bla esmena de l'error ortogràfic\([^[:alnum:]]\)/la correcció de l'error ortogràfic\1/g
+s/\bNo és necessari utilitzar aquesta característica\([^[:alnum:]]\)/No és necessari utilitzar aquesta funcionalitat\1/g
+s/\bno molestarà les altres característiques del KStars\([^[:alnum:]]\)/no molestarà les altres funcionalitats del KStars\1/g
+s/\bper als quals voleu utilitzar aquesta característica\([^[:alnum:]]\)/per als quals voleu utilitzar aquesta funcionalitat\1/g
+# #
+# # # # # # # # # # # # # #
 #
 # graella -> quadrícula
 s/\"&Graella\"/\"Quad\&rícula\"/g
@@ -161,9 +244,8 @@ s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 #
 # host(s) - amfitrió(ons)
 # akregator/akregator.po
-2172,/^msgstr / s/\"Màquina desconeguda\"/\"Amfitrió desconegut\"/g
-2173,/^msgstr / s/\"Màquina desconeguda\"/\"Amfitrió desconegut\"/g
-2174,/^msgstr / s/\"Màquina desconeguda\"/\"Amfitrió desconegut\"/g
+2178,/^msgstr / s/\"Màquina desconeguda\"/\"Amfitrió desconegut\"/g
+2195,/^msgstr / s/\"Màquina desconeguda\"/\"Amfitrió desconegut\"/g
 # atlantik/atlantik.po
 552,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 557,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
@@ -174,25 +256,29 @@ s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 # calligra/calligra._desktop_.po
 2453,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # crow-translate/crow-translate_qt.po
-2334,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 2489,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
+2523,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 # falkon/falkon_qt.po
-3796,/^msgstr / s/\"Servidor: \"/\"Amfitrió: \"/g
 3835,/^msgstr / s/\"Servidor: \"/\"Amfitrió: \"/g
-3812,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
+3850,/^msgstr / s/\"Servidor: \"/\"Amfitrió: \"/g
 3851,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
+3866,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
 # kaidan/kaidan_qt.po
-2355,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 2407,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+2409,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+2437,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 # kasts/kasts.po
-1681,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
-1933,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
-1584,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1590,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1611,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1939,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+1960,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 # kate/kategdbplugin.po
 # kate/katesql.po
 s/\"Màquina: %1. Objectiu: %1\"/\"Amfitrió: %1. Objectiu: %1\"/g
 71,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # kdepim-runtime/akonadi_davgroupware_resource.po
+601,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
+606,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 613,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # kdev-upload/kdevupload.po
 233,/^msgstr / s/\"&Màquina:\"/\"A\&mfitrió:\"/g
@@ -231,11 +317,15 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 # kommit/kommit.po
 1454,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # konsole/konsole.po
+657,/^msgstr / s/\"Servidor/\"Amfitrió/g
 1497,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
-1513,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
+1536,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
 # konversation/konversation.po
 8156,/^msgstr / s/\"&Servidor:\"/\"\&Servidor amfitrió:\"/g
 8162,/^msgstr / s/\"&Servidor:\"/\"\&Servidor amfitrió:\"/g
+# krusader/krusader.po
+1176,/^msgstr / s/\"&Servidor:\"/\"\&Servidor amfitrió:\"/g
+1186,/^msgstr / s/\"&Servidor:\"/\"\&Servidor amfitrió:\"/g
 # kube/kube_qt.po
 806,/^msgstr / s/\bNo s'ha trobat el servidor\([^[:alnum:]]\)/No s'ha trobat l'amfitrió\1/g
 1256,/^msgstr / s/\bNo s'ha trobat el servidor\([^[:alnum:]]\)/No s'ha trobat l'amfitrió\1/g
@@ -244,43 +334,46 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 # ksystemlog/ksystemlog.po
 2043,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # labplot/labplot.po
-18923,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+18852,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 20468,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-20468,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+20988,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # labplot/labplot2.po
 17997,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # libkleo/libkleopatra6.po
 1151,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 1162,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 # lokalize/lokalize.po
-3666,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-3684,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-3688,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+3697,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+3762,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+3855,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # neochat/neochat.po
-5702,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 5758,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
-5800,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
+6292,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
+6456,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # plasma-browser-integration/plasma-browser-extension._static_.po
 114,/^msgstr / s/\"Versió del servidor: /\"Versió de l'amfitrió: /g
 # plasmatube/plasmatube.po
 795,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # ruqola/ruqola.po
-1246,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1271,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1276,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1286,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # smb4k/smb4k.po
-1143,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1155,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
-1173,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 1185,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
+1199,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1229,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 # tellico/tellico.po
 4026,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
-4059,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
+4031,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
+4034,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
 4061,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
-3956,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
 # tokodon/tokodon.po
-4388,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
-4459,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 4472,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+4484,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+4797,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+# websites-wiki-rolisteam-org/wiki-rolisteam-org.po
+990,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
  #
 s/\"Configuració de l'ordinador/\"Configuració de l'amfitrió/g
 s/\"host:port\"/\"amfitrió:port\"/g
@@ -308,10 +401,13 @@ s/\bOrdinador: %1:%2\([^[:alnum:]]\)/Amfitrió: %1:%2\1/g
  #
 s/\bActivant el servidor…/Activant l'amfitrió…/g
 s/\bActivant els servidors remots…/Activant els amfitrions remots…/g
+s/\bAdreça (adreça IP o nom de servidor)/Amfitrió (adreça IP o el nom de l'amfitrió)/g
 s/\badreça IP o el nom de la màquina\([^[:alnum:]]\)/adreça IP o el nom de l'amfitrió\1/g
+s/\bAdreça IP o nom del servidor\([^[:alnum:]]\)/Adreça IP o el nom de l'amfitrió\1/g
 s/\bal nom de la màquina local\([^[:alnum:]]\)/al nom de l'amfitrió local\1/g
 s/\baquesta opció modifica la màquina i el port\([^[:alnum:]]\)/aquesta opció modifica l'amfitrió i el port\1/g
 s/\bassignació dinàmica de màquines\([^[:alnum:]]\)/assignació dinàmica d'amfitrions\1/g
+s/\bCada etiqueta del nom de màquina\([^[:alnum:]]\)/Cada etiqueta del nom de l'amfitrió\1/g
 s/\bcanonada amb nom per a connectar-vos a una aplicació del servidor\([^[:alnum:]]\)/canonada amb nom per a connectar-vos a una aplicació de l'amfitrió\1/g
 s/\bCerca de nom de màquina\([^[:alnum:]]\)/Cerca del nom de l'amfitrió\1/g
 s/\bCercant servidors en el domini\([^[:alnum:]]\)/Cercant amfitrions en el domini\1/g
@@ -336,13 +432,14 @@ s/\bconnexió amb l'ordinador\([^[:alnum:]]\)/connexió amb l'amfitrió\1/g
 s/\bconnexió SFTP amb el servidor\([^[:alnum:]]\)/connexió SFTP amb l'amfitrió\1/g
 s/\bcontrasenya per a la màquina \(<[^<]\{1,\}>\|\)%1\([^[:alnum:]]\)/contrasenya per a l'amfitrió \1%1\2/g
 s/\bcòpia inversa a la memòria de la màquina\([^[:alnum:]]\)/còpia inversa a la memòria de l'amfitrió\1/g
+s/\bCorregeix l'establiment d'un servidor\/port\([^[:alnum:]]\)/Corregeix l'establiment d'un amfitrió\/port\1/g
+  s/\bAfegeix la configuració de nom\/port de servidor\([^[:alnum:]]\)/Afegeix la configuració de nom personalitzat de l'amfitrió\/port\1/g
 s/\bDefineix els servidors que\([^[:alnum:]]\)/Defineix els amfitrions que\1/g
 s/\bdes de quins servidors voleu executar programes\([^[:alnum:]]\)/des de quins amfitrions voleu executar programes\1/g
 s/\bDes del nom d'ordinador\([^[:alnum:]]\)/Des del nom de l'amfitrió\1/g
 s/\bdominis i ordinadors\([^[:alnum:]]\)/dominis o amfitrions\1/g
 s/\bdominis o servidors\([^[:alnum:]]\)/dominis o amfitrions\1/g
 s/\bEl nom de l'ordinador del servidor\([^[:alnum:]]\)/El nom d'amfitrió del servidor\1/g
-#############
 s/\bel nom de la màquina\([^[:alnum:]]\)/el nom de l'amfitrió\1/g
 s/\bEl nom de màquina i el port\([^[:alnum:]]\)/El nom d'amfitrió i el port\1/g
 s/\bEl nom del servidor no pot contenir espais en blanc\([^[:alnum:]]\)/El nom de l'amfitrió no pot contenir espais en blanc\1/g
@@ -395,10 +492,10 @@ s/\bIntroduïu el nom d'un servidor (com\([^[:alnum:]]\)/Introduïu el nom d'un 
 s/\bIntroduïu el nom de la màquina del servidor\([^[:alnum:]]\)/Introduïu el nom d'amfitrió del servidor\1/g
 s/\bIntroduïu una màquina remota\([^[:alnum:]]\)/Introduïu un amfitrió remot\1/g
 s/\bIP o servidor d'emissió de transmissió\([^[:alnum:]]\)/IP o amfitrió d'emissió de transmissió\1/g
-s/\bIP\/nom de màquina de la passarel·la IPsec\([^[:alnum:]]\)/IP\/nom d'amfitrió de la passarel·la IPsec\1/g
-s/\bIP \(personalitzada \|\)o \(el \|un \|\)nom de màquina\([^[:alnum:]]\)/IP \1o \2nom d'amfitrió\3/g
+s/\bIP\/nom de màquina de la passarel·la IPsec\([^[:alnum:]]\)/IP o el nom d'amfitrió de la passarel·la IPsec\1/g
+s/\bIP \(personalitzada \|\)o \(el \|un \|\)nom de màquina\([^[:alnum:]]\)/IP \1o el nom de l'amfitrió\3/g
 s/\bIPsec per a la màquina L2TP\([^[:alnum:]]\)/IPsec per a l'amfitrió L2TP\1/g
-s/\birc:\/\/ URL o nom de la màquina servidor\([^[:alnum:]]\)/irc:\/\/ URL o nom d'amfitrió del servidor\1/g
+s/\birc:\/\/ URL o nom de la màquina servidor\([^[:alnum:]]\)/irc:\/\/ URL o el nom d'amfitrió del servidor\1/g
 s/\bJa s'ha afegit una regla per al servidor\([^[:alnum:]]\)/Ja s'ha afegit una regla per a l'amfitrió\1/g
 s/\bL'ordinador ja existeix a la llista\([^[:alnum:]]\)/L'amfitrió ja existeix a la llista\1/g
 s/\bL'ordinador remot no ha enviat\([^[:alnum:]]\)/L'amfitrió remot no ha enviat\1/g
@@ -482,7 +579,9 @@ s/\bVoleu eliminar la configuració per a la màquina\([^[:alnum:]]\)/Voleu elim
  # Errors
 3198,/^msgstr / s/\bNo s'ha pogut accedir a l'amfitrió «%1»/No s'ha pogut accedir al servidor «%1»/g
 s/\badreça de l'amfitrió on s'està executant el MUD\([^[:alnum:]]\)/adreça del servidor on s'està executant el MUD\1/g
+s/\badreça IP o el nom de l'amfitrió del parell\([^[:alnum:]]\)/adreça IP o el nom d'amfitrió del parell\1/g
 s/\bal amfitrió\([^[:alnum:]]\)/a l'amfitrió\1/g
+s/\bAmfitrió LDAP %1\([^[:alnum:]]\)/Servidor LDAP %1\1/g
 s/\bde l'amfitrió de claus\([^[:alnum:]]\)/del servidor de claus\1/g
 s/\bde l'amfitrió o dispositiu remot\([^[:alnum:]]\)/de l'amfitrió o del dispositiu remot\1/g
 s/: connexió refusada pel servidor\([^[:alnum:]]\)/: connexió refusada per l'amfitrió\1/g
@@ -492,7 +591,8 @@ s/\bNo s'ha trobat l'amfitrió \(%1\|de la CDDB\|EteSync\)\([^[:alnum:]]\)/No s'
 s/\bnom de l'amfitrió de cada parell\([^[:alnum:]]\)/nom d'amfitrió de cada parell\1/g
 s/\b\([Nn]\)om d'amfitrió de l'intermediari\([^[:alnum:]]\)/\1om d'amfitrió del servidor intermediari\2/g
 s/\bnom de l'amfitrió del \(sembrador\|servidor\)\([^[:alnum:]]\)/nom d'amfitrió del \1\2/g
-s/\bnom d'amfitrió i el port\([^[:alnum:]]\)/nom i el port de l'amfitrió\1/g
+s/\bNom de l'amfitrió o adreça IP\([^[:alnum:]]\)/Nom d'amfitrió o l'adreça IP\1/g
+  s/\bnom d'amfitrió i el port\([^[:alnum:]]\)/nom i el port de l'amfitrió\1/g
   s/\bamfitrió al qual connectar\([^[:alnum:]]\)/amfitrió amb el qual connectar\1/g
 s/\b\([Nn]\)om de màquina del servidor\([^[:alnum:]]\)/\1om d'amfitrió del servidor\2/g
 s/\b\([Nn]\)om de l'amfitrió \(IMAP\|SMTP\)\([^[:alnum:]]\)/\1om d'amfitrió del servidor \2\3/g
@@ -532,15 +632,18 @@ s/\brespost amb l'indicatiu\([^[:alnum:]]\)/respost amb l'indicador\1/g
 253,/^msgstr / s/\"Lluminositat: %1\"/\"Claredat: %1\"/g
 # okular/okular.po
 s/\"Inverteix la &lluminositat\"/\"Inverteix la c\&laredat\"/g
-2483,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
 2511,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
+2517,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
+2554,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
  #
 s/\"Lluminositat del fons\"/\"Claredat del fons\"/g
 s/\"Lluminositat del fons (0 a 90)\.\"/\"Claredat del fons (0 a 90).\"/g
 s/<u>Lluminositat<\/u>/<u>Claredat<\/u>/g
 s/\bAjusta el to, la saturació i la lluminositat\([^[:alnum:]]\)/Ajusta el to, la saturació i la claredat\1/g
+s/\bajustar l'opacitat i la lluminositat\([^[:alnum:]]\)/ajustar l'opacitat i la claredat\1/g
 s/\bBrillantor de la imatge acolorida\([^[:alnum:]]\)/Claredat de la imatge acolorida\1/g
 s/\bDetermina el valor en \(augmentar\|disminuir\) la lluminositat\([^[:alnum:]]\)/Determina el valor en \1 la claredat\2/g
+s/\blluminositat i els modes de degradat\([^[:alnum:]]\)/claredat i els modes de degradat\1/g
 s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de claredat del color\1/g
 # #
 # # # # # # # # # # # # # #
@@ -564,22 +667,27 @@ s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de c
 # dragon/dragonplayer.po
 450,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
 # haruna/haruna.po
-502,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+486,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 508,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
-1972,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-2681,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+492,/^msgstr / s/\"Disminueix la lluminositat\"/\"Disminueix la brillantor\"/g
+508,/^msgstr / s/\"Disminueix la lluminositat\"/\"Disminueix la brillantor\"/g
+498,/^msgstr / s/\"Reinicialitza la lluminositat\"/\"Reinicialitza la brillantor\"/g
+514,/^msgstr / s/\"Reinicialitza la lluminositat\"/\"Reinicialitza la brillantor\"/g
+2691,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2899,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 # kdeconnect-kde/kdeconnect-plugins.po
 239,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
+268,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
 # kdenlive/kdenlive.po
-2684,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-7387,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-2928,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-8705,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-2908,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-8713,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-11226,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
-14052,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+2929,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2949,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2960,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8706,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8741,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8751,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 14095,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+14386,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+14554,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 # kmplayer/kmplayer.po
 s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 # kooka/libkookascan.po
@@ -596,9 +704,8 @@ s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 17828,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
 21612,/^msgstr / s/\bAugmenta la brillantor\([^[:alnum:]]\)/Augmenta la lluminositat\1/g
 # kscreen/kcm_kscreen.po
-501,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
-507,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
 513,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
+525,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
 # libksane/libksane.po
 465,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 470,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
@@ -660,6 +767,8 @@ s/\bLluminositat de la pantalla\([^[:alnum:]]\)/Brillantor de la pantalla\1/g
   s/\bLluminositat del teclat\([^[:alnum:]]\)/Brillantor del teclat\1/g
   s/\blluminositat definida pel terme de cerca\([^[:alnum:]]\)/brillantor definida pel terme de cerca\1/g
   s/\bde la lluminositat màxima\([^[:alnum:]]\)/de la brillantor màxima\1/g
+s/\bLluminositat del color\([^[:alnum:]]\)/Brillantor del color\1/g
+s/\blluminositat del color\([^[:alnum:]]\)/brillantor del color\1/g
 s/\blluminositat i contrast del monitor\([^[:alnum:]]\)/brillantor i contrast del monitor\1/g
 s/\bLluminositat màxima de la pantalla\([^[:alnum:]]\)/Brillantor màxima de la pantalla\1/g
 s/\blluminositat màxima de la pantalla\([^[:alnum:]]\)/brillantor màxima de la pantalla\1/g
@@ -723,7 +832,7 @@ s/\b\([Vv]\)ista d'icona\([^[:alnum:]]\)/\1ista d'icones\2/g
 # s/\bBaixada del\(s\|\)\([^[:alnum:]]\)/Baixeu el\1\2/g
 #
 # Actualització
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Actualització de \(cerca\)\([^[:alnum:]]\)/\1Actualitzeu la \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Actualització de \(cerca\)\([^[:alnum:]]\)/\1Actualitzeu la \2\3/g
 #
 # Ajust
 #
@@ -735,23 +844,23 @@ s/\b\([Vv]\)ista d'icona\([^[:alnum:]]\)/\1ista d'icones\2/g
   s/\bCompartició de \(fitxer\)\([^[:alnum:]]\)/Compartiu el \1\2/g
   s/\bCompartició de \(fitxers\|suports\)\([^[:alnum:]]\)/Compartiu els \1\2/g
   s/\bCompartició de \(música\|pantalla\)\([^[:alnum:]]\)/Compartiu la \1\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició d'/\1Compartiu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició de l'/\1Compartiu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició de l\(a\|es\)\([^[:alnum:]]\)/\1Compartiu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició del\(s\|\)\([^[:alnum:]]\)/\1Compartiu el\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició\([^[:alnum:]]\)/\1Compartiu\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició d'/\1Compartiu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició de l'/\1Compartiu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició de l\(a\|es\)\([^[:alnum:]]\)/\1Compartiu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició del\(s\|\)\([^[:alnum:]]\)/\1Compartiu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Compartició\([^[:alnum:]]\)/\1Compartiu\2/g
   s/\bCompartiu \(de Samba\|desmuntada\|muntada\|nova\|remota\)\([^[:alnum:]]\)/Compartició \1\2/g
   s/\bCompartiu (%1)\([^[:alnum:]]\)/Compartició (%1)\1/g
 #- Configuració
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'\(àudio\|energia\|entrada\|inici\)\([^[:alnum:]]\)/\1Configureu l'\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'\(etiquetes\)\([^[:alnum:]]\)/\1Configureu les \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'\(equivalència\)\([^[:alnum:]]\)/\1Configureu una \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració del Brisa\([^[:alnum:]]\)/\1Configuració de Brisa\2/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració de passi\([^[:alnum:]]\)/\1Configuració del passi\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'/\1Configureu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configur\(ació\|eu\) de l'/\1Configureu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració de l\(a\|es\)\([^[:alnum:]]\)/\1Configureu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració del\(s\|\)\([^[:alnum:]]\)/\1Configureu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'\(àudio\|energia\|entrada\|inici\)\([^[:alnum:]]\)/\1Configureu l'\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'\(etiquetes\)\([^[:alnum:]]\)/\1Configureu les \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'\(equivalència\)\([^[:alnum:]]\)/\1Configureu una \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració del Brisa\([^[:alnum:]]\)/\1Configuració de Brisa\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració de passi\([^[:alnum:]]\)/\1Configuració del passi\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració d'/\1Configureu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configur\(ació\|eu\) de l'/\1Configureu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració de l\(a\|es\)\([^[:alnum:]]\)/\1Configureu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Configuració del\(s\|\)\([^[:alnum:]]\)/\1Configureu el\2\3/g
   s/\bConfiguració de &kstars;\([^[:alnum:]]\)/Configureu el &kstars\1/g;
   s/\bConfigureu el \(llançament\|repositori\) no vàlida\([^[:alnum:]]\)/Configuració del \1 no vàlida\2/g
   s/\bConfigureu el sistema\([^[:alnum:]]\)/Configuració del sistema\1/g
@@ -766,6 +875,7 @@ s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<ite
   s/\bpàgina Configuració del vídeo\([^[:alnum:]]\)/pàgina Configureu el vídeo\1/g
   s/\bplafó de la Configuració de la cua\([^[:alnum:]]\)/plafó Configureu la cua\1/g
   #
+  s/\ba la «Configureu\([^[:alnum:]]\)/a «Configureu\1/g
   s/\bdiàleg \(\*\*\)Configuració del correu electrònic\([^[:alnum:]]\)/diàleg \1Configureu el correu electrònic\2/g
   s/\bgrup \(\*\*\)Configuració de la marca de temps\([^[:alnum:]]\)/grup \1Configureu la marca de temps\2/g
   s/\bmètode per a la \(\*\*\)Gestió de les dades de cares\([^[:alnum:]]\)/mètode per a \1Gestioneu les dades de cares\2/g
@@ -773,120 +883,120 @@ s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<ite
   s/\bsobre la \(\*\*\)Configuració de la traducció\([^[:alnum:]]\)/sobre \1Configureu la traducció\2/g
   s/\bsobre la \(\*\*\)Configuració del corrector ortogràfic\([^[:alnum:]]\)/sobre \1Configureu el corrector ortogràfic\2/g
   s/\bvista \(\*\*\)Configuració de la navegació\([^[:alnum:]]\)/vista \1Configureu la navegació\2/g
-#
 #- Confirmació
   s/\bConfirmació d'\(accés\|acció\|adjunt\|eliminació\|enganxat\|exportació\|obertura\|ordre\)\([^[:alnum:]]\)/Confirmeu l'\1\2/g
   s/\bConfirmació de \(desfer\|tancament\)\([^[:alnum:]]\)/Confirmeu el \1\2/g
   s/\bConfirmació de \(contrasenya\|desencriptació\|finestra\|recàrrega\|sortida\|supressió\)\([^[:alnum:]]\)/Confirmeu la \1\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació d'/\1Confirmeu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació de l'/\1Confirmeu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació de l\(a\|es\)\([^[:alnum:]]\)/\1Confirmeu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació del\(s\|\)\([^[:alnum:]]\)/\1Confirmeu el\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació\([^[:alnum:]]\)/\1Confirmeu\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació d'/\1Confirmeu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació de l'/\1Confirmeu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació de l\(a\|es\)\([^[:alnum:]]\)/\1Confirmeu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació del\(s\|\)\([^[:alnum:]]\)/\1Confirmeu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Confirmació\([^[:alnum:]]\)/\1Confirmeu\2/g
   s/\bConfirmeu addicional\([^[:alnum:]]\)/Confirmació addicional\1/g
 #- Creació
   s/\bCreació d'enquesta\([^[:alnum:]]\)/Creeu una enquesta\1/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació d'encapçalament\([^[:alnum:]]\)/\1Creeu un encapçalament\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació d'encapçalament\([^[:alnum:]]\)/\1Creeu un encapçalament\2/g
   s/\bcreació d'etiqueta\([^[:alnum:]]\)/creació de l'etiqueta\1/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació d'unitat\([^[:alnum:]]\)/\1Creeu la unitat\2/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de \(clip\)\([^[:alnum:]]\)/\1Creeu el \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de \(cerca\)\([^[:alnum:]]\)/\1Creeu la \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació d'unitat\([^[:alnum:]]\)/\1Creeu la unitat\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de \(clip\)\([^[:alnum:]]\)/\1Creeu el \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de \(cerca\)\([^[:alnum:]]\)/\1Creeu la \2\3/g
   s/\bCreació d'\(etiqueta\|operació\)\([^[:alnum:]]\)/Creeu una \1\2/g
   s/\bCreació de \(calendari\|vídeo\)\([^[:alnum:]]\)/Creació d'un \1\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació d'/\1Creeu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de l'/\1Creeu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de l\(a\|es\)\([^[:alnum:]]\)/\1Creeu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació del\(s\|\)\([^[:alnum:]]\)/\1Creeu el\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació d'/\1Creeu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de l'/\1Creeu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació de l\(a\|es\)\([^[:alnum:]]\)/\1Creeu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Creació del\(s\|\)\([^[:alnum:]]\)/\1Creeu el\2\3/g
 #- Desament
   s/\bDesament de llista\([^[:alnum:]]\)/Desament de la llista\1/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament d'/\1Deseu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament de l'/\1Deseu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament de l\(a\|es\)\([^[:alnum:]]\)/\1Deseu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament del\(s\|\)\([^[:alnum:]]\)/\1Deseu el\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament d'/\1Deseu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament de l'/\1Deseu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament de l\(a\|es\)\([^[:alnum:]]\)/\1Deseu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Desament del\(s\|\)\([^[:alnum:]]\)/\1Deseu el\2\3/g
 #- Edició
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(àlbum\|àudio\|eina\|etiqueta\|ordre\|usuari\)\([^[:alnum:]]\)/\1Editeu l'\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(etiquetes\)\([^[:alnum:]]\)/\1Editeu les \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(efectes\|estats\)\([^[:alnum:]]\)/\1Editeu els \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(animacions\|imatges\|operacions\)\([^[:alnum:]]\)/\1Editeu les \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(element\|escalar\)\([^[:alnum:]]\)/\1Editeu un \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de carpeta\([^[:alnum:]]\)/\1Editeu la carpeta\2/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de\(l\|\) \(comentari\|contacte\|grup de contactes\|flux\|punt\|nom del contacte\|número de telèfon\|progrés\)\([^[:alnum:]]\)/\1Editeu el \3\4/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de les \(metadades\)\([^[:alnum:]]\)/\1Editeu les \2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'/\1Editeu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de l'/\1Editeu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de l\(a\|es\)\([^[:alnum:]]\)/\1Editeu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició del\(s\|\)\([^[:alnum:]]\)/\1Editeu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(àlbum\|àudio\|eina\|etiqueta\|ordre\|usuari\)\([^[:alnum:]]\)/\1Editeu l'\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(etiquetes\)\([^[:alnum:]]\)/\1Editeu les \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(efectes\|estats\)\([^[:alnum:]]\)/\1Editeu els \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(animacions\|imatges\|operacions\)\([^[:alnum:]]\)/\1Editeu les \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'\(element\|escalar\)\([^[:alnum:]]\)/\1Editeu un \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de carpeta\([^[:alnum:]]\)/\1Editeu la carpeta\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de\(l\|\) \(comentari\|contacte\|grup de contactes\|flux\|punt\|nom del contacte\|número de telèfon\|progrés\)\([^[:alnum:]]\)/\1Editeu el \3\4/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de les \(metadades\)\([^[:alnum:]]\)/\1Editeu les \2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició d'/\1Editeu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de l'/\1Editeu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició de l\(a\|es\)\([^[:alnum:]]\)/\1Editeu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Edició del\(s\|\)\([^[:alnum:]]\)/\1Editeu el\2\3/g
   s/\bEdició de metadades\([^[:alnum:]]\)/Editeu les metadades\1/g
   s/\bEditeu el nom o del consell\([^[:alnum:]]\)/Editeu el nom o el consell\1/g
 #- Estableix
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Estableix emplaçament/\1Establiu un emplaçament/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Estableix emplaçament/\1Establiu un emplaçament/g
 #- Exploració
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració d'/\1Exploreu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració de l'/\1Exploreu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració de l\(a\|es\)\([^[:alnum:]]\)/\1Exploreu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració del\(s\|\)\([^[:alnum:]]\)/\1Exploreu el\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració d'/\1Exploreu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració de l'/\1Exploreu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració de l\(a\|es\)\([^[:alnum:]]\)/\1Exploreu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Exploració del\(s\|\)\([^[:alnum:]]\)/\1Exploreu el\2\3/g
 #- Ex/Importació
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació cap a\(l\|ls\|\)\([^[:alnum:]]\)/\1\2porteu cap a\3\4/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació d'informació\([^[:alnum:]]\)/\1\2porteu la informació\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació d'/\1\2porteu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació de l'/\1\2porteu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació de l\(a\|es\)\([^[:alnum:]]\)/\1\2porteu l\3\4/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació del\(s\|\)\([^[:alnum:]]\)/\1\2porteu el\3\4/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Importació des del\([^[:alnum:]]\)/\1Importeu des del\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació cap a\(l\|ls\|\)\([^[:alnum:]]\)/\1\2porteu cap a\3\4/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació d'informació\([^[:alnum:]]\)/\1\2porteu la informació\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació d'/\1\2porteu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació de l'/\1\2porteu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació de l\(a\|es\)\([^[:alnum:]]\)/\1\2porteu l\3\4/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)\(Ex\|Im\)portació del\(s\|\)\([^[:alnum:]]\)/\1\2porteu el\3\4/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Importació des del\([^[:alnum:]]\)/\1Importeu des del\2/g
   s/\bImportació\/exportació cap a Smug\([^[:alnum:]]\)/Importeu\/exporteu cap a Smug\1/g
   s/\bexportació cap al digiKam\([^[:alnum:]]\)/exportació al digiKam\1/g
   s/\bExporteu les animacions:/Exportació de les animacions:/g
 #- Gestió
   s/\b\([Gg]\)estió d'energia\([^[:alnum:]]\)/\1estió de l'energia\2/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió d'\(atributs\|episodis\|errors\|usuaris\)\([^[:alnum:]]\)/\1Gestioneu els \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió d'\(estructures\|etiquetes\|operacions\|unitats\)\([^[:alnum:]]\)/\1Gestioneu les \2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió d'/\1Gestioneu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió de l'/\1Gestioneu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió de l\(a\|es\)\([^[:alnum:]]\)/\1Gestioneu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió del\(s\|\)\([^[:alnum:]]\)/\1Gestioneu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió d'\(atributs\|episodis\|errors\|usuaris\)\([^[:alnum:]]\)/\1Gestioneu els \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió d'\(estructures\|etiquetes\|operacions\|unitats\)\([^[:alnum:]]\)/\1Gestioneu les \2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió d'/\1Gestioneu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió de l'/\1Gestioneu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió de l\(a\|es\)\([^[:alnum:]]\)/\1Gestioneu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Gestió del\(s\|\)\([^[:alnum:]]\)/\1Gestioneu el\2\3/g
   s/\b\([Gg]\)estió d'energia\([^[:alnum:]]\)/\1estió de l'energia\2/g
+  s/\b\([Gg]\)estioneu actius\([^[:alnum:]]\)/\1estioneu els actius\2/g
   s/\b\([Gg]\)estioneu el color\([^[:alnum:]]\)/\1estió del color\2/g
   s/\b\([Gg]\)estioneu l'energia\([^[:alnum:]]\)/\1estió de l'energia\2/g
 #- Impressió
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Impressió de calendari\([^[:alnum:]]\)/\1Imprimiu el calendari\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Impressió de la imatge\([^[:alnum:]]\)/\1Imprimiu la imatge\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Impressió de calendari\([^[:alnum:]]\)/\1Imprimiu el calendari\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Impressió de la imatge\([^[:alnum:]]\)/\1Imprimiu la imatge\2/g
   s/\bImpressió i exportació\([^[:alnum:]]\)/Imprimiu i exporteu\1/g
 #- Modificació
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació d'/\1Modifiqueu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació de l'/\1Modifiqueu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació de l\(a\|es\)\([^[:alnum:]]\)/\1Modifiqueu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació del\(s\|\)\([^[:alnum:]]\)/\1Modifiqueu el\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació d'/\1Modifiqueu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació de l'/\1Modifiqueu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació de l\(a\|es\)\([^[:alnum:]]\)/\1Modifiqueu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Modificació del\(s\|\)\([^[:alnum:]]\)/\1Modifiqueu el\2\3/g
 #
 #- Navegació
   s/\bNavegació del Rocker\([^[:alnum:]]\)/Navegueu de Rocker\1/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació d'/\1Navegueu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació de l'/\1Navegueu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació de l\(a\|es\)\([^[:alnum:]]\)/\1Navegueu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació del\(s\|\)\([^[:alnum:]]\)/\1Navegueu el\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació\([^[:alnum:]]\)/\1Navegueu\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació d'/\1Navegueu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació de l'/\1Navegueu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació de l\(a\|es\)\([^[:alnum:]]\)/\1Navegueu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació del\(s\|\)\([^[:alnum:]]\)/\1Navegueu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Navegació\([^[:alnum:]]\)/\1Navegueu\2/g
   s/\bNavegueu \(de codi\|de l'OpenStreetMap\|de Rails\|de transport\|externa\|LEO de Rússia\|millorada\|personalitzada\|privada\|segura\|tàctil\|web\)\([^[:alnum:]]\)/Navegació \1\2/g
   s/\bNavegueu el navegador\([^[:alnum:]]\)/Navegació del navegador\1/g
   s/\bNavegueu el sistema\([^[:alnum:]]\)/Navegueu pel sistema\1/g
   s/\bNavegueu de \(botons\|gestos\)\([^[:alnum:]]\)/Navegueu amb els \1\2/g
 #- Obertura
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de \(carpeta\)\([^[:alnum:]]\)/\1Obriu una \2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de fitxer de substitució\([^[:alnum:]]\)/\1Obriu el fitxer de substitució\2/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura d'imatges\([^[:alnum:]]\)/\1Obriu les imatges\2/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de \(fitxer\|saldo de passiu\)\([^[:alnum:]]\)/\1Obriu un \2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura d'/\1Obriu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de l'/\1Obriu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de l\(a\|es\)\([^[:alnum:]]\)/\1Obriu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura del\(s\|\)\([^[:alnum:]]\)/\1Obriu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de \(carpeta\)\([^[:alnum:]]\)/\1Obriu una \2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de fitxer de substitució\([^[:alnum:]]\)/\1Obriu el fitxer de substitució\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura d'imatges\([^[:alnum:]]\)/\1Obriu les imatges\2/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de \(fitxer\|saldo de passiu\)\([^[:alnum:]]\)/\1Obriu un \2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura d'/\1Obriu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de l'/\1Obriu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura de l\(a\|es\)\([^[:alnum:]]\)/\1Obriu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Obertura del\(s\|\)\([^[:alnum:]]\)/\1Obriu el\2\3/g
 #
 #- Reproducció
   s/\bReproducció de \(&multimèdia\)\([^[:alnum:]]\)/Reproduïu el \1\2/g
   s/\bReproducció de \(música\)\([^[:alnum:]]\)/Reproduïu la \1\2/g
   s/\bReproducció d'\(àlbum\|àudio\)\([^[:alnum:]]\)/Reproduïu l'\1\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció d'/\1Reproduïu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció de l'/\1Reproduïu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció de l\(a\|es\)\([^[:alnum:]]\)/\1Reproduïu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció del\(s\|\)\([^[:alnum:]]\)/\1Reproduïu el\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció\([^[:alnum:]]\)/\1Reproduïu\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció d'/\1Reproduïu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció de l'/\1Reproduïu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció de l\(a\|es\)\([^[:alnum:]]\)/\1Reproduïu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció del\(s\|\)\([^[:alnum:]]\)/\1Reproduïu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Reproducció\([^[:alnum:]]\)/\1Reproduïu\2/g
   s/\bReproduïu \(&automàtica\|aleatòria\|automàtica\|progressiva\)\([^[:alnum:]]\)/Reproducció \1\2/g
   s/\bReproduïu\/\([Pp]\)ausa\([^[:alnum:]]\)/Reproduïu o pausa\2/g
  #
@@ -899,11 +1009,11 @@ s/\bTri\(a\|eu\) el text\([^[:alnum:]]\)/Seleccion\1 el text\2/g
   s/\bSincronització d'\(estadístiques\|opcions\)\([^[:alnum:]]\)/Sincronitzeu les \1\2/g
   s/\bSincronització de \(dispositius\)\([^[:alnum:]]\)/Sincronitzeu els \1\2/g
   s/\bSincronització de \(lletres\|notificacions\)\([^[:alnum:]]\)/Sincronitzeu les \1\2/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització d'/\1Sincronitzeu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització de l'/\1Sincronitzeu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització de l\(a\|es\)\([^[:alnum:]]\)/\1Sincronitzeu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització del\(s\|\)\([^[:alnum:]]\)/\1Sincronitzeu el\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització\([^[:alnum:]]\)/\1Sincronitzeu\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització d'/\1Sincronitzeu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització de l'/\1Sincronitzeu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització de l\(a\|es\)\([^[:alnum:]]\)/\1Sincronitzeu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització del\(s\|\)\([^[:alnum:]]\)/\1Sincronitzeu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Sincronització\([^[:alnum:]]\)/\1Sincronitzeu\2/g
   s/\bSincronitzeu \([12]\|acabada\|adaptativa\|automàtica\|completada\|desactivada\|incremental\|interrompuda\|primària\|secundària\)\([^[:alnum:]]\)/Sincronització \1\2/g
 #- Supressió
   s/\bSupressió d'\(adjunt\|article\|eliminació\|equip\|etiqueta\)\([^[:alnum:]]\)/Suprimiu l'\1\2/g
@@ -918,15 +1028,16 @@ s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<ite
   s/\bSupressió de \(regles\|subcarpetes\)\([^[:alnum:]]\)/Suprimiu les \1\2/g
   s/\bSupressió definitiva\([^[:alnum:]]\)/Suprimiu definitivament\1/g
   s/\bSupressió múltiple d'agents\([^[:alnum:]]\)/Suprimiu múltiples agents\1/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió d'/\1Suprimiu /g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió de l'/\1Suprimiu l'/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió de l\(a\|es\)\([^[:alnum:]]\)/\1Suprimiu l\2\3/g
-s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió del\(s\|\)\([^[:alnum:]]\)/\1Suprimiu el\2\3/g
-  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[12]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió\([^[:alnum:]]\)/\1Suprimiu\2/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió d'/\1Suprimiu /g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió de l'/\1Suprimiu l'/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió de l\(a\|es\)\([^[:alnum:]]\)/\1Suprimiu l\2\3/g
+s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió del\(s\|\)\([^[:alnum:]]\)/\1Suprimiu el\2\3/g
+  s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<item>\|<phrase>\|<[qt][dt]>\|<screeninfo>\|<title>\|botó \|característica \|eina \|finestra \|finestres de \|mosaic de botons \|opcions de \|pestanya \|subfinestra \)Supressió\([^[:alnum:]]\)/\1Suprimiu\2/g
   s/\bSuprimiu \(alternativa\|obligatòria\)\([^[:alnum:]]\)/Supressió \1\2/g
 # #
 # #
 
+# -> es desprotegeix
 s/\\\([nt]\)- /\\\1/g
 
 :END
