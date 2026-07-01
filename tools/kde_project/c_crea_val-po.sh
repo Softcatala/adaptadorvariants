@@ -1,12 +1,12 @@
 #!/bin/bash --debug
 
 # Best practices for robustness
-# set -euo pipefail
+set -euo pipefail
 
 # Configuration & Paths
-DIR1="$(pwd)"
-DIR0="$(cd ../../../../ ; pwd)"
-cd $DIR1
+ROOT_SCRIPT="$PWD"
+ROOT_TREE="$(cd ../../../../ ; pwd)"
+cd $ROOT_SCRIPT
 STABLE="stable/l10n-kf5"
 TRUNK="trunk/l10n-kf5"
 STABLE6="stable/l10n-kf6"
@@ -14,7 +14,6 @@ TRUNK6="trunk/l10n-kf6"
 MEM_DIR="/run/user/$(id -u)"
 MSG='msgstr'
 SOURCE_0='ca@valencia'
-TEXT="$2"
 
 # Dependency Validation
 msg_exit() {
@@ -22,10 +21,9 @@ msg_exit() {
   exit 0
 }
 
-[ $(command -v awk)      ] || msg_exit "el paquet «gawk» de GNU: apt install gawk"
 [ $(command -v cpulimit) ] || msg_exit "el paquet «cpulimit»: apt install cpulimit"
-[ $(command -v msgmerge) ] || msg_exit "el paquet «gettext»: apt install gettext"
 [ $(command -v /usr/lib/qt6/bin/lconvert) ] || msg_exit "el paquet «qt6-l10n-tools»: apt install qt6-l10n-tools"
+[ $(command -v msgmerge) ] || msg_exit "el paquet «gettext»: apt install gettext"
 [ $(command -v posieve)  ] || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
 [ $(command -v sed)      ] || msg_exit "el paquet «sed» de GNU: apt install sed"
 [ $(command -v svn)      ] || msg_exit "el paquet «subversion»: apt install subversion"
@@ -36,12 +34,12 @@ APPEND="\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\]|\[|\(\[||\(\[«|«?\$|[,&«»]|<[^<
 # Es descarten les paraules annexades abans (p. ex., accedint recentment a la -en aquest cas «accedint recentment»-)
 APPEND_0="$([ -f 'append-a_en.in' ] && cat append-a_en.in | tr -d '\n')"
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|faltar|fer|Fourier|freqüències|hores d'ara|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|motius|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
+APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dret|dreta|esquerra|est|estar|faltar|fer|Fourier|freqüències|hores d'ara|href|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|motius|name=|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
 APPEND_A_L="aire lliure|escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés|instant|oest de Greenwich|oli"
 APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|llarga|manera de fer|manera tradicional|millor|nit seleccionada|normal|part|posició (apuntada|d'enfocament)|pèrdua|posta de sol|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
-APPEND_A_LES="00:00|23,59|dotze del migdia|persones|quals"
+APPEND_A_LES="00:00|1[0123456789],|2[01234],|dotze del migdia|persones|quals"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdamunt|capdavant|carbonet|començament|costat|darrere|davant|desenvolupadors?|Dhanab|dia|efectes del càlcul|espectadors|fet|final|Gieba|Giedi|japon[èé]s|Jawf|llarg|Manamah|mateix (ritme|temps)|màxim|mig del gris|migdia|millors artistes|moment d'escriure|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seu (torn|voltant)|seus valors predeterminats|Shuja|sis anys|Thalimain|ultraviolats|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdamunt|capdavant|carbonet|començament|costat|darrere|davant|desenvolupadors?|Dhanab|dia|efectes del càlcul|espectadors|fet|final|Gieba|Giedi|japon[èé]s|Jawf|jugador|llarg|Manamah|mateix (ritme|temps)|màxim|mig del gris|migdia|millors artistes|moment d'escriure|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|principi|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seu (torn|voltant)|seus valors predeterminats|Shuja|sis anys|Thalimain|ultraviolats|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -80,7 +78,7 @@ sortida_po() {
                                   Es pot especificar l'idioma (ca i va).
 
   cerca_dir_ab (dir)?             --Expressió regular--- emprada per a fer neteja.
-  cerca         (text_cerca)      És una \033[1;37mcerca més ràpida per carpeta\e[0m (va).
+  cerca        (text_cerca)       És una \033[1;37mcerca més ràpida per carpeta\e[0m (va).
 
   \033[1;37mTÍTOLS\n  ------\e[0m
   cerca_titols (dir)?             * \033[1;37mEs miren els títols\e[0m (va).
@@ -94,11 +92,11 @@ sortida_po() {
   adapta_doc                      * \033[1;37mAdapta i genera la documentació\e[0m en el SVN local.
                                   \033[47;31mNOTA:\e[0m Després s'han de moure manualment!
   \033[47;31madapta_dir (dir)\e[0m                \033[1;37mPROVES! Adapta i genera només una carpeta\e[0m en el SVN local.
-  \033[47;31madapta_dir_va (dir)\e[0m                \033[1;37mPROVES! El mateix pero només amb els fitxers ja en valencià\e[0m.
+  \033[47;31madapta_dir_va (dir)\e[0m             \033[1;37mPROVES! El mateix pero només amb els fitxers ja en valencià\e[0m.
   modifica_capçalera fitxer.po    * \033[1;37mActualitza la informació a la capçalera\e[0m.
   adapta_valencia (recursiu|usuari)
                                   * \033[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
-  crea_po (gui|doc)               * \033[1;37mCrea els fitxers PO que es mantenen\e[0m.
+  crea_po   (gui|doc)             * \033[1;37mCrea els fitxers PO que es mantenen\e[0m.
   neteja_ca (gui|doc)             * \033[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
   adapta_mod                      * \033[47;31mAdapta tots els fitxers mantinguts en el SVN local.\e[0m
 
@@ -167,17 +165,16 @@ sortida_po() {
   exit 0
 }
 
+[ $# -eq 0 ] && sortida_po || true
+
 comprova_lloc() {
   # Comprova que es crida des de la ubicació correcta
-  [ -d $DIR0/$STABLE ] || sortida_po
-  [ -d $DIR0/$TRUNK  ] || sortida_po
+  [ -d ../../../../$STABLE ] || sortida_po
+  [ -d ../../../../$TRUNK  ] || sortida_po
 }
 
-[ -z $1 ] && sortida_po
-FOLDER="$2"
-
 command_cm() {
-        for package in $(find $DIR1/ca-mod/$MESSAGES/* -maxdepth 0 -type d)
+        for package in $(find "$ROOT_SCRIPT/ca-mod/$MESSAGES/"* -maxdepth 0 -type d)
           do
             PACKAGE="$(basename $package)"
             echo -e " \e[38;5;46m* $PACKAGE\e[0m"
@@ -185,7 +182,7 @@ command_cm() {
           done
 }
 
-command_rm() { [ -e "$(echo /run/user/$(id -u))/kde-src2valencia.sed" ] && rm -f "/run/user/$(id -u)/kde-src2valencia.sed"; }
+command_rm() { rm -f "/run/user/$(id -u)/kde-src2valencia.sed"; }
 
 sed_files() {
   if [ ! -f kde-src2valencia.sed ]; then
@@ -196,18 +193,17 @@ sed_files() {
       cat $DIRTR/all-src2valencia.sed        >> all-src2valencia.sed
       cat $DIRTR/all-src2valencia-esmena.sed >> all-src2valencia.sed
       # Performance: Limit CPU usage for sed background tasks
-      if ! pidof -x cpulimit >/dev/null; then
-          cpulimit --background --quiet --path=/bin/sed --limit=75 2>/dev/null || true
+      if ! pidof -x cpulimit >/dev/null 2>&1; then
+          cpulimit --background --quiet --exe=sed --limit=75 2>/dev/null || true
       fi
   fi
 }
 
 copia_valencia() {
-  FOLDER="$2"
-  [ -z $FOLDER ] && FOLDER='igu'
-  DIRMOD="$DIR1/ca-mod/$MESSAGES/$1"
-  DIRSRC="$DIR1/Carpeta_nova/$1/$FOLDER"
-  DIROBJ="$DIR1/ca/$MESSAGES/$1"
+  [ -z $2 ] && FOLDER='gui'
+  DIRMOD="$ROOT_SCRIPT/ca-mod/$MESSAGES/$1"
+  DIRSRC="$ROOT_SCRIPT/Carpeta_nova/$1/$FOLDER"
+  DIROBJ="$ROOT_SCRIPT/ca/$MESSAGES/$1"
 
   adapta_ho() {
     if [ -e $DIRTEM/${PO2}t ]; then
@@ -228,15 +224,15 @@ copia_valencia() {
         # Es torna a donar el format amb 78 files
         msgmerge --silent --previous --width=79 --lang=$SOURCE_0 missatges_2-$PO2 $DIRTEM/${PO2}t --output-file=$PO2 && \
         mv -f $PO2 $DIRDES/$PO2 && rm -f missatges_2-$PO2
-        cd $DIR1
+        cd $ROOT_SCRIPT
       else
         echo -e "   \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut o eliminat\e[0m"
     fi
   }
 
   # KF5
-  DIRDES="$DIR1/kf5-trunk/$SOURCE_0/$MESSAGES/$1"
-  DIRTEM="$DIR0/$TRUNK/templates/$MESSAGES/$1"
+  DIRDES="$ROOT_SCRIPT/kf5-trunk/$SOURCE_0/$MESSAGES/$1"
+  DIRTEM="$ROOT_TREE/$TRUNK/templates/$MESSAGES/$1"
   for po in $(find $DIRMOD/* -maxdepth 0 -type f -name "*.po")
     do
       PO2="$(basename $po)"
@@ -244,8 +240,8 @@ copia_valencia() {
       adapta_ho kf5-trunk
     done
 
-  DIRDES="$DIR1/kf5-stable/$SOURCE_0/$MESSAGES/$1"
-  DIRTEM="$DIR0/$STABLE/templates/$MESSAGES/$1"
+  DIRDES="$ROOT_SCRIPT/kf5-stable/$SOURCE_0/$MESSAGES/$1"
+  DIRTEM="$ROOT_TREE/$STABLE/templates/$MESSAGES/$1"
   [ $(find $DIRMOD/ -maxdepth 2 -type d -name "stable") ] && \
   for po in $(find $DIRMOD/stable/* -maxdepth 1 -type f -name "*.po")
     do
@@ -255,8 +251,8 @@ copia_valencia() {
     done
 
   # KF6 (transcició)
-  DIRDES="$DIR1/kf6-stable/$SOURCE_0/$MESSAGES/$1"
-  DIRTEM="$DIR0/$STABLE6/templates/$MESSAGES/$1"
+  DIRDES="$ROOT_SCRIPT/kf6-stable/$SOURCE_0/$MESSAGES/$1"
+  DIRTEM="$ROOT_TREE/$STABLE6/templates/$MESSAGES/$1"
   [ $(find $DIRMOD/ -maxdepth 2 -type d -name "stable6") ] && \
   for po in $(find $DIRMOD/stable6/* -maxdepth 1 -type f -name "*.po")
     do
@@ -265,8 +261,8 @@ copia_valencia() {
       adapta_ho kf6-stable
     done
 
-  DIRDES="$DIR1/kf6-trunk/$SOURCE_0/$MESSAGES/$1"
-  DIRTEM="$DIR0/$TRUNK6/templates/$MESSAGES/$1"
+  DIRDES="$ROOT_SCRIPT/kf6-trunk/$SOURCE_0/$MESSAGES/$1"
+  DIRTEM="$ROOT_TREE/$TRUNK6/templates/$MESSAGES/$1"
   [ $(find $DIRMOD/ -maxdepth 2 -type d -name "kf6") ] && \
   for po in $(find $DIRMOD/kf6/* -maxdepth 1 -type f -name "*.po")
     do
@@ -281,25 +277,25 @@ crea_po_mod() {
   DIROBJ="ca/$MESSAGES/$1"
   DIRTEM="templates/$MESSAGES/$1"
 
-  for po in $(find $DIR1/$DIRMOD/* -maxdepth 0 -type f -name "*.po")
+  for po in $(find $ROOT_SCRIPT/$DIRMOD/* -maxdepth 0 -type f -name "*.po")
     do
       PO2="$(basename $po)"
       crea_missatges() {
         BRANCA="$1"
-        [ -f $DIR0/$BRANCA/$DIRTEM/${PO2}t ] || return
-        msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $DIR0/$BRANCA/$DIRTEM/${PO2}t  --output-file=$DIR0/$BRANCA/$DIROBJ/$PO2
-        posieve  remove-obsolete $DIR0/$BRANCA/$DIROBJ/$PO2
-        msgfmt   --statistics    $DIR0/$BRANCA/$DIROBJ/$PO2
+        [ -f $ROOT_TREE/$BRANCA/$DIRTEM/${PO2}t ] || return
+        msgmerge --silent --previous --width=79 --lang=ca $CA_MOD $ROOT_TREE/$BRANCA/$DIRTEM/${PO2}t  --output-file=$ROOT_TREE/$BRANCA/$DIROBJ/$PO2
+        posieve  remove-obsolete $ROOT_TREE/$BRANCA/$DIROBJ/$PO2
+        msgfmt   --statistics    $ROOT_TREE/$BRANCA/$DIROBJ/$PO2
       }
 
-      if   [ -f $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
+      if   [ -f $ROOT_TREE/$TRUNK/$DIROBJ/$PO2 ]; then
           CA_MOD="$DIRMOD/$PO2"
           mkdir -p $DIROBJ
           echo -e "   \e[38;5;44m-- (KF5 trunk) <-\e[0m $PO2"
           crea_missatges $TRUNK
       fi
 
-      if [ -f $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
+      if [ -f $ROOT_TREE/$STABLE/$DIROBJ/$PO2 ]; then
         if [ -d $DIRMOD/stable ]; then
           CA_MOD="$DIRMOD/stable/$PO2"
           mkdir -p $DIROBJ
@@ -307,7 +303,7 @@ crea_po_mod() {
         fi
       fi
 
-      if [ -f $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
+      if [ -f $ROOT_TREE/$TRUNK6/$DIROBJ/$PO2 ]; then
         if [ -d $DIRMOD/kf6 ]; then
           CA_MOD="$DIRMOD/kf6/$PO2"
           mkdir -p $DIROBJ
@@ -316,7 +312,7 @@ crea_po_mod() {
         fi
       fi
 
-      if [ -f $DIR0/$STABLE6/$DIROBJ/$PO2 ]; then
+      if [ -f $ROOT_TREE/$STABLE6/$DIROBJ/$PO2 ]; then
         if [ -d $DIRMOD/stable6 ]; then
           CA_MOD="$DIRMOD/stable6/$PO2"
           mkdir -p $DIROBJ
@@ -333,70 +329,73 @@ neteja_ca() {
   DIRTEM="templates/$MESSAGES/$1"
 
   mkdir -p $DIRTEM
-  for po in $(find $DIR1/$DIRMOD/* -maxdepth 1 -type f -name "*.po")
+  for po in $(find $ROOT_SCRIPT/$DIRMOD/* -maxdepth 1 -type f -name "*.po")
     do
       PO2="$(basename $po)"
-      if [ -e $DIR0/$TRUNK/$DIROBJ/$PO2 ]; then
+      if [ -e $ROOT_TREE/$TRUNK/$DIROBJ/$PO2 ]; then
         echo -e "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/$PO2"
-        [ "$MESSAGES" = "messages" ] && cp -f $DIR0/$TRUNK/$DIROBJ/$PO2  $DIR1/$DIROBJ/$PO2
-        mv -f  $DIR0/$TRUNK/$DIROBJ/$PO2      $DIR1/$DIRMOD/$PO2
-        cp -f  $DIR0/$TRUNK/$DIRTEM/${PO2}t   $DIR1/$DIRTEM/${PO2}t
+        [ "$MESSAGES" = "messages" ] && cp -f $ROOT_TREE/$TRUNK/$DIROBJ/$PO2  $ROOT_SCRIPT/$DIROBJ/$PO2
+        mv -f  $ROOT_TREE/$TRUNK/$DIROBJ/$PO2      $ROOT_SCRIPT/$DIRMOD/$PO2
+        cp -f  $ROOT_TREE/$TRUNK/$DIRTEM/${PO2}t   $ROOT_SCRIPT/$DIRTEM/${PO2}t
       fi
 
-      if [ -e $DIR0/$STABLE/$DIROBJ/$PO2 ]; then
+      if [ -e $ROOT_TREE/$STABLE/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/stable
         echo -e "   \e[38;5;44m· KF5 ->\e[0m $DIRMOD/\e[38;5;44mstable/\e[0m$PO2"
-        mv -f $DIR0/$STABLE/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable/$PO2
+        mv -f $ROOT_TREE/$STABLE/$DIROBJ/$PO2   $ROOT_SCRIPT/$DIRMOD/stable/$PO2
       fi
 
-      if [ -e $DIR0/$TRUNK6/$DIROBJ/$PO2 ]; then
+      if [ -e $ROOT_TREE/$TRUNK6/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/kf6
         echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mktrunk/\e[0m$PO2"
-        [ "$MESSAGES" = "messages" ] && cp -f $DIR0/$TRUNK6/$DIROBJ/$PO2 $DIR1/$DIROBJ/$PO2
-        mv -f  $DIR0/$TRUNK6/$DIROBJ/$PO2     $DIR1/$DIRMOD/kf6/$PO2
-        cp -f  $DIR0/$TRUNK6/$DIRTEM/${PO2}t  $DIR1/$DIRTEM/${PO2}t
+        [ "$MESSAGES" = "messages" ] && cp -f $ROOT_TREE/$TRUNK6/$DIROBJ/$PO2 $ROOT_SCRIPT/$DIROBJ/$PO2
+        mv -f  $ROOT_TREE/$TRUNK6/$DIROBJ/$PO2     $ROOT_SCRIPT/$DIRMOD/kf6/$PO2
+        cp -f  $ROOT_TREE/$TRUNK6/$DIRTEM/${PO2}t  $ROOT_SCRIPT/$DIRTEM/${PO2}t
       fi
 
-      if [ -e $DIR0/$STABLE6/$DIROBJ/$PO2 ]; then
+      if [ -e $ROOT_TREE/$STABLE6/$DIROBJ/$PO2 ]; then
         mkdir -p $DIRMOD/stable6
         echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mstable6/\e[0m$PO2"
-        mv -f $DIR0/$STABLE6/$DIROBJ/$PO2   $DIR1/$DIRMOD/stable6/$PO2
+        mv -f $ROOT_TREE/$STABLE6/$DIROBJ/$PO2   $ROOT_SCRIPT/$DIRMOD/stable6/$PO2
       fi
     done
 }
 
 per_carpeta(){
+  ACTIVAT=0
   CARPETES="$(find $SOURCE/messages/* -maxdepth 0 -type d)"
   for carpeta in $CARPETES
     do
       DIR="$(basename $carpeta)"
-      [ "$DIR" = "$MODUL" ] && NUM=1
-      if [ "$NUM" = "1" ]; then
-        prompt_1
+      [ "$DIR" = "${MODUL-}" ] && ACTIVAT=1
+      if [ "$ACTIVAT" -eq 1 ]; then
+          prompt_1
+        else
+          continue
       fi
     done
 }
 
 prompt_1() {
         echo -e "\e[38;5;46m * $DIR -\e[0m \e[38;1;33m $MSG:  $TEXT \e[0m\n"
-        [ -z $1 ] && echo -e "\033[1;37m $MISSATGE \e[0m\n"
-        read -p "Voleu procedir? (Sí/no) " sn
-        case $sn in
-          no )
+        [ -n "${1-}" ] && echo -e "\033[1;37m $MISSATGE \e[0m\n"
+        read -r -p "Voleu procedir? (Sí/no) " sn
+        case "${sn,,}" in
+          no|n)
             echo " - Se surt…"
             exit 1
           ;;
           *)
-            if   [ "$TEXT2" ]; then
+            if   [ -n "${TEXT2-}" ]; then
                 posieve find-messages -s fexpr:"msgstr/$TEXT1/ and not msgstr/$TEXT2/ and not msgstr/$APPEND_B/" $SOURCE/${DOC}messages/$DIR
-            elif [ "$TEXT3" ]; then
+            elif [ -n "${TEXT3-}" ]; then
                 echo -e "\n\n - Doc:\n   ****"
                 [ -d "$SOURCE/docmessages/$DIR" ] && \
                 posieve find-messages -s fexpr:"msgstr/$TEXT1/ and not msgstr/$TEXT2/ and not msgstr/$APPEND_B/" $SOURCE/docmessages/$DIR
                 echo -e "\n\n - IGU:\n   ****"
                 posieve find-messages -s fexpr:"msgstr/$TEXT1/ and not msgstr/$TEXT2/ and not msgstr/$APPEND_B/" $SOURCE/messages/$DIR
               else
-                posieve find_messages -s$MSG:"$TEXT1" $SOURCE/${DOC}messages/$DIR
+                posieve find_messages -s$MSG:"${TEXT1-}" $SOURCE/${DOC-}messages/$DIR
             fi
             TEXT2=
             TEXT3=
@@ -405,23 +404,43 @@ prompt_1() {
         esac
 }
 
+cerca_dira() {
+    { [ -z "${1-}" ] || [[ ! "${1-}" =~ ^(ca|va)$ ]]; } && sortida_po || true
+    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${3-}" ] && sortida_po || true
+    TEXT="$2"
+    MODUL="$3"
+    SOURCE="$SOURCE_0"
+    if   [ "$1" = 'ca' ]; then
+        SOURCE='ca'
+    fi
+}
+
 cerca_and_not() {
-  SOURCE="$SOURCE_0"
-  if   [ "$1" = 'ca' ]; then
-      SOURCE='ca'
-  fi
-  echo -e "\n\n - Doc:\n   ****"
-  [ -d "$SOURCE/docmessages/$DIR" ] && \
-  posieve find-messages -s fexpr:"$STRING" "$SOURCE/docmessages/"
-  echo -e "\n\n - IGU:\n   ****"
-  posieve find-messages -s fexpr:"$STRING" "$SOURCE/messages/"
+  ACTIVAT=0
+  CARPETES="$(find $SOURCE/messages/* -maxdepth 0 -type d)"
+  for carpeta in $CARPETES
+    do
+      DIR="$(basename $carpeta)"
+      [ "$DIR" = "${MODUL-}" ] && ACTIVAT=1
+      if [ "$ACTIVAT" -eq 1 ]; then
+          if [ -d "$SOURCE/docmessages/$DIR" ]; then
+            echo -e "\n\n - Doc: $DIR\n   ****"
+            posieve find-messages -s fexpr:"$STRING" "$SOURCE/docmessages/$DIR"
+          fi
+          echo -e "\n\n - IGU: $DIR\n   ****"
+          posieve find-messages -s fexpr:"$STRING" "$SOURCE/messages/$DIR"
+        else
+          continue
+      fi
+    done
 }
 
 pregunta() {
   echo -e "\033[1;37m* Ara es requereix una acció:\e[0m $MISSATGE_DIFF"
-  read -p "Voleu procedir? (Sí/no) " sn
-  case $sn in
-    no)
+  read -r -p "Voleu procedir? (Sí/no) " sn
+  case "${sn,,}" in
+    no|n)
       echo "Se surt…"
       exit 0
 	;;
@@ -431,15 +450,15 @@ pregunta() {
   esac
 }
 
-case $1 in
+case ${1-} in
   troba_po)
-    [ "$2" ] || sortida_po
+    [ -z "${2-}" ] && sortida_po || true
     find $SOURCE_0/messages/* -type f -name "$2"
   ;;
   crea_po_linia)
     comprova_lloc
-    [ "$2" ] || sortida_po
-    [ "$3" ] || sortida_po
+    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${3-}" ] && sortida_po || true
     FILE="$2"
     PHRASE="$3"
 
@@ -449,7 +468,7 @@ case $1 in
       echo -e "\033[1;37m# $BRANCH:\e[0m $DIR \033[1;37m-\e[0m $PO"
       msgmerge --silent --previous --no-wrap ca/messages/$DIR/$PO templates/messages/$DIR/${PO}t --output-file=missatges-$PO
       grep --color=auto --ignore-case --line-number "$PHRASE" missatges-$PO
-      [ -f missatges-$PO ] && rm -f missatges-$PO
+      rm -f missatges-$PO
     }
 
     BRANCH='Repositori local'
@@ -468,27 +487,28 @@ case $1 in
     [ -r "ca/messages/$FILE" ] && cerca_linia
   ;;
   po_nou)
-    [ "$2" ] || sortida_po
+    [ -z "${2-}" ] && sortida_po || true
+    TEXT="$2"
     SOURCE='ca@valencia'
     DIR="$2"
-    DOC="$3"
+    DOC="${3-}"
     MISSATGE1="Canvi possible:"
-    TEXT2=
-    TEXT3=
-#     python3 -c "import re"
+    TEXT2=""
+    TEXT3=""
+
 # valencià
-#     TEXT="[\e[33;5;46m?\e[0m\e[38;1;33m]( |$)"
-#     TEXT1="[?]( |$)"
-#     MISSATGE="$MISSATGE1 ** Voleu …? **"
-#     prompt_1
-#     TEXT="[\e[33;5;46m!\e[0m\e[38;1;33m]( |$)"
-#     TEXT1="[!]( |$)"
-#     MISSATGE="$MISSATGE1 ** _esborrar el signe d'exclamació?_ **"
-#     prompt_1
-#     TEXT="\e[33;5;46m, que \e[0m"
-#     TEXT1=", que "
-#     MISSATGE="$MISSATGE1 ** , el qual **"
-#     prompt_1
+    TEXT="[\e[33;5;46m?\e[0m\e[38;1;33m]( |$)"
+    TEXT1="[?]( |$)"
+    MISSATGE="$MISSATGE1 ** Voleu …? **"
+    prompt_1
+    TEXT="[\e[33;5;46m!\e[0m\e[38;1;33m]( |$)"
+    TEXT1="[!]( |$)"
+    MISSATGE="$MISSATGE1 ** _esborrar el signe d'exclamació?_ **"
+    prompt_1
+    TEXT="\e[33;5;46m, que \e[0m"
+    TEXT1=", que "
+    MISSATGE="$MISSATGE1 ** , el qual **"
+    prompt_1
     WORD='1,'
     CATALAN_RULE="a-zA-Z0-9-·'ÀàÉéÈèÍíÏïÓóÒòÚúÜüÇç"
     TEXT="\\\b\e[33;5;46ma l'\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
@@ -600,25 +620,26 @@ case $1 in
     prompt_1
   ;;
   cerca_dir)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a|en)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    [ "$4" ] || sortida_po
+    { [ -z "${2-}" ] || [[ ! "${2-}" =~ ^(ca|va|en)$ ]]; } && sortida_po || true
+    [ -z "${3-}" ] && sortida_po || true
+    [ -z "${4-}" ] && sortida_po || true
     TEXT="$3"
     SOURCE="$SOURCE_0"
     if   [ "$2" = 'ca' ]; then
         SOURCE='ca'
     elif [ "$2" = 'en' ]; then
-        [ "$6" ] && SOURCE='ca'
+        [ -n "${6-}" ] && SOURCE='ca'
         MSG='msgid'
     fi
 
-    posieve find_messages -s$MSG:"$TEXT" "$SOURCE/${5}messages/$4"
+    [ -n "${5-}" ] && DOC='doc'
+    posieve find_messages -s"$MSG":"$TEXT" "$SOURCE/${DOC-}messages/$4"
   ;;
   cerca_all_dir)
-    [ "$2" ] || sortida_po
-    [ -z $4 ] && NUM="1"
-    TEXT="$3"
+    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${3-}" ] && sortida_po || true
+    [ -z "${4-}" ] || NUM="1" || true
+    TEXT="$3"; TEXT1="$3"
     SOURCE="$SOURCE_0"
     if   [ "$2" = 'ca' ]; then
         SOURCE='ca'
@@ -626,80 +647,47 @@ case $1 in
         MSG='msgid'
     fi
 
-    MODUL="$4"
+    MODUL="${4-}"
     per_carpeta
   ;;
   cerca_dir_a)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-    SOURCE="$SOURCE_0"
-    if   [ "$2" = 'ca' ]; then
-        SOURCE='ca'
-    fi
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\ba ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a ($APPEND|)$TEXT/"
     cerca_and_not
   ;;
   cerca_dir_a_l)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\ba l'($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a l'($APPEND|)$TEXT/"
-    cerca_and_not $2
+    cerca_and_not
   ;;
   cerca_dir_ala)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\ba la ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a la ($APPEND|)$TEXT/"
-    cerca_and_not $2
+    cerca_and_not
   ;;
   cerca_dir_ales)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\ba les ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a les ($APPEND|)$TEXT/"
-    cerca_and_not $2
+    cerca_and_not
   ;;
   cerca_dir_al)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\bal ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) al ($APPEND|)$TEXT/"
-    cerca_and_not $2
+    cerca_and_not
   ;;
   cerca_dir_als)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\bals ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) als ($APPEND|)$TEXT/"
-    cerca_and_not $2
+    cerca_and_not
   ;;
   cerca_dir_auns)
-    [ "$2" ] || sortida_po
-      [ "$(echo $2 | grep -P "^([cv]a)$")" ] || sortida_po
-    [ "$3" ] || sortida_po
-    TEXT="$3"
-
+    cerca_dira ${2-} ${3-} ${4-}
     STRING="msgstr/\ba uns? ($APPEND|)$TEXT/ and not msgstr/\b($APPEND_0) a uns? ($APPEND|)$TEXT/"
-    cerca_and_not $2
+    cerca_and_not
   ;;
   cerca_dir_ab)
-#     [ "$2" ] || sortida_po
-#     TEXT="$2"
-    [ -z $2 ] && NUM="1"
+    [ -z "${2-}" ] && sortida_po || true
+    NUM="1"
     TEXT="\w{6,15}"
     TEXT3='1'
     SOURCE="$SOURCE_0"
@@ -713,22 +701,24 @@ case $1 in
     per_carpeta
   ;;
   cerca)
-# SOURCE_0='ca'
-    [ "$2" ] || sortida_po
-    CADENA="akonadi akregator alk alli am an ap ar at au b cal can ce ch cl co cu day di do dr e f g h ik inc index-fm iso it j k3b ka kb kc kda kdb kde-c kde-d kde-g kde-i kde-n kdeb kdec kded kdeg kdel kden kdep kdes kdev kdf kdi kdn kdo ke kf kg kh ki kj kl km kn ko kp kr ks kt ku kw kx l m n o p q r s tel to tr u v w x y z"
-    for cadena in $CADENA
+    [ -z "${2-}" ] && sortida_po || true
+    CADENA=(
+    akonadi akregator alk alli am an ap ar at au b cal can ce ch cl co cu day di do dr e f g h ik inc index-fm iso it j k3b ka kb kc kda kdb kde-c kde-d kde-g kde-i kde-n kdeb kdec kded kdeg kdel kden kdep kdes kdev kdf kdi kdn kdo ke kf kg kh ki kj kl km kn ko kp kr ks kt ku kw kx l m n o p q r s tel to tr u v w x y z
+    )
+
+    for cadena in "${CADENA[@]}"
       do
         echo -e "\e[38;5;46m * $cadena/* -\e[0m \e[38;1;33m $TEXT \e[0m"
-        read -p "Voleu procedir? (Sí/no) " sn
-        case $sn in
-          no )
+        read -r -p "Voleu procedir? (Sí/no) " sn
+        case "${sn,,}" in
+          no|n)
             echo " - Se surt…"
             exit 1
           ;;
           *)
-            [ -f "messages.mo"   ] && rm -f messages.mo
-            [ -f "missatges*.po" ] && rm -f missatges*.po
-            posieve find_messages -smsgstr:"$TEXT" $SOURCE_0/messages/$cadena*
+            rm -f messages.mo
+            rm -f missatges*.po 2>/dev/null || true
+            posieve find_messages -smsgstr:"$TEXT" "$SOURCE_0/messages/$cadena"*
           ;;
         esac
       done
@@ -738,11 +728,14 @@ case $1 in
     posieve find_messages -smsgctxt:"@title" "$SOURCE_0/messages/$2"
   ;;
   cerca_titols_dir)
+    [ -z "${2-}" ] && sortida_po || true
     comprova_lloc
-    [ -z $2 ] && NUM="1"
+    [ -z "${2-}" ] && NUM="1" || true
     MODUL="$2"
     MSG='msgctxt'
+    SOURCE="$SOURCE_0"
     TEXT="@title"
+    TEXT1="$TEXT"
     per_carpeta
   ;;
   comprova_titols)
@@ -761,17 +754,17 @@ case $1 in
     comprova_titol kstars   "^Export"                           "Exporteu"
     comprova_titol kstars   "^Print Sky Calendar$"              "Imprimiu el calendari del cel"
   ;;
-  adapta)
-    comprova_lloc
-    command_rm
-    ./adapta-kde_recursivament.sh recursiu $2
-  ;;
   modifica_capçalera)
     [ -f "$2" ] || sortida_po
     FILE="$2"
     posieve set-header -sfield:"PO-Revision-Date:$(date +%Y-%m-%d) $(date +%H:%M%z)"   $FILE
     posieve set-header -sfield:"Last-Translator:Antoni Bella <antonibella5@yahoo.com>" $FILE
     posieve set-header -sfield:"X-Generator:Kate $(kate --version | cut -f 2 -d' ')"   $FILE
+  ;;
+  adapta)
+    comprova_lloc
+    command_rm
+    ./adapta-kde_recursivament.sh recursiu
   ;;
   adapta_doc)
     comprova_lloc
@@ -783,6 +776,7 @@ case $1 in
     echo -e "\e[38;5;44mSCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0 [app]\e[0m"
   ;;
   adapta_dir)
+    [ -z "${2-}" ] && sortida_po || true
     command_rm
     for po in $(find ca/messages/$2/* -type f -name "*.po" | sort)
       do
@@ -792,6 +786,7 @@ case $1 in
       done
   ;;
   adapta_dir_va)
+    [ -z "${2-}" ] && sortida_po || true
     command_rm
     for po in $(find ca@valencia/messages/$2/* -type f -name "*.po" | sort)
       do
@@ -813,19 +808,19 @@ case $1 in
     comprova_lloc
     command_rm
     adapta_val() {
-      cd $DIR0/$STABLE
+      cd $ROOT_TREE/$STABLE
       ./adapta-kde_recursivament.sh $1
 
 #       cd ../l10n-kf6-plasma-lts
 #       ./adapta-kde_recursivament.sh $1
 
-      cd $DIR0/$TRUNK
+      cd $ROOT_TREE/$TRUNK
       ./adapta-kde_recursivament.sh $1
 
-      cd $DIR0/$STABLE6
+      cd $ROOT_TREE/$STABLE6
       ./adapta-kde_recursivament.sh $1
 
-      cd $DIR0/$TRUNK6
+      cd $ROOT_TREE/$TRUNK6
       ./adapta-kde_recursivament.sh $1
     }
 
@@ -843,8 +838,7 @@ case $1 in
   ;;
   crea_po)
     comprova_lloc
-
-    [ "$2" ] || sortida_po
+    [ -z "${2-}" ] && sortida_po || true
     ORDRE='crea_po_mod'
     case $2 in
       gui)
@@ -864,7 +858,7 @@ case $1 in
   ;;
   neteja_ca)
     comprova_lloc
-    [ "$2" ] || sortida_po
+    [ -z "${2-}" ] && sortida_po || true
     ORDRE='neteja_ca'
     case $2 in
       gui)
@@ -880,24 +874,28 @@ case $1 in
       ;;
     esac
     echo -e "\n * S'està actualitzant KF5 «stable»:"
-    cd $DIR0/$STABLE/ca/  && svn update
+    cd $ROOT_TREE/$STABLE/ca/  && svn update
     echo -e "\n * S'està actualitzant KF5 «trunk»:"
-    cd $DIR0/$TRUNK/ca/   && svn update
+    cd $ROOT_TREE/$TRUNK/ca/   && svn update
     echo -e "\n * S'està actualitzant KF6 «stable»:"
-    cd $DIR0/$STABLE6/ca/ && svn update
+    cd $ROOT_TREE/$STABLE6/ca/ && svn update
     echo -e "\n * S'està actualitzant KF6 «trunk»:"
-    cd $DIR0/$TRUNK6/ca/  && svn update
+    cd $ROOT_TREE/$TRUNK6/ca/  && svn update
   ;;
   actualitza_svn_local)
     comprova_lloc
     elimina_carpetes() {
-      [ -d $1/documentation-develop-kde-org ]   && rm -Rf $1/documentation-develop-kde-org
-      [ -d $1/documentation-docs-kdenlive-org ] && rm -Rf $1/documentation-docs-kdenlive-org
-      [ -d $1/websites-docs-krita-org ]         && rm -Rf $1/websites-docs-krita-org
-      [ -e $1/websites-kde-org/release_announcements.po ] && rm -f $1/websites-kde-org/release_announcements.po
-      [ -e $1/websites-kde-org/www_www.po ]               && rm -f $1/websites-kde-org/www_www.po
-      [ -d $1/websites-kdevelop-org ]           && rm -Rf $1/websites-kdevelop-org
-      [ -d $1/websites-planet-kde-org ]         && rm -Rf $1/websites-planet-kde-org
+      local base_dir="${1-}"
+      rm -Rf $base_dir/documentation-develop-kde-org
+      rm -Rf $base_dir/documentation-docs-kdenlive-org
+      rm -Rf $base_dir/documentation-docs-krita-org
+      rm -Rf $base_dir/websites-docs-glaxnimate-org
+      rm -Rf $base_dir/websites-glaxnimate-org
+      rm -f  $base_dir/websites-kde-org/release_announcements.po
+      rm -f  $base_dir/websites-kde-org/www_www.po
+      rm -Rf $base_dir/websites-kdenlive-org
+      rm -Rf $base_dir/websites-kdevelop-org
+      rm -Rf $base_dir/websites-planet-kde-org
     }
 
     echo -e "\033[1;37m* Es netegen les carpetes que s'actualitzaran.\e[0m"
@@ -910,14 +908,14 @@ case $1 in
       do
         echo "  - kf5 stable $obj"
         mkdir -p $obj/messages/
-        cp -fr ../../../../stable/l10n-kf5/$obj/messages/* $obj/messages/
+        cp -fr "../../../../stable/l10n-kf5/$obj/messages/"* $obj/messages/
       done; echo
 
     for obj in ca templates
       do
         echo "  - kf5 $obj"
         mkdir -p $obj/messages/
-        cp -fr ../../$obj/messages/* $obj/messages/
+        cp -fr "../../$obj/messages/"* $obj/messages/
         [ "$obj" = "templates" ] || elimina_carpetes $obj/messages
       done; echo
 
@@ -925,49 +923,46 @@ case $1 in
       do
         echo "  - kf6 $obj"
         mkdir -p $obj/messages/
-        cp -fr ../../../l10n-kf6/$obj/messages/* $obj/messages/
+        cp -fr "../../../l10n-kf6/$obj/messages/"* $obj/messages/
       done; echo
 
     echo -e "\033[1;37m* Es copien les traduccions des de «ca-mod/»:\e[0m"
     $0 crea_po gui
     $0 neteja_ca gui
-    mkdir -p ca/docmessages/
 
     # ca: la documentació són enllaços
+    mkdir -p ca/docmessages/
+    mkdir -p templates/docmessages/
     cd ca/docmessages
-    echo -e "  \033[1;37m- kf5: enllaços cap a la documentació «ca»:\e[0m"
-    echo kstars
-    ln -s ../../ca-mod/docmessages/kstars kstars
-    cp -fr ../../../../templates/docmessages/kstars ../../templates/docmessages/kstars
-
     echo -e "  \033[1;37m- kf6: enllaços cap a la documentació «ca»:\e[0m"
-    for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
+    for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6 2>/dev/null)
       do
-        MODULE="$(echo $obj | awk -F '/' '{print $5}')"
+        IFS='/' read -r -a parts <<< "$obj"
+        MODULE="${parts[4]}"
+
         echo $MODULE
         ln -s $obj $MODULE
         cp -fr ../../../../../l10n-kf6/templates/docmessages/$MODULE ../../templates/docmessages/$MODULE
       done
-    cd ../../
+
+    cd "$ROOT_SCRIPT"
     mkdir -p ca@valencia/docmessages/
     cp ../../ca/docmessages/language ca/docmessages/language
     cp ../../ca@valencia/docmessages/language ca@valencia/docmessages/language
 
     # ca@valencia: la documentació són enllaços
     cd ca@valencia/docmessages
-    echo -e "  \033[1;37m- kf5: enllaços cap a la documentació «ca@valencia»:\e[0m"
-    echo kstars
-    ln -s ../../kf5-trunk/ca@valencia/docmessages/kstars kstars
-
     echo -e "  \033[1;37m- kf6: enllaços cap a la documentació «ca@valencia»:\e[0m"
     for obj in $(find ../../ca-mod/docmessages/ -type d -name kf6)
       do
-        MODULE="$(echo $obj | awk -F '/' '{print $5}')"
+        IFS='/' read -r -a parts <<< "$obj"
+        MODULE="${parts[4]}"
+
         echo $MODULE
         ln -s ../../kf6-trunk/ca@valencia/docmessages/$MODULE $MODULE
       done
-    cd ../../
-    mkdir -p templates/docmessages/
+
+    cd "$ROOT_SCRIPT"
     echo -e "\033[1;37m* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions:\e[0m"
     posieve --quiet remove-obsolete ca/
 
@@ -991,10 +986,12 @@ case $1 in
   ;;
   copia_aquests)
     comprova_lloc
-    [ "$2" ] || sortida_po
+    [ -z "${2-}" ] && sortida_po || true
 
-    TARGETS="$(echo $2 | grep "^[0-9 ]*$")"
-    [ "$TARGETS" ] || sortida_po
+    if [[ -z "${2-}" || ! "$2" =~ ^[0-9[:space:]]*$ ]]; then
+      sortida_po
+    fi
+    TARGETS="$2"
 
     commits_num(){
       cd $SOURCE_0
@@ -1002,16 +999,17 @@ case $1 in
       cd ..
     }
 
-    ARRAY=( $TARGETS )
-    for arg in ${ARRAY[@]}
+    FITXERST=""
+    read -r -a ARRAY <<< "$TARGETS"
+    for arg in "${ARRAY[@]}"
       do
         commits_num "$arg"
         FITXERST="$FITXERST $FITXERS"
       done
 
-    FITXERS="`echo "$FITXERST" | sed 's/ /\n/g' | sort | uniq`"
+    FITXERS="$(echo "$FITXERST" | sed 's/ /\n/g' | sort | uniq || true)"
 
-    cd $DIR0/$STABLE
+    cd $ROOT_TREE/$STABLE
     for file in $FITXERS
       do
         [ -f ca/messages/$file ] && ./adapta-kde_recursivament.sh fitxer messages/$file
@@ -1047,10 +1045,10 @@ case $1 in
 
     crea_mo() {
       sudo msgfmt -a 1 $POFILE -o $DIR_MESSAGES/$FILE_NAME.mo
-      if [[ "$DIR_M" = @(ark|falkon|krita|kwalletmanager) ]]; then
-          LINK="1"
-        elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
-          LINK="1"
+      if   [[ "$DIR_M"     = @(ark|falkon|krita|kwalletmanager) ]]; then
+        LINK="1"
+      elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
+        LINK="1"
       fi
     }
 
@@ -1060,65 +1058,58 @@ case $1 in
       [ "$POFILE_2" ] && POFILE="$POFILE_2"
       [ ! "$POFILE" ] && return
       DIR_M="$(basename $(dirname $POFILE))"
-      if [ "$2" = "qm" ]; then
-          if [ $(echo $POFILE | grep stable) ]; then
-              BRANCA='stable'
-            else
-              BRANCA='trunk '
-          fi
+      if [[ "$POFILE" == *stable* ]]; then
+          BRANCA='stable'
         else
-          if [ $(echo $POFILE | grep stable) ]; then
-              BRANCA='stable'
-            else
-              BRANCA='trunk '
-          fi
+          BRANCA='trunk '
       fi
-      NUM="$(echo $POFILE | cut -f 7 -d'/' | sed 's/l10n-kf//')"
+      NUM="$(echo $POFILE | cut -f 8 -d'/' | sed 's/l10n-kf//')"
     }
 
     fes_mo() {
-      comprova $DIR0/trunk/l10n-kf6/ca@valencia/messages
-      comprova $DIR0/stable/l10n-kf6/ca@valencia/messages
-      comprova $DIR0/trunk/l10n-kf5/ca@valencia/messages
-      comprova $DIR0/stable/l10n-kf5/ca@valencia/messages
+      comprova $ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages  mo
+      comprova $ROOT_TREE/stable/l10n-kf6/ca@valencia/messages mo
+      comprova $ROOT_TREE/trunk/l10n-kf5/ca@valencia/messages  mo
+      comprova $ROOT_TREE/stable/l10n-kf5/ca@valencia/messages mo
       if [ "$DIR_M" ]; then
-          if [[ "$(echo $BRANCA $NUM)" = @(stable 5|trunk 5) ]]; then
-              COLOR_B="95"
-            else
-              COLOR_B="33"
-          fi
-          FILE="$FILE_NAME.mo"
-          echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
-          crea_mo
+        COLOR_B="33"
+        if [[ "$BRANCA $NUM" = @(stable 5|trunk  5) ]]; then
+            COLOR_B="95"
+        fi
+        FILE="$FILE_NAME.mo"
+        echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
+        crea_mo
+        COLOR_B=""
       fi
     }
 
     fes_qm() {
-      comprova $DIR0/trunk/l10n-kf6/ca@valencia/messages  qm
-      comprova $DIR0/stable/l10n-kf6/ca@valencia/messages qm
-      comprova $DIR0/trunk/l10n-kf5/ca@valencia/messages  qm
-      comprova $DIR0/stable/l10n-kf5/ca@valencia/messages qm
+      comprova $ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages  qm
+      comprova $ROOT_TREE/stable/l10n-kf6/ca@valencia/messages qm
+      comprova $ROOT_TREE/trunk/l10n-kf5/ca@valencia/messages  qm
+      comprova $ROOT_TREE/stable/l10n-kf5/ca@valencia/messages qm
       if [ "$DIR_M" ]; then
-          FILE="$FILE_NAME.qm"
-          echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
-          sudo /usr/lib/qt6/bin/lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE
+        FILE="$FILE_NAME.qm"
+        echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
+        sudo /usr/lib/qt6/bin/lconvert -target-language $SOURCE_0 -locations none $POFILE -o $DIR_MESSAGES/$FILE
       fi
     }
 
-    for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
+    for file in /usr/share/locale/ca/LC_MESSAGES/*
       do
+        file="$(basename "$file")"
         LINK="0"
-        DIR="$DIR0/trunk/l10n-kf6/ca@valencia/messages"
-        FILE_NAME=$(echo "$file" | sed "s/\.\(mo\|qm\)//")
+        DIR="$ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages"
+        FILE_NAME="${file%.*}"
         [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo" ] && fes_mo
         if [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm" ]; then
-            fes_qm
-            LINK="1"
+          fes_qm
+          LINK="1"
         fi
         DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
         if [ "$LINK" -eq 1 ]; then
-            sudo ln -fs /usr/share/locale/ca@valencia/LC_MESSAGES/$FILE /usr/share/locale/ca/LC_MESSAGES/$FILE
-            echo -e "\t\t\e[3m(Enllaçat amb /usr/share/locale/ca/LC_MESSAGES/$FILE)\e[0m"
+          sudo ln -fs /usr/share/locale/ca@valencia/LC_MESSAGES/$FILE /usr/share/locale/ca/LC_MESSAGES/$FILE
+          echo -e "\t\t\e[3m(Enllaçat amb /usr/share/locale/ca/LC_MESSAGES/$FILE)\e[0m"
         fi
         DIR_M=""
         NUM=""
@@ -1127,11 +1118,13 @@ case $1 in
 
     # qt5 qt5keychain buho kid3 smplayer qt6 subsurface gcompris-qt sddm pavucontrol-qt kImageAnnotator
     if   [ -f /usr/share/gcompris-qt/translations/gcompris_ca.qm ];then
-        DIR_MESSAGES="/usr/share/gcompris-qt/translations"
-        fes_qm gcompris_qt gcompris_$SOURCE_0
+      DIR_MESSAGES="/usr/share/gcompris-qt/translations"
+      FILE_NAME="gcompris_$SOURCE_0"
+      fes_qm gcompris_qt gcompris_$SOURCE_0
     elif [ -f /usr/share/buho/translations/buho_ca.qm ];then
-        DIR_MESSAGES="/usr/share/buho/translations"
-        fes_qm buho buho_$SOURCE_0
+      DIR_MESSAGES="/usr/share/buho/translations"
+      FILE_NAME="buho_$SOURCE_0"
+      fes_qm buho buho_$SOURCE_0
     fi
 
     # Missing link
@@ -1143,7 +1136,7 @@ case $1 in
         # sudo cp -f ca@valencia/messages/kconfigwidgets/kf5_entry.desktop /usr/share/locale/ca@valencia/kf5_entry.desktop
   ;;
   sense_installar)
-    DIR="$DIR0/$TRUNK/ca@valencia/messages"
+    DIR="$ROOT_TREE/$TRUNK/ca@valencia/messages"
 
     echo "** Se cerca el PO a «$TRUNK/ca@valencia/messages» **"
     for file in $(ls /usr/share/locale/ca/LC_MESSAGES)
@@ -1160,11 +1153,11 @@ case $1 in
     [ -d ca/messages/digikam-doc/ ] || exit 0
     echo -e "\n* digiKam:\n  _______\n"
     echo -e "\n - Regla: apps-multimedia.rules.disabled\n   *************************************\n\n"
-    posieve check-rules -s rfile:$HOME/Documents/Treball/svn/kde/pology/lang/ca/rules/apps-multimedia.rules.disabled ca/messages/digikam-doc/docs_digikam_org_$2*
+    posieve check-rules -s rfile:$HOME/Documents/Treball/svn/kde/pology/lang/ca/rules/apps-multimedia.rules.disabled "ca/messages/digikam-doc/docs_digikam_org_$2"*
     echo -e "\n - Regla: esmenes.rules\n   ********************\n\n"
-    posieve check-rules -s rfile:Carpeta_nova/Treball/esmenes.rules ca/messages/digikam-doc/docs_digikam_org_$2*
+    posieve check-rules -s rfile:Carpeta_nova/Treball/esmenes.rules "ca/messages/digikam-doc/docs_digikam_org_$2"*
     echo -e "\n - Regla: TOTES\n   *************\n\n"
-    posieve check-rules ca/messages/digikam-doc/docs_digikam_org_$2*
+    posieve check-rules "ca/messages/digikam-doc/docs_digikam_org_$2"*
   ;;
   informa_diff)
     comprova_lloc
@@ -1182,30 +1175,30 @@ case $1 in
       ;;
     esac
 
-    DIRSRC="$DIR0/$TRUNK/ca/$MESSAGES"
-    DIRMOD="$DIR1/ca-mod/$MESSAGES"
-    DIROBJ="$DIR1/ca/$MESSAGES"
+    DIRSRC="$ROOT_TREE/$TRUNK/ca/$MESSAGES"
+    DIRMOD="$ROOT_SCRIPT/ca-mod/$MESSAGES"
+    DIROBJ="$ROOT_SCRIPT/ca/$MESSAGES"
 
     FOLDERS_5="$(find $DIRSRC/ -type d -name "$2")"
-    FOLDERS_6="$(find $DIR0/$TRUNK6/ca/$MESSAGES/ -type d -name "$2")"
+    FOLDERS_6="$(find $ROOT_TREE/$TRUNK6/ca/$MESSAGES/ -type d -name "$2")"
     if   [ "$FOLDERS_5" ]; then
         BRANCA="$TRUNK"
         FOLDERS="$(basename -a $FOLDERS_5)"
     elif [ "$FOLDERS_6" ]; then
         BRANCA="$TRUNK6"
-        DIRMOD="$DIR1/ca-mod/$MESSAGES/kf6"
+        DIRMOD="$ROOT_SCRIPT/ca-mod/$MESSAGES/kf6"
         FOLDERS="$(basename -a $FOLDERS_6)"
       else
         echo -e "\033[47;31mERROR:\e[0m Indiqueu una carpeta vàlida (p. ex., kstars) o prefix de carpetes (p. ex., websites-*) com a entrada!"
         exit 0
     fi
-    DIRSRC="$DIR0/$BRANCA/ca/$MESSAGES"
-    DIRTEM="$DIR0/$BRANCA/templates/$MESSAGES"
+    DIRSRC="$ROOT_TREE/$BRANCA/ca/$MESSAGES"
+    DIRTEM="$ROOT_TREE/$BRANCA/templates/$MESSAGES"
 
     llista() {
       for folder in $FOLDERS
         do
-          FILES="$(find $DIR0/$BRANCA/ca/$MESSAGES/$folder/* -type f -name "*.po" 2>/dev/null)"
+          FILES="$(find $ROOT_TREE/$BRANCA/ca/$MESSAGES/$folder/* -type f -name "*.po" 2>/dev/null)"
           for file in $FILES
             do
               DIR=$(basename $(dirname $file))
@@ -1232,7 +1225,7 @@ case $1 in
                 [ -e $DIRMOD/$DIR/$PO ] && DIRSRC="$DIRMOD"
                 cp -f $DIRSRC/$DIR/$PO $DIROBJ/$DIR/$PO
               fi
-              DIRSRC="$DIR0/$BRANCA/ca/$MESSAGES"
+              DIRSRC="$ROOT_TREE/$BRANCA/ca/$MESSAGES"
             done
         done
     }
@@ -1252,13 +1245,13 @@ case $1 in
   fitxer_erroni)
     DIR="digikam"
     PO="digikam.po"
-    DIRMOD="$DIR1/ca-mod/messages/$DIR"
-    DIRSRC="$DIR0/$TRUNK/ca/messages/$DIR"
-    DIRTEM="$DIR0/$TRUNK/templates/messages/$DIR"
+    DIRMOD="$ROOT_SCRIPT/ca-mod/messages/$DIR"
+    DIRSRC="$ROOT_TREE/$TRUNK/ca/messages/$DIR"
+    DIRTEM="$ROOT_TREE/$TRUNK/templates/messages/$DIR"
 
-    if [ -e "$DIR0/$TRUNK6/ca/messages/$DIR/$PO" ]; then
-      DIRSRC="$DIR0/$TRUNK6/ca/messages/$DIR"
-      DIRTEM="$DIR0/$TRUNK6/templates/messages/$DIR"
+    if [ -e "$ROOT_TREE/$TRUNK6/ca/messages/$DIR/$PO" ]; then
+      DIRSRC="$ROOT_TREE/$TRUNK6/ca/messages/$DIR"
+      DIRTEM="$ROOT_TREE/$TRUNK6/templates/messages/$DIR"
     fi
     [ -e "$DIRMOD/$PO" ] && DIRSRC="$DIRMOD"
     echo -e "\033[47;31mPrimer:\e[0m s'executa «msgmerge»"
