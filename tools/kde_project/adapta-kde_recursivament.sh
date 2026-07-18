@@ -234,7 +234,7 @@ case $ACTION in
 
     commits_num() {
       echo "3 - svn log --verbose -r $1 /home/kde/$SVN_REPO/messages"
-      FITXERS="$(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)"
+      mapfile -t FITXERS < <(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)
     }
 
     FITXERST=""
@@ -252,7 +252,6 @@ case $ACTION in
         FITXERS=""
       done
 
-    mapfile -t FITXERSPO < <(echo -e "$FITXERST" | LC_ALL=C sort -u)
     capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
   ;;
   recursiu)
