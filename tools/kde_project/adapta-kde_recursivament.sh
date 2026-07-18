@@ -234,7 +234,7 @@ case $ACTION in
 
     commits_num() {
       echo "3 - svn log --verbose -r $1 /home/kde/$SVN_REPO/messages"
-      mapfile -t FITXERS < <(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)
+      FITXERS="$(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)"
     }
 
     FITXERST=""
