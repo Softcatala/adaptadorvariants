@@ -3,6 +3,9 @@
 # Best practices for robustness
 set -euo pipefail
 
+# Enables extended pattern matching features, such as @(pattern1|pattern2)
+shopt -s extglob
+
 # Configuration & Paths
 ROOT_SCRIPT="$PWD"
 ROOT_TREE="$(cd ../../../../ ; pwd)"
@@ -47,73 +50,73 @@ APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capd
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
 
-  \033[1;37mAJUDA\n  -----\e[0m
-  troba_po (nom|exp. reg.)        Cerca \033[1;37ma on es troba ara aquest fitxer\e[0m.
+  \e[1;37mAJUDA\n  -----\e[0m
+  troba_po (nom|exp. reg.)        Cerca \e[1;37ma on es troba ara aquest fitxer\e[0m.
   crea_po_linia ruqola/ruqola.po (cadena de lletres)
-                                  * \033[1;37mCrea un fitxer amb les entrades en una sola línia\e[0m,
+                                  * \e[1;37mCrea un fitxer amb les entrades en una sola línia\e[0m,
                                   de manera que es poden esmenar els números de línia
                                   a l'script en sed.
   po_nou (dir)[/fitxer.po]? (doc)?
-                                  Tenim una traducció nova i \033[1;37mla volem revisar\e[0m amb
+                                  Tenim una traducció nova i \e[1;37mla volem revisar\e[0m amb
                                   totes les regles que s'han emprat.
                                   Apareix un indicatiu en canviar de regla.
                                   Permet especificar un sol fitxer.
-                                  \033[47;31mNOTA:\e[0m Primer s'ha de generar la traducció!
+                                  \e[47;31mNOTA:\e[0m Primer s'ha de generar la traducció!
 
-  \033[1;37mCERCAR\n  ------\e[0m
+  \e[1;37mCERCAR\n  ------\e[0m
   cerca_dir va (text_cerca) (dir))[/fitxer.po]? [doc]?
-                                  \033[1;37mCerca a la carpeta indicada\e[0m.
+                                  \e[1;37mCerca a la carpeta indicada\e[0m.
                                   Es pot especificar l'idioma (ca, en -a «va»- i va).
                                   Amb el caràcter de punt «.» se cerca a totes.
                                   De manera predeterminada a «va».
   cerca_all_dir va (text_cerca) (dir)?
-                                  \033[1;37mApareix un indicatiu en passar per cada carpeta\e[0m (va).
+                                  \e[1;37mApareix un indicatiu en passar per cada carpeta\e[0m (va).
                                   Es pot especificar l'idioma (ca, en -a «va»- i va).
                                   Si s'especifica una carpeta, la cerca començarà en
                                   aquesta.
-  cerca_dir_a    va (paraula)     \033[1;37mSe cerca «a »+«paraula».\e[0m
-  cerca_dir_a_l  va (paraula)     \033[1;37mSe cerca «a l'»+«paraula».\e[0m
-  cerca_dir_ala  va (paraula)     \033[1;37mSe cerca «a la »+«paraula».\e[0m
-  cerca_dir_ales va (paraula)     \033[1;37mSe cerca «a les »+«paraula».\e[0m
-  cerca_dir_al   va (paraula)     \033[1;37mSe cerca «al »+«paraula».\e[0m
-  cerca_dir_als  va (paraula)     \033[1;37mSe cerca «als »+«paraula».\e[0m
-  cerca_dir_auns va (paraula)     \033[1;37mSe cerca «a uns? »+«paraula».\e[0m
+  cerca_dir_a    va (paraula)     \e[1;37mSe cerca «a »+«paraula».\e[0m
+  cerca_dir_a_l  va (paraula)     \e[1;37mSe cerca «a l'»+«paraula».\e[0m
+  cerca_dir_ala  va (paraula)     \e[1;37mSe cerca «a la »+«paraula».\e[0m
+  cerca_dir_ales va (paraula)     \e[1;37mSe cerca «a les »+«paraula».\e[0m
+  cerca_dir_al   va (paraula)     \e[1;37mSe cerca «al »+«paraula».\e[0m
+  cerca_dir_als  va (paraula)     \e[1;37mSe cerca «als »+«paraula».\e[0m
+  cerca_dir_auns va (paraula)     \e[1;37mSe cerca «a uns? »+«paraula».\e[0m
                                   Es pot especificar l'idioma (ca i va).
 
   cerca_dir_ab (dir)?             --Expressió regular--- emprada per a fer neteja.
-  cerca        (text_cerca)       És una \033[1;37mcerca més ràpida per carpeta\e[0m (va).
+  cerca        (text_cerca)       És una \e[1;37mcerca més ràpida per carpeta\e[0m (va).
 
-  \033[1;37mTÍTOLS\n  ------\e[0m
-  cerca_titols (dir)?             * \033[1;37mEs miren els títols\e[0m (va).
-  cerca_titols_dir (dir)?         * \033[1;37mEs miren els títols per carpeta\e[0m (va).
+  \e[1;37mTÍTOLS\n  ------\e[0m
+  cerca_titols (dir)?             * \e[1;37mEs miren els títols\e[0m (va).
+  cerca_titols_dir (dir)?         * \e[1;37mEs miren els títols per carpeta\e[0m (va).
                                   Si s'especifica una carpeta, la cerca començarà en
                                   aquesta.
-  comprova_titols                 * \033[1;37mEs comproven els títols modificats\e[0m (va).
+  comprova_titols                 * \e[1;37mEs comproven els títols modificats\e[0m (va).
 
-  \033[1;37mCREAR\n  -----\e[0m
-  adapta                          * \033[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
-  adapta_doc                      * \033[1;37mAdapta i genera la documentació\e[0m en el SVN local.
-                                  \033[47;31mNOTA:\e[0m Després s'han de moure manualment!
-  \033[47;31madapta_dir (dir)\e[0m                \033[1;37mPROVES! Adapta i genera només una carpeta\e[0m en el SVN local.
-  \033[47;31madapta_dir_va (dir)\e[0m             \033[1;37mPROVES! El mateix pero només amb els fitxers ja en valencià\e[0m.
-  modifica_capçalera fitxer.po    * \033[1;37mActualitza la informació a la capçalera\e[0m.
+  \e[1;37mCREAR\n  -----\e[0m
+  adapta                          * \e[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
+  adapta_doc                      * \e[1;37mAdapta i genera la documentació\e[0m en el SVN local.
+                                  \e[47;31mNOTA:\e[0m Després s'han de moure manualment!
+  \e[47;31madapta_dir (dir)\e[0m                \e[1;37mPROVES! Adapta i genera només una carpeta\e[0m en el SVN local.
+  \e[47;31madapta_dir_va (dir)\e[0m             \e[1;37mPROVES! El mateix pero només amb els fitxers ja en valencià\e[0m.
+  modifica_capçalera fitxer.po    * \e[1;37mActualitza la informació a la capçalera\e[0m.
   adapta_valencia (recursiu|usuari)
-                                  * \033[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
-  crea_po   (gui|doc)             * \033[1;37mCrea els fitxers PO que es mantenen\e[0m.
-  neteja_ca (gui|doc)             * \033[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
-  adapta_mod                      * \033[47;31mAdapta tots els fitxers mantinguts en el SVN local.\e[0m
+                                  * \e[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
+  crea_po   (gui|doc)             * \e[1;37mCrea els fitxers PO que es mantenen\e[0m.
+  neteja_ca (gui|doc)             * \e[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
+  adapta_mod                      * \e[47;31mAdapta tots els fitxers mantinguts en el SVN local.\e[0m
 
-  \033[1;37mMANTENIMENT\n  -----------\e[0m
-  \033[47;31mactualitza_svn_local\e[0m            \033[1;37mActualitza l'SVN local amb trunk\e[0m.
-                                  \033[47;31mNOTA:\e[0m Després s'han d'entregar manualment els canvis!
+  \e[1;37mMANTENIMENT\n  -----------\e[0m
+  \e[47;31mactualitza_svn_local\e[0m            \e[1;37mActualitza l'SVN local amb trunk\e[0m.
+                                  \e[47;31mNOTA:\e[0m Després s'han d'entregar manualment els canvis!
   copia_a_svn_local kdenlive/kdenlive.po
                                   * Copia algun fitxer des de trunk a dins del SVN local.
                                     - També l'adapta al valencià.
-  \033[47;31mcopia_aquests\e[0m \"[núm. comissió]\" * \033[1;37mAdapta els PO amb modificacions\e[0m en el SVN de KDE.
-  \033[47;31minstalla_va\e[0m                     * \033[1;37mInstal·la les traduccions\e[0m.
-  sense_installar                 \033[1;37mObjectius futurs\e[0m [?].
+  \e[47;31mcopia_aquests\e[0m \"[núm. comissió]\" * \e[1;37mAdapta els PO amb modificacions\e[0m en el SVN de KDE.
+  \e[47;31minstalla_va\e[0m                     * \e[1;37mInstal·la les traduccions\e[0m.
+  sense_installar                 \e[1;37mObjectius futurs\e[0m [?].
   revisa                          Revisa la documentació del digiKam.
-  \033[47;31minforma_diff\e[0m websites-* (gui|doc)
+  \e[47;31minforma_diff\e[0m websites-* (gui|doc)
                                   * Es crea un diff amb el qual enviar informes a l'equip de català.
                                     - Responeu al primer «Sí» i feu la comissió en el repo
                                       de proves.
@@ -121,33 +124,33 @@ sortida_po() {
                                       revisar els valencianismes).
                                     - Responeu al tercer «Sí» i es restaurarà el seu
                                       darrer estat.
-                                    Tot plegat esdevé una eina de revisió a dues bandes \033[47;31m;-)\e[0m
+                                    Tot plegat esdevé una eina de revisió a dues bandes \e[47;31m;-)\e[0m
 
-  \033[1;37mARBRE DE CARPETES\n  -----------------\e[0m
-  - stable / l10n-kf5 /                          \033[1;37m[repositoris SVN de KDE]\e[0m
+  \e[1;37mARBRE DE CARPETES\n  -----------------\e[0m
+  - stable / l10n-kf5 /                          \e[1;37m[repositoris SVN de KDE]\e[0m
   - stable / l10n-kf6 /
   - trunk  / l10n-kf5 /
   - trunk  / l10n-kf6 /
 
-  - trunk  / l10n-kf5 / Carpeta_nova / Treball / \033[1;37m[repositori SVN local i carpeta
+  - trunk  / l10n-kf5 / Carpeta_nova / Treball / \e[1;37m[repositori SVN local i carpeta
                                                  base d'aquest script]\e[0m
 
-  \033[1;37mCONTINGUT\n  ---------\e[0m
-  - ca                          \033[1;37m[SVN de les traduccions al català]\e[0m
-  - ca@valencia                 \033[1;37m[SVN de les traduccions al valencià]\e[0m
-  - ca-mod                      \033[1;37m[Carpeta amb les traduccions modificades]\e[0m
-  - templates                   \033[1;37m[SVN de les plantilles de traducció]\e[0m
-  \033[1;37mCarpetes on es genera l'adaptació de la documentació:\e[0m
+  \e[1;37mCONTINGUT\n  ---------\e[0m
+  - ca                          \e[1;37m[SVN de les traduccions al català]\e[0m
+  - ca@valencia                 \e[1;37m[SVN de les traduccions al valencià]\e[0m
+  - ca-mod                      \e[1;37m[Carpeta amb les traduccions modificades]\e[0m
+  - templates                   \e[1;37m[SVN de les plantilles de traducció]\e[0m
+  \e[1;37mCarpetes on es genera l'adaptació de la documentació:\e[0m
   - kf5-stable
   - kf5-trunk
   - kf6-stable
   - kf6-trunk
 
-  \033[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/tools/kde_project/
-  • c_crea_val-po.sh            \033[1;37m[Aquest script]\e[0m
-  • append-a_en.in              \033[1;37m[Ajudant del pology -el contingut s'inclou al primer script-]\e[0m
-  • adapta-kde_recursivament.sh \033[1;37m[Script en Bash que adapta amb els scripts en SED]\e[0m
-  \033[1;37mEls scripts en SED, en odre de processament:\e[0m
+  \e[1;37mRepo:\e[0m https://github.com/Softcatala/adaptadorvariants/tools/kde_project/
+  • c_crea_val-po.sh            \e[1;37m[Aquest script]\e[0m
+  • append-a_en.in              \e[1;37m[Ajudant del pology -el contingut s'inclou al primer script-]\e[0m
+  • adapta-kde_recursivament.sh \e[1;37m[Script en Bash que adapta amb els scripts en SED]\e[0m
+  \e[1;37mEls scripts en SED, en odre de processament:\e[0m
   • kde-src2valencia_a.sed
   • kde-src2valencia_b.sed
   • kde-src2valencia-esmena.sed
@@ -155,10 +158,10 @@ sortida_po() {
   • all-src2valencia-adapta.sed
   • all-src2valencia-esmena.sed
 
-  \033[1;37mLLEGENDA\n  --------\e[0m
+  \e[1;37mLLEGENDA\n  --------\e[0m
   * (Opcions que només es poden executar des de la carpeta base de l'script).\n
 
-  \033[1;37mRETALLS\n  --------\e[0m
+  \e[1;37mRETALLS\n  --------\e[0m
   * Primer obriu la IGU del Lokalize:
     posieve check-rules -s lokalize ca-mod/messages/websites-krita-org/\n
   * Verificar amb les regles del pology:
@@ -186,32 +189,31 @@ command_cm() {
 
       echo -e " \e[38;5;46m* $PACKAGE\e[0m"
       "$ORDRE" "$PACKAGE"
-    done < <(find "$ROOT_SCRIPT/ca-mod/$MESSAGES/" -maxdepth 1 -mindepth 1 -type d -print0 | sort -z)
+    done < <(find "$ROOT_SCRIPT/ca-mod/$MESSAGES/" -mindepth 1 -maxdepth 1 -type d -print0 | LC_ALL=C sort -z)
 }
 
 command_rm() { rm -f "$MEM_DIR/kde-src2valencia.sed"; }
 
-sed_files() {
-  cd "$MEM_DIR" || exit 1
-
-  if [ ! -f "kde-src2valencia.sed" ]; then
-    cp  "$DIRTR/kde-src2valencia_a.sed"         "kde-src2valencia.sed"
-    cat "$DIRTR/kde-src2valencia_b.sed"      >> "kde-src2valencia.sed"
-    cat "$DIRTR/kde-src2valencia-esmena.sed" >> "kde-src2valencia.sed"
-    cp  "$DIRTR/all-src2valencia-adapta.sed"    "all-src2valencia.sed"
-    cat "$DIRTR/all-src2valencia.sed"        >> "all-src2valencia.sed"
-    cat "$DIRTR/all-src2valencia-esmena.sed" >> "all-src2valencia.sed"
-
-    # Performance: Limit CPU usage for sed background tasks
-    if ! pgrep -x "cpulimit" >/dev/null 2>&1; then
-      cpulimit --background --quiet --path="$(which sed)" --limit='75' &>/dev/null || true
-    fi
-  fi
-}
-
 adapta_ho() {
+  sed_files() {
+    cd "$MEM_DIR" || exit 1
+
+    if [ ! -f "kde-src2valencia.sed" ]; then
+      cp  "$DIRTR/kde-src2valencia_a.sed"         "kde-src2valencia.sed"
+      cat "$DIRTR/kde-src2valencia_b.sed"      >> "kde-src2valencia.sed"
+      cat "$DIRTR/kde-src2valencia-esmena.sed" >> "kde-src2valencia.sed"
+      cp  "$DIRTR/all-src2valencia-adapta.sed"    "all-src2valencia.sed"
+      cat "$DIRTR/all-src2valencia.sed"        >> "all-src2valencia.sed"
+      cat "$DIRTR/all-src2valencia-esmena.sed" >> "all-src2valencia.sed"
+
+      # Performance: Limit CPU usage for sed background tasks
+      if ! pgrep -x "cpulimit" >/dev/null 2>&1; then
+        cpulimit --background --quiet --path="$(which sed)" --limit='75' &>/dev/null || true
+      fi
+    fi
+  }
+
   if [ -e "$DIRTEM/${PO2}t" ]; then
-      cd "$MEM_DIR" || exit 1
       sed_files
 
       echo -e "   \e[38;5;44m· ($1)\e[0m $PO2"
@@ -229,7 +231,7 @@ adapta_ho() {
 
       cd "$ROOT_SCRIPT" || exit 1
     else
-      echo -e "   \e[38;5;44m· ($1)\e[0m $PO2 \033[47;31m- Segurament aquesta documentació s'ha mogut o eliminat\e[0m"
+      echo -e "   \e[38;5;44m· ($1)\e[0m $PO2 \e[47;31m- Segurament aquesta documentació s'ha mogut o eliminat\e[0m"
   fi
 }
 
@@ -249,7 +251,7 @@ copia_valencia() {
           PO2="${po##*/}"
           CA_MOD="$DIRMOD/$PO2"
           adapta_ho "$ETIQUETA"
-        done < <(find "$DIRMOD/" -maxdepth 1 -type f -name "*.po" -print0 | sort -z)
+        done < <(find "$DIRMOD/" -mindepth 1 -maxdepth 1 -type f -name "*.po" -print0 | LC_ALL=C sort -z)
     fi
   }
 
@@ -274,19 +276,19 @@ copia_valencia() {
   processa_bloc "$DIRMOD/kf6" "kf6-trunk"
 }
 
-crea_missatges() {
-  local BRANCA="$1"
-
-  [ -f "$ROOT_TREE/$BRANCA/$DIRTEM/${PO2}t" ] || return
-  msgmerge --silent --previous --width='79' --lang='ca' "$CA_MOD" "$ROOT_TREE/$BRANCA/$DIRTEM/${PO2}t" --output-file="$ROOT_TREE/$BRANCA/$DIROBJ/$PO2"
-  posieve  remove-obsolete "$ROOT_TREE/$BRANCA/$DIROBJ/$PO2"
-  msgfmt   --statistics    "$ROOT_TREE/$BRANCA/$DIROBJ/$PO2"
-}
-
 crea_po_mod() {
   DIRMOD="ca-mod/$MESSAGES/$1"
   DIROBJ="ca/$MESSAGES/$1"
   DIRTEM="templates/$MESSAGES/$1"
+
+  crea_missatges() {
+    local BRANCA="$1"
+
+    [ -f "$ROOT_TREE/$BRANCA/$DIRTEM/${PO2}t" ] || return
+    msgmerge --silent --previous --width='79' --lang='ca' "$CA_MOD" "$ROOT_TREE/$BRANCA/$DIRTEM/${PO2}t" --output-file="$ROOT_TREE/$BRANCA/$DIROBJ/$PO2"
+    posieve  remove-obsolete "$ROOT_TREE/$BRANCA/$DIROBJ/$PO2"
+    msgfmt   --statistics    "$ROOT_TREE/$BRANCA/$DIROBJ/$PO2"
+  }
 
   while IFS= read -r -d '' po
     do
@@ -319,7 +321,7 @@ crea_po_mod() {
         echo -e "   \e[38;5;44m-- (KF6 stable) <-\e[0m $PO2"
         crea_missatges "$STABLE6"
       fi
-    done < <(find "$ROOT_SCRIPT/$DIRMOD/" -maxdepth 1 -type f -name "*.po" -print0 | sort -z)
+    done < <(find "$ROOT_SCRIPT/$DIRMOD/" -mindepth 1 -maxdepth 1 -type f -name "*.po" -print0 | LC_ALL=C sort -z)
 }
 
 neteja_ca() {
@@ -358,7 +360,7 @@ neteja_ca() {
         echo -e "   \e[38;5;44m· KF6 ->\e[0m $DIRMOD/\e[38;5;44mstable6/\e[0m$PO2"
         mv -f  "$ROOT_TREE/$STABLE6/$DIROBJ/$PO2"    "$ROOT_SCRIPT/$DIRMOD/stable6/$PO2"
       fi
-    done < <(find "$ROOT_SCRIPT/$DIRMOD/" -maxdepth 1 -type f -name "*.po" -print0 | sort -z)
+    done < <(find "$ROOT_SCRIPT/$DIRMOD/" -mindepth 1 -maxdepth 1 -type f -name "*.po" -print0 | LC_ALL=C sort -z)
 }
 
 per_carpeta(){
@@ -369,12 +371,12 @@ per_carpeta(){
       DIR="${carpeta##*/}"
       [ "$DIR" = "${MODUL:-}" ] && ACTIVAT=1
       [ "$ACTIVAT" -eq 1 ] && prompt_1
-    done < <(find "$SOURCE/messages/" -maxdepth 1 -type d -print0 | sort -z)
+    done < <(find "$SOURCE/messages/" -mindepth 1 -maxdepth 1 -type d -print0 | LC_ALL=C sort -z)
 }
 
 prompt_1() {
-  echo -e "\e[38;5;46m * $DIR -\e[0m \e[38;1;33m $MSG:  $TEXT \e[0m\n"
-  [ -n "${1-}" ] && echo -e "\033[1;37m $MISSATGE \e[0m\n"
+  echo -e "\e[38;5;46m * $DIR -\e[0m \e[1;33m $MSG:  $TEXT \e[0m\n"
+  [ -n "${1-}" ] && echo -e "\e[1;37m $MISSATGE \e[0m\n"
   read -r -p "Voleu procedir? (Sí/no) " sn
   case "${sn,,}" in
     no|n)
@@ -401,9 +403,8 @@ prompt_1() {
 }
 
 cerca_dira() {
-    { [ -z "${1-}" ] || [[ ! "${1-}" =~ ^(ca|va)$ ]]; } && sortida_po || true
-    [ -z "${2-}" ] && sortida_po || true
-    [ -z "${3-}" ] && sortida_po || true
+    { [ -z "${1-}" ] || [[ ! "${1-}" =~ ^(ca|va)$ ]]; } && sortida_po
+    { [ -z "${2-}" ] || [ -z "${3-}" ]; } && sortida_po
     TEXT="$2"
     MODUL="$3"
     SOURCE="$SOURCE_0"
@@ -426,11 +427,11 @@ cerca_and_not() {
           echo -e "\n\n - IGU: $DIR\n   ****"
           posieve find-messages -s fexpr:"$STRING" "$SOURCE/messages/$DIR"
       fi
-    done < <(find "$SOURCE/messages/" -maxdepth 1 -type d -print0 | sort -z)
+    done < <(find "$SOURCE/messages/" -mindepth 1 -maxdepth 1 -type d -print0 | LC_ALL=C sort -z)
 }
 
 pregunta() {
-  echo -e "\033[1;37m* Ara es requereix una acció:\e[0m $MISSATGE_DIFF"
+  echo -e "\e[1;37m* Ara es requereix una acció:\e[0m $MISSATGE_DIFF"
   read -r -p "Voleu procedir? (Sí/no) " sn
   case "${sn,,}" in
     no|n)
@@ -446,7 +447,7 @@ pregunta() {
 case ${1-} in
   troba_po)
     [ -z "${2-}" ] && sortida_po || true
-    find "$SOURCE_0/messages/"* -type f -name "$2"
+    find "$SOURCE_0/messages/" -type f -name "$2"
   ;;
   crea_po_linia)
     comprova_lloc
@@ -458,10 +459,10 @@ case ${1-} in
     PHRASE="$3"
 
     cerca_linia() {
-      PO="${carpeta##*/}"
+      PO="${FILE##*/}"
       DIR="${FILE%/*}"
 
-      echo -e "\033[1;37m# $BRANCH:\e[0m $DIR \033[1;37m-\e[0m $PO"
+      echo -e "\e[1;37m# $BRANCH:\e[0m $DIR \e[1;37m-\e[0m $PO"
       msgmerge --silent --previous --no-wrap "ca/messages/$DIR/$PO" "templates/messages/$DIR/${PO}t" --output-file="missatges-$PO"
       grep --color=auto --ignore-case --line-number "$PHRASE" "missatges-$PO"
       rm -f "missatges-$PO"
@@ -497,11 +498,11 @@ case ${1-} in
     TEXT3=""
 
 # valencià
-    TEXT="[\e[33;5;46m?\e[0m\e[38;1;33m]( |$)"
+    TEXT="[\e[33;5;46m?\e[0m\e[1;33m]( |$)"
     TEXT1="[?]( |$)"
     MISSATGE="$MISSATGE1 ** Voleu …? **"
     prompt_1
-    TEXT="[\e[33;5;46m!\e[0m\e[38;1;33m]( |$)"
+    TEXT="[\e[33;5;46m!\e[0m\e[1;33m]( |$)"
     TEXT1="[!]( |$)"
     MISSATGE="$MISSATGE1 ** _esborrar el signe d'exclamació?_ **"
     prompt_1
@@ -511,43 +512,43 @@ case ${1-} in
     prompt_1
     WORD='1,'
     CATALAN_RULE="a-zA-Z0-9-·'ÀàÉéÈèÍíÏïÓóÒòÚúÜüÇç"
-    TEXT="\\\b\e[33;5;46ma l'\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46ma l'\e[0m\e[1;33m[$CATALAN_RULE]{$WORD}"
     TEXT1="($APPEND|)\ba ($APPEND|)l'($APPEND|)[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) ($APPEND|)a ($APPEND|)l'($APPEND|)[$CATALAN_RULE]{$WORD}"
     APPEND_B="($APPEND|)\ba ($APPEND|)l'($APPEND|)($APPEND_A_L)"
     MISSATGE="$MISSATGE1 ** amb / en l' **"
     prompt_1
-    TEXT="\\\b\e[33;5;46ma (d'|del? |)\e[0m\e[38;1;33m\w{2,}[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46ma (d'|del? |)\e[0m\e[1;33m\w{2,}[$CATALAN_RULE]{$WORD}"
     TEXT1="($APPEND|)\ba (d'|del? |)($APPEND|)\w{2}[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) ($APPEND|)a (d'|del? |)($APPEND|)\w{2}[$CATALAN_RULE]{$WORD}"
     APPEND_B="($APPEND|)\ba (d'|del? |)($APPEND|)($APPEND_A)"
     MISSATGE="$MISSATGE1 ** a inserir -> que cal inserir / que s'ha d'inserir / que s'inserirà **"
     prompt_1
-    TEXT="\\\b\e[33;5;46ma la (d'|del?s? |)\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46ma la (d'|del?s? |)\e[0m\e[1;33m[$CATALAN_RULE]{$WORD}"
     TEXT1="($APPEND|)\ba ($APPEND|)la (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) ($APPEND|)a ($APPEND|)la (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
     APPEND_B="($APPEND|)\ba ($APPEND|)la (d'|del?s? |)($APPEND|)($APPEND_A_LA)"
     MISSATGE="$MISSATGE1 ** amb / en la **"
     prompt_1
-    TEXT="\\\b\e[33;5;46ma les (d'|del?s? |)\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46ma les (d'|del?s? |)\e[0m\e[1;33m[$CATALAN_RULE]{$WORD}"
     TEXT1="($APPEND|)\ba ($APPEND|)les (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) ($APPEND|)a ($APPEND|)les (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
     APPEND_B="($APPEND|)\ba ($APPEND|)les (d'|del?s? |)($APPEND|)($APPEND_A_LES)"
     MISSATGE="$MISSATGE1 ** amb / en les **"
     prompt_1
-    TEXT="\\\b\e[33;5;46mals? (d'|del?s? |)\e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46mals? (d'|del?s? |)\e[0m\e[1;33m[$CATALAN_RULE]{$WORD}"
     TEXT1="($APPEND|)\bals? (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) ($APPEND|)als? (d'|del?s? |)($APPEND|)[$CATALAN_RULE]{$WORD}"
     APPEND_B="($APPEND|)\bals? (d'|del?s? |)($APPEND|)($APPEND_ALS)"
     MISSATGE="$MISSATGE1 ** amb / en els? **"
     prompt_1
     APPEND_B=""
-    TEXT="\\\b\e[33;5;46ma on \e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46ma on \e[0m\e[1;33m[$CATALAN_RULE]{$WORD}"
     TEXT1=" a on ($APPEND|)[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) a on ($APPEND|)[$CATALAN_RULE]{$WORD}"
     MISSATGE="$MISSATGE1 ** a on cal / s'ha(n) **"
     prompt_1
-    TEXT="\\\b\e[33;5;46ma un \e[0m\e[38;1;33m[$CATALAN_RULE]{$WORD}"
+    TEXT="\\\b\e[33;5;46ma un \e[0m\e[1;33m[$CATALAN_RULE]{$WORD}"
     TEXT1=" a un ($APPEND|)[$CATALAN_RULE]{$WORD}"
     TEXT2="\b($APPEND_0) a un ($APPEND|)[$CATALAN_RULE]{$WORD}"
     MISSATGE="$MISSATGE1 ** amb / en un **"
@@ -711,7 +712,7 @@ case ${1-} in
 
     for cadena in "${CADENA[@]}"
       do
-        echo -e "\e[38;5;46m * $cadena/* -\e[0m \e[38;1;33m $TEXT \e[0m"
+        echo -e "\e[38;5;46m * $cadena/* -\e[0m \e[1;33m $TEXT \e[0m"
         read -r -p "Voleu procedir? (Sí/no) " sn
         case "${sn,,}" in
           no|n)
@@ -719,8 +720,7 @@ case ${1-} in
             exit 1
           ;;
           *)
-            rm -f "messages.mo"
-            rm -f "missatges*.po" 2>/dev/null || true
+            rm -f "messages.mo" missatges*.po
             posieve find-messages -smsgstr:"$TEXT" "$SOURCE_0/messages/$cadena"*
           ;;
         esac
@@ -781,30 +781,30 @@ case ${1-} in
   adapta_dir)
     [ -z "${2-}" ] && sortida_po || true
     command_rm
-    for po in $(find "ca/messages/$2/"* -type f -name "*.po" | LC_ALL=C sort)
+    mapfile -t FITXERSPO < <(find "ca/messages/$2/" -type f -name "*.po" | LC_ALL=C sort)
+    for po in "${FITXERSPO[@]}"
       do
-        PO2="${po##*/}"
-        DIR="$(dirname  "$po" | sed -e s,ca/,,)"
-        ./adapta-kde_recursivament.sh fitxer "$DIR/$PO2"
+        FILEPATH="${po//ca\//}"
+        ./adapta-kde_recursivament.sh fitxer "$FILEPATH"
       done
   ;;
   adapta_dir_va)
     [ -z "${2-}" ] && sortida_po || true
     command_rm
-    for po in $(find "ca@valencia/messages/$2/"* -type f -name "*.po" | LC_ALL=C sort)
+    mapfile -t FITXERSPO < <(find "ca@valencia/messages/$2/" -type f -name "*.po" | LC_ALL=C sort)
+    for po in "${FITXERSPO[@]}"
       do
-        PO2="${po##*/}"
-        DIR="$(dirname  "$po" | sed -e s,ca@valencia/,,)"
-        ./adapta-kde_recursivament.sh fitxer "$DIR/$PO2"
+        FILEPATH="${po//ca@valencia\//}"
+        ./adapta-kde_recursivament.sh fitxer "$FILEPATH"
       done
   ;;
   adapta_mod)
     command_rm
-    for po in $(find "ca-mod/messages/"* -maxdepth 1 -type f -name "*.po" | LC_ALL=C sort)
+    mapfile -t FITXERSPO < <(find 'ca-mod/messages/' -maxdepth 2 -type f -name "*.po" | LC_ALL=C sort)
+    for po in "${FITXERSPO[@]}"
       do
-        PO2="${po##*/}"
-        DIR="$(dirname  "$po" | sed -e s,ca-mod/,,)"
-        ./adapta-kde_recursivament.sh fitxer "$DIR/$PO2"
+        FILEPATH="${po//ca-mod\//}"
+        ./adapta-kde_recursivament.sh fitxer "$FILEPATH"
       done
   ;;
   adapta_valencia)
@@ -901,24 +901,24 @@ case ${1-} in
       rm -Rf "$base_dir/websites-planet-kde-org"
     }
 
-    echo -e "\033[1;37m* Es netegen les carpetes que s'actualitzaran.\e[0m"
-    rm -Rf "ca/"*
-    rm -Rf "ca@valencia/"*
-    rm -Rf "templates/"*
+    echo -e "\e[1;37m* Es netegen les carpetes que s'actualitzaran.\e[0m"
+    rm -Rf 'ca/'
+    rm -Rf 'ca@valencia/'
+    rm -Rf 'templates/'
 
-    echo -e "\033[1;37m* Es copien les branques següents:\e[0m"
+    echo -e "\e[1;37m* Es copien les branques següents:\e[0m"
     for obj in ca templates
       do
         echo "  - kf5 stable $obj"
         mkdir -p "$obj/messages/"
-        cp -fr "../../../../stable/l10n-kf5/$obj/messages/"* "$obj/messages/"
+        cp -fr "../../../../stable/l10n-kf5/$obj/messages/" "$obj/messages/"
       done; echo
 
     for obj in ca templates
       do
         echo "  - kf5 $obj"
         mkdir -p "$obj/messages/"
-        cp -fr "../../$obj/messages/"* "$obj/messages/"
+        cp -fr "../../$obj/messages/" "$obj/messages/"
         [ "$obj" = "templates" ] || elimina_carpetes "$obj/messages"
       done; echo
 
@@ -926,18 +926,19 @@ case ${1-} in
       do
         echo "  - kf6 $obj"
         mkdir -p "$obj/messages/"
-        cp -fr "../../../l10n-kf6/$obj/messages/"* "$obj/messages/"
+        cp -fr "../../../l10n-kf6/$obj/messages/" "$obj/messages/"
       done; echo
 
-    echo -e "\033[1;37m* Es copien les traduccions des de «ca-mod/»:\e[0m"
+    echo -e "\e[1;37m* Es copien les traduccions des de «ca-mod/»:\e[0m"
     $0 crea_po gui
     $0 neteja_ca gui
 
     # ca: la documentació són enllaços
-    mkdir -p "ca/docmessages/" "templates/docmessages/"
-    cd ca/docmessages || exit 1
-    echo -e "  \033[1;37m- kf6: enllaços cap a la documentació «ca»:\e[0m"
-    for obj in $(find '../../ca-mod/docmessages/' -type d -name 'kf6' 2>/dev/null)
+    mkdir -p 'ca/docmessages/' 'templates/docmessages/'
+    cd 'ca/docmessages' || exit 1
+    echo -e "  \e[1;37m- kf6: enllaços cap a la documentació «ca»:\e[0m"
+    mapfile -t DIRS < <(find '../../ca-mod/docmessages/' -type d -name 'kf6' -print0 2>/dev/null | LC_ALL=C sort)
+    for obj in "${DIRS[@]}"
       do
         IFS='/' read -r -a parts <<< "$obj"
         MODULE="${parts[4]}"
@@ -948,14 +949,15 @@ case ${1-} in
       done
 
     cd "$ROOT_SCRIPT" || exit 1
-    mkdir -p "ca@valencia/docmessages/"
-    cp "../../ca/docmessages/language" "ca/docmessages/language"
-    cp "../../ca@valencia/docmessages/language" "ca@valencia/docmessages/language"
+    mkdir -p 'ca@valencia/docmessages/'
+    cp '../../ca/docmessages/language' 'ca/docmessages/language'
+    cp '../../ca@valencia/docmessages/language' 'ca@valencia/docmessages/language'
 
     # ca@valencia: la documentació són enllaços
-    cd "ca@valencia/docmessages" || exit 1
-    echo -e "  \033[1;37m- kf6: enllaços cap a la documentació «ca@valencia»:\e[0m"
-    for obj in $(find '../../ca-mod/docmessages/' -type d -name 'kf6')
+    cd 'ca@valencia/docmessages' || exit 1
+    echo -e "  \e[1;37m- kf6: enllaços cap a la documentació «ca@valencia»:\e[0m"
+    mapfile -t DIRS < <(find '../../ca-mod/docmessages/' -type d -name 'kf6' -print0 2>/dev/null | LC_ALL=C sort)
+    for obj in "${DIRS[@]}"
       do
         IFS='/' read -r -a parts <<< "$obj"
         MODULE="${parts[4]}"
@@ -965,10 +967,10 @@ case ${1-} in
       done
 
     cd "$ROOT_SCRIPT" || exit 1
-    echo -e "\033[1;37m* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions:\e[0m"
+    echo -e "\e[1;37m* Es fa «posieve --quiet remove-obsolete ca/» per a netejar les traduccions:\e[0m"
     posieve --quiet remove-obsolete "ca/"
 
-    echo -e "\n\033[47;31mNOTA:\e[0m \033[1;37mAra executeu «$0 adapta» per a aplicar els darrers canvis a «ca@valencia/».\e[0m"
+    echo -e "\n\e[47;31mNOTA:\e[0m \e[1;37mAra executeu «$0 adapta» per a aplicar els darrers canvis a «ca@valencia/».\e[0m"
   ;;
   copia_a_svn_local)
     comprova_lloc
@@ -988,8 +990,6 @@ case ${1-} in
   ;;
   copia_aquests)
     comprova_lloc
-    [ -z "${2-}" ] && sortida_po || true
-
     if [[ -z "${2-}" || ! "$2" =~ ^[0-9[:space:]]*$ ]]; then
       sortida_po
     fi
@@ -1056,10 +1056,10 @@ case ${1-} in
 
     comprova() {
       DIR="$1"
-      POFILE_2="$(find "$DIR/"* -type f -name "$FILE_NAME.po")"
+      POFILE_2="$(find "$DIR/" -type f -name "$FILE_NAME.po")"
       [ "$POFILE_2" ] && POFILE="$POFILE_2"
       [ ! "$POFILE" ] && return
-      DIR_M="$(basename "${POFILE%/*}")"
+      DIR_M="${POFILE%/*}" && DIR_M="${DIR_M##*/}"
       if [[ "$POFILE" == *'stable'* ]]; then
           BRANCA='stable'
         else
@@ -1182,17 +1182,17 @@ case ${1-} in
     DIRMOD="$ROOT_SCRIPT/ca-mod/$MESSAGES"
     DIROBJ="$ROOT_SCRIPT/ca/$MESSAGES"
 
-    FOLDERS_5="$(find "$DIRSRC/"* -type d -name "$2")"
-    FOLDERS_6="$(find "$ROOT_TREE/$TRUNK6/ca/$MESSAGES/"* -type d -name "$2")"
-    if   [ "$FOLDERS_5" ]; then
+    readarray -t folders_5 < <(find "$DIRSRC/" -type d -name "$2" -print0 2>/dev/null)
+    readarray -t folders_6 < <(find "$ROOT_TREE/$TRUNK6/ca/$MESSAGES/" -type d -name "$2" -print0 2>/dev/null)
+    if   [ "${#folders_5[@]}" -gt 0 ]; then
         BRANCA="$TRUNK"
-        FOLDERS="$(basename -a "$FOLDERS_5")"
-    elif [ "$FOLDERS_6" ]; then
+        FOLDERS="${folders_5[@]##*/}"
+    elif [ "${#folders_6[@]}" -gt 0 ]; then
         BRANCA="$TRUNK6"
         DIRMOD="$ROOT_SCRIPT/ca-mod/$MESSAGES/kf6"
-        FOLDERS="$(basename -a "$FOLDERS_6")"
+        FOLDERS="${folders_6[@]##*/}"
       else
-        echo -e "\033[47;31mERROR:\e[0m Indiqueu una carpeta vàlida (p. ex., kstars) o prefix de carpetes (p. ex., websites-*) com a entrada!"
+        echo -e "\e[47;31mERROR:\e[0m Indiqueu una carpeta vàlida (p. ex., kstars) o prefix de carpetes (p. ex., websites-*) com a entrada!"
         exit 0
     fi
     DIRSRC="$ROOT_TREE/$BRANCA/ca/$MESSAGES"
@@ -1201,10 +1201,10 @@ case ${1-} in
     llista() {
       for folder in $FOLDERS
         do
-          FILES="$(find "$ROOT_TREE/$BRANCA/ca/$MESSAGES/$folder/"* -type f -name "*.po" 2>/dev/null)"
-          for file in $FILES
+          mapfile -t FILES < <(find "$ROOT_TREE/$BRANCA/ca/$MESSAGES/$folder/" -type f -name "*.po" -print0 2>/dev/null)
+          for file in "${FILES[@]}"
             do
-              DIR="$(basename "${file%/*}")"
+              DIR="${file%/*}" && DIR="${DIR##*/}"
               PO="${file##*/}"
 
               if [ "$1" = "1" ]; then
@@ -1234,15 +1234,15 @@ case ${1-} in
     }
 
     # Es dona format amb «msgmerge» per a que el diff sigui menor
-    echo -e "\033[47;31mPrimer:\e[0m es copia amb «msgmerge» en el repositori de proves"
-    MISSATGE_DIFF="Cometeu els canvis en el repo de proves «\033[47;31mca/$MESSAGES/$2\e[0m»"
+    echo -e "\e[47;31mPrimer:\e[0m es copia amb «msgmerge» en el repositori de proves"
+    MISSATGE_DIFF="Cometeu els canvis en el repo de proves «\e[47;31mca/$MESSAGES/$2\e[0m»"
     llista 1 && pregunta
 
-    echo -e "\033[47;31mSegon:\e[0m ara es passa per l'script en sed només del català"
-    MISSATGE_DIFF="Procediu a extreure el diff amb el «\033[47;31mkdesvn\e[0m» (caldrà revisar-lo)"
+    echo -e "\e[47;31mSegon:\e[0m ara es passa per l'script en sed només del català"
+    MISSATGE_DIFF="Procediu a extreure el diff amb el «\e[47;31mkdesvn\e[0m» (caldrà revisar-lo)"
     llista 2 && pregunta
 
-    echo -e "\033[47;31mTercer:\e[0m per acabar es restaura el seu darrer estat"
+    echo -e "\e[47;31mTercer:\e[0m per acabar es restaura el seu darrer estat"
     llista 3
   ;;
   fitxer_erroni)
@@ -1257,25 +1257,25 @@ case ${1-} in
       DIRTEM="$ROOT_TREE/$TRUNK6/templates/messages/$DIR"
     fi
     [ -e "$DIRMOD/$PO" ] && DIRSRC="$DIRMOD"
-    echo -e "\033[47;31mPrimer:\e[0m s'executa «msgmerge»"
+    echo -e "\e[47;31mPrimer:\e[0m s'executa «msgmerge»"
     MISSATGE_DIFF="[missatges-$PO]: Res"
     pregunta
     msgmerge --silent --previous --no-wrap "$DIRSRC/$PO" "$DIRTEM/${PO}t" --output-file="missatges-$PO"
     msgfmt --statistics "missatges-$PO"
 
-    echo -e "\033[47;31mSegon:\e[0m ara es passa per sed amb l'script «kde-src2valencia.sed»"
+    echo -e "\e[47;31mSegon:\e[0m ara es passa per sed amb l'script «kde-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_1-$PO]: Res"
     pregunta
     sed -f kde-src2valencia.sed        < "missatges-$PO"   > "missatges_1-$PO"
     msgfmt --statistics "missatges_1-$PO"
 
-    echo -e "\033[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
+    echo -e "\e[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_2-$PO]: Res"
     pregunta
     sed -f all-src2valencia.sed        < "missatges_1-$PO" > "missatges_2-$PO"
     msgfmt --statistics "missatges_2-$PO"
 
-    echo -e "\033[47;31mCinquè i últim:\e[0m es torna a executar «msgmerge»"
+    echo -e "\e[47;31mCinquè i últim:\e[0m es torna a executar «msgmerge»"
     MISSATGE_DIFF="[$PO]: Res"
     pregunta
     msgmerge --silent --previous --width=79 --lang="$SOURCE_0" "missatges_2-$PO" "$DIRTEM/${PO}t" --output-file="$PO" && rm -f "missatges_2-$PO2"

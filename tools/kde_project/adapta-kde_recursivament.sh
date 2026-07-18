@@ -9,7 +9,7 @@ shopt -s extglob
 # En aquest fitxer es desa la revisió del darrer commit (format: 1641759)
 RVF='svn-revision_ca-valencia.log'
 # Mira si es treballa sobre la branca «stable» o «trunk» (stable/l10n-kf6)
-BRANCA="$(basename "${PWD%/*}")"
+BRANCA="${PWD%/*}" && BRANCA="${BRANCA##*/}"
 # Mira si es treballa sobre la versió «kde5» o «kf6» (stable/l10n-kf6)
 ESCRIPTORI="${PWD##*/}"
 REPETIT=
@@ -24,13 +24,13 @@ msg_exit() {
   exit 1
 }
 
-command -v awk      >/dev/null 2>&1 || msg_exit "el paquet «gawk» de GNU: apt install gawk"
-command -v cpulimit >/dev/null 2>&1 || msg_exit "el paquet «cpulimit»: apt install cpulimit"
-command -v msgmerge >/dev/null 2>&1 || msg_exit "el paquet «gettext»: apt install gettext"
-command -v grep     >/dev/null 2>&1 || msg_exit "el paquet «grep» de GNU: apt install grep"
-command -v posieve  >/dev/null 2>&1 || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
-command -v sed      >/dev/null 2>&1 || msg_exit "el paquet «sed» de GNU: apt install sed"
-command -v svn      >/dev/null 2>&1 || msg_exit "el paquet «subversion»: apt install subversion"
+command -v awk      &>/dev/null || msg_exit "el paquet «gawk» de GNU: apt install gawk"
+command -v cpulimit &>/dev/null || msg_exit "el paquet «cpulimit»: apt install cpulimit"
+command -v msgmerge &>/dev/null || msg_exit "el paquet «gettext»: apt install gettext"
+command -v grep     &>/dev/null || msg_exit "el paquet «grep» de GNU: apt install grep"
+command -v posieve  &>/dev/null || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
+command -v sed      &>/dev/null || msg_exit "el paquet «sed» de GNU: apt install sed"
+command -v svn      &>/dev/null || msg_exit "el paquet «subversion»: apt install subversion"
 
 # Establim la capçalera
 capçalera() {
@@ -102,11 +102,11 @@ genera_copia() {
         do
           if echo "$TOCAT" | grep -q "$usuari_val"; then
             # Extracció del nom de l'autor
-            USUARI_VAL="$(echo "$HEADERPO" | grep "$usuari_val" | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ *$//g' -e 's/[^A-Z]\{10\}/ /g' -e 's/SPDX-FileCopyright. //g')','"
+            USUARI_VAL="$(echo "$HEADERPO" | grep "$usuari_val" | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ *$//g' -e 's/[^A-Z]\{10\}/ /g' -e 's/SPDX-FileCopyright. //g'),"
             USUARI_VAL="${USUARI_VAL//# /}"
 
             # Extracció del correu de l'autor
-            USUARI_VAL_EMAIL="$(echo "$HEADERPO" | grep "$usuari_val" | cut -f 2 -d'<' | sed -e 's/,.*//g' -e 's/>$//g')','"
+            USUARI_VAL_EMAIL="$(echo "$HEADERPO" | grep "$usuari_val" | cut -f 2 -d'<' | sed -e 's/,.*//g' -e 's/>$//g'),"
 
             # Acumulació de les dades
             USUARIS_VAL="$USUARIS_VAL$USUARI_VAL"
@@ -167,17 +167,17 @@ genera_copia() {
 
   # es fa el seguiment local de les esmenes en regressió
   PO_RULES="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
-  echo -e " \033[1;37m* Es comproven les regles globals:\e[0m"
+  echo -e " \e[1;37m* Es comproven les regles globals:\e[0m"
 
   posieve check-rules -s rfile:"$PO_RULES/errors.rules"     "$FITX"
   if   [[ "$DIR" = 'messages/'@(digikam-doc|websites-krita-org) ]]; then
-    echo -e " \033[1;37m* Es comproven les regles multimedia:\e[0m"
+    echo -e " \e[1;37m* Es comproven les regles multimedia:\e[0m"
     posieve check-rules -s rfile:"$PO_RULES/multimedia.rules" "$FITX"
   elif [[ "$DIR" = 'messages/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
-    echo -e " \033[1;37m* Es comproven les regles del KStars:\e[0m"
+    echo -e " \e[1;37m* Es comproven les regles del KStars:\e[0m"
     posieve check-rules -s rfile:"$PO_RULES/kstars.rules"     "$FITX"
   elif [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
-    echo -e " \033[1;37m* Es comproven les regles per a Sphinx:\e[0m"
+    echo -e " \e[1;37m* Es comproven les regles per a Sphinx:\e[0m"
     posieve check-rules -s rfile:"$PO_RULES/sphinx.rules"     "$FITX"
   fi
 
@@ -191,7 +191,7 @@ cerca_po() {
 
   # Cerca les plantilles de traducció i les ordena
   cd ca || exit 1
-  mapfile -t FITXERSPO < <(find messages/ -type f -name "*.po" | LC_ALL=C sort)
+  mapfile -t FITXERSPO < <(find 'messages/' -type f -name "*.po" | LC_ALL=C sort)
   cd ..
 }
 
@@ -234,7 +234,7 @@ case $ACTION in
 
     commits_num() {
       echo "3 - svn log --verbose -r $1 /home/kde/$SVN_REPO/messages"
-      FITXERS="$(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)"
+      mapfile -t FITXERS < <(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)
     }
 
     FITXERST=""
