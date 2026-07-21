@@ -254,7 +254,11 @@ s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 577,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 582,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # calligra/calligra._desktop_.po
+2452,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 2453,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
+# calligra/calligrasheets.po
+13205,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
+13082,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 # crow-translate/crow-translate_qt.po
 2489,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 2523,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
@@ -264,9 +268,9 @@ s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 3851,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
 3866,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
 # kaidan/kaidan_qt.po
-2407,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 2409,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
-2437,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+2425,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
+2440,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 # kasts/kasts.po
 1590,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1611,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
@@ -318,8 +322,8 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 1454,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # konsole/konsole.po
 657,/^msgstr / s/\"Servidor/\"Amfitrió/g
-1497,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
-1536,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
+1546,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
+1552,/^msgstr / s/\"Servidor: %1/\"Amfitrió: %1/g
 # konversation/konversation.po
 8156,/^msgstr / s/\"&Servidor:\"/\"\&Servidor amfitrió:\"/g
 8162,/^msgstr / s/\"&Servidor:\"/\"\&Servidor amfitrió:\"/g
@@ -335,8 +339,8 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 2043,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # labplot/labplot.po
 18852,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-20468,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-20988,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+21000,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+21050,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # labplot/labplot2.po
 17997,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # libkleo/libkleopatra6.po
@@ -347,9 +351,8 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 3762,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 3855,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # neochat/neochat.po
-5758,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
-6292,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 6456,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
+6474,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # plasma-browser-integration/plasma-browser-extension._static_.po
 114,/^msgstr / s/\"Versió del servidor: /\"Versió de l'amfitrió: /g
 # plasmatube/plasmatube.po
@@ -369,9 +372,8 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 4034,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
 4061,/^msgstr / s/\"&Màquina: \"/\"A\&mfitrió: \"/g
 # tokodon/tokodon.po
-4472,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
-4484,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 4797,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+4815,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # websites-wiki-rolisteam-org/wiki-rolisteam-org.po
 990,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
  #
@@ -569,6 +571,7 @@ s/\bSi voleu excloure tots els servidors d'un domini donat\([^[:alnum:]]\)/Si vo
 s/\bsol·licitada per a aquest nom d'ordinador\([^[:alnum:]]\)/sol·licitada per a aquest nom d'amfitrió\1/g
 s/\bsolament a les màquines configurades\([^[:alnum:]]\)/solament als amfitrions configurats\1/g
 s/\bsuports amb l'ordinador remot\([^[:alnum:]]\)/suports amb l'amfitrió remot\1/g
+s/\bun nom vàlid de servidor o deixeu-lo\([^[:alnum:]]\)/un nom vàlid d'amfitrió o deixeu-ho\1/g
 s/\buna altra vegada per a aquest ordinador\([^[:alnum:]]\)/una altra vegada per a aquest amfitrió\1/g
 s/\bURL amb format incorrecte, manca l'ordinador\([^[:alnum:]]\)/URL amb format incorrecte, falta l'amfitrió\1/g
 s/\bURL erroni\(s\|\), manca l'ordinador\([^[:alnum:]]\)/URL erroni\1, falta l'amfitrió\2/g
@@ -632,9 +635,8 @@ s/\brespost amb l'indicatiu\([^[:alnum:]]\)/respost amb l'indicador\1/g
 253,/^msgstr / s/\"Lluminositat: %1\"/\"Claredat: %1\"/g
 # okular/okular.po
 s/\"Inverteix la &lluminositat\"/\"Inverteix la c\&laredat\"/g
-2511,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
-2517,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
 2554,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
+2565,/^msgstr / s/\"Inverteix la lluminositat\"/\"Inverteix la claredat\"/g
  #
 s/\"Lluminositat del fons\"/\"Claredat del fons\"/g
 s/\"Lluminositat del fons (0 a 90)\.\"/\"Claredat del fons (0 a 90).\"/g
@@ -679,15 +681,14 @@ s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de c
 239,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
 268,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
 # kdenlive/kdenlive.po
-2929,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-2949,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-2960,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-8706,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-8741,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-8751,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-14095,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
-14386,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
-14554,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+2994,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2997,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8789,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8890,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8891,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+16104,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+16205,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+16206,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 # kmplayer/kmplayer.po
 s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 # kooka/libkookascan.po
@@ -876,6 +877,7 @@ s/\(\*\*\|\*\*\*\|\"\|\"&\|\"<p>\|[:«(]\|[-•] \|<b>\|<body><p>\|<h[1234]>\|<i
   s/\bplafó de la Configuració de la cua\([^[:alnum:]]\)/plafó Configureu la cua\1/g
   #
   s/\ba la «Configureu\([^[:alnum:]]\)/a «Configureu\1/g
+  s/\bConfigureu de la\([^[:alnum:]]\)/Configureu la\1/g
   s/\bdiàleg \(\*\*\)Configuració del correu electrònic\([^[:alnum:]]\)/diàleg \1Configureu el correu electrònic\2/g
   s/\bgrup \(\*\*\)Configuració de la marca de temps\([^[:alnum:]]\)/grup \1Configureu la marca de temps\2/g
   s/\bmètode per a la \(\*\*\)Gestió de les dades de cares\([^[:alnum:]]\)/mètode per a \1Gestioneu les dades de cares\2/g

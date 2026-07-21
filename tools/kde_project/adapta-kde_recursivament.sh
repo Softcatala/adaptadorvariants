@@ -75,7 +75,7 @@ genera_copia() {
     cp  "$DIRTR/all-src2valencia-adapta.sed"    'all-src2valencia.sed'
     cat "$DIRTR/all-src2valencia.sed"        >> 'all-src2valencia.sed'
     cat "$DIRTR/all-src2valencia-esmena.sed" >> 'all-src2valencia.sed'
-
+    # \time -f "Temps d'execució: %E" ./c_crea_val-po.sh adapta
     if ! pgrep -x "cpulimit" >/dev/null 2>&1; then
       cpulimit --background --quiet --path="$(which sed)" --limit='75' >/dev/null 2>&1 || true
     fi
@@ -83,8 +83,8 @@ genera_copia() {
 
   # Executem la conversió del fitxer PO
   TARGET_FILE="missatges_2-$FITX"
-  sed -f kde-src2valencia.sed < "missatges-$FITX"   > "missatges_1-$FITX"
-  sed -f all-src2valencia.sed < "missatges_1-$FITX" > "$TARGET_FILE"
+  LC_ALL=ca_ES.UTF-8 sed -f kde-src2valencia.sed < "missatges-$FITX"   > "missatges_1-$FITX"
+  LC_ALL=ca_ES.UTF-8 sed -f all-src2valencia.sed < "missatges_1-$FITX" > "$TARGET_FILE"
   rm -f "missatges-$FITX" "missatges_1-$FITX"
 
   # S'afegeixen els crèdits per al valencià
@@ -135,9 +135,9 @@ genera_copia() {
 
   if   [[ "$FITX" = *@(appdata.po|_qt.po|metainfo.po) ]]; then
       LBUGS=""
-  elif [[ "$FITX"  = @(docs_digikam_org_|docs_kdenlive_org_|docs_krita_org_|kstars_docs_)*.po ]]; then
+  elif [[ "$FITX" = @(docs_digikam_org_|docs_kdenlive_org_|docs_krita_org_|kstars_docs_)*.po ]]; then
       LBUGS=""
-  elif [  "$FITX"  = 'kajongg.po' ]; then
+  elif [  "$FITX" = 'kajongg.po' ]; then
       LBUGS='wolfgang@rohdewald.de'
     else
       LBUGS='https://bugs.kde.org'
@@ -201,14 +201,18 @@ case $ACTION in
     CANVIA='1'
     if [ -f "$RVF" ]; then
         RV="$(cat "$RVF")"
-        # S'afegeix 1 a la revisió per a ometre els últims canvis
-        RVINICI="$(printf "%06d" $(( 10#$RV + 1 )))"
         echo -e "\e[1m\e[97m|--------------------\e[0m\n"
 
-        SVN_REPO="$(svn info 'ca' | grep "^Relative URL:" | cut -f 3 -d' ' | sed -e 's,\^\/,,')"
+        SVN_REPO="$(svn info 'ca' | awk -F'^/| ' '/^Relative URL:/ {print $NF}')"
         # S'obté la darrera modificació SVN des de la carpeta
         echo "1 - svn info /home/kde/$SVN_REPO"
-        RVFINAL="$(LANG=C; svn info 'ca/' | grep "^Revision:" | awk '{print $2}')"
+        RVFINAL="$(LC_ALL=C svn info 'ca/' | awk '/^Revision:/ {print $2}')"
+        if [ "$RV" -lt "$RVFINAL" ]; then
+            # S'afegeix 1 a la revisió per a ometre els últims canvis
+            RVINICI="$(printf "%06d" $((10#$RV + 1)))"
+          else
+            RVINICI="$RV"
+        fi
 
         if [ "$ESCRIPTORI" = 'l10n-kf5-plasma-lts' ]; then
           capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
@@ -229,37 +233,43 @@ case $ACTION in
       exit 1
     fi
 
-    echo "2 - svn log --verbose -r $RVINICI:$RVFINAL /home/kde/$SVN_REPO"
-    mapfile -t COMMITS < <(LANG=C; svn log --verbose -r "$RVINICI:$RVFINAL" 'ca/' | grep -E "$USUARIS_SVN" | awk '{print $1}' | sed 's/^r//' || true)
+    if [ "$RV" -lt "$RVFINAL" ]; then
+        echo "2 - svn log --verbose -r $RVINICI:$RVFINAL /home/kde/$SVN_REPO"
+        mapfile -t COMMITS < <(LC_All=C svn log --verbose -r "$RVINICI:$RVFINAL" 'ca/' 2>/dev/null | awk -v usuaris="$USUARIS_SVN" '$0 ~ usuaris {sub(/^r/, "", $1); print $1}')
 
-    commits_num() {
-      echo "3 - svn log --verbose -r $1 /home/kde/$SVN_REPO/messages"
-      mapfile -t FITXERS < <(LANG=C; svn log --verbose -r "$1" 'ca/' | grep 'ca/messages/' | grep '.po' | sed 's/^\(.*\)\/ca\///g' || true)
-    }
+        commits_num() {
+          echo "3 - svn log --verbose -r $1 /home/kde/$SVN_REPO/messages"
+          mapfile -t FITXERS < <(LC_ALL=C svn log --verbose -r "$1" 'ca/' 2>/dev/null | awk '/ca\/messages\// && /\.po/ {sub(/^.*\/ca\//, ""); print}')
+        }
 
-    FITXERST=""
-    for arg in "${COMMITS[@]}"
-      do
-        commits_num "$arg"
-        [ -z "$FITXERS" ] && continue
+        FITXERST=""
+        for arg in "${COMMITS[@]}"
+          do
+            commits_num "$arg"
+            [ ${#FITXERS[@]} -eq 0 ] && continue
+            printf -v FITXERS "%s\n" "${FITXERS[@]}"
 
-        if [ -z "$FITXERST" ]; then
-            FITXERST="$FITXERS"
-          else
-            FITXERST="${FITXERST}\n${FITXERS}"
-        fi
+            if [ -z "$FITXERST" ]; then
+                FITXERST="$FITXERS"
+              else
+                FITXERST="${FITXERST}"$'\n'"${FITXERS}"
+            fi
 
-        FITXERS=""
-      done
+            FITXERS=""
+          done
 
-    capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
+        mapfile -t FITXERSPO < <(echo -e "$FITXERST" | LC_ALL=C sort -u)
+        capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
+      else
+        echo -e "2 - svn log --verbose -r $RVINICI:$RVFINAL /home/kde/$SVN_REPO\n"
+    fi
   ;;
   recursiu)
     CANVIA='1'
     FOUND="${2:-}"
     # S'estableix a zero (no s'usa)
     RVINICI='0'
-    RVFINAL="$(LANG=C; svn info 'ca/' | grep "^Revision:" | awk '{print $2}')"
+    RVFINAL="$(LC_ALL=C svn info 'ca/' 2>/dev/null | awk '/^Revision:/ {print $2}')"
     capçalera
     cerca_po
   ;;
@@ -350,6 +360,8 @@ for PO in "${FITXERSPO[@]}"
       [ "$DIR"  = 'messages/documentation-docs-krita-org' ]      && message_removed && continue # https://docs.krita.org/ca/
       # Es desactiven les traduccions revisades per l'equip valencià:
       [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]] && message_removed && continue
+      # Aquest fitxer està buit i dona error
+      [ "$FITX" = 'knotifications6_qt.po' ]                      && message_removed && continue
       genera_copia
     fi
   done

@@ -58,13 +58,13 @@ Overview: make a tracking of any change for quality maintain.
 * `rules/*.rules`
 
 
-### Dissabte, 27 de juny del 2026
+### Dilluns, 20 de juliol del 2026
 
-The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***5h*** and ***59m*** with 25%CPU.
+The task of adapting to Valencian the entire branch (**KF5** and **KF6**) in the local SVN tests takes ***3h*** and ***52m*** with 25%CPU.
 
-***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***5 h*** i ***59 m*** amb un 25% de la CPU.
+***va:*** La tasca d'adaptar al valencià tota la branca (**KF5** i **KF6**) en el SVN local de proves tarda ***3 h*** i ***52 m*** amb un 25% de la CPU.
 
-**SVN Message (*with version info*):** Updates to 015.02v (http://avl.gva.es/lexicval/)
+**SVN Message (*with version info*):** Updates to 015.03v (http://avl.gva.es/lexicval/)
 
 
 ## Linguistic resources:

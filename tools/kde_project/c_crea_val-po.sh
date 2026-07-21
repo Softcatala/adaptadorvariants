@@ -43,7 +43,7 @@ APPEND="\`\`|\`|\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\[|\]|\(\[|\)\[|\(\[«|\)\[«|
 APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|celebrar|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dintre|dret|dreta|esquerra|est|estar|facilitar|faltar|fer|Fourier|freqüències|hores d'ara|href|individus|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|molts|motius|name=|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|trobar|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
 APPEND_A_L="aire lliure|escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés|instant|oest de Greenwich|oli|usuari"
 APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|llarga|manera de fer|manera tradicional|millor|nit seleccionada|normal|part|posició (apuntada|d'enfocament)|pèrdua|posta de sol|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
-APPEND_A_LES="[01][0123456789][:,]|2[01234][:,]|dotze del migdia|persones|quals"
+APPEND_A_LES="%[12345]|[01][0123456789][:,]|2[01234][:,]|dotze del migdia|persones|quals"
 # Inclou «AL»
 APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdamunt|capdavant|carbonet|començament|costat|darrere|davant|desenvolupadors?|Dhanab|dia|efectes del càlcul|espectadors|fet|final|Gieba|Giedi|japon[èé]s|Jawf|jugador|llarg|Manamah|mateix (ritme|temps)|màxim|mig del gris|migdia|millors artistes|moment d'escriure|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|principi|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seu (torn|voltant)|seus valors predeterminats|Shuja|sis anys|Thalimain|ultraviolats|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
@@ -221,8 +221,8 @@ adapta_ho() {
       msgmerge --silent --previous --no-wrap "$CA_MOD" "$DIRTEM/${PO2}t" --output-file="missatges-$PO2"
 
       # Executem la conversió del fitxer PO
-      sed -f /kde-src2valencia.sed < "missatges-$PO2"   > "missatges_1-$PO2" && rm -f "missatges-$PO2"
-      sed -f /all-src2valencia.sed < "missatges_1-$PO2" > "missatges_2-$PO2" && rm -f "missatges_1-$PO2"
+      LC_ALL=ca_ES.UTF-8 sed -f /kde-src2valencia.sed < "missatges-$PO2"   > "missatges_1-$PO2" && rm -f "missatges-$PO2"
+      LC_ALL=ca_ES.UTF-8 sed -f /all-src2valencia.sed < "missatges_1-$PO2" > "missatges_2-$PO2" && rm -f "missatges_1-$PO2"
 
       mkdir -p "$DIRDES"
       # Es torna a donar el format amb 78 files
@@ -994,22 +994,29 @@ case ${1-} in
       sortida_po
     fi
     TARGETS="$2"
+    FITXERST=""
 
     commits_num(){
-      cd "$SOURCE_0" || exit 1
-      FITXERS="$(svn log --verbose -r "$1" | grep '\/ca@valencia\/messages\/' | sed 's/\(^.*\)Treball\/ca@valencia\/messages\// /g' | tr -d '\n')"
-      cd ..
+      (
+        cd "$SOURCE_0" || exit 1
+        LC_ALL=C svn log --verbose -r "$1" 2>/dev/null | awk '/\/ca@valencia\/messages\// {sub(/^.*\/ca@valencia\/messages\//, ""); print}'
+      )
     }
 
-    FITXERST=""
     read -r -a ARRAY <<< "$TARGETS"
     for arg in "${ARRAY[@]}"
       do
-        commits_num "$arg"
-        FITXERST="$FITXERST $FITXERS"
+        FILES_COMMIT="$(commits_num "$arg")"
+        [ -z "$FILES_COMMIT" ] && continue
+
+        if [ -z "$FITXERST" ]; then
+            FITXERST="$FILES_COMMIT"
+          else
+            FITXERST="${FITXERST}"$'\n'"${FILES_COMMIT}"
+        fi
       done
 
-    FITXERS="$(echo "$FITXERST" | sed 's/ /\n/g' | LC_ALL=C sort -u || true)"
+    FITXERS="$(echo "$FITXERST" | grep -v '^$' | LC_ALL=C sort -u)"
 
     cd "$ROOT_TREE/$STABLE" || exit 1
     for file in $FITXERS
@@ -1220,7 +1227,7 @@ case ${1-} in
                     cat "$DIRTR/kde-src2valencia_b.sed"      >> "kde-src2valencia.sed"
                     cat "$DIRTR/kde-src2valencia-esmena.sed" >> "kde-src2valencia.sed"
                 fi
-                sed -f kde-src2valencia.sed < "missatges-$PO" > "missatges_1-$PO" && rm -f "missatges-$PO"
+                LC_ALL=ca_ES.UTF-8 sed -f kde-src2valencia.sed < "missatges-$PO" > "missatges_1-$PO" && rm -f "missatges-$PO"
                 msgmerge --silent --previous --width=79 --lang="ca" "missatges_1-$PO" "$DIRTEM/$DIR/${PO}t" --output-file="missatges_2-$PO" && rm -f "missatges_1-$PO"
                 mv -f "missatges_2-$PO" "$DIROBJ/$DIR/$PO"
               fi
@@ -1266,13 +1273,13 @@ case ${1-} in
     echo -e "\e[47;31mSegon:\e[0m ara es passa per sed amb l'script «kde-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_1-$PO]: Res"
     pregunta
-    sed -f kde-src2valencia.sed        < "missatges-$PO"   > "missatges_1-$PO"
+    LC_ALL=ca_ES.UTF-8 sed -f kde-src2valencia.sed        < "missatges-$PO"   > "missatges_1-$PO"
     msgfmt --statistics "missatges_1-$PO"
 
     echo -e "\e[47;31mQuart:\e[0m es passa per sed amb l'script «all-src2valencia.sed»"
     MISSATGE_DIFF="[missatges_2-$PO]: Res"
     pregunta
-    sed -f all-src2valencia.sed        < "missatges_1-$PO" > "missatges_2-$PO"
+    LC_ALL=ca_ES.UTF-8 sed -f all-src2valencia.sed        < "missatges_1-$PO" > "missatges_2-$PO"
     msgfmt --statistics "missatges_2-$PO"
 
     echo -e "\e[47;31mCinquè i últim:\e[0m es torna a executar «msgmerge»"

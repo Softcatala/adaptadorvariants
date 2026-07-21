@@ -210,6 +210,7 @@ s/\"Calces\"/\"Calcis\"/g # greece prefectures
 
 # cantonada -> cantó (gènere)
 s/\ba el cantó\([^[:alnum:]]\)/al cantó\1/g
+s/\ba els quatre cantons\([^[:alnum:]]\)/als quatre cantons\1/g
 s/\ba les cantons\([^[:alnum:]]\)/als cantons\1/g
 s/\b\([Cc]\)antó arredonida\([^[:alnum:]]\)/\1antó arredonit\2/g
 s/\b\([Cc]\)antó definida\([^[:alnum:]]\)/\1antó definit\2/g
@@ -221,6 +222,7 @@ s/\b\([Cc]\)antó \(dret\|esquerre\) \(inferior\|superior\)\([^[:alnum:]]\)/\1an
 s/\b\([Cc]\)antó inferior esquerre està força agitada\([^[:alnum:]]\)/\1antó inferior esquerre està força agitat\2/g
 s/\b\([Cc]\)antó més propera\([^[:alnum:]]\)/\1antó més proper\2/g
 s/\b\([Cc]\)antó oposada\([^[:alnum:]]\)/\1antó oposat\2/g
+s/\b\([Cc]\)antó recta\([^[:alnum:]]\)/\1antó recte\2/g
 s/\b\([Cc]\)antó rodona\([^[:alnum:]]\)/\1antó arredonit\2/g
 s/\b\([Cc]\)antons actives\([^[:alnum:]]\)/\1antons actius\2/g
 s/\b\([Cc]\)antons a&rredonides\([^[:alnum:]]\)/\1antons a\&rredonits\2/g
@@ -374,8 +376,14 @@ s/\bClaudiu Costen\([^[:alnum:]]\)/Claudiu Costin\1/g
 # crític -> crítica (esmenes - # PDT)
 # NOTE: PDT
 s/\b\([Cc]\)rític\([^[:alnum:]]\)/\1rítica\2/g
+ #
+s/\bcarboni incorporat és crítica\([^[:alnum:]]\)/carboni incorporat és crític\1/g
+s/\b\([Ee]\)l més crítica\([^[:alnum:]]\)/\1l més crític\2/g
 s/\b\([Ee]\)rror crítica\([^[:alnum:]]\)/\1rror crític\2/g
+s/\b\([Éé]\)s crítica tindre\([^[:alnum:]]\)/\1s crític tindre\2/g
+s/\bmaquinari en ús i fora de l'abocador es fa més crítica cada dia\([^[:alnum:]]\)/maquinari en ús i fora de l'abocador es fa més crític cada dia\1/g
 s/\b\([Nn]\)\(&\|\)ivell crítica\([^[:alnum:]]\)/\1\2ivell crític\3/g
+s/\b\([Pp]\)aper crítica\([^[:alnum:]]\)/\1aper crític\2/g
 s/\b\([Pp]\)rogramari és crítica\([^[:alnum:]]\)/\1rogramari és crític\2/g
 
 # d'hora -> prompte

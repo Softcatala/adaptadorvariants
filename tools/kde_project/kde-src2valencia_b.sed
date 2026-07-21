@@ -1025,6 +1025,7 @@ s/\bPersonalització de la sortida\([^[:alnum:]]\)/Personalitzeu la sortida\1/g
 #
 s/» pel \(nom del \|\)directori base del projecte\([^[:alnum:]]\)/» per al \1directori base del projecte\2/g
 s/\banar fins a la configuració\([^[:alnum:]]\)/anar a la configuració\1/g
+s/\bautocomprovació per fer\([^[:alnum:]]\)/autocomprovació per a fer\1/g
 s/\bDescarta línies\([^[:alnum:]]\)/Descarta les línies\1/g
 s/\bdiagnòstics, ignorant la resta de diagnòstics\([^[:alnum:]]\)/diagnòstics, s'ignoren la resta\1/g
 s/\beina s'executarà a tots\([^[:alnum:]]\)/eina s'executarà sobre tots\1/g
@@ -1430,6 +1431,7 @@ s/>Configuració->Barra lateral->Mostra el gestor de calendaris\([^[:alnum:]]\)/
 s/\bConfiguració->Colors i lletres\([^[:alnum:]]\)/«Configuració -> Colors i lletres»\1/g
 s/>Data i hora->Regional\([^[:alnum:]]\)/>Data i hora -> Regional\1/g
 s/\bData i hora->Valors predeterminats\([^[:alnum:]]\)/«Data i hora -> Valors predeterminats»\1/g
+s/«General->Classificació d'accés predeterminada personal»/«General -> Classificació d'accés predeterminada personal»/g
 s/\bja no creen consells enormes\([^[:alnum:]]\)/ja no creen consells d'eina enormes\1/g
   s/\bVistes d'agenda\([^[:alnum:]]\)/Vista d'agenda\1/g
 s/ pestanya \(Vistes\|Visualitza\)->\(General\|Vista mensual\|Vista d'agenda\)\([^[:alnum:]]\)/ «Vistes -> pestanya \2»\3/g
@@ -1764,6 +1766,8 @@ s/\bEl consell emergent\([^[:alnum:]]\)/El consell d'eina\1/g
 s/\bObtén valors predefinits nous\([^[:alnum:]]\)/Obtén ajustaments preestablerts nous\1/g
 s/\bValors predefinits:/Ajustaments preestablerts:/g
 s/\bValors predefinits del sensor\([^[:alnum:]]\)/Ajustaments preestablerts del sensor\1/g
+# libplasma
+s/\bper als consells\"/per als consells d'eina\"/g
 # licentia
 s/\bdret de patent dels col·laboradors\([^[:alnum:]]\)/dret a la patent dels col·laboradors\1/g
 s/\bpermís a l'usuari per fer el que\([^[:alnum:]]\)/permís a l'usuari per a fer el que\1/g
@@ -1796,6 +1800,7 @@ s/\bdigiKam 4 a digiKam nou\([^[:alnum:]]\)/digiKam 4 en un digiKam nou\1/g
 s/\bdissenyat per a deteccions d'objectes\([^[:alnum:]]\)/dissenyat per a detecció d'objectes\1/g
 s/\bdocuments a text que usa l'OCR\([^[:alnum:]]\)/documents a text emprant l'OCR\1/g
 s/\ben el PATH\([^[:alnum:]]\)/en la PATH\1/g
+s/\bFitxer->Obre\([^[:alnum:]]\)/«Fitxer -> Obre»\1/g
 s/\bimatges des de carpeta\([^[:alnum:]]\)/imatges des d'una carpeta\1/g
 s/\bmetadades d'etiquetes\([^[:alnum:]]\)/etiquetes de metadades\1/g
 s/\bmetadades de les etiquetes\([^[:alnum:]]\)/etiquetes de metadades\1/g
@@ -2056,10 +2061,13 @@ s/ \.GlobalEnv\([^[:alnum:]]\)/ «.GlobalEnv»\1/g
 s/\bA «Contributions\([^[:alnum:]]\)/En «Contributions\1/g
 s/\bactivant «/seleccionant «/g
 s/\bActiveu això per a\([^[:alnum:]]\)/Marqueu-la per a\1/g
-s/\bDesactiveu això per a\([^[:alnum:]]\)/Desmarqueu-la per a\1/g
 s/\bcal un compte d'usuari per això\([^[:alnum:]]\)/cal un compte d'usuari per a fer això\1/g
+  s/ Configuració -> \(Complements\|Gestiona els paquets i els connectors d'R\)\([^[:alnum:]]\)/ «Configuració -> \1»\2/g
 s/\bConfiguració -> Configura el RKWard ->/Configuració -> Configura el RKWard… ->/g
+  s/ Dades->Subconjunt data.frame\([^[:alnum:]]\)/ «Dades -> Subconjunt «data.frame»»\1/g
+s/\bDesactiveu això per a\([^[:alnum:]]\)/Desmarqueu-la per a\1/g
 s/\bdeixeu això buit, i marqueu\([^[:alnum:]]\)/deixeu això buit i marqueu\1/g
+  s/ Edita->Enganxament especial\([^[:alnum:]]\)/ «Edita -> Enganxament especial»\1/g
 s/\b\([Ff]\)itxer de destí\([^[:alnum:]]\)/\1itxer de destinació\2/g
 s/\bLes observacions atípiques es dibuixen amb punts, si s'ha seleccionat aquesta opció\([^[:alnum:]]\)/Si s'ha seleccionat aquesta opció, les observacions atípiques es dibuixaran amb punts\1/g
 s/\bMarqueu les dues caselles\([^[:alnum:]]\)/Trieu les dues caselles\1/g
@@ -2218,6 +2226,7 @@ s/\bKDE Frameworks\([^[:alnum:]]\)/Frameworks del KDE\1/g
 s/\bKDE Forums\([^[:alnum:]]\)/Fòrums del KDE\1/g
 # wacomtablet
 # websites-25years-kde-org
+s/_Col·lisionador d'hadrons_ a _Herois_/_Col·lisionador d'hadrons_ fins a _Herois_/g
 s/\barribar fins a saber\([^[:alnum:]]\)/arribar a saber\1/g
 s/\bfins a on heu\([^[:alnum:]]\)/fins on heu\1/g
   s/\bdipòsit de GitLab\([^[:alnum:]]\)/repositori de GitLab\1/g
@@ -2225,6 +2234,8 @@ s/\brepositori GitLab\([^[:alnum:]]\)/repositori de GitLab\1/g
 s/\btrobeu-vos per fer\([^[:alnum:]]\)/trobeu-vos per a fer\1/g
 s/\bvelocitat extra\([^[:alnum:]]\)/velocitat addicional\1/g
 # websites-apps-kde-org
+s/\*\*Joc->Connecta amb la partida…\*\*/\*\*Joc -> Connecta amb la partida…\*\*/g
+s/\*\*Joc->Nova\*\*/\*\*Joc -> Nova\*\*/g
 s/\bajustable i per proporcionar\([^[:alnum:]]\)/ajustable i per a proporcionar\1/g
 s/\bamb fitxers «ogg» curts\([^[:alnum:]]\)/amb els fitxers «ogg» curts\1/g
 s/\bConfiguració» -> «Configura\([^[:alnum:]]\)/Configuració -> Configura\1/g
@@ -2248,19 +2259,27 @@ s/\bSi nofuncionen\([^[:alnum:]]\)/Si no funcionen\1/g
 s/\bStep per fer\([^[:alnum:]]\)/Step per a fer\1/g
 s/\buna altra per a agrupar-les\([^[:alnum:]]\)/una altra agrupant-les\1/g
 s/\bUtilitzeu el ratolí per a moure les boles\([^[:alnum:]]\)/Utilitzeu el ratolí per a moure-les\1/g
+s/\bvaria de \*\*planeta\*\* a \*\*planeta\*\*/varia des de \*\*planeta\*\* fins a \*\*planeta\*\*/g
 # websites-eco-kde-org
-s/\bel Dia\([^[:alnum:]]\)/el dia\1/g
-s/Hurka, que té una\([^[:alnum:]]\)/Hurka, qui té una\1/g
+s/\bA \*\(Baselines\|Messungen\)\*/Sota \*\1\*/g
+s/\bA «\(Filtre\|Format de dades\)»/Sota «\1»/g
+s/\bA Configuració > Configuració de WiFi\([^[:alnum:]]\)/Sota «Configuració > Configuració de la Wi-Fi»\1/g
+  s/\bWiFi\([^[:alnum:]]\)/Wi-Fi\1/g
+s/\bamb alguns ordinadors a l'interior\([^[:alnum:]]\)/amb alguns ordinadors a dintre\1/g
+s/\bamb diners a l'interior\([^[:alnum:]]\)/amb diners a dintre\1/g
 s/\bconsum d'energia de programari\([^[:alnum:]]\)/consum d'energia del programari\1/g
 s/\bcontacteu amb nosaltres per als detalls\([^[:alnum:]]\)/per als detalls, contacteu amb nosaltres\1/g
 s/\bdels sistemes que en forma part\([^[:alnum:]]\)/dels sistemes dels quals forma part\1/g
 s/\bdimecres 19:00\([^[:alnum:]]\)/dimecres a les 19,00\1/g
 s/\bedició de vídeo professional\([^[:alnum:]]\)/edició professional de vídeo\1/g
+s/\bel Dia\([^[:alnum:]]\)/el dia\1/g
+s/\bés a dir, de l'any d'entrada a l'any final\([^[:alnum:]]\)/és a dir, des de l'any d'entrada fins a l'any final\1/g
 s/\bés \[en curs\([^[:alnum:]]\)/està \[en curs\1/g
 s/\bés important en definir\([^[:alnum:]]\)/és important quan es defineix\1/g
 s/\bfuncionalitats de programari\([^[:alnum:]]\)/característiques de programari\1/g
 s/\bGràcies per prendre's temps per a llegir aquesta actualització\([^[:alnum:]]\)/Gràcies per prendre el temps per a llegir aquesta actualització\1/g
 s/\b\(hora\|KDAB\) Berlín\([^[:alnum:]]\)/\1 de Berlín\2/g
+s/\bHurka, que té una\([^[:alnum:]]\)/Hurka, qui té una\1/g
 s/\bmón real de programari\([^[:alnum:]]\)/món real del programari\1/g
 s/\bplanificat per a principis\([^[:alnum:]]\)/planificada per a principis\1/g
 s/\bprogramari que s'executa en ell\([^[:alnum:]]\)/programari que executa\1/g
@@ -2576,6 +2595,7 @@ s/\bGitLab es pot trobar\([^[:alnum:]]\)/GitLab es troba\1/g
 s/\bi Frameworks\([^[:alnum:]]\)/i els Frameworks\1/g
 s/\bKDE executa dos recaptacions de fons consecutius i els completa tots dos\([^[:alnum:]]\)/El KDE executa dues recaptacions de fons consecutives i les completa totes dues\1/g
 s/\bmigració a la plataforma\([^[:alnum:]]\)/migració cap a la plataforma\1/g
+s/\bPinePhone La comunitat KDE Edition\([^[:alnum:]]\)/PinePhone KDE Community Edition\1/g
 s/\bplataforma operacions de desenvolupador principal\([^[:alnum:]]\)/plataforma principal de les operacions de desenvolupador\1/g
 s/\bproductes de la comunitat, que es llançarien\([^[:alnum:]]\)/productes de la comunitat, els quals es llançarien\1/g
 s/\bQt al seu cor\([^[:alnum:]]\)/Qt en el seu cor\1/g

@@ -120,18 +120,22 @@ hint="Es tradueix per « «Drets», **Drets**»"
   hint="Es tradueix per «dret de marca comercial, drets de marca registrada»"
 
 {-?->}
-valid msgid=":menuselection:"
+valid msgid=":(menuselection|ref):"
+valid msgid="<->\n"
 valid msgid="-->\n"
 valid msgid="[})!]-->"
 valid msgid="\.-->"
+valid msgid="---->"
 valid msgstr="→"
 hint="Es tradueix per « → »."
 
 [-?->]
-valid msgstr=":menuselection:"
+valid msgstr=":(menuselection|ref):"
+valid msgstr="<->\n"
+valid msgstr="-->\n"
 valid msgstr="[})!]-->"
 valid msgstr="\.-->"
-valid msgstr="-->\n"
+valid msgstr="---->"
 valid msgstr="→"
 hint="Es tradueix per « → »."
 
@@ -394,8 +398,9 @@ hint="Es tradueix per «retallant, retallar, retallat»."
   valid msgid="\bcutting.?edge\sfeatures\b"
   valid msgstr="\bavançades\b"
   valid msgstr="\bavantguarda\b"
+  valid msgstr="\binnovadores\b"
   valid msgstr="\búltima fornada\b"
-  hint="Es tradueix per «avançades, avantguarda, última fornada»."
+  hint="Es tradueix per «avançades, avantguarda, innovadores, última fornada»."
 
     {\bcutting.?edge\sfeatures\b}i
     valid msgstr="\bcaracterístiques d'avantguarda\b"
@@ -407,12 +412,14 @@ hint="Es tradueix per «retallant, retallar, retallat»."
 
 {\bdata.?sets?\b}i
 valid msgid="\bnew\sdata.?set\b"
+valid msgid="\bpackage:datasets\b"
+valid msgstr="\bconjuntDades\b"
 valid msgstr="\bconjunts? de dades\b"
-hint="Es tradueix per «conjunt/s de dades»."
+hint="Es tradueix per «conjunt/s de dades, conjuntDades»."
 
   {\bnew\sdata.?set\b}i
-  valid msgstr="\bconjunt nou de dades\b"
-  hint="Es tradueix per «conjunt nou de dades»."
+  valid msgstr="\bconjunt de dades nou\b"
+  hint="Es tradueix per «conjunt de dades nou»."
 
 {\bdown.?sampl(e|ing)\b}i
 valid msgstr="\breducció del mostreig\b"
@@ -970,7 +977,7 @@ hint="Es tradueix per «tipus de missatge»."
     valid msgstr="\bajustaments pre(definits|establerts)\b"
     hint="Es tradueix per «ajustaments preestablerts»."
 
-      {\bpresets?\b}i
+      {\bpresets\b}i
       valid msgid="\b(brush|exposure|list\sof|stretch|style)\spresets\b"
       valid msgid="\bpresets\svalues\b"
       valid msgstr="\bajustaments pre(definits|establerts)\b"
@@ -1141,7 +1148,7 @@ hint="Es tradueix per «indicadors»."
 
 {\brelease\b}i
 valid msgid="([-])release\b"
-valid msgid="/release-notes\b"
+valid msgid="/release-"
 valid msgid="\b(button|drag and|feature|key|press|preview|public)\srelease\b"
 valid msgid="\bpre-release\b"
 valid msgid="\brelease\s(announcement|cycle|date|history|manager|notes|repository|time|Vixen|year)\b"
@@ -1303,7 +1310,7 @@ hint="Es tradueix per «espai aïllat»."
 
 {\bscript\b}i
 valid msgid="\bbatch\sscript\b"
-valid msgid="\bscript\s(builder|console|editor|library|manager|package|starter|tool.?bar|types?|variables)\b"
+valid msgid="\bscript\s(builder|console|editors?|library|manager|package|starter|tool.?bar|types?|variables)\b"
 valid msgid="\b(sub|super).?script\b"
 valid msgstr="\bestil cal·ligràfic\b"
 valid msgstr="\bordre següent per a fer-ho\b"
@@ -1324,9 +1331,9 @@ hint="Es tradueix per «Script (al Krita és un acoblador), estil cal·ligràfic
   valid msgstr="\bconsola de scripts\b"
   hint="Es tradueix per «consola de scripts»."
 
-  {\bscript\seditor\b}i
-  valid msgstr="\beditor de scripts\b"
-  hint="Es tradueix per «editor de scripts»."
+  {\bscript\seditors?\b}i
+  valid msgstr="\beditors? de scripts\b"
+  hint="Es tradueix per «editor/s de scripts»."
 
   {\bscript\slibrary\b}i
   valid msgstr="\bbiblioteca de scripts\b"
@@ -1420,8 +1427,13 @@ hint="Es tradueix per «conjunt/s, estableix/i, establert/s, establerta/es, esta
   hint="Es tradueix per «joc de peus de rei»."
 
   {\bset\sup\b}i
+  valid msgid="\bscreen\sset\sup\b"
   valid msgstr="\bconfigur(ada|ar|at|in)\b"
   hint="Es tradueix per «configurat/da, configurar, configurin»."
+
+    {\bscreen\sset\sup\b}i
+    valid msgstr="\bconfiguració de la pantalla\b"
+    hint="Es tradueix per «configuració de la pantalla»."
 
   {\bwe'd\sset\b}i
   valid msgstr="\bfixàvem\b"

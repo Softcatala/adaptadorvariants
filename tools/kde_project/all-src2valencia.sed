@@ -7265,6 +7265,12 @@ s/\b\([Rr]\)enderitzéssi\([mu]\)\([^[:alnum:]]\)/\1enderitzàre\2\3/g
 s/\b\([Rr]\)enderitzessi\([ns]\)\([^[:alnum:]]\)/\1enderitzare\2\3/g
 s/\b\([Rr]\)enderitz\([io]\)\([^[:alnum:]]\)/\1enderitze\3/g
 s/\b\([Rr]\)enderitzi\([ns]\)\([^[:alnum:]]\)/\1enderitze\2\3/g
+# renunciar
+s/\b\([Rr]\)enunciés\([^[:alnum:]]\)/\1enunciara\2/g
+s/\b\([Rr]\)enunciéssi\([mu]\)\([^[:alnum:]]\)/\1enunciàre\2\3/g
+s/\b\([Rr]\)enunciessi\([ns]\)\([^[:alnum:]]\)/\1enunciare\2\3/g
+s/\b\([Rr]\)enunciï\([ns]\|\)\([^[:alnum:]]\)/\1enuncie\2\3/g
+s/\b\([Rr]\)enuncio\([^[:alnum:]]\)/\1enuncie\2/g
 # repetir
 s/\b\([Rr]\)epeteix\(e[ns]\|\)\([^[:alnum:]]\)/\1epetix\2\3/g
 s/\b\([Rr]\)epeteixi\([^[:alnum:]]\)/\1epetisca\2/g

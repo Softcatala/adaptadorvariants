@@ -415,8 +415,8 @@ s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \
   s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(formata\|fusiona\)r\(-ho\|-se\|\) \([ae]ls\|les\|%1 objectes\|%1 paquets\|%1 peces\|%2$d de %3$d fitxers\|(«pop») les\|alguns\|algunes\|aquests\|aquestes\|canvis\|dades\|diverses\|fitxers\|marcadors\|paquets\|permisos\|tots\|totes\|valors\)\b/\1 mentre es \3ven \5/g
 s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(formata\|fusiona\)r\(-ho\|-se\|\)\b/\1 mentre es \3va/g
 # g
-  s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(genera\|gestiona\)r\(-ho\|-se\|\) \([ae]ls\|les\|%1 objectes\|%1 paquets\|%1 peces\|%2$d de %3$d fitxers\|(«pop») les\|alguns\|algunes\|aquests\|aquestes\|canvis\|dades\|diverses\|fitxers\|marcadors\|paquets\|permisos\|tots\|totes\|valors\)\b/\1 mentre es \3ven \5/g
-s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(genera\|gestiona\)r\(-ho\|-se\|\)\b/\1 mentre es \3va/g
+  s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(genera\|gestiona\|guarda\)r\(-ho\|-se\|\) \([ae]ls\|les\|%1 objectes\|%1 paquets\|%1 peces\|%2$d de %3$d fitxers\|(«pop») les\|alguns\|algunes\|aquests\|aquestes\|canvis\|dades\|diverses\|fitxers\|marcadors\|paquets\|permisos\|tots\|totes\|valors\)\b/\1 mentre es \3ven \5/g
+s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(genera\|gestiona\|guarda\)r\(-ho\|-se\|\)\b/\1 mentre es \3va/g
 # i
   s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(imprimi\|inseri\)r\(-ho\|-se\|\) \([ae]ls\|les\|%1 objectes\|%1 paquets\|%1 peces\|%2$d de %3$d fitxers\|(«pop») les\|alguns\|algunes\|aquests\|aquestes\|canvis\|dades\|diverses\|fitxers\|marcadors\|paquets\|permisos\|tots\|totes\|valors\)\b/\1 mentre s'\3en \5/g
 s/\b\([Ee]rror\|[Ee]rrors\|[Ff]allat\|[Ff]allades\|[Pp]roblema\|[Pp]roblemes\) \(a\|al\|en\) \(imprimi\|inseri\)r\(-ho\|-se\|\)\b/\1 mentre s'\3a/g
@@ -622,31 +622,32 @@ s/\bTrieu-ne un o més a la vegada i premeu un botó d'acció\([^[:alnum:]]\)/Se
 #
 # ser <-> estar / trobar
 # 18.3 Usos dels verbs ser i estar <https://geiec.iec.cat/veure_taula_una.asp?id=166>
+s/\bés \(actiu\|activa\|activada\|activat\|al compartiment\|buida\|buit\|disponible\|en aquesta\|en curs\|en majúscula\|en majúscules\|en minúscula\|en minúscules\|en un estat\|establert\|establerta\|inclòs\|operatiu\|present\)\([^[:alnum:]]\)/està \1\2/g
+s/\bés \(als EUA\|dins\|sobre\)\([^[:alnum:]]\)/es troba \1\2/g
+s/\bestà en \(aquesta sala\)\([^[:alnum:]]\)/es troba en \1\2/g
+s/\bestan definits\([^[:alnum:]]\)/es defineixen\1/g
+s/\b\(hi \|\)són a la llista\([^[:alnum:]]\)/es troben a la llista\2/g
 s/\b\([Jj]\)a \(és\|està\) \(a\|en\)\([^[:alnum:]]\)/\1a es troba en\4/g
 s/\b\([Jj]\)a és a la seva\([^[:alnum:]]\)/\1a es troba en la seva\2/g
 s/\b\([Jj]\)a estan \(a\|en\)\([^[:alnum:]]\)/\1a es troben a\3/g
   s/\bes troben a negreta\([^[:alnum:]]\)/estan en negreta\1/g
   s/\bes troben a una pila\([^[:alnum:]]\)/es troben en una pila\1/g
 s/\b\([Jj]\)a esteu \(a\|en\)\([^[:alnum:]]\)/\1a us trobeu a\3/g
-s/\bplafó és vertical\([^[:alnum:]]\)/plafó està en vertical\1/g
-s/\bés \(actiu\|activa\|activada\|activat\|al compartiment\|buida\|buit\|disponible\|en aquesta\|en curs\|en majúscula\|en majúscules\|en minúscula\|en minúscules\|en un estat\|establert\|establerta\|inclòs\|operatiu\|present\)\([^[:alnum:]]\)/està \1\2/g
-s/\bés \(als EUA\|dins\|sobre\)\([^[:alnum:]]\)/es troba \1\2/g
-s/\bestà en \(aquesta sala\)\([^[:alnum:]]\)/es troba en \1\2/g
 s/\b\([Ll]\)a partida és empatada\([^[:alnum:]]\)/\1a partida està empatada\2/g
 s/\bon és la sortida correcta\([^[:alnum:]]\)/on està la sortida correcta\1/g
+s/\bplafó és vertical\([^[:alnum:]]\)/plafó està en vertical\1/g
+s/\bpoden ser buits\([^[:alnum:]]\)/poden estar buits\1/g
+s/\bquan és en el mode\([^[:alnum:]]\)/quan s'estigui en el mode\1/g
+s/\bquan les finestres són a pantalla completa\([^[:alnum:]]\)/quan les finestres estan a pantalla completa\1/g
+s/\bser causada\([^[:alnum:]]\)/estar causada\1/g
 s/\bseran \(automàticament amb format\|disponibles\)\([^[:alnum:]]\)/estaran \1\2/g
-s/\b\(hi \|\)són a la llista\([^[:alnum:]]\)/es troben a la llista\2/g
 s/\bsón \(actius\|actives\|activades\|activats\|buides\|buits\|disponibles\|en curs\|en un estat\|operatius\|presents\)\([^[:alnum:]]\)/estan \1\2/g
+  s/\bLes coses són on esperaríeu\([^[:alnum:]]\)/Les coses es troben on esperaríeu\1/g
   s/\b\([Nn]\)omés està \(actiu\|activa\|activada\|activat\|disponible\)\([^[:alnum:]]\)/\1omés estarà \2\3/g
   s/\b\([Nn]\)omés estan \(actius\|actives\|activades\|activats\|disponibles\)\([^[:alnum:]]\)/\1omés estaran \2\3/g
-  s/\bLes coses són on esperaríeu\([^[:alnum:]]\)/Les coses es troben on esperaríeu\1/g
   s/\bperò es pot instal·lar a partir dels repositoris de desenvolupament\([^[:alnum:]]\)/però es poden instal·lar a partir dels repositoris de desenvolupament\1/g
   s/\bsí que ja es troben\([^[:alnum:]]\)/si ja es troben\1/g
 s/\bsón \(al camí\|als EUA\)\([^[:alnum:]]\)/es troben \1\2/g
-s/\bestan definits\([^[:alnum:]]\)/es defineixen\1/g
-s/\bser causada\([^[:alnum:]]\)/estar causada\1/g
-s/\bpoden ser buits\([^[:alnum:]]\)/poden estar buits\1/g
-s/\bquan les finestres són a pantalla completa\([^[:alnum:]]\)/quan les finestres estan a pantalla completa\1/g
 #
 s/\bmentre sigui acti\(u\|va\)\([^[:alnum:]]\)/mentre estigui acti\1\2/g
 s/\bsigui disponible\([^[:alnum:]]\)/es trobi disponible\1/g
@@ -1153,7 +1154,8 @@ s/\bA l'Expression\([^[:alnum:]]\)/A l'expressió\1/g
 s/\bAlex Fiestas and Aleix Pol\([^[:alnum:]]\)/Alex Fiestas i Aleix Pol\1/g
 s/\bel Qt Framework\([^[:alnum:]]\)/el marc de treball de les Qt\1/g
 s/\bElisa contributors\([^[:alnum:]]\)/els col·laboradors d'Elisa\1/g
-s/\bKDE Community\([^[:alnum:]]\)/Comunitat KDE\1/g
+s/\bKDE Community\([^[:alnum:]]\)/La comunitat KDE\1/g
+  s/\bThe La comunitat KDE\([^[:alnum:]]\)/La comunitat KDE\1/g
 s/\bKDE Information Control Module Samba Team\([^[:alnum:]]\)/Equip Samba del mòdul de control d'informació del KDE\1/g
 s/\bKDE Connect Team\([^[:alnum:]]\)/Equip del KDE Connect\1/g
 #
@@ -1187,8 +1189,10 @@ s/\bMichael Pyne, and others\([^[:alnum:]]\)/Michael Pyne i altres\1/g
 # #
 # # # # # # # # # # # # # #
 #
-# gènere
+# gènere o nom
 s/\baccions estan desactivats\([^[:alnum:]]\)/accions estan desactivades\1/g
+s/\bEl Konqi\([^[:alnum:]]\)/En Konqi\1/g
+s/\bel Konqi\([^[:alnum:]]\)/en Konqi\1/g
 s/\bés el \(menys\|més\) restrictiu\([^[:alnum:]]\)/és la \1 restrictiva\2/g
 # #
 # # # # # # # # # # # # # #
@@ -3076,6 +3080,7 @@ s/\bHa fallat en\([^[:alnum:]]\)/No s'ha pogut\1/g
   s/\bNo s'ha pogut \(actualitzar\|cometre\|llençar\|trobar\) \(els\|les\)\([^[:alnum:]]\)/No s'han pogut \1 \2\3/g
   s/\bNo s'ha pogut actualitzar %1 paquets\([^[:alnum:]]\)/No s'han pogut actualitzar %1 paquets\1/g
   s/\bNo s'ha pogut afegir fitxers\([^[:alnum:]]\)/No s'han pogut afegir els fitxers\1/g
+  s/\bNo s'ha pogut no\([^[:alnum:]]\)/No s'ha pogut\1/g
 #
 s/\b\ha fallat en l'autenticació\([^[:alnum:]]\)/no s'ha pogut fer l'autenticació\1/g
 #
@@ -3199,6 +3204,7 @@ s/\b\([Pp]\)er \(acabar\|accedir\|aconseguir\|activar\|actualitzar\|adormir\|afe
   s/\bper ajudar a identificar les alarmes\([^[:alnum:]]\)/per ajudar a identificar-les\1/g
   s/<p><i>Per ajudar al desenvolupament\([^[:alnum:]]\)/<p><i>Per ajudar al desenvolupament\1/g
 s/\b\([Pp]\)er \(bandejar\|baixar\|baixar-l[ao]\)\([^[:alnum:]]\)/\1er a \2\3/g
+ # col·laborar
 s/\b\([Pp]\)er \(cabre\|cancel·lar\|canviar\|carregar\|celebrar\|cercar\|certificar\|classificar\|coincidir\|començar\|comparar\|compartir\|complementar\|completar\|comprovar\|comunicar\|conèixer\|configurar\|connectar\|construir\|continuar\|controlar\|convertir\|córrer\|corregir\|cridar\|crides\)\([^[:alnum:]]\)/\1er a \2\3/g
 s/\b\([Pp]\)er \(decidir\|definir\|delimitar\|demanar\|demostrar\|desactivar\|desar\|desbandejar\|desbloquejar\|desfer\|desenvolupar\|desseleccionar\|determinar\|dibuixar\|difuminar\|dirigir\|dispersar\|dormir\)\([^[:alnum:]]\)/\1er a \2\3/g
 # enviar

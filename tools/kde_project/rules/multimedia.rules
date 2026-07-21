@@ -167,6 +167,7 @@ valid msgid="-artwork-"
 valid msgid="-artwork/"
 valid msgid="\bart.?work\sbanner\b"
 valid msgid="\b(featured|forum)\sart.?work\b"
+valid msgid="\bfeatured-artwork title="
 valid msgstr="\bcaptures de pantalla i treballs artístics\b"
 valid msgstr="\bcompartir treballs artístics i consells\b"
 valid msgstr="\bnominar treballs artístics\b"
@@ -4827,11 +4828,16 @@ hint="Es tradueix per «fotogràfica/ques, fotografia/imatge estàtica, encara, 
   hint="Es tradueix per «Aigua quieta» (multimèdia)."
 
   {\bwhile\sstill\b}i
+  valid msgid="\bwhile\sstill\skeeping\b"
   valid msgstr="\bencara\b"
   valid msgstr="\bi alhora\b"
   valid msgstr="\bmantenia\b"
   valid msgstr="\bseguia\b"
   hint="Es tradueix per «mantenia, seguia» (multimèdia)."
+
+    {\bwhile\sstill\skeeping\b}i
+    valid msgstr="\bmantenint-ne\b"
+    hint="Es tradueix per «mantenint-ne» (multimèdia)."
 
 {\bstrength\b}i
 valid msgid="\bstrength\s(of\sthe\sline|to\sstrength)\b"
