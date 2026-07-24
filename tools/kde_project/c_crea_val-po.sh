@@ -25,6 +25,7 @@ msg_exit() {
   exit 1
 }
 
+command -v awk      &>/dev/null || msg_exit "el paquet «gawk» de GNU: apt install gawk"
 command -v cpulimit &>/dev/null || msg_exit "el paquet «cpulimit»: apt install cpulimit"
 command -v /usr/lib/qt6/bin/lconvert &>/dev/null || msg_exit "el paquet «qt6-l10n-tools»: apt install qt6-l10n-tools"
 command -v msgmerge &>/dev/null || msg_exit "el paquet «gettext»: apt install gettext"
@@ -1016,7 +1017,7 @@ case ${1-} in
         fi
       done
 
-    FITXERS="$(echo "$FITXERST" | grep -v '^$' | LC_ALL=C sort -u)"
+    FITXERS="$(echo "$FITXERST" | LC_ALL=C sort -u)"
 
     cd "$ROOT_TREE/$STABLE" || exit 1
     for file in $FITXERS
