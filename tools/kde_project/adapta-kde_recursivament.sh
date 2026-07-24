@@ -143,13 +143,13 @@ genera_copia() {
       LBUGS='https://bugs.kde.org'
   fi
 
-  if [[ "$FITX" = @(docs_digikam_org_|kstars_docs_)* ]]; then
+  if   [[ "$FITX" = @(docs_digikam_org_|kstars_docs_)* ]]; then
     grep --silent "^\"Plural-Forms: nplurals=2; plural=n != 1;"  "$FITX" || posieve set-header -sfield:"Plural-Forms:nplurals=2; plural=n != 1;" -screate -safter:'X-Generator:' -sreorder "$FITX"
   fi
 
-  if [ -n "$LBUGS" ]; then
+  if   [ -n "$LBUGS" ]; then
     posieve set-header -sfield:"Report-Msgid-Bugs-To:$LBUGS" -screate -safter:'Project-Id-Version' -sreorder "$FITX"
-  elif  [[ "$FITX" = *@(appdata.po|metainfo.po) ]]; then
+  elif [[ "$FITX" = *@(appdata.po|metainfo.po) ]]; then
     posieve set-header -sremove:'Report-Msgid-Bugs-To:' -sreorder "$FITX"
   fi
 
@@ -160,7 +160,7 @@ genera_copia() {
   posieve --quiet remove-obsolete "$FITX"
 
   # Es convida a algun col·laborador/a de valència
-  if [ "$FITX" = 'gcompris_qt.po' ]; then
+  if   [ "$FITX" = 'gcompris_qt.po' ]; then
     echo -e "\n Nota:  El fitxer «$FITX» conté una millora addicional\n\tper a convidar a traductors valencians.\n"
     sed --in-place -e "s/DOT com&gt; .2015-20...\.\"/DOT com\&gt; \(2015-$(date +%Y)\)\.<br \/\"\n\"><b>Atenció<\/b>: Cal ajuda per a la seva traducció al valencià. Volem que \"\n\"esta siga correcta i potser voldreu que les veus també estiguen en \"\n\"valencià. Escriviu-nos a la llista de correu \&lt;kde-i18n-ca@kde.org\&gt; i \"\n\"en parlarem.\"/g" "$FITX"
   fi
@@ -203,7 +203,7 @@ case $ACTION in
         RV="$(cat "$RVF")"
         echo -e "\e[1m\e[97m|--------------------\e[0m\n"
 
-        SVN_REPO="$(svn info 'ca' | awk -F'^/| ' '/^Relative URL:/ {print $NF}')"
+        SVN_REPO="$(LC_ALL=C svn info 'ca' | awk -F'^/| ' '/^Relative URL:/ {print $NF}')"
         # S'obté la darrera modificació SVN des de la carpeta
         echo "1 - svn info /home/kde/$SVN_REPO"
         RVFINAL="$(LC_ALL=C svn info 'ca/' | awk '/^Revision:/ {print $2}')"

@@ -27,6 +27,7 @@ msg_exit() {
 
 command -v awk      &>/dev/null || msg_exit "el paquet «gawk» de GNU: apt install gawk"
 command -v cpulimit &>/dev/null || msg_exit "el paquet «cpulimit»: apt install cpulimit"
+command -v grep     &>/dev/null || msg_exit "el paquet «grep» de GNU: apt install grep"
 command -v /usr/lib/qt6/bin/lconvert &>/dev/null || msg_exit "el paquet «qt6-l10n-tools»: apt install qt6-l10n-tools"
 command -v msgmerge &>/dev/null || msg_exit "el paquet «gettext»: apt install gettext"
 command -v posieve  &>/dev/null || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
@@ -41,7 +42,7 @@ APPEND="\`\`|\`|\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\[|\]|\(\[|\)\[|\(\[«|\)\[«|
 [ -f 'append-a_en.in' ] && APPEND_0="$(tr -d '\n' < append-a_en.in)"
 
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|celebrar|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dintre|dret|dreta|esquerra|est|estar|facilitar|faltar|fer|Fourier|freqüències|hores d'ara|href|individus|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|molts|motius|name=|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|través|trobar|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
+APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|celebrar|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dintre|dret|dreta|esquerra|est|estar|facilitar|faltar|fer|Fourier|freqüències|hores d'ara|href|individus|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|molts|motius|name=|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|tothom|través|trobar|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
 APPEND_A_L="aire lliure|escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés|instant|oest de Greenwich|oli|usuari"
 APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|llarga|manera de fer|manera tradicional|millor|nit seleccionada|normal|part|posició (apuntada|d'enfocament)|pèrdua|posta de sol|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
 APPEND_A_LES="%[12345]|[01][0123456789][:,]|2[01234][:,]|dotze del migdia|persones|quals"
@@ -447,7 +448,7 @@ pregunta() {
 
 case ${1-} in
   troba_po)
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     find "$SOURCE_0/messages/" -type f -name "$2"
   ;;
   crea_po_linia)
@@ -489,9 +490,10 @@ case ${1-} in
     [ -r "ca/messages/$FILE" ] && cerca_linia
   ;;
   po_nou)
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     TEXT="$2"
     SOURCE='ca@valencia'
+    [ -e "$SOURCE/messages/$2" ] || sortida_po
     DIR="$2"
     DOC="${3-}"
     MISSATGE1="Canvi possible:"
@@ -622,9 +624,9 @@ case ${1-} in
     prompt_1
   ;;
   cerca_dir)
-    { [ -z "${2-}" ] || [[ ! "${2-}" =~ ^(ca|va|en)$ ]]; } && sortida_po || true
-    [ -z "${3-}" ] && sortida_po || true
-    [ -z "${4-}" ] && sortida_po || true
+    { [ -z "${2-}" ] || [[ ! "${2-}" =~ ^(ca|va|en)$ ]]; } && sortida_po
+    [ -z "${3-}" ] && sortida_po
+    [ -z "${4-}" ] && sortida_po
     TEXT="$3"
     SOURCE="$SOURCE_0"
 
@@ -639,9 +641,8 @@ case ${1-} in
     posieve find-messages -s"$MSG":"$TEXT" "$SOURCE/${DOC-}messages/$4"
   ;;
   cerca_all_dir)
-    [ -z "${2-}" ] && sortida_po || true
-    [ -z "${3-}" ] && sortida_po || true
-    [ -z "${4-}" ] || NUM="1" || true
+    [ -z "${2-}" ] && sortida_po
+    [ -z "${3-}" ] && sortida_po
     TEXT="$3"; TEXT1="$3"
     SOURCE="$SOURCE_0"
 
@@ -690,8 +691,7 @@ case ${1-} in
     cerca_and_not
   ;;
   cerca_dir_ab)
-    [ -z "${2-}" ] && sortida_po || true
-    NUM="1"
+    [ -z "${2-}" ] && sortida_po
     TEXT="\w{6,15}"
     TEXT3='1'
     SOURCE="$SOURCE_0"
@@ -706,7 +706,7 @@ case ${1-} in
     per_carpeta
   ;;
   cerca)
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     CADENA=(
     akonadi akregator alk alli am an ap ar at au b cal can ce ch cl co cu day di do dr e f g h ik inc index-fm iso it j k3b ka kb kc kda kdb kde-c kde-d kde-g kde-i kde-n kdeb kdec kded kdeg kdel kden kdep kdes kdev kdf kdi kdn kdo ke kf kg kh ki kj kl km kn ko kp kr ks kt ku kw kx l m n o p q r s tel to tr u v w x y z
     )
@@ -732,9 +732,8 @@ case ${1-} in
     posieve find-messages -smsgctxt:"@title" "$SOURCE_0/messages/$2"
   ;;
   cerca_titols_dir)
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     comprova_lloc
-    [ -z "${2-}" ] && NUM="1" || true
     MODUL="$2"
     MSG='msgctxt'
     SOURCE="$SOURCE_0"
@@ -780,7 +779,7 @@ case ${1-} in
     echo -e "\e[38;5;44mSCRIPTY_I18N_BRANCH='trunk_kf5' l10n-scripty/update_xml $SOURCE_0 [app]\e[0m"
   ;;
   adapta_dir)
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     command_rm
     mapfile -t FITXERSPO < <(find "ca/messages/$2/" -type f -name "*.po" | LC_ALL=C sort)
     for po in "${FITXERSPO[@]}"
@@ -790,7 +789,7 @@ case ${1-} in
       done
   ;;
   adapta_dir_va)
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     command_rm
     mapfile -t FITXERSPO < <(find "ca@valencia/messages/$2/" -type f -name "*.po" | LC_ALL=C sort)
     for po in "${FITXERSPO[@]}"
@@ -842,7 +841,7 @@ case ${1-} in
   ;;
   crea_po)
     comprova_lloc
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     ORDRE='crea_po_mod'
     case $2 in
       gui)
@@ -862,7 +861,7 @@ case ${1-} in
   ;;
   neteja_ca)
     comprova_lloc
-    [ -z "${2-}" ] && sortida_po || true
+    [ -z "${2-}" ] && sortida_po
     ORDRE='neteja_ca'
     case $2 in
       gui)
