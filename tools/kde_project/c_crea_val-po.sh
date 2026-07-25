@@ -1050,23 +1050,18 @@ case ${1-} in
     echo    "[Translations]"
     echo -e "LANGUAGE=ca@valencia:ca:en_US\n"
 
-    DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
-
-    crea_mo() {
-      sudo msgfmt -a 1 "$POFILE" -o "$DIR_MESSAGES/$FILE_NAME.mo"
-      if   [[ "$DIR_M"     = @(ark|falkon|krita|kwalletmanager) ]]; then
-        LINK="1"
-      elif [[ "$FILE_NAME" = @(kcm_keyboard) ]]; then
-        LINK="1"
-      fi
-    }
+    VAL_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
+    POFILE=""
 
     comprova() {
       DIR="$1"
-      POFILE_2="$(find "$DIR/" -type f -name "$FILE_NAME.po")"
-      [ "$POFILE_2" ] && POFILE="$POFILE_2"
-      [ ! "$POFILE" ] && return
+      POFILE_2="$(find "$DIR" -type f -name "$FILE_NAME.po" -print -quit 2>/dev/null)"
+
+      [ -n "$POFILE" ] && return
+
+      POFILE="$POFILE_2"
       DIR_M="${POFILE%/*}" && DIR_M="${DIR_M##*/}"
+
       if [[ "$POFILE" == *'stable'* ]]; then
           BRANCA='stable'
         else
@@ -1076,31 +1071,34 @@ case ${1-} in
     }
 
     fes_mo() {
-      comprova "$ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages"  mo
-      comprova "$ROOT_TREE/stable/l10n-kf6/ca@valencia/messages" mo
-      comprova "$ROOT_TREE/trunk/l10n-kf5/ca@valencia/messages"  mo
-      comprova "$ROOT_TREE/stable/l10n-kf5/ca@valencia/messages" mo
-      if [ "$DIR_M" ]; then
+      comprova "$ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages"
+      comprova "$ROOT_TREE/stable/l10n-kf6/ca@valencia/messages"
+      comprova "$ROOT_TREE/trunk/l10n-kf5/ca@valencia/messages"
+      comprova "$ROOT_TREE/stable/l10n-kf5/ca@valencia/messages"
+      if [ -n "$DIR_M" ]; then
         COLOR_B="33"
-        if [[ "$BRANCA $NUM" = @(stable 5|trunk  5) ]]; then
-            COLOR_B="95"
-        fi
+        [[ "$BRANCA $NUM" = @(stable 5|trunk  5) ]] && COLOR_B="95"
         FILE="$FILE_NAME.mo"
-        echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
-        crea_mo
-        COLOR_B=""
+
+        echo -e "\e[1;${COLOR_B}m$BRANCA $NUM -\e[0m $VAL_MESSAGES/$FILE"
+        sudo msgfmt -a 1 "$POFILE" -o "$VAL_MESSAGES/$FILE_NAME.mo"
+
+        [[ "$DIR_M"     = @(ark|falkon|krita|kwalletmanager) ]] && LINK="1"
+        [[ "$FILE_NAME" = @(kcm_keyboard) ]] && LINK="1"
+        true
       fi
     }
 
     fes_qm() {
-      comprova "$ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages"  qm
-      comprova "$ROOT_TREE/stable/l10n-kf6/ca@valencia/messages" qm
-      comprova "$ROOT_TREE/trunk/l10n-kf5/ca@valencia/messages"  qm
-      comprova "$ROOT_TREE/stable/l10n-kf5/ca@valencia/messages" qm
-      if [ "$DIR_M" ]; then
+      comprova "$ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages"
+      comprova "$ROOT_TREE/stable/l10n-kf6/ca@valencia/messages"
+      comprova "$ROOT_TREE/trunk/l10n-kf5/ca@valencia/messages"
+      comprova "$ROOT_TREE/stable/l10n-kf5/ca@valencia/messages"
+      if [ -n "$DIR_M" ]; then
         FILE="$FILE_NAME.qm"
-        echo -e "\e[1m$BRANCA $NUM -\e[0m $DIR_MESSAGES/$FILE"
-        sudo /usr/lib/qt6/bin/lconvert -target-language "$SOURCE_0" -locations none "$POFILE" -o "$DIR_MESSAGES/$FILE"
+
+        echo -e "\e[1m$BRANCA $NUM -\e[0m $VAL_MESSAGES/$FILE"
+        sudo /usr/lib/qt6/bin/lconvert -target-language "$SOURCE_0" -locations none "$POFILE" -o "$VAL_MESSAGES/$FILE"
       fi
     }
 
@@ -1110,12 +1108,12 @@ case ${1-} in
         LINK="0"
         DIR="$ROOT_TREE/trunk/l10n-kf6/ca@valencia/messages"
         FILE_NAME="${file%.*}"
-        [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo" ] && fes_mo
-        if [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm" ]; then
-          fes_qm
-          LINK="1"
-        fi
-        DIR_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
+
+        [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.mo"   ] && fes_mo
+        { [ -f "/usr/share/locale/ca/LC_MESSAGES/$FILE_NAME.qm" ] && fes_qm && LINK="1"; }
+
+        VAL_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
+
         if [ "$LINK" -eq 1 ]; then
           sudo ln -fs "/usr/share/locale/ca@valencia/LC_MESSAGES/$FILE" "/usr/share/locale/ca/LC_MESSAGES/$FILE"
           echo -e "\t\t\e[3m(Enllaçat amb /usr/share/locale/ca/LC_MESSAGES/$FILE)\e[0m"
@@ -1127,11 +1125,11 @@ case ${1-} in
 
     # qt5 qt5keychain buho kid3 smplayer qt6 subsurface gcompris-qt sddm pavucontrol-qt kImageAnnotator
     if   [ -f "/usr/share/gcompris-qt/translations/gcompris_ca.qm" ];then
-      DIR_MESSAGES="/usr/share/gcompris-qt/translations"
+      VAL_MESSAGES="/usr/share/gcompris-qt/translations"
       FILE_NAME="gcompris_$SOURCE_0"
       fes_qm gcompris_qt "gcompris_$SOURCE_0"
     elif [ -f "/usr/share/buho/translations/buho_ca.qm" ];then
-      DIR_MESSAGES="/usr/share/buho/translations"
+      VAL_MESSAGES="/usr/share/buho/translations"
       FILE_NAME="buho_$SOURCE_0"
       fes_qm buho "buho_$SOURCE_0"
     fi
@@ -1139,24 +1137,25 @@ case ${1-} in
     # Missing link
         # sudo ln -sf /usr/share/locale-langpack/ca/LC_MESSAGES/coreutils.mo /usr/share/locale/ca/LC_MESSAGES/coreutils.mo
     # LC_SCRIPTS
-        # sudo mkdir -p /usr/share/locale/ca@valencia/LC_SCRIPTS/ki18n5/
-        # sudo cp -f ca@valencia/scripts/ki18n/ki18n5/ki18n5.js /usr/share/locale/ca@valencia/LC_SCRIPTS/ki18n5/
+        # sudo mkdir -p /usr/share/locale/ca@valencia/LC_SCRIPTS/ki18n6/
+        # sudo cp -f ca@valencia/scripts/ki18n/ki18n6/ki18n6.js /usr/share/locale/ca@valencia/LC_SCRIPTS/ki18n6/ki18n6.js
     # Desktop
-        # sudo cp -f ca@valencia/messages/kconfigwidgets/kf5_entry.desktop /usr/share/locale/ca@valencia/kf5_entry.desktop
+        # sudo cp -f ca@valencia/messages/kconfigwidgets/kconfigwidgets._desktop_.po ca@valencia/messages/kconfigwidgets/kconfigwidgets._desktop_.po
   ;;
   sense_installar)
-    DIR="$ROOT_TREE/$TRUNK/ca@valencia/messages"
+    DIR="$ROOT_TREE/$TRUNK6/ca@valencia/messages"
+    VAL_MESSAGES="/usr/share/locale/ca@valencia/LC_MESSAGES"
 
     executa() {
-      FILE_NAME="${file%.*}" # Elimina .mo o .qm
-      POFILE="$(find "$DIR/" -type f -name "$FILE_NAME.po" -print -quit)"
-      echo -e " \e[1;91m-* $file -> $POFILE\e[0m"
+      POFILE="$(find "$DIR" -type f -name "$FILE_NAME.po" -print -quit 2>/dev/null)"
+      echo -e " \e[1;91m-* $file ->\e[0m $POFILE"
     }
 
-    echo "** Se cerca el PO a «$TRUNK/ca@valencia/messages» **"
+    echo "** Se cerca el PO a «$TRUNK6/ca@valencia/messages» **"
     for file in /usr/share/locale/ca/LC_MESSAGES/*
       do
-        [ -f "/usr/share/locale/ca@valencia/LC_MESSAGES/$file" ] || executa
+        FILE_NAME="${file%.*}" && FILE_NAME="${FILE_NAME##*/}" # Elimina .mo o .qm
+        { [ ! -f "$VAL_MESSAGES/$FILE_NAME.mo" ] && [ ! -f "$VAL_MESSAGES/$FILE_NAME.qm" ]; } && executa
       done
   ;;
   revisa)
