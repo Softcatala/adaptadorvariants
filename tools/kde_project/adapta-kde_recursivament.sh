@@ -75,7 +75,7 @@ genera_copia() {
     cp  "$DIRTR/all-src2valencia-adapta.sed"    'all-src2valencia.sed'
     cat "$DIRTR/all-src2valencia.sed"        >> 'all-src2valencia.sed'
     cat "$DIRTR/all-src2valencia-esmena.sed" >> 'all-src2valencia.sed'
-    # \time -f "Temps d'execució: %E" ./c_crea_val-po.sh adapta
+
     if ! pgrep -x "cpulimit" >/dev/null 2>&1; then
       cpulimit --background --quiet --path="$(which sed)" --limit='75' >/dev/null 2>&1 || true
     fi
