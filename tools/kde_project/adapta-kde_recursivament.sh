@@ -45,7 +45,9 @@ capçalera() {
   if [[ "$ESCRIPTORI" == "l10n-kf5-plasma-lts" || "$ESCRIPTORI" == "l10n-kf5 (SVN local)" ]]; then
     extra_asterisk="************"
   fi
-  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RVINICI:$RVFINAL\n  ****************${extra_asterisk}\n"
+
+  [ -z "${RV_CADENA-}" ] && RV_CADENA="$RVINICI:$RVFINAL"
+  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RV_CADENA\n  ****************${extra_asterisk}\n"
 }
 
 genera_copia() {
@@ -167,9 +169,10 @@ genera_copia() {
 
   # es fa el seguiment local de les esmenes en regressió
   PO_RULES="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
-  echo -e " \e[1;37m* Es comproven les regles globals:\e[0m"
 
+  echo -e " \e[1;37m* Es comproven les regles globals:\e[0m"
   posieve check-rules -s rfile:"$PO_RULES/errors.rules"     "$FITX"
+
   if   [[ "$DIR" = 'messages/'@(digikam-doc|websites-krita-org) ]]; then
     echo -e " \e[1;37m* Es comproven les regles multimedia:\e[0m"
     posieve check-rules -s rfile:"$PO_RULES/multimedia.rules" "$FITX"
@@ -277,9 +280,10 @@ case $ACTION in
     CANVIA='1'
     PO="${2:-}"
     DIR="${PO%/*}"
-    # S'estableixen a zero (no s'usen)
-    RVINICI="0"
-    RVFINAL="0"
+    # S'estableixen a zero (si no s'usen)
+    [ -z "${RVINICI-}" ] && RVINICI='0'
+    [ -z "${RVFINAL-}" ] && RVFINAL='0'
+    [ -n "${3-}" ]       && RV_CADENA="$3"
 
     capçalera
     if [ -f "ca/$PO" ]; then
@@ -330,8 +334,9 @@ esac
 
 message_removed() {
   [[ "$REPETIT" == "$DIR" ]] && return 0
-  echo -e " \e[44mo\e[0m $DIR"
+  { [[ "${VAL-}" -eq 1 ]] && echo -e " \e[38;5;46mo\e[0m $DIR"; } || echo -e " \e[44mo\e[0m $DIR"
   REPETIT="$DIR"
+  VAL='0'
 }
 
 for PO in "${FITXERSPO[@]}"
@@ -359,7 +364,8 @@ for PO in "${FITXERSPO[@]}"
       # Fet! - https://krita.org/ca/
       [ "$DIR"  = 'messages/documentation-docs-krita-org' ]      && message_removed && continue # https://docs.krita.org/ca/
       # Es desactiven les traduccions revisades per l'equip valencià:
-      [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]] && message_removed && continue
+      [[ "$DIR"  = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]] && VAL='1' message_removed && continue
+      [[ "$FITX" = @(cervisia._json_|ffmpegthumbs._json_|kbibtex._json_|kdenlive._json_|oom_notifier|org.kde.plasmasetup|org.rolisteam.rolisteam.appdata|rolisteam._desktop_|svgpart._json_)'.po' ]] && VAL='1' message_removed && continue
       # Aquest fitxer està buit i dona error
       [ "$FITX" = 'knotifications6_qt.po' ]                      && message_removed && continue
       genera_copia

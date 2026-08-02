@@ -43,12 +43,12 @@ APPEND="\`\`|\`|\*\*\*|\*\*|\*|$TEMPORAL|\.|\(|\)|\[|\]|\(\[|\)\[|\(\[«|\)\[«|
 [ -f 'append-a_en.in' ] && APPEND_0="$(tr -d '\n' < append-a_en.in)"
 
 # Es descarten les paraules annexades després (p. ex., Ha fallat l'extracció a causa -en aquest cas «causa»-)
-APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|baix|banda|bord|cada segon|causa|celebrar|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dintre|dret|dreta|esquerra|est|estar|facilitar|faltar|fer|Fourier|freqüències|hores d'ara|href|individus|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|molts|motius|name=|ningú|nivell intern|nord|oest|partir|penes|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|tothom|través|trobar|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
-APPEND_A_L="aire lliure|escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés|instant|oest de Greenwich|oli|usuari"
-APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|llarga|manera de fer|manera tradicional|millor|nit seleccionada|normal|part|posició (apuntada|d'enfocament)|pèrdua|posta de sol|qual|rotació|vegada|versió [0123456789]|visualització|vostra opció"
+APPEND_A="[0123456789]|\d{3}|«Escala|acte (es bus|se cer)caran|açò|baix|banda|bord|cada segon|causa|celebrar|cinc bandes|class=|completar|continuació|costa|curt termini|dalt|davall|diferència|dins|dintre|dret|dreta|escala|esquerra|est|estar|facilitar|faltar|fer|Fourier|freqüències|hores d'ara|href|individus|les|longitud d'ona|llarg termini|menys que|mesura|més,|més d'|més de|més del resultat|més dels|mida|molts|motius|name=|ningú|nivell (intern|mundial)|nord|oest|partir|pas|penes|pitjor|primera vista|principis|prop|punt|qualsevol valor|qui|Seaside|simple|sud|tall|temps complet|terme|tindre en compte|title=|tort|tot el món|tothom|través|trobar|una distància|una gran distància|unir-se a nosaltres|vegades|voluntat"
+APPEND_A_L="aire lliure|any|escala especificada|especificat|espera|esquerra|est del nord|estar|estil|extrem baix|hivern|hora|inrevés|instant|oest de Greenwich|oli|usuari"
+APPEND_A_LA="conclusió|distància en micres|dreta|dreta, davall|gent|inversa|Krita Foundation|llarga|manera de fer|manera tradicional|millor|nit seleccionada|normal|p|part|posició (apuntada|d'enfocament)|pèrdua|posta de sol|qual|rotació|vegada|velocitat|versió [0123456789]|visualització|vostra opció"
 APPEND_A_LES="%[12345]|[01][0123456789][:,]|2[01234][:,]|dotze del migdia|persones|quals"
 # Inclou «AL»
-APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdamunt|capdavant|carbonet|començament|costat|darrere|davant|desenvolupadors?|Dhanab|dia|efectes del càlcul|espectadors|fet|final|Gieba|Giedi|japon[èé]s|Jawf|jugador|llarg|Manamah|mateix (ritme|temps)|màxim|mig del gris|migdia|millors artistes|moment d'escriure|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|primer pla|principi|quadrat de l'ajust|qual s'accedix|qual sovint es refer(eix|ix)|Rai|Saif|seu (torn|voltant)|seus valors predeterminats|Shuja|sis anys|Thalimain|ultraviolats|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
+APPEND_ALS="100%|19[6789][0123456789]|20[012][0123456789]|canvis ambientals|capdamunt|capdavant|carbonet|començament|costat|darrere|davant|desenvolupadors?|Dhanab|dia|efectes del càlcul|espectadors|estudiants|fet|final|Gieba|Giedi|japon[èé]s|Jawf|jugador|llarg|Manamah|mateix (ritme|temps)|màxim|mig del gris|migdia|millors artistes|moment d'escriure|Nair|Nasl|NGC|Niyat|[nv]ostre (gust|voltant)|paràmetres per a configurar|participant|passat|primer pla|principi|quadrat de l'ajust|qual dona||qual s'accedix|qual sovint es refer(eix|ix)|Rai|ras|Saif|seu (torn|voltant)|seus valors predeterminats|Shuja|sis anys|Thalimain|ultraviolats|valor calculat automàticament|valors? predeterminats?|voltant|xin[èé]s"
 
 sortida_po() {
   echo -e "$0 [opció] (arguments)?
@@ -67,35 +67,35 @@ sortida_po() {
                                   \e[47;31mNOTA:\e[0m Primer s'ha de generar la traducció!
 
   \e[1;37mCERCAR\n  ------\e[0m
-  cerca_dir va (text_cerca) (dir))[/fitxer.po]? [doc]?
+  cerca_dir va (text_cerca) (dir)[/fitxer.po]? [doc]?
                                   \e[1;37mCerca a la carpeta indicada\e[0m.
                                   Es pot especificar l'idioma (ca, en -a «va»- i va).
                                   Amb el caràcter de punt «.» se cerca a totes.
-                                  De manera predeterminada a «va».
+                                  De manera predeterminada es mostra a «va», es pot especficar «\"\" ca».
   cerca_all_dir va (text_cerca) (dir)?
                                   * \e[1;37mApareix un indicatiu en passar per cada carpeta\e[0m (va).
                                   Es pot especificar l'idioma (ca, en -a «va»- i va).
 
-                                  * = Si s'especifica una carpeta, la cerca començarà en aquesta.
+                                  \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m
 
-  cerca_dir_a    va (paraula)     * \e[1;37mSe cerca «a »+«paraula».\e[0m
-  cerca_dir_a_l  va (paraula)     * \e[1;37mSe cerca «a l'»+«paraula».\e[0m
-  cerca_dir_ala  va (paraula)     * \e[1;37mSe cerca «a la »+«paraula».\e[0m
-  cerca_dir_ales va (paraula)     * \e[1;37mSe cerca «a les »+«paraula».\e[0m
-  cerca_dir_al   va (paraula)     * \e[1;37mSe cerca «al »+«paraula».\e[0m
-  cerca_dir_als  va (paraula)     * \e[1;37mSe cerca «als »+«paraula».\e[0m
-  cerca_dir_auns va (paraula)     * \e[1;37mSe cerca «a uns? »+«paraula».\e[0m
+  cerca_dir_a    va (text) (dir)? * \e[1;37mSe cerca «a »+«paraula».\e[0m
+  cerca_dir_a_l  va (text) (dir)? * \e[1;37mSe cerca «a l'»+«paraula».\e[0m
+  cerca_dir_ala  va (text) (dir)? * \e[1;37mSe cerca «a la »+«paraula».\e[0m
+  cerca_dir_ales va (text) (dir)? * \e[1;37mSe cerca «a les »+«paraula».\e[0m
+  cerca_dir_al   va (text) (dir)? * \e[1;37mSe cerca «al »+«paraula».\e[0m
+  cerca_dir_als  va (text) (dir)? * \e[1;37mSe cerca «als »+«paraula».\e[0m
+  cerca_dir_auns va (text) (dir)? * \e[1;37mSe cerca «a uns? »+«paraula».\e[0m
                                   Es pot especificar l'idioma (ca i va).
 
-                                  * = Si s'especifica una carpeta, la cerca començarà en aquesta.
+                                  \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m
 
-  cerca        (text_cerca)       És una \e[1;37mcerca més ràpida per carpeta\e[0m (va).
+  cerca (text_cerca)              És una \e[1;37mcerca més ràpida per carpeta\e[0m (va).
 
   \e[1;37mTÍTOLS\n  ------\e[0m
   cerca_titols (dir)?             \e[1;37mEs miren els títols\e[0m (va).
   cerca_titols_dir (dir)?         * \e[1;37mEs miren els títols per carpeta\e[0m (va).
 
-                                  * = Si s'especifica una carpeta, la cerca començarà en aquesta.
+                                  \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m
 
   comprova_titols                 \e[1;37mEs comproven els títols modificats\e[0m (va).
 
@@ -103,14 +103,18 @@ sortida_po() {
   adapta                          \e[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
   adapta_doc                      \e[1;37mAdapta i genera la documentació\e[0m en el SVN local.
                                   \e[47;31mNOTA:\e[0m Després s'han de moure manualment!
-  \e[47;31madapta_dir (dir)\e[0m                \e[1;37mPROVES! Adapta i genera només una carpeta\e[0m en el SVN local.
-  \e[47;31madapta_dir_va (dir)\e[0m             \e[1;37mPROVES! El mateix però només amb els fitxers ja en valencià\e[0m.
+  adapta_mod                      \e[47;31mAdapta tots els fitxers mantinguts, només en el SVN local.\e[0m
+  \e[47;31madapta_mod_aquests\e[0m \"[núm. comissió]\"
+                                  \e[1;37mAdapta els PO amb modificacions\e[0m en el SVN local.
+
+
+  \e[47;31madapta_dir (dir)\e[0m                \e[1;37mAdapta i genera només una carpeta.\e[0m
+  \e[47;31madapta_dir_va (dir)\e[0m             \e[1;37mEl mateix però només amb els fitxers ja en valencià.\e[0m
   modifica_capçalera fitxer.po    \e[1;37mActualitza la informació a la capçalera\e[0m.
-  adapta_valencia (recursiu|usuari)
+  \e[47;31madapta_valencia\e[0m (recursiu|\e[47;31musuari\e[0m)
                                   \e[47;31mAdapta el SVN de KDE en totes les branques.\e[0m
-  crea_po   (gui|doc)             \e[1;37mCrea els fitxers PO que es mantenen\e[0m.
-  neteja_ca (gui|doc)             \e[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
-  adapta_mod                      \e[47;31mAdapta tots els fitxers mantinguts en el SVN local.\e[0m
+  \e[47;31mcrea_po   (gui|doc)\e[0m             \e[1;37mCrea els fitxers PO que es mantenen\e[0m.
+  \e[47;31mneteja_ca (gui|doc)\e[0m             \e[1;37mEs fan còpies de seguretat tot netejant l'arbre\e[0m.
 
   \e[1;37mMANTENIMENT\n  -----------\e[0m
   \e[47;31mactualitza_svn_local\e[0m            \e[1;37mActualitza l'SVN local amb trunk\e[0m.
@@ -177,7 +181,8 @@ sortida_po() {
   * Comprovar les capçaleres:
     ../../../l10n-support/ca/scripts/set_kde_copyright.sh l10n-kf5 copyright trunk
 
-  * S'enregistra el temps que tarda l'script:
+  * S'enregistra el temps que tarda l'script (s'han d'emprar els arguments
+    «adapta» i «adapta_mod», i sumar els temps):
     \\\time -f \"Temps d'execució: %E\" ./c_crea_val-po.sh adapta\n"
   exit 0
 }
@@ -374,6 +379,35 @@ neteja_ca() {
     done < <(find "$ROOT_SCRIPT/$DIRMOD/" -mindepth 1 -maxdepth 1 -type f -name "*.po" -print0 | LC_ALL=C sort -z)
 }
 
+copia_commit(){
+  comprova_lloc
+  TARGETS="${1-}"
+  FITXERST=""
+  { [[ -z "${TARGETS-}" || ! "$TARGETS" =~ ^[0-9[:space:]]*$ ]]; } && sortida_po
+
+  commits_num(){
+    (
+      cd "$SOURCE_0" || exit 1
+      LC_ALL=C svn log --verbose -r "$1" 2>/dev/null | awk -v src="$SOURCE_0" '$0 ~ "/" src "/messages/" {sub("^.*/" src "/messages/", ""); print}'
+    )
+  }
+
+  read -r -a ARRAY <<< "$TARGETS"
+  for arg in "${ARRAY[@]}"
+    do
+      FILES_COMMIT="$(commits_num "$arg")"
+      [ -z "$FILES_COMMIT" ] && continue
+
+      if [ -z "$FITXERST" ]; then
+          FITXERST="$FILES_COMMIT"
+        else
+          FITXERST="${FITXERST}"$'\n'"${FILES_COMMIT}"
+      fi
+    done
+
+  FITXERS="$(echo "$FITXERST" | LC_ALL=C sort -u)"
+}
+
 prompt_1() {
   echo -e "\e[38;5;46m * $DIR -\e[0m \e[1;33m $MSG:  $TEXT \e[0m\n"
   [ -n "${MISSATGE-}" ] && echo -e "\e[1;37m $MISSATGE \e[0m\n"
@@ -402,17 +436,6 @@ prompt_1() {
   esac
 }
 
-cerca_1() {
-  STRING="msgstr/\b($APPEND|)$STRING1/ and not msgstr/\b($APPEND_0) $STRING1/"
-
-  if [ -d "$SOURCE/docmessages/$DIR" ]; then
-    echo -e "\n\n - Doc: $DIR\n   ****"
-    posieve find-messages -s fexpr:"$STRING" "$SOURCE/docmessages/$DIR"
-  fi
-  echo -e "\n\n - IGU: $DIR\n   ****"
-  posieve find-messages -s fexpr:"$STRING" "$SOURCE/messages/$DIR"
-}
-
 per_carpeta(){
   local ACTIVAT='0'
 
@@ -423,8 +446,20 @@ per_carpeta(){
 
       if [ "$ACTIVAT" -eq 1 ] || [ -z "${MODUL:-}" ]; then
         case "$ITEM" in
-          1) prompt_1 ;;
-          2) cerca_1 ;;
+          1)
+            prompt_1
+          ;;
+          2)
+            STRING="msgstr/\b($APPEND|)$STRING1/ and not msgstr/\b($APPEND_0) $STRING1/"
+
+            if [ -d "$SOURCE/docmessages/$DIR" ]; then
+              echo -e "\n\n - Doc: $DIR\n   ****"
+              posieve find-messages -s fexpr:"$STRING" "$SOURCE/docmessages/$DIR"
+            fi
+
+            echo -e "\n\n - IGU: $DIR\n   ****"
+            posieve find-messages -s fexpr:"$STRING" "$SOURCE/messages/$DIR"
+          ;;
         esac
       fi
     done < <(find "$SOURCE/messages/" -mindepth 1 -maxdepth 1 -type d -print0 | LC_ALL=C sort -z)
@@ -433,6 +468,7 @@ per_carpeta(){
 cerca_dira() {
   comprova_lloc
   { [ -z "${1-}" ] || [[ ! "${1-}" =~ ^(ca|va)$ ]] || [ -z "${2-}" ]; } && sortida_po
+  ITEM='2'
   TEXT="$2"
   MODUL="${3-}"
   SOURCE="$SOURCE_0"
@@ -660,43 +696,36 @@ case ${1-} in
     per_carpeta
   ;;
   cerca_dir_a)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="a (d'|del? |)($APPEND|)$TEXT"
     per_carpeta
   ;;
   cerca_dir_a_l)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="a ($APPEND|)l'($APPEND|)$TEXT"
     per_carpeta
   ;;
   cerca_dir_ala)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="a ($APPEND|)la (d'|del?s? |)($APPEND|)$TEXT"
     per_carpeta
   ;;
   cerca_dir_ales)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="a ($APPEND|)les (d'|del?s? |)($APPEND|)$TEXT"
     per_carpeta
   ;;
   cerca_dir_al)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="al (d'|del?s? |)($APPEND|)$TEXT"
     per_carpeta
   ;;
   cerca_dir_als)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="als (d'|del?s? |)($APPEND|)$TEXT"
     per_carpeta
   ;;
   cerca_dir_auns)
-    ITEM='2'
     cerca_dira "${2-}" "${3-}" "${4-}"
     STRING1="a ($APPEND|)un([as]|es)? ($APPEND|)$TEXT"
     per_carpeta
@@ -808,6 +837,15 @@ case ${1-} in
       do
         FILEPATH="${po//ca-mod\//}"
         ./adapta-kde_recursivament.sh fitxer "$FILEPATH"
+      done
+  ;;
+  adapta_mod_aquests)
+    SOURCE_0='ca'
+    copia_commit "${2-}"
+
+    for file in $FITXERS
+      do
+        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file" "$SOURCE_0: $TARGETS"
       done
   ;;
   adapta_valencia)
@@ -992,55 +1030,30 @@ case ${1-} in
     ./adapta-kde_recursivament.sh fitxer "messages/$MFILE"
   ;;
   copia_aquests)
-    comprova_lloc
-    TARGETS="${2-}"
-    FITXERST=""
-    { [[ -z "${TARGETS-}" || ! "$TARGETS" =~ ^[0-9[:space:]]*$ ]]; } && sortida_po
-
-    commits_num(){
-      (
-        cd "$SOURCE_0" || exit 1
-        LC_ALL=C svn log --verbose -r "$1" 2>/dev/null | awk '/\/ca@valencia\/messages\// {sub(/^.*\/ca@valencia\/messages\//, ""); print}'
-      )
-    }
-
-    read -r -a ARRAY <<< "$TARGETS"
-    for arg in "${ARRAY[@]}"
-      do
-        FILES_COMMIT="$(commits_num "$arg")"
-        [ -z "$FILES_COMMIT" ] && continue
-
-        if [ -z "$FITXERST" ]; then
-            FITXERST="$FILES_COMMIT"
-          else
-            FITXERST="${FITXERST}"$'\n'"${FILES_COMMIT}"
-        fi
-      done
-
-    FITXERS="$(echo "$FITXERST" | LC_ALL=C sort -u)"
+    copia_commit "${2-}"
 
     cd "$ROOT_TREE/$STABLE" || exit 1
     for file in $FITXERS
       do
-        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file"
+        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file" "$SOURCE_0: $TARGETS"
       done
 
     cd "../../$TRUNK/" || exit 1
     for file in $FITXERS
       do
-        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file"
+        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file" "$SOURCE_0: $TARGETS"
       done
 
     cd "../../$STABLE6/" || exit 1
     for file in $FITXERS
       do
-        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file"
+        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file" "$SOURCE_0: $TARGETS"
       done
 
     cd "../../$TRUNK6/" || exit 1
     for file in $FITXERS
       do
-        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file"
+        [ -f "ca/messages/$file" ] && ./adapta-kde_recursivament.sh fitxer "messages/$file" "$SOURCE_0: $TARGETS"
       done
   ;;
   installa_va)
@@ -1149,7 +1162,7 @@ case ${1-} in
 
     executa() {
       POFILE="$(find "$DIR" -type f -name "$FILE_NAME.po" -print -quit 2>/dev/null)"
-      echo -e " \e[1;91m-* $file ->\e[0m $POFILE"
+      echo -e " \e[1;91m - $file ->\e[0m $POFILE"
     }
 
     echo "** Se cerca el PO a «$TRUNK6/ca@valencia/messages» **"
