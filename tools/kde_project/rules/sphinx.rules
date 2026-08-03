@@ -268,20 +268,25 @@ valid msgstr="\]\(https://dot\.kde\.org/"
 hint="Es tradueix per «](https://dot.kde.org/» (Sphinx)."
 
 {\].?.?\({{<bug-url \d{6,7}>}}\)}
+# valid msgstr="\[.*\]\({{<bug-url \d{6,7}>}}\)" # ca
 valid msgstr="\[(informes|informes? d'error: \d{6,7})\]\({{<bug-url \d{6,7}>}}\)"
 valid msgstr="\[informe d'error crític: \d{6,7}\]\({{<bug-url \d{6,7}>}}\)"
 hint="Es tradueix per «[informe d'error: 123456]({{<bug-url 123456>}})» (Sphinx)."
 
   {\].?.?\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)}
+#   valid msgstr="\[.*\]\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)" # ca
   valid msgstr="\[informes? d'error: \b\d{6,7}\]\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)"
   valid msgstr="\[informe d'error crític: \b\d{6,7}\]\(https://bugs\.kde\.org/show_bug\.cgi?id=\d{6,7}\)"
   hint="Es tradueix per «[informe d'error: 123456](https://bugs.kde.org/show_bug.cgi?id=12345)» (Sphinx)."
 
 {\].?.?\({{<commit-url \w{10,40}>}}\)}
+# valid msgstr="\[.*\]\({{<commit-url \w{10,40}>}}\)" # ca
 valid msgstr="\[(comissió|comissió [12345]|esmena)\]\({{<commit-url \w{10,40}>}}\)"
 hint="Es tradueix per «[comissió]({{<commit-url 97fbf20faf>}})» (Sphinx)."
 
   {\].?.?\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)}
+#   valid msgstr="\[.*\]\({{<commit-url \w{10,40}>}}\)" # ca
+#   valid msgstr="\[.*\]\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)" # ca
   valid msgstr="\[(comissió|comissió [12345]|esmena)\]\({{<commit-url \w{10,40}>}}\)"
   valid msgstr="\[comissió\]\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)"
   valid msgstr="\[comissió ([0123456789])\]\(https://invent\.kde\.org/graphics/krita/-/commit/\w{10,40}\)"
@@ -322,10 +327,13 @@ valid msgstr="\]\(https://krita-artists\.org/"
 hint="Es tradueix per «](https://krita-artists.org/» (Sphinx)."
 
 {\].?.?\({{<merge-request-url \d{3,6}>}}\)}
+# valid msgstr="\[.*\]\({{<merge-request-url \d{3,6}>}}\)" # ca
 valid msgstr="\[sol·licituds? de fusió: \d{3,6}\]\({{<merge-request-url \d{3,6}>}}\)"
 hint="Es tradueix per «[sol·licitud de fusió: 1234]({{<merge-request-url 1234>}})» (Sphinx)."
 
   {\].?.?\(https://invent\.kde\.org/graphics/krita/-/merge_requests/\d{3,6}\)}
+#   valid msgstr="\[.*\]\({{<merge-request-url \d{3,6}>}}\)" # ca
+#   valid msgstr="\[.*\]\(https://invent\.kde\.org/graphics/krita/-/merge_requests/\d{3,6}\)" # ca
   valid msgid="(2201|Actions Bar|added|API|Cacko|improved|Krita|patches|properties|PyQt |QML|ready|rotation|solving|that|Wayland|widget)\]"
   valid msgstr="\[2725\]"
   valid msgstr="\[sol·licituds? de fusió: \d{3,6}\]\({{<merge-request-url \d{3,6}>}}\)"
