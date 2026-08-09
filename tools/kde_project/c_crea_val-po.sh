@@ -381,7 +381,7 @@ neteja_ca() {
 
 copia_commit(){
   comprova_lloc
-  TARGETS="${1-}"
+  TARGETS="${@}"
   FITXERST=""
   { [[ -z "${TARGETS-}" || ! "$TARGETS" =~ ^[0-9[:space:]]*$ ]]; } && sortida_po
 
@@ -841,7 +841,7 @@ case ${1-} in
   ;;
   adapta_mod_aquests)
     SOURCE_0='ca'
-    copia_commit "${2-}"
+    copia_commit "${@:2}"
 
     for file in $FITXERS
       do
@@ -1030,7 +1030,7 @@ case ${1-} in
     ./adapta-kde_recursivament.sh fitxer "messages/$MFILE"
   ;;
   copia_aquests)
-    copia_commit "${2-}"
+    copia_commit "${@:2}"
 
     cd "$ROOT_TREE/$STABLE" || exit 1
     for file in $FITXERS

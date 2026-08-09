@@ -70,7 +70,7 @@ genera_copia() {
   # Fem que les frases/paràgrafs siguin d'una sola línia:
   msgmerge --silent --previous --no-wrap "$DIRTR/ca/$PO" "$DIRTR/templates/${PO}t" --output-file="missatges-$FITX"
 
-  if [ ! -f 'kde-src2valencia.sed' ]; then
+  if [[ ! -f 'kde-src2valencia.sed' || "${1-}" = 1 ]]; then
     cp  "$DIRTR/kde-src2valencia_a.sed"         'kde-src2valencia.sed'
     cat "$DIRTR/kde-src2valencia_b.sed"      >> 'kde-src2valencia.sed'
     cat "$DIRTR/kde-src2valencia-esmena.sed" >> 'kde-src2valencia.sed'
@@ -137,7 +137,7 @@ genera_copia() {
 
   if   [[ "$FITX" = *@(appdata.po|_qt.po|metainfo.po) ]]; then
       LBUGS=""
-  elif [[ "$FITX" = @(docs_digikam_org_|docs_kdenlive_org_|docs_krita_org_|kstars_docs_)*.po ]]; then
+  elif [[ "$FITX" = @(docs_digikam_org_|docs_kdenlive_org_|docs_krita_org_|kstars_docs_)*'.po' ]]; then
       LBUGS=""
   elif [  "$FITX" = 'kajongg.po' ]; then
       LBUGS='wolfgang@rohdewald.de'
@@ -179,7 +179,9 @@ genera_copia() {
   elif [[ "$DIR" = 'messages/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
     echo -e " \e[1;37m* Es comproven les regles del KStars:\e[0m"
     posieve check-rules -s rfile:"$PO_RULES/kstars.rules"     "$FITX"
-  elif [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
+  fi
+
+  if [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
     echo -e " \e[1;37m* Es comproven les regles per a Sphinx:\e[0m"
     posieve check-rules -s rfile:"$PO_RULES/sphinx.rules"     "$FITX"
   fi
@@ -283,12 +285,12 @@ case $ACTION in
     # S'estableixen a zero (si no s'usen)
     [ -z "${RVINICI-}" ] && RVINICI='0'
     [ -z "${RVFINAL-}" ] && RVFINAL='0'
-    [ -n "${3-}" ]       && RV_CADENA="$3"
+    [ -n "${3-}" ] && [ "$3" != 1 ] && RV_CADENA="$3"
 
     capçalera
     if [ -f "ca/$PO" ]; then
         FITX="${PO##*/}"
-        genera_copia
+        genera_copia "${3-}"
       else
         echo -e "\nError: «$PO» no existeix.\nHeu d'indicar un fitxer PO existent."
         echo -e "messages/carpeta/fitxer.po\n"
@@ -315,19 +317,21 @@ case $ACTION in
   *)
     echo "$0 [ usuari | recursiu | fitxer (po) | arranja_po ]"
     echo
-    echo    " usuari       : Mode SVN: mira l'última data i hora de canvi per als usuaris seguits."
-    echo -e "                • Empra la revisió en el fitxer $RVF i processa els\n\t\tmodificats."
-    echo -e "                • Usuaris seguits = ${USUARIS_SVN//|/ }\n"
+    echo    " usuari     : Mode SVN: mira l'última data i hora de canvi per als usuaris seguits."
+    echo -e "              • Empra la revisió en el fitxer $RVF i processa els\n\t\tmodificats."
+    echo -e "              • Usuaris seguits = ${USUARIS_SVN//|/ }\n"
     echo    " recursiu [messages/«mòdul»]?"
-    echo -e "              : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
-    echo    "                • Si aquest no existeix, ho actualitza tot."
-    echo -e "                • Es pot especificar un mòdul per a començar per allà.\n"
-    echo    " fitxer [po]  : Mode local: actualitza el fitxer sense emprar cap data."
-    echo    "                • Útil si observem alguna desactualització puntual."
-    echo -e "                Nota: No actualitza la revisió en el fitxer $RVF."
-    echo -e "                po = messages/carpeta/fitxer.po\n"
-    echo    " arranja_po   : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
-    echo -e "                Nota: No actualitza la data en el fitxer $RVF.\n"
+    echo -e "            : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
+    echo    "              • Si aquest no existeix, ho actualitza tot."
+    echo -e "              • Es pot especificar un mòdul per a començar per allà.\n"
+    echo    " fitxer [po] 1?"
+    echo    "            : Mode local: actualitza el fitxer sense emprar cap data."
+    echo    "              • Útil si observem alguna desactualització puntual."
+    echo -e "              Nota: No actualitza la revisió en el fitxer $RVF."
+    echo    "              po = messages/carpeta/fitxer.po"
+    echo -e "              Nota: Es pot indicar 1 com a tercer paràmetre i reconstruir els fitxers en sed.\n"
+    echo    " arranja_po : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
+    echo -e "              Nota: No actualitza la data en el fitxer $RVF.\n"
     exit 0
   ;;
 esac
