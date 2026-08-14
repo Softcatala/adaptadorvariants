@@ -268,14 +268,14 @@ s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 3851,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
 3866,/^msgstr / s/\"Servidor buit\"/\"Amfitrió buit\"/g
 # kaidan/kaidan_qt.po
-2409,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
-2425,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
+2425,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió:\"/g
 2440,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+2480,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
 # kasts/kasts.po
-1590,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1611,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
-1939,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+1639,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1960,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
+1988,/^msgstr / s/\"Nom del servidor:\"/\"Nom de l'amfitrió:\"/g
 # kate/kategdbplugin.po
 # kate/katesql.po
 s/\"Màquina: %1. Objectiu: %1\"/\"Amfitrió: %1. Objectiu: %1\"/g
@@ -340,7 +340,7 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 # labplot/labplot.po
 18852,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 21000,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-21050,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+21063,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # labplot/labplot2.po
 17997,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # libkleo/libkleopatra6.po
@@ -353,12 +353,13 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 # neochat/neochat.po
 6456,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 6474,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
+6483,/^msgstr / s/\"Màquina\"/\"Amfitrió\"/g
 # plasma-browser-integration/plasma-browser-extension._static_.po
 114,/^msgstr / s/\"Versió del servidor: /\"Versió de l'amfitrió: /g
 # plasmatube/plasmatube.po
 795,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # ruqola/ruqola.po
-1271,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
+1261,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1276,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 1286,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # smb4k/smb4k.po
@@ -661,11 +662,11 @@ s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de c
 2943,/^msgstr / s/\bDisminueix la brillantor\([^[:alnum:]]\)/Disminueix la lluminositat\1/g
 # digikam/digikam.po
 4478,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
-27538,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
-29408,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
 4596,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
 27465,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
+27538,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
 29335,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
+29408,/^msgstr / s/\"Brillantor\"/\"Lluminositat\"/g
 # dragon/dragonplayer.po
 450,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
 # haruna/haruna.po
@@ -674,9 +675,9 @@ s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de c
 492,/^msgstr / s/\"Disminueix la lluminositat\"/\"Disminueix la brillantor\"/g
 508,/^msgstr / s/\"Disminueix la lluminositat\"/\"Disminueix la brillantor\"/g
 498,/^msgstr / s/\"Reinicialitza la lluminositat\"/\"Reinicialitza la brillantor\"/g
-514,/^msgstr / s/\"Reinicialitza la lluminositat\"/\"Reinicialitza la brillantor\"/g
-2691,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+504,/^msgstr / s/\"Reinicialitza la lluminositat\"/\"Reinicialitza la brillantor\"/g
 2899,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2922,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 # kdeconnect-kde/kdeconnect-plugins.po
 239,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
 268,/^msgstr / s/\"Lluminositat màxima\"/\"Brillantor màxima\"/g
@@ -728,8 +729,8 @@ s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 701,/^msgstr / s/\"Lluminositat: /\"Brillantor: /g
 702,/^msgstr / s/\"Lluminositat: /\"Brillantor: /g
 706,/^msgstr / s/\"Lluminositat: /\"Brillantor: /g
-1972,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-1965,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2899,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2910,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 # skanpage/skanpage.po
 451,/^msgstr / s/\"Lluminositat:\"/\"Brillantor:\"/g
  # Error

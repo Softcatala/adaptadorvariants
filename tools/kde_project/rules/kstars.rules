@@ -531,6 +531,10 @@ valid msgstr="^|(.*?)|$"
 valid msgstr="\bmapa celeste\b"
 hint="Es tradueix per «mapa celeste (KStars)»."
 
+  {\bsteady\ssky\b}i
+  valid msgstr="\bcel clar\b"
+  hint="Es tradueix per «cel clar (KStars)»."
+
 {\bstacked\b}i
 valid msgid="\b(being|will\sbe)\sstacked\b"
 valid msgstr="\bapilad(a|es)\b"
@@ -745,8 +749,8 @@ valid msgstr="\bescalfa(ment)?\b"
 hint="Es tradueix per «escalfa, escalfament (KStars)»."
 
   {\bwarm(ing)?.?up\b}i
-  valid msgstr="\bescalfament\b"
-  hint="Es tradueix per «escalfament (KStars)»."
+  valid msgstr="\bescalfa(ment)?\b"
+  hint="Es tradueix per «escalfa/ment (KStars)»."
 
 {\bweather\b}i
 valid msgid="\blocal\sweather\b"
@@ -1299,6 +1303,7 @@ hint="Es tradueix per «ponderació, ponderada/es (KStars)»."
     hint="Es tradueix per «mòdul «Guia» (KStars)»."
 
   {\b([Mm])ount(\*\*|\*|``|<[^<]{1,}>|)?.?([Mm]odule|[Oo]ptions|[Pp]age|[Ss]ettings|[Tt]ab)\b}
+  valid msgstr="^|(.*?)|$"
   valid msgstr="\bConfiguració (avançada |normal )?del? muntatge\b" # smb4k
   valid msgstr="\ben (aquest|este) mòdul\b" # documentation-kstars-docs-kde-org/kstars_docs_user_manual___ch05s02.po
   valid msgstr="\bopcions (addicionals |avançades |prohibides )?de muntatge\b"     # smb4k

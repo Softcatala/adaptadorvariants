@@ -1292,8 +1292,10 @@ s/\bEncapçalament\([12234567890]\)\([^[:alnum:]]\)/Encapçalament \1\2/g
 s/\bhttps:\/\/www\.example\.com/https:\/\/www.exemple.com/g
 s/\bMostra\/oculta\([^[:alnum:]]\)/Mostra o oculta\1/g
 # KMail
+s/\bAparença->Colors->No canviïs el color del correu HTML original\([^[:alnum:]]\)/Aparença -> Colors -> No canviïs el color del correu HTML original\1/g
 s/\bbiblioteca adblock rust nova\([^[:alnum:]]\)/biblioteca adblock nova escrita en Rust\1/g
 s/\bCliqueu a la icona per a més detalls\([^[:alnum:]]\)/Per a més detalls, cliqueu a la icona\1/g
+s/\bConnectat\/desconnectat\([^[:alnum:]]\)/Connectat o desconnectat\1/g
 s/\bConsells de les carpetes:/Consells d'eina de les carpetes:/g
 s/\bDefiniu la vostra adreça\([^[:alnum:]]\)/Configureu la vostra adreça\1/g
 s/\bFent servir la clau serà més fiable\([^[:alnum:]]\)/Usant la clau serà més fiable\1/g
@@ -1426,11 +1428,12 @@ s/\bSi està marcada, les imatges previsualitzades s'amiden\([^[:alnum:]]\)/Si e
 s/\bSi està marcada, només es descarrega la quantitat d'imatges seleccionada i es mostren\([^[:alnum:]]\)/Si està marcada, només es descarregarà la quantitat d'imatges seleccionada i es mostraran\1/g
 s/\b\([Tt]\)ransferència de fitxer entrant de\([^[:alnum:]]\)/\1ransferència de fitxer entrant des de\2/g
 # KOrganizer
-s/\bConfigura->Vistes\([^[:alnum:]]\)/«Configuració -> Vistes»\1/g
+s/ Configura->Vistes\([^[:alnum:]]\)/ «Configuració -> Vistes»\1/g
+s/ Configuració->Barra lateral->Mostra la llista de les tasques pendents\([^[:alnum:]]\)/ «Configuració -> Barra lateral -> Mostra la llista de les tasques pendents»\1/g
+s/ Configuració->Colors i lletres\([^[:alnum:]]\)/ «Configuració -> Colors i lletres»\1/g
+s/ Data i hora->Valors predeterminats\([^[:alnum:]]\)/ «Data i hora -> Valors predeterminats»\1/g
 s/>Configuració->Barra lateral->Mostra el gestor de calendaris\([^[:alnum:]]\)/>Configuració -> Barra lateral -> Mostra el gestor de calendaris\1/g
-s/\bConfiguració->Colors i lletres\([^[:alnum:]]\)/«Configuració -> Colors i lletres»\1/g
 s/>Data i hora->Regional\([^[:alnum:]]\)/>Data i hora -> Regional\1/g
-s/\bData i hora->Valors predeterminats\([^[:alnum:]]\)/«Data i hora -> Valors predeterminats»\1/g
 s/«General->Classificació d'accés predeterminada personal»/«General -> Classificació d'accés predeterminada personal»/g
 s/\bja no creen consells enormes\([^[:alnum:]]\)/ja no creen consells d'eina enormes\1/g
   s/\bVistes d'agenda\([^[:alnum:]]\)/Vista d'agenda\1/g
@@ -1453,9 +1456,11 @@ s/\bSi està activa, les miniatures es construeixen\([^[:alnum:]]\)/Si està act
 # Krdc
 s/, a sobre\./, a dalt./g
 s/\b\([Ee]\)scala d'escriptori\([^[:alnum:]]\)/\1scala de l'escriptori\2/g
+# KRdp
 # KRegExpEditor
 s/\badmet funcions comunes de sintaxi\([^[:alnum:]]\)/admet característiques comunes de sintaxi\1/g
 # Krfb
+s/\b\([Cc]\)onnecta a aquest dispositiu a qualsevol\([^[:alnum:]]\)/\1onnecta aquest dispositiu amb qualsevol\2/g
 # Krita
 s/(Transformació de perspectiva)/(transformació en perspectiva)/g
 s/\b\([Aa]\)just de color\([^[:alnum:]]\)/\1just del color\2/g
@@ -2208,7 +2213,7 @@ s/\bKDE Frameworks\([^[:alnum:]]\)/Frameworks del KDE\1/g
   s/\bper a les Frameworks\([^[:alnum:]]\)/pels Frameworks\1/g
  # Google Summer of Code - GSoC
  s/\bGoogle Summer Of Code/Google Summer of Code/g
- s/\bGSOC\([^[:alnum:]]\)/GSoC\1/g
+ s/\bG\([Ss][Oo][Cc]\)\([^[:alnum:]]\)/GSoC\2/g
   s/\bde SoK i GSoC\([^[:alnum:]]\)/del SoK i la GSoC\1/g
   s/\bdel \(\[\|«\|\)Google Summer of Code\([^[:alnum:]]\)/de la \1Google Summer of Code\2/g
     s/\bdel \(\[\|«\|\)GSoC\([^[:alnum:]]\)/de la \1GSoC\2/g
@@ -2265,26 +2270,41 @@ s/\bA \*\(Baselines\|Messungen\)\*/Sota \*\1\*/g
 s/\bA «\(Filtre\|Format de dades\)»/Sota «\1»/g
 s/\bA Configuració > Configuració de WiFi\([^[:alnum:]]\)/Sota «Configuració > Configuració de la Wi-Fi»\1/g
   s/\bWiFi\([^[:alnum:]]\)/Wi-Fi\1/g
+s/\ba la foto es poden veure\([^[:alnum:]]\)/a la fotografia es poden veure\1/g
 s/\bamb alguns ordinadors a l'interior\([^[:alnum:]]\)/amb alguns ordinadors a dintre\1/g
 s/\bamb diners a l'interior\([^[:alnum:]]\)/amb diners a dintre\1/g
+s/\bamb enllaços rellevants a la documentació\([^[:alnum:]]\)/amb enllaços rellevants cap a la documentació\1/g
 s/\bconsum d'energia de programari\([^[:alnum:]]\)/consum d'energia del programari\1/g
 s/\bcontacteu amb nosaltres per als detalls\([^[:alnum:]]\)/per als detalls, contacteu amb nosaltres\1/g
+s/\bconté el sistema operatiu a instal·lar\([^[:alnum:]]\)/conté el sistema operatiu que s'instal·larà\1/g
 s/\bdels sistemes que en forma part\([^[:alnum:]]\)/dels sistemes dels quals forma part\1/g
 s/\bdimecres 19:00\([^[:alnum:]]\)/dimecres a les 19,00\1/g
 s/\bedició de vídeo professional\([^[:alnum:]]\)/edició professional de vídeo\1/g
 s/\bel Dia\([^[:alnum:]]\)/el dia\1/g
+s/\bEnd Of 10 a Mastodon\([^[:alnum:]]\)/«Final de la 10» a Mastodon\1/g
+  s/\blloc web End Of 10\([^[:alnum:]]\)/lloc web «Final de la 10»\1/g
+  s/\btreball d'End Of 10\([^[:alnum:]]\)/treball de «Final de la 10»\1/g
 s/\bés a dir, de l'any d'entrada a l'any final\([^[:alnum:]]\)/és a dir, des de l'any d'entrada fins a l'any final\1/g
 s/\bés \[en curs\([^[:alnum:]]\)/està \[en curs\1/g
 s/\bés important en definir\([^[:alnum:]]\)/és important quan es defineix\1/g
+s/\b\([Ff]\)oto del mercat\([^[:alnum:]]\)/\1otografia del mercat\2/g
+s/\b\([Ff]\)otos de grup\([^[:alnum:]]\)/\1otografies de grup\2/g
 s/\bfuncionalitats de programari\([^[:alnum:]]\)/característiques de programari\1/g
 s/\bGràcies per prendre's temps per a llegir aquesta actualització\([^[:alnum:]]\)/Gràcies per prendre el temps per a llegir aquesta actualització\1/g
 s/\b\(hora\|KDAB\) Berlín\([^[:alnum:]]\)/\1 de Berlín\2/g
 s/\bHurka, que té una\([^[:alnum:]]\)/Hurka, qui té una\1/g
+s/\b\([Ll]\)a informació principal a incloure\([^[:alnum:]]\)/\1a informació principal que s'ha d'incloure\2/g
+s/\bla sortida sigui correcta a la pestanya\([^[:alnum:]]\)/la sortida sigui correcta sota la pestanya\1/g
 s/\bmón real de programari\([^[:alnum:]]\)/món real del programari\1/g
+s/\b\([Nn]\)ombre de línies a ometre\([^[:alnum:]]\)/\1ombre de línies que s'ometran\2/g
+s/\bper reparar objectes utilitzats\([^[:alnum:]]\)/per a reparar els objectes utilitzats\1/g
 s/\bplanificat per a principis\([^[:alnum:]]\)/planificada per a principis\1/g
 s/\bprogramari que s'executa en ell\([^[:alnum:]]\)/programari que executa\1/g
 s/\brendiment de maquinari\([^[:alnum:]]\)/rendiment del maquinari\1/g
+s/\b\([Ss]\)istema a provar\([^[:alnum:]]\)/\1istema per a proves\2/g
+s/\bsovint s'associa a la «desmaterialització»/sovint s'associa amb la «desmaterialització»/g
 s/\btres dipòsits\([^[:alnum:]]\)/tres repositoris\1/g
+s/\bvegeu les instruccions de configuració a la secció\([^[:alnum:]]\)/vegeu les instruccions de configuració sota la secció\1/g
 # websites-edu-kde-org
 # websites-endof10-org
 s/(\b\([Aa]\)\(ssistència\)\([^[:alnum:]]\)/(a\2\3/g
@@ -2487,6 +2507,7 @@ s/\bPodeu modificar la selecció difuminant-la i invertint-la\([^[:alnum:]]\)/Es
 s/\bquin donatiu era vostre\([^[:alnum:]]\)/quin donatiu era el vostre\1/g
 s/\btambé ha estat abordant\([^[:alnum:]]\)/també ha anat abordant\1/g
 # websites-linux-kde-org
+s/\b2184), que entra\([^[:alnum:]]\)/2184), la qual entra\1/g
 s/\bA \*\(Avançat\|Discs\|Informació\)\*,/Sota \*\1\*,/g
 s/\bA \*\(Configuració\|Usuaris\)/Sota \*\1/g
 s/\bA \*Performance\*,/Sota \*Rendiment\*,/g
@@ -2497,34 +2518,50 @@ s/\barrossegueu \*Disc dur\* a la part\([^[:alnum:]]\)/arrossegueu \*Disc dur\* 
 s/\bAvançat\*, i a \*Ordre\([^[:alnum:]]\)/Avançat\*, i sota \*Ordre\1/g
 s/\bbiblioteca utilitzada per diverses aplicacions\([^[:alnum:]]\)/biblioteca utilitzada per múltiples aplicacions\1/g
 s/\bComparació de la KDE Linux a alternatives\([^[:alnum:]]\)/Comparació de la KDE Linux amb les alternatives\1/g
+s/\bcompartició de xarxa, que també apareix\([^[:alnum:]]\)/compartició de xarxa, la qual també apareix\1/g
 s/\bconnectar a la KDE Linux\([^[:alnum:]]\)/connectar amb la KDE Linux\1/g
+s/\bconsulteu el \[font\([^[:alnum:]]\)/consulteu la [font\1/g
+s/\bCopiar\/extreure CD\([^[:alnum:]]\)/Copiar o extreure CD\1/g
 s/\bdesprés seleccioneu-lo a \*Camí\([^[:alnum:]]\)/després seleccioneu-lo en \*Camí\1/g
 s/\bdistribueix al sistema base, o fins i tot a les Qt\([^[:alnum:]]\)/distribueix en el sistema base, o fins i tot en les Qt\1/g
+s/\beficaços, que s'inclouen\([^[:alnum:]]\)/eficaços, els quals s'inclouen\1/g
+s/\bEl nom de màquina «hostname» està definit\([^[:alnum:]]\)/El nom d'amfitrió «hostname» està establert\1/g
 s/\bel vostre ordinador inclou diversos discs\([^[:alnum:]]\)/el vostre ordinador inclou múltiples discs\1/g
+s/\bels mòduls de codi obert del nucli, que estan\([^[:alnum:]]\)/els mòduls de codi obert del nucli, els quals estan\1/g
+s/\bes distribueix amb el sistema base, o fins i tot a les Qt\([^[:alnum:]]\)/es distribueix amb el sistema base, o fins i tot les Qt\1/g
 s/\bestigui definit a \*\*UEFI\*\*/estigui establert a \*\*UEFI\*\*/g
 s/\bformats de fitxer normals a utilitzar per\([^[:alnum:]]\)/formats de fitxer normals que s'utilitzaran per\1/g
 s/\bfusionen al sistema\([^[:alnum:]]\)/fusionen dins del sistema\1/g
 s/\bHi ha \[diversos problemes coneguts\([^[:alnum:]]\)/Hi ha [múltiples problemes coneguts\1/g
 s/\bi molt més a \*Configuració\([^[:alnum:]]\)/i molt més sota \*Configuració\1/g
+s/\bi similars, que necessiten\([^[:alnum:]]\)/i similars, les quals necessiten\1/g
 s/\bicona de la compartició de xarxa, o al fons\([^[:alnum:]]\)/icona de la compartició de xarxa, o sobre el fons\1/g
 s/\b\([Ii]\)nici de sessió remotament al sistema\([^[:alnum:]]\)/\1nici de sessió remot dins del sistema\2/g
 s/\binseriu un disc a la unitat\([^[:alnum:]]\)/inseriu un disc dins de la unitat\1/g
 s/\bInstal·la l'UKI generat a la partició\([^[:alnum:]]\)/Instal·la l'UKI generat dins de la partició\1/g
 s/\bInstal·leu els mòduls del nucli a la superposició\([^[:alnum:]]\)/Instal·leu els mòduls del nucli dins de la superposició\1/g
 s/\bintegrada al Plasma\([^[:alnum:]]\)/integrada dins del Plasma\1/g
+s/\bJUnit, que es recollirà\([^[:alnum:]]\)/JUnit, el qual es recollirà\1/g
 s/\bKDE Linux d'ús diari o poseu-lo\([^[:alnum:]]\)/KDE Linux d'ús diari o poseu-la\1/g
 s/\bKDE Linux ofereix diverses maneres:/KDE Linux ofereix múltiples maneres:/g
+s/\bLa KDE Linux fou concebut\([^[:alnum:]]\)/La KDE Linux fou concebuda\1/g
 s/\bla marca del vostre ordinador a la columna\([^[:alnum:]]\)/la marca del vostre ordinador sota la columna\1/g
+s/\bLauncher<\/a>, que es poden\([^[:alnum:]]\)/Launcher<\/a>, els quals es poden\1/g
 s/\bMàquina virtual nova», o bé al botó\([^[:alnum:]]\)/Màquina virtual nova», o bé sobre el botó\1/g
 s/\bmuntarà automàticament a l'inici\([^[:alnum:]]\)/muntarà automàticament durant l'inici\1/g
 s/\bNo s'ha pogut connectar a libvirt\([^[:alnum:]]\)/No s'ha pogut connectar amb libvirt\1/g
+s/\bNouveau, que estan\([^[:alnum:]]\)/Nouveau, els quals estan\1/g
+s/\bNouveau», que \[requereix\([^[:alnum:]]\)/Nouveau», el qual [requereix\1/g
 s/\bopcions llistades a «Xinès\([^[:alnum:]]\)/opcions llistades sota «Xinès\1/g
 s/\bpermanents per elles\([^[:alnum:]]\)/permanents per a elles\1/g
 s/\bperò limitat a emoji\([^[:alnum:]]\)/però limitat als emoji\1/g
+s/\bpodman-compose`, que estan\([^[:alnum:]]\)/podman-compose`, els quals estan\1/g
 s/\bproblema, informeu-lo a\([^[:alnum:]]\)/problema, informeu-ne a\1/g
+s/\bproporcionats per KDE, que mostren\([^[:alnum:]]\)/proporcionats per KDE, els quals mostren\1/g
 s/\bque heu creat a l'inici\([^[:alnum:]]\)/que heu creat durant l'inici\1/g
 s/\bseleccionar a l'inici següent\([^[:alnum:]]\)/seleccionar durant l'inici següent\1/g
 s/\bsincronització del porta-retalls des de la MV a l'amfitrió\([^[:alnum:]]\)/sincronització del porta-retalls des de la MV amb l'amfitrió\1/g
+s/\bsystemd-sysext<\/code>, que permet\([^[:alnum:]]\)/systemd-sysext<\/code>, el qual permet\1/g
 s/\btradueix les pulsacions de tecles físiques en els caràcters\([^[:alnum:]]\)/tradueix les pulsacions de tecles físiques als caràcters\1/g
 # websites-manifesto-kde-org
 s/\b\([Dd]\)rets d'autors\([^[:alnum:]]\)/\1rets d'autor\2/g
@@ -2589,7 +2626,7 @@ s/\bagraïxen\([^[:alnum:]]\)/agraeixen\1/g
 s/\bBarcelona de l'1 al 7 d'octubre\([^[:alnum:]]\)/Barcelona des de l'1 fins al 7 d'octubre\1/g
 s/\bdonant suport el programari\([^[:alnum:]]\)/donant suport al programari\1/g
 s/\bel \[PinePhone KDE Community Edition\([^[:alnum:]]\)/l'\[edicio de la comunitat KDE per a PinePhone\1/g
-s/\bEls Konqis comunitat\([^[:alnum:]]\)/Els Konqis de la comunitat\1/g
+s/\bEls Konqis comunitat\([^[:alnum:]]\)/Els Konqi de la comunitat\1/g
 s/\bfuncions molt sol·licitades\([^[:alnum:]]\)/característiques molt sol·licitades\1/g
 s/\bGitLab es pot trobar\([^[:alnum:]]\)/GitLab es troba\1/g
 s/\bi Frameworks\([^[:alnum:]]\)/i els Frameworks\1/g

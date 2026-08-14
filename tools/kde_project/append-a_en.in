@@ -11,6 +11,7 @@ a la intuïció o|
 [Aa]ccés de lectura i escriptura|
 [Aa]ccés immediat|
 [Aa]ccions prèvies|
+[Aa]costar-se|
 [Aa]costem|
 [Aa]costeu el sensor|
 [Aa]costeu-vos|
@@ -65,7 +66,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]f(egint|egi[artu]|egien|egint|egint-(hi|l[aeo]s?)|egir-(l[ao]|ne)|egir-les|egirà?|egiran|egirem|ig|igen|ija|egits|egiu-l[aeo]s?|egiu-(l[ao]|ne)) la (carpeta correcta|carpeta seleccionada|carta d'escales i magnituds|columna «Elevació»|configuració «Canvia l'esborrador predefinit»|contribució predita|funció \*waitFor\*|funció actualment ressaltada|funció ressaltada en el navegador de funcions|gestió del color|mateixa informació de data i hora|seua corba|tasca configurada)|
 [Aa]f(egint|egi[artu]|egien|egint|egint-(hi|l[aeo]s?)|egir-(l[ao]|ne)|egir-les|egirà?|egiran|egirem|ig|igen|ija|egits|egiu-l[aeo]s?|egiu-(l[ao]|ne)) les (imatges seleccionades|metadades de geolocalització|pestanyes (.marcades|seleccionades)|tasques)|
 [Aa]f(egint|egi[artu]|egien|egint|egint-(hi|l[aeo]s?)|egir-(l[ao]|ne)|egir-les|egirà?|egiran|egirem|ig|igen|ija|egits|egiu-l[aeo]s?|egiu-(l[ao]|ne)) un (catàleg per primera vegada|desplaçament global de la inclinació del llapis|diagrama de color CIE|element|element nou observador|emplaçament personalitzat nou|enllaç personalitzat|estabilitzador|farciment d'1 px|formulari de registre bàsic|grup|índex automàtic|lot|menú contextual|mode nou|objecte|objecte nou|node|número|punt|punt de mesura|separador|tint monocromàtic uniforme|pas més)|
-[Aa]f(egint|egi[artu]|egien|egint|egint-(hi|l[aeo]s?)|egir-(l[ao]|ne)|egir-les|egirà?|egiran|egirem|ig|igen|ija|egits|egiu-l[aeo]s?|egiu-(l[ao]|ne)) una (característica nova|configuració|dimensió ordenada|entrada nova|etiqueta com a subetiqueta|etiqueta de nom|fotografia a qualsevol icona|funcionalitat nova|llegenda|opció|ordre nova de G'MIC|mica de frescor|paleta de glif|plantilla|propietat independent de posició|sèrie d'efectes de difuminat|subsolució nova|tasca|textura|traça|vista nova|vora)|
+[Aa]f(egint|egi[artu]|egien|egint|egint-(hi|l[aeo]s?)|egir-(l[ao]|ne)|egir-les|egirà?|egiran|egirem|ig|igen|ija|egits|egiu-l[aeo]s?|egiu-(l[ao]|ne)) una (característica nova|configuració|dimensió ordenada|entrada|entrada nova|etiqueta com a subetiqueta|etiqueta de nom|fotografia a qualsevol icona|funcionalitat nova|llegenda|opció|ordre nova de G'MIC|mica de frescor|paleta de glif|plantilla|propietat independent de posició|sèrie d'efectes de difuminat|subsolució nova|tasca|textura|traça|vista nova|vora)|
 [Aa]fegir<.em> fotogrames|
 [Aa]fegiu («&»|esta funció|l'argument <option>--paused<.option>|la funció <firstterm>waitFor<.firstterm>)|
 [Aa]ficionats|
@@ -80,7 +81,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]jud(ant-vos|ar?|ar-l[eo]s|ar-[vn]os|arà|aran|areu|e[nu]) (directament|KDE|Krita|o|significativament)|
 [Aa]jud(ant-vos|ar?|ar-l[eo]s|ar-[vn]os|arà|aran|areu|e[nu]) a (en Joaquim|en Tux|l'Alícia|l'equip KDE o|l'usuari|la gent|la muntura|na Maria|usuaris nous)|
 [Aa]jud(ant-vos|ar?|ar-l[eo]s|ar-[vn]os|arà|aran|areu|e[nu]) als (animals|desenvolupadors|desenvolupadors d'aplicacions|usuaris nous)|
-[Aa]jud(ant-vos|ar?|ar-l[eo]s|ar-[vn]os|arà|aran|areu|e[nu]) els (altres|desenvolupadors|editors|infants molt menuts o els adults|uns|usuaris|usuaris i investigadors)|
+[Aa]jud(ant-vos|ar?|ar-l[eo]s|ar-[vn]os|arà|aran|areu|e[nu]) els (altres|desenvolupadors|editors|infants molt menuts o els adults|uns|usuaris|usuaris i investigadors|usuaris nous)|
 [Aa]jud(ant-vos|ar?|ar-l[eo]s|ar-[vn]os|arà|aran|areu|e[nu]) l'usuari|
 [Aa]just([aeio]|ada|ades|ant|a[rt]|ats|e[mnsu]|i[ns]|és|éssi[mu]|essii[ns])?|
 [Aa]just(a|ar-l[eo]s|ara|àre[mu]|are[ns])|
@@ -95,7 +96,9 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]justarà a una equació quadràtica|
 [Aa]justava la corba|
 [Aa]justos de mida|
+[Aa]l cap i|
 [Aa]limentant amb esta imatge|
+[Aa]llibera l'ordre que desfà el fotograma|
 [Aa]llunyen de nosaltres|
 [Aa]lterna|
 [Aa]lternar|
@@ -104,6 +107,7 @@ ADREÇA D'ASSISTÈNCIA|
 [Aa]lternava|
 [Aa]mplia|
 [Aa]mplia la cerca|
+[Aa]mpliem esta transparència|
 [Aa]n(a[rt]|ava|e[mu]|irem)|
 [Aa]nar directes|
 [Aa]ncorarà|
@@ -142,6 +146,7 @@ apar\.|
 [Aa]plica([rt]?(-la)?|nt|rà|ran)? un (<emphasis>desplaçament<.emphasis> i un <emphasis>multiplicador<.emphasis>|difuminat gaussià|filtre|tint de color)|
 [Aa]plica([rt]?(-la)?|nt|rà|ran)? una (disminució de l'entrada d'(aquest|este) valor|textura|transformació invertix)|
 [Aa]pliquen (menys processament|només)|
+[Aa]portar els beneficis d'un programari independent i sostenible|
 [Aa]pren(dran|dre|neu)|
 [Aa]preneu-ne més|
 [Aa]propament|
@@ -165,6 +170,7 @@ apar\.|
 [Aa]ssigna(ció|nt|[rt]|rà)? una (categoria|etiqueta ordinària|icona i.o una drecera|plantilla d'informació textual|prioritat més (alta|baixa))|
 [Aa]ssignar-se correctament|
 [Aa]ssigneu el botó|
+[Aa]ssistents?|
 [Aa]ssistir|
 [Aa]ssumix que l'eix de la Dec és ortogonal|
 [Aa]traure trànsit|
@@ -209,6 +215,7 @@ Betelgeuse|
 [Cc]au(en|ràs?|re)?|
 [Cc]ausa de la temperatura de l'aire|
 [Cc]av(aei|e[su])|
+[Cc]elebració( d'Okular)?|
 [Cc]entra un objecte|
 [Cc]er(ca|ques|queu)|
 [Cc]itant|
@@ -229,17 +236,20 @@ Betelgeuse|
 [Cc]omprometen<.b>|
 [Cc]omuniquen el seu estat|
 [Cc]oncernents|
+[Cc]onduïx|
 [Cc]oneix|
 [Cc]onfondre|
-[Cc]onnecteu-la|
+[Cc]onnect(ada|ades|ats?|en|eu-l[ao])|
 [Cc]onservarà|
 [Cc]onsistix|
 [Cc]onsulta|
 [Cc]onsulteu la guia de configuració del vostre proveïdor de serveis d'Internet o|
 [Cc]ontrari|
-[Cc]ontrib(eix[ei]n|ïsquen|ir|ït|ucions|uint|uir)|
+[Cc]ontrib(eix[ei]n|ïsquen|ir|ït|ucions|uents?|uint|uir)|
 [Cc]ontribuï(sca|squen|[tux]|xen)|
-[Cc]ontribu(ir|ïx) (amb idees molt bones|cada punt de la corba espectral)|
+[Cc]ontribu(ent|int|ir|ïx) (amb idees molt bones|cada punt de la corba espectral|notòria)|
+[Cc]ontribu(ent|int|ir|ïx) al dany ambiental i|
+[Cc]ontribucions del programari|
 [Cc]onversió|
 [Cc]onversió d'(analògic|una capa de grup)|
 [Cc]onversió de correus|
@@ -259,7 +269,7 @@ Betelgeuse|
 [Cc]onvide[mu]|
 [Cc]op d'ull|
 [Cc]opi(a[rt?]|arà|aran|en)|
-[Cc]opiar? fitxers( d'un)?|
+[Cc]opiar? (fitxers( d'un)?|.o extraure «rip». CD d'àudio)|
 [Cc]opiar? el (catàleg|fitxer %1|fitxer d'entrada|fitxer d'un plafó|paquet|testimoni)|
 [Cc]opiar? els (elements (seleccionats |des (de la vista|del) <emphasis>(activa|porta-retalls)<.emphasis>)|objectes)|
 [Cc]opiar? la (:ref:`informació de la base de dades|carpeta %1|carpeta de digiKam|suma de verificació)|
@@ -290,6 +300,7 @@ Betelgeuse|
 [Dd]emanava|
 [Dd]emane[mu]|
 [Dd]erivà|
+[Dd]es de l'escepticisme,|
 [Dd]es de les Qt5|
 [Dd]esafia als jugadors|
 [Dd]esplaça (endavant|enrere)|
@@ -309,6 +320,7 @@ Betelgeuse|
 [Dd]ispara làsers|
 [Dd]istància màxima|
 [Dd]iverses esmenes|
+[Dd]ivulgació|
 [Dd]ona|
 [Dd]on(ació|ar-li|ant|ar-li|arà?|ava|eu)|
 [Dd]on(ant|a[rt]?|arà|e[mnu]) (aire fresc|així|de manera predeterminada|drets|forma|format|lloc|més pes|més potència|permisos|suport|suport als efectes de composició en 3D|suport només|vida)|
@@ -322,6 +334,7 @@ Betelgeuse|
 [Dd]uplicat|
 [Dd]ut el projecte|
 [Ee]ixida|
+[Ee]levat|
 [Ee]més|
 [Ee]mprar qualsevol dels dos formats|
 [Ee]n referència|
@@ -337,7 +350,7 @@ Betelgeuse|
 [Ee]ntre[nu]|
 [Ee]nvi([aeiïo]|ada|ades|ament|ant|a[rt]|arà|ats|és|e[mnsu]|éssi[mu]|essi[ns]|ï[ns])|
 [Ee]nvi(a|ara|àre[mu]|are[ns])|
-[Ee]nvi(a|ant|ar|arà|aran|eu)? (ara el correu|automàticament ordres de correcció|cap dada|cap pols|directament un correu a la Krita Foundation, ni|fitxers|fotografies|imatges|missatges|(dènou|dèsset|deu|huit|set|sis|nou|onze|vint-i-(una|dues)) imatges|polsos de correcció del guiatge|polsos de guiatge (adequats|directament))|
+[Ee]nvi(a|ant|ar|arà|aran|eu)? (ara el correu|automàticament ordres de correcció|cap dada|cap pols|directament un correu a la Krita Foundation, ni|dispositius menys potents però funcionals directament|fitxers|fotografies|imatges|missatges|(dènou|dèsset|deu|huit|set|sis|nou|onze|vint-i-(una|dues)) imatges|polsos de correcció del guiatge|polsos de guiatge (adequats|directament))|
 [Ee]nvi(a|ant|ar|arà|aran|eu)? el (mapa celeste actual|missatge a un altre usuari|vostre SUS|vostre treball)|
 [Ee]nvi(a|ant|ar|arà|aran|eu)? els (pedaços|polsos de guiatge)|
 [Ee]nvi(a|ant|ar|arà|aran|eu)? la (informació per correu|llista)|
@@ -420,6 +433,7 @@ Gat|
 [Hh]i ha|
 [Hh]i ha (algun límit|molt més|un forat)|
 [Ii] est|
+Idea d'una eina favorable|
 [Ii]dèntics?|
 [Ii]dentificar|
 [Ii]guals?|
@@ -439,6 +453,7 @@ Gat|
 [Ii]ncloure text arbitrari|
 [Ii]nclusió de filtres|
 [Ii]ncorpora[rt]|
+[Ii]ncorporant|
 [Ii]ncorporats|
 [Ii]ncorporeu traces|
 [Ii]ndi(c[ao]|cada|cades|ca[rt]|cant|cats|qués|quéssi[mu]|quessi[ns]|que[mnsu]|qui|qui[ns])|
@@ -452,6 +467,7 @@ Gat|
 [Ii]nformar-ne .en anglés.|
 [Ii]nformeu d'errades o de sol·licituds de característiques|
 [Ii]nformeu-ne|
+[Ii]nherent|
 [Ii]nici (anterior|posterior)|
 [Ii]nseriran automàticament|
 [Ii]nserix|
@@ -475,6 +491,7 @@ KStars començarà automàticament|
 La Kiki i un pruner|
 [Ll]a resposta és fidel|
 La temperatura ja es troba|
+[Ll]larga vida|
 [Ll]es dades d'usuari|
 Les versions prèvies|
 [Ll]imitar?|
@@ -489,6 +506,8 @@ Les versions prèvies|
 [Ll]legir|
 [Ll]licenciat|
 [Ll]imitar-se|
+[Ll]liurament va tindre lloc|
+[Ll]liurat|
 [Mm]anté el traçat|
 [Mm]antindre'ns|
 [Mm]apat|
@@ -507,6 +526,7 @@ Les versions prèvies|
 [Mm]ou(re|re's) la (carpeta %1|configuració de l'animació|pestanya actual)|
 [Mm]olt|
 [Mm]udar|
+NO CONNECTEU EL DISPOSITIU|
 [Nn]o hi ha cap estrela|
 [Nn]ominacions|
 [Nn]ormalitza cada subsolució|
@@ -525,6 +545,7 @@ Les versions prèvies|
 [Oo]fer(eix|i[rx])|
 [Oo]fer(eix|ix) adreces|
 [Oo]ferir una (àmplia gamma de colors i HDR|nova experiència &kde;)|
+[Oo]ferir suport continu|
 [Oo]feriu GCompris|
 [Oo]ferta nova|
 [Oo]posat|
@@ -545,8 +566,11 @@ Les versions prèvies|
 [Pp]assa(|rà?) el valor de retorn|
 [Pp]assa(|rà?) la transició del difuminat del motiu|
 [Pp]assa(|rà?) les (dades amb el format JSON|imatges)|
+[Pp]assem ara|
 [Pp]assen|
+[Pp]astís KDE Eco|
 [Pp]el que fa|
+[Pp]ensarien|
 [Pp]enseu|
 [Pp]er|
 [Pp]er filmació|
@@ -561,13 +585,14 @@ Les versions prèvies|
 [Pp]onderació|
 [Pp]orta(rà?)?|
 [Pp]ortar? («una alenada d'aire fresc»|algun detall de mecànica|altres temes diversos|col·laboradors nous|tota la funcionalitat de nou)|
-[Pp]ortar? el (vostre ordinador portàtil|nombre total de barres d'eines)|
+[Pp]ortar? el (FOSS|vostre ordinador portàtil|nombre total de barres d'eines)|
 [Pp]ortar? la compatibilitat amb HDR|
 [Pp]ortar-los|
+[Pp]orten|
 [Pp]osa el zoom|
 [Pp]os(ar?|e[nu])|
 [Pp]osant capes|
-[Pp]oseu remei|
+[Pp]oseu (primer la placa|remei)|
 [Pp]oseu un nom|
 [Pp]osta|
 Posterior|
@@ -577,6 +602,7 @@ Posterior|
 [Pp]rendr[àe]|
 [Pp]rendre fotogrames foscos|
 [Pp]renent|
+[Pp]resenta[rt]|
 [Pp]resentar (alguns detalls mecànics|reptes)|
 [Pp]resentar la seva oferta nova|
 [Pp]restant més atenció|
@@ -615,6 +641,7 @@ Posterior|
 [Qq]ualsevol ús subjecte|
 [Qq]uant?|
 [Qq]ue (acabe|tenen)|
+[Qq]uè té|
 [Rr]eaccionar|
 [Rr]eaccionar prou de pressa|
 [Rr]eajustar el rellotge|
@@ -623,6 +650,7 @@ Posterior|
 [Rr]ecomanar KStars|
 [Rr]econéixer|
 [Rr]ectifica la forma de CDV|
+[Rr]edimensiona automàticament|
 [Rr]educció de mida d'una imatge|
 [Rr]eduïx|
 [Rr]eduint|
@@ -679,7 +707,7 @@ rel\.|
 [Rr]itme|
 [Rr]obar el focus|
 [Ss]alta|
-[Ss]cript (%1 |)(anterior|posterior)|
+[Ss]cript (%1 |)(anterior|posterior|previ)|
 [Ss]egona és el mode «Superposició»|
 [Ss]eguiu les instruccions d'instal·lació..docs.install\)|
 [Ss]eguix immediatament|
@@ -706,6 +734,7 @@ rel\.|
 [Ss]ituen|
 [Ss]olucions innovadores|
 [Ss]ón (idèntiques|sensibles|similars en ús)|
+[Ss]ubministren|
 [Ss]ubscripció|
 [Ss]ubscrits|
 [Ss]ubscriviu-vos|
@@ -730,9 +759,11 @@ rel\.|
 [Tt]orna-ho|
 [Tt]ornant|
 [Tt]ornar a configurar-lo|
+[Tt]ornarem|
 [Tt]ornava|
 [Tt]ornar alguna cosa|
 [Tt]ornar alguna cosa al projecte i|
+[Tt]ornem|
 [Tt]raducció|
 [Tt]raducció de cadenes|
 [Tt]raduir des del perfil de la càmera|
@@ -746,6 +777,7 @@ des de l'espai de connexió de perfils|
 [Tt]ransferir la marca registrada|
 [Tt]ransita|
 [Tt]ransmetre|
+[Tt]ransposada|
 [Tt]rasllada la còpia|
 [Tt]raslladada posteriorment|
 [Tt]raslladar|
@@ -755,16 +787,18 @@ des de l'espai de connexió de perfils|
 [Tt]rieu els elements etiquetats com a ..Desconeguda..|
 [Tt]rigar? una mica|
 [Uu]llada|
+[Uu]llada més de prop|
+Un estand de KDE Eco|
 [Uu]na altra cosa important|
 [Uu]na mica|
-[Uu]nint-(se|vos)|
-[Uu]ni[ru]-vos|
+[Uu]na vegada|
+[Uu]ni(nt|[ru])(-se|-vos)?|
 [Uu]níreu|
-[Uu]niu|
 [Uu]tilitzar un control lliscant vertical|
 [Uu]tilitzeu el vostre ull|
 [Vv]ariància és la desviació estàndard|
 [Vv](a|ag[ei]|ag[ei][ns]|aig|aja)|
+[Vv]enda de SDD|
 [Vv]inculats|
 [Vv]ingut|
 [Vv]iratge químic|

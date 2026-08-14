@@ -121,7 +121,7 @@ hint="Es tradueix per « «Drets», **Drets**»"
 
 {-?->}
 valid msgid=":(menuselection|ref):"
-valid msgid="<->\n"
+valid msgid="<->"
 valid msgid="-->\n"
 valid msgid="[})!]-->"
 valid msgid="\.-->"
@@ -131,7 +131,7 @@ hint="Es tradueix per « → »."
 
 [-?->]
 valid msgstr=":(menuselection|ref):"
-valid msgstr="<->\n"
+valid msgstr="<->"
 valid msgstr="-->\n"
 valid msgstr="[})!]-->"
 valid msgstr="\.-->"
@@ -342,11 +342,15 @@ hint="Es tradueix per «cantó(ons), cantonada(es) racó(ons), vèrtex(s)»."
   hint="Es tradueix per «cantó superior dret, cantonada superior dreta, extrem superior dret»."
 
 {\bcrash\b}i
-valid msgid="\bcrash\s(damage|detection|fixes|log)\b"
+valid msgid="\bcrash\s(cymbal|damage|detection|fixes|log)\b"
 valid msgid="\b(sound|to)\scrash\b"
 valid msgstr="\bfall(ada|ades|ar|arà|[ie])\b"
 valid msgstr="\bja no falla\b"
 hint="Es tradueix per «fallada/es, fallar, fallarà, falli»."
+
+  {\bcrash\scymbal\b}i
+  valid msgstr="\bplat d'accents\b"
+  hint="Es tradueix per «plat d'accents»."
 
   {\bcrash\sdamage\b}i
   valid msgstr="\bdany en xocar\b"
@@ -471,6 +475,7 @@ hint="Es tradueix per «empremta/es digital/s»."
   hint="Es tradueix per «petjades d'animals»."
 
 {\bflow\b}i
+valid msgid="\.\/qa flow\b"
 valid msgid="\bflow\sarea\b"
 valid msgid="\bsub.?flow\b"
 valid msgid="\btext\sflow\b"
@@ -1428,8 +1433,8 @@ hint="Es tradueix per «conjunt/s, estableix/i, establert/s, establerta/es, esta
 
   {\bset\sup\b}i
   valid msgid="\bscreen\sset\sup\b"
-  valid msgstr="\bconfigur(ada|ar|at|in)\b"
-  hint="Es tradueix per «configurat/da, configurar, configurin»."
+  valid msgstr="\bconfigur(ada|a[rt]?|in)\b"
+  hint="Es tradueix per «configura, configurat/da, configurar, configurin»."
 
     {\bscreen\sset\sup\b}i
     valid msgstr="\bconfiguració de la pantalla\b"

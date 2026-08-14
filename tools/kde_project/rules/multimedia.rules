@@ -5843,8 +5843,9 @@ hint="Es tradueix per «recombinació dels components XYZ d'un vector» (multim�
 
     {\bgrids?\sand\sguides?\b}i
     valid msgid="\bgrids?(\sand\s|\s&\s|&)guides\sdocker\b"
+    valid msgstr="\bmillorar la gestió de les quadrícules i les guies\b"
     valid msgstr="\bQuadrícula i guies\b"
-    hint="Es tradueix per «Quadrícula i guies (al Krita és un acoblador)» (multimèdia)."
+    hint="Es tradueix per «Quadrícula i guies (al Krita és un acoblador), millorar la gestió de les quadrícules i les guies» (multimèdia)."
 
   {\b[Hh]istogram\s[Dd]ocker\b}
   valid msgstr="\b[Aa]coblador «Histograma»"
@@ -9197,9 +9198,14 @@ hint="Es tradueix per «motor/s de pinzell, o si fa referència a un en concret:
 
     {\bsubjects?\b}
     valid msgid="\b[Ss]ubjects(|\*\*|\*|\s<[^<]{1,}>`)\s[Tt]ab\b"
+    valid msgid="\busing\sthe\ssubject\b"
     valid msgstr="\bmotius?\b"
     valid msgstr="\btem(a|es)\b"
     hint="Es tradueix per «motiu/s, tema/es» (multimèdia)."
+
+      {\busing\sthe\ssubject\b}
+      valid msgstr="\bmitjançant l'assumpte\b"
+      hint="Es tradueix per «mitjançant l'assumpte» (multimèdia)."
 
   {\b[Ss]ystem(|\*\*|\*|\s<[^<]{1,}>`)\s[Tt]ab\b}
   valid msgstr="\b[Pp]estanya (\*\*|\*|«:ref:`|«)Sistema( <|»|\*|\*\*)"

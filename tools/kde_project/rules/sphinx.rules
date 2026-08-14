@@ -249,7 +249,7 @@ hint="Es tradueix per «](» (Sphinx)."
 valid msgstr="\]\("
 hint="Es tradueix per «](» (Sphinx)."
 
-{\].?.?\(https://docs\.krita\.org/en/}
+{\].?.?\(https://docs\.krita\.org/(en)?(/)?}
 valid msgid="\[manual\].?\(https://docs\.krita\.org/en/"
 valid msgid="\].?\(https://docs\.krita\.org/en/untranslatable_pages/"
 valid msgstr="\]\(https://docs\.krita\.org/ca/"
@@ -259,7 +259,7 @@ hint="Es tradueix per «](https://docs.krita.org/ca/» (Sphinx)."
   valid msgstr="\[manual\]\(https://docs\.krita\.org/ca/"
   hint="Es tradueix per «\[manual\]\(https://docs.krita.org/ca/» (Sphinx)."
 
-  {\].?.?\(https://docs\.krita\.org/en/untranslatable_pages/}
+  {\].?.?\(https://docs\.krita\.org/(en)?(/)?untranslatable_pages/}
   valid msgstr="\]\(https://docs\.krita\.org/en/untranslatable_pages/"
   hint="Es tradueix per «](https://docs.krita.org/en/untranslatable_pages/» (Sphinx)."
 
@@ -304,21 +304,21 @@ hint="Es tradueix per «](https://download.kde.org/unstable/krita/» (Sphinx)."
 valid msgstr="\]\(https://files\.kde\.org/krita/"
 hint="Es tradueix per «](https://files.kde.org/krita/» (Sphinx)."
 
-{\].?.?\((https://krita\.org/)?en/posts/2[0123456789][23456789][3456789]/}
+{\].?.?\((https://krita\.org/)?(en)?(/)?posts/2[0123456789][23456789][3456789]/}
 valid msgstr="\]\(ca(-va)?/"
 hint="Es tradueix per «](ca/» (Sphinx)."
 
-  {\].?.?\((https://krita\.org/)?en/posts/20[012][012]/}
+  {\].?.?\((https://krita\.org/)?(en)?(/)?posts/20[012][012]/}
   valid msgstr="\]\(en/"
   hint="Es tradueix per «](en/» (Sphinx)."
 
-  {\].?.?\((https://krita\.org/)?en/release-notes/}
+  {\].?.?\((https://krita\.org/)?(en)?(/)?release-notes/}
   valid msgid="en/posts/20[012][012]/"
   valid msgid="\].?\((https://krita\.org/)?en/release-notes/(krita-4-2-release-notes|release-notes-for-krita-3-[12]/|release-notes-for-3-1-[23])"
   valid msgstr="\]\(ca(-va)?/release-notes/"
   hint="Es tradueix per «](ca/release-notes/» (Sphinx)."
 
-    {\].?.?\((https://krita\.org/)?en/release-notes/(krita-4-2-release-notes|release-notes-for-krita-3-[12]/|release-notes-for-3-1-[23])}
+    {\].?.?\((https://krita\.org/)?(en)?(/)?release-notes/(krita-4-2-release-notes|release-notes-for-krita-3-[12]/|release-notes-for-3-1-[23])}
     valid msgstr="\]\(en/release-notes/"
     hint="Es tradueix per «](en/release-notes/» (Sphinx)."
 

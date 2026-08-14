@@ -1,5 +1,6 @@
 #
 s/%1 (%2b)/%1 (%2 b)/g
+s/\bper l'autors\([^[:alnum:]]\)/pels autors\1/g
 s/\bQuè hi ha per a vós\([^[:alnum:]]\)/Què hi ha per a tu\1/g
 s/\bT<\/b>eme\([^[:alnum:]]\)/T<\/b>ema\1/g
 
@@ -644,6 +645,7 @@ s/\bEnganx\([io]\)\([^[:alnum:]]\)/Apegue\2/g
 s/\benganx\([io]\)\([^[:alnum:]]\)/apegue\2/g
  #
 s/\b\([Aa]\)ccions d'apegades\([^[:alnum:]]\)/\1ccions d'apegada\2/g
+s/\bapegades de cables\([^[:alnum:]]\)/enganxades de cables\1/g
 s/\b\([Aa]\)utoenganxa\(t\|\)\([^[:alnum:]]\)/\1utoapega\2\3/g
 s/\bCopiar i apegar\([^[:alnum:]]\)/Copia i apega\1/g
 
@@ -1882,7 +1884,7 @@ s/\bEina de visualització dels registres del sistema\([^[:alnum:]]\)/Eina de vi
 s/\bObri amb el \(pre\|\)visualitzador predeterminat\([^[:alnum:]]\)/Obri amb el visor predeterminat\2/g
 
 # xerrar -> xarrar
-s/\b\([Xx]\)\([ae]\)rr\(a\|a[rt]\|ava\|àve[mu]\|ave[ns]\|e[mnsu]\)\([^[:alnum:]]\)/\1arr\3\4/g
+s/\b\([Xx]\)\([ae]\)rr\(a\|a[dv]a\|ades\|a[rt]\|àve[mu]\|ave[ns]\|e[mnsu]\)\([^[:alnum:]]\)/\1arr\3\4/g
 s/\b\([Xx]\)\([ae]\)rrés\([^[:alnum:]]\)/\1arrara\3/g
 s/\b\([Xx]\)\([ae]\)rréssi\([mu]\)\([^[:alnum:]]\)/\1arràre\3\4/g
 s/\b\([Xx]\)\([ae]\)rressi\([ns]\)\([^[:alnum:]]\)/\1arrare\3\4/g

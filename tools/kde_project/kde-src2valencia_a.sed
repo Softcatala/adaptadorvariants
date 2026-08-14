@@ -715,14 +715,17 @@ s/\bel \(<[^<]\{1,\}>\|\[\|«\|\)\(Debian\|Fedora\|FreeBSD\|KDE Linux\|Kubuntu\|
  s/\([#!?]\) KDE Linux\([^[:alnum:]]\)/\1 La KDE Linux\2/g
  s/\([,;]\) KDE Linux\([^[:alnum:]]\)/\1 la KDE Linux\2/g
    s/, i KDE Linux\([^[:alnum:]]\)/, i la KDE Linux\1/g
+ s/\bcol·loqueu la imatge KDE Linux `\.iso`/col·loqueu la imatge `\.iso` de la KDE Linux/g
  s/\bEn KDE Linux\([^[:alnum:]]\)/A la KDE Linux\1/g
  s/\b\([Aa]\|actualment\|[Aa]judeu\|amb\|[Aa]prendre sobre\|com\|conegui\|créixer\|de\|desenvolupar\|en\|és\|funcion[ei]n\|[Ii]nstal·la\|[Ii]nstal·lar\|[Ii]nstal·leu\|perquè\|[Pp]resentem\|que\|utilitza\|utilitzant\) \(el \|\)\(<[^<]\{1,\}>\|«\|\*\*\|\*\|\[\|(\[\«\|(\[\|«?\$\|:doc:`\|:menuselection:`\|:ref:`\|``\|`\|\)KDE Linux\([^[:alnum:]]\)/\1 la \3KDE Linux\4/g
    s/\bA veure si és adequat per a tu\([^[:alnum:]]\)/A veure si és adequada per a tu\1/g
    s/\bincidències amb el mateix KDE Linux\([^[:alnum:]]\)/incidències amb la mateixa KDE Linux\1/g
    s/\"La KDE Linux\"/\"KDE Linux\"/g
+   s/\bLa \*\*KDE Linux d'ús diari\*\* o poseu-lo\([^[:alnum:]]\)/La **KDE Linux d'ús diari** o poseu-la\1/g
    s/\bLa KDE Linux està dissenyat\([^[:alnum:]]\)/La KDE Linux està dissenyada\1/g
    s/\bLa KDE Linux està fet per voluntaris\([^[:alnum:]]\)/La KDE Linux està feta per voluntaris\1/g
    s/\bLa KDE Linux s'ha dissenyat per ser altament competitiu\([^[:alnum:]]\)/La KDE Linux s'ha dissenyat per a ser altament competitiva\1/g
+ s/\bquan KDE Linux s'interromp perquè\([^[:alnum:]]\)/quan la KDE Linux s'interrompi perquè\1/g
 # #
 # # # # # # # # # # # # # #
 #
@@ -1191,9 +1194,10 @@ s/\bMichael Pyne, and others\([^[:alnum:]]\)/Michael Pyne i altres\1/g
 #
 # gènere o nom
 s/\baccions estan desactivats\([^[:alnum:]]\)/accions estan desactivades\1/g
-s/\bEl Konqi\([^[:alnum:]]\)/En Konqi\1/g
-s/\bel Konqi\([^[:alnum:]]\)/en Konqi\1/g
+s/\bEl \(Kandalf\|Konqi\)\([^[:alnum:]]\)/En \1\2/g
+s/\bel \(Kandalf\|Konqi\)\([^[:alnum:]]\)/en \1\2/g
 s/\bés el \(menys\|més\) restrictiu\([^[:alnum:]]\)/és la \1 restrictiva\2/g
+s/\bper al Konqi i la Katie\([^[:alnum:]]\)/per en Konqi i la Katie\1/g
 # #
 # # # # # # # # # # # # # #
 #

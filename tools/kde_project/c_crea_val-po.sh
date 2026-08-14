@@ -101,6 +101,9 @@ sortida_po() {
 
   \e[1;37mCREAR\n  -----\e[0m
   adapta                          \e[1;37mAdapta recursivament la IGU\e[0m en el SVN local.
+
+                                  \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m
+
   adapta_doc                      \e[1;37mAdapta i genera la documentació\e[0m en el SVN local.
                                   \e[47;31mNOTA:\e[0m Després s'han de moure manualment!
   adapta_mod                      \e[47;31mAdapta tots els fitxers mantinguts, només en el SVN local.\e[0m
@@ -164,24 +167,24 @@ sortida_po() {
   • kde-src2valencia_a.sed
   • kde-src2valencia_b.sed
   • kde-src2valencia-esmena.sed
-  • all-src2valencia.sed
   • all-src2valencia-adapta.sed
+  • all-src2valencia.sed
   • all-src2valencia-esmena.sed
 
   \e[1;37mLLEGENDA\n  --------\e[0m
-  * (Opcions que només es poden executar des de la carpeta base de l'script).\n
+  \e[1;37m*\e[0m (Opcions que només es poden executar des de la carpeta base de l'script).\n
 
   \e[1;37mRETALLS\n  -------\e[0m
-  * Primer obriu la IGU del Lokalize:
+  \e[1;37m*\e[0m Primer obriu la IGU del Lokalize:
     posieve check-rules -s lokalize ca-mod/messages/websites-krita-org/
 
-  * Verificar amb les regles del pology:
+  \e[1;37m*\e[0m Verificar amb les regles del pology:
     posieve check-rules -s rfile:$REPO_DIR_SC/rules/multimedia.rules ca@valencia/messages/digikam-doc/
 
-  * Comprovar les capçaleres:
+  \e[1;37m*\e[0m Comprovar les capçaleres:
     ../../../l10n-support/ca/scripts/set_kde_copyright.sh l10n-kf5 copyright trunk
 
-  * S'enregistra el temps que tarda l'script (s'han d'emprar els arguments
+  \e[1;37m*\e[0m S'enregistra el temps que tarda l'script (s'han d'emprar els arguments
     «adapta» i «adapta_mod», i sumar els temps):
     \\\time -f \"Temps d'execució: %E\" ./c_crea_val-po.sh adapta\n"
   exit 0
@@ -799,7 +802,7 @@ case ${1-} in
   adapta)
     comprova_lloc
     command_rm
-    ./adapta-kde_recursivament.sh recursiu
+    ./adapta-kde_recursivament.sh recursiu "${2-}"
   ;;
   adapta_doc)
     comprova_lloc

@@ -168,22 +168,22 @@ genera_copia() {
   fi
 
   # es fa el seguiment local de les esmenes en regressió
-  PO_RULES="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
+  REPO_DIR_SC="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
 
   echo -e " \e[1;37m* Es comproven les regles globals:\e[0m"
-  posieve check-rules -s rfile:"$PO_RULES/errors.rules"     "$FITX"
+  posieve   check-rules -s rfile:"$REPO_DIR_SC/errors.rules"     "$FITX"
 
   if   [[ "$DIR" = 'messages/'@(digikam-doc|websites-krita-org) ]]; then
     echo -e " \e[1;37m* Es comproven les regles multimedia:\e[0m"
-    posieve check-rules -s rfile:"$PO_RULES/multimedia.rules" "$FITX"
+    posieve check-rules -s rfile:"$REPO_DIR_SC/multimedia.rules" "$FITX"
   elif [[ "$DIR" = 'messages/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
     echo -e " \e[1;37m* Es comproven les regles del KStars:\e[0m"
-    posieve check-rules -s rfile:"$PO_RULES/kstars.rules"     "$FITX"
+    posieve check-rules -s rfile:"$REPO_DIR_SC/kstars.rules"     "$FITX"
   fi
 
   if [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
     echo -e " \e[1;37m* Es comproven les regles per a Sphinx:\e[0m"
-    posieve check-rules -s rfile:"$PO_RULES/sphinx.rules"     "$FITX"
+    posieve check-rules -s rfile:"$REPO_DIR_SC/sphinx.rules"     "$FITX"
   fi
 
   # Ja s'escriu al disc
@@ -192,7 +192,7 @@ genera_copia() {
 }
 
 cerca_po() {
-  [[ -z "${FOUND:-}" || "$FOUND" =~ messages/[[:alnum:]-]{3,} ]] || exit 0
+  # [[ -z "${MODUL:-}" || "$MODUL" =~ messages/[[:alnum:]-]{3,} ]] || exit 0
 
   # Cerca les plantilles de traducció i les ordena
   cd ca || exit 1
@@ -201,6 +201,8 @@ cerca_po() {
 }
 
 ACTION="${1:-}"
+ACTIVAT='0'
+
 case $ACTION in
   usuari)
     CANVIA='1'
@@ -271,7 +273,7 @@ case $ACTION in
   ;;
   recursiu)
     CANVIA='1'
-    FOUND="${2:-}"
+    MODUL="${2:-}"
     # S'estableix a zero (no s'usa)
     RVINICI='0'
     RVFINAL="$(LC_ALL=C svn info 'ca/' 2>/dev/null | awk '/^Revision:/ {print $2}')"
@@ -301,7 +303,7 @@ case $ACTION in
     exit 0
   ;;
   arranja_po)
-    FOUND="${2:-}"
+    MODUL="${2:-}"
     cerca_po
 
     echo -en "\nS'arranjen les traduccions: "
@@ -323,7 +325,8 @@ case $ACTION in
     echo    " recursiu [messages/«mòdul»]?"
     echo -e "            : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
     echo    "              • Si aquest no existeix, ho actualitza tot."
-    echo -e "              • Es pot especificar un mòdul per a començar per allà.\n"
+    echo    "              • Es pot especificar un mòdul per a començar per allà."
+    echo -e "              \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m\n"
     echo    " fitxer [po] 1?"
     echo    "            : Mode local: actualitza el fitxer sense emprar cap data."
     echo    "              • Útil si observem alguna desactualització puntual."
@@ -331,7 +334,8 @@ case $ACTION in
     echo    "              po = messages/carpeta/fitxer.po"
     echo -e "              Nota: Es pot indicar 1 com a tercer paràmetre i reconstruir els fitxers en sed.\n"
     echo    " arranja_po : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
-    echo -e "              Nota: No actualitza la data en el fitxer $RVF.\n"
+    echo    "              Nota: No actualitza la data en el fitxer $RVF."
+    echo -e "              \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m\n"
     exit 0
   ;;
 esac
@@ -349,9 +353,9 @@ for PO in "${FITXERSPO[@]}"
     DIR="${PO%/*}"
     FITX="${PO##*/}"
 
-    if [[ -z "${FOUND:-}" || "${FOUND:-}" == "$DIR" ]]; then
-      FOUND=""
+    [ "$DIR" = "messages/${MODUL-}" ] && ACTIVAT='1'
 
+    if [ "$ACTIVAT" -eq 1 ] || [ -z "${MODUL:-}" ]; then
       # Es desactiven les traduccions següents:
       [ "$DIR"  = 'messages/documentation-develop-kde-org' ]     && message_removed && continue # https://develop.kde.org/ca/docs/
       [ "$DIR"  = 'messages/documentation-docs-kdenlive-org' ]   && message_removed && continue # https://docs.kdenlive.org/ca/
@@ -371,7 +375,9 @@ for PO in "${FITXERSPO[@]}"
       [[ "$DIR"  = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]] && VAL='1' message_removed && continue
       [[ "$FITX" = @(cervisia._json_|ffmpegthumbs._json_|kbibtex._json_|kdenlive._json_|oom_notifier|org.kde.plasmasetup|org.rolisteam.rolisteam.appdata|rolisteam._desktop_|svgpart._json_)'.po' ]] && VAL='1' message_removed && continue
       # Aquest fitxer està buit i dona error
+      [ "$FITX" = 'libkscreen6_qt.po' ]                          && message_removed && continue
       [ "$FITX" = 'knotifications6_qt.po' ]                      && message_removed && continue
+      [ "$FITX" = 'kreport_webplugin_qt.po' ]                    && message_removed && continue
       genera_copia
     fi
   done
