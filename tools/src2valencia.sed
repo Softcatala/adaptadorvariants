@@ -328,6 +328,8 @@ s/\([^[:alnum:]]\|^\)\(c\|C\)entè\([^[:alnum:]]\|$\)/\1\2enté\3/g
 s/\([^[:alnum:]]\|^\)\(m\|M\)ilè\([^[:alnum:]]\|$\)/\1\2ilé\3/g
 s/\([^[:alnum:]]\|^\)\(m\|M\)ilionè\([^[:alnum:]]\|$\)/\1\2ilioné\3/g
 s/\([0-9]\)è\([^[:alnum:]]\|$\)/\1é\2/g
+# Ordinal genèric matemàtic: k-è -> k-é (l'element n-è...)
+s/\([[:alnum:]]\)-è\([^[:alnum:]]\|$\)/\1-é\2/g
 
 #Accents tipus anglès o emès
 s/\([[:alnum:]]\|^\)\(m\|n\|d\|l\|gu\|c\|b\|r\|o\|t\)ès\([^[:alnum:]]\|$\)/\1\2és\3/g
@@ -384,11 +386,11 @@ s/\([^_&[:alnum:]]\|^\)préssec\([^[:alnum:]]\|$\)/\1bresquilla\2/g
 
 
 # desar -> guardar
-	# Podria anar separat del pronom, però aleshores ens faria malbé
-	# l'apostrofament.  Si trobem altres construccions amb "desarà" pense que
-	# és millor fer-les per inclussió (rmh)
-s/\([^_&[:alnum:]]\|^\)es desar\(à\|an\)\([^[:alnum:]]\|$\)/\1es guardar\2\3/g
-s/\([^_&[:alnum:]]\|^\)Es desar\(à\|an\)\([^[:alnum:]]\|$\)/\1Es guardar\2\3/g
+	# Futur i condicional ("no desarà", "es desaran", "desaria"...).  Com que
+	# "d" i "g" són totes dues consonants, el canvi no afecta l'apostrofament
+	# i la regla pot ser genèrica (abans només cobria "es desarà|desaran").
+s/\([^_&[:alnum:]]\|^\)desar\(à\|às\|é\|em\|eu\|an\|ia\|ies\|ien\|íem\|íeu\)\([^[:alnum:]]\|$\)/\1guardar\2\3/g
+s/\([^_&[:alnum:]]\|^\)Desar\(à\|às\|é\|em\|eu\|an\|ia\|ies\|ien\|íem\|íeu\)\([^[:alnum:]]\|$\)/\1Guardar\2\3/g
 s/\([^_&[:alnum:]]\|^\)es desi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1es guarde\2\3/g
 s/\([^_&[:alnum:]]\|^\)desi\(n\|s\|\)\([^[:alnum:]]\|$\)/\1guarde\2\3/g
 s/\([^_&[:alnum:]]\|^\)desa\(t\|da\|ts\|des\)\([^[:alnum:]]\|$\)/\1guarda\2\3/g
