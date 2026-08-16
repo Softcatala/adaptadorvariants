@@ -295,7 +295,39 @@ s/\([[:alnum:]]\|^\)guéssi\(m\|u\)\([^[:alnum:]]\|$\)/\1guére\2\3/g
 s/\([[:alnum:]]\|^\)guessin\([^[:alnum:]]\|$\)/\1gueren\2/g
 
 s/\([^[:alnum:]]\|^\)\(r\|R\)eprèn\([^[:alnum:]]\|$\)/\1\2eprén\3/g
+s/\([^[:alnum:]]\|^\)\(a\|A\)prèn\([^[:alnum:]]\|$\)/\1\2prén\3/g
 s/\([^[:alnum:]]\|^\)\(i\|I\)nterès\([^[:alnum:]]\|$\)/\1\2nterés\3/g
+
+# Ordinals: cinquè -> cinqué, 5è -> 5é
+s/\([^[:alnum:]]\|^\)\(c\|C\)inquè\([^[:alnum:]]\|$\)/\1\2inqué\3/g
+s/\([^[:alnum:]]\|^\)\(s\|S\)isè\([^[:alnum:]]\|$\)/\1\2isé\3/g
+s/\([^[:alnum:]]\|^\)\(s\|S\)etè\([^[:alnum:]]\|$\)/\1\2eté\3/g
+s/\([^[:alnum:]]\|^\)vuitè\([^[:alnum:]]\|$\)/\1huité\2/g
+s/\([^[:alnum:]]\|^\)Vuitè\([^[:alnum:]]\|$\)/\1Huité\2/g
+s/\([^[:alnum:]]\|^\)\(n\|N\)ovè\([^[:alnum:]]\|$\)/\1\2ové\3/g
+s/\([^[:alnum:]]\|^\)\(d\|D\)esè\([^[:alnum:]]\|$\)/\1\2esé\3/g
+s/\([^[:alnum:]]\|^\)\(o\|O\)nzè\([^[:alnum:]]\|$\)/\1\2nzé\3/g
+s/\([^[:alnum:]]\|^\)\(d\|D\)otzè\([^[:alnum:]]\|$\)/\1\2otzé\3/g
+s/\([^[:alnum:]]\|^\)\(t\|T\)retzè\([^[:alnum:]]\|$\)/\1\2retzé\3/g
+s/\([^[:alnum:]]\|^\)\(c\|C\)atorzè\([^[:alnum:]]\|$\)/\1\2atorzé\3/g
+s/\([^[:alnum:]]\|^\)\(q\|Q\)uinzè\([^[:alnum:]]\|$\)/\1\2uinzé\3/g
+s/\([^[:alnum:]]\|^\)\(s\|S\)etzè\([^[:alnum:]]\|$\)/\1\2etzé\3/g
+s/\([^[:alnum:]]\|^\)\(d\|D\)issetè\([^[:alnum:]]\|$\)/\1\2isseté\3/g
+s/\([^[:alnum:]]\|^\)\(d\|D\)ivuitè\([^[:alnum:]]\|$\)/\1\2ihuité\3/g
+s/\([^[:alnum:]]\|^\)\(d\|D\)inovè\([^[:alnum:]]\|$\)/\1\2inové\3/g
+s/\([^[:alnum:]]\|^\)\(v\|V\)intè\([^[:alnum:]]\|$\)/\1\2inté\3/g
+s/\([^[:alnum:]]\|^\)\(t\|T\)rentè\([^[:alnum:]]\|$\)/\1\2renté\3/g
+s/\([^[:alnum:]]\|^\)\(q\|Q\)uarantè\([^[:alnum:]]\|$\)/\1\2uaranté\3/g
+s/\([^[:alnum:]]\|^\)\(c\|C\)inquantè\([^[:alnum:]]\|$\)/\1\2inquanté\3/g
+s/\([^[:alnum:]]\|^\)\(s\|S\)eixantè\([^[:alnum:]]\|$\)/\1\2eixanté\3/g
+s/\([^[:alnum:]]\|^\)\(s\|S\)etantè\([^[:alnum:]]\|$\)/\1\2etanté\3/g
+s/\([^[:alnum:]]\|^\)vuitantè\([^[:alnum:]]\|$\)/\1huitanté\2/g
+s/\([^[:alnum:]]\|^\)Vuitantè\([^[:alnum:]]\|$\)/\1Huitanté\2/g
+s/\([^[:alnum:]]\|^\)\(n\|N\)orantè\([^[:alnum:]]\|$\)/\1\2oranté\3/g
+s/\([^[:alnum:]]\|^\)\(c\|C\)entè\([^[:alnum:]]\|$\)/\1\2enté\3/g
+s/\([^[:alnum:]]\|^\)\(m\|M\)ilè\([^[:alnum:]]\|$\)/\1\2ilé\3/g
+s/\([^[:alnum:]]\|^\)\(m\|M\)ilionè\([^[:alnum:]]\|$\)/\1\2ilioné\3/g
+s/\([0-9]\)è\([^[:alnum:]]\|$\)/\1é\2/g
 
 #Accents tipus anglès o emès
 s/\([[:alnum:]]\|^\)\(m\|n\|d\|l\|gu\|c\|b\|r\|o\|t\)ès\([^[:alnum:]]\|$\)/\1\2és\3/g
