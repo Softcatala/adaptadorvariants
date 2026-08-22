@@ -364,6 +364,7 @@ s/\b\([Úú]\)ltim cop\([^[:alnum:]]\)/\1ltima vegada\2/g
 s/\b\([Uu]\)n altre cop\([^[:alnum:]]\)/\1na altra vegada\2/g
 s/\b\([Uu]\)n cop de penalització\([^[:alnum:]]\)/\1n colp de penalització\2/g
 s/\b\([Uu]\)n cop suau\([^[:alnum:]]\)/\1n colp suau\2/g
+  s/\bpossibilitats d'una vegada del capçal\([^[:alnum:]]\)/possibilitats d'un colp del capçal\1/g
   s/\b\([Uu]\)n cop\([^[:alnum:]]\)/\1na vegada\2/g
 s/\b\([Uu]\)n sol cop\([^[:alnum:]]\)/\1na sola vegada\2/g
   s/\bun-cop\([^[:alnum:]]\)/una-vegada\1/g
@@ -433,8 +434,8 @@ s/\bel darrer\([^[:alnum:]]\)/l'últim\1/g
 s/\b\([Ee]\)nfocament al última\([^[:alnum:]]\)/\1nfocament al darrera\2/g
 
 # desar -> guardar
-s/\bDes\(a\|a[dv]a\|ades\|ant\|a[rt]\|arà\|aran\|areu\|ats\|aven\|e[nsu]\)\([^[:alnum:]]\)/Guard\1\2/g
-s/\bdes\(a\|a[dv]a\|ades\|ant\|a[rt]\|arà\|aran\|areu\|ats\|aven\|e[nsu]\)\([^[:alnum:]]\)/guard\1\2/g
+s/\bDes\(a\|a[dv]a\|ades\|ant\|a[rt]\|arà\|aràs\|aran\|aré\|are[mu]\|aria\|ar[ií]e[mnsu]\|ats\|aven\|e[nsu]\)\([^[:alnum:]]\)/Guard\1\2/g
+s/\bdes\(a\|a[dv]a\|ades\|ant\|a[rt]\|arà\|aràs\|aran\|aré\|are[mu]\|aria\|ar[ií]e[mnsu]\|ats\|aven\|e[nsu]\)\([^[:alnum:]]\)/guard\1\2/g
 s/\bDesament\([^[:alnum:]]\)/Guardada\1/g
 s/\bdesament\([^[:alnum:]]\)/guardada\1/g
 s/\bDesaments\([^[:alnum:]]\)/Guardades\1/g

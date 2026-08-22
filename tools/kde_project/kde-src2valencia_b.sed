@@ -678,6 +678,7 @@ s/\bque ara ja s'haurien\([^[:alnum:]]\)/que ja s'haurien\1/g
 # Cantor
 s/\bAquest pas no es pot desfer\./Aquest pas no es podrà desfer./g
 s/\bExtracció en mode re&cursiu\([^[:alnum:]]\)/Extreu en mode re\&cursiu\1/g
+s/\bHa de ser cap, superior esquerra, superior dreta, inferior esquerra, inferior dreta, sota o exterior\([^[:alnum:]]\)/Ha de ser «Cap», «Superior esquerra», «Superior dreta», «Inferior esquerra», «Inferior dreta», «Sota» o «Exterior»\1/g
 s/\bPer això, executeu\([^[:alnum:]]\)/Per a fer això, executeu\1/g
 s/\bsi s'ha seleccionat la incrustació\([^[:alnum:]]\)/si s'ha activat la incrustació\1/g
 s/\bSi està marcada, totes les entrades sota de l'actual s'avaluaran automàticament\([^[:alnum:]]\)/Si està marcada, s'avaluaran automàticament totes les entrades sota de l'actual\1/g
@@ -1734,6 +1735,7 @@ s/\bdes d'un directori\([^[:alnum:]]\)/des d'una carpeta\1/g
 s/\bDes del directori…/Des de la carpeta…/g
 s/\bEl directori %1 no existeix\([^[:alnum:]]\)/La carpeta %1 no existeix\1/g
 s/\bllegir el directori %1\([^[:alnum:]]\)/llegir la carpeta %1\1/g
+s/\bsortida de diversos fitxers exportats\([^[:alnum:]]\)/sortida de múltiples fitxers exportats\1/g
 s/\bTrieu el directori d'origen de dades\([^[:alnum:]]\)/Trieu la carpeta d'origen de les dades\1/g
  #
 s/\bamb valors que manquen\([^[:alnum:]]\)/amb els valors que manquen\1/g
@@ -1959,6 +1961,7 @@ s/\bopció es desactiva\([^[:alnum:]]\)/opció està desactivada\1/g
 s/\b\([Pp]\)ort\(s\|\) en \(paral·lel\|sèrie\)\([^[:alnum:]]\)/\1ort\2 \3\4/g
 s/\b\([Ss]\)upressió de carpeta\([^[:alnum:]]\)/\1upressió de la carpeta\2/g
 # plasma-pa
+s/\bconnectar al flux\([^[:alnum:]]\)/connectar amb el flux\1/g
 s/\bNomés l'utilitzeu temporalment\([^[:alnum:]]\)/Useu-la només temporalment\1/g
 # plasma-pk-updates
 # plasma-sdk

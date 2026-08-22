@@ -11,6 +11,10 @@
 # Remove accelerator and  hyphen inside words.
 addFilterRegex match="(&)" on="pmsgid,pmsgstr"
 
+{\bad.?hoc\b}i
+valid msgstr="\bexprés\b"
+hint="Es tradueix per «exprés (KStars)»."
+
 {\barcsecs?\b}i
 valid msgstr="\bseg\. d'arc\b"
 valid msgstr="\bsegons d'arc\b"
@@ -60,6 +64,11 @@ valid msgstr="\bbulbs\b"
 valid msgstr="\bprotuberàncies\b"
 hint="Es tradueix per «bulbs: con, protuberàncies, con / bombeigs / bombeja (KStars)»."
 
+{\bCFZ\b}i
+valid msgid="|Focus CFZ|"
+valid msgstr="\bZCE\b"
+hint="Es tradueix per «la ZCE -zona crítica d'enfocament- (KStars)»."
+
 {\bcool(ing)?\b}i
 valid msgid="\bcool(ing)?.?down\b"
 valid msgid="\bcool(ing)?\sstars?\b"
@@ -83,6 +92,14 @@ hint="Es tradueix per «refreda/r, refredament, refrigeració (KStars)»."
 {\bdata\sfields?\b}i
 valid msgstr="\bcamps? de dades\b"
 hint="Es tradueix per «camp/s de dades (KStars)»."
+
+{\bflatness\b}i
+valid msgstr="\baplanament\b"
+hint="Es tradueix per «aplanament (KStars)»."
+
+{\bflattener\b}i
+valid msgstr="\baplanador\b"
+hint="Es tradueix per «aplanador (KStars)»."
 
 {\bfocusers\b}i
 valid msgstr="\benfocadors\b"
@@ -675,6 +692,65 @@ hint="Es tradueix per «inici, iniciada, iniciï, inicieu (KStars)»."
   valid msgstr="\bAssistent d'inici\b"
   hint="Es tradueix per «Assistent d'inici (KStars)»."
 
+{\bstream\b}i
+valid msgid="|Guide Stream Settings|"
+valid msgid="/mcp/stream\b"
+valid msgid="\b(data|events|guide|video)\sstream\b"
+valid msgstr="\bemissió\b"
+hint="Es tradueix per «emissió (KStars)»."
+
+  {\bdata\sstream\b}i
+  valid msgstr="\bemissió de dades\b"
+  hint="Es tradueix per «emissió de dades (KStars)»."
+
+    {\bdata\sstreams\b}i
+    valid msgstr="\bemissions de dades\b"
+    hint="Es tradueix per «emissions de dades (KStars)»."
+
+  {\bevents\sstream\b}i
+  valid msgstr="\bemissió d'esdeveniments\b"
+  hint="Es tradueix per «emissió d'esdeveniments (KStars)»."
+
+  {\bflux\b}i
+  valid msgid="\bhalf.?flux\b"
+  valid msgstr="\bflux\b"
+  hint="Es tradueix per «flux (KStars)»."
+
+    {\bfluxes\b}i
+    valid msgstr="\bfluxos\b"
+    hint="Es tradueix per «fluxos (KStars)»."
+
+  {\bguide\sstream\b}i
+  valid msgid="|Guide Stream (AI|Depth|GPG|Settings)|"
+  valid msgstr="\bemissió del guiatge\b"
+  hint="Es tradueix per «emissió del guiatge (KStars)»."
+
+  {\bvideo\sstream\b}i
+  valid msgstr="\bemissió de vídeo\b"
+  hint="Es tradueix per «emissió de vídeo (KStars)»."
+
+   {\bvideo\sstreams\b}i
+    valid msgstr="\bemissions de vídeo\b"
+    hint="Es tradueix per «emissions de vídeo (KStars)»."
+
+{\bstreaming\b}i
+valid msgid="\b(data|video)\sstreaming\b"
+valid msgid="\bstreaming\sguide\b"
+valid msgstr="\btransmissió\b"
+hint="Es tradueix per «transmissió (KStars)»."
+
+  {\bdata\sstreaming\b}i
+  valid msgstr="\btransmissió de dades\b"
+  hint="Es tradueix per «transmissió de dades (KStars)»."
+
+  {\bstreaming\sguide\b}i
+  valid msgstr="\btransmissió del guiatge\b"
+  hint="Es tradueix per «transmissió del guiatge (KStars)»."
+
+  {\bvideo\sstreaming\b}i
+  valid msgstr="\btransmissió de vídeo\b"
+  hint="Es tradueix per «transmissió de vídeo (KStars)»."
+
 {\bsub\b}i
 valid msgid="[:<].?sub[>:]"
 valid msgid="\b(color|mono)\ssub\b"
@@ -713,6 +789,16 @@ hint="Es tradueix per «subsolucions (KStars)»."
     {\bmono\sor\scolor\ssubs?\b}i
     valid msgstr="\bsubsoluci(ó|ons) monocrom o en color\b"
     hint="Es tradueix per «subsolució/ons monocrom o en color (KStars)»."
+
+{\bsweep\b}i
+valid msgstr="\bagranat\b"
+valid msgstr="\bescombrat\b"
+hint="Es tradueix per «escombrat (KStars)»."
+
+  {\bsweeps\b}i
+  valid msgstr="\bagranats\b"
+  valid msgstr="\bescombrats\b"
+  hint="Es tradueix per «escombrats (KStars)»."
 
 {\bswitch\b}i
 valid msgid="\bswitch\sdeconvolution.?off\b"
@@ -882,6 +968,19 @@ hint="Es tradueix per «clima, meteorologia, temps atmosfèric (KStars)»."
 valid msgstr="\bponderació\b"
 valid msgstr="\bponderad(a|es)\b"
 hint="Es tradueix per «ponderació, ponderada/es (KStars)»."
+
+{\bwinsor\b}i
+valid msgid="\bwinsor\s(cut.?off|sc)\b"
+valid msgstr="\bwinsor\b"
+hint="Es tradueix per «winsor (KStars)»."
+
+  {\bwinsor\ssc\b}i
+  valid msgstr="\bSC winsoritzat\b"
+  hint="Es tradueix per «SC winsoritzat (KStars)»."
+
+  {\bwinsor\scut.?off\b}i
+  valid msgstr="\bretall de winsor\b"
+  hint="Es tradueix per «retall de winsor (KStars)»."
 
 ## Assistents ## Advisor / Assistant / Editor / Helper / Inspector / Wizard
 ################
@@ -1216,6 +1315,198 @@ hint="Es tradueix per «ponderació, ponderada/es (KStars)»."
   {\b([Tt])op.?([Hh])at.?([Ff])ilter\b}
   valid msgstr="\b([Ff])iltre «Barret de copa alta»"
   hint="Es tradueix per «filtre «Barret de copa alta» (KStars)»."
+
+## Maquinari ##
+###############
+{\bAI\spredictor\b}i
+valid msgstr="\bpredictor per IA\b"
+hint="Es tradueix per «predictor per IA (KStars)»."
+
+{\bbolt.?circle\sradius\b}i
+valid msgstr="\bradi de la circumferència dels cargols\b"
+hint="Es tradueix per «radi de la circumferència dels cargols (KStars)»."
+
+{\bdecrease\b}i
+valid msgstr="\bdisminueix\b"
+valid msgstr="\bdisminuir\b"
+valid msgstr="\bdisminuïu(-lo)?\b"
+hint="Es tradueix per «disminueix, disminuir, disminuïu/-lo (KStars)»."
+
+  {\bincrease\b}i
+  valid msgid="(°C|degree|error|noise|slightly)\sincrease\b"
+  valid msgid="\bincrease\s(kappa|the\snumber|value)\b"
+  valid msgstr="\baugmentar?\b"
+  valid msgstr="\baugmenteu(-lo)?\b"
+  hint="Es tradueix per «augmenta/r, augmenteu/-lo (KStars)»."
+
+    {(°C|degree)\sincrease\b}i
+    valid msgstr="(°C|grau) d'augment\b"
+    hint="Es tradueix per «°C/grau d'augment (KStars)»."
+
+    {\berror\sincrease\b}i
+    valid msgstr="\baugment de l'error\b"
+    hint="Es tradueix per «augment de l'error (KStars)»."
+
+    {\bincrease\skappa\b}i
+    valid msgstr="\bincrementeu el kappa\b"
+    hint="Es tradueix per «incrementeu el kappa (KStars)»."
+
+    {\bincrease\sthe\snumber\b}i
+    valid msgstr="\bincrementeu el nombre\b"
+    hint="Es tradueix per «incrementeu el nombre (KStars)»."
+
+    {\bincrease\svalue\b}i
+    valid msgstr="\bincrementeu el valor\b"
+    hint="Es tradueix per «incrementeu el valor (KStars)»."
+
+    {\bnoise\sincrease\b}i
+    valid msgstr="\baugment del soroll\b"
+    hint="Es tradueix per «augment del soroll (KStars)»."
+
+    {\bslightly\sincrease\b}i
+    valid msgstr="\baugmenten lleugerament\b"
+    hint="Es tradueix per «augmenten lleugerament (KStars)»."
+
+{\bdirect\sdrive\b}i
+valid msgstr="\bTransmissió directa\b"
+hint="Es tradueix per «Transmissió directa (KStars)»."
+
+  {\bdirect\sdrives\b}i
+  valid msgstr="\bTransmissions directes\b"
+  hint="Es tradueix per «Transmissions directes (KStars)»."
+
+{\b(harmonic|strain.?wave)\sdrive\b}i
+valid msgstr="\bTransmissió harmònica\b"
+hint="Es tradueix per «Transmissió harmònica (KStars)»."
+
+  {\b(harmonic|strain.?wave)\sdrives\b}i
+  valid msgstr="\bTransmissions harmòniques\b"
+  hint="Es tradueix per «Transmissions harmòniques (KStars)»."
+
+{\bM[345]\sfine\b}i
+valid msgstr="\bM([345]) fi\b"
+hint="Es tradueix per «M3/4/5 fi (KStars)»."
+
+{\bpitch\b}i
+valid msgid="\bpitch\scircle\sdiameter\b"
+valid msgid="\bpixel\spitch\b"
+valid msgstr="\bpas\b"
+hint="Es tradueix per «pas (KStars)»."
+
+  {\bpitch\scircle\sdiameter\b}i
+  valid msgstr="\bdiàmetre del cercle primitiu \(PCD\)"
+  hint="Es tradueix per «diàmetre del cercle primitiu (PCD) (KStars)»."
+
+  {\bpixel\spitch\b}i
+  valid msgstr="\bdistància entre els píxels\b"
+  hint="Es tradueix per «distància entre els píxels (KStars)»."
+
+{\bpull\b}i
+valid msgid="\b(gravitational|to)\spull\b"
+valid msgid="\bpull.?in\b"
+valid msgstr="\bestirar?\b"
+hint="Es tradueix per «estira/r (KStars)»."
+
+  {\bgravitational\spull\b}i
+  valid msgstr="\batracció gravitatòria\b"
+  hint="Es tradueix per «atracció gravitatòria (KStars)»."
+
+  {\bpull.?in\b}i
+  valid msgstr="\bestirar cap endins\b"
+  hint="Es tradueix per «estirar cap endins (KStars)»."
+
+  {\bto\spull\b}i
+  valid msgstr="\bobtindran\b"
+  hint="Es tradueix per «obtindran (KStars)»."
+
+{\bpush\b}i
+valid msgid="\bM4\spush\b"
+valid msgid="\bpush.?(out|screw\spitch|to\sassistant)\b"
+valid msgstr="\bempenya\b"
+valid msgstr="\bemp[èé]nyer\b"
+hint="Es tradueix per «empenya, empènyer (KStars)»."
+
+  {\bM[345]\spush\b}i
+  valid msgstr="\bcargol d'empenta M[345]\b"
+  hint="Es tradueix per «cargol d'empenta M3/4/5 (KStars)»."
+
+  {\bpush.?out\b}i
+  valid msgstr="\bempènyer cap enfora\b"
+  hint="Es tradueix per «empènyer cap enfora (KStars)»."
+
+  {\bpush.?screw\spitch\b}i
+  valid msgstr="\bpas del cargol d'empenta\b"
+  hint="Es tradueix per «pas del cargol d'empenta (KStars)»."
+
+  {\bpush.?to\sassistant\b}i
+  valid msgstr="\bAssistent de guiatge manual\b"
+  hint="Es tradueix per «Assistent de guiatge manual (KStars)»."
+
+{\bscrew\b}i
+valid msgid="\b[34].?screw\b"
+valid msgid="\bscrew\s(holes|pitch|positions|thread)\b"
+valid msgstr="\bcargol\b"
+hint="Es tradueix per «cargol (KStars)»."
+
+  {\b[34].?screw\b}i
+  valid msgstr="\b[34] cargols\b"
+  hint="Es tradueix per «3/4 cargols (KStars)»."
+
+  {\bscrew\sholes\b}i
+  valid msgstr="\bforats per a cargols\b"
+  hint="Es tradueix per «forats per a cargols (KStars)»."
+
+  {\bscrew\spitch\b}i
+  valid msgid="\bpush.?screw\spitch\b"
+  valid msgstr="\bpas de rosca\b"
+  hint="Es tradueix per «pas de rosca (KStars)»."
+
+  {\bscrew\spositions\b}i
+  valid msgstr="\bposicions dels cargols\b"
+  hint="Es tradueix per «posicions dels cargols (KStars)»."
+
+  {\bscrew\sthread\b}i
+  valid msgstr="\brosca del cargol\b"
+  hint="Es tradueix per «rosca del cargol (KStars)»."
+
+  {\bscrews\b}i
+  valid msgstr="\bcargols\b"
+  hint="Es tradueix per «cargols (KStars)»."
+
+{\bscrewed\b}i
+valid msgstr="\bapretats\b"
+hint="Es tradueix per «apretats (KStars)»."
+
+  {\bunscrewed\b}i
+  valid msgstr="\bafluixats\b"
+  hint="Es tradueix per «afluixats (KStars)»."
+
+{\btilt\srings\b}i
+valid msgstr="\banells d'inclinació\b"
+hint="Es tradueix per «anells d'inclinació (KStars)»."
+
+{\bthread\b}i
+valid msgid="\bsingle\sCPU\sthread\b"
+valid msgid="\bsingle\sthread\ssolving\b"
+valid msgid="\bthread\s(pitch|STRAW)\b"
+valid msgstr="\brosca\b"
+hint="Es tradueix per «rosca (KStars)»."
+
+  {\bsingle\sCPU\sthread\b}i
+  valid msgstr="\bfil únic de CPU\b"
+  hint="Es tradueix per «fil únic de CPU (KStars)»."
+
+  {\bsingle\sthread\ssolving\b}i
+  valid msgstr="\bresolució amb un sol fil\b"
+  hint="Es tradueix per «resolució amb un sol fil (KStars)»."
+
+  {\bthread\spitch\b}i
+  valid msgstr="\bpas de rosca\b"
+  hint="Es tradueix per «pas de rosca (KStars)»."
+
+{\bworm\sgear\b}i
+valid msgstr="\bCorona i vis sens fi\b"
+hint="Es tradueix per «Corona i vis sens fi (KStars)»."
 
 ## Mòduls ##
 ############

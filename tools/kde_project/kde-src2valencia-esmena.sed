@@ -260,8 +260,8 @@ s/\bUna graella rectangular\([^[:alnum:]]\)/Una quadrícula rectangular\1/g
 13205,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 13082,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 # crow-translate/crow-translate_qt.po
-2489,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 2523,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
+2890,/^msgstr / s/\"Servidor:\"/\"Amfitrió:\"/g
 # falkon/falkon_qt.po
 3835,/^msgstr / s/\"Servidor: \"/\"Amfitrió: \"/g
 3850,/^msgstr / s/\"Servidor: \"/\"Amfitrió: \"/g
@@ -340,7 +340,7 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 # labplot/labplot.po
 18852,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 21000,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
-21063,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
+21159,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # labplot/labplot2.po
 17997,/^msgstr / s/\"Màquina:\"/\"Amfitrió:\"/g
 # libkleo/libkleopatra6.po
@@ -376,7 +376,7 @@ s/\"Ordinador desconegut\([^[:alnum:]]\)/\"Amfitrió desconegut\1/g
 4797,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 4815,/^msgstr / s/\"Servidor\"/\"Amfitrió\"/g
 # websites-wiki-rolisteam-org/wiki-rolisteam-org.po
-990,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
+1011,/^msgstr / s/\"Nom del servidor\"/\"Nom de l'amfitrió\"/g
  #
 s/\"Configuració de l'ordinador/\"Configuració de l'amfitrió/g
 s/\"host:port\"/\"amfitrió:port\"/g
@@ -458,6 +458,7 @@ s/\bels elements de domini i el servidor\([^[:alnum:]]\)/els elements de domini 
 s/\bemès per a aquest ordinador\([^[:alnum:]]\)/emès per a aquest amfitrió\1/g
 s/\bEn el camp \*\*Nom de la màquina\([^[:alnum:]]\)/En el camp \*\*Nom de l'amfitrió\1/g
 s/\bentre la màquina i la unitat de disc\([^[:alnum:]]\)/entre l'amfitrió i la unitat de disc\1/g
+s/\bEnvia el nom de màquina\([^[:alnum:]]\)/Envia el nom de l'amfitrió\1/g
 s/\bEnvia el nom del servidor:/Envia el nom de l'amfitrió:/g
 s/\bEnvia les pulsacions de tecla a la màquina\([^[:alnum:]]\)/Envia les pulsacions de tecla a l'amfitrió\1/g
 s/\berror d'ordinador desconegut\([^[:alnum:]]\)/error d'amfitrió desconegut\1/g
@@ -684,12 +685,13 @@ s/\bvalor del grau de lluminositat del color\([^[:alnum:]]\)/valor del grau de c
 # kdenlive/kdenlive.po
 2994,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 2997,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+2999,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 8789,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
-8890,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 8891,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
+8914,/^msgstr / s/\"Lluminositat\"/\"Brillantor\"/g
 16104,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 16205,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
-16206,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
+16273,/^msgstr / s/\"Augmenta la lluminositat\"/\"Augmenta la brillantor\"/g
 # kmplayer/kmplayer.po
 s/\bLluminositat\/contrast\([^[:alnum:]]\)/Brillantor\/contrast\1/g
 # kooka/libkookascan.po
@@ -745,6 +747,7 @@ s/\bassigna el color d'entrada més lluminós\([^[:alnum:]]\)/assigna el color d
 s/\b\(Ajusta\|Baixa\|Estableix\|Obtén\|Redueix\|Restableix\) la lluminositat\([^[:alnum:]]\)/\1 la brillantor\2/g
 s/\bBateria i lluminositat\([^[:alnum:]]\)/Bateria i brillantor\1/g
 s/\bBrillantor 100 (o similar)/Brillant 100 (o similar)/g
+s/\b\([Cc]\)alcula la lluminositat en nits\([^[:alnum:]]\)/\1alcula la brillantor en nits\2/g
 s/\bCanvia la lluminositat general de la imatge\([^[:alnum:]]\)/Canvia la brillantor general de la imatge\1/g
 s/\bcom la lluminositat o el volum\([^[:alnum:]]\)/com la brillantor o el volum\1/g
 s/\bConfigura com de lluminós hauria de ser el «100%» en el control lliscant la lluminositat normal/Configura com de brillant hauria de ser el «100%» normal en el control lliscant de la brillantor/g

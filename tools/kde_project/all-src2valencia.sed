@@ -8388,7 +8388,7 @@ s/\b\([Vv]\)ingui\([ns]\)\([^[:alnum:]]\)/\1ingue\2\3/g
     s/\b\([Cc]\)onvenir-nos\([^[:alnum:]]\)/\1onvindre'ns\2/g
     s/\b\([Cc]\)onvenir-\([st]\)e\([^[:alnum:]]\)/\1onvindre'\2\3/g
     s/\b\([Cc]\)onvenir-vos\([^[:alnum:]]\)/\1onvindre-us\2/g
-  s/\b\([Cc]\)onvenir\([^[:alnum:]]\)/\1onvindre\1/g
+  s/\b\([Cc]\)onvenir\([^[:alnum:]]\)/\1onvindre\2/g
   s/\b\([Cc]\)onvingués\([^[:alnum:]]\)/\1onvinguera\2/g
   s/\b\([Cc]\)onvinguéssi\([mu]\)\([^[:alnum:]]\)/\1onvinguére\2\3/g
   s/\b\([Cc]\)onvinguessi\([ns]\)\([^[:alnum:]]\)/\1onvinguere\2\3/g

@@ -706,6 +706,7 @@ s/\bsobre MeeGo\([^[:alnum:]]\)/a MeeGo\1/g
 s/\b\([Dd]\)e l'\(<[^<]\{1,\}>\|\[\|«\|\)\(Android\|Arduino\|Ard&uino\|iOS\|OS X\|Unix\|UNIX\)\([^[:alnum:]]\)/\1'\2\3\4/g
 s/\b\([Ll]\)'\(<[^<]\{1,\}>\|\[\|«\|\)\(Android\|Arduino\|Ard&uino\|iOS\|OS X\|Unix\|UNIX\)\([^[:alnum:]]\)/\2\3\4/g
 #
+s/\b\([Dd]\)el \(<[^<]\{1,\}>\|\[\|«\|\)\(Debian\|Fedora\|FreeBSD\|KDE Linux\|Kubuntu\|Mandrake\|Mandriva\|Manjaro\|Mobian\|openSUSE\|RedHat\|SuSE\|TUXEDO\|Ubuntu\)\([^[:alnum:]]\)/\1e la \2\3\4/g
 s/\bEl \(<[^<]\{1,\}>\|\[\|«\|\)\(Debian\|Fedora\|FreeBSD\|KDE Linux\|Kubuntu\|Mandrake\|Mandriva\|Manjaro\|Mobian\|openSUSE\|RedHat\|SuSE\|TUXEDO\|Ubuntu\)\([^[:alnum:]]\)/La \1\2\3/g
 s/\bel \(<[^<]\{1,\}>\|\[\|«\|\)\(Debian\|Fedora\|FreeBSD\|KDE Linux\|Kubuntu\|Mandrake\|Mandriva\|Manjaro\|Mobian\|openSUSE\|RedHat\|SuSE\|TUXEDO\|Ubuntu\)\([^[:alnum:]]\)/la \1\2\3/g
 #

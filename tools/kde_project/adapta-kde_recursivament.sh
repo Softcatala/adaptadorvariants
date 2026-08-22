@@ -104,11 +104,10 @@ genera_copia() {
         do
           if echo "$TOCAT" | grep -q "$usuari_val"; then
             # Extracció del nom de l'autor
-            USUARI_VAL="$(echo "$HEADERPO" | grep "$usuari_val" | cut -f 1 -d'<' | sed -e 's/\# //g' -e 's/ *$//g' -e 's/[^A-Z]\{10\}/ /g' -e 's/SPDX-FileCopyright. //g'),"
-            USUARI_VAL="${USUARI_VAL//# /}"
+            USUARI_VAL="$(echo "$HEADERPO" | grep -E "$usuari_val" | awk -F'<' '{print $1}' | sed -e 's/\# SPDX-FileCopyrightText: [ 0-9,-]*//g' -e 's/ $//'),"
 
             # Extracció del correu de l'autor
-            USUARI_VAL_EMAIL="$(echo "$HEADERPO" | grep "$usuari_val" | cut -f 2 -d'<' | sed -e 's/,.*//g' -e 's/>$//g'),"
+            USUARI_VAL_EMAIL="$(echo "$HEADERPO" | grep -E "$usuari_val" | awk -F'<' '{print $2}' | sed -e 's/>$//g'),"
 
             # Acumulació de les dades
             USUARIS_VAL="$USUARIS_VAL$USUARI_VAL"
@@ -378,6 +377,7 @@ for PO in "${FITXERSPO[@]}"
       [ "$FITX" = 'libkscreen6_qt.po' ]                          && message_removed && continue
       [ "$FITX" = 'knotifications6_qt.po' ]                      && message_removed && continue
       [ "$FITX" = 'kreport_webplugin_qt.po' ]                    && message_removed && continue
+
       genera_copia
     fi
   done

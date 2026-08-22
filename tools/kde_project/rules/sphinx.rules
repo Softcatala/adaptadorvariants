@@ -242,6 +242,7 @@ valid msgid="\].?\((https://krita\.org/)?en/"
 valid msgid="\].?\({{<merge-request-url \d{3,6}>}}\)"
 valid msgid="\].?\(https://invent.kde.org/graphics/krita/-/merge_requests/\d{3,6}\)"
 valid msgid="\].?\(https://krita-artists.org/"
+valid !msgstr="\]\(\(?"
 valid msgstr="\]\("
 hint="Es tradueix per «](» (Sphinx)."
 

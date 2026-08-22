@@ -343,7 +343,7 @@ hint="Es tradueix per «cantó(ons), cantonada(es) racó(ons), vèrtex(s)»."
 
 {\bcrash\b}i
 valid msgid="\bcrash\s(cymbal|damage|detection|fixes|log)\b"
-valid msgid="\b(sound|to)\scrash\b"
+valid msgid="\b(head|sound|to)\scrash\b"
 valid msgstr="\bfall(ada|ades|ar|arà|[ie])\b"
 valid msgstr="\bja no falla\b"
 hint="Es tradueix per «fallada/es, fallar, fallarà, falli»."
@@ -374,6 +374,10 @@ hint="Es tradueix per «fallada/es, fallar, fallarà, falli»."
     {\bKrita\scrash\slog\b}i
     valid msgstr="\bregistre de fallada de Krita\b"
     hint="Es tradueix per «registre de fallada de Krita»."
+
+  {\bhead\scrash\b}i
+  valid msgstr="\bcol?p del capçal\b"
+  hint="Es tradueix per «cop del capçal»."
 
   {\bsound\scrash\b}i
   valid msgstr="\bso de patacada\b"
@@ -532,14 +536,15 @@ valid msgid="\bcalibration grid\b"
 valid msgid="\bgrill\b"
 hint="S'en diu «quadrícula»."
 
-  [\bcalibration\sgrid\b]i
-  valid msgid="\bgraella de calibratge\b"
-  hint="S'en diu «graella de calibratge»."
+  {\bcalibration\sgrid\b}i
+  valid msgstr="\bquadrícula de calibratge\b"
+  hint="S'en diu «quadrícula de calibratge»."
 
 [\bgraelles\b]
- hint="S'en diu «quadrícules»."
+hint="S'en diu «quadrícules»."
 
 {\bhang(ing)?\b}i
+valid msgid="\bHANG SENG\b"
 valid msgstr="\bsuspe(ndre|ns|nsió|sa|ses)\b"
 hint="Es tradueix per «suspendre, suspens, suspesa/es, Suspensió»."
 
@@ -1053,10 +1058,15 @@ hint="Es tradueix per «indicador»."
   hint="Es tradueix per «demanarà cada vegada, pregunta cada vegada»."
 
   {\btext\sprompt\b}i
+  valid msgid="\bdefault\stext\sprompt\b"
   valid msgid="\btext\sprompt\sinput\sand\stext\soutput\sresponses\b"
   valid msgstr="\bindicador de text\b"
   valid msgstr="missatge de text"
   hint="Es tradueix per «indicador de text, missatge de text»."
+
+    {\bdefault\stext\sprompt\b}i
+    valid msgstr="\bindicador predeterminat de text\b"
+    hint="Es tradueix per «indicador predeterminat de text»."
 
     {\btext\sprompt\sinput\sand\stext\soutput\sresponses\b}i
     valid msgstr="\bpeticions d'entrada i de les respostes de text d'eixida\b"
