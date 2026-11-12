@@ -6,18 +6,70 @@ set -euo pipefail
 # Enables extended pattern matching features, such as @(pattern1|pattern2)
 shopt -s extglob
 
-# En aquest fitxer es desa la revisió del darrer commit (format: 1641759)
-RVF='svn-revision_ca-valencia.log'
-# Mira si es treballa sobre la branca «stable» o «trunk» (stable/l10n-kf6)
-BRANCA="${PWD%/*}" && BRANCA="${BRANCA##*/}"
-# Mira si es treballa sobre la versió «kde5» o «kf6» (stable/l10n-kf6)
-ESCRIPTORI="${PWD##*/}"
+# Camí base del repositori Git
+DIR_GIT="$HOME/Documents/Treball/git/kde"
+# Camí base del repositori SVN local
+DIR_SVN="$DIR_GIT/Carpeta_nova/Treball"
+REPO_DIR_SC="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
+MEM_DIR="/run/user/$(id -u)"
+RVF="$DIR_GIT/git-revision_ca-valencia.log"
+
+# Detectem si estem a l'estructura Git (l10n-ca/...) o a l'SVN local (ca/...)
+if   [[ -d "$PWD/l10n-ca" && -d "$PWD/l10n-ca-valencia" ]]; then
+    VCS="git"
+    BRANCA="git"
+    CAT='l10n-ca'
+    VAL='l10n-ca-valencia'
+    TEM='l10n-templates'
+    ESCRIPTORI="$CAT"
+    DIR_CAT="$DIR_GIT/$CAT"
+    DIR_VAL="$DIR_GIT/$VAL"
+    DIR_TPL="$DIR_GIT/$TEM"
+    DIRTR="$DIR_GIT"
+elif [[ -d "$PWD/ca" && -d "$PWD/ca@valencia" ]]; then
+    VCS="svn"
+    BRANCA="${PWD%/*}" && BRANCA="${BRANCA##*/}"
+    ESCRIPTORI="${PWD##*/}"
+    CAT='ca'
+    VAL='ca@valencia'
+    TEM='templates'
+    DIR_CAT="$DIR_SVN/$CAT"
+    DIR_VAL="$DIR_SVN/$VAL"
+    DIR_TPL="$DIR_SVN/$TEM"
+    DIRTR="$DIR_SVN"
+  else
+    echo -e "\nError: carpeta de treball no reconeguda ($PWD)."
+    echo -e "Executeu l'script «$0» des de:\n  • $DIR_GIT\n  • $DIR_SVN\n"
+    exit 1
+fi
+
+RVINICI='0'
+RVFINAL='0'
+FITXERSPO=()
+DOC=""
+if [[ "${3:-}" == "doc" ]]; then
+    DOC="doc"
+    [[ "${4:-}" = 1 ]] && 3='1'
+fi
+
+# Afegeix suport per a les diferents branques
+PRE_MSG='?(stable[56]/|trunk[56]/)messages'
 REPETIT=
 # Establir els usuaris seguits (format grep -E)
-USUARIS_SVN="aacid|apol|bellaperez|jferrer|omas"
+USUARIS_GIT="aacid@|antonibella5@|apol@|orestes@|txemaq@" # aacid|apol|bellaperez|jferrer|omas
 # Establir els traductors seguits
 USUARIS_VAL0="montoro_mde@|alviboi@"
 USUARIS_VAL1="${USUARIS_VAL0//|/ }"
+
+# Codis de color:
+RESET='\e[0m'
+ #
+VERMELL_BLANC='\e[47;31m'
+
+# Dependency Validation
+for cmd in cpulimit git grep sed; do
+    command -v "$cmd" &>/dev/null || msg_exit "el paquet «$cmd» de GNU: apt install $cmd"
+done
 
 msg_exit() {
   echo "Error: Penseu a instal·lar $1"
@@ -25,11 +77,8 @@ msg_exit() {
 }
 
 command -v awk      &>/dev/null || msg_exit "el paquet «gawk» de GNU: apt install gawk"
-command -v cpulimit &>/dev/null || msg_exit "el paquet «cpulimit»: apt install cpulimit"
 command -v msgmerge &>/dev/null || msg_exit "el paquet «gettext»: apt install gettext"
-command -v grep     &>/dev/null || msg_exit "el paquet «grep» de GNU: apt install grep"
 command -v posieve  &>/dev/null || msg_exit "les eines del Pology «http://pology.nedohodnik.net/doc/user/en_US/ch-about.html#sec-install»."
-command -v sed      &>/dev/null || msg_exit "el paquet «sed» de GNU: apt install sed"
 command -v svn      &>/dev/null || msg_exit "el paquet «subversion»: apt install subversion"
 
 # Establim la capçalera
@@ -47,91 +96,92 @@ capçalera() {
   fi
 
   [ -z "${RV_CADENA-}" ] && RV_CADENA="$RVINICI:$RVFINAL"
-  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RV_CADENA\n  ****************${extra_asterisk}\n"
+  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RV_CADENA\n  *************${extra_asterisk}\n"
 }
 
 genera_copia() {
   # No cal processar (segons antiguitat)
   [ "$CANVIA" -eq 0 ] && echo -e " \e[38;5;82m-\e[0m $PO" && return 0
-  [ -f "ca/$PO"           ] || return 0
-  [ -f "templates/${PO}t" ] || return 0
+  [ -f "$DIR_CAT/$PO"    ] || return 0
+  [ -f "$DIR_TPL/${PO}t" ] || return 0
 
   # Si no existeix el directori, el creem
-  mkdir -p "ca@valencia/$DIR"
+  mkdir -p "$DIR_VAL/$DIR"
 
   # El caràcter «*» indica que aquest fitxer ha estat modificat
-  echo -e " \e[44m*\e[0m ca@valencia/$PO"
+  echo -e " \e[44m*\e[0m $VAL/$PO"
 
   # Les primeres escriptures van a l'espai d'usuari en la memòria del sistema (molt més ràpid, alleuja i allarga la vida)
-  MEM_DIR="/run/user/$(id -u)"
-  DIRTR="$PWD"
   cd "$MEM_DIR" || exit 1
 
   # Fem que les frases/paràgrafs siguin d'una sola línia:
-  msgmerge --silent --previous --no-wrap "$DIRTR/ca/$PO" "$DIRTR/templates/${PO}t" --output-file="missatges-$FITX"
+  msgmerge --silent --previous --no-wrap "$DIR_CAT/$PO" "$DIR_TPL/${PO}t" --output-file="missatges-$FITX"
 
   if [[ ! -f 'kde-src2valencia.sed' || "${1-}" = 1 ]]; then
-    cp  "$DIRTR/kde-src2valencia_a.sed"         'kde-src2valencia.sed'
-    cat "$DIRTR/kde-src2valencia_b.sed"      >> 'kde-src2valencia.sed'
-    cat "$DIRTR/kde-src2valencia-esmena.sed" >> 'kde-src2valencia.sed'
-    cp  "$DIRTR/all-src2valencia-adapta.sed"    'all-src2valencia.sed'
-    cat "$DIRTR/all-src2valencia.sed"        >> 'all-src2valencia.sed'
-    cat "$DIRTR/all-src2valencia-esmena.sed" >> 'all-src2valencia.sed'
+    cat "$DIRTR/kde-src2valencia_a.sed"      \
+        "$DIRTR/kde-src2valencia_b.sed"      \
+        "$DIRTR/kde-src2valencia-esmena.sed" > 'kde-src2valencia.sed'
+    cat "$DIRTR/all-src2valencia-adapta.sed" \
+        "$DIRTR/all-src2valencia.sed"        \
+        "$DIRTR/all-src2valencia-esmena.sed" > 'all-src2valencia.sed'
 
     if ! pgrep -x "cpulimit" >/dev/null 2>&1; then
-      cpulimit --background --quiet --path="$(which sed)" --limit='75' >/dev/null 2>&1 || true
+      cpulimit --background --quiet --path="$(command -v sed)" --limit='75' >/dev/null 2>&1 || true
     fi
   fi
 
-  # Executem la conversió del fitxer PO
+  # Executem la conversió
   TARGET_FILE="missatges_2-$FITX"
   LC_ALL=ca_ES.UTF-8 sed -f kde-src2valencia.sed < "missatges-$FITX"   > "missatges_1-$FITX"
   LC_ALL=ca_ES.UTF-8 sed -f all-src2valencia.sed < "missatges_1-$FITX" > "$TARGET_FILE"
   rm -f "missatges-$FITX" "missatges_1-$FITX"
 
   # S'afegeixen els crèdits per al valencià
-  local HEADERPO
-  HEADERPO="$(head -20 "$DIRTR/ca/$PO")"
+  local HEADERPO TOCAT
+  HEADERPO="$(head -20 "$DIR_CAT/$PO")"
+  TOCAT="$(grep -E "$USUARIS_VAL0" <<< "$HEADERPO" || true)"
 
-  TOCAT="$(echo "$HEADERPO" | grep -E "$USUARIS_VAL0" || true)"
   if [ -n "$TOCAT" ]; then
-    MSG_TEXT="$(posieve find-messages -smsgctxt:'NAME OF TRANSLATORS' "$TARGET_FILE" | grep 'msgstr' || true)"
-    if [ -n "$MSG_TEXT" ]; then
-      local USUARIS_VAL=""
-      local USUARIS_VAL_EMAIL=""
+    local LINE_NAMES LINE_EMAIL
+    LINE_NAMES="$(posieve find-messages -smsgctxt:'NAME OF TRANSLATORS'  "$TARGET_FILE" | grep '^msgstr ' || true)"
+    LINE_EMAIL="$(posieve find-messages -smsgctxt:'EMAIL OF TRANSLATORS' "$TARGET_FILE" | grep '^msgstr ' || true)"
+
+    if [ -n "$LINE_NAMES" ] && [ -n "$LINE_EMAIL" ]; then
+      local USUARIS_VAL="" USUARIS_VAL_EMAIL=""
 
       for usuari_val in $USUARIS_VAL1
         do
-          if echo "$TOCAT" | grep -q "$usuari_val"; then
+          local linia_autor
+          linia_autor="$(grep -E "$usuari_val" <<< "$TOCAT" | head -n 1 || true)"
+
+          if [ -n "$linia_autor" ]; then
             # Extracció del nom de l'autor
-            USUARI_VAL="$(echo "$HEADERPO" | grep -E "$usuari_val" | awk -F'<' '{print $1}' | sed -e 's/\# SPDX-FileCopyrightText: [ 0-9,-]*//g' -e 's/ $//'),"
+            local nom="${linia_autor%%<*}"
+            nom="$(sed -E 's/^# SPDX-FileCopyrightText: [0-9, -]*//; s/[[:space:]]+$//' <<< "$nom")"
 
             # Extracció del correu de l'autor
-            USUARI_VAL_EMAIL="$(echo "$HEADERPO" | grep -E "$usuari_val" | awk -F'<' '{print $2}' | sed -e 's/>$//g'),"
+            local email="${linia_autor#*<}"
+            email="${email%>*}"
 
-            # Acumulació de les dades
-            USUARIS_VAL="$USUARIS_VAL$USUARI_VAL"
-            USUARIS_VAL_EMAIL="$USUARIS_VAL_EMAIL$USUARI_VAL_EMAIL"
+            # Només l'afegim si no consta ja als crèdits del fitxer
+            if [[ "$LINE_EMAIL" != *"$email"* ]]; then
+              USUARIS_VAL+="${nom},"
+              USUARIS_VAL_EMAIL+="${email},"
+            fi
           fi
         done
 
-      echo "$USUARIS_VAL_EMAIL"
-      # NAME OF TRANSLATORS
-      LINE1="$(posieve find-messages -smsgctxt:'NAME OF TRANSLATORS' "$TARGET_FILE"  | grep 'msgstr')"
-      LINE2="$(echo "$LINE1" | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" "$TARGET_FILE"
-      # EMAIL OF TRANSLATORS
-      LINE1="$(posieve find-messages -smsgctxt:'EMAIL OF TRANSLATORS' "$TARGET_FILE" | grep 'msgstr')"
-      LINE2="$(echo "$LINE1" | sed -s "s/^msgstr \"/msgstr \"${USUARIS_VAL_EMAIL}/")"
-      sed --in-place -e "s/$LINE1/$LINE2/" "$TARGET_FILE"
-
-      USUARIS_VAL=""
-      USUARIS_VAL_EMAIL=""
+      if [ -n "$USUARIS_VAL" ]; then
+        echo -e "   ${VERMELL_BLANC}->${RESET} S'han afegit els crèdits: ${VERMELL_BLANC}${USUARIS_VAL_EMAIL/%,/ }${RESET}"
+        # Inserció directa buscant el context msgctxt (segura davant caràcters especials)
+        sed --in-place -e "/msgctxt \"NAME OF TRANSLATORS\"/{n;s|^msgstr \"|msgstr \"${USUARIS_VAL}|}" "$TARGET_FILE"
+        sed --in-place -e "/msgctxt \"EMAIL OF TRANSLATORS\"/{n;s|^msgstr \"|msgstr \"${USUARIS_VAL_EMAIL}|}" "$TARGET_FILE"
+      fi
     fi
   fi
 
   # Es torna a donar el format amb 78 files
-  msgmerge --silent --previous --width='79' --lang='ca@valencia' "$TARGET_FILE" "$DIRTR/templates/${PO}t" --output-file="$FITX"
+  msgmerge --silent --previous --width='79' --lang='ca@valencia' "$TARGET_FILE" "$DIR_TPL/${PO}t" --output-file="$FITX"
   rm -f "$TARGET_FILE"
 
   if   [[ "$FITX" = *@(appdata.po|_qt.po|metainfo.po) ]]; then
@@ -167,36 +217,35 @@ genera_copia() {
   fi
 
   # es fa el seguiment local de les esmenes en regressió
-  REPO_DIR_SC="$HOME/Documents/Treball/svn/SoftCatala/adaptadorvariants/tools/kde_project/rules"
-
   echo -e " \e[1;37m* Es comproven les regles globals:\e[0m"
-  posieve   check-rules -s rfile:"$REPO_DIR_SC/errors.rules"     "$FITX"
+  posieve   check-rules -s rfile:"$REPO_DIR_SC/errors.rules"     "$FITX" || true
 
-  if   [[ "$DIR" = 'messages/'@(digikam-doc|websites-krita-org) ]]; then
+  if   [[ "$DIR" = $PRE_MSG'/'@(digikam-doc|websites-krita-org) ]]; then
     echo -e " \e[1;37m* Es comproven les regles multimedia:\e[0m"
-    posieve check-rules -s rfile:"$REPO_DIR_SC/multimedia.rules" "$FITX"
-  elif [[ "$DIR" = 'messages/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
+    posieve check-rules -s rfile:"$REPO_DIR_SC/multimedia.rules" "$FITX" || true
+  elif [[ "$DIR" = $PRE_MSG'/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
     echo -e " \e[1;37m* Es comproven les regles del KStars:\e[0m"
-    posieve check-rules -s rfile:"$REPO_DIR_SC/kstars.rules"     "$FITX"
+    posieve check-rules -s rfile:"$REPO_DIR_SC/kstars.rules"     "$FITX" || true
   fi
 
-  if [[ "$DIR" = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
+  if [[ "$DIR" = $PRE_MSG'/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
     echo -e " \e[1;37m* Es comproven les regles per a Sphinx:\e[0m"
-    posieve check-rules -s rfile:"$REPO_DIR_SC/sphinx.rules"     "$FITX"
+    posieve check-rules -s rfile:"$REPO_DIR_SC/sphinx.rules"     "$FITX" || true
   fi
+
+  echo -e " \e[1;37m* Es comproven les regles per a les esmenes als fitxers «*-esmena.sed»:\e[0m"
+  posieve check-rules -s rfile:"$REPO_DIR_SC/esmenes.rules"      "$FITX" || true
 
   # Ja s'escriu al disc
-  mv -f "$FITX" "$DIRTR/ca@valencia/$PO"
+  mv -f "$FITX" "$DIR_VAL/$PO"
   cd "$DIRTR" || exit 1
 }
 
 cerca_po() {
-  # [[ -z "${MODUL:-}" || "$MODUL" =~ messages/[[:alnum:]-]{3,} ]] || exit 0
-
   # Cerca les plantilles de traducció i les ordena
-  cd ca || exit 1
+  cd "$DIR_CAT" || exit 1
   mapfile -t FITXERSPO < <(find 'messages/' -type f -name "*.po" | LC_ALL=C sort)
-  cd ..
+  cd "$DIRTR"   || exit 1
 }
 
 ACTION="${1:-}"
@@ -204,48 +253,51 @@ ACTIVAT='0'
 
 case $ACTION in
   usuari)
-    CANVIA='1'
-    if [ -f "$RVF" ]; then
-        RV="$(cat "$RVF")"
-        echo -e "\e[1m\e[97m|--------------------\e[0m\n"
+    if   [ "$VCS" != "git" ]; then
+      echo -e "\nError: L'opció «usuari» només està disponible per al repositori Git ($DIR_GIT)."
+      echo -e "       Al repositori SVN local no s'empra fitxer de registre «$RVF».\n"
+      exit 1
+    elif [[ ! -f "$RVF" ]]; then
+      cat <<EOF
 
-        SVN_REPO="$(LC_ALL=C svn info 'ca' | awk -F'^/| ' '/^Relative URL:/ {print $NF}')"
-        # S'obté la darrera modificació SVN des de la carpeta
-        echo "1 - svn info /home/kde/$SVN_REPO"
-        RVFINAL="$(LC_ALL=C svn info 'ca/' | awk '/^Revision:/ {print $2}')"
-        if [ "$RV" -lt "$RVFINAL" ]; then
-            # S'afegeix 1 a la revisió per a ometre els últims canvis
-            RVINICI="$(printf "%06d" $((10#$RV + 1)))"
-          else
-            RVINICI="$RV"
-        fi
+Error «$1»: No existeix el fitxer $RVF.
+  Creeu-lo manualment o empreu primer l'opció «recursiu».
+  Es tracta de no permetre executar aquesta opció
+  sobre tots els elements en el repositori.
+  Format: e3df5a8302ca78ef334f21019b31105c08c82e24
 
-        if [ "$ESCRIPTORI" = 'l10n-kf5-plasma-lts' ]; then
-          capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
-          echo -e " \e[38;5;82m-\e[0m Aquestes traduccions són mantingudes per l'equip de valencià.\n"
-          exit 0
-        fi
-      else
-        echo -e "\nError «$1»: No existeix el fitxer $RVF."
-        echo    "  Creeu-lo manualment o empreu primer l'opció «recursiu»."
-        echo    "  Es tracta de no permetre executar aquesta opció"
-        echo    "  sobre tots els elements en el repositori."
-        echo -e "  Format: 1641759\n"
-        exit 0
-    fi
-
-    if [ -z "$USUARIS_SVN" ]; then
+EOF
+      exit 1
+    elif [[ -z "$USUARIS_GIT" ]]; then
       echo -e "\nError: no heu establert cap usuari seguit!\n"
       exit 1
     fi
 
-    if [ "$RV" -lt "$RVFINAL" ]; then
-        echo "2 - svn log --verbose -r $RVINICI:$RVFINAL /home/kde/$SVN_REPO"
-        mapfile -t COMMITS < <(LC_All=C svn log --verbose -r "$RVINICI:$RVFINAL" 'ca/' 2>/dev/null | awk -v usuaris="$USUARIS_SVN" '$0 ~ usuaris {sub(/^r/, "", $1); print $1}')
+    CANVIA='1'
+    RV="$(<"$RVF")"
+    RVINICI="$RV"
+    echo -e "\e[1m\e[97m|--------------------\e[0m\n"
+
+    GIT_REPO="$(git -C "$CAT" config --get remote.origin.url)"
+    echo  "  - $GIT_REPO"
+
+    # S'obté el hash complet de HEAD dins de la carpeta
+    echo  "1 - git -C \"$CAT\" rev-parse HEAD"
+    RVFINAL="$(git -C  "$CAT"  rev-parse HEAD 2>/dev/null)"
+
+    # if [[ "$ESCRIPTORI" == 'l10n-kf5-plasma-lts' ]]; then
+    #   capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
+    #   echo -e " \e[38;5;82m-\e[0m Aquestes traduccions són mantingudes per l'equip de valencià.\n"
+    #   exit 0
+    # fi
+
+    if [[ "$RV" != "$RVFINAL" ]]; then
+        echo "2 - git -C \"$CAT\" log --extended-regexp --author=\"$USUARIS_GIT\" --pretty=format:\"%H\" \"$RV..$RVFINAL\""
+        mapfile -t COMMITS < <(git -C "$CAT" log --extended-regexp --author="$USUARIS_GIT" --pretty=format:"%H" "$RV..$RVFINAL")
 
         commits_num() {
-          echo "3 - svn log --verbose -r $1 /home/kde/$SVN_REPO/messages"
-          mapfile -t FITXERS < <(LC_ALL=C svn log --verbose -r "$1" 'ca/' 2>/dev/null | awk '/ca\/messages\// && /\.po/ {sub(/^.*\/ca\//, ""); print}')
+          echo "3 - git -C \"$CAT\" show --name-only --pretty=format: \"$1\""
+          mapfile -t FITXERS < <(git -C "$CAT" show --name-only --pretty=format: "$1" 2>/dev/null | grep -E "^([^/]+/)?${DOC}messages/.*\.po$" || true)
         }
 
         FITXERST=""
@@ -255,27 +307,22 @@ case $ACTION in
             [ ${#FITXERS[@]} -eq 0 ] && continue
             printf -v FITXERS "%s\n" "${FITXERS[@]}"
 
-            if [ -z "$FITXERST" ]; then
-                FITXERST="$FITXERS"
-              else
-                FITXERST="${FITXERST}"$'\n'"${FITXERS}"
-            fi
-
-            FITXERS=""
+            FITXERST+="$FITXERS"
+            FITXERS=()
           done
 
-        mapfile -t FITXERSPO < <(echo -e "$FITXERST" | LC_ALL=C sort -u)
+        mapfile -t FITXERSPO < <(printf '%s' "$FITXERST" | LC_ALL=C sort -u)
         capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
       else
-        echo -e "2 - svn log --verbose -r $RVINICI:$RVFINAL /home/kde/$SVN_REPO\n"
+        echo -e "2 - No hi ha cap comissió nova des de la revisió $RV.\n"
     fi
   ;;
   recursiu)
     CANVIA='1'
-    MODUL="${2:-}"
+    MODUL="${2:-}" && MODUL="${MODUL%/}"
     # S'estableix a zero (no s'usa)
     RVINICI='0'
-    RVFINAL="$(LC_ALL=C svn info 'ca/' 2>/dev/null | awk '/^Revision:/ {print $2}')"
+    [ "$VCS" = "git" ] && RVFINAL="$(git -C "$CAT" rev-parse HEAD 2>/dev/null)"
     capçalera
     cerca_po
   ;;
@@ -289,7 +336,7 @@ case $ACTION in
     [ -n "${3-}" ] && [ "$3" != 1 ] && RV_CADENA="$3"
 
     capçalera
-    if [ -f "ca/$PO" ]; then
+    if [ -f "$CAT/$PO" ]; then
         FITX="${PO##*/}"
         genera_copia "${3-}"
       else
@@ -302,38 +349,39 @@ case $ACTION in
     exit 0
   ;;
   arranja_po)
-    MODUL="${2:-}"
+    MODUL="${2:-}" && MODUL="${MODUL%/}"
     cerca_po
 
     echo -en "\nS'arranjen les traduccions: "
     for PO in "${FITXERSPO[@]}"
       do
-        msgmerge --silent --update --previous --width='79' "ca@valencia/$PO" "templates/${PO}t"
+        msgmerge --silent --update --previous --width='79' "$VAL/$PO" "$TEM/${PO}t"
       done
 
     echo -e "- Fet! -\n"
-    [ "${BRANCA:-}" = 'stable' ] && posieve --quiet remove-obsolete 'ca@valencia/messages/'*
+    [ "${BRANCA:-}" = 'stable' ] && posieve --quiet remove-obsolete "$VAL/messages/"*
     exit 0
   ;;
   *)
     echo "$0 [ usuari | recursiu | fitxer (po) | arranja_po ]"
     echo
-    echo    " usuari     : Mode SVN: mira l'última data i hora de canvi per als usuaris seguits."
-    echo -e "              • Empra la revisió en el fitxer $RVF i processa els\n\t\tmodificats."
-    echo -e "              • Usuaris seguits = ${USUARIS_SVN//|/ }\n"
+    echo    " usuari     : Mode Git: cerca les comissions noves dels usuaris seguits."
+    echo    "              • Empra la revisió desada a: $RVF"
+    echo    "              • (No disponible en el repositori SVN local)"
+    echo -e "              • Usuaris seguits = ${USUARIS_GIT//|/ }\n"
     echo    " recursiu [messages/«mòdul»]?"
     echo -e "            : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
     echo    "              • Si aquest no existeix, ho actualitza tot."
-    echo    "              • Es pot especificar un mòdul per a començar per allà."
+    echo    "              Nota: No modifica el hash desat a $RVF."
     echo -e "              \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m\n"
     echo    " fitxer [po] 1?"
     echo    "            : Mode local: actualitza el fitxer sense emprar cap data."
     echo    "              • Útil si observem alguna desactualització puntual."
-    echo -e "              Nota: No actualitza la revisió en el fitxer $RVF."
+    echo -e "              Nota: No modifica el hash desat a $RVF."
     echo    "              po = messages/carpeta/fitxer.po"
     echo -e "              Nota: Es pot indicar 1 com a tercer paràmetre i reconstruir els fitxers en sed.\n"
     echo    " arranja_po : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
-    echo    "              Nota: No actualitza la data en el fitxer $RVF."
+    echo    "              Nota: No modifica el hash desat a $RVF."
     echo -e "              \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m\n"
     exit 0
   ;;
@@ -341,9 +389,9 @@ esac
 
 message_removed() {
   [[ "$REPETIT" == "$DIR" ]] && return 0
-  { [[ "${VAL-}" -eq 1 ]] && echo -e " \e[38;5;46mo\e[0m $DIR"; } || echo -e " \e[44mo\e[0m $DIR"
+  { [[ "${VALID-}" -eq 1 ]] && echo -e " \e[38;5;46mo\e[0m $DIR"; } || echo -e " \e[44mo\e[0m $DIR"
   REPETIT="$DIR"
-  VAL='0'
+  VALID='0'
 }
 
 for PO in "${FITXERSPO[@]}"
@@ -351,44 +399,45 @@ for PO in "${FITXERSPO[@]}"
     # Extraiem el nom de directori i el nom de fitxer
     DIR="${PO%/*}"
     FITX="${PO##*/}"
+    MODUL="${DIR##*/}"
 
-    [ "$DIR" = "messages/${MODUL-}" ] && ACTIVAT='1'
+    [[ "$DIR" = $PRE_MSG'/'${MODUL-} ]] && ACTIVAT='1'
 
     if [ "$ACTIVAT" -eq 1 ] || [ -z "${MODUL:-}" ]; then
       # Es desactiven les traduccions següents:
-      [ "$DIR"  = 'messages/documentation-develop-kde-org' ]     && message_removed && continue # https://develop.kde.org/ca/docs/
-      [ "$DIR"  = 'messages/documentation-docs-kdenlive-org' ]   && message_removed && continue # https://docs.kdenlive.org/ca/
+      [[ "$DIR"  = $PRE_MSG'/documentation-develop-kde-org' ]]   && message_removed && continue # https://develop.kde.org/ca/docs/
+      [[ "$DIR"  = $PRE_MSG'/documentation-docs-kdenlive-org' ]] && message_removed && continue # https://docs.kdenlive.org/ca/
       # messages/websites-kde-org:
-      [ "$FITX" = 'release_announcements.po' ]                   && message_removed && continue # https://kde.org/ca/announcements/
-      [ "$FITX" = 'www_www.po' ]                                 && message_removed && continue
-      [ "$DIR"  = 'messages/websites-planet-kde-org' ]           && message_removed && continue # https://planet.kde.org/ca/
-      [ "$DIR"  = 'messages/websites-docs-glaxnimate-org' ]      && message_removed && continue # https://docs.glaxnimate.org/ca/
-      [ "$DIR"  = 'messages/websites-glaxnimate-org' ]           && message_removed && continue # https://glaxnimate.org/ca/
-      [ "$DIR"  = 'messages/websites-kdenlive-org' ]             && message_removed && continue # https://kdenlive.org/ca/
-      [ "$DIR"  = 'messages/websites-kdevelop-org' ]             && message_removed && continue # https://kdevelop.org/ca/
+      [  "$FITX" = 'release_announcements.po' ]                  && message_removed && continue # https://kde.org/ca/announcements/
+      [  "$FITX" = 'www_www.po' ]                                && message_removed && continue
+      [[ "$DIR"  = $PRE_MSG'/websites-planet-kde-org' ]]         && message_removed && continue # https://planet.kde.org/ca/
+      [[ "$DIR"  = $PRE_MSG'/websites-docs-glaxnimate-org' ]]    && message_removed && continue # https://docs.glaxnimate.org/ca/
+      [[ "$DIR"  = $PRE_MSG'/websites-glaxnimate-org' ]]         && message_removed && continue # https://glaxnimate.org/ca/
+      [[ "$DIR"  = $PRE_MSG'/websites-kdenlive-org' ]]           && message_removed && continue # https://kdenlive.org/ca/
+      [[ "$DIR"  = $PRE_MSG'/websites-kdevelop-org' ]]           && message_removed && continue # https://kdevelop.org/ca/
       # desactivades temporalment (la traducció en valencià no funciona a l'aplicació font):
       # ERROR: 459247 <https://bugs.kde.org/show_bug.cgi?id=459247>
       # Fet! - https://krita.org/ca/
-      [ "$DIR"  = 'messages/documentation-docs-krita-org' ]      && message_removed && continue # https://docs.krita.org/ca/
+      [[ "$DIR"  = $PRE_MSG'/documentation-docs-krita-org' ]]    && message_removed && continue # https://docs.krita.org/ca/
       # Es desactiven les traduccions revisades per l'equip valencià:
-      [[ "$DIR"  = 'messages/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]] && VAL='1' message_removed && continue
-      [[ "$FITX" = @(cervisia._json_|ffmpegthumbs._json_|kbibtex._json_|kdenlive._json_|oom_notifier|org.kde.plasmasetup|org.rolisteam.rolisteam.appdata|rolisteam._desktop_|svgpart._json_)'.po' ]] && VAL='1' message_removed && continue
+      [[ "$DIR"  = $PRE_MSG'/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]]                       && VALID='1' message_removed && continue
+      [[ "$FITX" = @(cervisia._json_|ffmpegthumbs._json_|kbibtex._json_|kdenlive._json_|oom_notifier|org.kde.plasmasetup|org.rolisteam.rolisteam.appdata|rolisteam._desktop_|svgpart._json_)'.po' ]] && VALID='1' message_removed && continue
       # Aquest fitxer està buit i dona error
-      [ "$FITX" = 'libkscreen6_qt.po' ]                          && message_removed && continue
-      [ "$FITX" = 'knotifications6_qt.po' ]                      && message_removed && continue
-      [ "$FITX" = 'kreport_webplugin_qt.po' ]                    && message_removed && continue
+      [  "$FITX" = 'libkscreen6_qt.po' ]                         && message_removed && continue
+      [  "$FITX" = 'knotifications6_qt.po' ]                     && message_removed && continue
+      [  "$FITX" = 'kreport_webplugin_qt.po' ]                   && message_removed && continue
 
       genera_copia
     fi
   done
 
-# Actualització normal
-[[ "$ACTION" = @(usuari|recursiu) ]] && echo "$RVFINAL" > "$RVF"
-
 [ -n "${MISSATGEPOS:-}" ] && echo -e "\nError: $MISSATGEPOS\n"
 
 # Suprimeixo el fitxer creat per les eines gettext de GNU
 rm -f 'messages.mo' "${MEM_DIR:-}/messages.mo"
+
+# Actualització normal
+[[ "$VCS" = "git" && "$ACTION" = 'usuari' ]] && echo "$RVFINAL" > "$RVF"
 
 exit 0
 
