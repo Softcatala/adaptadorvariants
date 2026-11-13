@@ -54,6 +54,8 @@ fi
 
 # Afegeix suport per a les diferents branques
 PRE_MSG='?(stable[56]/|trunk[56]/)messages'
+ACTIVAT='0'
+ATURA='0'
 REPETIT=
 # Establir els usuaris seguits (format grep -E)
 USUARIS_GIT="aacid@|antonibella5@|apol@|orestes@|txemaq@" # aacid|apol|bellaperez|jferrer|omas
@@ -62,19 +64,26 @@ USUARIS_VAL0="montoro_mde@|alviboi@"
 USUARIS_VAL1="${USUARIS_VAL0//|/ }"
 
 # Codis de color:
+CURSIVA='\e[3m'
+NEGRETA='\e[1m'
 RESET='\e[0m'
  #
-VERMELL_BLANC='\e[47;31m'
+BLANC_BRILLANT_NEGRETA='\e[1;97m'
+BLANC_NEGRETA='\e[1;37m'
+VERMELL_FONS_GRISCLAR='\e[47;31m'
+VERD_LLIMA='\e[38;5;46m'
+FONS_BLAU='\e[44m'
 
 # Dependency Validation
-for cmd in cpulimit git grep sed; do
-    command -v "$cmd" &>/dev/null || msg_exit "el paquet «$cmd» de GNU: apt install $cmd"
-done
-
 msg_exit() {
   echo "Error: Penseu a instal·lar $1"
   exit 1
 }
+
+for cmd in cpulimit git grep sed
+  do
+    command -v "$cmd" &>/dev/null || msg_exit "el paquet «$cmd» de GNU: apt install $cmd"
+  done
 
 command -v awk      &>/dev/null || msg_exit "el paquet «gawk» de GNU: apt install gawk"
 command -v msgmerge &>/dev/null || msg_exit "el paquet «gettext»: apt install gettext"
@@ -96,12 +105,12 @@ capçalera() {
   fi
 
   [ -z "${RV_CADENA-}" ] && RV_CADENA="$RVINICI:$RVFINAL"
-  echo -e "\n** \e[1m$BRANCA/$ESCRIPTORI\e[0m ** \e[1m->\e[0m $RV_CADENA\n  *************${extra_asterisk}\n"
+  echo -e "\n** ${NEGRETA}$BRANCA/$ESCRIPTORI${RESET} ** ${NEGRETA}->${RESET} $RV_CADENA\n  *************${extra_asterisk}\n"
 }
 
 genera_copia() {
   # No cal processar (segons antiguitat)
-  [ "$CANVIA" -eq 0 ] && echo -e " \e[38;5;82m-\e[0m $PO" && return 0
+  [ "$CANVIA" -eq 0 ] && echo -e " ${VERD_LLIMA}-${RESET} $PO" && return 0
   [ -f "$DIR_CAT/$PO"    ] || return 0
   [ -f "$DIR_TPL/${PO}t" ] || return 0
 
@@ -109,13 +118,10 @@ genera_copia() {
   mkdir -p "$DIR_VAL/$DIR"
 
   # El caràcter «*» indica que aquest fitxer ha estat modificat
-  echo -e " \e[44m*\e[0m $VAL/$PO"
+  echo -e " ${FONS_BLAU}*${RESET} $VAL/$PO"
 
   # Les primeres escriptures van a l'espai d'usuari en la memòria del sistema (molt més ràpid, alleuja i allarga la vida)
   cd "$MEM_DIR" || exit 1
-
-  # Fem que les frases/paràgrafs siguin d'una sola línia:
-  msgmerge --silent --previous --no-wrap "$DIR_CAT/$PO" "$DIR_TPL/${PO}t" --output-file="missatges-$FITX"
 
   if [[ ! -f 'kde-src2valencia.sed' || "${1-}" = 1 ]]; then
     cat "$DIRTR/kde-src2valencia_a.sed"      \
@@ -126,15 +132,17 @@ genera_copia() {
         "$DIRTR/all-src2valencia-esmena.sed" > 'all-src2valencia.sed'
 
     if ! pgrep -x "cpulimit" >/dev/null 2>&1; then
-      cpulimit --background --quiet --path="$(command -v sed)" --limit='75' >/dev/null 2>&1 || true
+      NUCLIS=$(nproc --all)
+      LIMIT_CPU=$(( NUCLIS * 75 ))
+      cpulimit --background --quiet --include-children --pid="$$" --limit="$LIMIT_CPU" >/dev/null 2>&1 || true
     fi
   fi
 
-  # Executem la conversió
+  # Es fa que les frases i paràgrafs siguin d'una sola línia, així com s'executa la conversió en una canonada
   TARGET_FILE="missatges_2-$FITX"
-  LC_ALL=ca_ES.UTF-8 sed -f kde-src2valencia.sed < "missatges-$FITX"   > "missatges_1-$FITX"
-  LC_ALL=ca_ES.UTF-8 sed -f all-src2valencia.sed < "missatges_1-$FITX" > "$TARGET_FILE"
-  rm -f "missatges-$FITX" "missatges_1-$FITX"
+  msgmerge --silent --previous --no-wrap "$DIR_CAT/$PO" "$DIR_TPL/${PO}t" | \
+  LC_ALL=ca_ES.UTF-8 sed -f kde-src2valencia.sed                          | \
+  LC_ALL=ca_ES.UTF-8 sed -f all-src2valencia.sed > "$TARGET_FILE"
 
   # S'afegeixen els crèdits per al valencià
   local HEADERPO TOCAT
@@ -163,7 +171,7 @@ genera_copia() {
             local email="${linia_autor#*<}"
             email="${email%>*}"
 
-            # Només l'afegim si no consta ja als crèdits del fitxer
+            # Només l'afegim si no es troba ja als crèdits del fitxer
             if [[ "$LINE_EMAIL" != *"$email"* ]]; then
               USUARIS_VAL+="${nom},"
               USUARIS_VAL_EMAIL+="${email},"
@@ -172,10 +180,10 @@ genera_copia() {
         done
 
       if [ -n "$USUARIS_VAL" ]; then
-        echo -e "   ${VERMELL_BLANC}->${RESET} S'han afegit els crèdits: ${VERMELL_BLANC}${USUARIS_VAL_EMAIL/%,/ }${RESET}"
+        echo -e "   ${VERMELL_FONS_GRISCLAR}->${RESET} S'han afegit els crèdits: ${VERMELL_FONS_GRISCLAR}${USUARIS_VAL_EMAIL/%,/ }${RESET}"
         # Inserció directa buscant el context msgctxt (segura davant caràcters especials)
-        sed --in-place -e "/msgctxt \"NAME OF TRANSLATORS\"/{n;s|^msgstr \"|msgstr \"${USUARIS_VAL}|}" "$TARGET_FILE"
-        sed --in-place -e "/msgctxt \"EMAIL OF TRANSLATORS\"/{n;s|^msgstr \"|msgstr \"${USUARIS_VAL_EMAIL}|}" "$TARGET_FILE"
+        sed --in-place -e "/msgctxt \"NAME OF TRANSLATORS\"/{n;n;s|^msgstr \"|msgstr \"${USUARIS_VAL}|}"        "$TARGET_FILE"
+        sed --in-place -e "/msgctxt \"EMAIL OF TRANSLATORS\"/{n;n;s|^msgstr \"|msgstr \"${USUARIS_VAL_EMAIL}|}" "$TARGET_FILE"
       fi
     fi
   fi
@@ -217,23 +225,23 @@ genera_copia() {
   fi
 
   # es fa el seguiment local de les esmenes en regressió
-  echo -e " \e[1;37m* Es comproven les regles globals:\e[0m"
+  echo -e " ${BLANC_BRILLANT_NEGRETA}*${RESET} Es comproven les regles globals:"
   posieve   check-rules -s rfile:"$REPO_DIR_SC/errors.rules"     "$FITX" || true
 
   if   [[ "$DIR" = $PRE_MSG'/'@(digikam-doc|websites-krita-org) ]]; then
-    echo -e " \e[1;37m* Es comproven les regles multimedia:\e[0m"
+    echo -e " ${BLANC_BRILLANT_NEGRETA}*${RESET} Es comproven les regles multimedia:"
     posieve check-rules -s rfile:"$REPO_DIR_SC/multimedia.rules" "$FITX" || true
   elif [[ "$DIR" = $PRE_MSG'/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org) ]]; then
-    echo -e " \e[1;37m* Es comproven les regles del KStars:\e[0m"
+    echo -e " ${BLANC_BRILLANT_NEGRETA}*${RESET} Es comproven les regles del KStars:"
     posieve check-rules -s rfile:"$REPO_DIR_SC/kstars.rules"     "$FITX" || true
   fi
 
   if [[ "$DIR" = $PRE_MSG'/'@(digikam-doc|documentation-kstars-docs-kde-org|websites-*) ]]; then
-    echo -e " \e[1;37m* Es comproven les regles per a Sphinx:\e[0m"
+    echo -e " ${BLANC_BRILLANT_NEGRETA}*${RESET} Es comproven les regles per a Sphinx:"
     posieve check-rules -s rfile:"$REPO_DIR_SC/sphinx.rules"     "$FITX" || true
   fi
 
-  echo -e " \e[1;37m* Es comproven les regles per a les esmenes als fitxers «*-esmena.sed»:\e[0m"
+  echo -e " ${BLANC_BRILLANT_NEGRETA}*${RESET} Es comproven les regles per a les esmenes als fitxers «*-esmena.sed»:"
   posieve check-rules -s rfile:"$REPO_DIR_SC/esmenes.rules"      "$FITX" || true
 
   # Ja s'escriu al disc
@@ -249,7 +257,6 @@ cerca_po() {
 }
 
 ACTION="${1:-}"
-ACTIVAT='0'
 
 case $ACTION in
   usuari)
@@ -276,27 +283,28 @@ EOF
     CANVIA='1'
     RV="$(<"$RVF")"
     RVINICI="$RV"
-    echo -e "\e[1m\e[97m|--------------------\e[0m\n"
+    echo -e "${BLANC_BRILLANT_NEGRETA}|--------------------${RESET}\n"
 
     GIT_REPO="$(git -C "$CAT" config --get remote.origin.url)"
-    echo  "  - $GIT_REPO"
+    echo -e "  ${BLANC_NEGRETA}- Repositori:${RESET} $GIT_REPO"
 
     # S'obté el hash complet de HEAD dins de la carpeta
-    echo  "1 - git -C \"$CAT\" rev-parse HEAD"
     RVFINAL="$(git -C  "$CAT"  rev-parse HEAD 2>/dev/null)"
+    echo -e "${BLANC_NEGRETA}1 - «${RESET}git -C \"$CAT\" rev-parse HEAD${BLANC_NEGRETA}»:${RESET} $RVFINAL"
 
     # if [[ "$ESCRIPTORI" == 'l10n-kf5-plasma-lts' ]]; then
-    #   capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
-    #   echo -e " \e[38;5;82m-\e[0m Aquestes traduccions són mantingudes per l'equip de valencià.\n"
+    #   capçalera "${NEGRETA}Llegenda:${RESET} ${FONS_BLAU}*${RESET} s'ha modificat, ${VERD_LLIMA}-${RESET} no cal actualitzar\n\t  ${FONS_BLAU}o${RESET} no es tradueix, ${VERD_LLIMA}o${RESET} mantingut per l'equip valencià\n"
+    #   echo -e " ${VERD_LLIMA}-${RESET} Aquestes traduccions són mantingudes per l'equip de valencià.\n"
     #   exit 0
     # fi
 
-    if [[ "$RV" != "$RVFINAL" ]]; then
-        echo "2 - git -C \"$CAT\" log --extended-regexp --author=\"$USUARIS_GIT\" --pretty=format:\"%H\" \"$RV..$RVFINAL\""
+    # Detecta que és anterior
+    if git -C "$CAT" merge-base --is-ancestor "$RV" "$RVFINAL" 2>/dev/null; then
+        echo -e "${BLANC_NEGRETA}2 - «${RESET}git -C \"$CAT\" log --extended-regexp --author=\"$USUARIS_GIT\" --pretty=format:\"%H\" \"$RV..$RVFINAL\"${BLANC_NEGRETA}»${RESET}"
         mapfile -t COMMITS < <(git -C "$CAT" log --extended-regexp --author="$USUARIS_GIT" --pretty=format:"%H" "$RV..$RVFINAL")
 
         commits_num() {
-          echo "3 - git -C \"$CAT\" show --name-only --pretty=format: \"$1\""
+          echo -e "${BLANC_NEGRETA}3 - «${RESET}git -C \"$CAT\" show --name-only --pretty=format: \"$1\"${BLANC_NEGRETA}»${RESET}"
           mapfile -t FITXERS < <(git -C "$CAT" show --name-only --pretty=format: "$1" 2>/dev/null | grep -E "^([^/]+/)?${DOC}messages/.*\.po$" || true)
         }
 
@@ -312,9 +320,10 @@ EOF
           done
 
         mapfile -t FITXERSPO < <(printf '%s' "$FITXERST" | LC_ALL=C sort -u)
-        capçalera "\e[1mLlegenda:\e[0m \e[44m*\e[0m s'ha modificat, \e[38;5;82m-\e[0m no cal actualitzar\n\t  \e[44mo\e[0m no es tradueix, \e[38;5;46mo\e[0m mantingut per l'equip valencià\n"
+        capçalera "\n${NEGRETA}Llegenda:${RESET} ${FONS_BLAU}*${RESET} s'ha modificat, ${VERD_LLIMA}-${RESET} no cal actualitzar\n\t  ${FONS_BLAU}o${RESET} no es tradueix, ${VERD_LLIMA}o${RESET} mantingut per l'equip valencià\n"
       else
-        echo -e "2 - No hi ha cap comissió nova des de la revisió $RV.\n"
+        echo -e "${BLANC_NEGRETA}2 -${RESET} No hi ha cap comissió nova de traductor des de la revisió $RV.\n"
+        ATURA='1'
     fi
   ;;
   recursiu)
@@ -335,7 +344,6 @@ EOF
     [ -z "${RVFINAL-}" ] && RVFINAL='0'
     [ -n "${3-}" ] && [ "$3" != 1 ] && RV_CADENA="$3"
 
-    capçalera
     if [ -f "$CAT/$PO" ]; then
         FITX="${PO##*/}"
         genera_copia "${3-}"
@@ -373,7 +381,7 @@ EOF
     echo -e "            : Mode local: actualitza tots els fitxers en base a la revisió\n\t\testablerta en el fitxer $RVF."
     echo    "              • Si aquest no existeix, ho actualitza tot."
     echo    "              Nota: No modifica el hash desat a $RVF."
-    echo -e "              \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m\n"
+    echo -e "              ${VERMELL_FONS_GRISCLAR}* = Si s'especifica una carpeta, la cerca començarà en aquesta.${RESET}\n"
     echo    " fitxer [po] 1?"
     echo    "            : Mode local: actualitza el fitxer sense emprar cap data."
     echo    "              • Útil si observem alguna desactualització puntual."
@@ -382,14 +390,14 @@ EOF
     echo -e "              Nota: Es pot indicar 1 com a tercer paràmetre i reconstruir els fitxers en sed.\n"
     echo    " arranja_po : Mode local: s'arranjen les cadenes amb l'estil de la plantilla."
     echo    "              Nota: No modifica el hash desat a $RVF."
-    echo -e "              \e[47;31m* = Si s'especifica una carpeta, la cerca començarà en aquesta.\e[0m\n"
+    echo -e "              ${VERMELL_FONS_GRISCLAR}* = Si s'especifica una carpeta, la cerca començarà en aquesta.${RESET}\n"
     exit 0
   ;;
 esac
 
 message_removed() {
   [[ "$REPETIT" == "$DIR" ]] && return 0
-  { [[ "${VALID-}" -eq 1 ]] && echo -e " \e[38;5;46mo\e[0m $DIR"; } || echo -e " \e[44mo\e[0m $DIR"
+  { [[ "${VALID-}" -eq 1 ]] && echo -e " ${VERD_LLIMA}o${RESET} $DIR"; } || echo -e " ${FONS_BLAU}o${RESET} $DIR"
   REPETIT="$DIR"
   VALID='0'
 }
@@ -401,9 +409,10 @@ for PO in "${FITXERSPO[@]}"
     FITX="${PO##*/}"
     MODUL="${DIR##*/}"
 
+    # Mira el format correcte: «messages/carpeta/fitxer.po» o «stable5/messages/carpeta/fitxer.po»
     [[ "$DIR" = $PRE_MSG'/'${MODUL-} ]] && ACTIVAT='1'
 
-    if [ "$ACTIVAT" -eq 1 ] || [ -z "${MODUL:-}" ]; then
+    if [ "$ACTIVAT" -eq 1 ]; then
       # Es desactiven les traduccions següents:
       [[ "$DIR"  = $PRE_MSG'/documentation-develop-kde-org' ]]   && message_removed && continue # https://develop.kde.org/ca/docs/
       [[ "$DIR"  = $PRE_MSG'/documentation-docs-kdenlive-org' ]] && message_removed && continue # https://docs.kdenlive.org/ca/
@@ -420,7 +429,7 @@ for PO in "${FITXERSPO[@]}"
       # Fet! - https://krita.org/ca/
       [[ "$DIR"  = $PRE_MSG'/documentation-docs-krita-org' ]]    && message_removed && continue # https://docs.krita.org/ca/
       # Es desactiven les traduccions revisades per l'equip valencià:
-      [[ "$DIR"  = $PRE_MSG'/'@(digikam-doc|documentation-kstars-docs-kde-org|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]]                       && VALID='1' message_removed && continue
+      [[ "$DIR"  = $PRE_MSG'/'@(digikam-doc|documentation-kstars-docs-kde-org|krdc|kstars|websites-hugo-kde|websites-krita-org|websites-kstars-kde-org) ]]                       && VALID='1' message_removed && continue
       [[ "$FITX" = @(cervisia._json_|ffmpegthumbs._json_|kbibtex._json_|kdenlive._json_|oom_notifier|org.kde.plasmasetup|org.rolisteam.rolisteam.appdata|rolisteam._desktop_|svgpart._json_)'.po' ]] && VALID='1' message_removed && continue
       # Aquest fitxer està buit i dona error
       [  "$FITX" = 'libkscreen6_qt.po' ]                         && message_removed && continue
@@ -437,7 +446,7 @@ for PO in "${FITXERSPO[@]}"
 rm -f 'messages.mo' "${MEM_DIR:-}/messages.mo"
 
 # Actualització normal
-[[ "$VCS" = "git" && "$ACTION" = 'usuari' ]] && echo "$RVFINAL" > "$RVF"
+[[ "$VCS" = "git" && "$ACTION" = @(usuari|recursiu) && "$ATURA" -eq 0 ]] && echo "$RVFINAL" > "$RVF"
 
 exit 0
 
