@@ -31,8 +31,8 @@ elif [[ -d "$PWD/ca" && -d "$PWD/ca@valencia" ]]; then
     TEM='templates'
     DIRTR="$DIR_SVN"
   else
-    echo -e "\nError: carpeta de treball no reconeguda ($PWD)."
-    echo -e "Executeu l'script «$0» des de:\n  • $DIR_GIT\n  • $DIR_SVN\n"
+    echo -e "\n${VERMELL_INTENS_NEGRETA}Error:${RESET} carpeta de treball no reconeguda ($PWD)."
+    echo -e "Executeu l'script «${CURSIVA}$0${RESET}» des de:\n  • $DIR_GIT\n  • $DIR_SVN\n"
     exit 1
 fi
 
@@ -69,12 +69,13 @@ RESET='\e[0m'
 BLANC_BRILLANT_NEGRETA='\e[1;97m'
 BLANC_NEGRETA='\e[1;37m'
 VERMELL_FONS_GRISCLAR='\e[47;31m'
+VERMELL_INTENS_NEGRETA=$'\e[1;91m'
 VERD_LLIMA='\e[38;5;46m'
 FONS_BLAU='\e[44m'
 
 # Dependency Validation
 msg_exit() {
-  echo "Error: Penseu a instal·lar $1"
+  echo -e "${VERMELL_INTENS_NEGRETA}Error:${RESET} Penseu a instal·lar $1"
   exit 1
 }
 
@@ -193,7 +194,7 @@ genera_copia() {
 
   local LBUGS='https://bugs.kde.org'
   case "$FITX" in
-    *@(appdata.po|_qt.po|metainfo.po)|@(docs_digikam_org_|docs_kdenlive_org_|docs_krita_org_|kstars_docs_)*'.po')
+    *appdata.po|*_qt.po|*metainfo.po|docs_digikam_org_*.po|docs_kdenlive_org_*.po|docs_krita_org_*.po|kstars_docs_*.po)
       LBUGS=""
     ;;
     'kajongg.po')
@@ -230,10 +231,10 @@ genera_copia() {
 
   # Es fa el seguiment local de les esmenes en regressió
   case "$DIR" in
-    $PRE_MSG'/'@(digikam-doc|websites-krita-org))
+    $PRE_MSG/digikam-doc|$PRE_MSG/websites-krita-org)
       comprova_posieve 'multimedia.rules' 'multimedia'
     ;;
-    $PRE_MSG'/'@(kstars|documentation-kstars-docs-kde-org|websites-kstars-kde-org))
+    $PRE_MSG/kstars|$PRE_MSG/documentation-kstars-docs-kde-org|$PRE_MSG/websites-kstars-kde-org)
       comprova_posieve 'kstars.rules' 'del KStars'
     ;;
   esac
@@ -262,7 +263,7 @@ ACTION="${1:-}"
 case $ACTION in
   usuari)
     if   [ "$VCS" != "git" ]; then
-      echo -e "\nError: L'opció «usuari» només està disponible per al repositori Git ($DIR_GIT)."
+      echo -e "\n${VERMELL_INTENS_NEGRETA}Error:${RESET} L'opció «usuari» només està disponible per al repositori Git ($DIR_GIT)."
       echo -e "       Al repositori SVN local no s'empra fitxer de registre «$RVF».\n"
       exit 1
     elif [[ ! -f "$RVF" ]]; then
@@ -278,7 +279,7 @@ Error «$1»: No existeix el fitxer $RVF.
 EOF
       exit 1
     elif [[ -z "$USUARIS_GIT" ]]; then
-      echo -e "\nError: no heu establert cap usuari seguit!\n"
+      echo -e "\n${VERMELL_INTENS_NEGRETA}Error:${RESET} no heu establert cap usuari seguit!\n"
       exit 1
     fi
 
@@ -351,9 +352,9 @@ EOF
         FITX="${PO##*/}"
         genera_copia "${3-}"
       else
-        echo -e "\nError: «$PO» no existeix.\nHeu d'indicar un fitxer PO existent."
-        echo -e "Git: trunk6/messages/carpeta/fitxer.po\n"
-        echo -e "SVN: messages/carpeta/fitxer.po\n"
+        echo -e "\n${VERMELL_INTENS_NEGRETA}Error:${RESET} «${CURSIVA}$PO${RESET}» no existeix.\nHeu d'indicar un fitxer PO existent.\n"
+        echo -e " - Git: trunk6/messages/carpeta/fitxer.po\n"
+        echo -e " - SVN: messages/carpeta/fitxer.po\n"
     fi
 
     # Suprimeixo el fitxer creat per les eines gettext de GNU
@@ -472,7 +473,7 @@ for PO in "${FITXERSPO[@]}"
     fi
   done
 
-[ -n "${MISSATGEPOS:-}" ] && echo -e "\nError: $MISSATGEPOS\n"
+[ -n "${MISSATGEPOS:-}" ] && echo -e "\n${VERMELL_INTENS_NEGRETA}Error:${RESET} $MISSATGEPOS\n"
 
 # Suprimeixo el fitxer creat per les eines gettext de GNU
 rm -f 'messages.mo' "${MEM_DIR:-}/messages.mo"
